@@ -149,16 +149,11 @@ function main()
 	level.fn_custom_zombie_spawner_selection = &function_4353b980;
 	level.perk_random_idle_effects_override = &function_555e8704;
 	level.str_elec_damage_shellshock_override = "castle_electrocution_zm";
-	AddDebugCommand("devgui_cmd "ZM/Perks/Drink Dead Shot Daiquir (Castle)i:7" "zombie_devgui specialty_deadshot_castle"
-");
-	AddDebugCommand("devgui_cmd "ZM/Perks/Drink Widow's Wine (Castle):9" "zombie_devgui specialty_widowswine_castle"
-");
-	AddDebugCommand("devgui_cmd "ZM/Perks/Drink Electric Cherry (Castle):10" "zombie_devgui specialty_electriccherry_castle"
-");
-	AddDebugCommand("devgui_cmd "ZM/Perks/Remove All Perks (Castle):0" "zombie_devgui remove_perks_castle"
-");
-	AddDebugCommand("devgui_cmd "ZM/AI/Toggle_Skeletons (Castle):0" "zombie_devgui toggle_skeletons_castle"
-");
+	AddDebugCommand("devgui_cmd "ZM/Perks/Drink Dead Shot Daiquir (Castle)i:7" "zombie_devgui specialty_deadshot_castle" ");
+	AddDebugCommand("devgui_cmd "ZM/Perks/Drink Widow's Wine (Castle):9" "zombie_devgui specialty_widowswine_castle" ");
+	AddDebugCommand("devgui_cmd "ZM/Perks/Drink Electric Cherry (Castle):10" "zombie_devgui specialty_electriccherry_castle" ");
+	AddDebugCommand("devgui_cmd "ZM/Perks/Remove All Perks (Castle):0" "zombie_devgui remove_perks_castle" ");
+	AddDebugCommand("devgui_cmd "ZM/AI/Toggle_Skeletons (Castle):0" "zombie_devgui toggle_skeletons_castle" ");
 	level.custom_devgui = &function_fcfd712e;
 	level flag::init("rocket_firing");
 	zm::init_fx();

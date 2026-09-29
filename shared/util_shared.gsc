@@ -5726,8 +5726,7 @@ function GetPlaySpaceMaxWidth()
 */
 function function_e2ac06bb(var_ce7e654a, commands)
 {
-	AddDebugCommand("devgui_cmd "" + var_ce7e654a + "" "" + commands + ""
-");
+	AddDebugCommand("devgui_cmd "" + var_ce7e654a + "" "" + commands + "" ");
 }
 
 /*
@@ -5741,8 +5740,7 @@ function function_e2ac06bb(var_ce7e654a, commands)
 */
 function function_181cbd1a(var_ce7e654a)
 {
-	AddDebugCommand("devgui_remove "" + var_ce7e654a + ""
-");
+	AddDebugCommand("devgui_remove "" + var_ce7e654a + "" ");
 }
 
 /*

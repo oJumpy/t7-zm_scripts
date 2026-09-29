@@ -255,8 +255,7 @@ function Callback_VehicleDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansO
 			lpattackname = "";
 			lpattackerteam = "world";
 		}
-		logPrint("VD;" + lpselfnum + ";" + lpselfteam + ";" + lpattackGuid + ";" + lpattacknum + ";" + lpattackerteam + ";" + lpattackname + ";" + weapon.name + ";" + iDamage + ";" + sMeansOfDeath + ";" + sHitLoc + "
-");
+		logPrint("VD;" + lpselfnum + ";" + lpselfteam + ";" + lpattackGuid + ";" + lpattacknum + ";" + lpattackerteam + ";" + lpattackname + ";" + weapon.name + ";" + iDamage + ";" + sMeansOfDeath + ";" + sHitLoc + " ");
 	}
 }
 

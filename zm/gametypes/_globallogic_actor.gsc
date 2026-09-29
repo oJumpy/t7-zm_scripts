@@ -202,8 +202,7 @@ function Callback_ActorDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfD
 			lpattackname = "";
 			lpattackerteam = "world";
 		}
-		logPrint("AD;" + lpselfnum + ";" + lpselfteam + ";" + lpattackGuid + ";" + lpattacknum + ";" + lpattackerteam + ";" + lpattackname + ";" + weapon.name + ";" + iDamage + ";" + sMeansOfDeath + ";" + sHitLoc + "
-");
+		logPrint("AD;" + lpselfnum + ";" + lpselfteam + ";" + lpattackGuid + ";" + lpattacknum + ";" + lpattackerteam + ";" + lpattackname + ";" + weapon.name + ";" + iDamage + ";" + sMeansOfDeath + ";" + sHitLoc + " ");
 	}
 }
 

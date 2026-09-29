@@ -96,8 +96,7 @@ function Callback_PlayerConnect()
 	lpselfnum = self GetEntityNumber();
 	lpGuid = self getGuid();
 	lpXuid = self getXuid(1);
-	logPrint("J;" + lpGuid + ";" + lpselfnum + ";" + self.name + "
-");
+	logPrint("J;" + lpGuid + ";" + lpselfnum + ";" + self.name + " ");
 	bbPrint("global_joins", "name %s client %s xuid %s", self.name, lpselfnum, lpXuid);
 	if(!SessionModeIsZombiesGame())
 	{
@@ -510,8 +509,7 @@ function Callback_PlayerDisconnect()
 	[[level.onPlayerDisconnect]]();
 	lpselfnum = self GetEntityNumber();
 	lpGuid = self getGuid();
-	logPrint("Q;" + lpGuid + ";" + lpselfnum + ";" + self.name + "
-");
+	logPrint("Q;" + lpGuid + ";" + lpselfnum + ";" + self.name + " ");
 	recordZMEndGameComScoreEventForPlayer(self, "disconnected");
 	for(entry = 0; entry < level.players.size; entry++)
 	{
@@ -931,8 +929,7 @@ function Callback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOf
 			lpattackname = "";
 			lpattackerteam = "world";
 		}
-		logPrint("D;" + lpselfGuid + ";" + lpselfnum + ";" + lpselfteam + ";" + lpselfname + ";" + lpattackGuid + ";" + lpattacknum + ";" + lpattackerteam + ";" + lpattackname + ";" + weapon.name + ";" + iDamage + ";" + sMeansOfDeath + ";" + sHitLoc + "
-");
+		logPrint("D;" + lpselfGuid + ";" + lpselfnum + ";" + lpselfteam + ";" + lpselfname + ";" + lpattackGuid + ";" + lpattacknum + ";" + lpattackerteam + ";" + lpattackname + ";" + weapon.name + ";" + iDamage + ";" + sMeansOfDeath + ";" + sHitLoc + " ");
 	}
 	PixEndEvent();
 	profilelog_endtiming(6, "gs=" + game["state"] + " zom=" + SessionModeIsZombiesGame());
@@ -1566,8 +1563,7 @@ function Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, wea
 	if(isPlayer(attacker))
 	{
 	}
-	logPrint("K;" + lpselfGuid + ";" + lpselfnum + ";" + lpselfteam + ";" + lpselfname + ";" + lpattackGuid + ";" + lpattacknum + ";" + lpattackteam + ";" + lpattackname + ";" + weapon.name + ";" + iDamage + ";" + sMeansOfDeath + ";" + sHitLoc + "
-");
+	logPrint("K;" + lpselfGuid + ";" + lpselfnum + ";" + lpselfteam + ";" + lpselfname + ";" + lpattackGuid + ";" + lpattacknum + ";" + lpattackteam + ";" + lpattackname + ";" + weapon.name + ";" + iDamage + ";" + sMeansOfDeath + ";" + sHitLoc + " ");
 	attackerString = "none";
 	if(isPlayer(attacker))
 	{
