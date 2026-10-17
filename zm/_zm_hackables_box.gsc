@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_bcde73b7;
+#namespace zm_hackables_box;
 
 /*
 	Name: box_hacks
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x652E047D
 	Offset: 0x2B0
 	Size: 0x18B
@@ -40,7 +40,7 @@ function box_hacks()
 
 /*
 	Name: custom_check_firesale_loc_valid_func
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0xA557A71D
 	Offset: 0x448
 	Size: 0x8F
@@ -70,7 +70,7 @@ function custom_check_firesale_loc_valid_func()
 
 /*
 	Name: custom_box_move_logic
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x585C6D2D
 	Offset: 0x4E0
 	Size: 0x12D
@@ -111,7 +111,7 @@ function custom_box_move_logic()
 
 /*
 	Name: check_for_free_locations
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x2B0BBA81
 	Offset: 0x618
 	Size: 0xAB
@@ -140,7 +140,7 @@ function check_for_free_locations(chance)
 
 /*
 	Name: init_box_respin
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x7B64E692
 	Offset: 0x6D0
 	Size: 0x33
@@ -154,7 +154,7 @@ function init_box_respin(Chest, player)
 
 /*
 	Name: box_respin_think
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0xA48E1934
 	Offset: 0x710
 	Size: 0x153
@@ -179,7 +179,7 @@ function box_respin_think(Chest, player)
 
 /*
 	Name: respin_box_thread
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x78D59B9B
 	Offset: 0x870
 	Size: 0x1EB
@@ -211,7 +211,7 @@ function respin_box_thread(hacker)
 
 /*
 	Name: respin_box
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x9B8E2CC8
 	Offset: 0xA68
 	Size: 0x23
@@ -225,7 +225,7 @@ function respin_box(hacker)
 
 /*
 	Name: hack_box_qualifier
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x8C0D3E9
 	Offset: 0xA98
 	Size: 0x3F
@@ -243,7 +243,7 @@ function hack_box_qualifier(player)
 
 /*
 	Name: init_box_respin_respin
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x2BFA7A76
 	Offset: 0xAE0
 	Size: 0x33
@@ -257,7 +257,7 @@ function init_box_respin_respin(Chest, player)
 
 /*
 	Name: box_respin_respin_think
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x781A6C5
 	Offset: 0xB20
 	Size: 0x153
@@ -282,7 +282,7 @@ function box_respin_respin_think(Chest, player)
 
 /*
 	Name: respin_respin_box
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0xB56E1AAC
 	Offset: 0xC80
 	Size: 0x1EB
@@ -310,7 +310,7 @@ function respin_respin_box(hacker)
 
 /*
 	Name: fake_weapon_powerup_thread
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0xA7FBCA3F
 	Offset: 0xE78
 	Size: 0x26F
@@ -348,7 +348,7 @@ function fake_weapon_powerup_thread(weapon1, weapon2)
 
 /*
 	Name: fake_weapon_powerup_timeout
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x1D842D09
 	Offset: 0x10F0
 	Size: 0x163
@@ -402,7 +402,7 @@ function fake_weapon_powerup_timeout(weapon1, weapon2)
 
 /*
 	Name: init_summon_hacks
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0xFC9F3C41
 	Offset: 0x1260
 	Size: 0x95
@@ -421,7 +421,7 @@ function init_summon_hacks()
 
 /*
 	Name: init_summon_box
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x92091288
 	Offset: 0x1300
 	Size: 0x175
@@ -457,7 +457,7 @@ function init_summon_box(create)
 
 /*
 	Name: summon_box_thread
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0xB9E7D356
 	Offset: 0x1480
 	Size: 0x15B
@@ -485,7 +485,7 @@ function summon_box_thread(hacker)
 
 /*
 	Name: summon_box
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x5D81B593
 	Offset: 0x15E8
 	Size: 0x53
@@ -503,7 +503,7 @@ function summon_box(hacker)
 
 /*
 	Name: summon_box_qualifier
-	Namespace: namespace_bcde73b7
+	Namespace: zm_hackables_box
 	Checksum: 0x71EB61EF
 	Offset: 0x1648
 	Size: 0x69

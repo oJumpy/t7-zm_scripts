@@ -4,11 +4,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_equip_hacker;
 
-#namespace namespace_b03b0164;
+#namespace zm_hackables_packapunch;
 
 /*
 	Name: hack_packapunch
-	Namespace: namespace_b03b0164
+	Namespace: zm_hackables_packapunch
 	Checksum: 0x6A95005A
 	Offset: 0x150
 	Size: 0x17B
@@ -35,7 +35,7 @@ function hack_packapunch()
 
 /*
 	Name: pack_trigger_think
-	Namespace: namespace_b03b0164
+	Namespace: zm_hackables_packapunch
 	Checksum: 0x3EA69EAD
 	Offset: 0x2D8
 	Size: 0x87
@@ -61,7 +61,7 @@ function pack_trigger_think()
 
 /*
 	Name: packapunch_hack
-	Namespace: namespace_b03b0164
+	Namespace: zm_hackables_packapunch
 	Checksum: 0x73D40910
 	Offset: 0x368
 	Size: 0x45

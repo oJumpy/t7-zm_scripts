@@ -129,19 +129,19 @@ function function_2a8862aa()
 			Array::add(var_3c48f56, ai);
 		}
 	}
-	var_e4760c66 = [];
-	var_e37fbbbd = [];
+	farai = [];
+	closeai = [];
 	foreach(ai in var_3c48f56)
 	{
 		if(Distance2DSquared(ai.origin, self.origin) >= var_bd6badee)
 		{
-			var_e4760c66[var_e4760c66.size] = ai;
+			farai[farai.size] = ai;
 			continue;
 		}
-		var_e37fbbbd[var_e37fbbbd.size] = ai;
+		closeai[closeai.size] = ai;
 	}
-	function_2ca71d8b(var_e4760c66, 1);
-	function_2ca71d8b(var_e37fbbbd, 0, 75);
+	function_2ca71d8b(farai, 1);
+	function_2ca71d8b(closeai, 0, 75);
 }
 
 /*

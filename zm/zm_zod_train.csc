@@ -39,7 +39,7 @@ function __init__()
 	{
 		level._additional_wallbuy_weapons = [];
 	}
-	var_d7d92d53 = GetWeapon("smg_sten");
+	w_sten = GetWeapon("smg_sten");
 	if(!isdefined(level._additional_wallbuy_weapons))
 	{
 		level._additional_wallbuy_weapons = [];
@@ -48,7 +48,7 @@ function __init__()
 	{
 		level._additional_wallbuy_weapons = Array(level._additional_wallbuy_weapons);
 	}
-	level._additional_wallbuy_weapons[level._additional_wallbuy_weapons.size] = var_d7d92d53;
+	level._additional_wallbuy_weapons[level._additional_wallbuy_weapons.size] = w_sten;
 	level._effect["train_switch_use"] = "light/fx_light_button_green_traincar_zod_zmb";
 	level._effect["train_switch_cooldown"] = "light/fx_light_button_yellow_traincar_zod_zmb";
 	level._effect["train_switch_offline"] = "light/fx_light_button_red_train_zod_zmb";
@@ -75,18 +75,18 @@ function __init__()
 */
 function function_2aa2bd33(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	if(IsDemoPlaying() && function_c8c0455e(localClientNum) < 100)
+	if(IsDemoPlaying() && getnumfreeentities(localClientNum) < 100)
 	{
-		var_2a6bebf9 = function_c8c0455e(localClientNum);
+		numfree = getnumfreeentities(localClientNum);
 		return;
 	}
 	if(newVal)
 	{
-		if(!isdefined(self.var_d07c1b83))
+		if(!isdefined(self.mdl_tag))
 		{
-			self.var_d07c1b83 = util::spawn_model(localClientNum, "tag_origin", self.origin, self.angles);
-			self.var_d07c1b83 LinkTo(self);
-			self.var_c604c399 = function_6edd51c4(localClientNum, self.var_d07c1b83, "tag_origin", (768 / 2, 184 / 2, 296 / 2));
+			self.mdl_tag = util::spawn_model(localClientNum, "tag_origin", self.origin, self.angles);
+			self.mdl_tag LinkTo(self);
+			self.var_c604c399 = addboltedfxexclusionvolume(localClientNum, self.mdl_tag, "tag_origin", (768 / 2, 184 / 2, 296 / 2));
 		}
 	}
 }
@@ -110,12 +110,12 @@ function function_18352dd1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			{
 				stopfx(localClientNum, self.var_f5d230df);
 			}
-			if(isdefined(self.var_2e5172f3))
+			if(isdefined(self.fx_back))
 			{
-				stopfx(localClientNum, self.var_2e5172f3);
+				stopfx(localClientNum, self.fx_back);
 			}
 			self.var_f5d230df = PlayFXOnTag(localClientNum, level._effect["train_switch_cooldown"], self, "tag_fx_switch_front");
-			self.var_2e5172f3 = PlayFXOnTag(localClientNum, level._effect["train_switch_cooldown"], self, "tag_fx_switch_back");
+			self.fx_back = PlayFXOnTag(localClientNum, level._effect["train_switch_cooldown"], self, "tag_fx_switch_back");
 			var_98df44c1 = self GetTagOrigin("tag_fx_switch_front");
 			var_bee1bf2a = self GetTagOrigin("tag_fx_switch_back");
 			level thread function_3e0f1f7e("evt_train_switch_hit", var_98df44c1, var_bee1bf2a);
@@ -127,12 +127,12 @@ function function_18352dd1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			{
 				stopfx(localClientNum, self.var_f5d230df);
 			}
-			if(isdefined(self.var_2e5172f3))
+			if(isdefined(self.fx_back))
 			{
-				stopfx(localClientNum, self.var_2e5172f3);
+				stopfx(localClientNum, self.fx_back);
 			}
 			self.var_f5d230df = PlayFXOnTag(localClientNum, level._effect["train_switch_use"], self, "tag_fx_switch_front");
-			self.var_2e5172f3 = PlayFXOnTag(localClientNum, level._effect["train_switch_use"], self, "tag_fx_switch_back");
+			self.fx_back = PlayFXOnTag(localClientNum, level._effect["train_switch_use"], self, "tag_fx_switch_back");
 			var_98df44c1 = self GetTagOrigin("tag_fx_switch_front");
 			var_bee1bf2a = self GetTagOrigin("tag_fx_switch_back");
 			level thread function_3e0f1f7e("evt_train_switch_ready", var_98df44c1, var_bee1bf2a);
@@ -144,12 +144,12 @@ function function_18352dd1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			{
 				stopfx(localClientNum, self.var_f5d230df);
 			}
-			if(isdefined(self.var_2e5172f3))
+			if(isdefined(self.fx_back))
 			{
-				stopfx(localClientNum, self.var_2e5172f3);
+				stopfx(localClientNum, self.fx_back);
 			}
 			self.var_f5d230df = PlayFXOnTag(localClientNum, level._effect["train_switch_offline"], self, "tag_fx_switch_front");
-			self.var_2e5172f3 = PlayFXOnTag(localClientNum, level._effect["train_switch_offline"], self, "tag_fx_switch_back");
+			self.fx_back = PlayFXOnTag(localClientNum, level._effect["train_switch_offline"], self, "tag_fx_switch_back");
 			break;
 		}
 	}

@@ -681,16 +681,16 @@ function private _screen_fade(n_time, n_target_alpha, n_start_alpha, v_color, b_
 	self SetLUIMenuData(lui_menu, "endAlpha", n_target_alpha);
 	self SetLUIMenuData(lui_menu, "fadeOverTime", n_time_ms);
 	/#
-		if(!isdefined(level.var_2db77726))
+		if(!isdefined(level.n_fade_debug_time))
 		{
-			level.var_2db77726 = 0;
+			level.n_fade_debug_time = 0;
 		}
-		var_5eb7a20f = GetTime();
-		if(var_5eb7a20f - level.var_2db77726 > 5000)
+		n_debug_time = GetTime();
+		if(n_debug_time - level.n_fade_debug_time > 5000)
 		{
 			PrintTopRightln("Dev Block strings are not supported");
 		}
-		level.var_2db77726 = var_5eb7a20f;
+		level.n_fade_debug_time = n_debug_time;
 		PrintTopRightln("Dev Block strings are not supported" + string::rfill("Dev Block strings are not supported" + GetTime(), 6) + "Dev Block strings are not supported" + string::rfill(str_menu_id, 10) + "Dev Block strings are not supported" + string::rfill(v_color, 11) + "Dev Block strings are not supported" + string::rfill(n_start_alpha + "Dev Block strings are not supported" + n_target_alpha, 10) + "Dev Block strings are not supported" + string::rfill(n_time, 6) + "Dev Block strings are not supported", (1, 1, 1));
 	#/
 	if(n_time > 0)

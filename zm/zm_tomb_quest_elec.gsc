@@ -72,11 +72,11 @@ function electric_puzzle_watch_staff()
 {
 	self endon("disconnect");
 	a_piano_keys = struct::get_array("piano_key", "script_noteworthy");
-	var_dc8ace48 = level.a_elemental_staffs["staff_lightning"].w_weapon;
+	w_staff_lightning = level.a_elemental_staffs["staff_lightning"].w_weapon;
 	while(1)
 	{
 		self waittill("projectile_impact", w_weapon, v_explode_point, n_radius, e_projectile, n_impact);
-		if(w_weapon == var_dc8ace48)
+		if(w_weapon == w_staff_lightning)
 		{
 			if(!level flag::get("electric_puzzle_1_complete") && zm_tomb_chamber::is_chamber_occupied())
 			{
@@ -87,7 +87,7 @@ function electric_puzzle_watch_staff()
 					a_players = GetPlayers();
 					foreach(e_player in a_players)
 					{
-						if(e_player HasWeapon(var_dc8ace48))
+						if(e_player HasWeapon(w_staff_lightning))
 						{
 							level notify("vo_try_puzzle_lightning1", e_player);
 						}
@@ -195,7 +195,7 @@ function piano_run_chords()
 			Assert(s_chord.Notes.size == 3);
 		#/
 	}
-	var_dc8ace48 = level.a_elemental_staffs["staff_lightning"].w_weapon;
+	w_staff_lightning = level.a_elemental_staffs["staff_lightning"].w_weapon;
 	a_chord_order = Array("a_minor", "e_minor", "d_minor");
 	foreach(chord_name in a_chord_order)
 	{
@@ -228,7 +228,7 @@ function piano_run_chords()
 				a_players = GetPlayers();
 				foreach(e_player in a_players)
 				{
-					if(e_player HasWeapon(var_dc8ace48))
+					if(e_player HasWeapon(w_staff_lightning))
 					{
 						level notify("vo_puzzle_bad", e_player);
 					}
@@ -238,7 +238,7 @@ function piano_run_chords()
 		a_players = GetPlayers();
 		foreach(e_player in a_players)
 		{
-			if(e_player HasWeapon(var_dc8ace48))
+			if(e_player HasWeapon(w_staff_lightning))
 			{
 				level notify("vo_puzzle_good", e_player);
 			}

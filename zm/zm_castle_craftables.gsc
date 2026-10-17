@@ -50,22 +50,22 @@ function randomize_craftable_spawns()
 function include_craftables()
 {
 	level.craftable_piece_swap_allowed = 0;
-	var_2a7833c8 = getnumexpectedplayers() == 1;
+	shared_pieces = getnumexpectedplayers() == 1;
 	craftable_name = "gravityspike";
-	var_2f18d6d0 = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_body", 32, 64, 0, undefined, &function_c1e52ea6, undefined, undefined, undefined, undefined, undefined, "gravityspike" + "_" + "part_body", 1, undefined, undefined, "", 0);
-	var_3b105a = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_guards", 32, 64, 0, undefined, &function_c1e52ea6, undefined, undefined, undefined, undefined, undefined, "gravityspike" + "_" + "part_guards", 1, undefined, undefined, "", 0);
-	var_2e6bf9ce = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_handle", 32, 64, 0, undefined, &function_c1e52ea6, undefined, undefined, undefined, undefined, undefined, "gravityspike" + "_" + "part_handle", 1, undefined, undefined, "", 0);
-	var_2f18d6d0.special_spawn_func = &function_68b89800;
-	var_3b105a.special_spawn_func = &function_e8931ee2;
-	var_2e6bf9ce.special_spawn_func = &function_436d6e8e;
-	var_2f18d6d0.client_field_state = undefined;
-	var_3b105a.client_field_state = undefined;
-	var_2e6bf9ce.client_field_state = undefined;
+	gravityspike_body = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_body", 32, 64, 0, undefined, &function_c1e52ea6, undefined, undefined, undefined, undefined, undefined, "gravityspike" + "_" + "part_body", 1, undefined, undefined, "", 0);
+	gravityspike_guards = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_guards", 32, 64, 0, undefined, &function_c1e52ea6, undefined, undefined, undefined, undefined, undefined, "gravityspike" + "_" + "part_guards", 1, undefined, undefined, "", 0);
+	gravityspike_handle = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_handle", 32, 64, 0, undefined, &function_c1e52ea6, undefined, undefined, undefined, undefined, undefined, "gravityspike" + "_" + "part_handle", 1, undefined, undefined, "", 0);
+	gravityspike_body.special_spawn_func = &function_68b89800;
+	gravityspike_guards.special_spawn_func = &function_e8931ee2;
+	gravityspike_handle.special_spawn_func = &function_436d6e8e;
+	gravityspike_body.client_field_state = undefined;
+	gravityspike_guards.client_field_state = undefined;
+	gravityspike_handle.client_field_state = undefined;
 	var_b85003d9 = spawnstruct();
 	var_b85003d9.name = craftable_name;
-	var_b85003d9 zm_craftables::add_craftable_piece(var_2f18d6d0);
-	var_b85003d9 zm_craftables::add_craftable_piece(var_3b105a);
-	var_b85003d9 zm_craftables::add_craftable_piece(var_2e6bf9ce);
+	var_b85003d9 zm_craftables::add_craftable_piece(gravityspike_body);
+	var_b85003d9 zm_craftables::add_craftable_piece(gravityspike_guards);
+	var_b85003d9 zm_craftables::add_craftable_piece(gravityspike_handle);
 	var_b85003d9.triggerThink = &function_d8efa7d6;
 	zm_craftables::include_zombie_craftable(var_b85003d9);
 	level flag::init(craftable_name + "_" + "part_body" + "_found");
@@ -101,10 +101,10 @@ function init_craftables()
 */
 function register_clientfields()
 {
-	var_a0199abd = 1;
-	RegisterClientField("world", "gravityspike" + "_" + "part_body", 1, var_a0199abd, "int", undefined, 0);
-	RegisterClientField("world", "gravityspike" + "_" + "part_guards", 1, var_a0199abd, "int", undefined, 0);
-	RegisterClientField("world", "gravityspike" + "_" + "part_handle", 1, var_a0199abd, "int", undefined, 0);
+	shared_bits = 1;
+	RegisterClientField("world", "gravityspike" + "_" + "part_body", 1, shared_bits, "int", undefined, 0);
+	RegisterClientField("world", "gravityspike" + "_" + "part_guards", 1, shared_bits, "int", undefined, 0);
+	RegisterClientField("world", "gravityspike" + "_" + "part_handle", 1, shared_bits, "int", undefined, 0);
 	clientfield::register("scriptmover", "craftable_powerup_fx", 1, 1, "int");
 	clientfield::register("scriptmover", "craftable_teleport_fx", 1, 1, "int");
 	clientfield::register("toplayer", "ZMUI_GRAVITYSPIKE_PART_PICKUP", 1, 1, "int");
@@ -224,12 +224,12 @@ function function_31bdb575(var_6aeefdcb)
 */
 function function_e8931ee2(pieceStub)
 {
-	var_309c2973 = GetEnt("spike_quest_console_switch", "targetname");
-	var_309c2973.unitrigger = var_309c2973 function_ab1218c8();
-	var_85a409cc = GetEnt("spike_quest_wall_switch", "targetname");
-	var_85a409cc.unitrigger = var_85a409cc function_af32bcac();
-	self thread function_bf54e556(pieceStub, var_85a409cc);
-	self thread function_cecf7412(pieceStub, var_309c2973);
+	mdl_console_switch = GetEnt("spike_quest_console_switch", "targetname");
+	mdl_console_switch.unitrigger = mdl_console_switch function_ab1218c8();
+	mdl_wall_switch = GetEnt("spike_quest_wall_switch", "targetname");
+	mdl_wall_switch.unitrigger = mdl_wall_switch function_af32bcac();
+	self thread function_bf54e556(pieceStub, mdl_wall_switch);
+	self thread function_cecf7412(pieceStub, mdl_console_switch);
 }
 
 /*
@@ -311,9 +311,9 @@ function function_7d712d6a()
 	Parameters: 2
 	Flags: None
 */
-function function_bf54e556(var_d97c08b2, var_85a409cc)
+function function_bf54e556(var_d97c08b2, mdl_wall_switch)
 {
-	var_85a409cc playsound("evt_tram_lever");
+	mdl_wall_switch playsound("evt_tram_lever");
 	exploder::exploder("lgt_gs_console_red_0");
 	var_d5793a57 = GetEnt("spike_quest_wall_door", "targetname");
 	while(!level flag::get("gravityspike_part_guards_found"))
@@ -323,15 +323,15 @@ function function_bf54e556(var_d97c08b2, var_85a409cc)
 		level flag::set("rocket_pad_trigger_available");
 		exploder::exploder("lgt_gs_console_grn_0");
 		exploder::stop_exploder("lgt_gs_console_red_0");
-		var_85a409cc RotateRoll(-120, 0.5);
+		mdl_wall_switch RotateRoll(-120, 0.5);
 		var_d5793a57 RotateYaw(-120, 0.25);
-		var_85a409cc playsound("evt_tram_lever");
+		mdl_wall_switch playsound("evt_tram_lever");
 		level util::waittill_either("a10_wall_switch_activated", "open_a10_doors");
 		level flag::clear("rocket_pad_trigger_available");
 		exploder::exploder("lgt_gs_console_red_0");
 		exploder::stop_exploder("lgt_gs_console_grn_0");
-		var_85a409cc RotateRoll(120, 0.5);
-		var_85a409cc playsound("evt_tram_lever");
+		mdl_wall_switch RotateRoll(120, 0.5);
+		mdl_wall_switch playsound("evt_tram_lever");
 		level flag::wait_till_clear("rocket_firing");
 		var_d5793a57 RotateYaw(120, 0.25);
 	}
@@ -368,13 +368,13 @@ function function_ab1218c8()
 	Parameters: 2
 	Flags: None
 */
-function function_cecf7412(var_d97c08b2, var_309c2973)
+function function_cecf7412(var_d97c08b2, mdl_console_switch)
 {
 	self function_9980920d(var_d97c08b2);
 	var_586d1d4f = GetEnt("spike_quest_console", "targetname");
 	var_586d1d4f clientfield::set("death_ray_status_light", 2);
-	var_309c2973 RotateRoll(-120, 0.5);
-	var_309c2973 playsound("evt_tram_lever");
+	mdl_console_switch RotateRoll(-120, 0.5);
+	mdl_console_switch playsound("evt_tram_lever");
 	exploder::exploder("lgt_gs_console_red_1");
 	exploder::exploder("lgt_gs_console_red_2");
 	exploder::exploder("lgt_gs_console_red_3");
@@ -392,14 +392,14 @@ function function_cecf7412(var_d97c08b2, var_309c2973)
 		var_586d1d4f playsound("zmb_console_light_completed");
 		level.var_d73f1734 = 1;
 		var_586d1d4f clientfield::set("death_ray_status_light", 1);
-		var_309c2973 RotateRoll(120, 0.5);
-		var_309c2973 playsound("evt_tram_lever");
+		mdl_console_switch RotateRoll(120, 0.5);
+		mdl_console_switch playsound("evt_tram_lever");
 		level util::waittill_any_timeout(4, "a10_switch_activated");
 		var_586d1d4f playsound("zmb_console_light_reset");
 		level.var_d73f1734 = undefined;
 		var_586d1d4f clientfield::set("death_ray_status_light", 2);
-		var_309c2973 RotateRoll(-120, 0.5);
-		var_309c2973 playsound("evt_tram_lever");
+		mdl_console_switch RotateRoll(-120, 0.5);
+		mdl_console_switch playsound("evt_tram_lever");
 		exploder::exploder("lgt_gs_console_red_1");
 		exploder::exploder("lgt_gs_console_red_2");
 		exploder::exploder("lgt_gs_console_red_3");
@@ -544,8 +544,8 @@ function function_f387f091()
 function function_f6e272db()
 {
 	wait(0.05);
-	var_8643fc8a = RandomInt(100);
-	if(var_8643fc8a <= 25)
+	n_randy = RandomInt(100);
+	if(n_randy <= 25)
 	{
 		return;
 	}
@@ -570,9 +570,9 @@ function function_f6e272db()
 */
 function function_1b872af(str_zone)
 {
-	var_b11bb32e = GetEntArray(str_zone, "targetname");
+	a_e_volumes = GetEntArray(str_zone, "targetname");
 	a_s_pos = [];
-	a_s_spots = struct::get_array(var_b11bb32e[0].target, "targetname");
+	a_s_spots = struct::get_array(a_e_volumes[0].target, "targetname");
 	for(i = 0; i < a_s_spots.size; i++)
 	{
 		if(a_s_spots[i].script_noteworthy === "spawn_location" || a_s_spots[i].script_noteworthy === "riser_location")
@@ -621,7 +621,7 @@ function function_9980920d(var_d97c08b2)
 	Parameters: 4
 	Flags: None
 */
-function function_2742ffd4(var_d97c08b2, var_f3fbc746, v_position, var_dc35eb29)
+function function_2742ffd4(var_d97c08b2, b_teleported, v_position, var_dc35eb29)
 {
 	if(self.spawns.size < 1)
 	{
@@ -653,7 +653,7 @@ function function_2742ffd4(var_d97c08b2, var_f3fbc746, v_position, var_dc35eb29)
 	self.model GhostInDemo();
 	self.model.hud_icon = self.hud_icon;
 	self.unitrigger.origin_parent = self.model;
-	self thread function_1f778391(var_f3fbc746, var_dc35eb29);
+	self thread function_1f778391(b_teleported, var_dc35eb29);
 }
 
 /*
@@ -665,10 +665,10 @@ function function_2742ffd4(var_d97c08b2, var_f3fbc746, v_position, var_dc35eb29)
 	Parameters: 2
 	Flags: None
 */
-function function_1f778391(var_f3fbc746, var_dc35eb29)
+function function_1f778391(b_teleported, var_dc35eb29)
 {
 	self endon("hash_750017bb");
-	self thread function_e5b369e4(var_f3fbc746);
+	self thread function_e5b369e4(b_teleported);
 	self thread function_650a28f4(var_dc35eb29);
 	self.unitrigger waittill("trigger", e_who);
 	self notify("hash_92009fcb");
@@ -693,12 +693,12 @@ function function_1f778391(var_f3fbc746, var_dc35eb29)
 	Parameters: 1
 	Flags: None
 */
-function function_e5b369e4(var_f3fbc746)
+function function_e5b369e4(b_teleported)
 {
 	self endon("hash_92009fcb");
 	self endon("hash_750017bb");
 	self.model clientfield::set("craftable_powerup_fx", 1);
-	if(isdefined(var_f3fbc746) && var_f3fbc746)
+	if(isdefined(b_teleported) && b_teleported)
 	{
 		self.model clientfield::set("craftable_teleport_fx", 1);
 	}
@@ -807,7 +807,7 @@ function onPickup_Common(player)
 }
 
 /*
-	Name: function_5b51de08
+	Name: play_vo_if_newly_found
 	Namespace: namespace_dddf9a25
 	Checksum: 0x860B0A7C
 	Offset: 0x2BD0
@@ -815,7 +815,7 @@ function onPickup_Common(player)
 	Parameters: 0
 	Flags: None
 */
-function function_5b51de08()
+function play_vo_if_newly_found()
 {
 	if(!level flag::get(self.craftablename + "_" + self.pieceName + "_found"))
 	{
@@ -1123,7 +1123,7 @@ function function_d8efa7d6()
 }
 
 /*
-	Name: function_23472c70
+	Name: in_game_map_quest_item_picked_up
 	Namespace: namespace_dddf9a25
 	Checksum: 0x30E66338
 	Offset: 0x3650
@@ -1131,12 +1131,12 @@ function function_d8efa7d6()
 	Parameters: 1
 	Flags: None
 */
-function function_23472c70(str_partname)
+function in_game_map_quest_item_picked_up(str_partname)
 {
 }
 
 /*
-	Name: function_b0c6c75a
+	Name: in_game_map_quest_item_dropped
 	Namespace: namespace_dddf9a25
 	Checksum: 0xE2D3965D
 	Offset: 0x3668
@@ -1144,7 +1144,7 @@ function function_23472c70(str_partname)
 	Parameters: 1
 	Flags: None
 */
-function function_b0c6c75a(str_partname)
+function in_game_map_quest_item_dropped(str_partname)
 {
 }
 

@@ -107,13 +107,13 @@ function black_hole_fx_start(local_client_num, ent_bomb)
 	bomb_fx_spot = spawn(local_client_num, ent_bomb.origin, "script_model");
 	bomb_fx_spot SetModel("tag_origin");
 	playsound(0, "wpn_bhbomb_portal_start", bomb_fx_spot.origin);
-	bomb_fx_spot.var_78ca62e9 = bomb_fx_spot PlayLoopSound("wpn_bhbomb_portal_loop");
+	bomb_fx_spot.sndlooper = bomb_fx_spot PlayLoopSound("wpn_bhbomb_portal_loop");
 	PlayFXOnTag(local_client_num, level._effect["black_hole_bomb_portal"], bomb_fx_spot, "tag_origin");
 	PlayFXOnTag(local_client_num, level._effect["black_hole_bomb_marker_flare"], bomb_fx_spot, "tag_origin");
 	ent_bomb waittill("entityshutdown");
-	if(isdefined(bomb_fx_spot.var_78ca62e9))
+	if(isdefined(bomb_fx_spot.sndlooper))
 	{
-		bomb_fx_spot StopLoopSound(bomb_fx_spot.var_78ca62e9);
+		bomb_fx_spot StopLoopSound(bomb_fx_spot.sndlooper);
 	}
 	event_horizon_spot = spawn(local_client_num, bomb_fx_spot.origin, "script_model");
 	event_horizon_spot SetModel("tag_origin");

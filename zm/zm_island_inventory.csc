@@ -98,7 +98,7 @@ function function_67b53ed4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_63119d2(var_1b778cf0, var_6e653641, var_ee3cd374)
+function function_63119d2(var_1b778cf0, var_6e653641, n_new_value)
 {
 	self endon("death");
 	self notify("hash_63119d2");
@@ -108,7 +108,7 @@ function function_63119d2(var_1b778cf0, var_6e653641, var_ee3cd374)
 	while(var_1c9f31e1 <= 1)
 	{
 		var_1c9f31e1 = GetRealTime() - n_start_time / 1000;
-		var_9b20c5f5 = LerpFloat(var_6e653641, var_ee3cd374, var_1c9f31e1);
+		var_9b20c5f5 = LerpFloat(var_6e653641, n_new_value, var_1c9f31e1);
 		SetUIModelValue(var_1b778cf0, var_9b20c5f5);
 		wait(0.016);
 	}

@@ -34,7 +34,7 @@ function __init__()
 {
 	visionset_mgr::register_overlay_info_style_postfx_bundle("zm_theater_teleport", 21000, 1, "pstfx_zm_kino_teleport");
 	clientfield::register("scriptmover", "extra_screen", 21000, 1, "int", &function_667aa0b4, 0, 0);
-	clientfield::register("scriptmover", "teleporter_fx", 21000, 1, "counter", &function_a8255fab, 0, 0);
+	clientfield::register("scriptmover", "teleporter_fx", 21000, 1, "counter", &teleporter_fx_play, 0, 0);
 	clientfield::register("allplayers", "player_teleport_fx", 21000, 1, "counter", &function_2b23adc9, 0, 0);
 	clientfield::register("scriptmover", "play_fly_me_to_the_moon_fx", 21000, 1, "int", &function_14c9b6d3, 0, 0);
 	clientfield::register("world", "teleporter_initiate_fx", 21000, 1, "counter", &function_6776dea9, 0, 0);
@@ -187,16 +187,16 @@ function function_667aa0b4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		level.extraCamActive[localClientNum] = 0;
 		level.cameraEnt ClearExtraCam();
-		var_78113405 = struct::get("struct_theater_projector_beam", "targetname");
-		if(isdefined(level.var_3cb13a71[localClientNum]) && isdefined(var_78113405.vid[localClientNum]))
+		s_projector = struct::get("struct_theater_projector_beam", "targetname");
+		if(isdefined(level.var_3cb13a71[localClientNum]) && isdefined(s_projector.vid[localClientNum]))
 		{
-			level.var_3cb13a71[localClientNum] = PlayFXOnTag(localClientNum, level._effect[level.var_bcdc3660[localClientNum]], var_78113405.vid[localClientNum], "tag_origin");
+			level.var_3cb13a71[localClientNum] = PlayFXOnTag(localClientNum, level._effect[level.var_bcdc3660[localClientNum]], s_projector.vid[localClientNum], "tag_origin");
 		}
 	}
 }
 
 /*
-	Name: function_a8255fab
+	Name: teleporter_fx_play
 	Namespace: namespace_8847920b
 	Checksum: 0x385109B8
 	Offset: 0xCE0
@@ -204,7 +204,7 @@ function function_667aa0b4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_a8255fab(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function teleporter_fx_play(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("entityshutdown");
 	if(newVal)

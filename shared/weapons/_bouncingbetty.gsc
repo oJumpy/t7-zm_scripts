@@ -43,7 +43,7 @@ function init_shared()
 	level.bettyBombletCount = 4;
 	level thread register();
 	/#
-		level thread function_e889d2f4();
+		level thread bouncingbettydvarupdate();
 	#/
 	callback::add_weapon_watcher(&createBouncingBettyWatcher);
 }
@@ -64,7 +64,7 @@ function register()
 }
 
 /*
-	Name: function_e889d2f4
+	Name: bouncingbettydvarupdate
 	Namespace: bouncingbetty
 	Checksum: 0x69A91686
 	Offset: 0x7B8
@@ -72,7 +72,7 @@ function register()
 	Parameters: 0
 	Flags: None
 */
-function function_e889d2f4()
+function bouncingbettydvarupdate()
 {
 	/#
 		for(;;)

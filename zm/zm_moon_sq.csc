@@ -295,8 +295,8 @@ function function_334865c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 		for(i = 0; i < targs.size; i++)
 		{
 			targ = targs[i];
-			var_93d55a25 = util::spawn_model(localClientNum, targ.model, targ.origin, targ.angles);
-			var_93d55a25 playsound(localClientNum, "evt_clank");
+			mdl_targ = util::spawn_model(localClientNum, targ.model, targ.origin, targ.angles);
+			mdl_targ playsound(localClientNum, "evt_clank");
 		}
 	}
 }
@@ -315,8 +315,8 @@ function function_224816ac(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	if(newVal)
 	{
 		targ = struct::get("sq_wire_final", "targetname");
-		var_93d55a25 = util::spawn_model(localClientNum, targ.model, targ.origin, targ.angles);
-		var_93d55a25 playsound(localClientNum, "evt_start_old_computer");
+		mdl_targ = util::spawn_model(localClientNum, targ.model, targ.origin, targ.angles);
+		mdl_targ playsound(localClientNum, "evt_start_old_computer");
 	}
 }
 
@@ -363,10 +363,10 @@ function sam_init(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldNa
 	if(newVal)
 	{
 		targ = struct::get("sq_sam", "targetname");
-		var_93d55a25 = util::spawn_model(localClientNum, targ.model, targ.origin, targ.angles);
+		mdl_targ = util::spawn_model(localClientNum, targ.model, targ.origin, targ.angles);
 		playFX(localClientNum, level._effect["lght_marker_flare"], targ.origin);
-		var_93d55a25 thread sam_rise_and_bob(targ);
-		var_93d55a25 PlayLoopSound("evt_samantha_reveal_loop", 1);
+		mdl_targ thread sam_rise_and_bob(targ);
+		mdl_targ PlayLoopSound("evt_samantha_reveal_loop", 1);
 	}
 }
 
@@ -416,9 +416,9 @@ function function_bd20fe8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	{
 		case 1:
 		{
-			var_93d55a25 = util::spawn_model(localClientNum, targ.model, targ.origin, targ.angles);
-			var_93d55a25 thread bob_vg();
-			level.a_ents[level.a_ents.size] = var_93d55a25;
+			mdl_targ = util::spawn_model(localClientNum, targ.model, targ.origin, targ.angles);
+			mdl_targ thread bob_vg();
+			level.a_ents[level.a_ents.size] = mdl_targ;
 			break;
 		}
 		case 2:
@@ -440,10 +440,10 @@ function function_bd20fe8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 		}
 		case 4:
 		{
-			var_dbd86497 = struct::get("sq_vg_final", "targetname");
+			s_targ = struct::get("sq_vg_final", "targetname");
 			level.a_ents = [];
-			var_93d55a25 = util::spawn_model(localClientNum, var_dbd86497.model, var_dbd86497.origin, var_dbd86497.angles);
-			level.a_ents[level.a_ents.size] = var_93d55a25;
+			mdl_targ = util::spawn_model(localClientNum, s_targ.model, s_targ.origin, s_targ.angles);
+			level.a_ents[level.a_ents.size] = mdl_targ;
 			for(i = 0; i < level.a_ents.size; i++)
 			{
 				PlayFXOnTag(localClientNum, level._effect["vrill_glow"], level.a_ents[i], "tag_origin");
@@ -515,7 +515,7 @@ function function_b134b86c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 function do_sr_rumble(localClientNum)
 {
 	level endon("hash_f9b2abc9");
-	var_845cd5d1 = struct::get("pyramid_walls_retract", "targetname");
+	s_pyramid = struct::get("pyramid_walls_retract", "targetname");
 	while(1)
 	{
 		a_players = GetLocalPlayers();
@@ -525,7 +525,7 @@ function do_sr_rumble(localClientNum)
 			{
 				continue;
 			}
-			if(DistanceSquared(var_845cd5d1.origin, a_players[i].origin) < 562500)
+			if(DistanceSquared(s_pyramid.origin, a_players[i].origin) < 562500)
 			{
 				a_players[i] PlayRumbleOnEntity(localClientNum, "slide_rumble");
 			}
@@ -736,12 +736,12 @@ function function_38a2773c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		return;
 	}
-	var_8c15cb32 = struct::get("sd_bowl", "targetname");
+	s_sd = struct::get("sd_bowl", "targetname");
 	e_origin = util::spawn_model(localClientNum, "tag_origin", self.origin + VectorScale((0, 0, 1), 24));
 	if(localClientNum == 0)
 	{
 		e_origin playsound(localClientNum, "zmb_squest_soul_leave");
 	}
-	e_origin thread ctt_trail_runner(localClientNum, "fx_weak_sauce_trail", var_8c15cb32.origin - VectorScale((0, 0, 1), 12));
+	e_origin thread ctt_trail_runner(localClientNum, "fx_weak_sauce_trail", s_sd.origin - VectorScale((0, 0, 1), 12));
 }
 

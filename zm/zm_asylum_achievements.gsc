@@ -214,14 +214,14 @@ function function_1abfde35(e_attacker)
 		{
 			return;
 		}
-		var_52df56de = GetEnt("area_courtyard", "targetname");
-		if(!(isdefined(self istouching(var_52df56de)) && self istouching(var_52df56de)))
+		e_courtyard = GetEnt("area_courtyard", "targetname");
+		if(!(isdefined(self istouching(e_courtyard)) && self istouching(e_courtyard)))
 		{
 			return;
 		}
 		str_zone = e_attacker zm_zonemgr::get_player_zone();
-		var_1486ce13 = StrTok(str_zone, "_");
-		if(var_1486ce13[1] != "upstairs")
+		a_str_zone = StrTok(str_zone, "_");
+		if(a_str_zone[1] != "upstairs")
 		{
 			return;
 		}

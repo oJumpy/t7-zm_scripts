@@ -84,9 +84,9 @@ function function_7b627622()
 	self endon("hash_994d5e9e");
 	while(1)
 	{
-		self waittill("boarding_window", var_c62a5d83);
+		self waittill("boarding_window", s_window);
 		self bgb::do_one_shot_use();
-		self thread function_d5ed5165(var_c62a5d83);
+		self thread function_d5ed5165(s_window);
 	}
 }
 
@@ -99,32 +99,32 @@ function function_7b627622()
 	Parameters: 1
 	Flags: None
 */
-function function_d5ed5165(var_c62a5d83)
+function function_d5ed5165(s_window)
 {
 	carp_ent = spawn("script_origin", (0, 0, 0));
 	carp_ent PlayLoopSound("evt_carpenter");
 	num_chunks_checked = 0;
 	while(1)
 	{
-		if(zm_utility::all_chunks_intact(var_c62a5d83, var_c62a5d83.barrier_chunks))
+		if(zm_utility::all_chunks_intact(s_window, s_window.barrier_chunks))
 		{
 			break;
 		}
-		chunk = zm_utility::get_random_destroyed_chunk(var_c62a5d83, var_c62a5d83.barrier_chunks);
+		chunk = zm_utility::get_random_destroyed_chunk(s_window, s_window.barrier_chunks);
 		if(!isdefined(chunk))
 		{
 			break;
 		}
-		var_c62a5d83 thread zm_blockers::replace_chunk(var_c62a5d83, chunk, undefined, 0, 1);
+		s_window thread zm_blockers::replace_chunk(s_window, chunk, undefined, 0, 1);
 		last_repaired_chunk = chunk;
-		if(isdefined(var_c62a5d83.clip))
+		if(isdefined(s_window.clip))
 		{
-			var_c62a5d83.clip TriggerEnable(1);
-			var_c62a5d83.clip disconnectpaths();
+			s_window.clip TriggerEnable(1);
+			s_window.clip disconnectpaths();
 		}
 		else
 		{
-			zm_blockers::blocker_disconnect_paths(var_c62a5d83.neg_start, var_c62a5d83.neg_end);
+			zm_blockers::blocker_disconnect_paths(s_window.neg_start, s_window.neg_end);
 		}
 		util::wait_network_frame();
 		num_chunks_checked++;
@@ -133,17 +133,17 @@ function function_d5ed5165(var_c62a5d83)
 			break;
 		}
 	}
-	if(isdefined(var_c62a5d83.zbarrier))
+	if(isdefined(s_window.zbarrier))
 	{
 		if(isdefined(last_repaired_chunk))
 		{
-			while(var_c62a5d83.zbarrier GetZBarrierPieceState(last_repaired_chunk) == "closing")
+			while(s_window.zbarrier GetZBarrierPieceState(last_repaired_chunk) == "closing")
 			{
 				wait(0.05);
 			}
-			if(isdefined(var_c62a5d83._post_carpenter_callback))
+			if(isdefined(s_window._post_carpenter_callback))
 			{
-				var_c62a5d83 [[var_c62a5d83._post_carpenter_callback]]();
+				s_window [[s_window._post_carpenter_callback]]();
 			}
 		}
 		break;

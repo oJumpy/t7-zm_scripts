@@ -21,11 +21,11 @@ function function_f118a0e7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	self endon("disconnect");
 	if(newVal == 5)
 	{
-		self thread function_878b1e6c(localClientNum, 1);
+		self thread player_continuous_rumble(localClientNum, 1);
 	}
 	else if(newVal == 6)
 	{
-		self notify("hash_f9095a82");
+		self notify("stop_rumble_and_shake");
 		self Earthquake(0.6, 1.5, self.origin, 100);
 		self PlayRumbleOnEntity(localClientNum, "artillery_rumble");
 	}
@@ -50,16 +50,16 @@ function function_f118a0e7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else if(newVal == 7)
 	{
-		self thread function_878b1e6c(localClientNum, 1, 0);
+		self thread player_continuous_rumble(localClientNum, 1, 0);
 	}
 	else
 	{
-		self notify("hash_f9095a82");
+		self notify("stop_rumble_and_shake");
 	}
 }
 
 /*
-	Name: function_878b1e6c
+	Name: player_continuous_rumble
 	Namespace: namespace_8e578893
 	Checksum: 0xDAF0A5D6
 	Offset: 0x400
@@ -67,30 +67,30 @@ function function_f118a0e7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_878b1e6c(localClientNum, var_4be1e559, var_d2e77e71)
+function player_continuous_rumble(localClientNum, rumble_level, shake_camera)
 {
-	if(!isdefined(var_d2e77e71))
+	if(!isdefined(shake_camera))
 	{
-		var_d2e77e71 = 1;
+		shake_camera = 1;
 	}
-	self notify("hash_f9095a82");
+	self notify("stop_rumble_and_shake");
 	self endon("disconnect");
-	self endon("hash_f9095a82");
+	self endon("stop_rumble_and_shake");
 	start_time = GetTime();
 	while(GetTime() - start_time < 120000)
 	{
 		if(isdefined(self) && self isLocalPlayer() && isdefined(self))
 		{
-			if(var_4be1e559 == 1)
+			if(rumble_level == 1)
 			{
-				if(var_d2e77e71)
+				if(shake_camera)
 				{
 					self Earthquake(0.2, 1, self.origin, 100);
 				}
 				self PlayRumbleOnEntity(localClientNum, "reload_small");
 				wait(0.05);
 			}
-			else if(var_d2e77e71)
+			else if(shake_camera)
 			{
 				self Earthquake(0.3, 1, self.origin, 100);
 			}

@@ -88,12 +88,12 @@ function function_2b18ce1b(localClientNum, FX)
 	self endon("hash_d4c51f0");
 	while(isdefined(self))
 	{
-		charge = function_11e8db(localClientNum);
+		charge = getweaponchargelevel(localClientNum);
 		if(charge > 0)
 		{
-			if(!isdefined(self.var_2a76e26))
+			if(!isdefined(self.staff_fx))
 			{
-				self.var_2a76e26 = PlayViewmodelFX(localClientNum, FX, "tag_fx_upg_1");
+				self.staff_fx = PlayViewmodelFX(localClientNum, FX, "tag_fx_upg_1");
 			}
 		}
 		else
@@ -115,10 +115,10 @@ function function_2b18ce1b(localClientNum, FX)
 */
 function function_d4c51f0(localClientNum)
 {
-	if(isdefined(self.var_2a76e26))
+	if(isdefined(self.staff_fx))
 	{
-		stopfx(localClientNum, self.var_2a76e26);
-		self.var_2a76e26 = undefined;
+		stopfx(localClientNum, self.staff_fx);
+		self.staff_fx = undefined;
 	}
 }
 

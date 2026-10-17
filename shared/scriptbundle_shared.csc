@@ -3,7 +3,7 @@
 #namespace cScriptBundleObjectBase;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: cScriptBundleObjectBase
 	Checksum: 0x99EC1590
 	Offset: 0xC8
@@ -11,12 +11,12 @@
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: cScriptBundleObjectBase
 	Checksum: 0x99EC1590
 	Offset: 0xD8
@@ -24,7 +24,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -134,8 +134,8 @@ function private autoexec cScriptBundleObjectBase()
 	classes.cScriptBundleObjectBase[0].__vtable[-32002227] = &cScriptBundleObjectBase::error;
 	classes.cScriptBundleObjectBase[0].__vtable[1621988813] = &cScriptBundleObjectBase::Log;
 	classes.cScriptBundleObjectBase[0].__vtable[-1017222485] = &cScriptBundleObjectBase::init;
-	classes.cScriptBundleObjectBase[0].__vtable[1606033458] = &cScriptBundleObjectBase::function_5fba2032;
-	classes.cScriptBundleObjectBase[0].__vtable[-1690805083] = &cScriptBundleObjectBase::function_9b385ca5;
+	classes.cScriptBundleObjectBase[0].__vtable[1606033458] = &cScriptBundleObjectBase::__destructor;
+	classes.cScriptBundleObjectBase[0].__vtable[-1690805083] = &cScriptBundleObjectBase::__constructor;
 }
 
 #namespace cScriptBundleBase;
@@ -154,7 +154,7 @@ function on_error(e)
 }
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: cScriptBundleBase
 	Checksum: 0xAC1989E2
 	Offset: 0x540
@@ -162,14 +162,14 @@ function on_error(e)
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self._a_objects = [];
 	self._testing = 0;
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: cScriptBundleBase
 	Checksum: 0x99EC1590
 	Offset: 0x568
@@ -177,7 +177,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -361,8 +361,8 @@ function private autoexec cScriptBundleBase()
 	classes.cScriptBundleBase[0].__vtable[245263499] = &cScriptBundleBase::get_name;
 	classes.cScriptBundleBase[0].__vtable[1872615990] = &cScriptBundleBase::get_type;
 	classes.cScriptBundleBase[0].__vtable[-1017222485] = &cScriptBundleBase::init;
-	classes.cScriptBundleBase[0].__vtable[1606033458] = &cScriptBundleBase::function_5fba2032;
-	classes.cScriptBundleBase[0].__vtable[-1690805083] = &cScriptBundleBase::function_9b385ca5;
+	classes.cScriptBundleBase[0].__vtable[1606033458] = &cScriptBundleBase::__destructor;
+	classes.cScriptBundleBase[0].__vtable[-1690805083] = &cScriptBundleBase::__constructor;
 	classes.cScriptBundleBase[0].__vtable[-498584435] = &cScriptBundleBase::on_error;
 }
 

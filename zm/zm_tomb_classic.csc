@@ -20,7 +20,7 @@ function Precache()
 }
 
 /*
-	Name: function_6685c4cf
+	Name: premain
 	Namespace: zm_tomb_classic
 	Checksum: 0x89D5652D
 	Offset: 0x120
@@ -28,7 +28,7 @@ function Precache()
 	Parameters: 0
 	Flags: None
 */
-function function_6685c4cf()
+function premain()
 {
 	zm_tomb_craftables::include_craftables();
 	zm_tomb_craftables::init_craftables();

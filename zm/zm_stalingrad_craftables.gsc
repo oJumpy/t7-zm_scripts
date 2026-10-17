@@ -30,7 +30,7 @@
 function include_craftables()
 {
 	level.craftable_piece_swap_allowed = 0;
-	var_2a7833c8 = getnumexpectedplayers() == 1;
+	shared_pieces = getnumexpectedplayers() == 1;
 	craftable_name = "dragonride";
 	var_67638a1e = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_transmitter", 64, 64, 0, undefined, &function_6545e739, undefined, &function_7de936c2, undefined, undefined, undefined, "dragonride" + "_" + "part_transmitter", 1, undefined, undefined, &"ZM_STALINGRAD_DRAGONRIDE_TRANSMITTER", 1);
 	var_a4054f7d = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_codes", 64, 64, 0, undefined, &function_6545e739, undefined, &function_7de936c2, undefined, undefined, undefined, "dragonride" + "_" + "part_codes", 1, undefined, undefined, &"ZM_STALINGRAD_DRAGONRIDE_CODES", 1);
@@ -93,10 +93,10 @@ function init_craftables()
 */
 function register_clientfields()
 {
-	var_a0199abd = 1;
-	RegisterClientField("world", "dragonride" + "_" + "part_transmitter", 12000, var_a0199abd, "int", undefined, 0);
-	RegisterClientField("world", "dragonride" + "_" + "part_codes", 12000, var_a0199abd, "int", undefined, 0);
-	RegisterClientField("world", "dragonride" + "_" + "part_map", 12000, var_a0199abd, "int", undefined, 0);
+	shared_bits = 1;
+	RegisterClientField("world", "dragonride" + "_" + "part_transmitter", 12000, shared_bits, "int", undefined, 0);
+	RegisterClientField("world", "dragonride" + "_" + "part_codes", 12000, shared_bits, "int", undefined, 0);
+	RegisterClientField("world", "dragonride" + "_" + "part_map", 12000, shared_bits, "int", undefined, 0);
 	clientfield::register("toplayer", "ZMUI_DRAGONRIDE_PART_PICKUP", 12000, 1, "int");
 	clientfield::register("toplayer", "ZMUI_DRAGONRIDE_CRAFTED", 12000, 1, "int");
 	clientfield::register("clientuimodel", "zmInventory.widget_dragonride_parts", 12000, 1, "int");
@@ -116,9 +116,9 @@ function function_6545e739(player)
 	level flag::set(self.craftablename + "_" + self.pieceName + "_found");
 	level notify("hash_8d3f0071");
 	level.var_583e4a97.var_365bcb3c++;
-	if(isdefined(level.var_583e4a97.var_77754758))
+	if(isdefined(level.var_583e4a97.s_radio))
 	{
-		level.var_583e4a97.var_77754758.var_c2733dc7 = 1;
+		level.var_583e4a97.s_radio.b_used = 1;
 	}
 	str_piece = self.pieceName;
 	foreach(e_player in level.players)
@@ -274,13 +274,13 @@ function function_d7eb8f21()
 		level waittill("shield_built", e_who);
 		if(e_who.characterindex == 0)
 		{
-			var_4c5a66ad = 4;
+			n_lines = 4;
 		}
 		else
 		{
-			var_4c5a66ad = 5;
+			n_lines = 5;
 		}
-		str_vo_line = "vox_plr_" + e_who.characterindex + "_dragon_shield_acquire_" + RandomInt(var_4c5a66ad);
+		str_vo_line = "vox_plr_" + e_who.characterindex + "_dragon_shield_acquire_" + RandomInt(n_lines);
 		e_who namespace_dcf9c464::function_897246e4(str_vo_line);
 	}
 }

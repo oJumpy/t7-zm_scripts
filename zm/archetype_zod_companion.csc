@@ -4,11 +4,11 @@
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\system_shared;
 
-#namespace namespace_d593dec2;
+#namespace zodcompanionclientutils;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d593dec2
+	Namespace: zodcompanionclientutils
 	Checksum: 0x10CC164
 	Offset: 0x290
 	Size: 0x33
@@ -22,7 +22,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d593dec2
+	Namespace: zodcompanionclientutils
 	Checksum: 0xF4B4988D
 	Offset: 0x2D0
 	Size: 0xEB
@@ -31,27 +31,27 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("allplayers", "being_robot_revived", 1, 1, "int", &function_9d508314, 0, 0);
-	ai::add_archetype_spawn_function("zod_companion", &function_1b01e03a);
+	clientfield::register("allplayers", "being_robot_revived", 1, 1, "int", &play_revival_fx, 0, 0);
+	ai::add_archetype_spawn_function("zod_companion", &zodcompanionspawnsetup);
 	level._effect["fx_dest_robot_head_sparks"] = "destruct/fx_dest_robot_head_sparks";
 	level._effect["fx_dest_robot_body_sparks"] = "destruct/fx_dest_robot_body_sparks";
 	level._effect["companion_revive_effect"] = "zombie/fx_robot_helper_revive_player_zod_zmb";
-	ai::add_archetype_spawn_function("robot", &function_1b01e03a);
+	ai::add_archetype_spawn_function("robot", &zodcompanionspawnsetup);
 }
 
 /*
-	Name: function_1b01e03a
-	Namespace: namespace_d593dec2
+	Name: zodcompanionspawnsetup
+	Namespace: zodcompanionclientutils
 	Checksum: 0x10FEFD58
 	Offset: 0x3C8
 	Size: 0x133
 	Parameters: 1
 	Flags: Private
 */
-function private function_1b01e03a(localClientNum)
+function private zodcompanionspawnsetup(localClientNum)
 {
 	entity = self;
-	GibClientUtils::AddGibCallback(localClientNum, entity, 8, &function_a353addc);
+	GibClientUtils::AddGibCallback(localClientNum, entity, 8, &zodcompanionheadgibfx);
 	GibClientUtils::AddGibCallback(localClientNum, entity, 8, &_gibCallback);
 	GibClientUtils::AddGibCallback(localClientNum, entity, 16, &_gibCallback);
 	GibClientUtils::AddGibCallback(localClientNum, entity, 32, &_gibCallback);
@@ -61,57 +61,57 @@ function private function_1b01e03a(localClientNum)
 }
 
 /*
-	Name: function_a353addc
-	Namespace: namespace_d593dec2
+	Name: zodcompanionheadgibfx
+	Namespace: zodcompanionclientutils
 	Checksum: 0xAC04FC83
 	Offset: 0x508
 	Size: 0x103
 	Parameters: 3
 	Flags: None
 */
-function function_a353addc(localClientNum, entity, gibFlag)
+function zodcompanionheadgibfx(localClientNum, entity, gibFlag)
 {
 	if(!isdefined(entity) || !entity isai() || !isalive(entity))
 	{
 		return;
 	}
-	if(isdefined(entity.var_8210543c))
+	if(isdefined(entity.mindcontrolheadfx))
 	{
-		stopfx(localClientNum, entity.var_8210543c);
-		entity.var_8210543c = undefined;
+		stopfx(localClientNum, entity.mindcontrolheadfx);
+		entity.mindcontrolheadfx = undefined;
 	}
-	entity.var_360322e1 = PlayFXOnTag(localClientNum, level._effect["fx_dest_robot_head_sparks"], entity, "j_neck");
+	entity.headgibfx = PlayFXOnTag(localClientNum, level._effect["fx_dest_robot_head_sparks"], entity, "j_neck");
 	playsound(0, "prj_bullet_impact_robot_headshot", entity.origin);
 }
 
 /*
-	Name: function_569a86c1
-	Namespace: namespace_d593dec2
+	Name: zodcompaniondamagedfx
+	Namespace: zodcompanionclientutils
 	Checksum: 0x834F8091
 	Offset: 0x618
 	Size: 0x8F
 	Parameters: 2
 	Flags: None
 */
-function function_569a86c1(localClientNum, entity)
+function zodcompaniondamagedfx(localClientNum, entity)
 {
 	if(!isdefined(entity) || !entity isai() || !isalive(entity))
 	{
 		return;
 	}
-	entity.var_1c55ede0 = PlayFXOnTag(localClientNum, level._effect["fx_dest_robot_body_sparks"], entity, "j_spine4");
+	entity.damagedfx = PlayFXOnTag(localClientNum, level._effect["fx_dest_robot_body_sparks"], entity, "j_spine4");
 }
 
 /*
-	Name: function_cb6be0ab
-	Namespace: namespace_d593dec2
+	Name: zodcompanionclearfx
+	Namespace: zodcompanionclientutils
 	Checksum: 0x8A42D885
 	Offset: 0x6B0
 	Size: 0x39
 	Parameters: 2
 	Flags: None
 */
-function function_cb6be0ab(localClientNum, entity)
+function zodcompanionclearfx(localClientNum, entity)
 {
 	if(!isdefined(entity) || !entity isai())
 	{
@@ -121,7 +121,7 @@ function function_cb6be0ab(localClientNum, entity)
 
 /*
 	Name: _gibCallback
-	Namespace: namespace_d593dec2
+	Namespace: zodcompanionclientutils
 	Checksum: 0x579AA4E2
 	Offset: 0x6F8
 	Size: 0x91
@@ -160,24 +160,24 @@ function private _gibCallback(localClientNum, entity, gibFlag)
 }
 
 /*
-	Name: function_9d508314
-	Namespace: namespace_d593dec2
+	Name: play_revival_fx
+	Namespace: zodcompanionclientutils
 	Checksum: 0x86B0ED7B
 	Offset: 0x798
 	Size: 0xDB
 	Parameters: 7
 	Flags: None
 */
-function function_9d508314(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_revival_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	if(isdefined(self.var_43ab1d4c) && oldVal == 1 && newVal == 0)
+	if(isdefined(self.robot_revival_fx) && oldVal == 1 && newVal == 0)
 	{
-		stopfx(localClientNum, self.var_43ab1d4c);
+		stopfx(localClientNum, self.robot_revival_fx);
 	}
 	if(newVal === 1)
 	{
 		self playsound(0, "evt_civil_protector_revive_plr");
-		self.var_43ab1d4c = PlayFXOnTag(localClientNum, level._effect["companion_revive_effect"], self, "j_spineupper");
+		self.robot_revival_fx = PlayFXOnTag(localClientNum, level._effect["companion_revive_effect"], self, "j_spineupper");
 	}
 }
 

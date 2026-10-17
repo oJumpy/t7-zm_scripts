@@ -118,35 +118,35 @@ function function_a5062ebd()
 	thread zm_unitrigger::register_static_unitrigger(s_unitrigger_stub, &function_b776b443);
 	s_unitrigger_stub._trap_lights = [];
 	s_unitrigger_stub._trap_switches = [];
-	var_a22f946c = GetEntArray(self.target, "targetname");
-	for(i = 0; i < var_a22f946c.size; i++)
+	a_mdl_trap = GetEntArray(self.target, "targetname");
+	for(i = 0; i < a_mdl_trap.size; i++)
 	{
-		if(isdefined(var_a22f946c[i].script_noteworthy))
+		if(isdefined(a_mdl_trap[i].script_noteworthy))
 		{
-			switch(var_a22f946c[i].script_noteworthy)
+			switch(a_mdl_trap[i].script_noteworthy)
 			{
 				case "switch":
 				{
-					s_unitrigger_stub._trap_switches[s_unitrigger_stub._trap_switches.size] = var_a22f946c[i];
+					s_unitrigger_stub._trap_switches[s_unitrigger_stub._trap_switches.size] = a_mdl_trap[i];
 					s_unitrigger_stub thread function_aaf7f74d();
 					break;
 				}
 				case "light":
 				{
-					s_unitrigger_stub._trap_lights[s_unitrigger_stub._trap_lights.size] = var_a22f946c[i];
+					s_unitrigger_stub._trap_lights[s_unitrigger_stub._trap_lights.size] = a_mdl_trap[i];
 					s_unitrigger_stub function_81b05f08();
 					break;
 				}
 			}
 		}
 	}
-	var_8fcfe322 = GetEntArray("zombie_trap", "targetname");
-	Array::thread_all(var_8fcfe322, &function_5054a970);
-	foreach(var_60532813 in var_8fcfe322)
+	a_t_traps = GetEntArray("zombie_trap", "targetname");
+	Array::thread_all(a_t_traps, &function_5054a970);
+	foreach(t_trap in a_t_traps)
 	{
-		if(var_60532813.target === "trap_b")
+		if(t_trap.target === "trap_b")
 		{
-			var_60532813 thread function_aaf2ece7();
+			t_trap thread function_aaf2ece7();
 		}
 	}
 }
@@ -417,8 +417,8 @@ function function_13fd863b(STR_MODEL)
 {
 	for(i = 0; i < self._trap_lights.size; i++)
 	{
-		var_b079127 = self._trap_lights[i];
-		var_b079127 SetModel(STR_MODEL);
+		mdl_light = self._trap_lights[i];
+		mdl_light SetModel(STR_MODEL);
 	}
 }
 
@@ -438,7 +438,7 @@ function function_d12a18d7(e_player)
 	level.var_995bb84e.activated_by_player = e_player;
 	level.var_995bb84e thread function_df78b782();
 	wait(0.5);
-	level.var_6ac4e9cb function_8123d15a();
+	level.var_6ac4e9cb masher_trap_think();
 	level flag::clear("masher_on");
 	level flag::set("masher_cooldown");
 	level.var_6ac4e9cb.activated_by_player = undefined;
@@ -448,7 +448,7 @@ function function_d12a18d7(e_player)
 }
 
 /*
-	Name: function_8123d15a
+	Name: masher_trap_think
 	Namespace: namespace_2eabe570
 	Checksum: 0x38DBE76C
 	Offset: 0x1600
@@ -456,7 +456,7 @@ function function_d12a18d7(e_player)
 	Parameters: 0
 	Flags: None
 */
-function function_8123d15a()
+function masher_trap_think()
 {
 	Array::run_all(self.var_beb932f1, &show);
 	n_start_time = GetTime();
@@ -532,7 +532,7 @@ function trigger_damage(var_6ac4e9cb)
 		self.activated_by_player = var_6ac4e9cb.activated_by_player;
 		if(level flag::get("masher_on"))
 		{
-			if(e_who.archetype === "zombie" && (!isdefined(e_who.var_bd3a4420) && e_who.var_bd3a4420))
+			if(e_who.archetype === "zombie" && (!isdefined(e_who.b_mashed) && e_who.b_mashed))
 			{
 				e_who thread function_e80df8bf(var_6ac4e9cb.activated_by_player, self);
 			}
@@ -562,30 +562,30 @@ function trigger_damage(var_6ac4e9cb)
 	Parameters: 2
 	Flags: None
 */
-function function_e80df8bf(var_ecf98bb6, var_60532813)
+function function_e80df8bf(var_ecf98bb6, t_trap)
 {
 	n_chance = RandomInt(100);
 	if(n_chance > 90)
 	{
-		self.var_bd3a4420 = 1;
+		self.b_mashed = 1;
 		self thread zombie_utility::makeZombieCrawler();
 		wait(4);
 		if(isdefined(self))
 		{
-			self.var_bd3a4420 = undefined;
+			self.b_mashed = undefined;
 		}
 	}
 	else if(n_chance > 50)
 	{
 		self thread zombie_utility::zombie_gut_explosion();
 		level notify("hash_de71acc2", self, var_ecf98bb6);
-		self DoDamage(self.health + 100, self.origin, var_60532813, undefined, "none", "MOD_IMPACT");
+		self DoDamage(self.health + 100, self.origin, t_trap, undefined, "none", "MOD_IMPACT");
 	}
 	else
 	{
 		self thread zombie_utility::gib_random_parts();
 		level notify("hash_de71acc2", self, var_ecf98bb6);
-		self DoDamage(self.health + 100, self.origin, var_60532813, undefined, "none", "MOD_IMPACT");
+		self DoDamage(self.health + 100, self.origin, t_trap, undefined, "none", "MOD_IMPACT");
 	}
 	level.zombie_total++;
 }

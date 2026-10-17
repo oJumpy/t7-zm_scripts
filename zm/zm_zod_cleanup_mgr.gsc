@@ -221,12 +221,12 @@ function private delete_zombie_noone_looking()
 	}
 	if(self.archetype === "zombie")
 	{
-		if(self.ai_state == "find_flesh" && namespace_835aa2f1::is_moving() && !namespace_835aa2f1::function_42f8a1ab() && namespace_835aa2f1::function_c3bc2ffd())
+		if(self.ai_state == "find_flesh" && namespace_835aa2f1::is_moving() && !namespace_835aa2f1::is_full() && namespace_835aa2f1::is_ready_for_jumper())
 		{
-			var_e98bb795 = namespace_835aa2f1::function_be4c98a3(1);
-			if(var_e98bb795.size > 0)
+			a_on_train = namespace_835aa2f1::get_players_on_train(1);
+			if(a_on_train.size > 0)
 			{
-				namespace_835aa2f1::function_26fcc525(self);
+				namespace_835aa2f1::zombie_jump_onto_moving_train(self);
 				return;
 			}
 		}

@@ -49,8 +49,8 @@ function __init__()
 	level flag::init("whirlwind_active");
 	zm_spawner::register_zombie_damage_callback(&staff_air_zombie_damage_response);
 	zm_spawner::register_zombie_death_event_callback(&staff_air_death_event);
-	level.var_3481edfa = GetWeapon("staff_air");
-	level.var_7830b075 = GetWeapon("staff_air_upgraded");
+	level.w_staff_air = GetWeapon("staff_air");
+	level.w_staff_air_upgraded = GetWeapon("staff_air_upgraded");
 }
 
 /*
@@ -588,11 +588,11 @@ function staff_air_fling_zombie(player)
 	}
 	if(isdefined(self.is_source) || math::cointoss())
 	{
-		self thread zombie_launch(player, level.var_7830b075);
+		self thread zombie_launch(player, level.w_staff_air_upgraded);
 	}
 	else
 	{
-		self zm_tomb_utility::do_damage_network_safe(player, self.health, level.var_7830b075, "MOD_IMPACT");
+		self zm_tomb_utility::do_damage_network_safe(player, self.health, level.w_staff_air_upgraded, "MOD_IMPACT");
 		level thread staff_air_gib(self);
 	}
 }

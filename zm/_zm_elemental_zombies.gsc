@@ -139,7 +139,7 @@ function function_f4defbc2()
 			ai_zombie clientfield::set("arch_actor_fire_fx", 1);
 			ai_zombie clientfield::set("napalm_sfx", 1);
 			ai_zombie.health = Int(ai_zombie.health * 0.75);
-			ai_zombie thread function_e94aef80();
+			ai_zombie thread napalm_zombie_death();
 			ai_zombie thread function_d070bfba();
 			ai_zombie zombie_utility::set_zombie_run_cycle("sprint");
 		}
@@ -218,7 +218,7 @@ function function_d9226011()
 }
 
 /*
-	Name: function_e94aef80
+	Name: napalm_zombie_death
 	Namespace: namespace_57695b4d
 	Checksum: 0x1D33F10E
 	Offset: 0xD50
@@ -226,7 +226,7 @@ function function_d9226011()
 	Parameters: 0
 	Flags: None
 */
-function function_e94aef80()
+function napalm_zombie_death()
 {
 	ai_zombie = self;
 	ai_zombie waittill("death", attacker);
@@ -349,7 +349,7 @@ function function_f6901b6a()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
-		zm_devgui::function_4acecab5(&function_2d0e7f4);
+		zm_devgui::add_custom_devgui_callback(&function_2d0e7f4);
 	#/
 }
 

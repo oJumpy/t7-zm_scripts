@@ -21,25 +21,25 @@ function autoexec main()
 	processedBundles = [];
 	foreach(destructible in destructibles)
 	{
-		var_c2acfcd7 = spawnstruct();
-		var_c2acfcd7.pieceCount = destructible.pieceCount;
-		var_c2acfcd7.pieces = [];
-		var_c2acfcd7.name = var_93dca242;
-		for(index = 1; index <= var_c2acfcd7.pieceCount; index++)
+		destructbundle = spawnstruct();
+		destructbundle.pieceCount = destructible.pieceCount;
+		destructbundle.pieces = [];
+		destructbundle.name = destructiblename;
+		for(index = 1; index <= destructbundle.pieceCount; index++)
 		{
-			var_c16a4812 = spawnstruct();
-			var_c16a4812.gibmodel = GetStructField(destructible, "piece" + index + "_gibmodel");
-			var_c16a4812.gibtag = GetStructField(destructible, "piece" + index + "_gibtag");
-			var_c16a4812.gibfx = GetStructField(destructible, "piece" + index + "_gibfx");
-			var_c16a4812.gibfxtag = GetStructField(destructible, "piece" + index + "_gibeffecttag");
-			var_c16a4812.gibdynentfx = GetStructField(destructible, "piece" + index + "_gibdynentfx");
-			var_c16a4812.gibsound = GetStructField(destructible, "piece" + index + "_gibsound");
-			var_c16a4812.hitlocation = GetStructField(destructible, "piece" + index + "_hitlocation");
-			var_c16a4812.hidetag = GetStructField(destructible, "piece" + index + "_hidetag");
-			var_c16a4812.var_639d6497 = GetStructField(destructible, "piece" + index + "_detachmodel");
-			var_c2acfcd7.pieces[var_c2acfcd7.pieces.size] = var_c16a4812;
+			piecestruct = spawnstruct();
+			piecestruct.gibmodel = GetStructField(destructible, "piece" + index + "_gibmodel");
+			piecestruct.gibtag = GetStructField(destructible, "piece" + index + "_gibtag");
+			piecestruct.gibfx = GetStructField(destructible, "piece" + index + "_gibfx");
+			piecestruct.gibfxtag = GetStructField(destructible, "piece" + index + "_gibeffecttag");
+			piecestruct.gibdynentfx = GetStructField(destructible, "piece" + index + "_gibdynentfx");
+			piecestruct.gibsound = GetStructField(destructible, "piece" + index + "_gibsound");
+			piecestruct.hitlocation = GetStructField(destructible, "piece" + index + "_hitlocation");
+			piecestruct.hidetag = GetStructField(destructible, "piece" + index + "_hidetag");
+			piecestruct.detachmodel = GetStructField(destructible, "piece" + index + "_detachmodel");
+			destructbundle.pieces[destructbundle.pieces.size] = piecestruct;
 		}
-		processedBundles[var_93dca242] = var_c2acfcd7;
+		processedBundles[destructiblename] = destructbundle;
 	}
 	level.scriptbundles["destructiblecharacterdef"] = processedBundles;
 }
@@ -47,7 +47,7 @@ function autoexec main()
 #namespace DestructServerUtils;
 
 /*
-	Name: function_2cb45fe1
+	Name: _getdestructstate
 	Namespace: DestructServerUtils
 	Checksum: 0x5B7D7283
 	Offset: 0x630
@@ -55,17 +55,17 @@ function autoexec main()
 	Parameters: 1
 	Flags: Private
 */
-function private function_2cb45fe1(entity)
+function private _getdestructstate(entity)
 {
-	if(isdefined(entity.var_417f4578))
+	if(isdefined(entity._destruct_state))
 	{
-		return entity.var_417f4578;
+		return entity._destruct_state;
 	}
 	return 0;
 }
 
 /*
-	Name: function_736f4019
+	Name: _setdestructed
 	Namespace: DestructServerUtils
 	Checksum: 0xE9F4B4FF
 	Offset: 0x670
@@ -73,10 +73,10 @@ function private function_2cb45fe1(entity)
 	Parameters: 2
 	Flags: Private
 */
-function private function_736f4019(entity, var_f75965d)
+function private _setdestructed(entity, destructflag)
 {
-	entity.var_417f4578 = function_2cb45fe1(entity) | var_f75965d;
-	entity clientfield::set("destructible_character_state", entity.var_417f4578);
+	entity._destruct_state = _getdestructstate(entity) | destructflag;
+	entity clientfield::set("destructible_character_state", entity._destruct_state);
 }
 
 /*
@@ -90,13 +90,13 @@ function private function_736f4019(entity, var_f75965d)
 */
 function CopyDestructState(originalEntity, newEntity)
 {
-	newEntity.var_417f4578 = function_2cb45fe1(originalEntity);
+	newEntity._destruct_state = _getdestructstate(originalEntity);
 	ToggleSpawnGibs(newEntity, 0);
 	ReapplyDestructedPieces(newEntity);
 }
 
 /*
-	Name: function_a6d21b4d
+	Name: destructhitlocpieces
 	Namespace: DestructServerUtils
 	Checksum: 0xF486511E
 	Offset: 0x760
@@ -104,14 +104,14 @@ function CopyDestructState(originalEntity, newEntity)
 	Parameters: 2
 	Flags: None
 */
-function function_a6d21b4d(entity, hitLoc)
+function destructhitlocpieces(entity, hitLoc)
 {
 	if(isdefined(entity.destructibledef))
 	{
-		var_c2acfcd7 = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
-		for(index = 1; index <= var_c2acfcd7.pieces.size; index++)
+		destructbundle = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
+		for(index = 1; index <= destructbundle.pieces.size; index++)
 		{
-			piece = var_c2acfcd7.pieces[index - 1];
+			piece = destructbundle.pieces[index - 1];
 			if(isdefined(piece.hitlocation) && piece.hitlocation == hitLoc)
 			{
 				DestructPiece(entity, index);
@@ -131,9 +131,9 @@ function function_a6d21b4d(entity, hitLoc)
 */
 function DestructLeftArmPieces(entity)
 {
-	function_a6d21b4d(entity, "left_arm_upper");
-	function_a6d21b4d(entity, "left_arm_lower");
-	function_a6d21b4d(entity, "left_hand");
+	destructhitlocpieces(entity, "left_arm_upper");
+	destructhitlocpieces(entity, "left_arm_lower");
+	destructhitlocpieces(entity, "left_hand");
 }
 
 /*
@@ -147,9 +147,9 @@ function DestructLeftArmPieces(entity)
 */
 function DestructLeftLegPieces(entity)
 {
-	function_a6d21b4d(entity, "left_leg_upper");
-	function_a6d21b4d(entity, "left_leg_lower");
-	function_a6d21b4d(entity, "left_foot");
+	destructhitlocpieces(entity, "left_leg_upper");
+	destructhitlocpieces(entity, "left_leg_lower");
+	destructhitlocpieces(entity, "left_foot");
 }
 
 /*
@@ -172,20 +172,20 @@ function DestructPiece(entity, pieceNumber)
 	{
 		return;
 	}
-	function_736f4019(entity, 1 << pieceNumber);
+	_setdestructed(entity, 1 << pieceNumber);
 	if(!isdefined(entity.destructibledef))
 	{
 		return;
 	}
-	var_c2acfcd7 = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
-	piece = var_c2acfcd7.pieces[pieceNumber - 1];
+	destructbundle = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
+	piece = destructbundle.pieces[pieceNumber - 1];
 	if(isdefined(piece.hidetag) && entity HasPart(piece.hidetag))
 	{
 		entity HidePart(piece.hidetag);
 	}
-	if(isdefined(piece.var_639d6497))
+	if(isdefined(piece.detachmodel))
 	{
-		entity Detach(piece.var_639d6497, "");
+		entity Detach(piece.detachmodel, "");
 	}
 }
 
@@ -204,18 +204,18 @@ function DestructNumberRandomPieces(entity, num_pieces_to_destruct)
 	{
 		num_pieces_to_destruct = 0;
 	}
-	var_8fd68c0a = [];
-	var_e87e246e = GetPieceCount(entity);
+	destructible_pieces_list = [];
+	destructablepieces = GetPieceCount(entity);
 	if(num_pieces_to_destruct == 0)
 	{
-		num_pieces_to_destruct = var_e87e246e;
+		num_pieces_to_destruct = destructablepieces;
 	}
-	for(i = 0; i < var_e87e246e; i++)
+	for(i = 0; i < destructablepieces; i++)
 	{
-		var_8fd68c0a[i] = i + 1;
+		destructible_pieces_list[i] = i + 1;
 	}
-	var_8fd68c0a = Array::randomize(var_8fd68c0a);
-	foreach(piece in var_8fd68c0a)
+	destructible_pieces_list = Array::randomize(destructible_pieces_list);
+	foreach(piece in destructible_pieces_list)
 	{
 		if(!IsDestructed(entity, piece))
 		{
@@ -240,8 +240,8 @@ function DestructNumberRandomPieces(entity, num_pieces_to_destruct)
 */
 function DestructRandomPieces(entity)
 {
-	var_9491468e = GetPieceCount(entity);
-	for(index = 0; index < var_9491468e; index++)
+	destructpieces = GetPieceCount(entity);
+	for(index = 0; index < destructpieces; index++)
 	{
 		if(math::cointoss())
 		{
@@ -261,9 +261,9 @@ function DestructRandomPieces(entity)
 */
 function DestructRightArmPieces(entity)
 {
-	function_a6d21b4d(entity, "right_arm_upper");
-	function_a6d21b4d(entity, "right_arm_lower");
-	function_a6d21b4d(entity, "right_hand");
+	destructhitlocpieces(entity, "right_arm_upper");
+	destructhitlocpieces(entity, "right_arm_lower");
+	destructhitlocpieces(entity, "right_hand");
 }
 
 /*
@@ -277,9 +277,9 @@ function DestructRightArmPieces(entity)
 */
 function DestructRightLegPieces(entity)
 {
-	function_a6d21b4d(entity, "right_leg_upper");
-	function_a6d21b4d(entity, "right_leg_lower");
-	function_a6d21b4d(entity, "right_foot");
+	destructhitlocpieces(entity, "right_leg_upper");
+	destructhitlocpieces(entity, "right_leg_lower");
+	destructhitlocpieces(entity, "right_foot");
 }
 
 /*
@@ -295,10 +295,10 @@ function GetPieceCount(entity)
 {
 	if(isdefined(entity.destructibledef))
 	{
-		var_c2acfcd7 = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
-		if(isdefined(var_c2acfcd7))
+		destructbundle = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
+		if(isdefined(destructbundle))
 		{
-			return var_c2acfcd7.pieceCount;
+			return destructbundle.pieceCount;
 		}
 	}
 	return 0;
@@ -325,7 +325,7 @@ function handleDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sW
 		return iDamage;
 	}
 	ToggleSpawnGibs(entity, 1);
-	function_a6d21b4d(entity, sHitLoc);
+	destructhitlocpieces(entity, sHitLoc);
 	return iDamage;
 }
 
@@ -345,7 +345,7 @@ function IsDestructed(entity, pieceNumber)
 			Assert(1 <= pieceNumber && pieceNumber <= 20);
 		#/
 	#/
-	return function_2cb45fe1(entity) & 1 << pieceNumber;
+	return _getdestructstate(entity) & 1 << pieceNumber;
 }
 
 /*
@@ -363,14 +363,14 @@ function ReapplyDestructedPieces(entity)
 	{
 		return;
 	}
-	var_c2acfcd7 = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
-	for(index = 1; index <= var_c2acfcd7.pieces.size; index++)
+	destructbundle = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
+	for(index = 1; index <= destructbundle.pieces.size; index++)
 	{
 		if(!IsDestructed(entity, index))
 		{
 			continue;
 		}
-		piece = var_c2acfcd7.pieces[index - 1];
+		piece = destructbundle.pieces[index - 1];
 		if(isdefined(piece.hidetag) && entity HasPart(piece.hidetag))
 		{
 			entity HidePart(piece.hidetag);
@@ -393,10 +393,10 @@ function ShowDestructedPieces(entity)
 	{
 		return;
 	}
-	var_c2acfcd7 = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
-	for(index = 1; index <= var_c2acfcd7.pieces.size; index++)
+	destructbundle = struct::get_script_bundle("destructiblecharacterdef", entity.destructibledef);
+	for(index = 1; index <= destructbundle.pieces.size; index++)
 	{
-		piece = var_c2acfcd7.pieces[index - 1];
+		piece = destructbundle.pieces[index - 1];
 		if(isdefined(piece.hidetag) && entity HasPart(piece.hidetag))
 		{
 			entity ShowPart(piece.hidetag);
@@ -417,12 +417,12 @@ function ToggleSpawnGibs(entity, shouldSpawnGibs)
 {
 	if(shouldSpawnGibs)
 	{
-		entity.var_417f4578 = function_2cb45fe1(entity) | 1;
+		entity._destruct_state = _getdestructstate(entity) | 1;
 	}
 	else
 	{
-		entity.var_417f4578 = function_2cb45fe1(entity) & -2;
+		entity._destruct_state = _getdestructstate(entity) & -2;
 	}
-	entity clientfield::set("destructible_character_state", entity.var_417f4578);
+	entity clientfield::set("destructible_character_state", entity._destruct_state);
 }
 

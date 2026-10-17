@@ -62,7 +62,7 @@ function player_scene_skip_completed(localClientNum, oldVal, newVal, bNewEnt, bI
 #namespace cSceneObject;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: cSceneObject
 	Checksum: 0xEAF1916D
 	Offset: 0x800
@@ -70,15 +70,15 @@ function player_scene_skip_completed(localClientNum, oldVal, newVal, bNewEnt, bI
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
-	cScriptBundleObjectBase::function_9b385ca5();
+	cScriptBundleObjectBase::__constructor();
 	self._b_spawnonce_used = 0;
 	self._is_valid = 1;
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: cSceneObject
 	Checksum: 0x68D45E22
 	Offset: 0x838
@@ -86,9 +86,9 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
-	cScriptBundleObjectBase::function_5fba2032();
+	cScriptBundleObjectBase::__destructor();
 }
 
 /*
@@ -754,8 +754,8 @@ function private autoexec cSceneObject()
 	classes.cSceneObject[0].__vtable[-32002227] = &cScriptBundleObjectBase::error;
 	classes.cSceneObject[0].__vtable[1621988813] = &cScriptBundleObjectBase::Log;
 	classes.cSceneObject[0].__vtable[-1017222485] = &cScriptBundleObjectBase::init;
-	classes.cSceneObject[0].__vtable[1606033458] = &cScriptBundleObjectBase::function_5fba2032;
-	classes.cSceneObject[0].__vtable[-1690805083] = &cScriptBundleObjectBase::function_9b385ca5;
+	classes.cSceneObject[0].__vtable[1606033458] = &cScriptBundleObjectBase::__destructor;
+	classes.cSceneObject[0].__vtable[-1690805083] = &cScriptBundleObjectBase::__constructor;
 	classes.cSceneObject[0].__vtable[-1004716425] = &cSceneObject::in_a_different_scene;
 	classes.cSceneObject[0].__vtable[-1924366689] = &cSceneObject::is_alive;
 	classes.cSceneObject[0].__vtable[1064337886] = &cSceneObject::has_init_state;
@@ -777,14 +777,14 @@ function private autoexec cSceneObject()
 	classes.cSceneObject[0].__vtable[-675334113] = &cSceneObject::initialize_per_client;
 	classes.cSceneObject[0].__vtable[-422924033] = &cSceneObject::Initialize;
 	classes.cSceneObject[0].__vtable[-1191896790] = &cSceneObject::first_init;
-	classes.cSceneObject[0].__vtable[1606033458] = &cSceneObject::function_5fba2032;
-	classes.cSceneObject[0].__vtable[-1690805083] = &cSceneObject::function_9b385ca5;
+	classes.cSceneObject[0].__vtable[1606033458] = &cSceneObject::__destructor;
+	classes.cSceneObject[0].__vtable[-1690805083] = &cSceneObject::__constructor;
 }
 
 #namespace cscene;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: cscene
 	Checksum: 0x2BEFF95F
 	Offset: 0x2700
@@ -792,15 +792,15 @@ function private autoexec cSceneObject()
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
-	cScriptBundleBase::function_9b385ca5();
+	cScriptBundleBase::__constructor();
 	self._n_object_id = 0;
 	self._str_state = "";
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: cscene
 	Checksum: 0xA2582C78
 	Offset: 0x2738
@@ -808,9 +808,9 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
-	cScriptBundleBase::function_5fba2032();
+	cScriptBundleBase::__destructor();
 }
 
 /*
@@ -864,7 +864,7 @@ function init(str_scenedef, s_scenedef, e_align, a_ents, b_test_run)
 				}
 				else if(s_obj.name === "")
 				{
-					function_9b385ca5();
+					__constructor();
 					cScriptBundleBase::add_object(first_init(cSceneObject, s_obj, self, e_ent));
 					ArrayRemoveIndex(a_ents, str_name);
 					ArrayRemoveIndex(a_objs, i);
@@ -874,7 +874,7 @@ function init(str_scenedef, s_scenedef, e_align, a_ents, b_test_run)
 		}
 		foreach(s_obj in a_objs)
 		{
-			function_9b385ca5();
+			__constructor();
 			cScriptBundleBase::add_object(first_init(cSceneObject, s_obj, self, Array::pop(a_ents)));
 		}
 		self thread Initialize();
@@ -1339,8 +1339,8 @@ function private autoexec cscene()
 	classes.cscene[0].__vtable[245263499] = &cScriptBundleBase::get_name;
 	classes.cscene[0].__vtable[1872615990] = &cScriptBundleBase::get_type;
 	classes.cscene[0].__vtable[-1017222485] = &cScriptBundleBase::init;
-	classes.cscene[0].__vtable[1606033458] = &cScriptBundleBase::function_5fba2032;
-	classes.cscene[0].__vtable[-1690805083] = &cScriptBundleBase::function_9b385ca5;
+	classes.cscene[0].__vtable[1606033458] = &cScriptBundleBase::__destructor;
+	classes.cscene[0].__vtable[-1690805083] = &cScriptBundleBase::__constructor;
 	classes.cscene[0].__vtable[-498584435] = &cScriptBundleBase::on_error;
 	classes.cscene[0].__vtable[1194857509] = &cscene::get_state;
 	classes.cscene[0].__vtable[-498584435] = &cscene::on_error;
@@ -1361,8 +1361,8 @@ function private autoexec cscene()
 	classes.cscene[0].__vtable[-422924033] = &cscene::Initialize;
 	classes.cscene[0].__vtable[-794265383] = &cscene::get_valid_object_defs;
 	classes.cscene[0].__vtable[-1017222485] = &cscene::init;
-	classes.cscene[0].__vtable[1606033458] = &cscene::function_5fba2032;
-	classes.cscene[0].__vtable[-1690805083] = &cscene::function_9b385ca5;
+	classes.cscene[0].__vtable[1606033458] = &cscene::__destructor;
+	classes.cscene[0].__vtable[-1690805083] = &cscene::__constructor;
 }
 
 /*

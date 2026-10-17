@@ -39,8 +39,8 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_sword_flay", "time", 150, &enable, &disable, undefined);
-	bgb::function_3422638b("zm_bgb_sword_flay", &actor_damage_override);
-	bgb::function_e22c6124("zm_bgb_sword_flay", &vehicle_damage_override);
+	bgb::register_actor_damage_override("zm_bgb_sword_flay", &actor_damage_override);
+	bgb::register_vehicle_damage_override("zm_bgb_sword_flay", &vehicle_damage_override);
 }
 
 /*

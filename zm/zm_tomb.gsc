@@ -299,11 +299,11 @@ function main()
 	#/
 	zm_tomb_utility::init_weather_manager();
 	zm_tomb_capture_zones::function_b0debead();
-	level.var_9aaae7ae = &function_869d6f66;
-	level.var_9f5c2c50 = &function_e36dbcf4;
+	level.zm_bgb_anywhere_but_here_validation_override = &anywhere_but_here_validation_override;
+	level.zm_bgb_killing_time_validation_override = &bgb_killing_time_validation_override;
 	level.var_2d4e3645 = &function_d9e1ec4d;
 	level.var_2d0e5eb6 = &function_2d0e5eb6;
-	level thread zm_tomb_ambient_scripts::function_add29756();
+	level thread zm_tomb_ambient_scripts::setup_dogfights();
 	level thread zm_perks::spare_change();
 	zm_tomb_ffotd::main_end();
 }
@@ -385,16 +385,16 @@ function function_2d0e5eb6()
 	var_62e2eaf2 = [];
 	for(i = 0; i < var_cdb0f86b.size; i++)
 	{
-		var_77917a61 = 0;
+		b_should_skip = 0;
 		foreach(var_68de493a in var_b4442b55)
 		{
 			if(var_cdb0f86b[i] == var_68de493a)
 			{
-				var_77917a61 = 1;
+				b_should_skip = 1;
 				break;
 			}
 		}
-		if(var_77917a61)
+		if(b_should_skip)
 		{
 			continue;
 			continue;
@@ -454,7 +454,7 @@ function function_56848b85()
 }
 
 /*
-	Name: function_ce3464b9
+	Name: tomb_validate_last_closest_player
 	Namespace: zm_tomb
 	Checksum: 0xD458B5DE
 	Offset: 0x3978
@@ -462,7 +462,7 @@ function function_56848b85()
 	Parameters: 1
 	Flags: Private
 */
-function private function_ce3464b9(players)
+function private tomb_validate_last_closest_player(players)
 {
 	if(isdefined(self.last_closest_player) && (isdefined(self.last_closest_player.am_i_valid) && self.last_closest_player.am_i_valid))
 	{
@@ -525,7 +525,7 @@ function tomb_closest_player_override(v_zombie_origin, a_players_to_check)
 	}
 	if(isdefined(level.last_closest_time) && level.last_closest_time >= level.time && (!isdefined(self.var_13ed8adf) || self.var_13ed8adf < level.time))
 	{
-		self function_ce3464b9(a_players_to_check);
+		self tomb_validate_last_closest_player(a_players_to_check);
 		return self.last_closest_player;
 	}
 	if(!isdefined(self.var_13ed8adf) || self.var_13ed8adf == level.time)
@@ -536,7 +536,7 @@ function tomb_closest_player_override(v_zombie_origin, a_players_to_check)
 		if(a_players_to_check.size == 1)
 		{
 			self.last_closest_player = a_players_to_check[0];
-			self function_ce3464b9(a_players_to_check);
+			self tomb_validate_last_closest_player(a_players_to_check);
 			return self.last_closest_player;
 		}
 		e_player_to_attack = zm_tomb_utility::tomb_get_closest_player_using_paths(v_zombie_origin, a_players_to_check);
@@ -573,12 +573,12 @@ function tomb_closest_player_override(v_zombie_origin, a_players_to_check)
 		}
 		self.last_closest_player = e_player_to_attack;
 	}
-	self function_ce3464b9(a_players_to_check);
+	self tomb_validate_last_closest_player(a_players_to_check);
 	return self.last_closest_player;
 }
 
 /*
-	Name: function_869d6f66
+	Name: anywhere_but_here_validation_override
 	Namespace: zm_tomb
 	Checksum: 0xFE03A394
 	Offset: 0x3E78
@@ -586,7 +586,7 @@ function tomb_closest_player_override(v_zombie_origin, a_players_to_check)
 	Parameters: 0
 	Flags: None
 */
-function function_869d6f66()
+function anywhere_but_here_validation_override()
 {
 	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
 	{
@@ -608,7 +608,7 @@ function function_869d6f66()
 }
 
 /*
-	Name: function_e36dbcf4
+	Name: bgb_killing_time_validation_override
 	Namespace: zm_tomb
 	Checksum: 0x86739D67
 	Offset: 0x3F10
@@ -616,7 +616,7 @@ function function_869d6f66()
 	Parameters: 0
 	Flags: None
 */
-function function_e36dbcf4()
+function bgb_killing_time_validation_override()
 {
 	if(self.is_stomped === 1)
 	{
@@ -634,11 +634,11 @@ function function_e36dbcf4()
 	Parameters: 1
 	Flags: None
 */
-function function_d9e1ec4d(var_bbf77908)
+function function_d9e1ec4d(a_s_valid_respawn_points)
 {
 	var_c7786100 = struct::get("zone_chamber", "script_noteworthy");
-	ArrayRemoveValue(var_bbf77908, var_c7786100);
-	return var_bbf77908;
+	ArrayRemoveValue(a_s_valid_respawn_points, var_c7786100);
+	return a_s_valid_respawn_points;
 }
 
 /*
@@ -800,11 +800,11 @@ function revive_watcher()
 */
 function function_a5d4f26d()
 {
-	var_22082ed0 = GetEnt("specialty_additionalprimaryweapon", "script_noteworthy");
-	if(isdefined(var_22082ed0) && isdefined(var_22082ed0))
+	e_machine = GetEnt("specialty_additionalprimaryweapon", "script_noteworthy");
+	if(isdefined(e_machine) && isdefined(e_machine))
 	{
-		var_22082ed0.clip ghost();
-		var_22082ed0.clip connectpaths();
+		e_machine.clip ghost();
+		e_machine.clip connectpaths();
 	}
 }
 
@@ -848,30 +848,30 @@ function function_df9f5719()
 		{
 			var_343b1937 = a_s_spots[i].script_int;
 		}
-		var_c15b2128 = [];
-		foreach(var_a0bd4da1 in level.zombie_spawners)
+		a_sp_zombies = [];
+		foreach(sp_zombie in level.zombie_spawners)
 		{
-			if(var_a0bd4da1.script_int == var_343b1937)
+			if(sp_zombie.script_int == var_343b1937)
 			{
-				if(!isdefined(var_c15b2128))
+				if(!isdefined(a_sp_zombies))
 				{
-					var_c15b2128 = [];
+					a_sp_zombies = [];
 				}
-				else if(!IsArray(var_c15b2128))
+				else if(!IsArray(a_sp_zombies))
 				{
-					var_c15b2128 = Array(var_c15b2128);
+					a_sp_zombies = Array(a_sp_zombies);
 				}
-				var_c15b2128[var_c15b2128.size] = var_a0bd4da1;
+				a_sp_zombies[a_sp_zombies.size] = sp_zombie;
 			}
 		}
-		if(var_c15b2128.size)
+		if(a_sp_zombies.size)
 		{
-			var_a0bd4da1 = Array::random(var_c15b2128);
-			return var_a0bd4da1;
+			sp_zombie = Array::random(a_sp_zombies);
+			return sp_zombie;
 		}
 	}
 	/#
-		Assert(isdefined(var_a0bd4da1), "Dev Block strings are not supported" + var_343b1937);
+		Assert(isdefined(sp_zombie), "Dev Block strings are not supported" + var_343b1937);
 	#/
 }
 
@@ -2212,19 +2212,19 @@ function tomb_custom_electric_cherry_reload_attack()
 	while(1)
 	{
 		self waittill("reload_start");
-		var_1bcd223d = self GetCurrentWeapon();
-		if(IsInArray(self.wait_on_reload, var_1bcd223d))
+		w_current_weapon = self GetCurrentWeapon();
+		if(IsInArray(self.wait_on_reload, w_current_weapon))
 		{
 			continue;
 		}
-		self.wait_on_reload[self.wait_on_reload.size] = var_1bcd223d;
+		self.wait_on_reload[self.wait_on_reload.size] = w_current_weapon;
 		self.consecutive_electric_cherry_attacks++;
-		n_clip_current = self GetWeaponAmmoClip(var_1bcd223d);
-		n_clip_max = var_1bcd223d.clipSize;
+		n_clip_current = self GetWeaponAmmoClip(w_current_weapon);
+		n_clip_max = w_current_weapon.clipSize;
 		n_fraction = n_clip_current / n_clip_max;
 		perk_radius = math::linear_map(n_fraction, 1, 0, 32, 128);
 		perk_dmg = math::linear_map(n_fraction, 1, 0, 1, 1045);
-		self thread zm_perk_electric_cherry::check_for_reload_complete(var_1bcd223d);
+		self thread zm_perk_electric_cherry::check_for_reload_complete(w_current_weapon);
 		if(isdefined(self))
 		{
 			switch(self.consecutive_electric_cherry_attacks)
@@ -2255,7 +2255,7 @@ function tomb_custom_electric_cherry_reload_attack()
 					n_zombie_limit = 0;
 				}
 			}
-			self thread zm_perk_electric_cherry::electric_cherry_cooldown_timer(var_1bcd223d);
+			self thread zm_perk_electric_cherry::electric_cherry_cooldown_timer(w_current_weapon);
 			if(isdefined(n_zombie_limit) && n_zombie_limit == 0)
 			{
 				continue;
@@ -2429,12 +2429,12 @@ function function_89182d9b()
 	level.machine_assets["specialty_staminup"].power_off_callback = &zm_tomb_capture_zones::custom_vending_power_off;
 	level flag::wait_till("start_zombie_round_logic");
 	wait(0.5);
-	foreach(var_3b5635b9 in level.powered_items)
+	foreach(s_powered in level.powered_items)
 	{
-		if(var_3b5635b9.target.script_noteworthy != "pack_a_punch")
+		if(s_powered.target.script_noteworthy != "pack_a_punch")
 		{
-			var_3b5635b9.power_on_func = &zm_tomb_capture_zones::custom_vending_power_on;
-			var_3b5635b9.power_off_func = &zm_tomb_capture_zones::custom_vending_power_off;
+			s_powered.power_on_func = &zm_tomb_capture_zones::custom_vending_power_on;
+			s_powered.power_off_func = &zm_tomb_capture_zones::custom_vending_power_off;
 		}
 	}
 }

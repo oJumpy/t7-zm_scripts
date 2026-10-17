@@ -710,20 +710,20 @@ function dig_up_grenade(player)
 */
 function dig_up_weapon(digger)
 {
-	var_43f586fe = Array(GetWeapon("pistol_c96"), GetWeapon("ar_marksman"), GetWeapon("shotgun_pump"));
-	var_63eba41d = Array(GetWeapon("sniper_fastsemi"), GetWeapon("shotgun_fullauto"));
+	a_w_common_weapons = Array(GetWeapon("pistol_c96"), GetWeapon("ar_marksman"), GetWeapon("shotgun_pump"));
+	a_w_rare_weapons = Array(GetWeapon("sniper_fastsemi"), GetWeapon("shotgun_fullauto"));
 	if(digger.dig_vars["has_upgraded_shovel"])
 	{
-		var_63eba41d = ArrayCombine(var_63eba41d, Array(GetWeapon("bouncingbetty"), GetWeapon("ar_stg44"), GetWeapon("smg_standard"), GetWeapon("smg_mp40_1940"), GetWeapon("shotgun_precision")), 0, 0);
+		a_w_rare_weapons = ArrayCombine(a_w_rare_weapons, Array(GetWeapon("bouncingbetty"), GetWeapon("ar_stg44"), GetWeapon("smg_standard"), GetWeapon("smg_mp40_1940"), GetWeapon("shotgun_precision")), 0, 0);
 	}
 	var_59d5868d = undefined;
 	if(RandomInt(100) < 90)
 	{
-		var_59d5868d = var_43f586fe[getArrayKeys(var_43f586fe)[RandomInt(getArrayKeys(var_43f586fe).size)]];
+		var_59d5868d = a_w_common_weapons[getArrayKeys(a_w_common_weapons)[RandomInt(getArrayKeys(a_w_common_weapons).size)]];
 	}
 	else
 	{
-		var_59d5868d = var_63eba41d[getArrayKeys(var_63eba41d)[RandomInt(getArrayKeys(var_63eba41d).size)]];
+		var_59d5868d = a_w_rare_weapons[getArrayKeys(a_w_rare_weapons)[RandomInt(getArrayKeys(a_w_rare_weapons).size)]];
 	}
 	v_spawnpt = self.origin + (0, 0, 40);
 	v_spawnang = (0, 0, 0);
@@ -735,7 +735,7 @@ function dig_up_weapon(digger)
 	m_weapon thread timer_til_despawn(v_spawnpt, 40 * -1);
 	m_weapon endon("dig_up_weapon_timed_out");
 	PlayFXOnTag(level._effect["powerup_on_solo"], m_weapon, "tag_origin");
-	m_weapon.trigger = zm_tomb_utility::tomb_spawn_trigger_radius(v_spawnpt, 100, 1, undefined, &function_3674f451);
+	m_weapon.trigger = zm_tomb_utility::tomb_spawn_trigger_radius(v_spawnpt, 100, 1, undefined, &weapon_trigger_update_prompt);
 	m_weapon.trigger.cursor_hint = "HINT_WEAPON";
 	m_weapon.trigger.cursor_hint_weapon = var_59d5868d;
 	m_weapon.trigger waittill("trigger", player);
@@ -757,7 +757,7 @@ function dig_up_weapon(digger)
 }
 
 /*
-	Name: function_3674f451
+	Name: weapon_trigger_update_prompt
 	Namespace: zm_tomb_dig
 	Checksum: 0x701BA388
 	Offset: 0x2CE8
@@ -765,7 +765,7 @@ function dig_up_weapon(digger)
 	Parameters: 1
 	Flags: None
 */
-function function_3674f451(player)
+function weapon_trigger_update_prompt(player)
 {
 	if(!zm_utility::is_player_valid(player) || player.IS_DRINKING > 0 || !player zm_magicbox::can_buy_weapon() || player bgb::is_enabled("zm_bgb_disorderly_combat"))
 	{
@@ -787,12 +787,12 @@ function function_3674f451(player)
 */
 function swap_weapon(var_375664a9, e_player)
 {
-	var_1bcd223d = e_player GetCurrentWeapon();
-	if(!zombie_utility::is_player_valid(e_player) || (isdefined(e_player.IS_DRINKING) && e_player.IS_DRINKING) || zm_utility::is_placeable_mine(var_1bcd223d) || zm_equipment::is_equipment(var_1bcd223d) || var_1bcd223d == GetWeapon("none") || e_player zm_equipment::hacker_active())
+	w_current_weapon = e_player GetCurrentWeapon();
+	if(!zombie_utility::is_player_valid(e_player) || (isdefined(e_player.IS_DRINKING) && e_player.IS_DRINKING) || zm_utility::is_placeable_mine(w_current_weapon) || zm_equipment::is_equipment(w_current_weapon) || w_current_weapon == GetWeapon("none") || e_player zm_equipment::hacker_active())
 	{
 		return;
 	}
-	if(isdefined(level.revive_tool) && level.revive_tool == var_1bcd223d)
+	if(isdefined(level.revive_tool) && level.revive_tool == w_current_weapon)
 	{
 		return;
 	}
@@ -800,8 +800,8 @@ function swap_weapon(var_375664a9, e_player)
 	foreach(weapon in var_6c6831af)
 	{
 		w_base = zm_weapons::get_base_weapon(weapon);
-		var_7321b53b = zm_weapons::get_upgrade_weapon(weapon);
-		if(var_375664a9 === w_base || var_375664a9 === var_7321b53b)
+		w_upgraded = zm_weapons::get_upgrade_weapon(weapon);
+		if(var_375664a9 === w_base || var_375664a9 === w_upgraded)
 		{
 			e_player giveMaxAmmo(weapon);
 			return;

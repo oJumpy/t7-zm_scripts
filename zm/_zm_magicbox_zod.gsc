@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_cfbe948b;
+#namespace zm_magicbox_zod;
 
 /*
 	Name: init
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0xAAB992C7
 	Offset: 0x388
 	Size: 0x1E3
@@ -39,12 +39,12 @@ function init()
 	level.custom_magicbox_float_height = 40;
 	level.magic_box_zbarrier_state_func = &set_magic_box_zbarrier_state;
 	level thread handle_fire_sale();
-	level thread function_cb604665();
+	level thread custom_magicbox_host_migration();
 }
 
 /*
 	Name: custom_joker_movement
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x8BCAF695
 	Offset: 0x578
 	Size: 0x21D
@@ -76,7 +76,7 @@ function custom_joker_movement()
 
 /*
 	Name: custom_magic_box_timer_til_despawn
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0xF04AD887
 	Offset: 0x7A0
 	Size: 0xB3
@@ -98,7 +98,7 @@ function custom_magic_box_timer_til_despawn(magic_box)
 
 /*
 	Name: custom_magic_box_fx
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x99EC1590
 	Offset: 0x860
 	Size: 0x3
@@ -110,15 +110,15 @@ function custom_magic_box_fx()
 }
 
 /*
-	Name: function_49998a6e
-	Namespace: namespace_cfbe948b
+	Name: custom_pandora_fx_func
+	Namespace: zm_magicbox_zod
 	Checksum: 0xDEFABCEE
 	Offset: 0x870
 	Size: 0xD3
 	Parameters: 0
 	Flags: None
 */
-function function_49998a6e()
+function custom_pandora_fx_func()
 {
 	self endon("death");
 	self.pandora_light = util::spawn_model("tag_origin", self.zbarrier.origin, VectorScale((-1, 0, -1), 90));
@@ -136,7 +136,7 @@ function function_49998a6e()
 
 /*
 	Name: custom_pandora_show_func
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x28A88F8D
 	Offset: 0x950
 	Size: 0x7B
@@ -149,7 +149,7 @@ function custom_pandora_show_func()
 	{
 		if(!isdefined(level.pandora_fx_func))
 		{
-			level.pandora_fx_func = &function_49998a6e;
+			level.pandora_fx_func = &custom_pandora_fx_func;
 		}
 		self thread [[level.pandora_fx_func]]();
 	}
@@ -158,7 +158,7 @@ function custom_pandora_show_func()
 
 /*
 	Name: custom_magic_box_weapon_wait
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0xAE86640A
 	Offset: 0x9D8
 	Size: 0xB
@@ -172,7 +172,7 @@ function custom_magic_box_weapon_wait()
 
 /*
 	Name: set_magic_box_zbarrier_state
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0xDEA8FC07
 	Offset: 0x9F0
 	Size: 0x2BD
@@ -245,7 +245,7 @@ function set_magic_box_zbarrier_state(State)
 
 /*
 	Name: magic_box_initial
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x8A3BD00B
 	Offset: 0xCB8
 	Size: 0xA3
@@ -263,7 +263,7 @@ function magic_box_initial()
 
 /*
 	Name: magic_box_arrives
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x54C4425F
 	Offset: 0xD68
 	Size: 0x93
@@ -284,7 +284,7 @@ function magic_box_arrives()
 
 /*
 	Name: magic_box_leaves
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x9BE0226
 	Offset: 0xE08
 	Size: 0x107
@@ -311,7 +311,7 @@ function magic_box_leaves()
 
 /*
 	Name: magic_box_opens
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x8B755A64
 	Offset: 0xF18
 	Size: 0xB3
@@ -333,7 +333,7 @@ function magic_box_opens()
 
 /*
 	Name: magic_box_open_idle
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x12FF0C22
 	Offset: 0xFD8
 	Size: 0x97
@@ -357,7 +357,7 @@ function magic_box_open_idle()
 
 /*
 	Name: magic_box_closes
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x487BE1E4
 	Offset: 0x1078
 	Size: 0xE1
@@ -381,7 +381,7 @@ function magic_box_closes()
 
 /*
 	Name: custom_magic_box_do_weapon_rise
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x987F720
 	Offset: 0x1168
 	Size: 0x16B
@@ -411,7 +411,7 @@ function custom_magic_box_do_weapon_rise()
 
 /*
 	Name: handle_fire_sale
-	Namespace: namespace_cfbe948b
+	Namespace: zm_magicbox_zod
 	Checksum: 0x9FCA92F8
 	Offset: 0x12E0
 	Size: 0x189
@@ -422,12 +422,12 @@ function handle_fire_sale()
 {
 	while(1)
 	{
-		var_7c8b59c1 = level util::waittill_any_return("fire_sale_off", "fire_sale_on");
+		str_firesale_status = level util::waittill_any_return("fire_sale_off", "fire_sale_on");
 		for(i = 0; i < level.chests.size; i++)
 		{
 			if(level.chest_index != i && isdefined(level.chests[i].was_temp))
 			{
-				if(var_7c8b59c1 == "fire_sale_on")
+				if(str_firesale_status == "fire_sale_on")
 				{
 					level.chests[i].zbarrier clientfield::set("magicbox_amb_sound", 1);
 					level.chests[i].zbarrier clientfield::set("magicbox_open_fx", 3);
@@ -441,15 +441,15 @@ function handle_fire_sale()
 }
 
 /*
-	Name: function_cb604665
-	Namespace: namespace_cfbe948b
+	Name: custom_magicbox_host_migration
+	Namespace: zm_magicbox_zod
 	Checksum: 0x925F6A23
 	Offset: 0x1478
 	Size: 0x14D
 	Parameters: 0
 	Flags: None
 */
-function function_cb604665()
+function custom_magicbox_host_migration()
 {
 	level endon("end_game");
 	level notify("mb_hostmigration");

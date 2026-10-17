@@ -53,7 +53,7 @@ function init()
 	if(canProcessChallenges())
 	{
 		registerChallengesCallback("playerKilled", &challengeKills);
-		registerChallengesCallback("actorKilled", &function_9323a046);
+		registerChallengesCallback("actorKilled", &challengeactorkills);
 		registerChallengesCallback("gameEnd", &challengeGameEnd);
 		registerChallengesCallback("roundEnd", &challengeRoundEnd);
 	}
@@ -608,7 +608,7 @@ function challengeKills(data, time)
 }
 
 /*
-	Name: function_9323a046
+	Name: challengeactorkills
 	Namespace: challenges
 	Checksum: 0x9055776D
 	Offset: 0x2AE8
@@ -616,7 +616,7 @@ function challengeKills(data, time)
 	Parameters: 2
 	Flags: None
 */
-function function_9323a046(data, time)
+function challengeactorkills(data, time)
 {
 }
 

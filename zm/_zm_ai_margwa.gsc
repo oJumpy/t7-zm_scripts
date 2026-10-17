@@ -23,11 +23,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weap_idgun;
 
-#namespace namespace_ca5ef87d;
+#namespace zm_ai_margwa;
 
 /*
 	Name: init
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0x79B29F7
 	Offset: 0x670
 	Size: 0x1AB
@@ -36,24 +36,24 @@
 */
 function autoexec init()
 {
-	function_e84ffe9c();
-	level.var_b398aafa = GetEntArray("zombie_margwa_spawner", "script_noteworthy");
-	level.var_95810297 = struct::get_array("margwa_location", "script_noteworthy");
+	initzmmargwabehaviorsandasm();
+	level.margwa_spawners = GetEntArray("zombie_margwa_spawner", "script_noteworthy");
+	level.margwa_locations = struct::get_array("margwa_location", "script_noteworthy");
 	level thread AAT::register_immunity("zm_aat_blast_furnace", "margwa", 0, 1, 1);
 	level thread AAT::register_immunity("zm_aat_dead_wire", "margwa", 1, 1, 1);
 	level thread AAT::register_immunity("zm_aat_fire_works", "margwa", 1, 1, 1);
 	level thread AAT::register_immunity("zm_aat_thunder_wall", "margwa", 0, 1, 1);
 	level thread AAT::register_immunity("zm_aat_turned", "margwa", 1, 1, 1);
-	spawner::add_archetype_spawn_function("margwa", &function_17627e34);
+	spawner::add_archetype_spawn_function("margwa", &margwa_setup);
 	/#
 		execdevgui("Dev Block strings are not supported");
-		thread function_cdd8baf7();
+		thread margwa_devgui();
 	#/
 }
 
 /*
 	Name: function_4092fa4d
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0xF5BCDACB
 	Offset: 0x828
 	Size: 0x91
@@ -65,50 +65,50 @@ function function_4092fa4d()
 	wait(20);
 	for(i = 0; i < 1; i++)
 	{
-		var_2dcff864 = ArrayGetClosest(level.players[0].origin, level.var_95810297);
-		margwa = function_8a0708c2(var_2dcff864);
+		var_2dcff864 = ArrayGetClosest(level.players[0].origin, level.margwa_locations);
+		margwa = spawn_margwa(var_2dcff864);
 		wait(0.5);
 	}
 }
 
 /*
-	Name: function_e84ffe9c
-	Namespace: namespace_ca5ef87d
+	Name: initzmmargwabehaviorsandasm
+	Namespace: zm_ai_margwa
 	Checksum: 0x8F7013EE
 	Offset: 0x8C8
 	Size: 0x28B
 	Parameters: 0
 	Flags: Private
 */
-function private function_e84ffe9c()
+function private initzmmargwabehaviorsandasm()
 {
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaTargetService", &function_c0fb414e);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaTeleportService", &function_5d11b2dc);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaZoneService", &function_6cc20647);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaPushService", &function_fa29651d);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaOctobombService", &function_d59056ec);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaVortexService", &function_6312be59);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaShouldSmashAttack", &function_cbdc3798);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaShouldSwipeAttack", &function_ec97fb1e);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaShouldOctobombAttack", &function_f0e8cb2d);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaShouldMove", &function_1c88d468);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeAction("zmMargwaSwipeAttackAction", &function_cd380e61, &function_edd2fa77, undefined);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeAction("zmMargwaOctobombAttackAction", &function_9fab0124, &function_c5832338, &function_7b2a3a90);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaSmashAttackTerminate", &function_7137a16);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaSwipeAttackTerminate", &function_137093c0);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaTeleportInTerminate", &function_743b10d2);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaTargetService", &zm_margwa_target_service);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaTeleportService", &zm_margwa_teleport_service);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaZoneService", &zm_margwa_zone_service);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaPushService", &zm_margwa_push_service);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaOctobombService", &zm_margwa_octobomb_service);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaVortexService", &zm_margwa_vortex_service);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaShouldSmashAttack", &zm_margwa_should_smash_attack);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaShouldSwipeAttack", &zm_margwa_should_swipe_attack);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaShouldOctobombAttack", &zm_margwa_should_octobomb_attack);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaShouldMove", &zm_margwa_should_move);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeAction("zmMargwaSwipeAttackAction", &zm_margwa_swipe_attack_action, &zm_margwa_swipe_attack_action_update, undefined);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeAction("zmMargwaOctobombAttackAction", &zm_margwa_octobomb_attack_action, &zm_margwa_octobomb_attack_action_update, &zm_margwa_octobomb_attack_action_terminate);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaSmashAttackTerminate", &zm_margwa_smash_attack_terminate);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaSwipeAttackTerminate", &zm_margwa_swipe_attack_terminate);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zmMargwaTeleportInTerminate", &zm_margwa_teleport_in_terminate);
 }
 
 /*
-	Name: function_c0fb414e
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_target_service
+	Namespace: zm_ai_margwa
 	Checksum: 0x30BDA08B
 	Offset: 0xB60
 	Size: 0x1F1
 	Parameters: 1
 	Flags: Private
 */
-function private function_c0fb414e(entity)
+function private zm_margwa_target_service(entity)
 {
 	if(isdefined(entity.ignoreall) && entity.ignoreall)
 	{
@@ -143,22 +143,22 @@ function private function_c0fb414e(entity)
 }
 
 /*
-	Name: function_5d11b2dc
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_teleport_service
+	Namespace: zm_ai_margwa
 	Checksum: 0xBA288AD3
 	Offset: 0xD60
 	Size: 0x2E3
 	Parameters: 1
 	Flags: Private
 */
-function private function_5d11b2dc(entity)
+function private zm_margwa_teleport_service(entity)
 {
 	if(isdefined(entity.favoriteenemy))
 	{
 		if(isdefined(entity.favoriteenemy.on_train) && entity.favoriteenemy.on_train)
 		{
-			var_d3443466 = function_3e62f527();
-			if(isdefined(entity.var_e0d198e4) && entity.var_e0d198e4 && (!isdefined(var_d3443466) && var_d3443466))
+			var_d3443466 = get_doors_state();
+			if(isdefined(entity.locked_in_train) && entity.locked_in_train && (!isdefined(var_d3443466) && var_d3443466))
 			{
 				return 0;
 			}
@@ -210,15 +210,15 @@ function private function_5d11b2dc(entity)
 }
 
 /*
-	Name: function_6cc20647
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_zone_service
+	Namespace: zm_ai_margwa
 	Checksum: 0x15548D70
 	Offset: 0x1050
 	Size: 0xAB
 	Parameters: 1
 	Flags: Private
 */
-function private function_6cc20647(entity)
+function private zm_margwa_zone_service(entity)
 {
 	if(isdefined(entity.isTeleporting) && entity.isTeleporting)
 	{
@@ -237,15 +237,15 @@ function private function_6cc20647(entity)
 }
 
 /*
-	Name: function_fa29651d
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_push_service
+	Namespace: zm_ai_margwa
 	Checksum: 0xBD91E702
 	Offset: 0x1108
 	Size: 0x225
 	Parameters: 1
 	Flags: Private
 */
-function private function_fa29651d(entity)
+function private zm_margwa_push_service(entity)
 {
 	if(entity.zombie_move_speed == "walk")
 	{
@@ -274,15 +274,15 @@ function private function_fa29651d(entity)
 }
 
 /*
-	Name: function_d59056ec
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_octobomb_service
+	Namespace: zm_ai_margwa
 	Checksum: 0x2BA1C7BC
 	Offset: 0x1338
 	Size: 0x159
 	Parameters: 1
 	Flags: Private
 */
-function private function_d59056ec(entity)
+function private zm_margwa_octobomb_service(entity)
 {
 	if(isdefined(entity.destroy_octobomb))
 	{
@@ -310,7 +310,7 @@ function private function_d59056ec(entity)
 
 /*
 	Name: function_604404
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0xA0955BAA
 	Offset: 0x14A0
 	Size: 0x9D
@@ -334,7 +334,7 @@ function private function_604404(entity)
 
 /*
 	Name: function_e92d3bb1
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0x64EC76BC
 	Offset: 0x1548
 	Size: 0x39
@@ -351,15 +351,15 @@ function private function_e92d3bb1(entity)
 }
 
 /*
-	Name: function_6312be59
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_vortex_service
+	Namespace: zm_ai_margwa
 	Checksum: 0x21401142
 	Offset: 0x1590
 	Size: 0x1B9
 	Parameters: 1
 	Flags: Private
 */
-function private function_6312be59(entity)
+function private zm_margwa_vortex_service(entity)
 {
 	if(!(isdefined(entity.canStun) && entity.canStun))
 	{
@@ -389,21 +389,21 @@ function private function_6312be59(entity)
 }
 
 /*
-	Name: function_cbdc3798
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_should_smash_attack
+	Namespace: zm_ai_margwa
 	Checksum: 0xEEC30B91
 	Offset: 0x1758
 	Size: 0x69
 	Parameters: 1
 	Flags: Private
 */
-function private function_cbdc3798(entity)
+function private zm_margwa_should_smash_attack(entity)
 {
 	if(isdefined(entity.destroy_octobomb))
 	{
 		return 0;
 	}
-	if(!isdefined(entity.var_cef86da1) || entity.var_cef86da1 != 1)
+	if(!isdefined(entity.next_attack) || entity.next_attack != 1)
 	{
 		return 0;
 	}
@@ -411,21 +411,21 @@ function private function_cbdc3798(entity)
 }
 
 /*
-	Name: function_ec97fb1e
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_should_swipe_attack
+	Namespace: zm_ai_margwa
 	Checksum: 0xFF4528F5
 	Offset: 0x17D0
 	Size: 0x69
 	Parameters: 1
 	Flags: Private
 */
-function private function_ec97fb1e(entity)
+function private zm_margwa_should_swipe_attack(entity)
 {
 	if(isdefined(entity.destroy_octobomb))
 	{
 		return 0;
 	}
-	if(!isdefined(entity.var_cef86da1) || entity.var_cef86da1 != 2)
+	if(!isdefined(entity.next_attack) || entity.next_attack != 2)
 	{
 		return 0;
 	}
@@ -433,15 +433,15 @@ function private function_ec97fb1e(entity)
 }
 
 /*
-	Name: function_f0e8cb2d
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_should_octobomb_attack
+	Namespace: zm_ai_margwa
 	Checksum: 0xE9D4295A
 	Offset: 0x1848
 	Size: 0xBD
 	Parameters: 1
 	Flags: Private
 */
-function private function_f0e8cb2d(entity)
+function private zm_margwa_should_octobomb_attack(entity)
 {
 	if(!isdefined(entity.destroy_octobomb))
 	{
@@ -460,15 +460,15 @@ function private function_f0e8cb2d(entity)
 }
 
 /*
-	Name: function_1c88d468
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_should_move
+	Namespace: zm_ai_margwa
 	Checksum: 0x40ABB118
 	Offset: 0x1910
 	Size: 0xC5
 	Parameters: 1
 	Flags: Private
 */
-function private function_1c88d468(entity)
+function private zm_margwa_should_move(entity)
 {
 	if(isdefined(entity.needTeleportOut) && entity.needTeleportOut)
 	{
@@ -476,16 +476,16 @@ function private function_1c88d468(entity)
 	}
 	if(isdefined(entity.destroy_octobomb))
 	{
-		if(function_f0e8cb2d(entity))
+		if(zm_margwa_should_octobomb_attack(entity))
 		{
 			return 0;
 		}
 	}
-	else if(function_ec97fb1e(entity))
+	else if(zm_margwa_should_swipe_attack(entity))
 	{
 		return 0;
 	}
-	if(function_cbdc3798(entity))
+	if(zm_margwa_should_smash_attack(entity))
 	{
 		return 0;
 	}
@@ -497,40 +497,40 @@ function private function_1c88d468(entity)
 }
 
 /*
-	Name: function_9fab0124
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_octobomb_attack_action
+	Namespace: zm_ai_margwa
 	Checksum: 0x7D85B2AD
 	Offset: 0x19E0
 	Size: 0x6F
 	Parameters: 2
 	Flags: Private
 */
-function private function_9fab0124(entity, asmStateName)
+function private zm_margwa_octobomb_attack_action(entity, asmStateName)
 {
 	AnimationStateNetworkUtility::RequestState(entity, asmStateName);
-	if(!isdefined(entity.var_41294bba))
+	if(!isdefined(entity.octobomb_end_time))
 	{
-		entity.var_41294bba = GetTime() + randomIntRange(3000, 4000);
+		entity.octobomb_end_time = GetTime() + randomIntRange(3000, 4000);
 	}
 	return 5;
 }
 
 /*
-	Name: function_c5832338
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_octobomb_attack_action_update
+	Namespace: zm_ai_margwa
 	Checksum: 0xC0E5F83C
 	Offset: 0x1A58
 	Size: 0x5D
 	Parameters: 2
 	Flags: Private
 */
-function private function_c5832338(entity, asmStateName)
+function private zm_margwa_octobomb_attack_action_update(entity, asmStateName)
 {
 	if(!isdefined(entity.destroy_octobomb))
 	{
 		return 4;
 	}
-	if(isdefined(entity.var_41294bba) && GetTime() > entity.var_41294bba)
+	if(isdefined(entity.octobomb_end_time) && GetTime() > entity.octobomb_end_time)
 	{
 		return 4;
 	}
@@ -538,34 +538,34 @@ function private function_c5832338(entity, asmStateName)
 }
 
 /*
-	Name: function_7b2a3a90
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_octobomb_attack_action_terminate
+	Namespace: zm_ai_margwa
 	Checksum: 0xC7367E43
 	Offset: 0x1AC0
 	Size: 0x55
 	Parameters: 2
 	Flags: Private
 */
-function private function_7b2a3a90(entity, asmStateName)
+function private zm_margwa_octobomb_attack_action_terminate(entity, asmStateName)
 {
 	if(isdefined(entity.destroy_octobomb))
 	{
 		entity.destroy_octobomb detonate();
 	}
-	entity.var_41294bba = undefined;
+	entity.octobomb_end_time = undefined;
 	return 4;
 }
 
 /*
-	Name: function_cd380e61
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_swipe_attack_action
+	Namespace: zm_ai_margwa
 	Checksum: 0xE77B1353
 	Offset: 0x1B20
 	Size: 0xFF
 	Parameters: 2
 	Flags: Private
 */
-function private function_cd380e61(entity, asmStateName)
+function private zm_margwa_swipe_attack_action(entity, asmStateName)
 {
 	AnimationStateNetworkUtility::RequestState(entity, asmStateName);
 	if(!isdefined(entity.swipe_end_time))
@@ -580,15 +580,15 @@ function private function_cd380e61(entity, asmStateName)
 }
 
 /*
-	Name: function_edd2fa77
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_swipe_attack_action_update
+	Namespace: zm_ai_margwa
 	Checksum: 0x615D79D9
 	Offset: 0x1C28
 	Size: 0x45
 	Parameters: 2
 	Flags: Private
 */
-function private function_edd2fa77(entity, asmStateName)
+function private zm_margwa_swipe_attack_action_update(entity, asmStateName)
 {
 	if(isdefined(entity.swipe_end_time) && GetTime() > entity.swipe_end_time)
 	{
@@ -598,15 +598,15 @@ function private function_edd2fa77(entity, asmStateName)
 }
 
 /*
-	Name: function_7137a16
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_smash_attack_terminate
+	Namespace: zm_ai_margwa
 	Checksum: 0x2771DC5E
 	Offset: 0x1C78
 	Size: 0x4B
 	Parameters: 1
 	Flags: Private
 */
-function private function_7137a16(entity)
+function private zm_margwa_smash_attack_terminate(entity)
 {
 	entity.swipe_end_time = undefined;
 	entity function_941cbfc5();
@@ -614,30 +614,30 @@ function private function_7137a16(entity)
 }
 
 /*
-	Name: function_137093c0
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_swipe_attack_terminate
+	Namespace: zm_ai_margwa
 	Checksum: 0x4E4DEEEC
 	Offset: 0x1CD0
 	Size: 0x33
 	Parameters: 1
 	Flags: Private
 */
-function private function_137093c0(entity)
+function private zm_margwa_swipe_attack_terminate(entity)
 {
 	entity.swipe_end_time = undefined;
 	entity function_941cbfc5();
 }
 
 /*
-	Name: function_743b10d2
-	Namespace: namespace_ca5ef87d
+	Name: zm_margwa_teleport_in_terminate
+	Namespace: zm_ai_margwa
 	Checksum: 0x9E26FEB2
 	Offset: 0x1D10
 	Size: 0x5F
 	Parameters: 1
 	Flags: Private
 */
-function private function_743b10d2(entity)
+function private zm_margwa_teleport_in_terminate(entity)
 {
 	MargwaBehavior::margwaTeleportInTerminate(entity);
 	entity.previous_zone_name = entity.zone_name;
@@ -645,15 +645,15 @@ function private function_743b10d2(entity)
 }
 
 /*
-	Name: function_271a21d6
-	Namespace: namespace_ca5ef87d
+	Name: margwa_wait
+	Namespace: zm_ai_margwa
 	Checksum: 0x72678812
 	Offset: 0x1D78
 	Size: 0x4B
 	Parameters: 0
 	Flags: Private
 */
-function private function_271a21d6()
+function private margwa_wait()
 {
 	self endon("death");
 	entity.waiting = 1;
@@ -662,20 +662,20 @@ function private function_271a21d6()
 }
 
 /*
-	Name: function_17627e34
-	Namespace: namespace_ca5ef87d
+	Name: margwa_setup
+	Namespace: zm_ai_margwa
 	Checksum: 0x1E890827
 	Offset: 0x1DD0
 	Size: 0xFB
 	Parameters: 0
 	Flags: Private
 */
-function private function_17627e34()
+function private margwa_setup()
 {
-	self.destroyHeadCB = &function_1f53b1a2;
+	self.destroyHeadCB = &margwa_destroy_head;
 	self.bodyfallCB = &function_4cf696ce;
 	self.var_16ec9b37 = &function_a89905c6;
-	self.chop_actor_cb = &function_89e37c9b;
+	self.chop_actor_cb = &margwa_chop_actor;
 	self.var_a3b60c68 = &function_dbd9ba44;
 	self.var_de36fc8 = &function_2aa0209c;
 	self.smashAttackCB = &function_c417a61a;
@@ -688,15 +688,15 @@ function private function_17627e34()
 }
 
 /*
-	Name: function_1f53b1a2
-	Namespace: namespace_ca5ef87d
+	Name: margwa_destroy_head
+	Namespace: zm_ai_margwa
 	Checksum: 0x7D5B50EE
 	Offset: 0x1ED8
 	Size: 0x223
 	Parameters: 2
 	Flags: Private
 */
-function private function_1f53b1a2(modelHit, attacker)
+function private margwa_destroy_head(modelHit, attacker)
 {
 	if(isPlayer(attacker) && (!isdefined(self.deathpoints_already_given) && self.deathpoints_already_given) && (!isdefined(level.var_1f6ca9c8) && level.var_1f6ca9c8))
 	{
@@ -728,7 +728,7 @@ function private function_1f53b1a2(modelHit, attacker)
 
 /*
 	Name: function_4cf696ce
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0xADBDD166
 	Offset: 0x2108
 	Size: 0x173
@@ -760,7 +760,7 @@ function private function_4cf696ce()
 
 /*
 	Name: function_181c5967
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0xEE1C770F
 	Offset: 0x2288
 	Size: 0xE9
@@ -781,20 +781,20 @@ function private function_181c5967()
 }
 
 /*
-	Name: function_8a0708c2
-	Namespace: namespace_ca5ef87d
+	Name: spawn_margwa
+	Namespace: zm_ai_margwa
 	Checksum: 0x6E188FB3
 	Offset: 0x2380
 	Size: 0x223
 	Parameters: 1
 	Flags: None
 */
-function function_8a0708c2(s_location)
+function spawn_margwa(s_location)
 {
-	if(isdefined(level.var_b398aafa[0]))
+	if(isdefined(level.margwa_spawners[0]))
 	{
-		level.var_b398aafa[0].script_forcespawn = 1;
-		ai = zombie_utility::spawn_zombie(level.var_b398aafa[0], "margwa", s_location);
+		level.margwa_spawners[0].script_forcespawn = 1;
+		ai = zombie_utility::spawn_zombie(level.margwa_spawners[0], "margwa", s_location);
 		ai DisableAimAssist();
 		ai.actor_damage_func = &MargwaServerUtils::margwaDamage;
 		ai.canDamage = 0;
@@ -805,7 +805,7 @@ function function_8a0708c2(s_location)
 		v_dir = VectorNormalize(v_dir);
 		v_angles = VectorToAngles(v_dir);
 		ai ForceTeleport(s_location.origin, v_angles);
-		ai function_551e32b4();
+		ai margwa_freeze();
 		if(isdefined(level.var_7cef68dc))
 		{
 			ai thread function_8d578a58();
@@ -823,7 +823,7 @@ function function_8a0708c2(s_location)
 
 /*
 	Name: function_618bf323
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0xDDDFA2AC
 	Offset: 0x25B0
 	Size: 0x14F
@@ -857,7 +857,7 @@ function function_618bf323()
 
 /*
 	Name: function_3d56f587
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0x9B8717E7
 	Offset: 0x2708
 	Size: 0x6B
@@ -869,21 +869,21 @@ function private function_3d56f587()
 	util::wait_network_frame();
 	self clientfield::increment("margwa_fx_spawn");
 	wait(3);
-	self function_26c35525();
+	self margwa_unfreeze();
 	self.canDamage = 1;
 	self.needSpawn = 1;
 }
 
 /*
-	Name: function_551e32b4
-	Namespace: namespace_ca5ef87d
+	Name: margwa_freeze
+	Namespace: zm_ai_margwa
 	Checksum: 0xF732D2AB
 	Offset: 0x2780
 	Size: 0x5B
 	Parameters: 0
 	Flags: Private
 */
-function private function_551e32b4()
+function private margwa_freeze()
 {
 	self.isFrozen = 1;
 	self ghost();
@@ -892,15 +892,15 @@ function private function_551e32b4()
 }
 
 /*
-	Name: function_26c35525
-	Namespace: namespace_ca5ef87d
+	Name: margwa_unfreeze
+	Namespace: zm_ai_margwa
 	Checksum: 0xA6493A8F
 	Offset: 0x27E8
 	Size: 0x5B
 	Parameters: 0
 	Flags: Private
 */
-function private function_26c35525()
+function private margwa_unfreeze()
 {
 	self.isFrozen = 0;
 	self show();
@@ -910,7 +910,7 @@ function private function_26c35525()
 
 /*
 	Name: function_8d578a58
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0xE6AB496D
 	Offset: 0x2850
 	Size: 0x123
@@ -922,25 +922,25 @@ function private function_8d578a58()
 	self waittill("death", attacker, mod, weapon);
 	foreach(player in level.players)
 	{
-		if(player.am_i_valid && (!isdefined(level.var_1f6ca9c8) && level.var_1f6ca9c8) && (!isdefined(self.var_2d5d7413) && self.var_2d5d7413))
+		if(player.am_i_valid && (!isdefined(level.var_1f6ca9c8) && level.var_1f6ca9c8) && (!isdefined(self.no_xp) && self.no_xp))
 		{
 			scoreevents::processScoreEvent("kill_margwa", player, undefined, undefined);
 		}
 	}
-	level notify("hash_1a2d33d7");
+	level notify("margwa_died");
 	[[level.var_7cef68dc]]();
 }
 
 /*
-	Name: function_89e37c9b
-	Namespace: namespace_ca5ef87d
+	Name: margwa_chop_actor
+	Namespace: zm_ai_margwa
 	Checksum: 0x54D0CBF8
 	Offset: 0x2980
 	Size: 0x393
 	Parameters: 3
 	Flags: Private
 */
-function private function_89e37c9b(entity, inflictor, weapon)
+function private margwa_chop_actor(entity, inflictor, weapon)
 {
 	if(!(isdefined(entity.canDamage) && entity.canDamage))
 	{
@@ -999,7 +999,7 @@ function private function_89e37c9b(entity, inflictor, weapon)
 
 /*
 	Name: function_dbd9ba44
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0xAA7CA0D3
 	Offset: 0x2D20
 	Size: 0x4B
@@ -1016,7 +1016,7 @@ function private function_dbd9ba44(entity, weapon)
 
 /*
 	Name: function_aea7f2f4
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0xF7D7753A
 	Offset: 0x2D78
 	Size: 0x27
@@ -1033,7 +1033,7 @@ function private function_aea7f2f4()
 
 /*
 	Name: function_2aa0209c
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0x4D91D47
 	Offset: 0x2DA8
 	Size: 0xDB
@@ -1048,8 +1048,8 @@ function private function_2aa0209c(trap)
 	}
 	self.needTeleportOut = 1;
 	pos = self.origin + VectorScale(AnglesToForward(self.angles), 200);
-	var_47870bac = GetClosestPointOnNavMesh(pos, 64, 30);
-	self.teleportPos = var_47870bac;
+	navmesh_pos = GetClosestPointOnNavMesh(pos, 64, 30);
+	self.teleportPos = navmesh_pos;
 	/#
 		recordLine(self.origin, self.teleportPos);
 	#/
@@ -1057,7 +1057,7 @@ function private function_2aa0209c(trap)
 
 /*
 	Name: function_c417a61a
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0x10002F0F
 	Offset: 0x2E90
 	Size: 0x129
@@ -1081,7 +1081,7 @@ function private function_c417a61a()
 
 /*
 	Name: function_941cbfc5
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0x2915FDF4
 	Offset: 0x2FC8
 	Size: 0x53
@@ -1093,17 +1093,17 @@ function private function_941cbfc5()
 	r = randomIntRange(0, 100);
 	if(r < 40)
 	{
-		self.var_cef86da1 = 2;
+		self.next_attack = 2;
 	}
 	else
 	{
-		self.var_cef86da1 = 1;
+		self.next_attack = 1;
 	}
 }
 
 /*
 	Name: function_f1358c65
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0x90B23D2F
 	Offset: 0x3028
 	Size: 0x27B
@@ -1153,43 +1153,43 @@ function private function_f1358c65(zombie)
 }
 
 /*
-	Name: function_cdd8baf7
-	Namespace: namespace_ca5ef87d
+	Name: margwa_devgui
+	Namespace: zm_ai_margwa
 	Checksum: 0x64709624
 	Offset: 0x32B0
 	Size: 0x43
 	Parameters: 0
 	Flags: Private
 */
-function private function_cdd8baf7()
+function private margwa_devgui()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
-		zm_devgui::function_4acecab5(&function_a2da506b);
+		zm_devgui::add_custom_devgui_callback(&margwa_devgui_callback);
 	#/
 }
 
 /*
-	Name: function_a2da506b
-	Namespace: namespace_ca5ef87d
+	Name: margwa_devgui_callback
+	Namespace: zm_ai_margwa
 	Checksum: 0xAC09A861
 	Offset: 0x3300
 	Size: 0x1F5
 	Parameters: 1
 	Flags: Private
 */
-function private function_a2da506b(cmd)
+function private margwa_devgui_callback(cmd)
 {
 	/#
 		players = GetPlayers();
-		var_2c8bf5cd = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
-		margwa = ArrayGetClosest(GetPlayers()[0].origin, var_2c8bf5cd);
+		margwas = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
+		margwa = ArrayGetClosest(GetPlayers()[0].origin, margwas);
 		switch(cmd)
 		{
 			case "Dev Block strings are not supported":
 			{
-				var_2dcff864 = ArrayGetClosest(players[0].origin, level.var_95810297);
-				margwa = function_8a0708c2(var_2dcff864);
+				var_2dcff864 = ArrayGetClosest(players[0].origin, level.margwa_locations);
+				margwa = spawn_margwa(var_2dcff864);
 				break;
 			}
 			case "Dev Block strings are not supported":
@@ -1236,7 +1236,7 @@ function private function_a2da506b(cmd)
 
 /*
 	Name: function_a89905c6
-	Namespace: namespace_ca5ef87d
+	Namespace: zm_ai_margwa
 	Checksum: 0x63EDE08F
 	Offset: 0x3500
 	Size: 0xD5

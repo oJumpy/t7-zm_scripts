@@ -67,7 +67,7 @@ function private ArchetypeHumanRpgBlackboardInit()
 	entity AiUtility::RegisterUtilityBlackboardAttributes();
 	self.___ArchetypeOnAnimscriptedCallback = &ArchetypeHumanRpgOnAnimscriptedCallback;
 	/#
-		entity function_89398c57();
+		entity finalizetrackedblackboardattributes();
 	#/
 	entity AsmChangeAnimMappingTable(1);
 }

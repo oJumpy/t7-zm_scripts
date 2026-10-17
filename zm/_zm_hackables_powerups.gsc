@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_net;
 #using scripts\zm\_zm_powerups;
 
-#namespace namespace_27e18f93;
+#namespace zm_hackables_powerups;
 
 /*
 	Name: unhackable_powerup
-	Namespace: namespace_27e18f93
+	Namespace: zm_hackables_powerups
 	Checksum: 0xDE066432
 	Offset: 0x1C0
 	Size: 0x65
@@ -37,7 +37,7 @@ function unhackable_powerup(name)
 
 /*
 	Name: hack_powerups
-	Namespace: namespace_27e18f93
+	Namespace: zm_hackables_powerups
 	Checksum: 0xC54CB437
 	Offset: 0x230
 	Size: 0x127
@@ -66,7 +66,7 @@ function hack_powerups()
 
 /*
 	Name: powerup_pickup_watcher
-	Namespace: namespace_27e18f93
+	Namespace: zm_hackables_powerups
 	Checksum: 0xA3063F9C
 	Offset: 0x360
 	Size: 0x3B
@@ -82,7 +82,7 @@ function powerup_pickup_watcher(powerup_struct)
 
 /*
 	Name: powerup_hack
-	Namespace: namespace_27e18f93
+	Namespace: zm_hackables_powerups
 	Checksum: 0x586497CC
 	Offset: 0x3A8
 	Size: 0x1B3

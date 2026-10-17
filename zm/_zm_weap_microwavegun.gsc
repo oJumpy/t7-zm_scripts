@@ -59,10 +59,10 @@ function __init__()
 	AnimationStateNetwork::RegisterNotetrackHandlerFunction("explode", &function_f8d8850f);
 	level thread microwavegun_on_player_connect();
 	level._microwaveable_objects = [];
-	level.var_12fcda98 = GetWeapon("microwavegun");
-	level.var_6ae86bb = GetWeapon("microwavegun_upgraded");
-	level.var_9c43352b = GetWeapon("microwavegundw");
-	level.var_5736548e = GetWeapon("microwavegundw_upgraded");
+	level.w_microwavegun = GetWeapon("microwavegun");
+	level.w_microwavegun_upgraded = GetWeapon("microwavegun_upgraded");
+	level.w_microwavegundw = GetWeapon("microwavegundw");
+	level.w_microwavegundw_upgraded = GetWeapon("microwavegundw_upgraded");
 	callback::on_spawned(&on_player_spawned);
 }
 
@@ -98,13 +98,13 @@ function function_8f95fde5()
 	{
 		self waittill("weapon_give", weapon);
 		weapon = zm_weapons::get_nonalternate_weapon(weapon);
-		if(weapon == level.var_9c43352b || weapon == level.var_5736548e)
+		if(weapon == level.w_microwavegundw || weapon == level.w_microwavegundw_upgraded)
 		{
 			self clientfield::set_player_uimodel("hudItems.showDpadLeft_WaveGun", 1);
 			self.var_59dcbbd4 = zm_weapons::is_weapon_upgraded(weapon);
 			self thread function_1402f75f();
 		}
-		else if(!self zm_weapons::has_weapon_or_upgrade(level.var_9c43352b))
+		else if(!self zm_weapons::has_weapon_or_upgrade(level.w_microwavegundw))
 		{
 			self clientfield::set_player_uimodel("hudItems.showDpadLeft_WaveGun", 0);
 			self clientfield::set_player_uimodel("hudItems.dpadLeftAmmo", 0);
@@ -136,11 +136,11 @@ function function_1402f75f()
 		{
 			if(self.var_59dcbbd4)
 			{
-				ammoCount = self getammocount(level.var_6ae86bb);
+				ammoCount = self getammocount(level.w_microwavegun_upgraded);
 			}
 			else
 			{
-				ammoCount = self getammocount(level.var_12fcda98);
+				ammoCount = self getammocount(level.w_microwavegun);
 			}
 			self clientfield::set_player_uimodel("hudItems.dpadLeftAmmo", ammoCount);
 		}
@@ -215,9 +215,9 @@ function wait_for_microwavegun_fired()
 	{
 		self waittill("weapon_fired");
 		currentWeapon = self GetCurrentWeapon();
-		if(currentWeapon == level.var_12fcda98 || currentWeapon == level.var_6ae86bb)
+		if(currentWeapon == level.w_microwavegun || currentWeapon == level.w_microwavegun_upgraded)
 		{
-			self thread microwavegun_fired(currentWeapon == level.var_6ae86bb);
+			self thread microwavegun_fired(currentWeapon == level.w_microwavegun_upgraded);
 		}
 	}
 }
@@ -723,7 +723,7 @@ function enemy_killed_by_dw_microwavegun()
 */
 function is_microwavegun_damage()
 {
-	return isdefined(self.damageWeapon) && (self.damageWeapon == level.var_12fcda98 || self.damageWeapon == level.var_6ae86bb) && (self.damageMod != "MOD_GRENADE" && self.damageMod != "MOD_GRENADE_SPLASH");
+	return isdefined(self.damageWeapon) && (self.damageWeapon == level.w_microwavegun || self.damageWeapon == level.w_microwavegun_upgraded) && (self.damageMod != "MOD_GRENADE" && self.damageMod != "MOD_GRENADE_SPLASH");
 }
 
 /*
@@ -760,7 +760,7 @@ function microwavegun_sound_thread()
 		{
 			continue;
 		}
-		if(result == "weapon_change" || result == "grenade_fire" && self GetCurrentWeapon() == level.var_12fcda98)
+		if(result == "weapon_change" || result == "grenade_fire" && self GetCurrentWeapon() == level.w_microwavegun)
 		{
 			self PlayLoopSound("tesla_idle", 0.25);
 			continue;

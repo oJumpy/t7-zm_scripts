@@ -50,14 +50,14 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	level.var_e9cb2217 = spawnstruct();
-	level.var_e9cb2217.var_e8009655 = GetEnt("side_ee_secret_maxammo_wall", "targetname");
+	level.var_e9cb2217.mdl_wall = GetEnt("side_ee_secret_maxammo_wall", "targetname");
 	level.var_e9cb2217.var_66253114 = GetEnt("side_ee_secret_maxammo_decal", "targetname");
-	level.var_e9cb2217.var_935a64f = GetEnt("side_ee_secret_maxammo_clip", "targetname");
+	level.var_e9cb2217.mdl_clip = GetEnt("side_ee_secret_maxammo_clip", "targetname");
 	level.var_e9cb2217.var_fc7e1b7a = struct::get("s_secret_ammo_pos", "targetname");
 	level.var_e9cb2217.var_2559c370 = GetEnt("easter_egg_hidden_max_ammo_appear", "targetname");
 	level.var_e9cb2217.var_2559c370 Hide();
 	callback::on_spawned(&on_player_spawned);
-	callback::on_connect(&function_8feafce2);
+	callback::on_connect(&on_player_connected);
 }
 
 /*
@@ -71,7 +71,7 @@ function __init__()
 */
 function main()
 {
-	level.var_e9cb2217.var_e8009655 clientfield::set("do_fade_material", 1);
+	level.var_e9cb2217.mdl_wall clientfield::set("do_fade_material", 1);
 	level.var_e9cb2217.var_66253114 clientfield::set("do_fade_material", 0.5);
 	/#
 		level thread function_35b46d1a();
@@ -89,11 +89,11 @@ function main()
 */
 function on_player_spawned()
 {
-	self thread function_1c4fc4a7(level.var_e9cb2217.var_e8009655);
+	self thread function_1c4fc4a7(level.var_e9cb2217.mdl_wall);
 }
 
 /*
-	Name: function_8feafce2
+	Name: on_player_connected
 	Namespace: namespace_5a453011
 	Checksum: 0x99EC1590
 	Offset: 0x6A8
@@ -101,7 +101,7 @@ function on_player_spawned()
 	Parameters: 0
 	Flags: None
 */
-function function_8feafce2()
+function on_player_connected()
 {
 }
 
@@ -114,15 +114,15 @@ function function_8feafce2()
 	Parameters: 1
 	Flags: None
 */
-function function_1c4fc4a7(var_3929e8a2)
+function function_1c4fc4a7(mdl_target)
 {
 	self endon("disconnect");
 	self endon("death");
 	self endon("hash_49419595");
-	if(isdefined(var_3929e8a2))
+	if(isdefined(mdl_target))
 	{
-		self namespace_8aed53c9::function_7448e472(var_3929e8a2);
-		if(!isdefined(var_3929e8a2) || var_3929e8a2.var_f0b65c0a !== self)
+		self namespace_8aed53c9::function_7448e472(mdl_target);
+		if(!isdefined(mdl_target) || mdl_target.var_f0b65c0a !== self)
 		{
 			self notify("hash_49419595");
 		}
@@ -152,13 +152,13 @@ function function_8ae0d6df()
 	level.var_e9cb2217.var_2559c370 show();
 	level.var_e9cb2217.var_66253114 clientfield::set("do_fade_material", 0);
 	wait(0.25);
-	level.var_e9cb2217.var_e8009655 clientfield::set("do_fade_material", 0);
+	level.var_e9cb2217.mdl_wall clientfield::set("do_fade_material", 0);
 	wait(0.25);
 	level.var_e9cb2217.var_66253114 delete();
-	level.var_e9cb2217.var_e8009655 delete();
-	if(isdefined(level.var_e9cb2217.var_935a64f))
+	level.var_e9cb2217.mdl_wall delete();
+	if(isdefined(level.var_e9cb2217.mdl_clip))
 	{
-		level.var_e9cb2217.var_935a64f delete();
+		level.var_e9cb2217.mdl_clip delete();
 	}
 }
 
@@ -174,7 +174,7 @@ function function_8ae0d6df()
 function function_35b46d1a()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_41601624);
+		zm_devgui::add_custom_devgui_callback(&function_41601624);
 		AddDebugCommand("Dev Block strings are not supported");
 	#/
 }

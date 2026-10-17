@@ -45,7 +45,7 @@ function __init__()
 	level.quantum_bomb_register_result_func = &quantum_bomb_register_result;
 	level.quantum_bomb_deregister_result_func = &quantum_bomb_deregister_result;
 	level.quantum_bomb_in_playable_area_validation_func = &quantum_bomb_in_playable_area_validation;
-	level.var_17bac01d = GetWeapon("quantum_bomb");
+	level.w_quantum_bomb = GetWeapon("quantum_bomb");
 	init();
 }
 
@@ -328,8 +328,8 @@ function quantum_bomb_select_result(position)
 */
 function player_give_quantum_bomb()
 {
-	self GiveWeapon(level.var_17bac01d);
-	self zm_utility::set_player_tactical_grenade(level.var_17bac01d);
+	self GiveWeapon(level.w_quantum_bomb);
+	self zm_utility::set_player_tactical_grenade(level.w_quantum_bomb);
 	self thread player_handle_quantum_bomb();
 }
 
@@ -398,7 +398,7 @@ function get_thrown_quantum_bomb()
 	while(1)
 	{
 		self waittill("grenade_fire", grenade, weapname);
-		if(weapname == level.var_17bac01d)
+		if(weapname == level.w_quantum_bomb)
 		{
 			return grenade;
 		}
@@ -532,19 +532,19 @@ function quantum_bomb_random_weapon_starburst_result(position)
 		}
 	#/
 	a_weapons_list = [];
-	var_dd341085 = getArrayKeys(level.zombie_weapons);
-	foreach(var_134a15b0 in var_dd341085)
+	a_zombie_weapons = getArrayKeys(level.zombie_weapons);
+	foreach(w_player in a_zombie_weapons)
 	{
-		if(!var_134a15b0.isMeleeWeapon && !var_134a15b0.isgrenadeweapon && !var_134a15b0.isLauncher && !function_29e8b3fc(var_134a15b0))
+		if(!w_player.isMeleeWeapon && !w_player.isgrenadeweapon && !w_player.isLauncher && !function_29e8b3fc(w_player))
 		{
-			Array::add(a_weapons_list, var_134a15b0, 0);
+			Array::add(a_weapons_list, w_player, 0);
 		}
 	}
 	weapon = Array::random(a_weapons_list);
-	var_46d0740e = zm_weapons::get_upgrade_weapon(weapon);
-	if(!function_29e8b3fc(var_46d0740e))
+	weaponup = zm_weapons::get_upgrade_weapon(weapon);
+	if(!function_29e8b3fc(weaponup))
 	{
-		weapon = var_46d0740e;
+		weapon = weaponup;
 	}
 	/#
 		println("Dev Block strings are not supported" + weapon.name);
@@ -968,7 +968,7 @@ function quantum_bomb_fling_zombie(player, fling_vec)
 	{
 		return;
 	}
-	self DoDamage(self.health + 666, player.origin, player, player, 0, "MOD_UNKNOWN", 0, level.var_17bac01d);
+	self DoDamage(self.health + 666, player.origin, player, player, 0, "MOD_UNKNOWN", 0, level.w_quantum_bomb);
 	if(self.health <= 0)
 	{
 		self StartRagdoll();

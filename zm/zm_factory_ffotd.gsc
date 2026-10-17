@@ -22,7 +22,7 @@
 */
 function main_start()
 {
-	level.var_42792b8b = 1;
+	level.bgb_cost_client_filled = 1;
 }
 
 /*
@@ -73,11 +73,11 @@ function function_1c45822c()
 {
 	level waittill("start_zombie_round_logic");
 	var_5381c01a = struct::get_array("player_respawn_point", "targetname");
-	foreach(var_81cac751 in var_5381c01a)
+	foreach(s_respawn in var_5381c01a)
 	{
-		if(var_81cac751.script_noteworthy === "reciever_zone")
+		if(s_respawn.script_noteworthy === "reciever_zone")
 		{
-			var_e50cc92f = struct::get_array(var_81cac751.target, "targetname");
+			var_e50cc92f = struct::get_array(s_respawn.target, "targetname");
 			for(i = 0; i < var_e50cc92f.size; i++)
 			{
 				var_e50cc92f[i].script_int = i + 1;

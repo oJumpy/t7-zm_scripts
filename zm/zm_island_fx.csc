@@ -295,19 +295,19 @@ function function_23fc09c8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 8
 	Flags: None
 */
-function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_alpha, var_abf03d83, var_c0ce8db2, var_30e780ae)
+function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_alpha, b_instant, b_sqrt, var_30e780ae)
 {
 	if(!isdefined(n_alpha))
 	{
 		n_alpha = 1;
 	}
-	if(!isdefined(var_abf03d83))
+	if(!isdefined(b_instant))
 	{
-		var_abf03d83 = 0;
+		b_instant = 0;
 	}
-	if(!isdefined(var_c0ce8db2))
+	if(!isdefined(b_sqrt))
 	{
-		var_c0ce8db2 = 0;
+		b_sqrt = 0;
 	}
 	if(!isdefined(var_30e780ae))
 	{
@@ -322,7 +322,7 @@ function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_a
 	{
 		self.b_on = b_on;
 	}
-	if(var_abf03d83)
+	if(b_instant)
 	{
 		if(b_on)
 		{
@@ -336,18 +336,18 @@ function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_a
 	}
 	if(b_on)
 	{
-		var_24fbb6c6 = 0;
+		n_eval = 0;
 		i = 0;
-		while(var_24fbb6c6 <= n_alpha)
+		while(n_eval <= n_alpha)
 		{
-			self transition_shader(localClientNum, var_24fbb6c6, var_afc7cc94);
-			if(var_c0ce8db2)
+			self transition_shader(localClientNum, n_eval, var_afc7cc94);
+			if(b_sqrt)
 			{
-				var_24fbb6c6 = sqrt(i);
+				n_eval = sqrt(i);
 			}
 			else
 			{
-				var_24fbb6c6 = i;
+				n_eval = i;
 			}
 			wait(0.01);
 			i = i + var_b05b3457;
@@ -363,18 +363,18 @@ function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_a
 	{
 		var_bbfa5d7d = 1;
 	}
-	var_24fbb6c6 = var_bbfa5d7d;
+	n_eval = var_bbfa5d7d;
 	i = var_bbfa5d7d;
-	while(var_24fbb6c6 >= 0)
+	while(n_eval >= 0)
 	{
-		self transition_shader(localClientNum, var_24fbb6c6, var_afc7cc94);
-		if(var_c0ce8db2)
+		self transition_shader(localClientNum, n_eval, var_afc7cc94);
+		if(b_sqrt)
 		{
-			var_24fbb6c6 = sqrt(i);
+			n_eval = sqrt(i);
 		}
 		else
 		{
-			var_24fbb6c6 = i;
+			n_eval = i;
 		}
 		wait(0.01);
 		i = i - var_b05b3457;

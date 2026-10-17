@@ -121,27 +121,27 @@ function function_7892610e()
 	Parameters: 1
 	Flags: None
 */
-function function_ed573cc2(var_d858aeb5)
+function function_ed573cc2(n_position)
 {
-	var_7ec6c170 = self bgb::function_c219b050();
+	v_powerup = self bgb::get_player_dropped_powerup_origin();
 	v_up = VectorScale((0, 0, 1), 5);
-	var_8e2dcc47 = var_7ec6c170 + AnglesToForward(self.angles) * 60 + v_up;
+	var_8e2dcc47 = v_powerup + AnglesToForward(self.angles) * 60 + v_up;
 	var_682b51de = var_8e2dcc47 + AnglesToForward(self.angles) * 60 + v_up;
-	switch(var_d858aeb5)
+	switch(n_position)
 	{
 		case 1:
 		{
-			v_origin = var_7ec6c170 + AnglesToRight(self.angles) * -60 + v_up;
+			v_origin = v_powerup + AnglesToRight(self.angles) * -60 + v_up;
 			break;
 		}
 		case 2:
 		{
-			v_origin = var_7ec6c170;
+			v_origin = v_powerup;
 			break;
 		}
 		case 3:
 		{
-			v_origin = var_7ec6c170 + AnglesToRight(self.angles) * 60 + v_up;
+			v_origin = v_powerup + AnglesToRight(self.angles) * 60 + v_up;
 			break;
 		}
 		case 4:
@@ -176,7 +176,7 @@ function function_ed573cc2(var_d858aeb5)
 		}
 		case default:
 		{
-			v_origin = var_7ec6c170;
+			v_origin = v_powerup;
 			break;
 		}
 	}

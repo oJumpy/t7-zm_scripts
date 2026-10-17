@@ -22,11 +22,11 @@
 #using scripts\zm\craftables\_zm_craft_shield;
 #using scripts\zm\zm_castle_vo;
 
-#namespace namespace_48e69557;
+#namespace castle_rocketshield;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x57B348D5
 	Offset: 0x610
 	Size: 0x3B
@@ -40,7 +40,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x17500068
 	Offset: 0x658
 	Size: 0x13B
@@ -61,7 +61,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x252E4DC0
 	Offset: 0x7A0
 	Size: 0x213
@@ -93,7 +93,7 @@ function __main__()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x62E18907
 	Offset: 0x9C0
 	Size: 0x33
@@ -108,7 +108,7 @@ function on_player_connect()
 
 /*
 	Name: function_e8141489
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xEEB34BCD
 	Offset: 0xA00
 	Size: 0x73
@@ -132,7 +132,7 @@ function function_e8141489()
 
 /*
 	Name: function_bbf98b84
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xD687ADAA
 	Offset: 0xA80
 	Size: 0x5F
@@ -154,7 +154,7 @@ function function_bbf98b84()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xD5FE91F9
 	Offset: 0xAE8
 	Size: 0x4B
@@ -170,7 +170,7 @@ function on_player_spawned()
 
 /*
 	Name: player_watch_ammo_change
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x85C7760
 	Offset: 0xB40
 	Size: 0xC7
@@ -197,7 +197,7 @@ function player_watch_ammo_change()
 
 /*
 	Name: player_watch_max_ammo
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x275F5D62
 	Offset: 0xC10
 	Size: 0x67
@@ -221,7 +221,7 @@ function player_watch_max_ammo()
 
 /*
 	Name: check_weapon_ammo
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xD01E0872
 	Offset: 0xC80
 	Size: 0x63
@@ -240,7 +240,7 @@ function check_weapon_ammo(weapon)
 
 /*
 	Name: player_watch_shield_juke
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x46241C3F
 	Offset: 0xCF0
 	Size: 0xF5
@@ -269,7 +269,7 @@ function player_watch_shield_juke()
 
 /*
 	Name: riotshield_melee_juke
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x51E891B7
 	Offset: 0xDF0
 	Size: 0x2C7
@@ -334,7 +334,7 @@ function riotshield_melee_juke(weapon)
 
 /*
 	Name: function_92debe0a
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x206269EE
 	Offset: 0x10C0
 	Size: 0x15D
@@ -364,7 +364,7 @@ function function_92debe0a()
 
 /*
 	Name: riotshield_get_juke_enemies_in_range
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x5B8FC41F
 	Offset: 0x1228
 	Size: 0x355
@@ -419,7 +419,7 @@ function riotshield_get_juke_enemies_in_range()
 
 /*
 	Name: spawn_recharge_tanks
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xE1EC2936
 	Offset: 0x1588
 	Size: 0x23B
@@ -461,7 +461,7 @@ function spawn_recharge_tanks()
 
 /*
 	Name: create_bottle_unitrigger
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xBA21900C
 	Offset: 0x17D0
 	Size: 0x28F
@@ -506,24 +506,24 @@ function create_bottle_unitrigger(v_origin, v_angles)
 
 /*
 	Name: function_fc8bb1d
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xD96273ED
 	Offset: 0x1A68
 	Size: 0x165
 	Parameters: 1
 	Flags: None
 */
-function function_fc8bb1d(var_cde5eb87)
+function function_fc8bb1d(a_spawnpoints)
 {
 	/#
 		level notify("hash_afd0dfa9");
 		level endon("hash_afd0dfa9");
 		while(1)
 		{
-			var_228edad9 = GetDvarInt("Dev Block strings are not supported", 0);
-			if(var_228edad9 > 0)
+			n_debug = GetDvarInt("Dev Block strings are not supported", 0);
+			if(n_debug > 0)
 			{
-				foreach(spawnpoint in var_cde5eb87)
+				foreach(spawnpoint in a_spawnpoints)
 				{
 					v_color = (1, 1, 1);
 					if(isdefined(spawnpoint.spawned) && spawnpoint.spawned)
@@ -540,7 +540,7 @@ function function_fc8bb1d(var_cde5eb87)
 
 /*
 	Name: bottle_trigger_visibility
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x6D69E46F
 	Offset: 0x1BD8
 	Size: 0xC9
@@ -564,7 +564,7 @@ function bottle_trigger_visibility(player)
 
 /*
 	Name: shield_recharge_trigger_think
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xD2301469
 	Offset: 0x1CB0
 	Size: 0xA3
@@ -595,7 +595,7 @@ function shield_recharge_trigger_think()
 
 /*
 	Name: bottle_trigger_activate
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xDB8F4B56
 	Offset: 0x1D60
 	Size: 0x109
@@ -618,7 +618,7 @@ function bottle_trigger_activate(trig_stub, player)
 
 /*
 	Name: function_3f94d6cf
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xC244A8D0
 	Offset: 0x1E78
 	Size: 0xD9
@@ -630,7 +630,7 @@ function function_3f94d6cf()
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_e2f5a93);
+		zm_devgui::add_custom_devgui_callback(&function_e2f5a93);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		players = GetPlayers();
@@ -643,7 +643,7 @@ function function_3f94d6cf()
 
 /*
 	Name: function_e2f5a93
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x1B44271F
 	Offset: 0x1F60
 	Size: 0xCF
@@ -675,32 +675,32 @@ function function_e2f5a93(cmd)
 }
 
 /*
-	Name: function_2449723c
-	Namespace: namespace_48e69557
+	Name: detect_reentry
+	Namespace: castle_rocketshield
 	Checksum: 0xF37CD911
 	Offset: 0x2038
 	Size: 0x37
 	Parameters: 0
 	Flags: None
 */
-function function_2449723c()
+function detect_reentry()
 {
 	/#
-		if(isdefined(self.var_9dc82bca))
+		if(isdefined(self.devgui_preserve_time))
 		{
-			if(self.var_9dc82bca == GetTime())
+			if(self.devgui_preserve_time == GetTime())
 			{
 				return 1;
 			}
 		}
-		self.var_9dc82bca = GetTime();
+		self.devgui_preserve_time = GetTime();
 		return 0;
 	#/
 }
 
 /*
 	Name: function_3796f8bc
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x5CEB888F
 	Offset: 0x2078
 	Size: 0x153
@@ -710,7 +710,7 @@ function function_2449723c()
 function function_3796f8bc()
 {
 	/#
-		if(self function_2449723c())
+		if(self detect_reentry())
 		{
 			return;
 		}

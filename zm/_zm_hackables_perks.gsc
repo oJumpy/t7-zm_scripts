@@ -4,11 +4,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_equip_hacker;
 
-#namespace namespace_75cc53cb;
+#namespace zm_hackables_perks;
 
 /*
 	Name: hack_perks
-	Namespace: namespace_75cc53cb
+	Namespace: zm_hackables_perks
 	Checksum: 0xF8C1C590
 	Offset: 0x168
 	Size: 0x28B
@@ -52,7 +52,7 @@ function hack_perks()
 
 /*
 	Name: solo_revive_expire_func
-	Namespace: namespace_75cc53cb
+	Namespace: zm_hackables_perks
 	Checksum: 0xC5A10708
 	Offset: 0x400
 	Size: 0x35
@@ -70,7 +70,7 @@ function solo_revive_expire_func()
 
 /*
 	Name: perk_hack_qualifier
-	Namespace: namespace_75cc53cb
+	Namespace: zm_hackables_perks
 	Checksum: 0x69D95EB1
 	Offset: 0x440
 	Size: 0x75
@@ -95,7 +95,7 @@ function perk_hack_qualifier(player)
 
 /*
 	Name: perk_hack
-	Namespace: namespace_75cc53cb
+	Namespace: zm_hackables_perks
 	Checksum: 0xAEF62BD
 	Offset: 0x4C0
 	Size: 0x139

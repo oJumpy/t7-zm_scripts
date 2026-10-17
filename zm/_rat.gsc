@@ -36,12 +36,12 @@ function __init__()
 	/#
 		rat_shared::init();
 		level.rat.common.getHostPlayer = &util::getHostPlayer;
-		rat_shared::function_e98bbc2e("Dev Block strings are not supported", &function_1601ebff);
+		rat_shared::addratscriptcmd("Dev Block strings are not supported", &derriesezombiespawnnavmeshtest);
 	#/
 }
 
 /*
-	Name: function_1601ebff
+	Name: derriesezombiespawnnavmeshtest
 	Namespace: rat
 	Checksum: 0x4E9D15A5
 	Offset: 0x1B8
@@ -49,25 +49,25 @@ function __init__()
 	Parameters: 2
 	Flags: None
 */
-function function_1601ebff(params, var_15472a05)
+function derriesezombiespawnnavmeshtest(params, inrat)
 {
 	/#
-		if(!isdefined(var_15472a05))
+		if(!isdefined(inrat))
 		{
-			var_15472a05 = 1;
+			inrat = 1;
 		}
-		if(var_15472a05)
+		if(inrat)
 		{
 			wait(10);
 		}
 		enemy = zm_devgui::devgui_zombie_spawn();
 		enemy.is_rat_test = 1;
-		var_5efb51a3 = [];
-		var_37719c46 = [];
-		var_836df595 = [];
-		var_45d4f9c0 = [];
+		failed_spawn_origin = [];
+		failed_node_origin = [];
+		failed_attack_spot_spawn_origin = [];
+		failed_attack_spot = [];
 		SIZE = 0;
-		var_a1b9d24c = 0;
+		failed_attack_spot_size = 0;
 		wait(0.2);
 		foreach(zone in level.zones)
 		{
@@ -86,46 +86,46 @@ function function_1601ebff(params, var_15472a05)
 				}
 				if(isdefined(node))
 				{
-					var_86c3615c = enemy SetGoal(node.origin);
-					if(!var_86c3615c)
+					ispath = enemy SetGoal(node.origin);
+					if(!ispath)
 					{
-						var_5efb51a3[SIZE] = loc.origin;
-						var_37719c46[SIZE] = node.origin;
+						failed_spawn_origin[SIZE] = loc.origin;
+						failed_node_origin[SIZE] = node.origin;
 						SIZE++;
 					}
 					wait(0.2);
 					for(j = 0; j < node.attack_spots.size; j++)
 					{
-						var_ed8c2b54 = enemy SetGoal(node.attack_spots[j]);
-						if(!var_ed8c2b54)
+						isattackpath = enemy SetGoal(node.attack_spots[j]);
+						if(!isattackpath)
 						{
-							var_836df595[var_a1b9d24c] = loc.origin;
-							var_45d4f9c0[var_a1b9d24c] = node.attack_spots[j];
-							var_a1b9d24c++;
+							failed_attack_spot_spawn_origin[failed_attack_spot_size] = loc.origin;
+							failed_attack_spot[failed_attack_spot_size] = node.attack_spots[j];
+							failed_attack_spot_size++;
 						}
 						wait(0.2);
 					}
 				}
 			}
 		}
-		if(var_15472a05)
+		if(inrat)
 		{
-			var_20c24355 = "Dev Block strings are not supported";
+			errmsg = "Dev Block strings are not supported";
 			for(i = 0; i < SIZE; i++)
 			{
-				var_20c24355 = var_20c24355 + "Dev Block strings are not supported" + var_5efb51a3[i] + "Dev Block strings are not supported" + var_37719c46[i] + "Dev Block strings are not supported";
+				errmsg = errmsg + "Dev Block strings are not supported" + failed_spawn_origin[i] + "Dev Block strings are not supported" + failed_node_origin[i] + "Dev Block strings are not supported";
 			}
-			for(i = 0; i < var_a1b9d24c; i++)
+			for(i = 0; i < failed_attack_spot_size; i++)
 			{
-				var_20c24355 = var_20c24355 + "Dev Block strings are not supported" + var_836df595[i] + "Dev Block strings are not supported" + var_45d4f9c0[i] + "Dev Block strings are not supported";
+				errmsg = errmsg + "Dev Block strings are not supported" + failed_attack_spot_spawn_origin[i] + "Dev Block strings are not supported" + failed_attack_spot[i] + "Dev Block strings are not supported";
 			}
-			if(SIZE > 0 || var_a1b9d24c > 0)
+			if(SIZE > 0 || failed_attack_spot_size > 0)
 			{
-				function_6f515a70(params.var_4af46077, 0, var_20c24355);
+				ratreportcommandresult(params._id, 0, errmsg);
 			}
 			else
 			{
-				function_6f515a70(params.var_4af46077, 1);
+				ratreportcommandresult(params._id, 1);
 			}
 		}
 	#/

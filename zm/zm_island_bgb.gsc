@@ -51,18 +51,18 @@ function function_fa778ca4()
 	if(str_player_zone == "zone_bunker_prison" && !level flag::get("flag_outro_cutscene_done"))
 	{
 		var_14452bdb = struct::get_array("zone_bunker_prison_player_respawns", "targetname");
-		var_68140f76 = Array::random(var_14452bdb);
+		s_respawn_point = Array::random(var_14452bdb);
 	}
 	else if(str_player_zone == "zone_bunker_prison_entrance" && !level flag::get("flag_outro_cutscene_done"))
 	{
 		var_14452bdb = struct::get_array("zone_bunker_prison_entrance_player_respawns", "targetname");
-		var_68140f76 = Array::random(var_14452bdb);
+		s_respawn_point = Array::random(var_14452bdb);
 	}
 	else
 	{
-		var_68140f76 = self namespace_93b7f03::function_728dfe3();
+		s_respawn_point = self namespace_93b7f03::function_728dfe3();
 	}
-	return var_68140f76;
+	return s_respawn_point;
 }
 
 /*
@@ -81,16 +81,16 @@ function function_2d0e5eb6()
 	var_62e2eaf2 = [];
 	for(i = 0; i < var_cdb0f86b.size; i++)
 	{
-		var_77917a61 = 0;
+		b_should_skip = 0;
 		foreach(var_68de493a in var_b4442b55)
 		{
 			if(var_cdb0f86b[i] == var_68de493a)
 			{
-				var_77917a61 = 1;
+				b_should_skip = 1;
 				break;
 			}
 		}
-		if(var_77917a61)
+		if(b_should_skip)
 		{
 			continue;
 			continue;

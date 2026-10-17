@@ -74,7 +74,7 @@ function main()
 		}
 		level.idgun_weapons[level.idgun_weapons.size] = GetWeapon("idgun");
 	}
-	level zm::register_vehicle_damage_callback(&function_61f631bc);
+	level zm::register_vehicle_damage_callback(&idgun_apply_vehicle_damage);
 }
 
 /*
@@ -191,7 +191,7 @@ function function_b618ee82(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 }
 
 /*
-	Name: function_61f631bc
+	Name: idgun_apply_vehicle_damage
 	Namespace: idgun
 	Checksum: 0xECE36CF9
 	Offset: 0x778
@@ -199,7 +199,7 @@ function function_b618ee82(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 	Parameters: 15
 	Flags: None
 */
-function function_61f631bc(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, weapon, vPoint, vDir, sHitLoc, vDamageOrigin, psOffsetTime, damageFromUnderneath, modelIndex, partName, vSurfaceNormal)
+function idgun_apply_vehicle_damage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, weapon, vPoint, vDir, sHitLoc, vDamageOrigin, psOffsetTime, damageFromUnderneath, modelIndex, partName, vSurfaceNormal)
 {
 	if(isdefined(weapon))
 	{

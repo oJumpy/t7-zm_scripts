@@ -43,19 +43,19 @@ function __init__()
 */
 function __main__()
 {
-	level.var_ce7032d4 = -1;
+	level.n_radio_index = -1;
 	str_name = "kzmb";
 	str_key = "targetname";
-	if(isdefined(level.var_f3b142b3))
+	if(isdefined(level.str_kzmb_name))
 	{
-		str_name = level.var_f3b142b3;
+		str_name = level.str_kzmb_name;
 	}
 	if(isdefined(level.kzmb_key))
 	{
 		key = level.kzmb_key;
 	}
-	var_903fae71 = GetEntArray(str_name, str_key);
-	if(!isdefined(var_903fae71) || !var_903fae71.size)
+	a_radios = GetEntArray(str_name, str_key);
+	if(!isdefined(a_radios) || !a_radios.size)
 	{
 		/#
 			println("Dev Block strings are not supported");
@@ -63,9 +63,9 @@ function __main__()
 		return;
 	}
 	/#
-		println("Dev Block strings are not supported" + var_903fae71.size);
+		println("Dev Block strings are not supported" + a_radios.size);
 	#/
-	Array::thread_all(var_903fae71, &function_8554d5da);
+	Array::thread_all(a_radios, &function_8554d5da);
 }
 
 /*
@@ -117,7 +117,7 @@ function function_8554d5da()
 function function_2d4f4459()
 {
 	self.Trackname = undefined;
-	self.var_63f35de2 = 0;
+	self.tracknum = 0;
 	while(1)
 	{
 		self waittill("hash_34d24635");
@@ -145,12 +145,12 @@ function function_c62f1c37()
 {
 	self endon("hash_34d24635");
 	self endon("hash_dec13539");
-	self PlaySoundWithNotify(level.var_2ec01df2[self.var_63f35de2], "songdone");
-	self.var_175c09e5 = level.var_2ec01df2[self.var_63f35de2];
-	self.var_63f35de2++;
-	if(self.var_63f35de2 >= level.var_2ec01df2.size)
+	self PlaySoundWithNotify(level.var_2ec01df2[self.tracknum], "songdone");
+	self.var_175c09e5 = level.var_2ec01df2[self.tracknum];
+	self.tracknum++;
+	if(self.tracknum >= level.var_2ec01df2.size)
 	{
-		self.var_63f35de2 = 0;
+		self.tracknum = 0;
 	}
 	self waittill("hash_2e6aeba2");
 	self notify("hash_34d24635");

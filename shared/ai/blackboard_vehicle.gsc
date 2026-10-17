@@ -22,14 +22,14 @@ function RegisterVehicleBlackBoardAttributes()
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	RegisterBlackBoardAttribute(self, "_enemy_yaw", undefined, &BB_VehGetEnemyYaw);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 }

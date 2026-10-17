@@ -62,11 +62,11 @@ function autoexec first_frame()
 function __init__()
 {
 	/#
-		level thread function_bce02ad1();
+		level thread t7_cleanup_output();
 		level thread level_notify_listener();
 		level thread client_notify_listener();
-		level thread function_c03acd92();
-		level thread function_3f68ed9b();
+		level thread load_checkpoint_on_notify();
+		level thread save_checkpoint_on_notify();
 	#/
 	if(SessionModeIsCampaignGame())
 	{
@@ -108,11 +108,11 @@ function __init__()
 	weapon_ammo();
 	set_objective_text_colors();
 	link_ents();
-	function_b018f2a7();
+	init_push_out_threshold();
 }
 
 /*
-	Name: function_b018f2a7
+	Name: init_push_out_threshold
 	Namespace: load
 	Checksum: 0x5ED8D3F1
 	Offset: 0xAD8
@@ -120,10 +120,10 @@ function __init__()
 	Parameters: 0
 	Flags: None
 */
-function function_b018f2a7()
+function init_push_out_threshold()
 {
-	var_ae867510 = GetDvarFloat("tu16_physicsPushOutThreshold", -1);
-	if(var_ae867510 != -1)
+	push_out_threshold = GetDvarFloat("tu16_physicsPushOutThreshold", -1);
+	if(push_out_threshold != -1)
 	{
 		SetDvar("tu16_physicsPushOutThreshold", 20);
 	}
@@ -178,20 +178,20 @@ function keep_time()
 function add_cleanup_msg(msg)
 {
 	/#
-		if(!isdefined(level.var_ed1cf314))
+		if(!isdefined(level.cleanup_msgs))
 		{
-			level.var_ed1cf314 = [];
+			level.cleanup_msgs = [];
 		}
-		else if(!IsArray(level.var_ed1cf314))
+		else if(!IsArray(level.cleanup_msgs))
 		{
-			level.var_ed1cf314 = Array(level.var_ed1cf314);
+			level.cleanup_msgs = Array(level.cleanup_msgs);
 		}
-		level.var_ed1cf314[level.var_ed1cf314.size] = msg;
+		level.cleanup_msgs[level.cleanup_msgs.size] = msg;
 	#/
 }
 
 /*
-	Name: function_bce02ad1
+	Name: t7_cleanup_output
 	Namespace: load
 	Checksum: 0xDEC56495
 	Offset: 0xC40
@@ -199,13 +199,13 @@ function add_cleanup_msg(msg)
 	Parameters: 0
 	Flags: None
 */
-function function_bce02ad1()
+function t7_cleanup_output()
 {
 	/#
-		level.var_ed1cf314 = Array("Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported");
+		level.cleanup_msgs = Array("Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported");
 		wait(1);
 		println("Dev Block strings are not supported");
-		foreach(msg in level.var_ed1cf314)
+		foreach(msg in level.cleanup_msgs)
 		{
 			println("Dev Block strings are not supported");
 		}
@@ -276,7 +276,7 @@ function client_notify_listener()
 }
 
 /*
-	Name: function_c03acd92
+	Name: load_checkpoint_on_notify
 	Namespace: load
 	Checksum: 0x3C5E9AF4
 	Offset: 0xEF0
@@ -284,20 +284,20 @@ function client_notify_listener()
 	Parameters: 0
 	Flags: None
 */
-function function_c03acd92()
+function load_checkpoint_on_notify()
 {
 	/#
 		while(1)
 		{
 			level waittill("save");
-			function_d2250e2f();
-			function_297d2d7c();
+			checkpointcreate();
+			checkpointcommit();
 		}
 	#/
 }
 
 /*
-	Name: function_3f68ed9b
+	Name: save_checkpoint_on_notify
 	Namespace: load
 	Checksum: 0x59E2E37E
 	Offset: 0xF38
@@ -305,13 +305,13 @@ function function_c03acd92()
 	Parameters: 0
 	Flags: None
 */
-function function_3f68ed9b()
+function save_checkpoint_on_notify()
 {
 	/#
 		while(1)
 		{
 			level waittill("load");
-			function_ada65d6b();
+			checkpointrestore();
 		}
 	#/
 }

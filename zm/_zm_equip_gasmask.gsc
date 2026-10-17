@@ -41,7 +41,7 @@ function __init__()
 	zm_equipment::register_slot_watcher_override("equip_gasmask", &function_7cb416b);
 	visionset_mgr::register_info("overlay", "zm_gasmask_postfx", 21000, 501, 32, 1);
 	callback::on_spawned(&on_player_spawned);
-	level.var_f486078e = GetWeapon("equip_gasmask");
+	level.w_gasmask = GetWeapon("equip_gasmask");
 }
 
 /*
@@ -78,7 +78,7 @@ function on_player_spawned()
 	self thread remove_gasmask_on_player_bleedout();
 	self clientfield::set_to_player("gasmaskoverlay", 0);
 	visionset_mgr::deactivate("overlay", "zm_gasmask_postfx", self);
-	self zm_equipment::set_equipment_invisibility_to_player(level.var_f486078e, 0);
+	self zm_equipment::set_equipment_invisibility_to_player(level.w_gasmask, 0);
 }
 
 /*
@@ -97,7 +97,7 @@ function gasmask_removed_watcher_thread()
 	self endon("disconnect");
 	for(;;)
 	{
-		self waittill("hash_5a02c845");
+		self waittill("equip_gasmask_taken");
 		if(isdefined(level.zombiemode_gasmask_reset_player_model))
 		{
 			ent_num = self.characterindex;
@@ -136,9 +136,9 @@ function gasmask_activation_watcher_thread()
 {
 	self endon("zombified");
 	self endon("disconnect");
-	self notify("hash_b0734faa");
-	self endon("hash_b0734faa");
-	var_f499fcb0 = GetWeapon("lower_equip_gasmask");
+	self notify("gasmask_activation_watcher");
+	self endon("gasmask_activation_watcher");
+	w_lower_gasmask = GetWeapon("lower_equip_gasmask");
 	if(isdefined(level.zombiemode_gasmask_reset_player_model))
 	{
 		ent_num = self.characterindex;
@@ -147,11 +147,11 @@ function gasmask_activation_watcher_thread()
 	while(1)
 	{
 		str_notify = self util::waittill_any_return("equip_gasmask_activate", "equip_gasmask_deactivate", "disconnect");
-		if(!self zm_equipment::has_player_equipment(level.var_f486078e))
+		if(!self zm_equipment::has_player_equipment(level.w_gasmask))
 		{
 			continue;
 		}
-		if(self zm_equipment::is_active(level.var_f486078e))
+		if(self zm_equipment::is_active(level.w_gasmask))
 		{
 			self zm_utility::increment_is_drinking();
 			self SetActionSlot(2, "");
@@ -183,23 +183,23 @@ function gasmask_activation_watcher_thread()
 				}
 				self [[level.zombiemode_gasmask_change_player_headmodel]](ent_num, 0);
 			}
-			self TakeWeapon(level.var_f486078e);
-			self GiveWeapon(var_f499fcb0);
-			self SwitchToWeapon(var_f499fcb0);
+			self TakeWeapon(level.w_gasmask);
+			self GiveWeapon(w_lower_gasmask);
+			self SwitchToWeapon(w_lower_gasmask);
 			wait(0.05);
 			self clientfield::set_to_player("gasmaskoverlay", 0);
 			visionset_mgr::deactivate("overlay", "zm_gasmask_postfx", self);
 			level clientfield::set("player" + self GetEntityNumber() + "wearableItem", 0);
 			self waittill("weapon_change_complete");
-			self TakeWeapon(var_f499fcb0);
-			self GiveWeapon(level.var_f486078e);
+			self TakeWeapon(w_lower_gasmask);
+			self GiveWeapon(level.w_gasmask);
 		}
 		if(!self laststand::player_is_in_laststand())
 		{
 			if(self zm_utility::is_multiple_drinking())
 			{
 				self zm_utility::decrement_is_drinking();
-				self SetActionSlot(2, "weapon", level.var_f486078e);
+				self SetActionSlot(2, "weapon", level.w_gasmask);
 				self notify("equipment_select_response_done");
 				continue;
 			}
@@ -208,7 +208,7 @@ function gasmask_activation_watcher_thread()
 				self zm_weapons::switch_back_primary_weapon(self.prev_weapon_before_equipment_change);
 			}
 		}
-		self SetActionSlot(2, "weapon", level.var_f486078e);
+		self SetActionSlot(2, "weapon", level.w_gasmask);
 		if(!self laststand::player_is_in_laststand() && (!isdefined(self.intermission) && self.intermission))
 		{
 			self zm_utility::decrement_is_drinking();
@@ -234,7 +234,7 @@ function function_4933258e()
 	while(1)
 	{
 		self waittill("player_given", equipment);
-		if(equipment == level.var_f486078e)
+		if(equipment == level.w_gasmask)
 		{
 			self clientfield::set_player_uimodel("hudItems.showDpadDown_PES", 1);
 		}
@@ -270,7 +270,7 @@ function remove_gasmask_on_player_bleedout()
 		self clientfield::set_to_player("gasmaskoverlay", 0);
 		visionset_mgr::deactivate("overlay", "zm_gasmask_postfx", self);
 		level clientfield::set("player" + self GetEntityNumber() + "wearableItem", 0);
-		self TakeWeapon(level.var_f486078e);
+		self TakeWeapon(level.w_gasmask);
 	}
 }
 
@@ -285,7 +285,7 @@ function remove_gasmask_on_player_bleedout()
 */
 function remove_gasmask_on_game_over()
 {
-	self endon("hash_5a02c845");
+	self endon("equip_gasmask_taken");
 	level waittill("pre_end_game");
 	if(isdefined(self))
 	{
@@ -305,7 +305,7 @@ function remove_gasmask_on_game_over()
 */
 function gasmask_active()
 {
-	return self zm_equipment::is_active(level.var_f486078e);
+	return self zm_equipment::is_active(level.w_gasmask);
 }
 
 /*
@@ -341,19 +341,19 @@ function gasmask_debug_print(msg, color)
 	Parameters: 4
 	Flags: None
 */
-function function_7cb416b(var_226f0a45, var_4bbe5bcf, var_d79c9dc0, str_notify)
+function function_7cb416b(w_equipment, w_curr, w_prev, str_notify)
 {
-	if(var_4bbe5bcf == var_226f0a45)
+	if(w_curr == w_equipment)
 	{
-		if(self.current_equipment_active[var_226f0a45] == 1)
+		if(self.current_equipment_active[w_equipment] == 1)
 		{
 			self notify(str_notify.deactivate);
-			self.current_equipment_active[var_226f0a45] = 0;
+			self.current_equipment_active[w_equipment] = 0;
 		}
-		else if(self.current_equipment_active[var_226f0a45] == 0)
+		else if(self.current_equipment_active[w_equipment] == 0)
 		{
 			self notify(str_notify.activate);
-			self.current_equipment_active[var_226f0a45] = 1;
+			self.current_equipment_active[w_equipment] = 1;
 		}
 		self waittill("equipment_select_response_done");
 	}

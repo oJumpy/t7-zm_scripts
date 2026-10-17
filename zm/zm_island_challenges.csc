@@ -298,28 +298,28 @@ function function_da558e07(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 4
 	Flags: None
 */
-function function_4aadb052(localClientNum, newVal, var_15fa438f, var_2ca030e2)
+function function_4aadb052(localClientNum, newVal, n_challenge, var_2ca030e2)
 {
 	switch(newVal)
 	{
 		case 1:
 		{
-			self thread function_4516da29(localClientNum, var_15fa438f);
+			self thread function_4516da29(localClientNum, n_challenge);
 			break;
 		}
 		case 2:
 		{
-			self thread function_2fba808e(localClientNum, var_15fa438f, var_2ca030e2);
+			self thread function_2fba808e(localClientNum, n_challenge, var_2ca030e2);
 			break;
 		}
 		case 3:
 		{
-			self thread function_21cf53eb(localClientNum, var_15fa438f, var_2ca030e2);
+			self thread function_21cf53eb(localClientNum, n_challenge, var_2ca030e2);
 			break;
 		}
 		case 4:
 		{
-			self thread function_72573d3d(localClientNum, var_15fa438f, var_2ca030e2);
+			self thread function_72573d3d(localClientNum, n_challenge, var_2ca030e2);
 			break;
 		}
 	}
@@ -334,15 +334,15 @@ function function_4aadb052(localClientNum, newVal, var_15fa438f, var_2ca030e2)
 	Parameters: 2
 	Flags: None
 */
-function function_4516da29(localClientNum, var_15fa438f)
+function function_4516da29(localClientNum, n_challenge)
 {
 	self util::waittill_dobj(localClientNum);
-	self HidePart(localClientNum, "j_player_started_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
-	self HidePart(localClientNum, "j_player_completed_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
-	self HidePart(localClientNum, "j_player_claimed_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
-	self HidePart(localClientNum, "j_ally_started_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
-	self HidePart(localClientNum, "j_ally_completed_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
-	self HidePart(localClientNum, "j_ally_claimed_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
+	self HidePart(localClientNum, "j_player_started_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
+	self HidePart(localClientNum, "j_player_completed_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
+	self HidePart(localClientNum, "j_player_claimed_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
+	self HidePart(localClientNum, "j_ally_started_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
+	self HidePart(localClientNum, "j_ally_completed_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
+	self HidePart(localClientNum, "j_ally_claimed_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
 }
 
 /*
@@ -354,17 +354,17 @@ function function_4516da29(localClientNum, var_15fa438f)
 	Parameters: 3
 	Flags: None
 */
-function function_2fba808e(localClientNum, var_15fa438f, var_2ca030e2)
+function function_2fba808e(localClientNum, n_challenge, var_2ca030e2)
 {
 	self util::waittill_dobj(localClientNum);
-	self function_4516da29(localClientNum, var_15fa438f);
+	self function_4516da29(localClientNum, n_challenge);
 	if(var_2ca030e2)
 	{
-		self ShowPart(localClientNum, "j_player_started_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
+		self ShowPart(localClientNum, "j_player_started_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
 	}
 	else
 	{
-		self ShowPart(localClientNum, "j_ally_started_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
+		self ShowPart(localClientNum, "j_ally_started_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
 	}
 }
 
@@ -377,17 +377,17 @@ function function_2fba808e(localClientNum, var_15fa438f, var_2ca030e2)
 	Parameters: 3
 	Flags: None
 */
-function function_21cf53eb(localClientNum, var_15fa438f, var_2ca030e2)
+function function_21cf53eb(localClientNum, n_challenge, var_2ca030e2)
 {
 	self util::waittill_dobj(localClientNum);
-	self function_4516da29(localClientNum, var_15fa438f);
+	self function_4516da29(localClientNum, n_challenge);
 	if(var_2ca030e2)
 	{
-		self ShowPart(localClientNum, "j_player_completed_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
+		self ShowPart(localClientNum, "j_player_completed_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
 	}
 	else
 	{
-		self ShowPart(localClientNum, "j_ally_completed_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
+		self ShowPart(localClientNum, "j_ally_completed_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
 	}
 }
 
@@ -400,17 +400,17 @@ function function_21cf53eb(localClientNum, var_15fa438f, var_2ca030e2)
 	Parameters: 3
 	Flags: None
 */
-function function_72573d3d(localClientNum, var_15fa438f, var_2ca030e2)
+function function_72573d3d(localClientNum, n_challenge, var_2ca030e2)
 {
 	self util::waittill_dobj(localClientNum);
-	self function_4516da29(localClientNum, var_15fa438f);
+	self function_4516da29(localClientNum, n_challenge);
 	if(var_2ca030e2)
 	{
-		self ShowPart(localClientNum, "j_player_claimed_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
+		self ShowPart(localClientNum, "j_player_claimed_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
 	}
 	else
 	{
-		self ShowPart(localClientNum, "j_ally_claimed_0" + var_15fa438f, "p7_zm_isl_ritual_pillar_symbol");
+		self ShowPart(localClientNum, "j_ally_claimed_0" + n_challenge, "p7_zm_isl_ritual_pillar_symbol");
 	}
 }
 

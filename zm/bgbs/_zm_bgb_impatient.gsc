@@ -57,11 +57,11 @@ function event()
 	self endon("disconnect");
 	self endon("hash_994d5e9e");
 	self waittill("hash_eecacfa5");
-	self thread function_50f23dee();
+	self thread special_revive();
 }
 
 /*
-	Name: function_50f23dee
+	Name: special_revive
 	Namespace: namespace_1958c5da
 	Checksum: 0xE0C33368
 	Offset: 0x298
@@ -69,7 +69,7 @@ function event()
 	Parameters: 0
 	Flags: None
 */
-function function_50f23dee()
+function special_revive()
 {
 	self endon("disconnect");
 	wait(1);

@@ -42,7 +42,7 @@ function __init__()
 	clientfield::register("allplayers", "player_zombie_blood_fx", 21000, 1, "int");
 	level._effect["zombie_blood"] = "dlc5/tomb/fx_pwr_up_blood";
 	level._effect["zombie_blood_1st"] = "dlc5/tomb/fx_pwr_up_blood_overlay";
-	zm_powerups::register_powerup("zombie_blood", &function_73234659);
+	zm_powerups::register_powerup("zombie_blood", &grab_zombie_blood);
 	zm_powerups::add_zombie_powerup("zombie_blood", "p7_zm_ori_power_up_blood", &"ZOMBIE_POWERUP_MAX_AMMO", &zm_powerups::func_should_always_drop, 1, 0, 0, undefined, "powerup_zombie_blood", "zombie_powerup_zombie_blood_time", "zombie_powerup_zombie_blood_on", 1, 0);
 	zm_powerups::powerup_set_can_pick_up_in_last_stand("zombie_blood", 0);
 	zm_powerups::powerup_set_statless_powerup("zombie_blood");
@@ -50,21 +50,21 @@ function __init__()
 	level.a_zombie_blood_entities = GetEntArray("zombie_blood_visible", "targetname");
 	if(isdefined(level.a_zombie_blood_entities))
 	{
-		foreach(var_e81648f0 in level.a_zombie_blood_entities)
+		foreach(e_zombie_blood_entity in level.a_zombie_blood_entities)
 		{
-			var_e81648f0 thread make_zombie_blood_entity();
+			e_zombie_blood_entity thread make_zombie_blood_entity();
 		}
 	}
-	else if(!isdefined(level.var_198f35d))
+	else if(!isdefined(level.vsmgr_prio_visionset_powerup_zombie_blood))
 	{
-		level.var_198f35d = 120;
+		level.vsmgr_prio_visionset_powerup_zombie_blood = 120;
 	}
-	visionset_mgr::register_info("visionset", "zm_tomb_in_plain_sight", 21000, level.var_198f35d, 31, 1, &visionset_mgr::ramp_in_out_thread_per_player, 0);
-	if(!isdefined(level.var_e8b932c5))
+	visionset_mgr::register_info("visionset", "zm_tomb_in_plain_sight", 21000, level.vsmgr_prio_visionset_powerup_zombie_blood, 31, 1, &visionset_mgr::ramp_in_out_thread_per_player, 0);
+	if(!isdefined(level.vsmgr_prio_overlay_powerup_zombie_blood))
 	{
-		level.var_e8b932c5 = 120;
+		level.vsmgr_prio_overlay_powerup_zombie_blood = 120;
 	}
-	visionset_mgr::register_info("overlay", "zm_tomb_in_plain_sight", 21000, level.var_e8b932c5, 1, 1);
+	visionset_mgr::register_info("overlay", "zm_tomb_in_plain_sight", 21000, level.vsmgr_prio_overlay_powerup_zombie_blood, 1, 1);
 }
 
 /*
@@ -83,7 +83,7 @@ function init_player_zombie_blood_vars()
 }
 
 /*
-	Name: function_73234659
+	Name: grab_zombie_blood
 	Namespace: namespace_43a18dd5
 	Checksum: 0xD36BBA9F
 	Offset: 0x6F0
@@ -91,7 +91,7 @@ function init_player_zombie_blood_vars()
 	Parameters: 1
 	Flags: None
 */
-function function_73234659(player)
+function grab_zombie_blood(player)
 {
 	level thread zombie_blood_powerup(self, player);
 }
@@ -105,7 +105,7 @@ function function_73234659(player)
 	Parameters: 2
 	Flags: None
 */
-function zombie_blood_powerup(var_bae0d10b, e_player)
+function zombie_blood_powerup(mdl_powerup, e_player)
 {
 	e_player notify("zombie_blood");
 	e_player endon("zombie_blood");

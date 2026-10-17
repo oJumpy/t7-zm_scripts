@@ -34,12 +34,12 @@
 */
 function autoexec init()
 {
-	function_e9b3dfb0();
-	spawner::add_archetype_spawn_function("zombie_quad", &function_5076473f);
+	initzmmoonbehaviorsandasm();
+	spawner::add_archetype_spawn_function("zombie_quad", &moon_quad_spawned);
 }
 
 /*
-	Name: function_e9b3dfb0
+	Name: initzmmoonbehaviorsandasm
 	Namespace: zm_moon_ai_quad
 	Checksum: 0xA4112EB7
 	Offset: 0x668
@@ -47,17 +47,17 @@ function autoexec init()
 	Parameters: 0
 	Flags: Private
 */
-function private function_e9b3dfb0()
+function private initzmmoonbehaviorsandasm()
 {
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("quadPhasingService", &function_22590b59);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldPhase", &function_3293af29);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("phaseActionStart", &function_a4506abc);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("phaseActionTerminate", &function_ef291bc5);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonQuadKilledByMicrowaveGunDw", &function_3679b8f9);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonQuadKilledByMicrowaveGun", &function_8defac52);
-	AnimationStateNetwork::RegisterNotetrackHandlerFunction("phase_start", &function_51ab54f7);
-	AnimationStateNetwork::RegisterNotetrackHandlerFunction("phase_end", &function_428f351c);
-	AnimationStateNetwork::RegisterAnimationMocomp("quad_phase", &function_4e0a671e, undefined, undefined);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonQuadKilledByMicrowaveGunDw", &killedbymicrowavegundw);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonQuadKilledByMicrowaveGun", &killedbymicrowavegun);
+	AnimationStateNetwork::RegisterNotetrackHandlerFunction("phase_start", &quadphasestart);
+	AnimationStateNetwork::RegisterNotetrackHandlerFunction("phase_end", &quadphaseend);
+	AnimationStateNetwork::RegisterAnimationMocomp("quad_phase", &mocompquadphase, undefined, undefined);
 }
 
 /*
@@ -71,58 +71,58 @@ function private function_e9b3dfb0()
 */
 function private function_22590b59(entity)
 {
-	if(isdefined(entity.var_a7d5f134) && entity.var_a7d5f134)
+	if(isdefined(entity.is_phasing) && entity.is_phasing)
 	{
 		return 0;
 	}
-	entity.var_662afd11 = 0;
+	entity.can_phase = 0;
 	if(entity.var_20535e44 == 0)
 	{
 		if(math::cointoss())
 		{
-			entity.var_3b07930a = "quad_phase_right";
+			entity.phase_dir = "quad_phase_right";
 		}
 		else
 		{
-			entity.var_3b07930a = "quad_phase_left";
+			entity.phase_dir = "quad_phase_left";
 		}
 	}
 	else if(entity.var_20535e44 == -1)
 	{
-		entity.var_3b07930a = "quad_phase_right";
+		entity.phase_dir = "quad_phase_right";
 	}
 	else
 	{
-		entity.var_3b07930a = "quad_phase_left";
+		entity.phase_dir = "quad_phase_left";
 	}
-	if(entity.var_3b07930a == "quad_phase_left")
+	if(entity.phase_dir == "quad_phase_left")
 	{
 		if(isPlayer(entity.enemy) && entity.enemy islookingat(entity))
 		{
-			if(entity MayMoveFromPointToPoint(entity.origin, zombie_utility::getAnimEndPos(level.var_9fcbbc83["phase_left_long"])))
+			if(entity MayMoveFromPointToPoint(entity.origin, zombie_utility::getAnimEndPos(level.quad_phase_anims["phase_left_long"])))
 			{
-				entity.var_662afd11 = 1;
+				entity.can_phase = 1;
 			}
 		}
 	}
 	else if(isPlayer(entity.enemy) && entity.enemy islookingat(entity))
 	{
-		if(entity MayMoveFromPointToPoint(entity.origin, zombie_utility::getAnimEndPos(level.var_9fcbbc83["phase_right_long"])))
+		if(entity MayMoveFromPointToPoint(entity.origin, zombie_utility::getAnimEndPos(level.quad_phase_anims["phase_right_long"])))
 		{
-			entity.var_662afd11 = 1;
+			entity.can_phase = 1;
 		}
 	}
-	if(!(isdefined(entity.var_662afd11) && entity.var_662afd11))
+	if(!(isdefined(entity.can_phase) && entity.can_phase))
 	{
-		if(entity MayMoveFromPointToPoint(entity.origin, zombie_utility::getAnimEndPos(level.var_9fcbbc83["phase_forward"])))
+		if(entity MayMoveFromPointToPoint(entity.origin, zombie_utility::getAnimEndPos(level.quad_phase_anims["phase_forward"])))
 		{
-			entity.var_662afd11 = 1;
-			entity.var_3b07930a = "quad_phase_forward";
+			entity.can_phase = 1;
+			entity.phase_dir = "quad_phase_forward";
 		}
 	}
-	if(isdefined(entity.var_662afd11) && entity.var_662afd11)
+	if(isdefined(entity.can_phase) && entity.can_phase)
 	{
-		blackboard::SetBlackBoardAttribute(entity, "_quad_phase_direction", entity.var_3b07930a);
+		blackboard::SetBlackBoardAttribute(entity, "_quad_phase_direction", entity.phase_dir);
 		if(math::cointoss())
 		{
 			blackboard::SetBlackBoardAttribute(entity, "_quad_phase_distance", "quad_phase_short");
@@ -147,15 +147,15 @@ function private function_22590b59(entity)
 */
 function private function_3293af29(entity)
 {
-	if(!(isdefined(entity.var_662afd11) && entity.var_662afd11))
+	if(!(isdefined(entity.can_phase) && entity.can_phase))
 	{
 		return 0;
 	}
-	if(isdefined(entity.var_a7d5f134) && entity.var_a7d5f134)
+	if(isdefined(entity.is_phasing) && entity.is_phasing)
 	{
 		return 0;
 	}
-	if(GetTime() - entity.var_b7d765b3 < 2000)
+	if(GetTime() - entity.last_phase_time < 2000)
 	{
 		return 0;
 	}
@@ -166,7 +166,7 @@ function private function_3293af29(entity)
 	dist_sq = DistanceSquared(entity.origin, entity.enemy.origin);
 	min_dist_sq = 4096;
 	max_dist_sq = 1000000;
-	if(entity.var_3b07930a == "quad_phase_forward")
+	if(entity.phase_dir == "quad_phase_forward")
 	{
 		min_dist_sq = 14400;
 		max_dist_sq = 5760000;
@@ -206,12 +206,12 @@ function private function_3293af29(entity)
 */
 function private function_a4506abc(entity)
 {
-	entity.var_a7d5f134 = 1;
-	if(entity.var_3b07930a == "quad_phase_left")
+	entity.is_phasing = 1;
+	if(entity.phase_dir == "quad_phase_left")
 	{
 		entity.var_20535e44--;
 	}
-	else if(entity.var_3b07930a == "quad_phase_right")
+	else if(entity.phase_dir == "quad_phase_right")
 	{
 		entity.var_20535e44++;
 	}
@@ -228,12 +228,12 @@ function private function_a4506abc(entity)
 */
 function private function_ef291bc5(entity)
 {
-	entity.var_b7d765b3 = GetTime();
-	entity.var_a7d5f134 = 0;
+	entity.last_phase_time = GetTime();
+	entity.is_phasing = 0;
 }
 
 /*
-	Name: function_3679b8f9
+	Name: killedbymicrowavegundw
 	Namespace: zm_moon_ai_quad
 	Checksum: 0xB4D12F1D
 	Offset: 0xE88
@@ -241,13 +241,13 @@ function private function_ef291bc5(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_3679b8f9(entity)
+function private killedbymicrowavegundw(entity)
 {
 	return isdefined(entity.microwavegun_dw_death) && entity.microwavegun_dw_death;
 }
 
 /*
-	Name: function_8defac52
+	Name: killedbymicrowavegun
 	Namespace: zm_moon_ai_quad
 	Checksum: 0x4F24DC7B
 	Offset: 0xEC0
@@ -255,13 +255,13 @@ function private function_3679b8f9(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_8defac52(entity)
+function private killedbymicrowavegun(entity)
 {
 	return isdefined(entity.microwavegun_death) && entity.microwavegun_death;
 }
 
 /*
-	Name: function_51ab54f7
+	Name: quadphasestart
 	Namespace: zm_moon_ai_quad
 	Checksum: 0x53349F2E
 	Offset: 0xEF8
@@ -269,14 +269,14 @@ function private function_8defac52(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_51ab54f7(entity)
+function private quadphasestart(entity)
 {
 	entity thread moon_quad_phase_fx("quad_phasing_out");
 	entity ghost();
 }
 
 /*
-	Name: function_428f351c
+	Name: quadphaseend
 	Namespace: zm_moon_ai_quad
 	Checksum: 0xA29B838F
 	Offset: 0xF48
@@ -284,14 +284,14 @@ function private function_51ab54f7(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_428f351c(entity)
+function private quadphaseend(entity)
 {
 	entity thread moon_quad_phase_fx("quad_phasing_in");
 	entity show();
 }
 
 /*
-	Name: function_4e0a671e
+	Name: mocompquadphase
 	Namespace: zm_moon_ai_quad
 	Checksum: 0xE29D6AD6
 	Offset: 0xF98
@@ -299,13 +299,13 @@ function private function_428f351c(entity)
 	Parameters: 5
 	Flags: Private
 */
-function private function_4e0a671e(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
+function private mocompquadphase(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
 	entity animMode("gravity", 0);
 }
 
 /*
-	Name: function_5076473f
+	Name: moon_quad_spawned
 	Namespace: zm_moon_ai_quad
 	Checksum: 0x3C6524ED
 	Offset: 0xFF0
@@ -313,19 +313,19 @@ function private function_4e0a671e(entity, mocompAnim, mocompAnimBlendOutTime, m
 	Parameters: 0
 	Flags: None
 */
-function function_5076473f()
+function moon_quad_spawned()
 {
-	self.var_662afd11 = 0;
-	self.var_b7d765b3 = GetTime();
+	self.can_phase = 0;
+	self.last_phase_time = GetTime();
 	self.var_20535e44 = 0;
-	if(!isdefined(level.var_9fcbbc83))
+	if(!isdefined(level.quad_phase_anims))
 	{
-		level.var_9fcbbc83 = [];
-		level.var_9fcbbc83["phase_forward"] = self AnimMappingSearch(istring("anim_zombie_phase_f_long_b"));
-		level.var_9fcbbc83["phase_left_long"] = self AnimMappingSearch(istring("anim_zombie_phase_l_long_b"));
-		level.var_9fcbbc83["phase_left_short"] = self AnimMappingSearch(istring("anim_zombie_phase_l_short_b"));
-		level.var_9fcbbc83["phase_right_long"] = self AnimMappingSearch(istring("anim_zombie_phase_r_long_b"));
-		level.var_9fcbbc83["phase_right_short"] = self AnimMappingSearch(istring("anim_zombie_phase_r_short_a"));
+		level.quad_phase_anims = [];
+		level.quad_phase_anims["phase_forward"] = self AnimMappingSearch(istring("anim_zombie_phase_f_long_b"));
+		level.quad_phase_anims["phase_left_long"] = self AnimMappingSearch(istring("anim_zombie_phase_l_long_b"));
+		level.quad_phase_anims["phase_left_short"] = self AnimMappingSearch(istring("anim_zombie_phase_l_short_b"));
+		level.quad_phase_anims["phase_right_long"] = self AnimMappingSearch(istring("anim_zombie_phase_r_long_b"));
+		level.quad_phase_anims["phase_right_short"] = self AnimMappingSearch(istring("anim_zombie_phase_r_short_a"));
 	}
 }
 

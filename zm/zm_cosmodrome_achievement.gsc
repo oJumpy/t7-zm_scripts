@@ -15,8 +15,8 @@
 */
 function init()
 {
-	level thread function_248ca286();
-	level thread function_7c864458();
+	level thread achievement_the_eagle_has_landers();
+	level thread achievement_chimp_on_the_barbie();
 	level thread callback::on_connect(&onPlayerConnect);
 }
 
@@ -31,13 +31,13 @@ function init()
 */
 function onPlayerConnect()
 {
-	self thread function_f5674b33();
-	self thread function_44c51c07();
-	self thread function_c333cafb();
+	self thread achievement_all_dolled_up();
+	self thread achievement_black_hole();
+	self thread achievement_space_race();
 }
 
 /*
-	Name: function_248ca286
+	Name: achievement_the_eagle_has_landers
 	Namespace: namespace_6c01a8f1
 	Checksum: 0xC3CE49BA
 	Offset: 0x1F8
@@ -45,14 +45,14 @@ function onPlayerConnect()
 	Parameters: 0
 	Flags: None
 */
-function function_248ca286()
+function achievement_the_eagle_has_landers()
 {
 	level flag::wait_till_all(Array("lander_a_used", "lander_b_used", "lander_c_used"));
 	level zm_utility::giveachievement_wrapper("DLC2_ZOM_LUNARLANDERS", 1);
 }
 
 /*
-	Name: function_7c864458
+	Name: achievement_chimp_on_the_barbie
 	Namespace: namespace_6c01a8f1
 	Checksum: 0x375410A
 	Offset: 0x260
@@ -60,7 +60,7 @@ function function_248ca286()
 	Parameters: 0
 	Flags: None
 */
-function function_7c864458()
+function achievement_chimp_on_the_barbie()
 {
 	level endon("end_game");
 	for(;;)
@@ -75,7 +75,7 @@ function function_7c864458()
 }
 
 /*
-	Name: function_f5674b33
+	Name: achievement_all_dolled_up
 	Namespace: namespace_6c01a8f1
 	Checksum: 0xA715D891
 	Offset: 0x310
@@ -83,15 +83,15 @@ function function_7c864458()
 	Parameters: 0
 	Flags: None
 */
-function function_f5674b33()
+function achievement_all_dolled_up()
 {
 	level endon("end_game");
 	self endon("disconnect");
-	self waittill("hash_24f3af69");
+	self waittill("nesting_doll_kills_achievement");
 }
 
 /*
-	Name: function_44c51c07
+	Name: achievement_black_hole
 	Namespace: namespace_6c01a8f1
 	Checksum: 0x83A49E50
 	Offset: 0x340
@@ -99,7 +99,7 @@ function function_f5674b33()
 	Parameters: 0
 	Flags: None
 */
-function function_44c51c07()
+function achievement_black_hole()
 {
 	level endon("end_game");
 	self endon("disconnect");
@@ -107,7 +107,7 @@ function function_44c51c07()
 }
 
 /*
-	Name: function_c333cafb
+	Name: achievement_space_race
 	Namespace: namespace_6c01a8f1
 	Checksum: 0x47F312E7
 	Offset: 0x370
@@ -115,7 +115,7 @@ function function_44c51c07()
 	Parameters: 0
 	Flags: None
 */
-function function_c333cafb()
+function achievement_space_race()
 {
 	level endon("end_game");
 	self endon("disconnect");

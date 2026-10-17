@@ -20,17 +20,17 @@ function init()
 		{
 			level.rat = spawnstruct();
 			level.rat.common = spawnstruct();
-			level.rat.var_2d2e6b8d = [];
-			function_e98bbc2e("Dev Block strings are not supported", &function_8dc59c52);
-			function_e98bbc2e("Dev Block strings are not supported", &function_edac6d3e);
-			function_e98bbc2e("Dev Block strings are not supported", &function_a627dcf2);
-			function_e98bbc2e("Dev Block strings are not supported", &function_919ad68e);
+			level.rat.script_command_list = [];
+			addratscriptcmd("Dev Block strings are not supported", &rscteleport);
+			addratscriptcmd("Dev Block strings are not supported", &rscteleportenemies);
+			addratscriptcmd("Dev Block strings are not supported", &rscsimulatescripterror);
+			addratscriptcmd("Dev Block strings are not supported", &rscrecteleport);
 		}
 	#/
 }
 
 /*
-	Name: function_e98bbc2e
+	Name: addratscriptcmd
 	Namespace: rat_shared
 	Checksum: 0xA1D5276C
 	Offset: 0x1E0
@@ -38,16 +38,16 @@ function init()
 	Parameters: 2
 	Flags: None
 */
-function function_e98bbc2e(var_b03aaa45, var_2c91ea88)
+function addratscriptcmd(commandname, functioncallback)
 {
 	/#
 		init();
-		level.rat.var_2d2e6b8d[var_b03aaa45] = var_2c91ea88;
+		level.rat.script_command_list[commandname] = functioncallback;
 	#/
 }
 
 /*
-	Name: function_2f718a9
+	Name: codecallback_ratscriptcommand
 	Namespace: rat_shared
 	Checksum: 0x177B05BD
 	Offset: 0x230
@@ -55,26 +55,26 @@ function function_e98bbc2e(var_b03aaa45, var_2c91ea88)
 	Parameters: 1
 	Flags: None
 */
-function function_2f718a9(params)
+function codecallback_ratscriptcommand(params)
 {
 	/#
 		init();
 		/#
-			Assert(isdefined(params.var_cd26a408));
+			Assert(isdefined(params._cmd));
 		#/
 		/#
-			Assert(isdefined(params.var_4af46077));
+			Assert(isdefined(params._id));
 		#/
 		/#
-			Assert(isdefined(level.rat.var_2d2e6b8d[params.var_cd26a408]), "Dev Block strings are not supported" + params.var_cd26a408);
+			Assert(isdefined(level.rat.script_command_list[params._cmd]), "Dev Block strings are not supported" + params._cmd);
 		#/
-		callback = level.rat.var_2d2e6b8d[params.var_cd26a408];
+		callback = level.rat.script_command_list[params._cmd];
 		level thread [[callback]](params);
 	#/
 }
 
 /*
-	Name: function_8dc59c52
+	Name: rscteleport
 	Namespace: rat_shared
 	Checksum: 0x58DB72F7
 	Offset: 0x340
@@ -82,7 +82,7 @@ function function_2f718a9(params)
 	Parameters: 1
 	Flags: None
 */
-function function_8dc59c52(params)
+function rscteleport(params)
 {
 	/#
 		player = [[level.rat.common.getHostPlayer]]();
@@ -93,12 +93,12 @@ function function_8dc59c52(params)
 			angles = (float(params.ax), float(params.ay), float(params.az));
 			player SetPlayerAngles(angles);
 		}
-		function_6f515a70(params.var_4af46077, 1);
+		ratreportcommandresult(params._id, 1);
 	#/
 }
 
 /*
-	Name: function_edac6d3e
+	Name: rscteleportenemies
 	Namespace: rat_shared
 	Checksum: 0x5D890268
 	Offset: 0x4C8
@@ -106,7 +106,7 @@ function function_8dc59c52(params)
 	Parameters: 1
 	Flags: None
 */
-function function_edac6d3e(params)
+function rscteleportenemies(params)
 {
 	/#
 		foreach(player in level.players)
@@ -127,12 +127,12 @@ function function_edac6d3e(params)
 				break;
 			}
 		}
-		function_6f515a70(params.var_4af46077, 1);
+		ratreportcommandresult(params._id, 1);
 	#/
 }
 
 /*
-	Name: function_a627dcf2
+	Name: rscsimulatescripterror
 	Namespace: rat_shared
 	Checksum: 0x1C804330
 	Offset: 0x6C0
@@ -140,10 +140,10 @@ function function_edac6d3e(params)
 	Parameters: 1
 	Flags: None
 */
-function function_a627dcf2(params)
+function rscsimulatescripterror(params)
 {
 	/#
-		if(params.var_ec9df30d == "Dev Block strings are not supported")
+		if(params.errorlevel == "Dev Block strings are not supported")
 		{
 			/#
 				ASSERTMSG("Dev Block strings are not supported");
@@ -151,14 +151,14 @@ function function_a627dcf2(params)
 		}
 		else
 		{
-			var_39767681.var_15d5343a = 0;
+			thisdoesntexist.orthis = 0;
 		}
-		function_6f515a70(params.var_4af46077, 1);
+		ratreportcommandresult(params._id, 1);
 	#/
 }
 
 /*
-	Name: function_919ad68e
+	Name: rscrecteleport
 	Namespace: rat_shared
 	Checksum: 0x8012E80
 	Offset: 0x758
@@ -166,7 +166,7 @@ function function_a627dcf2(params)
 	Parameters: 1
 	Flags: None
 */
-function function_919ad68e(params)
+function rscrecteleport(params)
 {
 	/#
 		println("Dev Block strings are not supported");
@@ -174,7 +174,7 @@ function function_919ad68e(params)
 		pos = player GetOrigin();
 		angles = player getPlayerAngles();
 		cmd = "Dev Block strings are not supported" + pos[0] + "Dev Block strings are not supported" + pos[1] + "Dev Block strings are not supported" + pos[2] + "Dev Block strings are not supported" + angles[0] + "Dev Block strings are not supported" + angles[1] + "Dev Block strings are not supported" + angles[2];
-		function_25c75042(0, "Dev Block strings are not supported", cmd);
+		ratrecordmessage(0, "Dev Block strings are not supported", cmd);
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 	#/
 }

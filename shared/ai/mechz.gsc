@@ -107,33 +107,33 @@ function private ArchetypeMechzBlackboardInit()
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_locomotion_should_turn", "should_not_turn", &BB_GetShouldTurn);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_zombie_damageweapon_type", "regular", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_mechz_part", "mechz_powercore", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	self.___ArchetypeOnAnimscriptedCallback = &ArchetypeMechzOnAnimscriptedCallback;
 	/#
-		self function_89398c57();
+		self finalizetrackedblackboardattributes();
 	#/
 }
 

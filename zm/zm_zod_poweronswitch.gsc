@@ -10,54 +10,54 @@
 #using scripts\zm\_zm;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_b025d12c;
+#namespace cpoweronswitch;
 
 /*
-	Name: function_7944a602
-	Namespace: namespace_b025d12c
+	Name: init_poweronswitch
+	Namespace: cpoweronswitch
 	Checksum: 0x7FD9638B
 	Offset: 0x238
 	Size: 0x1E3
 	Parameters: 6
 	Flags: None
 */
-function function_7944a602(var_d42f02cf, script_int, var_76ed2e72, func, arg1, var_e4d75d16)
+function init_poweronswitch(str_areaname, script_int, linkto_target, func, arg1, n_iter)
 {
-	if(!isdefined(var_e4d75d16))
+	if(!isdefined(n_iter))
 	{
-		var_e4d75d16 = 0;
+		n_iter = 0;
 	}
-	var_20b0fc79 = GetEntArray("stair_control", "targetname");
-	var_20b0fc79 = Array::filter(var_20b0fc79, 0, &function_1bfbfa4c, var_d42f02cf);
-	self.var_8b97288d = var_20b0fc79[var_e4d75d16];
-	var_61b625c6 = GetEntArray("stair_control_usetrigger", "targetname");
-	var_61b625c6 = Array::filter(var_61b625c6, 0, &function_1bfbfa4c, var_d42f02cf);
-	self.var_d461052a = var_61b625c6[var_e4d75d16];
-	self.var_d461052a setHintString(&"ZM_ZOD_POWERSWITCH_UNPOWERED");
-	self.var_19295d02 = script_int;
-	self.var_e289acc3 = func;
-	self.var_20a1be38 = arg1;
-	self.var_d461052a EnableLinkTo();
-	self.var_d461052a LinkTo(self.var_8b97288d);
-	if(isdefined(var_76ed2e72))
+	a_mdl_switch = GetEntArray("stair_control", "targetname");
+	a_mdl_switch = Array::filter(a_mdl_switch, 0, &filter_areaname, str_areaname);
+	self.m_mdl_switch = a_mdl_switch[n_iter];
+	a_t_switch = GetEntArray("stair_control_usetrigger", "targetname");
+	a_t_switch = Array::filter(a_t_switch, 0, &filter_areaname, str_areaname);
+	self.m_t_switch = a_t_switch[n_iter];
+	self.m_t_switch setHintString(&"ZM_ZOD_POWERSWITCH_UNPOWERED");
+	self.m_n_power_index = script_int;
+	self.m_func = func;
+	self.m_arg1 = arg1;
+	self.m_t_switch EnableLinkTo();
+	self.m_t_switch LinkTo(self.m_mdl_switch);
+	if(isdefined(linkto_target))
 	{
-		self.var_8b97288d LinkTo(var_76ed2e72);
+		self.m_mdl_switch LinkTo(linkto_target);
 	}
-	self thread function_5e9f96b6();
+	self thread poweronswitch_think();
 }
 
 /*
-	Name: function_1bfbfa4c
-	Namespace: namespace_b025d12c
+	Name: filter_areaname
+	Namespace: cpoweronswitch
 	Checksum: 0xECC657E
 	Offset: 0x428
 	Size: 0x47
 	Parameters: 2
 	Flags: None
 */
-function function_1bfbfa4c(e_entity, var_d42f02cf)
+function filter_areaname(e_entity, str_areaname)
 {
-	if(!isdefined(e_entity.script_string) || e_entity.script_string != var_d42f02cf)
+	if(!isdefined(e_entity.script_string) || e_entity.script_string != str_areaname)
 	{
 		return 0;
 	}
@@ -65,44 +65,44 @@ function function_1bfbfa4c(e_entity, var_d42f02cf)
 }
 
 /*
-	Name: function_5e9f96b6
-	Namespace: namespace_b025d12c
+	Name: poweronswitch_think
+	Namespace: cpoweronswitch
 	Checksum: 0x2E261650
 	Offset: 0x478
 	Size: 0x3B
 	Parameters: 0
 	Flags: None
 */
-function function_5e9f96b6()
+function poweronswitch_think()
 {
-	level flag::wait_till("power_on" + self.var_19295d02);
+	level flag::wait_till("power_on" + self.m_n_power_index);
 	local_power_on();
 }
 
 /*
-	Name: function_3d8cc198
-	Namespace: namespace_b025d12c
+	Name: show_activated_state
+	Namespace: cpoweronswitch
 	Checksum: 0xCA7F8CCA
 	Offset: 0x4C0
 	Size: 0x1B
 	Parameters: 0
 	Flags: None
 */
-function function_3d8cc198()
+function show_activated_state()
 {
-	self.var_d461052a SetInvisibleToAll();
+	self.m_t_switch SetInvisibleToAll();
 }
 
 /*
-	Name: function_68132e8f
-	Namespace: namespace_b025d12c
+	Name: can_player_use
+	Namespace: cpoweronswitch
 	Checksum: 0x7076DE93
 	Offset: 0x4E8
 	Size: 0x45
 	Parameters: 1
 	Flags: None
 */
-function function_68132e8f(player)
+function can_player_use(player)
 {
 	if(player zm_utility::in_revive_trigger())
 	{
@@ -117,7 +117,7 @@ function function_68132e8f(player)
 
 /*
 	Name: local_power_on
-	Namespace: namespace_b025d12c
+	Namespace: cpoweronswitch
 	Checksum: 0xE984FEA1
 	Offset: 0x538
 	Size: 0x93
@@ -126,46 +126,46 @@ function function_68132e8f(player)
 */
 function local_power_on()
 {
-	self.var_d461052a setHintString(&"ZM_ZOD_POWERSWITCH_POWERED");
+	self.m_t_switch setHintString(&"ZM_ZOD_POWERSWITCH_POWERED");
 	do
 	{
-		self.var_d461052a waittill("trigger", player);
+		self.m_t_switch waittill("trigger", player);
 	}
-	while(!!function_68132e8f(player));
-	self.var_d461052a SetInvisibleToAll();
-	[[self.var_e289acc3]](self.var_20a1be38);
+	while(!!can_player_use(player));
+	self.m_t_switch SetInvisibleToAll();
+	[[self.m_func]](self.m_arg1);
 }
 
 /*
-	Name: function_9b385ca5
-	Namespace: namespace_b025d12c
+	Name: __constructor
+	Namespace: cpoweronswitch
 	Checksum: 0x99EC1590
 	Offset: 0x5D8
 	Size: 0x3
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 }
 
 /*
-	Name: function_5fba2032
-	Namespace: namespace_b025d12c
+	Name: __destructor
+	Namespace: cpoweronswitch
 	Checksum: 0x99EC1590
 	Offset: 0x5E8
 	Size: 0x3
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
 #namespace namespace_f7e00735;
 
 /*
-	Name: function_b025d12c
+	Name: cpoweronswitch
 	Namespace: namespace_f7e00735
 	Checksum: 0x9F3040A8
 	Offset: 0x5F8
@@ -173,16 +173,16 @@ function function_5fba2032()
 	Parameters: 0
 	Flags: 6
 */
-function private autoexec function_b025d12c()
+function private autoexec cpoweronswitch()
 {
-	classes.var_b025d12c[0] = spawnstruct();
-	classes.var_b025d12c[0].__vtable[1606033458] = &namespace_b025d12c::function_5fba2032;
-	classes.var_b025d12c[0].__vtable[-1690805083] = &namespace_b025d12c::function_9b385ca5;
-	classes.var_b025d12c[0].__vtable[1961570100] = &namespace_b025d12c::local_power_on;
-	classes.var_b025d12c[0].__vtable[1746087567] = &namespace_b025d12c::function_68132e8f;
-	classes.var_b025d12c[0].__vtable[1032634776] = &namespace_b025d12c::function_3d8cc198;
-	classes.var_b025d12c[0].__vtable[1587517110] = &namespace_b025d12c::function_5e9f96b6;
-	classes.var_b025d12c[0].__vtable[469498444] = &namespace_b025d12c::function_1bfbfa4c;
-	classes.var_b025d12c[0].__vtable[2034542082] = &namespace_b025d12c::function_7944a602;
+	classes.cpoweronswitch[0] = spawnstruct();
+	classes.cpoweronswitch[0].__vtable[1606033458] = &cpoweronswitch::__destructor;
+	classes.cpoweronswitch[0].__vtable[-1690805083] = &cpoweronswitch::__constructor;
+	classes.cpoweronswitch[0].__vtable[1961570100] = &cpoweronswitch::local_power_on;
+	classes.cpoweronswitch[0].__vtable[1746087567] = &cpoweronswitch::can_player_use;
+	classes.cpoweronswitch[0].__vtable[1032634776] = &cpoweronswitch::show_activated_state;
+	classes.cpoweronswitch[0].__vtable[1587517110] = &cpoweronswitch::poweronswitch_think;
+	classes.cpoweronswitch[0].__vtable[469498444] = &cpoweronswitch::filter_areaname;
+	classes.cpoweronswitch[0].__vtable[2034542082] = &cpoweronswitch::init_poweronswitch;
 }
 

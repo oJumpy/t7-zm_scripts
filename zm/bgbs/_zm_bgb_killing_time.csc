@@ -38,12 +38,12 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_killing_time", "activated");
-	clientfield::register("actor", "zombie_instakill_fx", 1, 1, "int", &function_a81107fc, 0, 1);
-	clientfield::register("toplayer", "instakill_upgraded_fx", 1, 1, "int", &function_cf8c9fce, 0, 0);
+	clientfield::register("actor", "zombie_instakill_fx", 1, 1, "int", &zombie_instakill_fx_cb, 0, 1);
+	clientfield::register("toplayer", "instakill_upgraded_fx", 1, 1, "int", &instakill_upgraded_fx_cb, 0, 0);
 }
 
 /*
-	Name: function_cf8c9fce
+	Name: instakill_upgraded_fx_cb
 	Namespace: namespace_9dd35181
 	Checksum: 0x53C00BA2
 	Offset: 0x2F0
@@ -51,19 +51,19 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_cf8c9fce(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function instakill_upgraded_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
 	}
 	else
 	{
-		self notify("hash_eb366021");
+		self notify("stop_instakill_upgrade_fx");
 	}
 }
 
 /*
-	Name: function_2a30e2ca
+	Name: instakill_upgraded_fx_sound
 	Namespace: namespace_9dd35181
 	Checksum: 0x6E3D244B
 	Offset: 0x350
@@ -71,22 +71,22 @@ function function_cf8c9fce(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_2a30e2ca(localClientNum)
+function instakill_upgraded_fx_sound(localClientNum)
 {
 	self endon("death");
 	self endon("end_demo_jump_listener");
 	self endon("entityshutdown");
-	self notify("hash_eb366021");
-	self endon("hash_eb366021");
+	self notify("stop_instakill_upgrade_fx");
+	self endon("stop_instakill_upgrade_fx");
 	while(1)
 	{
-		self.var_dedf9511 = self playsound(localClientNum, "zmb_music_box", self.origin);
+		self.instakill_soundid = self playsound(localClientNum, "zmb_music_box", self.origin);
 		wait(4);
 	}
 }
 
 /*
-	Name: function_a81107fc
+	Name: zombie_instakill_fx_cb
 	Namespace: namespace_9dd35181
 	Checksum: 0x13EBA211
 	Offset: 0x3E0
@@ -94,7 +94,7 @@ function function_2a30e2ca(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_a81107fc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zombie_instakill_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(newVal))
 	{
@@ -103,12 +103,12 @@ function function_a81107fc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	if(newVal)
 	{
 		fxObj = util::spawn_model(localClientNum, "tag_origin", self.origin, self.angles);
-		fxObj thread function_10dcbf51(localClientNum, fxObj);
+		fxObj thread playesoundanddelete(localClientNum, fxObj);
 	}
 }
 
 /*
-	Name: function_10dcbf51
+	Name: playesoundanddelete
 	Namespace: namespace_9dd35181
 	Checksum: 0x4D0D7EF4
 	Offset: 0x490
@@ -116,7 +116,7 @@ function function_a81107fc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: Private
 */
-function private function_10dcbf51(localClientNum, fxObj)
+function private playesoundanddelete(localClientNum, fxObj)
 {
 	fxObj playsound(localClientNum, "evt_ai_explode");
 	wait(1);

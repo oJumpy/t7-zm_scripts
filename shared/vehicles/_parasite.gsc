@@ -253,7 +253,7 @@ function parasite_initialize()
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	self.health = self.healthdefault;

@@ -81,12 +81,12 @@ function init()
 		[[level._game_module_custom_spawn_init_func]]();
 	}
 	/#
-		level thread function_fa618012();
+		level thread debug_show_exterior_goals();
 	#/
 }
 
 /*
-	Name: function_fa618012
+	Name: debug_show_exterior_goals
 	Namespace: zm_spawner
 	Checksum: 0x7F91A350
 	Offset: 0x12C8
@@ -94,16 +94,16 @@ function init()
 	Parameters: 0
 	Flags: None
 */
-function function_fa618012()
+function debug_show_exterior_goals()
 {
 	/#
 		while(1)
 		{
-			if(isdefined(level.var_2e8ab4b9) && level.var_2e8ab4b9)
+			if(isdefined(level.toggle_show_exterior_goals) && level.toggle_show_exterior_goals)
 			{
 				color = (1, 1, 1);
-				var_bd0b4a56 = (1, 0, 0);
-				var_60710385 = (0, 0, 1);
+				color_red = (1, 0, 0);
+				color_blue = (0, 0, 1);
 				foreach(zone in level.zones)
 				{
 					foreach(location in zone.a_loc_types["Dev Block strings are not supported"])
@@ -120,7 +120,7 @@ function function_fa618012()
 							if(goal.script_string == location.script_string)
 							{
 								recordLine(location.origin, goal.origin, color);
-								goal.var_b5486dd2 = 1;
+								goal.has_spawner = 1;
 								break;
 							}
 						}
@@ -128,17 +128,17 @@ function function_fa618012()
 				}
 				foreach(goal in level.exterior_goals)
 				{
-					if(isdefined(goal.var_b5486dd2) && goal.var_b5486dd2)
+					if(isdefined(goal.has_spawner) && goal.has_spawner)
 					{
 						RecordCircle(goal.origin, 16, color);
 						continue;
 					}
 					if(isdefined(goal.script_string) && goal.script_string == "Dev Block strings are not supported")
 					{
-						RecordCircle(goal.origin, 16, var_60710385);
+						RecordCircle(goal.origin, 16, color_blue);
 						continue;
 					}
-					RecordCircle(goal.origin, 16, var_bd0b4a56);
+					RecordCircle(goal.origin, 16, color_red);
 				}
 			}
 			wait(0.05);
@@ -614,8 +614,8 @@ function zombie_think()
 	self waittill("risen", find_flesh_struct_string);
 	self.find_flesh_struct_string = find_flesh_struct_string;
 	/#
-		self.var_5029f747 = self.first_node;
-		self thread zm_puppet::function_ec1c999e();
+		self.backupnode = self.first_node;
+		self thread zm_puppet::wait_for_puppet_pickup();
 	#/
 	self SetGoal(self.origin);
 	self PathMode("move allowed");
@@ -3078,7 +3078,7 @@ function do_zombie_spawn()
 		{
 			level.zones[spot.zone_name].total_spawn_count++;
 			level.zones[spot.zone_name].round_spawn_count++;
-			self.var_7d932293 = spot.zone_name;
+			self.zone_spawned_from = spot.zone_name;
 			self thread draw_zone_spawned_from();
 		}
 	#/
@@ -3109,7 +3109,7 @@ function draw_zone_spawned_from()
 		self endon("death");
 		while(1)
 		{
-			print3d(self.origin + VectorScale((0, 0, 1), 64), self.var_7d932293, (1, 1, 1));
+			print3d(self.origin + VectorScale((0, 0, 1), 64), self.zone_spawned_from, (1, 1, 1));
 			wait(0.05);
 		}
 	#/

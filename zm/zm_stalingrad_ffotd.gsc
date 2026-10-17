@@ -54,12 +54,12 @@ function main_end()
 */
 function function_30409839()
 {
-	var_5d655ddb = struct::get_array("intermission", "targetname");
-	foreach(var_13e6937b in var_5d655ddb)
+	a_s_intermission = struct::get_array("intermission", "targetname");
+	foreach(s_intermission in a_s_intermission)
 	{
-		if(var_13e6937b.origin == (-3106, 2242, 653))
+		if(s_intermission.origin == (-3106, 2242, 653))
 		{
-			var_13e6937b struct::delete();
+			s_intermission struct::delete();
 			return;
 		}
 	}

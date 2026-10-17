@@ -62,9 +62,9 @@ function function_f69ab75e()
 		while(1)
 		{
 			level flagsys::wait_till("Dev Block strings are not supported");
-			foreach(var_4d881e03 in function_c4a37ed9())
+			foreach(e_scene in function_c4a37ed9())
 			{
-				var_4d881e03 thread debug_display();
+				e_scene thread debug_display();
 			}
 			level flagsys::wait_till_clear("Dev Block strings are not supported");
 		}
@@ -105,9 +105,9 @@ function run_scene_tests()
 {
 	/#
 		level endon("run_scene_tests");
-		level.var_999f0f4e = spawnstruct();
-		level.var_999f0f4e.origin = (0, 0, 0);
-		level.var_999f0f4e.angles = (0, 0, 0);
+		level.scene_test_struct = spawnstruct();
+		level.scene_test_struct.origin = (0, 0, 0);
+		level.scene_test_struct.angles = (0, 0, 0);
 		while(1)
 		{
 			str_scene = GetDvarString("Dev Block strings are not supported");
@@ -115,7 +115,7 @@ function run_scene_tests()
 			if(str_scene != "Dev Block strings are not supported")
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
-				function_68a9014b(str_scene);
+				clear_old_ents(str_scene);
 				b_found = 0;
 				a_scenes = struct::get_array(str_scene, "Dev Block strings are not supported");
 				foreach(s_instance in a_scenes)
@@ -123,7 +123,7 @@ function run_scene_tests()
 					if(isdefined(s_instance))
 					{
 						b_found = 1;
-						s_instance thread function_fc5821e2(undefined, str_mode);
+						s_instance thread test_play(undefined, str_mode);
 					}
 				}
 				if(isdefined(level.active_scenes[str_scene]))
@@ -133,20 +133,20 @@ function run_scene_tests()
 						if(!IsInArray(a_scenes, s_instance))
 						{
 							b_found = 1;
-							s_instance thread function_fc5821e2(str_scene, str_mode);
+							s_instance thread test_play(str_scene, str_mode);
 						}
 					}
 				}
 				else if(!b_found)
 				{
-					level.var_999f0f4e thread function_fc5821e2(str_scene, str_mode);
+					level.scene_test_struct thread test_play(str_scene, str_mode);
 				}
 			}
 			str_scene = GetDvarString("Dev Block strings are not supported");
 			if(str_scene != "Dev Block strings are not supported")
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
-				function_68a9014b(str_scene);
+				clear_old_ents(str_scene);
 				b_found = 0;
 				a_scenes = struct::get_array(str_scene, "Dev Block strings are not supported");
 				foreach(s_instance in a_scenes)
@@ -154,12 +154,12 @@ function run_scene_tests()
 					if(isdefined(s_instance))
 					{
 						b_found = 1;
-						s_instance thread function_1b5ca25a();
+						s_instance thread test_init();
 					}
 				}
 				if(!b_found)
 				{
-					level.var_999f0f4e thread function_1b5ca25a(str_scene);
+					level.scene_test_struct thread test_init(str_scene);
 				}
 			}
 			str_scene = GetDvarString("Dev Block strings are not supported");
@@ -174,7 +174,7 @@ function run_scene_tests()
 }
 
 /*
-	Name: function_68a9014b
+	Name: clear_old_ents
 	Namespace: scene
 	Checksum: 0xF9D73B94
 	Offset: 0x908
@@ -182,7 +182,7 @@ function run_scene_tests()
 	Parameters: 1
 	Flags: None
 */
-function function_68a9014b(str_scene)
+function clear_old_ents(str_scene)
 {
 	/#
 		foreach(ent in GetEntArray(0))
@@ -208,16 +208,16 @@ function toggle_scene_menu()
 {
 	/#
 		SetDvar("Dev Block strings are not supported", 0);
-		var_d5df0f79 = -1;
+		n_scene_menu_last = -1;
 		while(1)
 		{
-			var_68c04b0a = GetDvarString("Dev Block strings are not supported");
-			if(var_68c04b0a != "Dev Block strings are not supported")
+			n_scene_menu = GetDvarString("Dev Block strings are not supported");
+			if(n_scene_menu != "Dev Block strings are not supported")
 			{
-				var_68c04b0a = Int(var_68c04b0a);
-				if(var_68c04b0a != var_d5df0f79)
+				n_scene_menu = Int(n_scene_menu);
+				if(n_scene_menu != n_scene_menu_last)
 				{
-					switch(var_68c04b0a)
+					switch(n_scene_menu)
 					{
 						case 1:
 						{
@@ -236,7 +236,7 @@ function toggle_scene_menu()
 							SetDvar("Dev Block strings are not supported", 1);
 						}
 					}
-					var_d5df0f79 = var_68c04b0a;
+					n_scene_menu_last = n_scene_menu;
 				}
 			}
 			wait(0.05);
@@ -300,7 +300,7 @@ function display_scene_menu(str_type)
 		waittillframeend;
 		level flagsys::set("Dev Block strings are not supported");
 		SetDvar("Dev Block strings are not supported", 0);
-		level thread function_96d7ecd1();
+		level thread display_mode();
 		a_scenedefs = get_scenedefs(str_type);
 		if(str_type == "Dev Block strings are not supported")
 		{
@@ -330,36 +330,36 @@ function display_scene_menu(str_type)
 			}
 			if(!up_pressed)
 			{
-				if(level.localPlayers[0] util::function_5298bc32())
+				if(level.localPlayers[0] util::up_button_pressed())
 				{
 					up_pressed = 1;
 					selected--;
 				}
 			}
-			else if(level.localPlayers[0] util::function_d286c26d())
+			else if(level.localPlayers[0] util::up_button_held())
 			{
 				held = 1;
 				selected = selected - 10;
 			}
-			else if(!level.localPlayers[0] util::function_5298bc32())
+			else if(!level.localPlayers[0] util::up_button_pressed())
 			{
 				held = 0;
 				up_pressed = 0;
 			}
 			if(!down_pressed)
 			{
-				if(level.localPlayers[0] util::function_95f33d4f())
+				if(level.localPlayers[0] util::down_button_pressed())
 				{
 					down_pressed = 1;
 					selected++;
 				}
 			}
-			else if(level.localPlayers[0] util::function_1adfa50a())
+			else if(level.localPlayers[0] util::down_button_held())
 			{
 				held = 1;
 				selected = selected + 10;
 			}
-			else if(!level.localPlayers[0] util::function_95f33d4f())
+			else if(!level.localPlayers[0] util::down_button_pressed())
 			{
 				held = 0;
 				down_pressed = 0;
@@ -394,12 +394,12 @@ function display_scene_menu(str_type)
 					SetDvar("Dev Block strings are not supported", 0);
 					continue;
 				}
-				if(function_d57e2dab(names[selected]))
+				if(is_scene_playing(names[selected]))
 				{
 					SetDvar("Dev Block strings are not supported", names[selected]);
 					continue;
 				}
-				if(function_87fbeee3(names[selected]))
+				if(is_scene_initialized(names[selected]))
 				{
 					SetDvar("Dev Block strings are not supported", names[selected]);
 					continue;
@@ -421,7 +421,7 @@ function display_scene_menu(str_type)
 }
 
 /*
-	Name: function_96d7ecd1
+	Name: display_mode
 	Namespace: scene
 	Checksum: 0xDDC307AA
 	Offset: 0x1428
@@ -429,7 +429,7 @@ function display_scene_menu(str_type)
 	Parameters: 0
 	Flags: None
 */
-function function_96d7ecd1()
+function display_mode()
 {
 	/#
 		hudelem = CreateLUIMenu(0, "Dev Block strings are not supported");
@@ -514,12 +514,12 @@ function scene_list_settext(hud_array, strings, num)
 			{
 				text = "Dev Block strings are not supported";
 			}
-			if(function_d57e2dab(text))
+			if(is_scene_playing(text))
 			{
 				SetLUIMenuData(0, hud_array[i], "Dev Block strings are not supported", 1);
 				text = text + "Dev Block strings are not supported";
 			}
-			else if(function_87fbeee3(text))
+			else if(is_scene_initialized(text))
 			{
 				SetLUIMenuData(0, hud_array[i], "Dev Block strings are not supported", 1);
 				text = text + "Dev Block strings are not supported";
@@ -539,7 +539,7 @@ function scene_list_settext(hud_array, strings, num)
 }
 
 /*
-	Name: function_d57e2dab
+	Name: is_scene_playing
 	Namespace: scene
 	Checksum: 0xEFE33B74
 	Offset: 0x18F0
@@ -547,7 +547,7 @@ function scene_list_settext(hud_array, strings, num)
 	Parameters: 1
 	Flags: None
 */
-function function_d57e2dab(str_scene)
+function is_scene_playing(str_scene)
 {
 	/#
 		if(str_scene != "Dev Block strings are not supported" && str_scene != "Dev Block strings are not supported")
@@ -562,7 +562,7 @@ function function_d57e2dab(str_scene)
 }
 
 /*
-	Name: function_87fbeee3
+	Name: is_scene_initialized
 	Namespace: scene
 	Checksum: 0xF642CC53
 	Offset: 0x1958
@@ -570,7 +570,7 @@ function function_d57e2dab(str_scene)
 	Parameters: 1
 	Flags: None
 */
-function function_87fbeee3(str_scene)
+function is_scene_initialized(str_scene)
 {
 	/#
 		if(str_scene != "Dev Block strings are not supported" && str_scene != "Dev Block strings are not supported")
@@ -606,7 +606,7 @@ function scene_menu_cleanup(elems, title)
 }
 
 /*
-	Name: function_1b5ca25a
+	Name: test_init
 	Namespace: scene
 	Checksum: 0x5F195845
 	Offset: 0x1A50
@@ -614,7 +614,7 @@ function scene_menu_cleanup(elems, title)
 	Parameters: 1
 	Flags: None
 */
-function function_1b5ca25a(arg1)
+function test_init(arg1)
 {
 	/#
 		init(arg1, undefined, undefined, 1);
@@ -622,7 +622,7 @@ function function_1b5ca25a(arg1)
 }
 
 /*
-	Name: function_fc5821e2
+	Name: test_play
 	Namespace: scene
 	Checksum: 0xDAC5A38D
 	Offset: 0x1A88
@@ -630,7 +630,7 @@ function function_1b5ca25a(arg1)
 	Parameters: 2
 	Flags: None
 */
-function function_fc5821e2(arg1, str_mode)
+function test_play(arg1, str_mode)
 {
 	/#
 		Play(arg1, undefined, undefined, 1, str_mode);

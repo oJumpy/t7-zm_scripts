@@ -758,21 +758,21 @@ function function_de3654ba(is_frozen)
 		if(!isdefined(self.old_model))
 		{
 			self.old_model = self.model;
-			self.var_f08c601 = self.head;
-			self.var_7cff9f25 = self.hatModel;
+			self.old_head = self.head;
+			self.old_hatmodel = self.hatModel;
 		}
 		self SetModel(self.old_model + "_ice");
-		if(isdefined(self.var_f08c601) && (!isdefined(self.head_gibbed) && self.head_gibbed))
+		if(isdefined(self.old_head) && (!isdefined(self.head_gibbed) && self.head_gibbed))
 		{
 			self Detach(self.head);
-			self Attach(self.var_f08c601 + "_ice");
-			self.head = self.var_f08c601 + "_ice";
+			self Attach(self.old_head + "_ice");
+			self.head = self.old_head + "_ice";
 		}
-		if(isdefined(self.var_7cff9f25) && (!isdefined(self.hat_gibbed) && self.hat_gibbed))
+		if(isdefined(self.old_hatmodel) && (!isdefined(self.hat_gibbed) && self.hat_gibbed))
 		{
 			self Detach(self.hatModel);
-			self Attach(self.var_7cff9f25 + "_ice");
-			self.hatModel = self.var_7cff9f25 + "_ice";
+			self Attach(self.old_hatmodel + "_ice");
+			self.hatModel = self.old_hatmodel + "_ice";
 		}
 	}
 	else if(!is_frozen && isdefined(self.old_model))
@@ -780,17 +780,17 @@ function function_de3654ba(is_frozen)
 		self.no_gib = undefined;
 		self SetModel(self.old_model);
 		self.old_model = undefined;
-		if(isdefined(self.var_f08c601) && (!isdefined(self.head_gibbed) && self.head_gibbed))
+		if(isdefined(self.old_head) && (!isdefined(self.head_gibbed) && self.head_gibbed))
 		{
 			self Detach(self.head);
-			self Attach(self.var_f08c601);
-			self.var_f08c601 = undefined;
+			self Attach(self.old_head);
+			self.old_head = undefined;
 		}
-		if(isdefined(self.var_7cff9f25) && (!isdefined(self.hat_gibbed) && self.hat_gibbed))
+		if(isdefined(self.old_hatmodel) && (!isdefined(self.hat_gibbed) && self.hat_gibbed))
 		{
 			self Detach(self.hatModel);
-			self Attach(self.var_7cff9f25);
-			self.var_7cff9f25 = undefined;
+			self Attach(self.old_hatmodel);
+			self.old_hatmodel = undefined;
 		}
 	}
 }

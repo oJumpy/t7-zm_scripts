@@ -81,18 +81,18 @@ function airlock_fx_init()
 function airlock_fx(localClientNum)
 {
 	level waittill("power_on");
-	var_2043fd45 = struct::get_array("s_airlock_jambs_fx", "targetname");
-	for(i = 0; i < var_2043fd45.size; i++)
+	a_s_airlock_fx = struct::get_array("s_airlock_jambs_fx", "targetname");
+	for(i = 0; i < a_s_airlock_fx.size; i++)
 	{
-		if(isdefined(var_2043fd45[i].script_vector))
+		if(isdefined(a_s_airlock_fx[i].script_vector))
 		{
-			forwardVec = VectorNormalize(AnglesToForward(var_2043fd45[i].script_vector));
+			forwardVec = VectorNormalize(AnglesToForward(a_s_airlock_fx[i].script_vector));
 		}
 		else
 		{
-			forwardVec = VectorNormalize(AnglesToForward(var_2043fd45[i].angles));
+			forwardVec = VectorNormalize(AnglesToForward(a_s_airlock_fx[i].angles));
 		}
-		playFX(localClientNum, level._effect["airlock_fx"], var_2043fd45[i].origin, forwardVec);
+		playFX(localClientNum, level._effect["airlock_fx"], a_s_airlock_fx[i].origin, forwardVec);
 	}
 }
 

@@ -64,7 +64,7 @@ function init()
 	init_call_boxes();
 	level thread lander_poi_init();
 	level flag::wait_till("start_zombie_round_logic");
-	callback::on_connect(&function_7a1aff0c);
+	callback::on_connect(&setup_hotjoin_player);
 	setup_initial_lander_states();
 	level notify("lander_launched");
 	wait(0.1);
@@ -76,7 +76,7 @@ function init()
 }
 
 /*
-	Name: function_7a1aff0c
+	Name: setup_hotjoin_player
 	Namespace: namespace_9d4ce396
 	Checksum: 0x21100C3D
 	Offset: 0xF40
@@ -84,7 +84,7 @@ function init()
 	Parameters: 0
 	Flags: None
 */
-function function_7a1aff0c()
+function setup_hotjoin_player()
 {
 	if(level flag::get("lander_intro_done"))
 	{
@@ -1577,7 +1577,7 @@ function lander_cooldown_think()
 			lander_callboxes[i] setHintString(&"ZM_COSMODROME_LANDER_AT_STATION");
 			lander_callboxes[i] setcursorhint("HINT_NOICON");
 		}
-		if(!isdefined(level.var_a1879e28) || level.var_a1879e28)
+		if(!isdefined(level.debug_lander_can_cooldown) || level.debug_lander_can_cooldown)
 		{
 			wait(Cooldown);
 		}

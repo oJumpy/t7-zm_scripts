@@ -92,19 +92,19 @@ function function_e4ff383e(var_49e3dd2e, var_d16ec704)
 	Parameters: 3
 	Flags: None
 */
-function create_portal(str_id, var_fc699b20, var_776628b2)
+function create_portal(str_id, b_use_trigger, var_776628b2)
 {
 	width = 192;
 	height = 128;
 	length = 192;
-	var_d42f02cf = str_id;
-	s_loc = struct::get(var_d42f02cf, "targetname");
-	var_1693bd2 = GetNodeArray(var_d42f02cf + "_portal_node", "script_noteworthy");
+	str_areaname = str_id;
+	s_loc = struct::get(str_areaname, "targetname");
+	var_1693bd2 = GetNodeArray(str_areaname + "_portal_node", "script_noteworthy");
 	foreach(var_9110bac3 in var_1693bd2)
 	{
 		SetEnableNode(var_9110bac3, 0);
 	}
-	if(isdefined(var_fc699b20) && var_fc699b20)
+	if(isdefined(b_use_trigger) && b_use_trigger)
 	{
 		s_loc.unitrigger_stub = spawnstruct();
 		s_loc.unitrigger_stub.origin = s_loc.origin;
@@ -115,18 +115,18 @@ function create_portal(str_id, var_fc699b20, var_776628b2)
 		s_loc.unitrigger_stub.script_height = height;
 		s_loc.unitrigger_stub.script_length = length;
 		s_loc.unitrigger_stub.require_look_at = 0;
-		s_loc.unitrigger_stub.var_d42f02cf = var_d42f02cf;
+		s_loc.unitrigger_stub.str_areaname = str_areaname;
 		s_loc.unitrigger_stub.prompt_and_visibility_func = &function_16fca6d;
 		zm_unitrigger::register_static_unitrigger(s_loc.unitrigger_stub, &function_a90ab0d7);
 	}
 	else if(isdefined(var_776628b2))
 	{
 		level flag::wait_till(var_776628b2);
-		level thread function_e0c93f92(var_d42f02cf);
+		level thread function_e0c93f92(str_areaname);
 	}
 	else
 	{
-		level thread function_e0c93f92(var_d42f02cf);
+		level thread function_e0c93f92(str_areaname);
 	}
 }
 
@@ -141,8 +141,8 @@ function create_portal(str_id, var_fc699b20, var_776628b2)
 */
 function function_16fca6d(player)
 {
-	var_d42f02cf = self.stub.var_d42f02cf;
-	var_8f5050e8 = level clientfield::get("portal_state_" + var_d42f02cf);
+	str_areaname = self.stub.str_areaname;
+	var_8f5050e8 = level clientfield::get("portal_state_" + str_areaname);
 	if(var_8f5050e8 !== 1 && (!isdefined(player.beastmode) && player.beastmode))
 	{
 		self setHintString(&"ZM_GENESIS_PORTAL_OPEN");
@@ -182,7 +182,7 @@ function function_a90ab0d7()
 		{
 			continue;
 		}
-		level thread function_e0c93f92(self.stub.var_d42f02cf);
+		level thread function_e0c93f92(self.stub.str_areaname);
 		break;
 	}
 }
@@ -196,14 +196,14 @@ function function_a90ab0d7()
 	Parameters: 1
 	Flags: None
 */
-function function_e0c93f92(var_d42f02cf)
+function function_e0c93f92(str_areaname)
 {
-	level clientfield::set("portal_state_" + var_d42f02cf, 1);
-	function_1e956fba(var_d42f02cf);
+	level clientfield::set("portal_state_" + str_areaname, 1);
+	portal_open(str_areaname);
 }
 
 /*
-	Name: function_1e956fba
+	Name: portal_open
 	Namespace: namespace_52f9507e
 	Checksum: 0x3DF17376
 	Offset: 0xCB0
@@ -211,7 +211,7 @@ function function_e0c93f92(var_d42f02cf)
 	Parameters: 2
 	Flags: None
 */
-function function_1e956fba(var_d42f02cf, var_14429fc9)
+function portal_open(str_areaname, var_14429fc9)
 {
 	if(!isdefined(var_14429fc9))
 	{
@@ -219,17 +219,17 @@ function function_1e956fba(var_d42f02cf, var_14429fc9)
 	}
 	if(var_14429fc9)
 	{
-		level clientfield::set("portal_state_" + var_d42f02cf, 2);
+		level clientfield::set("portal_state_" + str_areaname, 2);
 	}
-	var_1693bd2 = GetNodeArray(var_d42f02cf + "_portal_node", "script_noteworthy");
+	var_1693bd2 = GetNodeArray(str_areaname + "_portal_node", "script_noteworthy");
 	foreach(var_9110bac3 in var_1693bd2)
 	{
 		SetEnableNode(var_9110bac3, 1);
 	}
-	var_de1f2abc = GetEntArray(var_d42f02cf + "_portal_top", "script_noteworthy");
-	var_ebfa395 = function_ca448a30(var_de1f2abc, "teleport_trigger", "targetname");
-	var_58afe656 = GetEntArray(var_d42f02cf + "_portal_bottom", "script_noteworthy");
-	var_50fc4fb = function_ca448a30(var_58afe656, "teleport_trigger", "targetname");
+	a_t_portal_top = GetEntArray(str_areaname + "_portal_top", "script_noteworthy");
+	var_ebfa395 = getentarrayfromarray(a_t_portal_top, "teleport_trigger", "targetname");
+	a_t_portal_bottom = GetEntArray(str_areaname + "_portal_bottom", "script_noteworthy");
+	var_50fc4fb = getentarrayfromarray(a_t_portal_bottom, "teleport_trigger", "targetname");
 	var_ebfa395[0].e_dest = var_50fc4fb[0];
 	var_50fc4fb[0].e_dest = var_ebfa395[0];
 	foreach(var_9110bac3 in var_1693bd2)
@@ -263,30 +263,30 @@ function portal_think()
 	{
 		return;
 	}
-	self.var_71abf438 = struct::get_array(self.target, "targetname");
+	self.a_s_port_locs = struct::get_array(self.target, "targetname");
 	while(1)
 	{
-		self waittill("trigger", var_5ee55fde);
+		self waittill("trigger", e_portee);
 		level clientfield::increment("pulse_" + self.script_noteworthy);
-		if(isdefined(var_5ee55fde.teleporting) && var_5ee55fde.teleporting)
+		if(isdefined(e_portee.teleporting) && e_portee.teleporting)
 		{
 			continue;
 		}
-		if(isPlayer(var_5ee55fde))
+		if(isPlayer(e_portee))
 		{
-			if(var_5ee55fde GetStance() != "prone")
+			if(e_portee GetStance() != "prone")
 			{
-				playFX(level._effect["portal_3p"], var_5ee55fde.origin);
-				var_5ee55fde playlocalsound("zmb_teleporter_teleport_2d");
-				playsoundatposition("zmb_teleporter_teleport_out", var_5ee55fde.origin);
-				self thread function_d0ff7e09(var_5ee55fde);
+				playFX(level._effect["portal_3p"], e_portee.origin);
+				e_portee playlocalsound("zmb_teleporter_teleport_2d");
+				playsoundatposition("zmb_teleporter_teleport_out", e_portee.origin);
+				self thread portal_teleport_player(e_portee);
 			}
 		}
 	}
 }
 
 /*
-	Name: function_d0ff7e09
+	Name: portal_teleport_player
 	Namespace: namespace_52f9507e
 	Checksum: 0x8D197902
 	Offset: 0x11B8
@@ -294,7 +294,7 @@ function portal_think()
 	Parameters: 2
 	Flags: None
 */
-function function_d0ff7e09(player, show_fx)
+function portal_teleport_player(player, show_fx)
 {
 	if(!isdefined(show_fx))
 	{
@@ -314,7 +314,7 @@ function function_d0ff7e09(player, show_fx)
 	stand_offset = (0, 0, 0);
 	a_ai_enemies = GetAITeamArray("axis");
 	a_ai_enemies = ArraySort(a_ai_enemies, self.origin, 1, 99, 768);
-	Array::thread_all(a_ai_enemies, &function_7807150a);
+	Array::thread_all(a_ai_enemies, &ai_delay_cleanup);
 	level.n_cleanup_manager_restart_time = 2 + 15;
 	level.n_cleanup_manager_restart_time = level.n_cleanup_manager_restart_time + GetTime() / 1000;
 	image_room = struct::get("teleport_room_" + n_pos, "targetname");
@@ -353,18 +353,18 @@ function function_d0ff7e09(player, show_fx)
 	}
 	a_players = GetPlayers();
 	ArrayRemoveValue(a_players, player);
-	s_pos = Array::random(self.var_71abf438);
+	s_pos = Array::random(self.a_s_port_locs);
 	if(a_players.size > 0)
 	{
 		var_cefa4b63 = 0;
 		while(!var_cefa4b63)
 		{
 			var_cefa4b63 = 1;
-			s_pos = Array::random(self.var_71abf438);
+			s_pos = Array::random(self.a_s_port_locs);
 			foreach(var_3bc10d31 in a_players)
 			{
-				var_f2c93934 = Distance(var_3bc10d31.origin, s_pos.origin);
-				if(var_f2c93934 < 32)
+				f_dist = Distance(var_3bc10d31.origin, s_pos.origin);
+				if(f_dist < 32)
 				{
 					var_cefa4b63 = 0;
 				}
@@ -384,8 +384,8 @@ function function_d0ff7e09(player, show_fx)
 	player SetPlayerAngles(s_pos.angles);
 	level clientfield::increment("pulse_" + self.e_dest.script_noteworthy);
 	a_ai = GetAIArray();
-	var_aca0d7c7 = ArraySortClosest(a_ai, s_pos.origin, a_ai.size, 0, 200);
-	foreach(ai in var_aca0d7c7)
+	a_aoe_ai = ArraySortClosest(a_ai, s_pos.origin, a_ai.size, 0, 200);
+	foreach(ai in a_aoe_ai)
 	{
 		if(IsActor(ai))
 		{
@@ -404,7 +404,7 @@ function function_d0ff7e09(player, show_fx)
 }
 
 /*
-	Name: function_7807150a
+	Name: ai_delay_cleanup
 	Namespace: namespace_52f9507e
 	Checksum: 0xAE037F09
 	Offset: 0x1A90
@@ -412,13 +412,13 @@ function function_d0ff7e09(player, show_fx)
 	Parameters: 0
 	Flags: None
 */
-function function_7807150a()
+function ai_delay_cleanup()
 {
 	if(!(isdefined(self.b_ignore_cleanup) && self.b_ignore_cleanup))
 	{
-		self notify("hash_450c36af");
+		self notify("delay_cleanup");
 		self endon("death");
-		self endon("hash_450c36af");
+		self endon("delay_cleanup");
 		self.b_ignore_cleanup = 1;
 		wait(10);
 		self.b_ignore_cleanup = undefined;
@@ -426,7 +426,7 @@ function function_7807150a()
 }
 
 /*
-	Name: function_eb1242c8
+	Name: portal_teleport_ai
 	Namespace: namespace_52f9507e
 	Checksum: 0x514F9DA6
 	Offset: 0x1AF8
@@ -434,40 +434,40 @@ function function_7807150a()
 	Parameters: 1
 	Flags: None
 */
-function function_eb1242c8(var_5ee55fde)
+function portal_teleport_ai(e_portee)
 {
-	var_5ee55fde endon("death");
-	var_5ee55fde.teleporting = 1;
-	var_5ee55fde PathMode("dont move");
-	playFX(level._effect["portal_3p"], var_5ee55fde.origin);
-	playsoundatposition("zmb_teleporter_teleport_out", var_5ee55fde.origin);
+	e_portee endon("death");
+	e_portee.teleporting = 1;
+	e_portee PathMode("dont move");
+	playFX(level._effect["portal_3p"], e_portee.origin);
+	playsoundatposition("zmb_teleporter_teleport_out", e_portee.origin);
 	util::wait_network_frame();
 	image_room = struct::get("teleport_room_zombies", "targetname");
-	if(IsActor(var_5ee55fde))
+	if(IsActor(e_portee))
 	{
-		var_5ee55fde ForceTeleport(image_room.origin, image_room.angles);
+		e_portee ForceTeleport(image_room.origin, image_room.angles);
 	}
 	else
 	{
-		var_5ee55fde.origin = image_room.origin;
-		var_5ee55fde.angles = image_room.angles;
+		e_portee.origin = image_room.origin;
+		e_portee.angles = image_room.angles;
 	}
 	wait(2);
-	var_97bf7ab1 = Array::random(self.var_71abf438);
-	if(IsActor(var_5ee55fde))
+	s_port_loc = Array::random(self.a_s_port_locs);
+	if(IsActor(e_portee))
 	{
-		var_5ee55fde ForceTeleport(var_97bf7ab1.origin, var_97bf7ab1.angles);
+		e_portee ForceTeleport(s_port_loc.origin, s_port_loc.angles);
 	}
 	else
 	{
-		var_5ee55fde.origin = var_97bf7ab1.origin;
-		var_5ee55fde.angles = var_97bf7ab1.angles;
+		e_portee.origin = s_port_loc.origin;
+		e_portee.angles = s_port_loc.angles;
 	}
 	level clientfield::increment("pulse_" + self.e_dest.script_noteworthy);
-	playsoundatposition("zmb_teleporter_teleport_in", var_97bf7ab1.origin);
-	playFX(level._effect["portal_3p"], var_97bf7ab1.origin);
+	playsoundatposition("zmb_teleporter_teleport_in", s_port_loc.origin);
+	playFX(level._effect["portal_3p"], s_port_loc.origin);
 	wait(1);
-	var_5ee55fde PathMode("move allowed");
-	var_5ee55fde.teleporting = 0;
+	e_portee PathMode("move allowed");
+	e_portee.teleporting = 0;
 }
 

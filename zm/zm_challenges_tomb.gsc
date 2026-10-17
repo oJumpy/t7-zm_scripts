@@ -393,9 +393,9 @@ function set_stat(str_stat, n_set)
 	Parameters: 2
 	Flags: None
 */
-function function_fbbc8608(str_hint, var_7ca2c2ae)
+function function_fbbc8608(str_hint, num_index)
 {
-	self LUINotifyEvent(&"trial_complete", 3, &"ZM_TOMB_CHALLENGE_COMPLETED", str_hint, var_7ca2c2ae);
+	self LUINotifyEvent(&"trial_complete", 3, &"ZM_TOMB_CHALLENGE_COMPLETED", str_hint, num_index);
 }
 
 /*

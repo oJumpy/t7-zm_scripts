@@ -47,8 +47,8 @@ function __init__()
 */
 function function_623d27f2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_3262a5f7 = GetWeapon("idgun" + "_" + newVal);
-	AddZombieBoxWeapon(var_3262a5f7, var_3262a5f7.worldmodel, var_3262a5f7.isDualWield);
+	weapon_idgun = GetWeapon("idgun" + "_" + newVal);
+	AddZombieBoxWeapon(weapon_idgun, weapon_idgun.worldmodel, weapon_idgun.isDualWield);
 }
 
 /*
@@ -62,7 +62,7 @@ function function_623d27f2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_5578fd14(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_3262a5f7 = GetWeapon("idgun" + "_" + newVal);
-	function_7de9da7a(var_3262a5f7);
+	weapon_idgun = GetWeapon("idgun" + "_" + newVal);
+	removezombieboxweapon(weapon_idgun);
 }
 

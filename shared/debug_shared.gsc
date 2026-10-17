@@ -32,12 +32,12 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	/#
-		thread function_95733a17();
+		thread debug_draw_tuning_sphere();
 	#/
 }
 
 /*
-	Name: function_95733a17
+	Name: debug_draw_tuning_sphere
 	Namespace: debug
 	Checksum: 0xAD4BB121
 	Offset: 0x138
@@ -45,28 +45,28 @@ function __init__()
 	Parameters: 0
 	Flags: None
 */
-function function_95733a17()
+function debug_draw_tuning_sphere()
 {
 	/#
-		var_4451d280 = 0;
-		var_9db4638d = (0, 0, 0);
-		var_5f25229a = 1;
+		n_sphere_radius = 0;
+		v_text_position = (0, 0, 0);
+		n_text_scale = 1;
 		while(1)
 		{
-			var_4451d280 = GetDvarFloat("Dev Block strings are not supported", 0);
-			while(var_4451d280 >= 1)
+			n_sphere_radius = GetDvarFloat("Dev Block strings are not supported", 0);
+			while(n_sphere_radius >= 1)
 			{
 				players = GetPlayers();
 				if(isdefined(players[0]))
 				{
-					var_4451d280 = GetDvarFloat("Dev Block strings are not supported", 0);
-					circle(players[0].origin, var_4451d280, (1, 0, 0), 0, 1, 16);
-					var_5f25229a = sqrt(var_4451d280 * 2.5) / 2;
+					n_sphere_radius = GetDvarFloat("Dev Block strings are not supported", 0);
+					circle(players[0].origin, n_sphere_radius, (1, 0, 0), 0, 1, 16);
+					n_text_scale = sqrt(n_sphere_radius * 2.5) / 2;
 					vForward = AnglesToForward(players[0].angles);
-					var_9db4638d = players[0].origin + vForward * var_4451d280;
-					sides = Int(10 * 1 + Int(var_5f25229a) % 100);
-					sphere(var_9db4638d, var_5f25229a, (1, 0, 0), 1, 1, sides, 16);
-					print3d(var_9db4638d + VectorScale((0, 0, 1), 20), var_4451d280, (1, 0, 0), 1, var_5f25229a / 14, 16);
+					v_text_position = players[0].origin + vForward * n_sphere_radius;
+					sides = Int(10 * 1 + Int(n_text_scale) % 100);
+					sphere(v_text_position, n_text_scale, (1, 0, 0), 1, 1, sides, 16);
+					print3d(v_text_position + VectorScale((0, 0, 1), 20), n_sphere_radius, (1, 0, 0), 1, n_text_scale / 14, 16);
 				}
 				wait(0.05);
 			}

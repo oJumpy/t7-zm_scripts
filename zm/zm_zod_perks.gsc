@@ -75,25 +75,25 @@ function function_9a03e439()
 		{
 			case "zone_slums_high_B":
 			{
-				var_b32c7926 = 1;
+				n_loc = 1;
 				break;
 			}
 			case "zone_canal_high_B":
 			{
-				var_b32c7926 = 2;
+				n_loc = 2;
 				break;
 			}
 			case "zone_theater_high_A":
 			{
-				var_b32c7926 = 3;
+				n_loc = 3;
 				break;
 			}
 		}
-		foreach(var_d2fb40be in a_s_random_perk_locs)
+		foreach(s_random_perk_loc in a_s_random_perk_locs)
 		{
-			if(zm_zonemgr::get_zone_from_position(var_d2fb40be.origin, 1) == str_zone)
+			if(zm_zonemgr::get_zone_from_position(s_random_perk_loc.origin, 1) == str_zone)
 			{
-				var_8de7611a = var_d2fb40be;
+				var_8de7611a = s_random_perk_loc;
 				break;
 			}
 		}
@@ -104,19 +104,19 @@ function function_9a03e439()
 		{
 			case "speedcola_perk":
 			{
-				thread function_e840e164(var_b32c7926);
+				thread function_e840e164(n_loc);
 				e_bottle thread clientfield::set("perk_bottle_speed_cola_fx", 1);
 				break;
 			}
 			case "jugg_perk":
 			{
-				thread function_588068b3(var_b32c7926);
+				thread function_588068b3(n_loc);
 				e_bottle thread clientfield::set("perk_bottle_juggernog_fx", 1);
 				break;
 			}
 			case "tap_perk":
 			{
-				thread function_8b929f79(var_b32c7926);
+				thread function_8b929f79(n_loc);
 				e_bottle thread clientfield::set("perk_bottle_doubletap_fx", 1);
 				break;
 			}
@@ -150,7 +150,7 @@ function function_5508b348()
 */
 function function_4a2261fa()
 {
-	level waittill("hash_609d22d4");
+	level waittill("widows_wine_on");
 	clientfield::set("perk_light_widows_wine", 1);
 }
 
@@ -193,10 +193,10 @@ function function_55b919e6()
 	Parameters: 1
 	Flags: None
 */
-function function_e840e164(var_d80a2da2)
+function function_e840e164(n_district)
 {
 	level waittill("sleight_on");
-	level clientfield::set("perk_light_speed_cola", var_d80a2da2);
+	level clientfield::set("perk_light_speed_cola", n_district);
 }
 
 /*
@@ -208,10 +208,10 @@ function function_e840e164(var_d80a2da2)
 	Parameters: 1
 	Flags: None
 */
-function function_588068b3(var_d80a2da2)
+function function_588068b3(n_district)
 {
 	level waittill("juggernog_on");
-	level clientfield::set("perk_light_juggernog", var_d80a2da2);
+	level clientfield::set("perk_light_juggernog", n_district);
 }
 
 /*
@@ -223,9 +223,9 @@ function function_588068b3(var_d80a2da2)
 	Parameters: 1
 	Flags: None
 */
-function function_8b929f79(var_d80a2da2)
+function function_8b929f79(n_district)
 {
 	level waittill("doubletap_on");
-	level clientfield::set("perk_light_doubletap", var_d80a2da2);
+	level clientfield::set("perk_light_doubletap", n_district);
 }
 

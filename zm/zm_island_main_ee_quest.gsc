@@ -51,9 +51,9 @@
 function main()
 {
 	var_e66037d6 = GetEnt("main_ee_elevator_wall_metal", "targetname");
-	var_ed315f0 = GetEnt("main_ee_elevator_wall_decal", "targetname");
+	e_elevator_wall_decal = GetEnt("main_ee_elevator_wall_decal", "targetname");
 	var_e66037d6 clientfield::set("do_fade_material", 1);
-	var_ed315f0 clientfield::set("do_fade_material", 0.5);
+	e_elevator_wall_decal clientfield::set("do_fade_material", 0.5);
 	level thread function_6e38e085();
 	level thread function_8221532d();
 	level thread function_9f26e724();
@@ -62,7 +62,7 @@ function main()
 }
 
 /*
-	Name: function_30d4f164
+	Name: init_quest
 	Namespace: namespace_b3c23ec9
 	Checksum: 0x696ACCB0
 	Offset: 0x17F8
@@ -70,7 +70,7 @@ function main()
 	Parameters: 0
 	Flags: None
 */
-function function_30d4f164()
+function init_quest()
 {
 	register_clientfields();
 	level flag::init("player_has_aa_gun_ammo");
@@ -147,8 +147,8 @@ function register_clientfields()
 function function_85773a07()
 {
 	self endon("death");
-	var_af4d7f99 = GetEnt("mdl_main_ee_map", "targetname");
-	self namespace_8aed53c9::function_7448e472(var_af4d7f99);
+	e_map = GetEnt("mdl_main_ee_map", "targetname");
+	self namespace_8aed53c9::function_7448e472(e_map);
 	level thread function_85b23415();
 }
 
@@ -163,8 +163,8 @@ function function_85773a07()
 */
 function function_85b23415()
 {
-	var_af4d7f99 = GetEnt("mdl_main_ee_map", "targetname");
-	var_af4d7f99 clientfield::set("do_fade_material", 1);
+	e_map = GetEnt("mdl_main_ee_map", "targetname");
+	e_map clientfield::set("do_fade_material", 1);
 	level flag::set("trilogy_released");
 	exploder::exploder("lgt_elevator");
 }
@@ -211,7 +211,7 @@ function function_d9de7eb6(var_a3612ddd)
 	while(isdefined(var_2b128827) && var_2b128827)
 	{
 		e_clip waittill("damage", n_damage, e_attacker, v_direction, v_point, str_mod, str_tag_name, str_model_name, str_part_name, w_weapon);
-		if(w_weapon === level.var_5e75629a)
+		if(w_weapon === level.w_mirg2000)
 		{
 			self PlayRumbleOnEntity("tank_damage_heavy_mp");
 			self scene::Play("p7_fxanim_zm_island_takeo_arm_gate" + var_a3612ddd + "_close_bundle", self);
@@ -220,10 +220,10 @@ function function_d9de7eb6(var_a3612ddd)
 			{
 				var_b538c87 = 1;
 				str_vo = "vox_plr_" + e_attacker.characterindex + "_mq_ee_3_1_0";
-				e_attacker thread namespace_f333593c::function_7b697614(str_vo, 0, 1);
+				e_attacker thread namespace_f333593c::vo_say(str_vo, 0, 1);
 			}
 		}
-		else if(w_weapon === level.var_a4052592)
+		else if(w_weapon === level.w_mirg2000_up)
 		{
 			self PlayRumbleOnEntity("zm_island_rumble_takeo_hall_vine_hit");
 			Earthquake(0.35, 0.5, self.origin, 325);
@@ -263,11 +263,11 @@ function function_df4d1d4()
 	self endon("death");
 	level endon("hash_1f9f4017");
 	level flag::wait_till("trilogy_released");
-	var_af8f5b69 = GetEnt("trigger_gas_hurt", "targetname");
+	t_gas = GetEnt("trigger_gas_hurt", "targetname");
 	while(1)
 	{
 		trigger::wait_till("trigger_gas_hurt", "targetname", self);
-		if(!self.var_df4182b1 && zm_utility::is_player_valid(self))
+		if(!self.has_gasmask && zm_utility::is_player_valid(self))
 		{
 			self DoDamage(5, self.origin);
 		}
@@ -287,14 +287,14 @@ function function_df4d1d4()
 function function_75e5527f()
 {
 	level endon("hash_5790f552");
-	var_af8f5b69 = GetEnt("trigger_gas_chamber", "targetname");
+	t_gas = GetEnt("trigger_gas_chamber", "targetname");
 	while(1)
 	{
-		var_af8f5b69 waittill("trigger");
+		t_gas waittill("trigger");
 		a_talkers = [];
 		foreach(player in level.players)
 		{
-			if(player istouching(var_af8f5b69) && !player.var_df4182b1 && zm_utility::is_player_valid(player))
+			if(player istouching(t_gas) && !player.has_gasmask && zm_utility::is_player_valid(player))
 			{
 				Array::add(a_talkers, player);
 			}
@@ -303,7 +303,7 @@ function function_75e5527f()
 		if(isdefined(e_talker))
 		{
 			str_vo = "vox_plr_" + e_talker.characterindex + "_mq_ee_3_0_0";
-			e_talker thread namespace_f333593c::function_7b697614(str_vo, 0, 1);
+			e_talker thread namespace_f333593c::vo_say(str_vo, 0, 1);
 			level notify("hash_5790f552");
 		}
 	}
@@ -338,10 +338,10 @@ function function_19cfd507()
 */
 function function_d6bb2a6c()
 {
-	var_a2365998 = struct::get("elevator_part_gear1");
-	var_71e3d70a = util::spawn_model("p7_zm_bgb_gear_01", var_a2365998.origin, var_a2365998.angles);
-	var_71e3d70a.trigger = namespace_8aed53c9::function_d095318(var_71e3d70a.origin, 50, 1, &function_9bd3096f);
-	var_71e3d70a thread function_d81e5824("elevator_part_gear1_found");
+	s_part = struct::get("elevator_part_gear1");
+	mdl_part = util::spawn_model("p7_zm_bgb_gear_01", s_part.origin, s_part.angles);
+	mdl_part.trigger = namespace_8aed53c9::spawn_trigger_radius(mdl_part.origin, 50, 1, &function_9bd3096f);
+	mdl_part thread function_d81e5824("elevator_part_gear1_found");
 }
 
 /*
@@ -355,10 +355,10 @@ function function_d6bb2a6c()
 */
 function function_2fae2796()
 {
-	var_664f35bb = struct::get_array("ee_gear_teleport_spot", "targetname");
+	a_s_spot = struct::get_array("ee_gear_teleport_spot", "targetname");
 	while(1)
 	{
-		foreach(s_spot in var_664f35bb)
+		foreach(s_spot in a_s_spot)
 		{
 			if(!positionWouldTelefrag(s_spot.origin))
 			{
@@ -398,7 +398,7 @@ function function_5b0b2b3d()
 	level flag::wait_till("all_challenges_completed");
 	self SetCanDamage(1);
 	self.health = 100000;
-	var_fae0d733 = struct::get_array("transport_zip_line", "targetname");
+	a_s_loc = struct::get_array("transport_zip_line", "targetname");
 	while(1)
 	{
 		self waittill("damage", n_damage, e_attacker, v_direction, v_point, str_mod, str_tag_name, str_model_name, str_part_name, w_weapon);
@@ -407,7 +407,7 @@ function function_5b0b2b3d()
 			level flag::set("zipline_lightning_charge");
 			e_attacker notify("hash_6bef9736");
 			self playsound("zmb_lightning_shield_activate");
-			foreach(s_loc in var_fae0d733)
+			foreach(s_loc in a_s_loc)
 			{
 				s_loc.var_1cdf0f7a clientfield::set("zipline_lightning_fx", 1);
 			}
@@ -428,7 +428,7 @@ function function_5b0b2b3d()
 			{
 				level.players[0] thread function_426caba9();
 			}
-			foreach(s_loc in var_fae0d733)
+			foreach(s_loc in a_s_loc)
 			{
 				s_loc.var_1cdf0f7a util::delay(5, undefined, &clientfield::set, "zipline_lightning_fx", 0);
 			}
@@ -509,11 +509,11 @@ function function_af46160f()
 	Parameters: 4
 	Flags: None
 */
-function function_4d23baa6(v_origin, v_angles, var_b6c00097, var_5588387b)
+function function_4d23baa6(v_origin, v_angles, n_cooldown, var_5588387b)
 {
-	if(!isdefined(var_b6c00097))
+	if(!isdefined(n_cooldown))
 	{
-		var_b6c00097 = 5;
+		n_cooldown = 5;
 	}
 	self endon("death");
 	self SetCanDamage(1);
@@ -532,8 +532,8 @@ function function_4d23baa6(v_origin, v_angles, var_b6c00097, var_5588387b)
 			{
 				var_752908f7 thread [[var_5588387b]]();
 			}
-			wait(var_b6c00097);
-			var_752908f7 notify("hash_48ec464");
+			wait(n_cooldown);
+			var_752908f7 notify("lightning_done");
 			var_752908f7 clientfield::set("zipline_lightning_fx", 0);
 			util::wait_network_frame();
 			var_752908f7 delete();
@@ -582,10 +582,10 @@ function function_426caba9()
 */
 function function_6e38e085()
 {
-	var_d93f9cb8 = GetEnt("boat_death", "targetname");
+	t_death = GetEnt("boat_death", "targetname");
 	while(1)
 	{
-		var_d93f9cb8 waittill("trigger", e_who);
+		t_death waittill("trigger", e_who);
 		if(isPlayer(e_who) && (!isdefined(e_who.var_a98632dd) && e_who.var_a98632dd))
 		{
 			e_who.var_a98632dd = 1;
@@ -632,10 +632,10 @@ function function_1bbe32e1()
 function function_53246bea()
 {
 	level flag::wait_till("trilogy_released");
-	var_a2365998 = struct::get("elevator_part_gear2");
-	var_71e3d70a = util::spawn_model("p7_zm_bgb_gear_01", var_a2365998.origin, var_a2365998.angles);
-	var_71e3d70a.trigger = namespace_8aed53c9::function_d095318(var_71e3d70a.origin, 50, 1, &function_9bd3096f);
-	var_71e3d70a thread function_d81e5824("elevator_part_gear2_found");
+	s_part = struct::get("elevator_part_gear2");
+	mdl_part = util::spawn_model("p7_zm_bgb_gear_01", s_part.origin, s_part.angles);
+	mdl_part.trigger = namespace_8aed53c9::spawn_trigger_radius(mdl_part.origin, 50, 1, &function_9bd3096f);
+	mdl_part thread function_d81e5824("elevator_part_gear2_found");
 }
 
 /*
@@ -870,8 +870,8 @@ function function_248f6385()
 {
 	level notify("hash_248f6385");
 	level flag::clear("aa_gun_ammo_loaded");
-	var_8cad0c4d = GetEnt("aa_gun", "targetname");
-	var_8cad0c4d thread scene::Play("p7_fxanim_zm_island_flak_88_bundle", var_8cad0c4d);
+	mdl_gun = GetEnt("aa_gun", "targetname");
+	mdl_gun thread scene::Play("p7_fxanim_zm_island_flak_88_bundle", mdl_gun);
 	exploder::exploder("fxexp_810");
 	var_16bdbe0a = struct::get("aa_gun_trigger", "targetname");
 	PlayRumbleOnPosition("zm_island_aa_gun_fired", var_16bdbe0a.origin);
@@ -920,8 +920,8 @@ function function_45e9f465()
 	wait(0.3);
 	self clientfield::set("plane_hit_by_aa_gun", 1);
 	self playsound("evt_b17_explode");
-	var_f7fded02 = struct::get_array("aa_gun_elevator_part_landing", "targetname");
-	s_end = Array::random(var_f7fded02);
+	a_s_end = struct::get_array("aa_gun_elevator_part_landing", "targetname");
+	s_end = Array::random(a_s_end);
 	s_explosion = spawnstruct();
 	s_explosion.origin = self.origin;
 	s_explosion.angles = self.angles;
@@ -945,28 +945,28 @@ function function_45e9f465()
 	{
 		nd_path_start = GetVehicleNode("lab_start", "targetname");
 	}
-	var_6549ae27 = spawner::simple_spawn_single("gear_vehicle");
-	var_71e3d70a = util::spawn_model("p7_zm_bgb_gear_01", var_6549ae27.origin, s_end.angles);
-	var_71e3d70a LinkTo(var_6549ae27);
-	var_71e3d70a PlayLoopSound("evt_b17_piece_lp");
+	vh_gear = spawner::simple_spawn_single("gear_vehicle");
+	mdl_part = util::spawn_model("p7_zm_bgb_gear_01", vh_gear.origin, s_end.angles);
+	mdl_part LinkTo(vh_gear);
+	mdl_part PlayLoopSound("evt_b17_piece_lp");
 	util::wait_network_frame();
-	var_71e3d70a clientfield::set("smoke_trail_fx", 1);
-	var_6549ae27 vehicle::get_on_and_go_path(nd_path_start);
-	var_6549ae27 waittill("reached_end_node");
-	var_6549ae27.delete_on_death = 1;
-	var_6549ae27 notify("death");
-	if(!isalive(var_6549ae27))
+	mdl_part clientfield::set("smoke_trail_fx", 1);
+	vh_gear vehicle::get_on_and_go_path(nd_path_start);
+	vh_gear waittill("reached_end_node");
+	vh_gear.delete_on_death = 1;
+	vh_gear notify("death");
+	if(!isalive(vh_gear))
 	{
-		var_6549ae27 delete();
+		vh_gear delete();
 	}
-	var_71e3d70a moveto(s_end.origin, 0.1);
-	var_71e3d70a waittill("movedone");
-	var_71e3d70a clientfield::set("smoke_trail_fx", 0);
-	var_71e3d70a clientfield::set("smoke_smolder_fx", 1);
-	var_71e3d70a playsound("evt_b17_piece_impact");
-	var_71e3d70a StopLoopSound(0.25);
-	var_71e3d70a.trigger = namespace_8aed53c9::function_d095318(var_71e3d70a.origin, 50, 1, &function_9bd3096f);
-	var_71e3d70a thread function_d81e5824("elevator_part_gear3_found");
+	mdl_part moveto(s_end.origin, 0.1);
+	mdl_part waittill("movedone");
+	mdl_part clientfield::set("smoke_trail_fx", 0);
+	mdl_part clientfield::set("smoke_smolder_fx", 1);
+	mdl_part playsound("evt_b17_piece_impact");
+	mdl_part StopLoopSound(0.25);
+	mdl_part.trigger = namespace_8aed53c9::spawn_trigger_radius(mdl_part.origin, 50, 1, &function_9bd3096f);
+	mdl_part thread function_d81e5824("elevator_part_gear3_found");
 	s_explosion = undefined;
 }
 
@@ -1038,10 +1038,10 @@ function private function_9bd3096f(player)
 */
 function function_5d0980ef()
 {
-	var_66bf6df = GetEnt("elevator_gears", "targetname");
-	var_66bf6df HidePart("wheel_01_jnt");
-	var_66bf6df HidePart("wheel_02_jnt");
-	var_66bf6df HidePart("wheel_03_jnt");
+	mdl_gears = GetEnt("elevator_gears", "targetname");
+	mdl_gears HidePart("wheel_01_jnt");
+	mdl_gears HidePart("wheel_02_jnt");
+	mdl_gears HidePart("wheel_03_jnt");
 	level thread function_a06630fc();
 }
 
@@ -1061,7 +1061,7 @@ function function_aeef1178()
 	level endon("hash_b165a75b");
 	level flag::wait_till("trilogy_released");
 	var_e66037d6 = GetEnt("main_ee_elevator_wall_metal", "targetname");
-	var_ed315f0 = GetEnt("main_ee_elevator_wall_decal", "targetname");
+	e_elevator_wall_decal = GetEnt("main_ee_elevator_wall_decal", "targetname");
 	self namespace_8aed53c9::function_7448e472(var_e66037d6);
 	callback::remove_on_spawned(&function_aeef1178);
 	foreach(player in level.players)
@@ -1072,7 +1072,7 @@ function function_aeef1178()
 		}
 	}
 	exploder::exploder("fxexp_509");
-	level thread namespace_8aed53c9::function_925aa63a(Array(var_e66037d6, var_ed315f0), 0.25, 0, 1);
+	level thread namespace_8aed53c9::function_925aa63a(Array(var_e66037d6, e_elevator_wall_decal), 0.25, 0, 1);
 	level thread function_6cc2e374();
 	level notify("hash_b165a75b");
 }
@@ -1104,14 +1104,14 @@ function function_a06630fc()
 function function_77f4b1ca()
 {
 	self endon("disconnect");
-	self endon("hash_87b9e813");
-	var_66bf6df = GetEnt("elevator_gears", "targetname");
-	self util::waittill_player_looking_at(var_66bf6df.origin);
+	self endon("gears_seen");
+	mdl_gears = GetEnt("elevator_gears", "targetname");
+	self util::waittill_player_looking_at(mdl_gears.origin);
 	foreach(player in level.players)
 	{
 		if(player != self)
 		{
-			player notify("hash_87b9e813");
+			player notify("gears_seen");
 		}
 	}
 	if(zm_utility::is_player_valid(self))
@@ -1131,41 +1131,41 @@ function function_77f4b1ca()
 */
 function function_6cc2e374()
 {
-	var_f022cb65 = GetEnt("trigger_elevator_gears", "targetname");
-	var_f022cb65 setcursorhint("HINT_NOICON");
-	var_f022cb65 setHintString("");
-	var_66bf6df = GetEnt("elevator_gears", "targetname");
-	var_66bf6df thread function_46d7f262();
+	t_repair = GetEnt("trigger_elevator_gears", "targetname");
+	t_repair setcursorhint("HINT_NOICON");
+	t_repair setHintString("");
+	mdl_gears = GetEnt("elevator_gears", "targetname");
+	mdl_gears thread function_46d7f262();
 	while(1)
 	{
-		var_f022cb65 waittill("trigger", e_who);
+		t_repair waittill("trigger", e_who);
 		if(level flag::get("elevator_part_gear1_found") && !level flag::get("elevator_part_gear1_placed"))
 		{
 			level flag::set("elevator_part_gear1_placed");
-			var_f022cb65 playsound("zmb_item_pickup");
-			var_66bf6df.var_df281e84 = util::spawn_model("p7_zm_isl_elevator_gears_wheel", var_66bf6df GetTagOrigin("wheel_01_jnt") + (1, 2, 0), var_66bf6df GetTagAngles("wheel_01_jnt"));
+			t_repair playsound("zmb_item_pickup");
+			mdl_gears.mdl_teleport = util::spawn_model("p7_zm_isl_elevator_gears_wheel", mdl_gears GetTagOrigin("wheel_01_jnt") + (1, 2, 0), mdl_gears GetTagAngles("wheel_01_jnt"));
 		}
 		if(level flag::get("elevator_part_gear2_found") && !level flag::get("elevator_part_gear2_placed"))
 		{
 			level flag::set("elevator_part_gear2_placed");
-			var_f022cb65 playsound("zmb_item_pickup");
-			var_66bf6df.var_e882d83c = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", var_66bf6df GetTagOrigin("wheel_02_jnt") + (0.525, 2, -0.075), var_66bf6df GetTagAngles("wheel_02_jnt"));
+			t_repair playsound("zmb_item_pickup");
+			mdl_gears.mdl_dock = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", mdl_gears GetTagOrigin("wheel_02_jnt") + (0.525, 2, -0.075), mdl_gears GetTagAngles("wheel_02_jnt"));
 		}
 		if(level flag::get("elevator_part_gear3_found") && !level flag::get("elevator_part_gear3_placed"))
 		{
 			level flag::set("elevator_part_gear3_placed");
-			var_f022cb65 playsound("zmb_item_pickup");
-			var_66bf6df.var_aab7a6d1 = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", var_66bf6df GetTagOrigin("wheel_03_jnt") + VectorScale((0, 1, 0), 2), var_66bf6df GetTagAngles("wheel_03_jnt"));
+			t_repair playsound("zmb_item_pickup");
+			mdl_gears.mdl_plane = util::spawn_model("p7_zm_isl_elevator_gears_wheel_small", mdl_gears GetTagOrigin("wheel_03_jnt") + VectorScale((0, 1, 0), 2), mdl_gears GetTagAngles("wheel_03_jnt"));
 		}
 		if(level flag::get("elevator_part_gear1_found") && level flag::get("elevator_part_gear2_found") && level flag::get("elevator_part_gear3_found"))
 		{
-			var_f022cb65 playsound("zmb_elevator_fix");
+			t_repair playsound("zmb_elevator_fix");
 			level thread namespace_f333593c::function_3bf2d62a("elevator", 0, 1, 0);
 			if(zm_utility::is_player_valid(e_who))
 			{
 				e_who thread namespace_f333593c::function_d258c672("elevator");
 			}
-			level thread function_e2cd4ac4();
+			level thread elevator_init();
 			break;
 		}
 	}
@@ -1182,38 +1182,38 @@ function function_6cc2e374()
 */
 function function_46d7f262()
 {
-	var_17b2dca3 = GetEntArray("easter_egg_elevator_cage", "targetname");
+	a_e_elevator = GetEntArray("easter_egg_elevator_cage", "targetname");
 	while(1)
 	{
 		level flag::wait_till("elevator_in_use");
 		wait(0.1);
-		while(!isdefined(var_17b2dca3[0].is_moving))
+		while(!isdefined(a_e_elevator[0].is_moving))
 		{
 			wait(0.05);
 		}
-		while(var_17b2dca3[0].is_moving)
+		while(a_e_elevator[0].is_moving)
 		{
 			if(level flag::get("elevator_at_bottom"))
 			{
-				var_b126107b = -90;
+				n_rot = -90;
 			}
 			else
 			{
-				var_b126107b = 90;
+				n_rot = 90;
 			}
-			self.var_df281e84 RotateRoll(var_b126107b, 1);
-			self.var_e882d83c RotateRoll(var_b126107b, 1);
-			self.var_aab7a6d1 RotateRoll(var_b126107b * -1, 1);
+			self.mdl_teleport RotateRoll(n_rot, 1);
+			self.mdl_dock RotateRoll(n_rot, 1);
+			self.mdl_plane RotateRoll(n_rot * -1, 1);
 			wait(0.9);
 		}
-		self.var_df281e84 RotateRoll(var_b126107b * 0.01, 0.1);
-		self.var_e882d83c RotateRoll(var_b126107b * 0.01, 0.1);
-		self.var_aab7a6d1 RotateRoll(var_b126107b * -1 * 0.01, 0.1);
+		self.mdl_teleport RotateRoll(n_rot * 0.01, 0.1);
+		self.mdl_dock RotateRoll(n_rot * 0.01, 0.1);
+		self.mdl_plane RotateRoll(n_rot * -1 * 0.01, 0.1);
 	}
 }
 
 /*
-	Name: function_e2cd4ac4
+	Name: elevator_init
 	Namespace: namespace_b3c23ec9
 	Checksum: 0x6667EF91
 	Offset: 0x5090
@@ -1221,13 +1221,13 @@ function function_46d7f262()
 	Parameters: 0
 	Flags: None
 */
-function function_e2cd4ac4()
+function elevator_init()
 {
 	n_width = 64;
 	n_height = 128;
 	n_length = 64;
-	var_37f7b157 = struct::get_array("s_elevator_trigger", "targetname");
-	foreach(s_org in var_37f7b157)
+	a_s_org = struct::get_array("s_elevator_trigger", "targetname");
+	foreach(s_org in a_s_org)
 	{
 		s_org.script_unitrigger_type = "unitrigger_box_use";
 		s_org.cursor_hint = "HINT_NOICON";
@@ -1238,8 +1238,8 @@ function function_e2cd4ac4()
 		s_org.prompt_and_visibility_func = &function_d93c8e95;
 		zm_unitrigger::register_static_unitrigger(s_org, &function_8f599d4f);
 	}
-	var_37f7b157 = struct::get_array("s_elevator_call_trigger", "targetname");
-	foreach(s_org in var_37f7b157)
+	a_s_org = struct::get_array("s_elevator_call_trigger", "targetname");
+	foreach(s_org in a_s_org)
 	{
 		s_org.script_unitrigger_type = "unitrigger_box_use";
 		s_org.cursor_hint = "HINT_NOICON";
@@ -1270,7 +1270,7 @@ function function_e2cd4ac4()
 	exploder::exploder("ex_elevator_switch_bottom_green");
 	exploder::exploder("ex_elevator_overlight");
 	exploder::exploder("ex_elevator_repaired");
-	function_574812fe();
+	elevator_door();
 }
 
 /*
@@ -1331,7 +1331,7 @@ function function_8f599d4f()
 		{
 			continue;
 		}
-		level thread function_46201613(self, player);
+		level thread elevator_use(self, player);
 	}
 }
 
@@ -1400,13 +1400,13 @@ function function_66070c12()
 		}
 		if(self.stub.var_db67c127 != level flag::get("elevator_at_bottom"))
 		{
-			level thread function_46201613(self, player);
+			level thread elevator_use(self, player);
 		}
 	}
 }
 
 /*
-	Name: function_46201613
+	Name: elevator_use
 	Namespace: namespace_b3c23ec9
 	Checksum: 0xC49275FA
 	Offset: 0x5918
@@ -1414,7 +1414,7 @@ function function_66070c12()
 	Parameters: 2
 	Flags: None
 */
-function function_46201613(trig_stub, player)
+function elevator_use(trig_stub, player)
 {
 	level flag::set("elevator_in_use");
 	exploder::exploder_stop("ex_elevator_panel_green");
@@ -1423,9 +1423,9 @@ function function_46201613(trig_stub, player)
 	exploder::exploder("ex_elevator_panel_red");
 	exploder::exploder("ex_elevator_switch_top_red");
 	exploder::exploder("ex_elevator_switch_bottom_red");
-	function_574812fe(0);
+	elevator_door(0);
 	elevator_move();
-	function_574812fe();
+	elevator_door();
 	level flag::clear("elevator_in_use");
 	level flag::set("elevator_cooldown");
 	wait(5);
@@ -1445,7 +1445,7 @@ function function_46201613(trig_stub, player)
 }
 
 /*
-	Name: function_574812fe
+	Name: elevator_door
 	Namespace: namespace_b3c23ec9
 	Checksum: 0xAAED1450
 	Offset: 0x5B40
@@ -1453,7 +1453,7 @@ function function_46201613(trig_stub, player)
 	Parameters: 1
 	Flags: None
 */
-function function_574812fe(b_open)
+function elevator_door(b_open)
 {
 	if(!isdefined(b_open))
 	{
@@ -1531,36 +1531,36 @@ function function_574812fe(b_open)
 */
 function elevator_move()
 {
-	var_17b2dca3 = GetEntArray("easter_egg_elevator_cage", "targetname");
+	a_e_elevator = GetEntArray("easter_egg_elevator_cage", "targetname");
 	var_1fac16fe = GetEnt("easter_egg_elevator_door_inner_top_left", "targetname");
-	var_1fac16fe LinkTo(var_17b2dca3[0]);
+	var_1fac16fe LinkTo(a_e_elevator[0]);
 	var_adbea363 = GetEnt("easter_egg_elevator_door_inner_top_right", "targetname");
-	var_adbea363 LinkTo(var_17b2dca3[0]);
+	var_adbea363 LinkTo(a_e_elevator[0]);
 	var_46ebdf14 = GetEnt("easter_egg_elevator_door_inner_bottom_left", "targetname");
-	var_46ebdf14 LinkTo(var_17b2dca3[0]);
+	var_46ebdf14 LinkTo(a_e_elevator[0]);
 	var_ddc6ba27 = GetEnt("easter_egg_elevator_door_inner_bottom_right", "targetname");
-	var_ddc6ba27 LinkTo(var_17b2dca3[0]);
+	var_ddc6ba27 LinkTo(a_e_elevator[0]);
 	if(level flag::get("elevator_at_bottom"))
 	{
-		foreach(e_elevator in var_17b2dca3)
+		foreach(e_elevator in a_e_elevator)
 		{
 			e_elevator MoveZ(1280, 20);
 		}
 		break;
 	}
-	foreach(e_elevator in var_17b2dca3)
+	foreach(e_elevator in a_e_elevator)
 	{
 		e_elevator MoveZ(-1280, 20);
 	}
-	var_17b2dca3[0].is_moving = 1;
-	var_17b2dca3[0] playsound("zmb_elevator_start");
-	var_17b2dca3[0] PlayLoopSound("zmb_elevator_loop");
-	var_17b2dca3[0] thread function_7b8e6e93();
-	var_17b2dca3[0] waittill("movedone");
-	var_17b2dca3[0] thread function_e35db912();
-	var_17b2dca3[0].is_moving = 0;
-	var_17b2dca3[0] playsound("zmb_elevator_stop");
-	var_17b2dca3[0] StopLoopSound(0.5);
+	a_e_elevator[0].is_moving = 1;
+	a_e_elevator[0] playsound("zmb_elevator_start");
+	a_e_elevator[0] PlayLoopSound("zmb_elevator_loop");
+	a_e_elevator[0] thread function_7b8e6e93();
+	a_e_elevator[0] waittill("movedone");
+	a_e_elevator[0] thread function_e35db912();
+	a_e_elevator[0].is_moving = 0;
+	a_e_elevator[0] playsound("zmb_elevator_stop");
+	a_e_elevator[0] StopLoopSound(0.5);
 	var_1fac16fe = GetEnt("easter_egg_elevator_door_inner_top_left", "targetname");
 	var_1fac16fe Unlink();
 	var_adbea363 = GetEnt("easter_egg_elevator_door_inner_top_right", "targetname");
@@ -1897,12 +1897,12 @@ function function_8221532d()
 	var_d3ed310f = GetEntArray("bgb_damage_clip", "script_noteworthy");
 	foreach(var_a27ff52f in var_d3ed310f)
 	{
-		foreach(var_4770ddb4 in level.var_5081bd63)
+		foreach(e_bgb_machine in level.bgb_machines)
 		{
-			if(var_4770ddb4 istouching(var_a27ff52f))
+			if(e_bgb_machine istouching(var_a27ff52f))
 			{
-				var_4770ddb4.var_9e209773 = var_a27ff52f;
-				var_4770ddb4 thread function_e20ecfa4();
+				e_bgb_machine.var_9e209773 = var_a27ff52f;
+				e_bgb_machine thread function_e20ecfa4();
 				break;
 			}
 		}
@@ -1966,7 +1966,7 @@ function function_16155679(inflictor, attacker, damage, flags, meansOfDeath, wea
 {
 	if(isdefined(weapon.isRiotShield) && weapon.isRiotShield && (isdefined(attacker.var_36c3d64a) && attacker.var_36c3d64a) && !isPlayer(self))
 	{
-		attacker namespace_112fb534::function_20654ca0(self);
+		attacker namespace_112fb534::electrocute_actor(self);
 		attacker notify("hash_aacf862e");
 		attacker namespace_f333593c::function_1881817("kill", "shield_electric");
 	}
@@ -1990,7 +1990,7 @@ function function_a7a11020(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 		{
 			return 0;
 		}
-		eAttacker namespace_112fb534::function_20654ca0(self);
+		eAttacker namespace_112fb534::electrocute_actor(self);
 		eAttacker namespace_f333593c::function_1881817("kill", "shield_electric");
 	}
 	return iDamage;
@@ -2009,7 +2009,7 @@ function function_d68f2492(eAttacker, iDamage, sHitLoc, sMeansOfDeath)
 {
 	if(isdefined(self.var_36c3d64a) && self.var_36c3d64a && !isPlayer(eAttacker))
 	{
-		self namespace_112fb534::function_20654ca0(eAttacker);
+		self namespace_112fb534::electrocute_actor(eAttacker);
 	}
 }
 
@@ -2044,7 +2044,7 @@ function function_e509082()
 	level LUI::screen_fade_in(0, "black");
 	level scene::Play("cin_isl_outro_3rd_sh010");
 	Array::thread_all(level.activePlayers, &zm_utility::give_player_all_perks);
-	Array::thread_all(level.players, &function_d875b253);
+	Array::thread_all(level.players, &change_character_model);
 	Array::thread_all(level.players, &function_d2e1a913);
 	level flag::set("flag_outro_cutscene_done");
 }
@@ -2066,7 +2066,7 @@ function function_d2e1a913()
 }
 
 /*
-	Name: function_d875b253
+	Name: change_character_model
 	Namespace: namespace_b3c23ec9
 	Checksum: 0x7E215C50
 	Offset: 0x7E48
@@ -2074,7 +2074,7 @@ function function_d2e1a913()
 	Parameters: 0
 	Flags: None
 */
-function function_d875b253()
+function change_character_model()
 {
 	if(isalive(self) && self.characterindex != 2)
 	{
@@ -2149,7 +2149,7 @@ function function_1f3b8e3c(a_ents)
 	{
 		a_ents = undefined;
 	}
-	var_f852acf0 = a_ents["summoning_key"];
+	e_summoning_key = a_ents["summoning_key"];
 	s_org = struct::get("tag_align_end_cinematic");
 	e_org = spawn("script_model", s_org.origin);
 	if(isdefined(a_ents))
@@ -2159,7 +2159,7 @@ function function_1f3b8e3c(a_ents)
 	level LUI::screen_fade_out(0, "white");
 	level waittill("hash_71fdf829");
 	e_org PlaySoundWithNotify("vox_plr_0_outro_igc_28");
-	var_f852acf0 Hide();
+	e_summoning_key Hide();
 	level waittill("hash_4bfb7dc0");
 	e_org PlaySoundWithNotify("vox_plr_2_outro_igc_29");
 	level waittill("portal_effect");
@@ -2301,12 +2301,12 @@ function function_449f0778()
 */
 function function_dcc18c22()
 {
-	var_f96832b6 = GetEnt("main_ee_outro_water", "targetname");
-	var_f96832b6 Hide();
+	e_water = GetEnt("main_ee_outro_water", "targetname");
+	e_water Hide();
 	level flag::wait_till("flag_show_outro_water");
-	var_f96832b6 show();
+	e_water show();
 	level flag::wait_till("flag_hide_outro_water");
-	var_f96832b6 Hide();
+	e_water Hide();
 }
 
 /*
@@ -2322,7 +2322,7 @@ function function_12d043ed()
 {
 	/#
 		level flag::set("Dev Block strings are not supported");
-		zm_devgui::function_4acecab5(&function_efbc0e1);
+		zm_devgui::add_custom_devgui_callback(&function_efbc0e1);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -2375,7 +2375,7 @@ function function_efbc0e1(cmd)
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_e2cd4ac4();
+				elevator_init();
 				return 1;
 			}
 			case "Dev Block strings are not supported":

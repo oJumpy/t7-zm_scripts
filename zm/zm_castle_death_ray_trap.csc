@@ -46,14 +46,14 @@ function function_3852b0a4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	self function_51adc559(localClientNum);
 	if(newVal)
 	{
-		if(!isdefined(self.var_8f44671e))
+		if(!isdefined(self.tesla_shock_fx))
 		{
 			tag = "J_SpineUpper";
 			if(!self isai())
 			{
 				tag = "tag_origin";
 			}
-			self.var_8f44671e = PlayFXOnTag(localClientNum, level._effect["tesla_zombie_shock"], self, tag);
+			self.tesla_shock_fx = PlayFXOnTag(localClientNum, level._effect["tesla_zombie_shock"], self, tag);
 			self playsound(0, "zmb_electrocute_zombie");
 		}
 		if(IsDemoPlaying())
@@ -91,10 +91,10 @@ function function_7772592b(localClientNum)
 */
 function function_51adc559(localClientNum)
 {
-	if(isdefined(self.var_8f44671e))
+	if(isdefined(self.tesla_shock_fx))
 	{
-		deletefx(localClientNum, self.var_8f44671e, 1);
-		self.var_8f44671e = undefined;
+		deletefx(localClientNum, self.tesla_shock_fx, 1);
+		self.tesla_shock_fx = undefined;
 	}
 	self notify("hash_51adc559");
 }
@@ -190,19 +190,19 @@ function function_7939244(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 */
 function function_200eea36(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_fda0d24 = [];
-	Array::add(var_fda0d24, struct::get("bolt_source_1"), 0);
-	Array::add(var_fda0d24, struct::get("bolt_source_2"), 0);
-	s_source = ArrayGetClosest(self.origin, var_fda0d24);
+	a_s_source = [];
+	Array::add(a_s_source, struct::get("bolt_source_1"), 0);
+	Array::add(a_s_source, struct::get("bolt_source_2"), 0);
+	s_source = ArrayGetClosest(self.origin, a_s_source);
 	if(s_source.targetname === "bolt_source_1")
 	{
-		var_53106e7c = "electric_arc_beam_tesla_trap_1_primary";
+		str_beam = "electric_arc_beam_tesla_trap_1_primary";
 	}
 	else
 	{
-		var_53106e7c = "electric_arc_beam_tesla_trap_2_primary";
+		str_beam = "electric_arc_beam_tesla_trap_2_primary";
 	}
-	self thread function_ec4ecaed(localClientNum, s_source, var_53106e7c);
+	self thread function_ec4ecaed(localClientNum, s_source, str_beam);
 }
 
 /*
@@ -214,13 +214,13 @@ function function_200eea36(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_ec4ecaed(localClientNum, s_source, var_53106e7c)
+function function_ec4ecaed(localClientNum, s_source, str_beam)
 {
-	var_e43465f2 = util::spawn_model(localClientNum, "tag_origin", s_source.origin, s_source.angles);
-	level beam::launch(var_e43465f2, "tag_origin", self, "j_spinelower", var_53106e7c);
+	mdl_source = util::spawn_model(localClientNum, "tag_origin", s_source.origin, s_source.angles);
+	level beam::launch(mdl_source, "tag_origin", self, "j_spinelower", str_beam);
 	level util::waittill_any_timeout(1.5, "demo_jump");
-	level beam::kill(var_e43465f2, "tag_origin", self, "j_spinelower", var_53106e7c);
-	var_e43465f2 delete();
+	level beam::kill(mdl_source, "tag_origin", self, "j_spinelower", str_beam);
+	mdl_source delete();
 }
 
 /*
@@ -236,20 +236,20 @@ function function_1dc0fcb2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal == 1)
 	{
-		var_fda0d24 = [];
-		Array::add(var_fda0d24, struct::get("bolt_source_1"), 0);
-		Array::add(var_fda0d24, struct::get("bolt_source_2"), 0);
-		s_source = ArrayGetClosest(self.origin, var_fda0d24);
+		a_s_source = [];
+		Array::add(a_s_source, struct::get("bolt_source_1"), 0);
+		Array::add(a_s_source, struct::get("bolt_source_2"), 0);
+		s_source = ArrayGetClosest(self.origin, a_s_source);
 		if(s_source.targetname === "bolt_source_1")
 		{
-			self.var_53106e7c = "electric_arc_beam_tesla_trap_1_primary";
+			self.str_beam = "electric_arc_beam_tesla_trap_1_primary";
 		}
 		else
 		{
-			self.var_53106e7c = "electric_arc_beam_tesla_trap_2_primary";
+			self.str_beam = "electric_arc_beam_tesla_trap_2_primary";
 		}
-		self.var_e43465f2 = util::spawn_model(localClientNum, "tag_origin", s_source.origin, s_source.angles);
-		level beam::launch(self.var_e43465f2, "tag_origin", self, "j_spinelower", self.var_53106e7c);
+		self.mdl_source = util::spawn_model(localClientNum, "tag_origin", s_source.origin, s_source.angles);
+		level beam::launch(self.mdl_source, "tag_origin", self, "j_spinelower", self.str_beam);
 		if(IsDemoPlaying())
 		{
 			self thread function_3c5fc735(localClientNum);
@@ -289,11 +289,11 @@ function function_3c5fc735(localClientNum)
 */
 function function_1139a457(localClientNum)
 {
-	if(isdefined(self.var_e43465f2) && isdefined(self.var_53106e7c))
+	if(isdefined(self.mdl_source) && isdefined(self.str_beam))
 	{
-		level beam::kill(self.var_e43465f2, "tag_origin", self, "j_spinelower", self.var_53106e7c);
-		self.var_e43465f2 delete();
-		self.var_53106e7c = undefined;
+		level beam::kill(self.mdl_source, "tag_origin", self, "j_spinelower", self.str_beam);
+		self.mdl_source delete();
+		self.str_beam = undefined;
 		self notify("hash_1139a457");
 	}
 }

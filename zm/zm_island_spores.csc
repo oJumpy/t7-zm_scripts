@@ -20,16 +20,16 @@
 */
 function init()
 {
-	var_d1cfa380 = GetMinBitCountForNum(7);
-	var_a15256dd = GetMinBitCountForNum(3);
-	var_a17d01a1 = GetMinBitCountForNum(5);
+	n_spore_cloud_bits = GetMinBitCountForNum(7);
+	n_spore_trail_bits = GetMinBitCountForNum(3);
+	n_spore_grows_bits = GetMinBitCountForNum(5);
 	clientfield::register("scriptmover", "spore_glow_fx", 9000, 1, "int", &function_4d352e71, 0, 0);
-	clientfield::register("scriptmover", "spore_cloud_fx", 9000, var_d1cfa380, "int", &function_63a5615b, 0, 0);
-	clientfield::register("actor", "spore_trail_enemy_fx", 9000, var_a15256dd, "int", &function_d4effeda, 0, 0);
-	clientfield::register("allplayers", "spore_trail_player_fx", 9000, var_a15256dd, "int", &function_d4effeda, 0, 0);
-	clientfield::register("scriptmover", "spore_grows", 9000, var_a17d01a1, "int", &function_36be307d, 0, 0);
+	clientfield::register("scriptmover", "spore_cloud_fx", 9000, n_spore_cloud_bits, "int", &function_63a5615b, 0, 0);
+	clientfield::register("actor", "spore_trail_enemy_fx", 9000, n_spore_trail_bits, "int", &spore_trail_fx, 0, 0);
+	clientfield::register("allplayers", "spore_trail_player_fx", 9000, n_spore_trail_bits, "int", &spore_trail_fx, 0, 0);
+	clientfield::register("scriptmover", "spore_grows", 9000, n_spore_grows_bits, "int", &function_36be307d, 0, 0);
 	clientfield::register("toplayer", "play_spore_bubbles", 9000, 1, "int", &function_6225657f, 0, 0);
-	clientfield::register("toplayer", "spore_camera_fx", 9000, var_a15256dd, "int", &function_194bfed3, 0, 0);
+	clientfield::register("toplayer", "spore_camera_fx", 9000, n_spore_trail_bits, "int", &function_194bfed3, 0, 0);
 	level.b_thrasher_custom_spore_fx = 1;
 }
 
@@ -156,7 +156,7 @@ function function_63a5615b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_d4effeda
+	Name: spore_trail_fx
 	Namespace: namespace_7a07aa2f
 	Checksum: 0x4B9ACF25
 	Offset: 0x11E0
@@ -164,7 +164,7 @@ function function_63a5615b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_d4effeda(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spore_trail_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{
@@ -207,7 +207,7 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			self.var_baeb5712 = 0;
 		}
 	}
-	if(IsDemoPlaying() && function_c8c0455e(localClientNum) < 100)
+	if(IsDemoPlaying() && getnumfreeentities(localClientNum) < 100)
 	{
 		return;
 	}
@@ -221,12 +221,12 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 				if(self.var_baeb5712)
 				{
 					self scene::add_scene_func("p7_fxanim_zm_island_spores_wall_stage_01_bundle", &function_dd0015d, "play");
-					self thread function_406fdb8("p7_fxanim_zm_island_spores_wall_stage_01_bundle");
+					self thread scene_play("p7_fxanim_zm_island_spores_wall_stage_01_bundle");
 				}
 				else
 				{
 					self scene::add_scene_func("p7_fxanim_zm_island_spores_rock_stage_01_bundle", &function_dd0015d, "play");
-					self thread function_406fdb8("p7_fxanim_zm_island_spores_rock_stage_01_bundle");
+					self thread scene_play("p7_fxanim_zm_island_spores_rock_stage_01_bundle");
 				}
 				break;
 			}
@@ -241,11 +241,11 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 				}
 				if(self.var_baeb5712)
 				{
-					self thread function_406fdb8("p7_fxanim_zm_island_spores_wall_stage_02_bundle");
+					self thread scene_play("p7_fxanim_zm_island_spores_wall_stage_02_bundle");
 				}
 				else
 				{
-					self thread function_406fdb8("p7_fxanim_zm_island_spores_rock_stage_02_bundle");
+					self thread scene_play("p7_fxanim_zm_island_spores_rock_stage_02_bundle");
 				}
 				break;
 			}
@@ -255,12 +255,12 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 				if(self.var_baeb5712)
 				{
 					self scene::add_scene_func("p7_fxanim_zm_island_spores_wall_stage_02_rapid_bundle", &function_dd0015d, "play");
-					self thread function_406fdb8("p7_fxanim_zm_island_spores_wall_stage_02_rapid_bundle");
+					self thread scene_play("p7_fxanim_zm_island_spores_wall_stage_02_rapid_bundle");
 				}
 				else
 				{
 					self scene::add_scene_func("p7_fxanim_zm_island_spores_rock_stage_02_rapid_bundle", &function_dd0015d, "play");
-					self thread function_406fdb8("p7_fxanim_zm_island_spores_rock_stage_02_rapid_bundle");
+					self thread scene_play("p7_fxanim_zm_island_spores_rock_stage_02_rapid_bundle");
 				}
 				break;
 			}
@@ -303,12 +303,12 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		if(self.var_baeb5712)
 		{
 			self scene::add_scene_func("p7_fxanim_zm_island_spores_wall_stage_03_bundle", &function_dd0015d, "play");
-			self function_406fdb8("p7_fxanim_zm_island_spores_wall_stage_03_bundle");
+			self scene_play("p7_fxanim_zm_island_spores_wall_stage_03_bundle");
 		}
 		else
 		{
 			self scene::add_scene_func("p7_fxanim_zm_island_spores_rock_stage_03_bundle", &function_dd0015d, "play");
-			self function_406fdb8("p7_fxanim_zm_island_spores_rock_stage_03_bundle");
+			self scene_play("p7_fxanim_zm_island_spores_rock_stage_03_bundle");
 		}
 		if(isdefined(self.var_4df7e11b) && self.var_4df7e11b.size > 0)
 		{
@@ -328,7 +328,7 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_406fdb8
+	Name: scene_play
 	Namespace: namespace_7a07aa2f
 	Checksum: 0x584B5E1E
 	Offset: 0x1920
@@ -336,10 +336,10 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_406fdb8(scene)
+function scene_play(scene)
 {
-	self notify("hash_406fdb8");
-	self endon("hash_406fdb8");
+	self notify("scene_play");
+	self endon("scene_play");
 	self scene::stop();
 	self function_6221b6b9(scene);
 	self scene::stop();
@@ -354,7 +354,7 @@ function function_406fdb8(scene)
 	Parameters: 2
 	Flags: None
 */
-function function_6221b6b9(scene, var_165d49f6)
+function function_6221b6b9(scene, mdl_pod)
 {
 	level endon("demo_jump");
 	self scene::Play(scene);
@@ -438,7 +438,7 @@ function function_7be165af(localClientNum)
 		deletefx(localClientNum, self.var_ea3e4398, 1);
 		self.var_ea3e4398 = undefined;
 	}
-	self notify("hash_a48959b9");
+	self notify("bubbles_done");
 }
 
 /*
@@ -452,7 +452,7 @@ function function_7be165af(localClientNum)
 */
 function function_9067dab6(localClientNum)
 {
-	self endon("hash_a48959b9");
+	self endon("bubbles_done");
 	self waittill("death");
 	self function_7be165af(localClientNum);
 }

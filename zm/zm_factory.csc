@@ -98,7 +98,7 @@ function main()
 	_zm_weap_tesla::init();
 	level thread zm_factory_amb::main();
 	level thread power_on_fxanims();
-	callback::on_localclient_connect(&function_8feafce2);
+	callback::on_localclient_connect(&on_player_connected);
 	callback::on_spawned(&on_player_spawned);
 	level thread function_e0500062();
 	namespace_689d3383::main_end();
@@ -109,7 +109,7 @@ function main()
 }
 
 /*
-	Name: function_8feafce2
+	Name: on_player_connected
 	Namespace: zm_factory
 	Checksum: 0xD0255DA8
 	Offset: 0x1548
@@ -117,7 +117,7 @@ function main()
 	Parameters: 1
 	Flags: None
 */
-function function_8feafce2(localClientNum)
+function on_player_connected(localClientNum)
 {
 	if(1 != GetDvarInt("movie_intro"))
 	{
@@ -170,11 +170,11 @@ function include_perks()
 */
 function on_player_spawned(localClientNum)
 {
-	self thread function_9788e0f3(localClientNum);
+	self thread player_snow_thread(localClientNum);
 }
 
 /*
-	Name: function_9788e0f3
+	Name: player_snow_thread
 	Namespace: zm_factory
 	Checksum: 0xE38EFA3C
 	Offset: 0x1698
@@ -182,7 +182,7 @@ function on_player_spawned(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_9788e0f3(localClientNum)
+function player_snow_thread(localClientNum)
 {
 	self endon("disconnect");
 	self endon("entityshutdown");
@@ -201,7 +201,7 @@ function function_9788e0f3(localClientNum)
 			return;
 		}
 		fxid = playFX(localClientNum, level._effect["player_snow"], self.origin);
-		function_7a6170fb(localClientNum, fxid);
+		setfxoutdoor(localClientNum, fxid);
 		wait(0.25);
 	}
 }

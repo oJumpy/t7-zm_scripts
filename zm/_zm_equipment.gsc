@@ -50,7 +50,7 @@ function __init__()
 		clientfield::register("scriptmover", "equipment_activated", 1, 4, "int");
 	}
 	/#
-		level thread function_f30ee99e();
+		level thread run_equipment_devgui();
 	#/
 }
 
@@ -127,7 +127,7 @@ function register(equipment_name, hint, howto_hint, hint_icon, equipmentVO)
 	struct.notify_strings.pickup = equipment.name + "_pickup";
 	level.zombie_equipment[equipment] = struct;
 	/#
-		level thread function_de79cac6(equipment);
+		level thread add_devgui_equipment(equipment);
 	#/
 }
 
@@ -1132,7 +1132,7 @@ function init_player_equipment()
 }
 
 /*
-	Name: function_f30ee99e
+	Name: run_equipment_devgui
 	Namespace: zm_equipment
 	Checksum: 0x43D090F1
 	Offset: 0x27E8
@@ -1140,7 +1140,7 @@ function init_player_equipment()
 	Parameters: 0
 	Flags: None
 */
-function function_f30ee99e()
+function run_equipment_devgui()
 {
 	/#
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -1151,19 +1151,19 @@ function function_f30ee99e()
 		AddDebugCommand(str_cmd);
 		while(1)
 		{
-			var_f86eaea5 = GetDvarString("Dev Block strings are not supported");
-			if(var_f86eaea5 != "Dev Block strings are not supported")
+			equipment_id = GetDvarString("Dev Block strings are not supported");
+			if(equipment_id != "Dev Block strings are not supported")
 			{
 				foreach(player in GetPlayers())
 				{
-					if(var_f86eaea5 == "Dev Block strings are not supported")
+					if(equipment_id == "Dev Block strings are not supported")
 					{
 						player take();
 						continue;
 					}
-					if(is_included(var_f86eaea5))
+					if(is_included(equipment_id))
 					{
-						player buy(var_f86eaea5);
+						player buy(equipment_id);
 					}
 				}
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -1174,7 +1174,7 @@ function function_f30ee99e()
 }
 
 /*
-	Name: function_de79cac6
+	Name: add_devgui_equipment
 	Namespace: zm_equipment
 	Checksum: 0x373F622D
 	Offset: 0x29D0
@@ -1182,7 +1182,7 @@ function function_f30ee99e()
 	Parameters: 1
 	Flags: None
 */
-function function_de79cac6(equipment)
+function add_devgui_equipment(equipment)
 {
 	/#
 		wait(0.05);
@@ -1190,8 +1190,8 @@ function function_de79cac6(equipment)
 		wait(0.05);
 		if(isdefined(equipment))
 		{
-			var_f86eaea5 = equipment.name;
-			str_cmd = "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported";
+			equipment_id = equipment.name;
+			str_cmd = "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported";
 			AddDebugCommand(str_cmd);
 		}
 	#/

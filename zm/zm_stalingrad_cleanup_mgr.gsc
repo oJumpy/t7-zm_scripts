@@ -183,13 +183,13 @@ function do_cleanup_check(n_override_cleanup_dist)
 		}
 		if(n_dist_sq_min >= n_cleanup_dist_sq)
 		{
-			self thread function_34478a90();
+			self thread cleanup_zombie();
 		}
 	}
 }
 
 /*
-	Name: function_34478a90
+	Name: cleanup_zombie
 	Namespace: namespace_f09ec4f7
 	Checksum: 0x216E4666
 	Offset: 0x728
@@ -197,7 +197,7 @@ function do_cleanup_check(n_override_cleanup_dist)
 	Parameters: 1
 	Flags: None
 */
-function function_34478a90(var_1503b3f8)
+function cleanup_zombie(var_1503b3f8)
 {
 	if(!isdefined(var_1503b3f8))
 	{
@@ -267,7 +267,7 @@ function function_34478a90(var_1503b3f8)
 		}
 	}
 	self zombie_utility::reset_attack_spot();
-	self.var_4d11bb60 = 1;
+	self.b_cleaned_up = 1;
 	self kill();
 	wait(0.05);
 	if(isdefined(self))

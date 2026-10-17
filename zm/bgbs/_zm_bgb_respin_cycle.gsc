@@ -82,13 +82,13 @@ function activation()
 		Chest = level.chests[i];
 		if(isdefined(Chest.zbarrier.weapon_model) && isdefined(Chest.chest_user) && self == Chest.chest_user)
 		{
-			Chest thread function_7a5dc39b(self);
+			Chest thread respin_chest_thread(self);
 		}
 	}
 }
 
 /*
-	Name: function_7a5dc39b
+	Name: respin_chest_thread
 	Namespace: namespace_ddb9c921
 	Checksum: 0x898A9EDB
 	Offset: 0x440
@@ -96,7 +96,7 @@ function activation()
 	Parameters: 1
 	Flags: None
 */
-function function_7a5dc39b(player)
+function respin_chest_thread(player)
 {
 	self.zbarrier clientfield::increment("zm_bgb_respin_cycle");
 	if(isdefined(self.zbarrier.weapon_model))

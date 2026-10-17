@@ -45,7 +45,7 @@ function __init__()
 	s_unitrigger = var_a7761466 zm_unitrigger::create_unitrigger("", 64, &function_f734357f, &function_be759ad7);
 	s_unitrigger.hint_parm1 = 1000;
 	s_unitrigger.b_enabled = 1;
-	s_unitrigger.var_1dcdd471 = 0;
+	s_unitrigger.b_in_use = 0;
 }
 
 /*
@@ -85,17 +85,17 @@ function function_f734357f(e_player)
 		self setHintString("");
 		return 0;
 	}
-	else if(level flag::get("lockdown_active") && level.var_1dfcc9b2.var_22bf30b7 !== 1)
+	else if(level flag::get("lockdown_active") && level.s_lockdown.var_22bf30b7 !== 1)
 	{
 		self setHintString("");
 		return 0;
 	}
-	else if(self.stub.b_enabled == 1 && self.stub.var_1dcdd471 == 0)
+	else if(self.stub.b_enabled == 1 && self.stub.b_in_use == 0)
 	{
 		self setHintString(&"ZM_STALINGRAD_MOUNTED_MG_ACTIVATE", self.stub.hint_parm1);
 		return 1;
 	}
-	else if(self.stub.b_enabled == 0 && self.stub.var_1dcdd471 == 0)
+	else if(self.stub.b_enabled == 0 && self.stub.b_in_use == 0)
 	{
 		self setHintString(&"ZM_STALINGRAD_MOUNTED_MG_COOLDOWN");
 		return 0;
@@ -123,7 +123,7 @@ function function_be759ad7()
 	{
 		e_who zm_audio::create_and_play_dialog("general", "transport_deny");
 	}
-	else if(self.stub.b_enabled && !self.stub.var_1dcdd471)
+	else if(self.stub.b_enabled && !self.stub.b_in_use)
 	{
 		e_who clientfield::increment_to_player("interact_rumble");
 		e_who zm_score::minus_to_player_score(1000);
@@ -143,7 +143,7 @@ function function_be759ad7()
 function function_f8b87a4e(e_player)
 {
 	var_8de107a = self.stub;
-	var_8de107a.var_1dcdd471 = 1;
+	var_8de107a.b_in_use = 1;
 	e_player thread namespace_dcf9c464::function_32f35525();
 	self.stub thread function_8e896de5(e_player);
 	level.var_ffcc580a turret::enable(0, 1);
@@ -158,7 +158,7 @@ function function_f8b87a4e(e_player)
 	level.var_ffcc580a ClearTurretTarget();
 	var_8de107a thread function_711e7f22();
 	wait(1);
-	var_8de107a.var_1dcdd471 = 0;
+	var_8de107a.b_in_use = 0;
 	level.var_ffcc580a.var_3a61625b = undefined;
 }
 
@@ -198,8 +198,8 @@ function function_711e7f22()
 	{
 		var_55acad81 = 1;
 	}
-	var_b6c00097 = var_55acad81 * 15;
-	wait(var_b6c00097);
+	n_cooldown = var_55acad81 * 15;
+	wait(n_cooldown);
 	self.b_enabled = 1;
 	level.var_ffcc580a clientfield::set("overheat_fx", 0);
 }

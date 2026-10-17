@@ -104,7 +104,7 @@ function main()
 	level._uses_retrievable_ballisitic_knives = 1;
 	level.register_offhand_weapons_for_level_defaults_override = &offhand_weapon_overrride;
 	level._zmbVoxLevelSpecific = &init_level_specific_audio;
-	level.customSpawnLogic = &function_91b06047;
+	level.customSpawnLogic = &asylum_player_spawn_logic;
 	level._round_start_func = &zm::round_start;
 	level.giveCustomCharacters = &giveCustomCharacters;
 	initCharacterStartIndex();
@@ -138,8 +138,8 @@ function main()
 	level flag::wait_till("start_zombie_round_logic");
 	level thread function_bb75f24a();
 	level thread master_electric_switch();
-	function_a552cd4a();
-	level.var_9aaae7ae = &function_869d6f66;
+	delete_mule_kick_clip();
+	level.zm_bgb_anywhere_but_here_validation_override = &anywhere_but_here_validation_override;
 	level thread zm_perks::spare_change();
 	namespace_1e5daa72::main_end();
 }
@@ -179,7 +179,7 @@ function customHudReveal()
 }
 
 /*
-	Name: function_869d6f66
+	Name: anywhere_but_here_validation_override
 	Namespace: namespace_f69b3b38
 	Checksum: 0x7A94062F
 	Offset: 0x1820
@@ -187,7 +187,7 @@ function customHudReveal()
 	Parameters: 0
 	Flags: None
 */
-function function_869d6f66()
+function anywhere_but_here_validation_override()
 {
 	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
 	{
@@ -452,30 +452,30 @@ function function_54da140a()
 		{
 			var_343b1937 = a_s_spots[i].script_int;
 		}
-		var_c15b2128 = [];
-		foreach(var_a0bd4da1 in level.zombie_spawners)
+		a_sp_zombies = [];
+		foreach(sp_zombie in level.zombie_spawners)
 		{
-			if(var_a0bd4da1.script_int == var_343b1937)
+			if(sp_zombie.script_int == var_343b1937)
 			{
-				if(!isdefined(var_c15b2128))
+				if(!isdefined(a_sp_zombies))
 				{
-					var_c15b2128 = [];
+					a_sp_zombies = [];
 				}
-				else if(!IsArray(var_c15b2128))
+				else if(!IsArray(a_sp_zombies))
 				{
-					var_c15b2128 = Array(var_c15b2128);
+					a_sp_zombies = Array(a_sp_zombies);
 				}
-				var_c15b2128[var_c15b2128.size] = var_a0bd4da1;
+				a_sp_zombies[a_sp_zombies.size] = sp_zombie;
 			}
 		}
-		if(var_c15b2128.size)
+		if(a_sp_zombies.size)
 		{
-			var_a0bd4da1 = Array::random(var_c15b2128);
-			return var_a0bd4da1;
+			sp_zombie = Array::random(a_sp_zombies);
+			return sp_zombie;
 		}
 	}
 	/#
-		Assert(isdefined(var_a0bd4da1), "Dev Block strings are not supported" + var_343b1937);
+		Assert(isdefined(sp_zombie), "Dev Block strings are not supported" + var_343b1937);
 	#/
 }
 
@@ -723,7 +723,7 @@ function init_lights()
 }
 
 /*
-	Name: function_91b06047
+	Name: asylum_player_spawn_logic
 	Namespace: namespace_f69b3b38
 	Checksum: 0x957076A6
 	Offset: 0x2E20
@@ -731,22 +731,22 @@ function init_lights()
 	Parameters: 1
 	Flags: None
 */
-function function_91b06047(predictedSpawn)
+function asylum_player_spawn_logic(predictedSpawn)
 {
-	if(!isdefined(level.var_df35cb81))
+	if(!isdefined(level.asylum_player_spawnpoints))
 	{
-		level.var_df35cb81 = function_da4025bc();
+		level.asylum_player_spawnpoints = get_asylum_player_spawnpoints();
 	}
 	/#
-		Assert(isdefined(level.var_df35cb81), "Dev Block strings are not supported");
+		Assert(isdefined(level.asylum_player_spawnpoints), "Dev Block strings are not supported");
 	#/
-	spawnpoint = function_290134d5(level.var_df35cb81, self);
+	spawnpoint = getportfreespawnpoint(level.asylum_player_spawnpoints, self);
 	self spawn(spawnpoint.origin, spawnpoint.angles, "zsurvival");
 	return spawnpoint;
 }
 
 /*
-	Name: function_290134d5
+	Name: getportfreespawnpoint
 	Namespace: namespace_f69b3b38
 	Checksum: 0x8261BC38
 	Offset: 0x2EE0
@@ -754,7 +754,7 @@ function function_91b06047(predictedSpawn)
 	Parameters: 2
 	Flags: None
 */
-function function_290134d5(Spawnpoints, player)
+function getportfreespawnpoint(Spawnpoints, player)
 {
 	if(!isdefined(self.playerNum))
 	{
@@ -780,7 +780,7 @@ function function_290134d5(Spawnpoints, player)
 }
 
 /*
-	Name: function_da4025bc
+	Name: get_asylum_player_spawnpoints
 	Namespace: namespace_f69b3b38
 	Checksum: 0xA845A7A5
 	Offset: 0x3018
@@ -788,42 +788,42 @@ function function_290134d5(Spawnpoints, player)
 	Parameters: 0
 	Flags: None
 */
-function function_da4025bc()
+function get_asylum_player_spawnpoints()
 {
-	var_7eacef00 = [];
-	var_95bba386 = [];
+	north_spawn_spots = [];
+	south_spawn_spots = [];
 	north_structs = struct::get_array("north_spawn", "script_noteworthy");
 	south_structs = struct::get_array("south_spawn", "script_noteworthy");
 	for(i = 0; i < 2; i++)
 	{
-		if(!isdefined(var_7eacef00))
+		if(!isdefined(north_spawn_spots))
 		{
-			var_7eacef00 = [];
+			north_spawn_spots = [];
 		}
-		else if(!IsArray(var_7eacef00))
+		else if(!IsArray(north_spawn_spots))
 		{
-			var_7eacef00 = Array(var_7eacef00);
+			north_spawn_spots = Array(north_spawn_spots);
 		}
-		var_7eacef00[var_7eacef00.size] = north_structs[i];
+		north_spawn_spots[north_spawn_spots.size] = north_structs[i];
 	}
 	for(j = 0; j < 2; j++)
 	{
-		if(!isdefined(var_95bba386))
+		if(!isdefined(south_spawn_spots))
 		{
-			var_95bba386 = [];
+			south_spawn_spots = [];
 		}
-		else if(!IsArray(var_95bba386))
+		else if(!IsArray(south_spawn_spots))
 		{
-			var_95bba386 = Array(var_95bba386);
+			south_spawn_spots = Array(south_spawn_spots);
 		}
-		var_95bba386[var_95bba386.size] = south_structs[j];
+		south_spawn_spots[south_spawn_spots.size] = south_structs[j];
 	}
-	side1 = var_7eacef00;
-	side2 = var_95bba386;
+	side1 = north_spawn_spots;
+	side2 = south_spawn_spots;
 	if(RandomInt(100) > 50)
 	{
-		side1 = var_95bba386;
-		side2 = var_7eacef00;
+		side1 = south_spawn_spots;
+		side2 = north_spawn_spots;
 	}
 	Spawnpoints = ArrayCombine(side1, side2, 0, 0);
 	for(i = 0; i < Spawnpoints.size; i++)
@@ -869,7 +869,7 @@ function disable_bump_trigger(triggername)
 function master_electric_switch()
 {
 	trig = GetEnt("use_master_switch", "targetname");
-	var_cf413835 = struct::get("power_switch", "targetname");
+	s_power_switch = struct::get("power_switch", "targetname");
 	trig setHintString(&"ZOMBIE_ELECTRIC_SWITCH");
 	trig setcursorhint("HINT_NOICON");
 	fx_org = spawn("script_model", (-674.922, -300.473, 284.125));
@@ -888,7 +888,7 @@ function master_electric_switch()
 	{
 		trig waittill("trigger", User);
 	}
-	playsoundatposition("zmb_switch_flip", var_cf413835.origin);
+	playsoundatposition("zmb_switch_flip", s_power_switch.origin);
 	zm_power::turn_power_on_and_open_doors();
 	level notify("switch_flipped");
 	disable_bump_trigger("switch_door_trig");
@@ -903,7 +903,7 @@ function master_electric_switch()
 		traps[i] setcursorhint("HINT_NOICON");
 		traps[i].is_available = 1;
 	}
-	var_cf413835 scene::Play("p7_fxanim_zmhd_power_switch_bundle");
+	s_power_switch scene::Play("p7_fxanim_zmhd_power_switch_bundle");
 	playFX(level._effect["switch_sparks"], struct::get("switch_fx", "targetname").origin);
 	level notify("master_switch_activated");
 	fx_org delete();
@@ -1328,7 +1328,7 @@ function init_level_specific_audio()
 }
 
 /*
-	Name: function_a552cd4a
+	Name: delete_mule_kick_clip
 	Namespace: namespace_f69b3b38
 	Checksum: 0x547C0750
 	Offset: 0x48C8
@@ -1336,7 +1336,7 @@ function init_level_specific_audio()
 	Parameters: 0
 	Flags: None
 */
-function function_a552cd4a()
+function delete_mule_kick_clip()
 {
 	perk_machines = GetEntArray("zombie_vending", "targetname");
 	foreach(perk_machine in perk_machines)
@@ -1382,13 +1382,13 @@ function function_aeabaa98(zbarrier)
 		for(i = 0; i < self.zbarrier.dynents.size; i++)
 		{
 			self.zbarrier HideZBarrierPiece(self.zbarrier.dynents[i].script_int);
-			self.zbarrier.dynents[i] thread function_ee8a2035(self.zbarrier.dynents[i].script_int, self.zbarrier);
+			self.zbarrier.dynents[i] thread wait_on_teardown(self.zbarrier.dynents[i].script_int, self.zbarrier);
 		}
 	}
 }
 
 /*
-	Name: function_ee8a2035
+	Name: wait_on_teardown
 	Namespace: namespace_f69b3b38
 	Checksum: 0xFE0F4D9C
 	Offset: 0x4BB8
@@ -1396,10 +1396,10 @@ function function_aeabaa98(zbarrier)
 	Parameters: 2
 	Flags: None
 */
-function function_ee8a2035(piece_index, zbarrier)
+function wait_on_teardown(piece_index, zbarrier)
 {
 	self endon("damage");
-	for(var_31410ef7 = "closed"; var_31410ef7 != "open" && var_31410ef7 != "opening";  = "closed")
+	for(piece_state = "closed"; piece_state != "open" && piece_state != "opening";  = "closed")
 	{
 		wait(0.05);
 	}
@@ -1431,7 +1431,7 @@ function function_ee422b5c(chunk)
 		if(isdefined(self.first_node.zbarrier.dynents[chunk].script_noteworthy))
 		{
 			animStateBase = self.first_node.zbarrier.dynents[chunk].script_noteworthy;
-			self.first_node.zbarrier.var_48c7593a = 1;
+			self.first_node.zbarrier.custom_start_models = 1;
 		}
 		else
 		{
@@ -1528,7 +1528,7 @@ function function_bb75f24a()
 function function_db379af2()
 {
 	level endon("hash_137fb152");
-	self.var_46907f23 = 0;
+	self.n_current_count = 0;
 	self.activated = 0;
 	if(isdefined(self.script_noteworthy) && self.script_noteworthy == "toilet3")
 	{
@@ -1539,17 +1539,17 @@ function function_db379af2()
 	while(1)
 	{
 		self waittill("trigger_activated");
-		self.var_46907f23++;
-		if(self.var_46907f23 > 9)
+		self.n_current_count++;
+		if(self.n_current_count > 9)
 		{
 			playsoundatposition("zmb_zhd_toilet_flusheroo", self.origin);
-			self.var_46907f23 = 0;
+			self.n_current_count = 0;
 		}
 		else
 		{
 			playsoundatposition("zmb_zhd_toilet_hit", self.origin);
 		}
-		if(self.var_46907f23 == self.script_int)
+		if(self.n_current_count == self.script_int)
 		{
 			self.activated = 1;
 			level.var_a3dcfd4f++;
@@ -1610,9 +1610,9 @@ function function_fa408417()
 		{
 			if(isdefined(struct.script_noteworthy) && struct.script_noteworthy == "toilet3")
 			{
-				if(struct.var_46907f23 > 0 && level.var_a3dcfd4f <= 1)
+				if(struct.n_current_count > 0 && level.var_a3dcfd4f <= 1)
 				{
-					struct.var_46907f23 = 0;
+					struct.n_current_count = 0;
 					playsoundatposition("zmb_zhd_toilet_flusheroo", struct.origin);
 				}
 				if(isdefined(struct.activated) && struct.activated && level.var_a3dcfd4f <= 2)

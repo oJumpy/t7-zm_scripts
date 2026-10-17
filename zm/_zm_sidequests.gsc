@@ -129,7 +129,7 @@ function damage_trigger_thread()
 }
 
 /*
-	Name: function_e4084aab
+	Name: entity_damage_thread
 	Namespace: zm_sidequests
 	Checksum: 0xF6762281
 	Offset: 0x4F0
@@ -137,7 +137,7 @@ function damage_trigger_thread()
 	Parameters: 0
 	Flags: None
 */
-function function_e4084aab()
+function entity_damage_thread()
 {
 	self endon("death");
 	while(1)
@@ -186,14 +186,14 @@ function register_sidequest_icon(icon_name, version_number)
 	Parameters: 3
 	Flags: None
 */
-function add_sidequest_icon(sidequest_name, icon_name, var_275b4f28)
+function add_sidequest_icon(sidequest_name, icon_name, show_notification)
 {
-	if(!isdefined(var_275b4f28))
+	if(!isdefined(show_notification))
 	{
-		var_275b4f28 = 1;
+		show_notification = 1;
 	}
 	clientfield::set_player_uimodel("sidequestIcons." + icon_name + ".icon", 1);
-	if(isdefined(var_275b4f28) && var_275b4f28)
+	if(isdefined(show_notification) && show_notification)
 	{
 		clientfield::set_player_uimodel("sidequestIcons." + icon_name + ".notification", 1);
 	}

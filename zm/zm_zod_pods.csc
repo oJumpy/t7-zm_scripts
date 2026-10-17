@@ -42,7 +42,7 @@ function __init__()
 	clientfield::register("scriptmover", "update_fungus_pod_level", 1, 3, "int", &function_69377ddc, 0, 0);
 	clientfield::register("scriptmover", "pod_sprayer_glint", 1, 1, "int", &function_7b94eca8, 0, 0);
 	clientfield::register("scriptmover", "pod_miasma", 1, 1, "counter", &function_59408649, 0, 0);
-	clientfield::register("scriptmover", "pod_harvest", 1, 1, "counter", &function_1d1d005f, 0, 0);
+	clientfield::register("scriptmover", "pod_harvest", 1, 1, "counter", &play_harvested_fx, 0, 0);
 	clientfield::register("scriptmover", "pod_self_destruct", 1, 1, "counter", &function_8144ccdc, 0, 0);
 	clientfield::register("toplayer", "pod_sprayer_held", 1, 1, "int", &zm_utility::setInventoryUIModels, 0, 1);
 	clientfield::register("toplayer", "pod_sprayer_hint_range", 1, 1, "int", &zm_utility::setInventoryUIModels, 0, 0);
@@ -65,72 +65,72 @@ function __init__()
 */
 function function_69377ddc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	if(isdefined(self.var_aa0684b4))
+	if(isdefined(self.ambient_fx))
 	{
-		stopfx(localClientNum, self.var_aa0684b4);
+		stopfx(localClientNum, self.ambient_fx);
 		self StopAllLoopSounds();
 	}
-	if(!isdefined(level.var_63c365e9))
+	if(!isdefined(level.mdl_pods))
 	{
-		level.var_63c365e9 = [];
+		level.mdl_pods = [];
 	}
-	if(!isdefined(level.var_63c365e9[localClientNum]))
+	if(!isdefined(level.mdl_pods[localClientNum]))
 	{
-		level.var_63c365e9[localClientNum] = [];
+		level.mdl_pods[localClientNum] = [];
 	}
-	if(!isdefined(level.var_63c365e9[localClientNum][self GetEntityNumber()]))
+	if(!isdefined(level.mdl_pods[localClientNum][self GetEntityNumber()]))
 	{
-		level.var_63c365e9[localClientNum][self GetEntityNumber()] = util::spawn_model(localClientNum, "p7_fxanim_zm_zod_fungus_pod_base_mod", self.origin, self.angles);
+		level.mdl_pods[localClientNum][self GetEntityNumber()] = util::spawn_model(localClientNum, "p7_fxanim_zm_zod_fungus_pod_base_mod", self.origin, self.angles);
 	}
-	var_165d49f6 = level.var_63c365e9[localClientNum][self GetEntityNumber()];
-	if(IsDemoPlaying() && function_c8c0455e(localClientNum) < 100)
+	mdl_pod = level.mdl_pods[localClientNum][self GetEntityNumber()];
+	if(IsDemoPlaying() && getnumfreeentities(localClientNum) < 100)
 	{
-		var_2a6bebf9 = function_c8c0455e(localClientNum);
-		if(!isdefined(self.var_8486ae6a))
+		numfree = getnumfreeentities(localClientNum);
+		if(!isdefined(self.n_pod_level))
 		{
-			self.var_8486ae6a = 1;
+			self.n_pod_level = 1;
 		}
 		return;
 	}
-	if(!isdefined(self.var_8486ae6a))
+	if(!isdefined(self.n_pod_level))
 	{
-		self.var_8486ae6a = 1;
+		self.n_pod_level = 1;
 	}
 	switch(newVal)
 	{
 		case 0:
 		case 4:
 		{
-			self thread function_406fdb8("p7_fxanim_zm_zod_fungus_pod_stage" + self.var_8486ae6a + "_death_bundle", var_165d49f6);
-			self.var_8486ae6a = 0;
+			self thread scene_play("p7_fxanim_zm_zod_fungus_pod_stage" + self.n_pod_level + "_death_bundle", mdl_pod);
+			self.n_pod_level = 0;
 			break;
 		}
 		case 1:
 		{
-			self thread function_406fdb8("p7_fxanim_zm_zod_fungus_pod_stage1_bundle", var_165d49f6);
-			self.var_aa0684b4 = playFX(localClientNum, "zombie/fx_fungus_pod_ambient_sm_zod_zmb", self.origin);
-			self.var_8486ae6a = newVal;
+			self thread scene_play("p7_fxanim_zm_zod_fungus_pod_stage1_bundle", mdl_pod);
+			self.ambient_fx = playFX(localClientNum, "zombie/fx_fungus_pod_ambient_sm_zod_zmb", self.origin);
+			self.n_pod_level = newVal;
 			break;
 		}
 		case 2:
 		{
-			self thread function_406fdb8("p7_fxanim_zm_zod_fungus_pod_stage2_bundle", var_165d49f6);
-			self.var_aa0684b4 = playFX(localClientNum, "zombie/fx_fungus_pod_ambient_md_zod_zmb", self.origin);
-			self.var_8486ae6a = newVal;
+			self thread scene_play("p7_fxanim_zm_zod_fungus_pod_stage2_bundle", mdl_pod);
+			self.ambient_fx = playFX(localClientNum, "zombie/fx_fungus_pod_ambient_md_zod_zmb", self.origin);
+			self.n_pod_level = newVal;
 			break;
 		}
 		case 3:
 		{
-			self thread function_406fdb8("p7_fxanim_zm_zod_fungus_pod_stage3_bundle", var_165d49f6);
-			self.var_aa0684b4 = playFX(localClientNum, "zombie/fx_fungus_pod_ambient_lg_zod_zmb", self.origin);
-			self.var_8486ae6a = newVal;
+			self thread scene_play("p7_fxanim_zm_zod_fungus_pod_stage3_bundle", mdl_pod);
+			self.ambient_fx = playFX(localClientNum, "zombie/fx_fungus_pod_ambient_lg_zod_zmb", self.origin);
+			self.n_pod_level = newVal;
 			break;
 		}
 	}
 }
 
 /*
-	Name: function_406fdb8
+	Name: scene_play
 	Namespace: namespace_81256d2f
 	Checksum: 0x9C398AC2
 	Offset: 0xCA0
@@ -138,12 +138,12 @@ function function_69377ddc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_406fdb8(scene, var_165d49f6)
+function scene_play(scene, mdl_pod)
 {
-	self notify("hash_406fdb8");
-	self endon("hash_406fdb8");
+	self notify("scene_play");
+	self endon("scene_play");
 	self scene::stop();
-	self function_6221b6b9(scene, var_165d49f6);
+	self function_6221b6b9(scene, mdl_pod);
 	self scene::stop();
 }
 
@@ -156,14 +156,14 @@ function function_406fdb8(scene, var_165d49f6)
 	Parameters: 2
 	Flags: None
 */
-function function_6221b6b9(scene, var_165d49f6)
+function function_6221b6b9(scene, mdl_pod)
 {
 	level endon("demo_jump");
-	self scene::Play(scene, var_165d49f6);
+	self scene::Play(scene, mdl_pod);
 }
 
 /*
-	Name: function_1d1d005f
+	Name: play_harvested_fx
 	Namespace: namespace_81256d2f
 	Checksum: 0x4C45E64C
 	Offset: 0xD70
@@ -171,7 +171,7 @@ function function_6221b6b9(scene, var_165d49f6)
 	Parameters: 7
 	Flags: None
 */
-function function_1d1d005f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_harvested_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal === 0)
 	{
@@ -179,12 +179,12 @@ function function_1d1d005f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	v_origin = self.origin;
 	v_angles = AnglesToForward(self.angles);
-	var_8486ae6a = self.var_8486ae6a;
-	if(isdefined(self.var_aa0684b4))
+	n_pod_level = self.n_pod_level;
+	if(isdefined(self.ambient_fx))
 	{
-		stopfx(localClientNum, self.var_aa0684b4);
+		stopfx(localClientNum, self.ambient_fx);
 	}
-	switch(var_8486ae6a)
+	switch(n_pod_level)
 	{
 		case 1:
 		{

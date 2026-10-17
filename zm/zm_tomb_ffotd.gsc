@@ -99,7 +99,7 @@ function spawned_collision_ffotd()
 */
 function function_acf1c4da(machine)
 {
-	if(isdefined(level.bgb[machine.var_b287be]) && level.bgb[machine.var_b287be].var_c9e64d65 == "activated")
+	if(isdefined(level.bgb[machine.selected_bgb]) && level.bgb[machine.selected_bgb].limit_type == "activated")
 	{
 		if(self.characterindex == 0)
 		{

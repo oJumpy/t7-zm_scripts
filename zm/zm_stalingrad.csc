@@ -177,7 +177,7 @@ function register_clientfields()
 	clientfield::register("scriptmover", "drop_pod_active", 12000, 1, "int", &namespace_b57650e4::function_5858bdaf, 0, 0);
 	clientfield::register("scriptmover", "drop_pod_hp_light", 12000, 2, "int", &namespace_b57650e4::function_5e369bd2, 0, 0);
 	clientfield::register("world", "drop_pod_streaming", 12000, 1, "int", &namespace_b57650e4::function_7a72544b, 0, 0);
-	clientfield::register("toplayer", "tp_water_sheeting", 12000, 1, "int", &function_6be6da89, 0, 0);
+	clientfield::register("toplayer", "tp_water_sheeting", 12000, 1, "int", &water_sheeting_toggle, 0, 0);
 	clientfield::register("toplayer", "sewer_landing_rumble", 12000, 1, "counter", &function_931fa0e1, 0, 0);
 	clientfield::register("scriptmover", "dragon_egg_heat_fx", 12000, 1, "int", &function_3931d3fe, 0, 0);
 	clientfield::register("scriptmover", "dragon_egg_placed", 12000, 1, "counter", &function_4b1f1b87, 0, 0);
@@ -371,15 +371,15 @@ function function_3a429aee()
 */
 function function_38b57afd()
 {
-	var_beffc54 = struct::get_array("ambient_fxanim", "targetname");
+	a_s_ambient_fxanims = struct::get_array("ambient_fxanim", "targetname");
 	if(GetDvarInt("splitscreen_playerCount") >= 2)
 	{
-		foreach(s_fxanim in var_beffc54)
+		foreach(s_fxanim in a_s_ambient_fxanims)
 		{
 			struct::delete();
 		}
-		var_1bbd14fd = function_de7504ea("ambient_siege_anim");
-		foreach(n_model_index in var_1bbd14fd)
+		a_n_model_indices = findstaticmodelindexarray("ambient_siege_anim");
+		foreach(n_model_index in a_n_model_indices)
 		{
 			HideStaticModel(n_model_index);
 		}
@@ -391,7 +391,7 @@ function function_38b57afd()
 }
 
 /*
-	Name: function_6be6da89
+	Name: water_sheeting_toggle
 	Namespace: namespace_320a344e
 	Checksum: 0x9400E8C7
 	Offset: 0x3988
@@ -399,11 +399,11 @@ function function_38b57afd()
 	Parameters: 7
 	Flags: None
 */
-function function_6be6da89(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function water_sheeting_toggle(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
-		function_6c7d1149(localClientNum, 1);
+		startwatersheetingfx(localClientNum, 1);
 		playsound(localClientNum, "zmb_stalingrad_sewer_water_travel_start");
 		self.var_5962d89c = self PlayLoopSound("zmb_stalingrad_sewer_water_travel_lp", 0.3);
 		var_11eaf469 = GetEntArray(0, "sewer_ride_end", "targetname");
@@ -414,7 +414,7 @@ function function_6be6da89(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		function_d92493fb(localClientNum, 0);
+		stopwatersheetingfx(localClientNum, 0);
 		self StopLoopSound(self.var_5962d89c);
 		self notify("hash_e7cca3ce");
 	}
@@ -488,10 +488,10 @@ function function_4b1f1b87(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_bfdc67e3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_42bd22b8 = level.var_48c1095e[localClientNum];
-	var_3929e8a2 = util::spawn_model(localClientNum, "tag_origin", var_42bd22b8.origin + VectorScale((0, 0, 1), 50));
-	var_e43465f2 = util::spawn_model(localClientNum, "tag_origin", self GetTagOrigin("j_spine4"), self GetTagAngles("j_spine4"));
-	var_e43465f2 thread function_10e7e603(var_3929e8a2);
+	e_egg = level.var_48c1095e[localClientNum];
+	mdl_target = util::spawn_model(localClientNum, "tag_origin", e_egg.origin + VectorScale((0, 0, 1), 50));
+	mdl_source = util::spawn_model(localClientNum, "tag_origin", self GetTagOrigin("j_spine4"), self GetTagAngles("j_spine4"));
+	mdl_source thread function_10e7e603(mdl_target);
 }
 
 /*
@@ -503,14 +503,14 @@ function function_bfdc67e3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_10e7e603(var_3929e8a2)
+function function_10e7e603(mdl_target)
 {
-	level beam::launch(self, "tag_origin", var_3929e8a2, "tag_origin", "electric_arc_zombie_to_drop_pod");
-	var_3929e8a2 playsound(0, "zmb_pod_electrocute");
+	level beam::launch(self, "tag_origin", mdl_target, "tag_origin", "electric_arc_zombie_to_drop_pod");
+	mdl_target playsound(0, "zmb_pod_electrocute");
 	wait(0.2);
 	self playsound(0, "zmb_pod_electrocute_zmb");
-	level beam::kill(self, "tag_origin", var_3929e8a2, "tag_origin", "electric_arc_zombie_to_drop_pod");
-	var_3929e8a2 delete();
+	level beam::kill(self, "tag_origin", mdl_target, "tag_origin", "electric_arc_zombie_to_drop_pod");
+	mdl_target delete();
 	self delete();
 }
 
@@ -603,7 +603,7 @@ function function_21deab84(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		level notify("hash_deeb3634");
 		wait(0.5);
 		var_1c7b6837 RotateTo((0, 0, 0), 0.2);
-		level waittill("hash_7dde7b99");
+		level waittill("outro_done");
 		var_1c7b6837 delete();
 	}
 }

@@ -1995,14 +1995,14 @@ function init_button_wrappers()
 	/#
 		if(!isdefined(level._button_funcs))
 		{
-			level._button_funcs[4] = &function_5298bc32;
-			level._button_funcs[5] = &function_95f33d4f;
+			level._button_funcs[4] = &up_button_pressed;
+			level._button_funcs[5] = &down_button_pressed;
 		}
 	#/
 }
 
 /*
-	Name: function_d286c26d
+	Name: up_button_held
 	Namespace: util
 	Checksum: 0x28F1A770
 	Offset: 0x3A48
@@ -2010,21 +2010,21 @@ function init_button_wrappers()
 	Parameters: 0
 	Flags: None
 */
-function function_d286c26d()
+function up_button_held()
 {
 	/#
 		init_button_wrappers();
-		if(!isdefined(self.var_8ea437f9))
+		if(!isdefined(self._up_button_think_threaded))
 		{
 			self thread button_held_think(4);
-			self.var_8ea437f9 = 1;
+			self._up_button_think_threaded = 1;
 		}
 		return self._holding_button[4];
 	#/
 }
 
 /*
-	Name: function_1adfa50a
+	Name: down_button_held
 	Namespace: util
 	Checksum: 0xCE566DF5
 	Offset: 0x3AB0
@@ -2032,21 +2032,21 @@ function function_d286c26d()
 	Parameters: 0
 	Flags: None
 */
-function function_1adfa50a()
+function down_button_held()
 {
 	/#
 		init_button_wrappers();
-		if(!isdefined(self.var_2aff266a))
+		if(!isdefined(self._down_button_think_threaded))
 		{
 			self thread button_held_think(5);
-			self.var_2aff266a = 1;
+			self._down_button_think_threaded = 1;
 		}
 		return self._holding_button[5];
 	#/
 }
 
 /*
-	Name: function_5298bc32
+	Name: up_button_pressed
 	Namespace: util
 	Checksum: 0xA274F376
 	Offset: 0x3B18
@@ -2054,7 +2054,7 @@ function function_1adfa50a()
 	Parameters: 0
 	Flags: None
 */
-function function_5298bc32()
+function up_button_pressed()
 {
 	/#
 		return self buttonpressed("Dev Block strings are not supported") || self buttonpressed("Dev Block strings are not supported");
@@ -2062,7 +2062,7 @@ function function_5298bc32()
 }
 
 /*
-	Name: function_e0163a6f
+	Name: waittill_up_button_pressed
 	Namespace: util
 	Checksum: 0xC77FF59
 	Offset: 0x3B68
@@ -2070,10 +2070,10 @@ function function_5298bc32()
 	Parameters: 0
 	Flags: None
 */
-function function_e0163a6f()
+function waittill_up_button_pressed()
 {
 	/#
-		while(!self function_5298bc32())
+		while(!self up_button_pressed())
 		{
 			wait(0.05);
 		}
@@ -2081,7 +2081,7 @@ function function_e0163a6f()
 }
 
 /*
-	Name: function_95f33d4f
+	Name: down_button_pressed
 	Namespace: util
 	Checksum: 0xB61215B3
 	Offset: 0x3BA0
@@ -2089,7 +2089,7 @@ function function_e0163a6f()
 	Parameters: 0
 	Flags: None
 */
-function function_95f33d4f()
+function down_button_pressed()
 {
 	/#
 		return self buttonpressed("Dev Block strings are not supported") || self buttonpressed("Dev Block strings are not supported");
@@ -2097,7 +2097,7 @@ function function_95f33d4f()
 }
 
 /*
-	Name: function_d9a6f8a6
+	Name: waittill_down_button_pressed
 	Namespace: util
 	Checksum: 0xE3221DD8
 	Offset: 0x3BF0
@@ -2105,10 +2105,10 @@ function function_95f33d4f()
 	Parameters: 0
 	Flags: None
 */
-function function_d9a6f8a6()
+function waittill_down_button_pressed()
 {
 	/#
-		while(!self function_95f33d4f())
+		while(!self down_button_pressed())
 		{
 			wait(0.05);
 		}

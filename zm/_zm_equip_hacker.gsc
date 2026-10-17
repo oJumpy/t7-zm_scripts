@@ -41,7 +41,7 @@ function __init__()
 	level._hackable_objects = [];
 	level._pooled_hackable_objects = [];
 	callback::on_connect(&hacker_on_player_connect);
-	callback::on_spawned(&function_fa12cef4);
+	callback::on_spawned(&hacker_on_player_spawned);
 	level thread hack_trigger_think();
 	level thread hacker_trigger_pool_think();
 	level thread hacker_round_reward();
@@ -49,7 +49,7 @@ function __init__()
 	{
 		level thread hacker_debug();
 	}
-	level.var_bbd4901d = GetWeapon("equip_hacker");
+	level.w_hacker = GetWeapon("equip_hacker");
 }
 
 /*
@@ -68,7 +68,7 @@ function __main__()
 }
 
 /*
-	Name: function_fa12cef4
+	Name: hacker_on_player_spawned
 	Namespace: namespace_6d813654
 	Checksum: 0x71E35195
 	Offset: 0x548
@@ -76,7 +76,7 @@ function __main__()
 	Parameters: 0
 	Flags: None
 */
-function function_fa12cef4()
+function hacker_on_player_spawned()
 {
 	self thread function_b743c597();
 	self thread function_778301bd();
@@ -101,11 +101,11 @@ function hacker_round_reward()
 			players = GetPlayers();
 			for(i = 0; i < players.size; i++)
 			{
-				if(isdefined(players[i] zm_equipment::get_player_equipment()) && players[i] zm_equipment::get_player_equipment() == level.var_bbd4901d)
+				if(isdefined(players[i] zm_equipment::get_player_equipment()) && players[i] zm_equipment::get_player_equipment() == level.w_hacker)
 				{
-					if(isdefined(players[i].equipment_got_in_round[level.var_bbd4901d]))
+					if(isdefined(players[i].equipment_got_in_round[level.w_hacker]))
 					{
-						got_in_round = players[i].equipment_got_in_round[level.var_bbd4901d];
+						got_in_round = players[i].equipment_got_in_round[level.w_hacker];
 						rounds_kept = level.round_number - got_in_round;
 						rounds_kept = rounds_kept - 1;
 						if(rounds_kept > 0)
@@ -1057,7 +1057,7 @@ function function_b743c597()
 	while(1)
 	{
 		self waittill("player_given", equipment);
-		if(equipment == level.var_bbd4901d)
+		if(equipment == level.w_hacker)
 		{
 			self clientfield::set_player_uimodel("hudItems.showDpadDown_HackTool", 1);
 		}
@@ -1080,7 +1080,7 @@ function function_778301bd()
 	self endon("disconnect");
 	while(1)
 	{
-		self waittill("hash_e15d5390");
+		self waittill("equip_hacker_taken");
 		self clientfield::set_player_uimodel("hudItems.showDpadDown_HackTool", 0);
 	}
 }

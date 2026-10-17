@@ -3023,14 +3023,14 @@ function init_button_wrappers()
 		level._button_funcs[1] = &StanceButtonPressed;
 		level._button_funcs[6] = &ActionSlotFourButtonPressed;
 		/#
-			level._button_funcs[4] = &function_5298bc32;
-			level._button_funcs[5] = &function_95f33d4f;
+			level._button_funcs[4] = &up_button_pressed;
+			level._button_funcs[5] = &down_button_pressed;
 		#/
 	}
 }
 
 /*
-	Name: function_d286c26d
+	Name: up_button_held
 	Namespace: util
 	Checksum: 0x9770C448
 	Offset: 0x5BA0
@@ -3038,21 +3038,21 @@ function init_button_wrappers()
 	Parameters: 0
 	Flags: None
 */
-function function_d286c26d()
+function up_button_held()
 {
 	/#
 		init_button_wrappers();
-		if(!isdefined(self.var_8ea437f9))
+		if(!isdefined(self._up_button_think_threaded))
 		{
 			self thread button_held_think(4);
-			self.var_8ea437f9 = 1;
+			self._up_button_think_threaded = 1;
 		}
 		return self._holding_button[4];
 	#/
 }
 
 /*
-	Name: function_1adfa50a
+	Name: down_button_held
 	Namespace: util
 	Checksum: 0x193B944
 	Offset: 0x5C08
@@ -3060,21 +3060,21 @@ function function_d286c26d()
 	Parameters: 0
 	Flags: None
 */
-function function_1adfa50a()
+function down_button_held()
 {
 	/#
 		init_button_wrappers();
-		if(!isdefined(self.var_2aff266a))
+		if(!isdefined(self._down_button_think_threaded))
 		{
 			self thread button_held_think(5);
-			self.var_2aff266a = 1;
+			self._down_button_think_threaded = 1;
 		}
 		return self._holding_button[5];
 	#/
 }
 
 /*
-	Name: function_5298bc32
+	Name: up_button_pressed
 	Namespace: util
 	Checksum: 0x209F1AC9
 	Offset: 0x5C70
@@ -3082,7 +3082,7 @@ function function_1adfa50a()
 	Parameters: 0
 	Flags: None
 */
-function function_5298bc32()
+function up_button_pressed()
 {
 	/#
 		return self buttonpressed("Dev Block strings are not supported") || self buttonpressed("Dev Block strings are not supported");
@@ -3090,7 +3090,7 @@ function function_5298bc32()
 }
 
 /*
-	Name: function_e0163a6f
+	Name: waittill_up_button_pressed
 	Namespace: util
 	Checksum: 0xDA85DA42
 	Offset: 0x5CC0
@@ -3098,10 +3098,10 @@ function function_5298bc32()
 	Parameters: 0
 	Flags: None
 */
-function function_e0163a6f()
+function waittill_up_button_pressed()
 {
 	/#
-		while(!self function_5298bc32())
+		while(!self up_button_pressed())
 		{
 			wait(0.05);
 		}
@@ -3109,7 +3109,7 @@ function function_e0163a6f()
 }
 
 /*
-	Name: function_95f33d4f
+	Name: down_button_pressed
 	Namespace: util
 	Checksum: 0x29ECBE16
 	Offset: 0x5CF8
@@ -3117,7 +3117,7 @@ function function_e0163a6f()
 	Parameters: 0
 	Flags: None
 */
-function function_95f33d4f()
+function down_button_pressed()
 {
 	/#
 		return self buttonpressed("Dev Block strings are not supported") || self buttonpressed("Dev Block strings are not supported");
@@ -3125,7 +3125,7 @@ function function_95f33d4f()
 }
 
 /*
-	Name: function_d9a6f8a6
+	Name: waittill_down_button_pressed
 	Namespace: util
 	Checksum: 0xA37ED3DF
 	Offset: 0x5D48
@@ -3133,10 +3133,10 @@ function function_95f33d4f()
 	Parameters: 0
 	Flags: None
 */
-function function_d9a6f8a6()
+function waittill_down_button_pressed()
 {
 	/#
-		while(!self function_95f33d4f())
+		while(!self down_button_pressed())
 		{
 			wait(0.05);
 		}
@@ -5154,7 +5154,7 @@ function is_new_cp_map()
 }
 
 /*
-	Name: function_316771cc
+	Name: add_queued_debug_command
 	Namespace: util
 	Checksum: 0x7032DF76
 	Offset: 0x9C08
@@ -5162,22 +5162,22 @@ function is_new_cp_map()
 	Parameters: 1
 	Flags: None
 */
-function function_316771cc(cmd)
+function add_queued_debug_command(cmd)
 {
 	/#
-		if(!isdefined(level.var_dee0e693))
+		if(!isdefined(level.dbg_cmd_queue))
 		{
-			level thread function_82af066f();
+			level thread queued_debug_commands();
 		}
-		if(isdefined(level.var_dee0e693))
+		if(isdefined(level.dbg_cmd_queue))
 		{
-			Array::push(level.var_dee0e693, cmd, 0);
+			Array::push(level.dbg_cmd_queue, cmd, 0);
 		}
 	#/
 }
 
 /*
-	Name: function_82af066f
+	Name: queued_debug_commands
 	Namespace: util
 	Checksum: 0x68553086
 	Offset: 0x9C70
@@ -5185,24 +5185,24 @@ function function_316771cc(cmd)
 	Parameters: 0
 	Flags: None
 */
-function function_82af066f()
+function queued_debug_commands()
 {
 	/#
-		self notify("hash_82af066f");
-		self endon("hash_82af066f");
-		if(!isdefined(level.var_dee0e693))
+		self notify("queued_debug_commands");
+		self endon("queued_debug_commands");
+		if(!isdefined(level.dbg_cmd_queue))
 		{
-			level.var_dee0e693 = [];
+			level.dbg_cmd_queue = [];
 		}
 		while(1)
 		{
 			wait(0.05);
-			if(level.var_dee0e693.size == 0)
+			if(level.dbg_cmd_queue.size == 0)
 			{
-				level.var_dee0e693 = undefined;
+				level.dbg_cmd_queue = undefined;
 				return;
 			}
-			cmd = Array::pop_front(level.var_dee0e693, 0);
+			cmd = Array::pop_front(level.dbg_cmd_queue, 0);
 			AddDebugCommand(cmd);
 		}
 	#/
@@ -5716,7 +5716,7 @@ function GetPlaySpaceMaxWidth()
 }
 
 /*
-	Name: function_e2ac06bb
+	Name: add_devgui
 	Namespace: util
 	Checksum: 0xE2C4A529
 	Offset: 0xAAC8
@@ -5724,13 +5724,13 @@ function GetPlaySpaceMaxWidth()
 	Parameters: 2
 	Flags: None
 */
-function function_e2ac06bb(var_ce7e654a, commands)
+function add_devgui(menu_path, commands)
 {
-	AddDebugCommand("devgui_cmd "" + var_ce7e654a + "" "" + commands + "" ");
+	AddDebugCommand("devgui_cmd "" + menu_path + "" "" + commands + "" ");
 }
 
 /*
-	Name: function_181cbd1a
+	Name: remove_devgui
 	Namespace: util
 	Checksum: 0x842121EC
 	Offset: 0xAB20
@@ -5738,9 +5738,9 @@ function function_e2ac06bb(var_ce7e654a, commands)
 	Parameters: 1
 	Flags: None
 */
-function function_181cbd1a(var_ce7e654a)
+function remove_devgui(menu_path)
 {
-	AddDebugCommand("devgui_remove "" + var_ce7e654a + "" ");
+	AddDebugCommand("devgui_remove "" + menu_path + "" ");
 }
 
 /*
@@ -5773,7 +5773,7 @@ function function_ad904acd()
 {
 	if(GetDvarInt("live_enableCounters", 0))
 	{
-		function_3a323142();
+		forceuploadcounters();
 	}
 }
 

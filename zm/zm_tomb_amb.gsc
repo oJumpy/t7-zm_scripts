@@ -528,9 +528,9 @@ function snd115egg()
 function function_89a607c3()
 {
 	level endon("hash_c598ee9d");
-	var_169695f4 = Array(1, 1, 5);
+	a_n_order = Array(1, 1, 5);
 	self thread zm_sidequests::fake_use("115_trig_activated", &function_f36e092d);
-	self waittill("hash_6a4b75fd");
+	self waittill("115_trig_activated");
 	playsoundatposition("zmb_ee_mus_activate", self.origin);
 	level.var_69a8687++;
 	level notify("hash_34d7d690");
@@ -670,16 +670,16 @@ function function_66aff463()
 */
 function function_3630300b()
 {
-	var_d1f154fd = struct::get_array("s_ballerina_timed", "targetname");
-	var_d1f154fd = Array::sort_by_script_int(var_d1f154fd, 1);
-	level.var_aa39de8 = 0;
+	a_s_ballerina_timed = struct::get_array("s_ballerina_timed", "targetname");
+	a_s_ballerina_timed = Array::sort_by_script_int(a_s_ballerina_timed, 1);
+	level.n_ballerina_count = 0;
 	wait(1);
-	foreach(var_6d450235 in var_d1f154fd)
+	foreach(s_ballerina in a_s_ballerina_timed)
 	{
-		var_6d450235 thread function_b8227f87();
+		s_ballerina thread function_b8227f87();
 		wait(1);
 	}
-	while(level.var_aa39de8 < var_d1f154fd.size)
+	while(level.n_ballerina_count < a_s_ballerina_timed.size)
 	{
 		wait(0.1);
 	}
@@ -698,16 +698,16 @@ function function_3630300b()
 */
 function function_b8227f87()
 {
-	self.var_ac086ffb = util::spawn_model(self.model, self.origin, self.angles);
-	self.var_ac086ffb clientfield::set("snd_zhdegg", 1);
-	self.var_ac086ffb PlayLoopSound("mus_musicbox_lp", 2);
+	self.mdl_ballerina = util::spawn_model(self.model, self.origin, self.angles);
+	self.mdl_ballerina clientfield::set("snd_zhdegg", 1);
+	self.mdl_ballerina PlayLoopSound("mus_musicbox_lp", 2);
 	self thread namespace_52adc03e::function_9d55fd08();
 	self thread namespace_52adc03e::function_2fdaabf3();
 	self util::waittill_any("ballerina_destroyed");
-	level.var_aa39de8++;
-	self.var_ac086ffb clientfield::set("snd_zhdegg", 0);
+	level.n_ballerina_count++;
+	self.mdl_ballerina clientfield::set("snd_zhdegg", 0);
 	util::wait_network_frame();
-	self.var_ac086ffb delete();
+	self.mdl_ballerina delete();
 }
 
 /*
@@ -742,18 +742,18 @@ function function_231d9741()
 function function_69f032ca()
 {
 	self endon("hash_34014bea");
-	self.var_ac086ffb = util::spawn_model(self.model, self.origin, self.angles);
-	self.var_ac086ffb clientfield::set("snd_zhdegg", 1);
+	self.mdl_ballerina = util::spawn_model(self.model, self.origin, self.angles);
+	self.mdl_ballerina clientfield::set("snd_zhdegg", 1);
 	self thread namespace_52adc03e::function_9d55fd08();
-	self.var_ac086ffb PlayLoopSound("mus_musicbox_lp", 2);
+	self.mdl_ballerina PlayLoopSound("mus_musicbox_lp", 2);
 	var_209d26c2 = struct::get(self.target, "targetname");
 	self thread function_bec55ee6();
-	self.var_ac086ffb moveto(var_209d26c2.origin, 25, 10);
-	self.var_ac086ffb waittill("movedone");
+	self.mdl_ballerina moveto(var_209d26c2.origin, 25, 10);
+	self.mdl_ballerina waittill("movedone");
 	self notify("hash_3a53ac43");
-	self.var_ac086ffb clientfield::set("snd_zhdegg", 0);
+	self.mdl_ballerina clientfield::set("snd_zhdegg", 0);
 	util::wait_network_frame();
-	self.var_ac086ffb delete();
+	self.mdl_ballerina delete();
 }
 
 /*
@@ -768,11 +768,11 @@ function function_69f032ca()
 function function_bec55ee6()
 {
 	self endon("hash_3a53ac43");
-	self.var_ac086ffb SetCanDamage(1);
-	self.var_ac086ffb.health = 1000000;
+	self.mdl_ballerina SetCanDamage(1);
+	self.mdl_ballerina.health = 1000000;
 	while(1)
 	{
-		self.var_ac086ffb waittill("damage", damage, attacker, dir, loc, type, model, tag, part, weapon, flags);
+		self.mdl_ballerina waittill("damage", damage, attacker, dir, loc, type, model, tag, part, weapon, flags);
 		if(!isdefined(attacker) || !isPlayer(attacker))
 		{
 			continue;
@@ -782,9 +782,9 @@ function function_bec55ee6()
 			continue;
 		}
 		self notify("hash_34014bea");
-		self.var_ac086ffb clientfield::set("snd_zhdegg", 0);
+		self.mdl_ballerina clientfield::set("snd_zhdegg", 0);
 		util::wait_network_frame();
-		self.var_ac086ffb delete();
+		self.mdl_ballerina delete();
 		self thread function_69f032ca();
 		break;
 	}

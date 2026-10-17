@@ -52,26 +52,26 @@ function ArchetypeZombieDogBlackboardInit()
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_should_run", "walk", &BB_GetShouldRunStatus);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_should_howl", "dont_howl", &BB_GetShouldHowlStatus);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	self.___ArchetypeOnAnimscriptedCallback = &ArchetypeZombieDogOnAnimscriptedCallback;
 	/#
-		self function_89398c57();
+		self finalizetrackedblackboardattributes();
 	#/
 	self.kill_on_wine_coccon = 1;
 }

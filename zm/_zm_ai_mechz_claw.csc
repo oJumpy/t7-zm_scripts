@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 */
 function private __init__()
 {
-	clientfield::register("actor", "mechz_fx", 21000, 12, "int", &function_22b149ce, 0, 0);
+	clientfield::register("actor", "mechz_fx", 21000, 12, "int", &mechz_handle_fx, 0, 0);
 	clientfield::register("scriptmover", "mechz_claw", 21000, 1, "int", &function_2ad55883, 0, 0);
 	clientfield::register("actor", "mechz_wpn_source", 21000, 1, "int", &function_54ae128d, 0, 0);
 	clientfield::register("toplayer", "mechz_grab", 21000, 1, "int", &function_8dfa08c1, 0, 0);
@@ -69,7 +69,7 @@ function private mechz_detach_claw_override(localClientNum, oldValue, newValue, 
 }
 
 /*
-	Name: function_22b149ce
+	Name: mechz_handle_fx
 	Namespace: namespace_19d9d56d
 	Checksum: 0x9A423DC9
 	Offset: 0x4C8
@@ -77,7 +77,7 @@ function private mechz_detach_claw_override(localClientNum, oldValue, newValue, 
 	Parameters: 7
 	Flags: Private
 */
-function private function_22b149ce(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
+function private mechz_handle_fx(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
 {
 }
 
@@ -133,11 +133,11 @@ function private function_8dfa08c1(localClientNum, oldValue, newValue, bNewEnt, 
 {
 	if(newValue)
 	{
-		self function_21fc862d();
+		self hideviewlegs();
 	}
 	else
 	{
-		self function_fedaa2a6();
+		self showviewlegs();
 	}
 }
 

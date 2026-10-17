@@ -46,8 +46,8 @@ function function_7715178d()
 	level thread scene::init("p7_fxanim_zm_stal_finger_trap_bundle");
 	level.var_79dbe0dd = [];
 	scene::add_scene_func("p7_fxanim_zm_stal_finger_trap_bundle", &function_2d729696, "init");
-	var_bbadd4a4 = struct::get_array("finger_trap_activate", "targetname");
-	Array::thread_all(var_bbadd4a4, &function_eeb24547);
+	a_s_activate = struct::get_array("finger_trap_activate", "targetname");
+	Array::thread_all(a_s_activate, &function_eeb24547);
 }
 
 /*
@@ -224,7 +224,7 @@ function function_f5af37c6(var_3778532a)
 	while(1)
 	{
 		self waittill("trigger", e_who);
-		if(!(isdefined(e_who.var_bd3a4420) && e_who.var_bd3a4420))
+		if(!(isdefined(e_who.b_mashed) && e_who.b_mashed))
 		{
 			if(e_who.health <= 20000)
 			{
@@ -240,7 +240,7 @@ function function_f5af37c6(var_3778532a)
 			}
 			else if(!isPlayer(e_who))
 			{
-				e_who.var_bd3a4420 = 1;
+				e_who.b_mashed = 1;
 				e_who thread function_fe885d6b();
 			}
 			if(isPlayer(e_who) && e_who IsSliding())
@@ -265,7 +265,7 @@ function function_fe885d6b()
 {
 	self endon("death");
 	wait(0.25);
-	self.var_bd3a4420 = undefined;
+	self.b_mashed = undefined;
 }
 
 /*

@@ -52,7 +52,7 @@ function __init__()
 		zm_powerups::powerup_set_statless_powerup("shield_charge");
 	}
 	/#
-		thread function_f3127c4f();
+		thread shield_devgui();
 	#/
 }
 
@@ -152,7 +152,7 @@ function full_ammo_move_hud(player_team)
 }
 
 /*
-	Name: function_f3127c4f
+	Name: shield_devgui
 	Namespace: zm_powerup_shield_charge
 	Checksum: 0xEB04E2DF
 	Offset: 0x7C0
@@ -160,19 +160,19 @@ function full_ammo_move_hud(player_team)
 	Parameters: 0
 	Flags: None
 */
-function function_f3127c4f()
+function shield_devgui()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_b6937313);
+		zm_devgui::add_custom_devgui_callback(&shield_devgui_callback);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 	#/
 }
 
 /*
-	Name: function_b6937313
+	Name: shield_devgui_callback
 	Namespace: zm_powerup_shield_charge
 	Checksum: 0x20C58BDA
 	Offset: 0x848
@@ -180,7 +180,7 @@ function function_f3127c4f()
 	Parameters: 1
 	Flags: None
 */
-function function_b6937313(cmd)
+function shield_devgui_callback(cmd)
 {
 	/#
 		players = GetPlayers();

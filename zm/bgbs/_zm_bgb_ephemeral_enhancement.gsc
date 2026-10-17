@@ -57,7 +57,7 @@ function __init__()
 */
 function validation()
 {
-	if(isdefined(self bgb::function_e2bcf80c()) && self bgb::function_e2bcf80c())
+	if(isdefined(self bgb::get_active()) && self bgb::get_active())
 	{
 		return 0;
 	}
@@ -93,21 +93,21 @@ function activation()
 	{
 		return;
 	}
-	var_1d94ca2b = self GetCurrentWeapon();
-	self.var_fb11234e = var_1d94ca2b;
-	if(!zm_weapons::can_upgrade_weapon(var_1d94ca2b))
+	w_orig_weapon = self GetCurrentWeapon();
+	self.var_fb11234e = w_orig_weapon;
+	if(!zm_weapons::can_upgrade_weapon(w_orig_weapon))
 	{
 		return;
 	}
 	self zm_stats::increment_challenge_stat("GUM_GOBBLER_EPHEMERAL_ENHANCEMENT");
-	var_a08320d8 = self GetWeaponAmmoClip(var_1d94ca2b);
-	var_7298c138 = self GetWeaponAmmoStock(var_1d94ca2b);
-	var_19dc14f6 = zm_weapons::get_upgrade_weapon(var_1d94ca2b);
-	var_19dc14f6 = self zm_weapons::give_build_kit_weapon(var_19dc14f6);
-	self GiveStartAmmo(var_19dc14f6);
-	self SwitchToWeaponImmediate(var_19dc14f6);
-	self TakeWeapon(var_1d94ca2b, 1);
-	self thread function_79585675(var_19dc14f6);
+	n_orig_clip = self GetWeaponAmmoClip(w_orig_weapon);
+	n_orig_stock = self GetWeaponAmmoStock(w_orig_weapon);
+	w_upgraded_weapon = zm_weapons::get_upgrade_weapon(w_orig_weapon);
+	w_upgraded_weapon = self zm_weapons::give_build_kit_weapon(w_upgraded_weapon);
+	self GiveStartAmmo(w_upgraded_weapon);
+	self SwitchToWeaponImmediate(w_upgraded_weapon);
+	self TakeWeapon(w_orig_weapon, 1);
+	self thread watch_for_upgraded_weapon_lost(w_upgraded_weapon);
 	self bgb::run_timer(60);
 	self notify("hash_5cefcc84");
 	if(self laststand::player_is_in_laststand())
@@ -119,37 +119,37 @@ function activation()
 		[[level.var_b6d13a4e]]();
 	}
 	self.var_fb11234e = undefined;
-	if(!self zm_weapons::has_weapon_or_attachments(var_19dc14f6))
+	if(!self zm_weapons::has_weapon_or_attachments(w_upgraded_weapon))
 	{
 		return;
 	}
-	var_5ddb5ced = self GetWeaponAmmoClip(var_19dc14f6);
-	var_398b66eb = self GetWeaponAmmoStock(var_19dc14f6);
-	var_1d94ca2b = self zm_weapons::switch_from_alt_weapon(var_1d94ca2b);
-	var_1d94ca2b = self zm_weapons::give_build_kit_weapon(var_1d94ca2b);
-	if(var_5ddb5ced + var_398b66eb > var_a08320d8 + var_7298c138)
+	var_5ddb5ced = self GetWeaponAmmoClip(w_upgraded_weapon);
+	var_398b66eb = self GetWeaponAmmoStock(w_upgraded_weapon);
+	w_orig_weapon = self zm_weapons::switch_from_alt_weapon(w_orig_weapon);
+	w_orig_weapon = self zm_weapons::give_build_kit_weapon(w_orig_weapon);
+	if(var_5ddb5ced + var_398b66eb > n_orig_clip + n_orig_stock)
 	{
-		self GiveStartAmmo(var_1d94ca2b);
-		var_a08320d8 = self GetWeaponAmmoClip(var_1d94ca2b);
-		var_7298c138 = self GetWeaponAmmoStock(var_1d94ca2b);
-		if(var_5ddb5ced + var_398b66eb < var_a08320d8 + var_7298c138)
+		self GiveStartAmmo(w_orig_weapon);
+		n_orig_clip = self GetWeaponAmmoClip(w_orig_weapon);
+		n_orig_stock = self GetWeaponAmmoStock(w_orig_weapon);
+		if(var_5ddb5ced + var_398b66eb < n_orig_clip + n_orig_stock)
 		{
-			var_a08320d8 = var_5ddb5ced;
-			var_7298c138 = var_398b66eb;
+			n_orig_clip = var_5ddb5ced;
+			n_orig_stock = var_398b66eb;
 		}
 	}
-	self SetWeaponAmmoClip(var_1d94ca2b, var_a08320d8);
-	self SetWeaponAmmoStock(var_1d94ca2b, var_7298c138);
+	self SetWeaponAmmoClip(w_orig_weapon, n_orig_clip);
+	self SetWeaponAmmoStock(w_orig_weapon, n_orig_stock);
 	current_weapon = self GetCurrentWeapon();
-	if(current_weapon == var_19dc14f6)
+	if(current_weapon == w_upgraded_weapon)
 	{
-		self zm_weapons::switch_back_primary_weapon(var_1d94ca2b, 1);
+		self zm_weapons::switch_back_primary_weapon(w_orig_weapon, 1);
 	}
-	self TakeWeapon(var_19dc14f6, 1);
+	self TakeWeapon(w_upgraded_weapon, 1);
 }
 
 /*
-	Name: function_79585675
+	Name: watch_for_upgraded_weapon_lost
 	Namespace: namespace_6d4de49
 	Checksum: 0x81199122
 	Offset: 0x898
@@ -157,7 +157,7 @@ function activation()
 	Parameters: 1
 	Flags: None
 */
-function function_79585675(var_19dc14f6)
+function watch_for_upgraded_weapon_lost(w_upgraded_weapon)
 {
 	self endon("death");
 	self endon("disconnect");
@@ -166,7 +166,7 @@ function function_79585675(var_19dc14f6)
 	while(1)
 	{
 		self waittill("weapon_change_complete");
-		if(!self zm_weapons::has_weapon_or_attachments(var_19dc14f6))
+		if(!self zm_weapons::has_weapon_or_attachments(w_upgraded_weapon))
 		{
 			self notify("hash_cf1b207b");
 			self.var_fb11234e = undefined;

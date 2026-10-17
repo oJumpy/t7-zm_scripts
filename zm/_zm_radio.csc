@@ -55,40 +55,40 @@ function __main__()
 function next_song(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	/#
-		Assert(isdefined(level.var_f3006fa7));
+		Assert(isdefined(level.n_radio_id));
 	#/
 	/#
-		Assert(isdefined(level.var_c017e2d5));
+		Assert(isdefined(level.a_radio_songs));
 	#/
 	/#
-		Assert(isdefined(level.var_ce7032d4));
+		Assert(isdefined(level.n_radio_index));
 	#/
 	/#
-		Assert(level.var_c017e2d5.size > 0);
+		Assert(level.a_radio_songs.size > 0);
 	#/
-	if(!isdefined(level.var_58522184))
+	if(!isdefined(level.b_stop_radio))
 	{
-		level.var_58522184 = 0;
+		level.b_stop_radio = 0;
 	}
-	if(!level.var_58522184)
+	if(!level.b_stop_radio)
 	{
 		if(newVal)
 		{
 			playsound(0, "static", self.origin);
-			if(SoundPlaying(level.var_f3006fa7))
+			if(SoundPlaying(level.n_radio_id))
 			{
-				Fade(level.var_f3006fa7, 1);
+				Fade(level.n_radio_id, 1);
 			}
 			else
 			{
 				wait(0.5);
 			}
-			if(level.var_ce7032d4 < level.var_c017e2d5.size)
+			if(level.n_radio_index < level.a_radio_songs.size)
 			{
 				/#
-					println("Dev Block strings are not supported" + level.var_c017e2d5[level.var_ce7032d4]);
+					println("Dev Block strings are not supported" + level.a_radio_songs[level.n_radio_index]);
 				#/
-				level.var_f3006fa7 = playsound(0, level.var_c017e2d5[level.var_ce7032d4], self.origin);
+				level.n_radio_id = playsound(0, level.a_radio_songs[level.n_radio_index], self.origin);
 			}
 			else
 			{
@@ -96,9 +96,9 @@ function next_song(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldN
 			}
 		}
 	}
-	else if(isdefined(level.var_f3006fa7))
+	else if(isdefined(level.n_radio_id))
 	{
-		stopSound(level.var_f3006fa7);
+		stopSound(level.n_radio_id);
 	}
 }
 
@@ -113,11 +113,11 @@ function next_song(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldN
 */
 function add_song(SONG)
 {
-	if(!isdefined(level.var_c017e2d5))
+	if(!isdefined(level.a_radio_songs))
 	{
-		level.var_c017e2d5 = [];
+		level.a_radio_songs = [];
 	}
-	level.var_c017e2d5[level.var_c017e2d5.size] = SONG;
+	level.a_radio_songs[level.a_radio_songs.size] = SONG;
 }
 
 /*
@@ -132,9 +132,9 @@ function add_song(SONG)
 function function_2b7f281d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	/#
-		Assert(isdefined(level.var_ce7032d4));
+		Assert(isdefined(level.n_radio_index));
 	#/
-	level.var_ce7032d4 = newVal;
+	level.n_radio_index = newVal;
 }
 
 /*
@@ -173,10 +173,10 @@ function stop_radio_listener()
 	while(1)
 	{
 		level waittill("ktr");
-		level.var_58522184 = 1;
+		level.b_stop_radio = 1;
 		level thread next_song();
 		level waittill("rrd");
-		level.var_58522184 = 0;
+		level.b_stop_radio = 0;
 		wait(0.5);
 	}
 }

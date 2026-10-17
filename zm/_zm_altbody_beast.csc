@@ -48,15 +48,15 @@ function __init__()
 	{
 		level.var_767d230 = [];
 	}
-	clientfield::register("missile", "bminteract", 1, 2, "int", &function_d9d8e4d9, 0, 0);
-	clientfield::register("scriptmover", "bminteract", 1, 2, "int", &function_d9d8e4d9, 0, 0);
+	clientfield::register("missile", "bminteract", 1, 2, "int", &bminteract_changed, 0, 0);
+	clientfield::register("scriptmover", "bminteract", 1, 2, "int", &bminteract_changed, 0, 0);
 	clientfield::register("actor", "bm_zombie_melee_kill", 1, 1, "int", &function_b2532c75, 0, 0);
 	clientfield::register("actor", "bm_zombie_grapple_kill", 1, 1, "int", &function_46405286, 0, 0);
 	clientfield::register("toplayer", "beast_blood_on_player", 1, 1, "counter", &function_70f7f4d2, 0, 0);
 	clientfield::register("world", "bm_superbeast", 1, 1, "int", undefined, 0, 0);
 	function_10dcd1d5("beast_mode_kiosk");
 	duplicate_render::set_dr_filter_offscreen("bmint", 35, "bminteract,bmplayer", undefined, 2, "mc/hud_keyline_beastmode", 0);
-	zm_altbody::init("beast_mode", "beast_mode_kiosk", &"ZM_ZOD_ENTER_BEAST_MODE", "zombie_beast_2", 123, &function_1699b690, &function_b2631b3c, &function_df3032fc, &function_da014198);
+	zm_altbody::init("beast_mode", "beast_mode_kiosk", &"ZM_ZOD_ENTER_BEAST_MODE", "zombie_beast_2", 123, &player_enter_beastmode, &function_b2631b3c, &function_df3032fc, &function_da014198);
 	callback::on_localclient_connect(&player_on_connect);
 	callback::on_spawned(&player_on_spawned);
 	level._effect["beast_kiosk_fx_reset"] = "zombie/fx_bmode_kiosk_fire_reset_zod_zmb";
@@ -106,12 +106,12 @@ function player_on_spawned(localClientNum)
 	{
 		return;
 	}
-	function_80256ab9(localClientNum, 1, "t7_hud_zm_beastmode_meleeattack");
-	function_80256ab9(localClientNum, 2, "t7_hud_zm_beastmode_electricityattack");
-	function_80256ab9(localClientNum, 3, "t7_hud_zm_beastmode_grapplehook");
+	setbeastmodeiconmaterial(localClientNum, 1, "t7_hud_zm_beastmode_meleeattack");
+	setbeastmodeiconmaterial(localClientNum, 2, "t7_hud_zm_beastmode_electricityattack");
+	setbeastmodeiconmaterial(localClientNum, 3, "t7_hud_zm_beastmode_grapplehook");
 	self function_62095f03(localClientNum);
 	filter::init_filter_blood_spatter(self);
-	self thread function_a1b60d91(localClientNum, 0);
+	self thread player_update_beast_mode_objects(localClientNum, 0);
 	self oed_sitrepscan_setradius(1800);
 	/#
 		self thread function_ac7706bc();
@@ -119,7 +119,7 @@ function player_on_spawned(localClientNum)
 }
 
 /*
-	Name: function_1699b690
+	Name: player_enter_beastmode
 	Namespace: namespace_215602b6
 	Checksum: 0x76D2D048
 	Offset: 0x1070
@@ -127,13 +127,13 @@ function player_on_spawned(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_1699b690(localClientNum)
+function player_enter_beastmode(localClientNum)
 {
 	var_84301bb1 = GetNonPredictedLocalPlayer(localClientNum);
 	player = GetLocalPlayer(localClientNum);
 	self.beast_mode = 1;
-	self thread function_a1b60d91(localClientNum, !function_faf41e73(localClientNum));
-	self thread function_96cc48fa(player === var_84301bb1);
+	self thread player_update_beast_mode_objects(localClientNum, !function_faf41e73(localClientNum));
+	self thread sndbeastmode(player === var_84301bb1);
 	self thread function_2a7bb7b3(localClientNum, 1);
 	self thread function_b25c9962(1, "tag_flash", 0.15);
 	self thread function_89d6f49a(localClientNum, 1);
@@ -142,7 +142,7 @@ function function_1699b690(localClientNum)
 	var_1ee18766 = 0;
 	/#
 		var_1ee18766 = GetDvarInt("Dev Block strings are not supported") > 0;
-		self thread function_5d7a94fa(localClientNum);
+		self thread watch_scr_beast_no_visionset(localClientNum);
 	#/
 	if(IsDemoPlaying())
 	{
@@ -150,7 +150,7 @@ function function_1699b690(localClientNum)
 	}
 	if(!var_1ee18766 && !function_faf41e73(localClientNum) && player === var_84301bb1)
 	{
-		function_4c5bfec4(localClientNum, 2);
+		setpbgactivebank(localClientNum, 2);
 		self thread function_56c9cf9d(localClientNum);
 		self.var_b65bad1f = PlayFXOnCamera(localClientNum, level._effect["beast_1p_light"]);
 	}
@@ -163,7 +163,7 @@ function function_1699b690(localClientNum)
 }
 
 /*
-	Name: function_5d7a94fa
+	Name: watch_scr_beast_no_visionset
 	Namespace: namespace_215602b6
 	Checksum: 0xAF52451D
 	Offset: 0x1330
@@ -171,14 +171,14 @@ function function_1699b690(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_5d7a94fa(localClientNum)
+function watch_scr_beast_no_visionset(localClientNum)
 {
 	self endon("hash_dd954547");
-	var_3f39d2cc = GetDvarInt("scr_beast_no_visionset") > 0;
+	was_scr_beast_no_visionset = GetDvarInt("scr_beast_no_visionset") > 0;
 	while(isdefined(self))
 	{
 		var_1ee18766 = GetDvarInt("scr_beast_no_visionset") > 0;
-		if(var_1ee18766 != var_3f39d2cc)
+		if(var_1ee18766 != was_scr_beast_no_visionset)
 		{
 			if(var_1ee18766)
 			{
@@ -187,17 +187,17 @@ function function_5d7a94fa(localClientNum)
 					stopfx(localClientNum, self.var_b65bad1f);
 					self.var_b65bad1f = undefined;
 				}
-				function_4c5bfec4(localClientNum, 1);
+				setpbgactivebank(localClientNum, 1);
 				self thread function_ea06d888(localClientNum);
 			}
 			else
 			{
-				function_4c5bfec4(localClientNum, 2);
+				setpbgactivebank(localClientNum, 2);
 				self thread function_56c9cf9d(localClientNum);
 				self.var_b65bad1f = PlayFXOnCamera(localClientNum, level._effect["beast_1p_light"]);
 			}
 		}
-		var_3f39d2cc = var_1ee18766;
+		was_scr_beast_no_visionset = var_1ee18766;
 		wait(1);
 	}
 }
@@ -245,16 +245,16 @@ function function_cb236f81(localClientNum)
 					stopfx(localClientNum, self.var_b65bad1f);
 					self.var_b65bad1f = undefined;
 				}
-				function_4c5bfec4(localClientNum, 1);
+				setpbgactivebank(localClientNum, 1);
 				self thread function_ea06d888(localClientNum);
 			}
 			else
 			{
-				function_4c5bfec4(localClientNum, 2);
+				setpbgactivebank(localClientNum, 2);
 				self thread function_56c9cf9d(localClientNum);
 				self.var_b65bad1f = PlayFXOnCamera(localClientNum, level._effect["beast_1p_light"]);
 			}
-			self thread function_a1b60d91(localClientNum, !var_26495de5);
+			self thread player_update_beast_mode_objects(localClientNum, !var_26495de5);
 		}
 		var_af2f137b = var_26495de5;
 		wait(1);
@@ -300,13 +300,13 @@ function function_b2631b3c(localClientNum)
 		self.var_b65bad1f = undefined;
 	}
 	function_cce7ef03(localClientNum, 0);
-	function_4c5bfec4(localClientNum, 1);
+	setpbgactivebank(localClientNum, 1);
 	self thread function_89d6f49a(localClientNum, 0);
 	self thread function_ea06d888(localClientNum);
 	self thread function_b25c9962(0);
-	self thread function_a1b60d91(localClientNum, 0);
+	self thread player_update_beast_mode_objects(localClientNum, 0);
 	self thread function_2a7bb7b3(localClientNum, 0);
-	self thread function_96cc48fa(0);
+	self thread sndbeastmode(0);
 	self oed_sitrepscan_enable(4);
 	self.beast_mode = 0;
 }
@@ -360,7 +360,7 @@ function function_da014198(localClientNum)
 }
 
 /*
-	Name: function_4c36abd
+	Name: get_script_noteworthy_array
 	Namespace: namespace_215602b6
 	Checksum: 0x1213E76E
 	Offset: 0x1938
@@ -368,7 +368,7 @@ function function_da014198(localClientNum)
 	Parameters: 3
 	Flags: None
 */
-function function_4c36abd(localClientNum, VAL, key)
+function get_script_noteworthy_array(localClientNum, VAL, key)
 {
 	all = GetEntArray(localClientNum);
 	ret = [];
@@ -412,14 +412,14 @@ function function_70f7f4d2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_4685bc0f(localClientNum, var_2646032, var_72af98b3)
+function function_4685bc0f(localClientNum, time_up, var_72af98b3)
 {
 	self endon("entityshutdown");
 	if(isdefined(self))
 	{
 		filter::enable_filter_blood_spatter(self, 5);
-		self thread function_ef4c8536(localClientNum, var_2646032, var_72af98b3);
-		self util::waittill_any_timeout(var_2646032 + var_72af98b3, "beast_mode_exit", "entityshutdown");
+		self thread function_ef4c8536(localClientNum, time_up, var_72af98b3);
+		self util::waittill_any_timeout(time_up + var_72af98b3, "beast_mode_exit", "entityshutdown");
 		if(isdefined(self))
 		{
 			filter::disable_filter_blood_spatter(self, 5);
@@ -436,7 +436,7 @@ function function_4685bc0f(localClientNum, var_2646032, var_72af98b3)
 	Parameters: 3
 	Flags: None
 */
-function function_ef4c8536(localClientNum, var_2646032, var_72af98b3)
+function function_ef4c8536(localClientNum, time_up, var_72af98b3)
 {
 	self notify("hash_ef4c8536");
 	self endon("hash_ef4c8536");
@@ -448,9 +448,9 @@ function function_ef4c8536(localClientNum, var_2646032, var_72af98b3)
 		self.var_90b6339d = 0;
 	}
 	filter::set_filter_blood_spatter_reveal(self, 5, 0, 0);
-	for(t = 0; t <= var_2646032 && isdefined(self);  = 0)
+	for(t = 0; t <= time_up && isdefined(self);  = 0)
 	{
-		self.var_90b6339d = max(self.var_90b6339d, t / var_2646032);
+		self.var_90b6339d = max(self.var_90b6339d, t / time_up);
 		filter::set_filter_blood_spatter_reveal(self, 5, self.var_90b6339d, 0);
 		wait(0.05);
 	}
@@ -498,7 +498,7 @@ function function_cce7ef03(localClientNum, onOff)
 }
 
 /*
-	Name: function_a1b60d91
+	Name: player_update_beast_mode_objects
 	Namespace: namespace_215602b6
 	Checksum: 0xA0C18453
 	Offset: 0x1EC8
@@ -506,19 +506,19 @@ function function_cce7ef03(localClientNum, onOff)
 	Parameters: 2
 	Flags: None
 */
-function function_a1b60d91(localClientNum, onOff)
+function player_update_beast_mode_objects(localClientNum, onOff)
 {
-	var_f023f29 = function_4c36abd(localClientNum, "beast_mode", "script_noteworthy");
-	Array::run_all(var_f023f29, &function_77fcc1c2, localClientNum, self, onOff);
-	var_66757da5 = function_4c36abd(localClientNum, "not_beast_mode", "script_noteworthy");
-	Array::run_all(var_66757da5, &function_77fcc1c2, localClientNum, self, !onOff);
+	bmo = get_script_noteworthy_array(localClientNum, "beast_mode", "script_noteworthy");
+	Array::run_all(bmo, &entity_set_visible, localClientNum, self, onOff);
+	bmho = get_script_noteworthy_array(localClientNum, "not_beast_mode", "script_noteworthy");
+	Array::run_all(bmho, &entity_set_visible, localClientNum, self, !onOff);
 	wait(0.016);
 	clean_deleted(level.var_767d230[localClientNum]);
-	Array::run_all(level.var_767d230[localClientNum], &function_392fd748, localClientNum, onOff);
+	Array::run_all(level.var_767d230[localClientNum], &entity_set_bmplayer, localClientNum, onOff);
 }
 
 /*
-	Name: function_392fd748
+	Name: entity_set_bmplayer
 	Namespace: namespace_215602b6
 	Checksum: 0x5225610A
 	Offset: 0x2008
@@ -526,7 +526,7 @@ function function_a1b60d91(localClientNum, onOff)
 	Parameters: 2
 	Flags: None
 */
-function function_392fd748(localClientNum, onOff)
+function entity_set_bmplayer(localClientNum, onOff)
 {
 	if(!isdefined(self.var_2a7bb7b3))
 	{
@@ -622,7 +622,7 @@ function function_f74ecbae(modelName)
 }
 
 /*
-	Name: function_77fcc1c2
+	Name: entity_set_visible
 	Namespace: namespace_215602b6
 	Checksum: 0xA29A5215
 	Offset: 0x2240
@@ -630,7 +630,7 @@ function function_f74ecbae(modelName)
 	Parameters: 3
 	Flags: None
 */
-function function_77fcc1c2(localClientNum, player, onOff)
+function entity_set_visible(localClientNum, player, onOff)
 {
 	if(onOff)
 	{
@@ -719,7 +719,7 @@ function function_7d675424(type)
 }
 
 /*
-	Name: function_d9d8e4d9
+	Name: bminteract_changed
 	Namespace: namespace_215602b6
 	Checksum: 0x5BDEDEDC
 	Offset: 0x24B8
@@ -727,17 +727,17 @@ function function_7d675424(type)
 	Parameters: 7
 	Flags: None
 */
-function function_d9d8e4d9(local_client_num, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function bminteract_changed(local_client_num, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	onOff = newVal != 0;
 	location = self function_7d675424(newVal);
 	if(isdefined(location))
 	{
-		self function_d6622a45(newVal, location);
+		self setentbeastmodeicontype(newVal, location);
 	}
 	else
 	{
-		self function_d6622a45(newVal);
+		self setentbeastmodeicontype(newVal);
 	}
 	self add_remove_list(level.var_767d230[local_client_num], onOff);
 	if(!IsSplitscreen())
@@ -774,26 +774,26 @@ function function_d9d8e4d9(local_client_num, oldVal, newVal, bNewEnt, bInitialSn
 	Parameters: 1
 	Flags: None
 */
-function function_10dcd1d5(var_4cc12170)
+function function_10dcd1d5(kiosk_name)
 {
-	level.var_8ad0ec05 = struct::get_array(var_4cc12170, "targetname");
+	level.beast_kiosks = struct::get_array(kiosk_name, "targetname");
 	level.var_dc56ce87 = [];
 	level.var_104eabe = [];
-	foreach(var_8042e4e2 in level.var_8ad0ec05)
+	foreach(kiosk in level.beast_kiosks)
 	{
-		if(!isdefined(var_8042e4e2.State))
+		if(!isdefined(kiosk.State))
 		{
-			var_8042e4e2.State = [];
+			kiosk.State = [];
 		}
-		if(!isdefined(var_8042e4e2.fake_ent))
+		if(!isdefined(kiosk.fake_ent))
 		{
-			var_8042e4e2.fake_ent = [];
+			kiosk.fake_ent = [];
 		}
-		var_8042e4e2.var_80eeb471 = var_4cc12170 + "_plr_" + var_8042e4e2.origin;
-		var_8042e4e2.var_39a60f4a = var_4cc12170 + "_crs_" + var_8042e4e2.origin;
-		level.var_dc56ce87[var_8042e4e2.var_80eeb471] = var_8042e4e2;
-		level.var_104eabe[var_8042e4e2.var_39a60f4a] = var_8042e4e2;
-		clientfield::register("world", var_8042e4e2.var_80eeb471, 1, 4, "int", &function_fa828651, 0, 0);
+		kiosk.player_label = kiosk_name + "_plr_" + kiosk.origin;
+		kiosk.var_39a60f4a = kiosk_name + "_crs_" + kiosk.origin;
+		level.var_dc56ce87[kiosk.player_label] = kiosk;
+		level.var_104eabe[kiosk.var_39a60f4a] = kiosk;
+		clientfield::register("world", kiosk.player_label, 1, 4, "int", &function_fa828651, 0, 0);
 	}
 }
 
@@ -808,22 +808,22 @@ function function_10dcd1d5(var_4cc12170)
 */
 function function_62095f03(localClientNum)
 {
-	foreach(var_8042e4e2 in level.var_8ad0ec05)
+	foreach(kiosk in level.beast_kiosks)
 	{
-		if(!isdefined(var_8042e4e2.State))
+		if(!isdefined(kiosk.State))
 		{
-			var_8042e4e2.State = [];
+			kiosk.State = [];
 		}
-		if(!isdefined(var_8042e4e2.fake_ent))
+		if(!isdefined(kiosk.fake_ent))
 		{
-			var_8042e4e2.fake_ent = [];
+			kiosk.fake_ent = [];
 		}
-		if(!isdefined(var_8042e4e2.fake_ent[localClientNum]))
+		if(!isdefined(kiosk.fake_ent[localClientNum]))
 		{
-			var_8042e4e2.fake_ent[localClientNum] = util::spawn_model(localClientNum, "tag_origin", var_8042e4e2.origin, var_8042e4e2.angles);
-			if(isdefined(var_8042e4e2.State[localClientNum]))
+			kiosk.fake_ent[localClientNum] = util::spawn_model(localClientNum, "tag_origin", kiosk.origin, kiosk.angles);
+			if(isdefined(kiosk.State[localClientNum]))
 			{
-				var_8042e4e2.fake_ent[localClientNum] function_1dd72620(localClientNum, var_8042e4e2.State[localClientNum], var_8042e4e2.State[localClientNum], 1, 0, var_8042e4e2.var_80eeb471, 0);
+				kiosk.fake_ent[localClientNum] update_kiosk_state(localClientNum, kiosk.State[localClientNum], kiosk.State[localClientNum], 1, 0, kiosk.player_label, 0);
 			}
 		}
 	}
@@ -840,27 +840,27 @@ function function_62095f03(localClientNum)
 */
 function function_fa828651(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_8042e4e2 = level.var_dc56ce87[fieldName];
-	if(isdefined(var_8042e4e2))
+	kiosk = level.var_dc56ce87[fieldName];
+	if(isdefined(kiosk))
 	{
-		if(!isdefined(var_8042e4e2.State))
+		if(!isdefined(kiosk.State))
 		{
-			var_8042e4e2.State = [];
+			kiosk.State = [];
 		}
-		if(!isdefined(var_8042e4e2.fake_ent))
+		if(!isdefined(kiosk.fake_ent))
 		{
-			var_8042e4e2.fake_ent = [];
+			kiosk.fake_ent = [];
 		}
-		var_8042e4e2.State[localClientNum] = newVal;
-		if(isdefined(var_8042e4e2.fake_ent[localClientNum]))
+		kiosk.State[localClientNum] = newVal;
+		if(isdefined(kiosk.fake_ent[localClientNum]))
 		{
-			var_8042e4e2.fake_ent[localClientNum] function_1dd72620(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump);
+			kiosk.fake_ent[localClientNum] update_kiosk_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump);
 		}
 	}
 }
 
 /*
-	Name: function_1dd72620
+	Name: update_kiosk_state
 	Namespace: namespace_215602b6
 	Checksum: 0x7580E43
 	Offset: 0x2BB0
@@ -868,47 +868,47 @@ function function_fa828651(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_1dd72620(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function update_kiosk_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	player = GetLocalPlayer(localClientNum);
 	n_entnum = player GetEntityNumber();
-	if(!isdefined(self.var_1fa5299f))
+	if(!isdefined(self.beast_kiosk_fx))
 	{
-		self.var_1fa5299f = [];
+		self.beast_kiosk_fx = [];
 	}
-	if(!isdefined(self.var_1fa5299f[localClientNum]))
+	if(!isdefined(self.beast_kiosk_fx[localClientNum]))
 	{
-		self.var_1fa5299f[localClientNum] = [];
+		self.beast_kiosk_fx[localClientNum] = [];
 	}
 	if(newVal & 1 << n_entnum)
 	{
-		if(isdefined(self.var_1fa5299f[localClientNum]["disabled"]))
+		if(isdefined(self.beast_kiosk_fx[localClientNum]["disabled"]))
 		{
-			stopfx(localClientNum, self.var_1fa5299f[localClientNum]["disabled"]);
-			self.var_1fa5299f[localClientNum]["disabled"] = undefined;
+			stopfx(localClientNum, self.beast_kiosk_fx[localClientNum]["disabled"]);
+			self.beast_kiosk_fx[localClientNum]["disabled"] = undefined;
 		}
-		if(!isdefined(self.var_1fa5299f[localClientNum]["enabled"]))
+		if(!isdefined(self.beast_kiosk_fx[localClientNum]["enabled"]))
 		{
 			PlayFXOnTag(localClientNum, level._effect["beast_kiosk_fx_reset"], self, "tag_origin");
 			playsound(0, "evt_beastmode_torch_ignite", self.origin);
 			if(level clientfield::get("bm_superbeast"))
 			{
-				self.var_1fa5299f[localClientNum]["enabled"] = PlayFXOnTag(localClientNum, level._effect["beast_kiosk_fx_super"], self, "tag_origin");
+				self.beast_kiosk_fx[localClientNum]["enabled"] = PlayFXOnTag(localClientNum, level._effect["beast_kiosk_fx_super"], self, "tag_origin");
 			}
 			else
 			{
-				self.var_1fa5299f[localClientNum]["enabled"] = PlayFXOnTag(localClientNum, level._effect["beast_kiosk_fx_enabled"], self, "tag_origin");
+				self.beast_kiosk_fx[localClientNum]["enabled"] = PlayFXOnTag(localClientNum, level._effect["beast_kiosk_fx_enabled"], self, "tag_origin");
 			}
 		}
 	}
-	else if(isdefined(self.var_1fa5299f[localClientNum]["enabled"]))
+	else if(isdefined(self.beast_kiosk_fx[localClientNum]["enabled"]))
 	{
-		stopfx(localClientNum, self.var_1fa5299f[localClientNum]["enabled"]);
-		self.var_1fa5299f[localClientNum]["enabled"] = undefined;
+		stopfx(localClientNum, self.beast_kiosk_fx[localClientNum]["enabled"]);
+		self.beast_kiosk_fx[localClientNum]["enabled"] = undefined;
 	}
-	if(!isdefined(self.var_1fa5299f[localClientNum]["disabled"]))
+	if(!isdefined(self.beast_kiosk_fx[localClientNum]["disabled"]))
 	{
-		self.var_1fa5299f[localClientNum]["disabled"] = PlayFXOnTag(localClientNum, level._effect["beast_kiosk_fx_disabled"], self, "tag_origin");
+		self.beast_kiosk_fx[localClientNum]["disabled"] = PlayFXOnTag(localClientNum, level._effect["beast_kiosk_fx_disabled"], self, "tag_origin");
 	}
 }
 
@@ -923,15 +923,15 @@ function function_1dd72620(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_5e873a4e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_8042e4e2 = level.var_104eabe[fieldName];
-	if(isdefined(var_8042e4e2))
+	kiosk = level.var_104eabe[fieldName];
+	if(isdefined(kiosk))
 	{
-		var_8042e4e2.fake_ent function_e97fecd7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump);
+		kiosk.fake_ent bm_cursed(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump);
 	}
 }
 
 /*
-	Name: function_e97fecd7
+	Name: bm_cursed
 	Namespace: namespace_215602b6
 	Checksum: 0xBA005EDB
 	Offset: 0x2F98
@@ -939,32 +939,32 @@ function function_5e873a4e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_e97fecd7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function bm_cursed(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	player = GetLocalPlayer(localClientNum);
-	if(!isdefined(self.var_1fa5299f))
+	if(!isdefined(self.beast_kiosk_fx))
 	{
-		self.var_1fa5299f = [];
+		self.beast_kiosk_fx = [];
 	}
-	if(!isdefined(self.var_1fa5299f[localClientNum]))
+	if(!isdefined(self.beast_kiosk_fx[localClientNum]))
 	{
-		self.var_1fa5299f[localClientNum] = [];
+		self.beast_kiosk_fx[localClientNum] = [];
 	}
 	if(newVal)
 	{
-		if(!isdefined(self.var_1fa5299f[localClientNum]["denied"]))
+		if(!isdefined(self.beast_kiosk_fx[localClientNum]["denied"]))
 		{
-			self.var_1fa5299f[localClientNum]["denied"] = PlayFXOnTag(localClientNum, level._effect["beast_kiosk_fx_cursed"], self, "tag_origin");
+			self.beast_kiosk_fx[localClientNum]["denied"] = PlayFXOnTag(localClientNum, level._effect["beast_kiosk_fx_cursed"], self, "tag_origin");
 		}
 	}
-	else if(isdefined(self.var_1fa5299f[localClientNum]["denied"]))
+	else if(isdefined(self.beast_kiosk_fx[localClientNum]["denied"]))
 	{
-		stopfx(localClientNum, self.var_1fa5299f[localClientNum]["denied"]);
+		stopfx(localClientNum, self.beast_kiosk_fx[localClientNum]["denied"]);
 	}
 }
 
 /*
-	Name: function_96cc48fa
+	Name: sndbeastmode
 	Namespace: namespace_215602b6
 	Checksum: 0x280E7A3D
 	Offset: 0x3100
@@ -972,22 +972,22 @@ function function_e97fecd7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_96cc48fa(activate)
+function sndbeastmode(activate)
 {
 	if(activate)
 	{
 		forceambientroom("zm_zod_beastmode");
-		self thread function_f61ba6c8();
+		self thread sndbeastmode_manastart();
 	}
 	else
 	{
 		forceambientroom("");
-		self thread function_9b30fbf4();
+		self thread sndbeastmode_manastop();
 	}
 }
 
 /*
-	Name: function_f61ba6c8
+	Name: sndbeastmode_manastart
 	Namespace: namespace_215602b6
 	Checksum: 0x3C2397F0
 	Offset: 0x3188
@@ -995,23 +995,23 @@ function function_96cc48fa(activate)
 	Parameters: 0
 	Flags: None
 */
-function function_f61ba6c8()
+function sndbeastmode_manastart()
 {
-	level endon("hash_dbd2b3ab");
+	level endon("sndmanastop");
 	self endon("entityshutdown");
-	if(!isdefined(level.var_4e467911))
+	if(!isdefined(level.sndbeastmodeent))
 	{
-		level.var_4e467911 = spawn(0, (0, 0, 0), "script_origin");
-		soundId = level.var_4e467911 PlayLoopSound("zmb_beastmode_mana_looper", 2);
+		level.sndbeastmodeent = spawn(0, (0, 0, 0), "script_origin");
+		soundId = level.sndbeastmodeent PlayLoopSound("zmb_beastmode_mana_looper", 2);
 		setSoundVolume(soundId, 0);
 	}
 	while(1)
 	{
-		if(isdefined(self.var_7bd1110))
+		if(isdefined(self.mana))
 		{
-			if(self.var_7bd1110 <= 0.5)
+			if(self.mana <= 0.5)
 			{
-				volume = 0.51 - self.var_7bd1110;
+				volume = 0.51 - self.mana;
 				if(isdefined(soundId))
 				{
 					setSoundVolume(soundId, volume);
@@ -1023,7 +1023,7 @@ function function_f61ba6c8()
 }
 
 /*
-	Name: function_9b30fbf4
+	Name: sndbeastmode_manastop
 	Namespace: namespace_215602b6
 	Checksum: 0x12619A13
 	Offset: 0x32A8
@@ -1031,13 +1031,13 @@ function function_f61ba6c8()
 	Parameters: 0
 	Flags: None
 */
-function function_9b30fbf4()
+function sndbeastmode_manastop()
 {
-	level notify("hash_dbd2b3ab");
-	if(isdefined(level.var_4e467911))
+	level notify("sndmanastop");
+	if(isdefined(level.sndbeastmodeent))
 	{
-		level.var_4e467911 delete();
-		level.var_4e467911 = undefined;
+		level.sndbeastmodeent delete();
+		level.sndbeastmodeent = undefined;
 	}
 }
 
@@ -1081,7 +1081,7 @@ function function_2a7bb7b3(localClientNum, on_off)
 			if(note == "shock_loop")
 			{
 				function_14637ad2(localClientNum);
-				charge = function_11e8db(localClientNum);
+				charge = getweaponchargelevel(localClientNum);
 				switch(charge)
 				{
 					case 2:
@@ -1123,8 +1123,8 @@ function function_2a7bb7b3(localClientNum, on_off)
 function function_2d565c0(localClientNum, charge)
 {
 	time = 0.85;
-	var_c6eef0d = 0;
-	var_49d2fa23 = 1;
+	pmin = 0;
+	pmax = 1;
 	switch(charge)
 	{
 		case default:
@@ -1148,7 +1148,7 @@ function function_2d565c0(localClientNum, charge)
 			break;
 		}
 	}
-	self thread function_892cc334(localClientNum, time, var_c6eef0d, var_49d2fa23, charge);
+	self thread function_892cc334(localClientNum, time, pmin, pmax, charge);
 }
 
 /*
@@ -1160,7 +1160,7 @@ function function_2d565c0(localClientNum, charge)
 	Parameters: 5
 	Flags: None
 */
-function function_892cc334(localClientNum, time, var_c6eef0d, var_49d2fa23, charge)
+function function_892cc334(localClientNum, time, pmin, pmax, charge)
 {
 	self notify("hash_892cc334");
 	self endon("hash_892cc334");
@@ -1176,11 +1176,11 @@ function function_892cc334(localClientNum, time, var_c6eef0d, var_49d2fa23, char
 		{
 			self.var_652e98 = self.var_652e98 - time;
 		}
-		VAL = LerpFloat(var_c6eef0d, var_49d2fa23, self.var_652e98 / time);
-		self function_f5faa2db(VAL);
-		if(charge != function_11e8db(localClientNum))
+		VAL = LerpFloat(pmin, pmax, self.var_652e98 / time);
+		self setarmpulseposition(VAL);
+		if(charge != getweaponchargelevel(localClientNum))
 		{
-			self function_2d565c0(localClientNum, function_11e8db(localClientNum));
+			self function_2d565c0(localClientNum, getweaponchargelevel(localClientNum));
 		}
 		wait(0.016);
 	}
@@ -1214,7 +1214,7 @@ function function_ac7706bc()
 				pulse = GetDvarFloat("Dev Block strings are not supported");
 				if(time > 0)
 				{
-					self function_9e4b9f5a(time, speed, pulse, "Dev Block strings are not supported");
+					self setarmpulse(time, speed, pulse, "Dev Block strings are not supported");
 					wait(time);
 				}
 				else
@@ -1226,22 +1226,22 @@ function function_ac7706bc()
 			{
 				self notify("hash_892cc334");
 				pos = GetDvarFloat("Dev Block strings are not supported");
-				self function_f5faa2db(pos);
+				self setarmpulseposition(pos);
 				wait(0.016);
 			}
 			else if(GetDvarInt("Dev Block strings are not supported") > 0)
 			{
 				self notify("hash_892cc334");
 				time = GetDvarFloat("Dev Block strings are not supported");
-				var_c6eef0d = GetDvarFloat("Dev Block strings are not supported");
-				var_49d2fa23 = GetDvarFloat("Dev Block strings are not supported");
+				pmin = GetDvarFloat("Dev Block strings are not supported");
+				pmax = GetDvarFloat("Dev Block strings are not supported");
 				self.var_652e98 = self.var_652e98 + 0.016;
 				if(self.var_652e98 > time)
 				{
 					self.var_652e98 = self.var_652e98 - time;
 				}
-				VAL = LerpFloat(var_c6eef0d, var_49d2fa23, self.var_652e98 / time);
-				self function_f5faa2db(VAL);
+				VAL = LerpFloat(pmin, pmax, self.var_652e98 / time);
+				self setarmpulseposition(VAL);
 				wait(0.016);
 			}
 			else
@@ -1265,11 +1265,11 @@ function function_55af4b5b(player, tag, pivot, delay)
 {
 	player endon("grapple_done");
 	wait(delay);
-	thread function_1de33e08(player, tag, pivot);
+	thread grapple_beam(player, tag, pivot);
 }
 
 /*
-	Name: function_1de33e08
+	Name: grapple_beam
 	Namespace: namespace_215602b6
 	Checksum: 0xF46C7C5B
 	Offset: 0x3AE8
@@ -1277,7 +1277,7 @@ function function_55af4b5b(player, tag, pivot, delay)
 	Parameters: 3
 	Flags: None
 */
-function function_1de33e08(player, tag, pivot)
+function grapple_beam(player, tag, pivot)
 {
 	level beam::launch(player, tag, pivot, "tag_origin", "zod_beast_grapple_beam");
 	player waittill("grapple_done");
@@ -1310,17 +1310,17 @@ function function_b25c9962(onOff, tag, delay)
 	{
 		while(isdefined(self))
 		{
-			self waittill("hash_efb58db0", pivot);
-			var_1e66ebb1 = tag;
+			self waittill("grapple_beam_on", pivot);
+			ptag = tag;
 			/#
 				if(GetDvarInt("Dev Block strings are not supported") > 0)
 				{
-					var_1e66ebb1 = "Dev Block strings are not supported";
+					ptag = "Dev Block strings are not supported";
 				}
 			#/
 			if(isdefined(pivot) && !pivot isPlayer())
 			{
-				thread function_55af4b5b(self, var_1e66ebb1, pivot, delay);
+				thread function_55af4b5b(self, ptag, pivot, delay);
 			}
 			evt = self util::waittill_any_ex(7.5, "grapple_pulled", "grapple_landed", "grapple_cancel", "grapple_beam_off", "grapple_watch", "disconnect");
 			self notify("grapple_done");
@@ -1352,10 +1352,10 @@ function function_4778b020(lo, Hi)
 	Parameters: 3
 	Flags: None
 */
-function function_4b2bbece(var_3ae5c24, var_1bfa7cb7, frac)
+function function_4b2bbece(cfrom, cto, frac)
 {
 	frac0 = 1 - frac;
-	color = (frac0 * var_3ae5c24[0] + frac * var_1bfa7cb7[0], frac0 * var_3ae5c24[1] + frac * var_1bfa7cb7[1], frac0 * var_3ae5c24[2] + frac * var_1bfa7cb7[2]);
+	color = (frac0 * cfrom[0] + frac * cto[0], frac0 * cfrom[1] + frac * cto[1], frac0 * cfrom[2] + frac * cto[2]);
 	return color;
 }
 
@@ -1384,24 +1384,24 @@ function function_89d6f49a(localClientNum, onOff)
 	}
 	var_781fc232 = (63, 103, 4) / 255;
 	var_27745be8 = (105, 148, 24) / 255;
-	var_d7805253 = 2;
-	var_ec055171 = 0.25;
-	cycle_time = var_d7805253;
-	var_6cebf6c0 = function_4778b020(var_781fc232, var_27745be8);
-	new_color = var_6cebf6c0;
+	cycle_period = 2;
+	cycle_refresh = 0.25;
+	cycle_time = cycle_period;
+	old_color = function_4778b020(var_781fc232, var_27745be8);
+	new_color = old_color;
 	while(isdefined(self))
 	{
-		if(cycle_time >= var_d7805253)
+		if(cycle_time >= cycle_period)
 		{
-			var_6cebf6c0 = new_color;
+			old_color = new_color;
 			new_color = function_4778b020(var_781fc232, var_27745be8);
 			cycle_time = 0;
 		}
-		color = function_4b2bbece(var_6cebf6c0, new_color, cycle_time / var_d7805253);
+		color = function_4b2bbece(old_color, new_color, cycle_time / cycle_period);
 		self SetControllerLightbarColor(localClientNum, color);
 		self.controllerColor = color;
-		cycle_time = cycle_time + var_ec055171;
-		wait(var_ec055171);
+		cycle_time = cycle_time + cycle_refresh;
+		wait(cycle_refresh);
 	}
 }
 

@@ -34,25 +34,25 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	level.var_21ae0b78 = GetWeapon("nesting_dolls");
-	level.var_3a1d655b = GetWeapon("nesting_dolls_single");
-	level.var_4cd1cc40 = 500;
-	level.var_6e0ba488 = 45;
-	level.var_f483f127 = 10000;
-	level.var_a2b87344 = 0.25;
-	level.var_c7ce5820 = cos(22.5);
-	level.var_58ffdf1b = 180;
+	level.w_nesting_dolls = GetWeapon("nesting_dolls");
+	level.w_nesting_dolls_single = GetWeapon("nesting_dolls_single");
+	level.nesting_dolls_launch_speed = 500;
+	level.nesting_dolls_launch_angle = 45;
+	level.nesting_dolls_too_close_dist = 10000;
+	level.nesting_dolls_det_time = 0.25;
+	level.nesting_dolls_player_aim_dot = cos(22.5);
+	level.nesting_dolls_damage_radius = 180;
 	gravity = GetDvarFloat("bg_gravity");
-	level.var_ea1cfe92 = level.var_4cd1cc40 * sin(level.var_6e0ba488) / Abs(gravity) * 0.5;
-	level.var_db1bba6e = 10;
+	level.nesting_dolls_launch_peak_time = level.nesting_dolls_launch_speed * sin(level.nesting_dolls_launch_angle) / Abs(gravity) * 0.5;
+	level.nesting_dolls_max_ids = 10;
 	/#
 		level.zombiemode_devgui_nesting_dolls_give = &player_give_nesting_dolls;
 	#/
-	function_51c28247();
+	setup_nesting_dolls_data();
 }
 
 /*
-	Name: function_51c28247
+	Name: setup_nesting_dolls_data
 	Namespace: namespace_d2920ea5
 	Checksum: 0xABC3154B
 	Offset: 0x518
@@ -60,38 +60,38 @@ function __init__()
 	Parameters: 0
 	Flags: None
 */
-function function_51c28247()
+function setup_nesting_dolls_data()
 {
-	if(isdefined(level.var_fd27be9f))
+	if(isdefined(level.nesting_dolls_override_setup))
 	{
-		[[level.var_fd27be9f]]();
+		[[level.nesting_dolls_override_setup]]();
 		return;
 	}
 	level._effect["nesting_doll_trail_blue"] = "dlc5/zmb_weapon/fx_zmb_trail_doll_blue";
 	level._effect["nesting_doll_trail_green"] = "dlc5/zmb_weapon/fx_zmb_trail_doll_green";
 	level._effect["nesting_doll_trail_red"] = "dlc5/zmb_weapon/fx_zmb_trail_doll_red";
 	level._effect["nesting_doll_trail_yellow"] = "dlc5/zmb_weapon/fx_zmb_trail_doll_yellow";
-	level.var_7379c29d = [];
-	level.var_7379c29d[0] = spawnstruct();
-	level.var_7379c29d[0].name = "dempsey";
-	level.var_7379c29d[0].id = 127;
-	level.var_7379c29d[0].trailfx = level._effect["nesting_doll_trail_blue"];
-	level.var_7379c29d[1] = spawnstruct();
-	level.var_7379c29d[1].name = "nikolai";
-	level.var_7379c29d[1].id = 128;
-	level.var_7379c29d[1].trailfx = level._effect["nesting_doll_trail_red"];
-	level.var_7379c29d[2] = spawnstruct();
-	level.var_7379c29d[2].name = "takeo";
-	level.var_7379c29d[2].id = 130;
-	level.var_7379c29d[2].trailfx = level._effect["nesting_doll_trail_green"];
-	level.var_7379c29d[3] = spawnstruct();
-	level.var_7379c29d[3].name = "richtofen";
-	level.var_7379c29d[3].id = 129;
-	level.var_7379c29d[3].trailfx = level._effect["nesting_doll_trail_yellow"];
+	level.nesting_dolls_data = [];
+	level.nesting_dolls_data[0] = spawnstruct();
+	level.nesting_dolls_data[0].name = "dempsey";
+	level.nesting_dolls_data[0].id = 127;
+	level.nesting_dolls_data[0].trailfx = level._effect["nesting_doll_trail_blue"];
+	level.nesting_dolls_data[1] = spawnstruct();
+	level.nesting_dolls_data[1].name = "nikolai";
+	level.nesting_dolls_data[1].id = 128;
+	level.nesting_dolls_data[1].trailfx = level._effect["nesting_doll_trail_red"];
+	level.nesting_dolls_data[2] = spawnstruct();
+	level.nesting_dolls_data[2].name = "takeo";
+	level.nesting_dolls_data[2].id = 130;
+	level.nesting_dolls_data[2].trailfx = level._effect["nesting_doll_trail_green"];
+	level.nesting_dolls_data[3] = spawnstruct();
+	level.nesting_dolls_data[3].name = "richtofen";
+	level.nesting_dolls_data[3].id = 129;
+	level.nesting_dolls_data[3].trailfx = level._effect["nesting_doll_trail_yellow"];
 }
 
 /*
-	Name: function_c025a1a5
+	Name: nesting_dolls_exists
 	Namespace: namespace_d2920ea5
 	Checksum: 0x14483B93
 	Offset: 0x7D0
@@ -99,7 +99,7 @@ function function_51c28247()
 	Parameters: 0
 	Flags: None
 */
-function function_c025a1a5()
+function nesting_dolls_exists()
 {
 	return isdefined(level.zombie_weapons["nesting_dolls"]);
 }
@@ -115,23 +115,23 @@ function function_c025a1a5()
 */
 function player_give_nesting_dolls()
 {
-	self function_f4b4582d(0);
-	var_1c3c9c82 = level.var_7379c29d[self.var_295a50c4[0][0]].id;
-	weapon_options = self CalcWeaponOptions(var_1c3c9c82, 0, 0);
-	if(self HasWeapon(level.var_21ae0b78))
+	self nesting_dolls_create_randomized_indices(0);
+	start_camo = level.nesting_dolls_data[self.nesting_dolls_randomized_indices[0][0]].id;
+	weapon_options = self CalcWeaponOptions(start_camo, 0, 0);
+	if(self HasWeapon(level.w_nesting_dolls))
 	{
-		self function_c8540b60(level.var_21ae0b78, weapon_options);
+		self updateweaponoptions(level.w_nesting_dolls, weapon_options);
 	}
 	else
 	{
-		self GiveWeapon(level.var_21ae0b78, weapon_options);
+		self GiveWeapon(level.w_nesting_dolls, weapon_options);
 	}
-	self zm_utility::set_player_tactical_grenade(level.var_21ae0b78);
-	self thread function_6831d7();
+	self zm_utility::set_player_tactical_grenade(level.w_nesting_dolls);
+	self thread player_handle_nesting_dolls();
 }
 
 /*
-	Name: function_6831d7
+	Name: player_handle_nesting_dolls
 	Namespace: namespace_d2920ea5
 	Checksum: 0x2AC1D21
 	Offset: 0x910
@@ -139,14 +139,14 @@ function player_give_nesting_dolls()
 	Parameters: 0
 	Flags: None
 */
-function function_6831d7()
+function player_handle_nesting_dolls()
 {
-	self notify("hash_c3d84139");
+	self notify("starting_nesting_dolls");
 	self endon("disconnect");
-	self endon("hash_c3d84139");
+	self endon("starting_nesting_dolls");
 	while(1)
 	{
-		grenade = function_cf5a6be4();
+		grenade = get_thrown_nesting_dolls();
 		if(isdefined(grenade))
 		{
 			if(self laststand::player_is_in_laststand())
@@ -154,14 +154,14 @@ function function_6831d7()
 				grenade delete();
 				continue;
 			}
-			self thread function_8bfa63a0(grenade);
+			self thread doll_spawner_cluster(grenade);
 		}
 		wait(0.05);
 	}
 }
 
 /*
-	Name: function_7c8b687
+	Name: doll_spawner
 	Namespace: namespace_d2920ea5
 	Checksum: 0x10DCD8A3
 	Offset: 0x9C8
@@ -169,36 +169,36 @@ function function_6831d7()
 	Parameters: 1
 	Flags: None
 */
-function function_7c8b687(var_b8d1d71c)
+function doll_spawner(start_grenade)
 {
 	self endon("disconnect");
 	self endon("death");
-	var_cf19c9e8 = 1;
-	var_523515f2 = 4;
-	self function_38be5ec1();
-	self thread function_92b451d9();
-	if(isdefined(var_b8d1d71c))
+	num_dolls = 1;
+	max_dolls = 4;
+	self nesting_dolls_set_id();
+	self thread nesting_dolls_setup_next_doll_throw();
+	if(isdefined(start_grenade))
 	{
-		var_b8d1d71c function_1499b9a4(self.var_b1cb3746, 0, self);
-		var_b8d1d71c thread function_88994d32(self, self.var_b1cb3746, 0);
+		start_grenade spawn_doll_model(self.doll_id, 0, self);
+		start_grenade thread doll_behavior_explode_when_stopped(self, self.doll_id, 0);
 	}
-	while(var_cf19c9e8 < var_523515f2)
+	while(num_dolls < max_dolls)
 	{
-		self waittill("hash_e78f395e", origin, angles);
-		var_f77662c1 = self function_d263a0d7(origin, 2000);
-		if(var_f77662c1 == (0, 0, 0))
+		self waittill("spawn_doll", origin, angles);
+		grenade_vel = self get_launch_velocity(origin, 2000);
+		if(grenade_vel == (0, 0, 0))
 		{
-			var_f77662c1 = self function_e20585d3(origin, angles);
+			grenade_vel = self get_random_launch_velocity(origin, angles);
 		}
-		grenade = self MagicGrenadeType(level.var_3a1d655b, origin, var_f77662c1);
-		grenade function_1499b9a4(self.var_b1cb3746, var_cf19c9e8, self);
-		grenade thread function_88994d32(self, self.var_b1cb3746, var_cf19c9e8);
-		var_cf19c9e8++;
+		grenade = self MagicGrenadeType(level.w_nesting_dolls_single, origin, grenade_vel);
+		grenade spawn_doll_model(self.doll_id, num_dolls, self);
+		grenade thread doll_behavior_explode_when_stopped(self, self.doll_id, num_dolls);
+		num_dolls++;
 	}
 }
 
 /*
-	Name: function_8bfa63a0
+	Name: doll_spawner_cluster
 	Namespace: namespace_d2920ea5
 	Checksum: 0xB452BE0A
 	Offset: 0xBA0
@@ -206,36 +206,36 @@ function function_7c8b687(var_b8d1d71c)
 	Parameters: 1
 	Flags: None
 */
-function function_8bfa63a0(var_b8d1d71c)
+function doll_spawner_cluster(start_grenade)
 {
 	self endon("disconnect");
 	self endon("death");
-	var_cf19c9e8 = 1;
-	var_523515f2 = 4;
-	self function_38be5ec1();
-	self thread function_92b451d9();
-	self thread function_f1cbce42(self.var_b1cb3746);
-	self thread function_553c8cdb(self.var_b1cb3746);
-	if(isdefined(var_b8d1d71c))
+	num_dolls = 1;
+	max_dolls = 4;
+	self nesting_dolls_set_id();
+	self thread nesting_dolls_setup_next_doll_throw();
+	self thread nesting_dolls_track_achievement(self.doll_id);
+	self thread nesting_dolls_check_achievement(self.doll_id);
+	if(isdefined(start_grenade))
 	{
-		var_b8d1d71c function_1499b9a4(self.var_b1cb3746, 0, self);
-		var_b8d1d71c thread function_88994d32(self, self.var_b1cb3746, 0);
+		start_grenade spawn_doll_model(self.doll_id, 0, self);
+		start_grenade thread doll_behavior_explode_when_stopped(self, self.doll_id, 0);
 	}
-	self waittill("hash_e78f395e", origin, angles);
-	while(var_cf19c9e8 < var_523515f2)
+	self waittill("spawn_doll", origin, angles);
+	while(num_dolls < max_dolls)
 	{
-		var_f77662c1 = self function_58267558(angles, var_cf19c9e8);
-		grenade = self MagicGrenadeType(level.var_3a1d655b, origin, var_f77662c1);
-		grenade function_1499b9a4(self.var_b1cb3746, var_cf19c9e8, self);
+		grenade_vel = self get_cluster_launch_velocity(angles, num_dolls);
+		grenade = self MagicGrenadeType(level.w_nesting_dolls_single, origin, grenade_vel);
+		grenade spawn_doll_model(self.doll_id, num_dolls, self);
 		grenade playsound("wpn_nesting_pop_npc");
-		grenade thread function_88994d32(self, self.var_b1cb3746, var_cf19c9e8);
-		var_cf19c9e8++;
+		grenade thread doll_behavior_explode_when_stopped(self, self.doll_id, num_dolls);
+		num_dolls++;
 		wait(0.25);
 	}
 }
 
 /*
-	Name: function_e29d07ea
+	Name: doll_do_damage
 	Namespace: namespace_d2920ea5
 	Checksum: 0x3DF22E63
 	Offset: 0xDB0
@@ -243,7 +243,7 @@ function function_8bfa63a0(var_b8d1d71c)
 	Parameters: 4
 	Flags: None
 */
-function function_e29d07ea(origin, owner, id, index)
+function doll_do_damage(origin, owner, id, index)
 {
 	self waittill("explode");
 	zombies = zombie_utility::get_round_enemy_array();
@@ -251,22 +251,22 @@ function function_e29d07ea(origin, owner, id, index)
 	{
 		return;
 	}
-	var_45e7db0a = util::get_array_of_closest(origin, zombies, undefined, undefined, level.var_58ffdf1b);
-	for(i = 0; i < var_45e7db0a.size; i++)
+	zombie_sort = util::get_array_of_closest(origin, zombies, undefined, undefined, level.nesting_dolls_damage_radius);
+	for(i = 0; i < zombie_sort.size; i++)
 	{
-		if(isalive(var_45e7db0a[i]))
+		if(isalive(zombie_sort[i]))
 		{
-			if(var_45e7db0a[i] damageConeTrace(origin, owner) == 1)
+			if(zombie_sort[i] damageConeTrace(origin, owner) == 1)
 			{
-				owner.var_2f6526f3[id][index] = owner.var_2f6526f3[id][index] + 1;
+				owner.nesting_dolls_tracker[id][index] = owner.nesting_dolls_tracker[id][index] + 1;
 			}
 		}
 	}
-	RadiusDamage(origin, level.var_58ffdf1b, 95000, 95000, owner, "MOD_GRENADE_SPLASH", level.var_3a1d655b);
+	RadiusDamage(origin, level.nesting_dolls_damage_radius, 95000, 95000, owner, "MOD_GRENADE_SPLASH", level.w_nesting_dolls_single);
 }
 
 /*
-	Name: function_2d17c595
+	Name: randomize_angles
 	Namespace: namespace_d2920ea5
 	Checksum: 0x2D9219B1
 	Offset: 0xF40
@@ -274,17 +274,17 @@ function function_e29d07ea(origin, owner, id, index)
 	Parameters: 1
 	Flags: None
 */
-function function_2d17c595(angles)
+function randomize_angles(angles)
 {
 	random_yaw = randomIntRange(-45, 45);
 	random_pitch = randomIntRange(-45, -35);
 	random = (random_pitch, random_yaw, 0);
-	var_4de4242e = angles + random;
-	return var_4de4242e;
+	return_angles = angles + random;
+	return return_angles;
 }
 
 /*
-	Name: function_e20585d3
+	Name: get_random_launch_velocity
 	Namespace: namespace_d2920ea5
 	Checksum: 0x6993EAE4
 	Offset: 0xFD8
@@ -292,26 +292,26 @@ function function_2d17c595(angles)
 	Parameters: 2
 	Flags: None
 */
-function function_e20585d3(var_af0b25f3, angles)
+function get_random_launch_velocity(doll_origin, angles)
 {
-	angles = function_2d17c595(angles);
-	trace_dist = level.var_4cd1cc40 * level.var_ea1cfe92;
+	angles = randomize_angles(angles);
+	trace_dist = level.nesting_dolls_launch_speed * level.nesting_dolls_launch_peak_time;
 	for(i = 0; i < 4; i++)
 	{
 		dir = AnglesToForward(angles);
-		if(BulletTracePassed(var_af0b25f3, var_af0b25f3 + dir * trace_dist, 0, undefined))
+		if(BulletTracePassed(doll_origin, doll_origin + dir * trace_dist, 0, undefined))
 		{
-			var_f77662c1 = dir * level.var_4cd1cc40;
-			return var_f77662c1;
+			grenade_vel = dir * level.nesting_dolls_launch_speed;
+			return grenade_vel;
 			continue;
 		}
 		angles = angles + VectorScale((0, 1, 0), 90);
 	}
-	return (0, 0, level.var_4cd1cc40);
+	return (0, 0, level.nesting_dolls_launch_speed);
 }
 
 /*
-	Name: function_58267558
+	Name: get_cluster_launch_velocity
 	Namespace: namespace_d2920ea5
 	Checksum: 0x84F2CDEA
 	Offset: 0x10F8
@@ -319,18 +319,18 @@ function function_e20585d3(var_af0b25f3, angles)
 	Parameters: 2
 	Flags: None
 */
-function function_58267558(angles, index)
+function get_cluster_launch_velocity(angles, index)
 {
 	random_pitch = randomIntRange(-45, -35);
 	offsets = Array(45, 0, -45);
 	angles = angles + (random_pitch, offsets[index - 1], 0);
 	dir = AnglesToForward(angles);
-	var_f77662c1 = dir * level.var_4cd1cc40;
-	return var_f77662c1;
+	grenade_vel = dir * level.nesting_dolls_launch_speed;
+	return grenade_vel;
 }
 
 /*
-	Name: function_d263a0d7
+	Name: get_launch_velocity
 	Namespace: namespace_d2920ea5
 	Checksum: 0x4F696A79
 	Offset: 0x11C8
@@ -338,23 +338,23 @@ function function_58267558(angles, index)
 	Parameters: 2
 	Flags: None
 */
-function function_d263a0d7(var_af0b25f3, range)
+function get_launch_velocity(doll_origin, range)
 {
 	velocity = (0, 0, 0);
-	target = function_11d2fdaa(var_af0b25f3, range);
+	target = get_doll_best_doll_target(doll_origin, range);
 	if(isdefined(target))
 	{
-		target_origin = target function_df2f3669();
-		dir = VectorToAngles(target_origin - var_af0b25f3);
-		dir = (dir[0] - level.var_6e0ba488, dir[1], dir[2]);
+		target_origin = target get_target_leading_pos();
+		dir = VectorToAngles(target_origin - doll_origin);
+		dir = (dir[0] - level.nesting_dolls_launch_angle, dir[1], dir[2]);
 		dir = AnglesToForward(dir);
-		velocity = dir * level.var_4cd1cc40;
+		velocity = dir * level.nesting_dolls_launch_speed;
 	}
 	return velocity;
 }
 
 /*
-	Name: function_df2f3669
+	Name: get_target_leading_pos
 	Namespace: namespace_d2920ea5
 	Checksum: 0x470943D5
 	Offset: 0x12D8
@@ -362,14 +362,14 @@ function function_d263a0d7(var_af0b25f3, range)
 	Parameters: 0
 	Flags: None
 */
-function function_df2f3669()
+function get_target_leading_pos()
 {
 	position = self.origin;
 	return position;
 }
 
 /*
-	Name: function_1499b9a4
+	Name: spawn_doll_model
 	Namespace: namespace_d2920ea5
 	Checksum: 0x82D293DF
 	Offset: 0x1300
@@ -377,25 +377,25 @@ function function_df2f3669()
 	Parameters: 3
 	Flags: None
 */
-function function_1499b9a4(id, index, parent)
+function spawn_doll_model(id, index, parent)
 {
 	self Hide();
-	self.var_96967264 = spawn("script_model", self.origin);
-	var_7bdf50dc = parent.var_295a50c4[id][index];
-	name = level.var_7379c29d[var_7bdf50dc].name;
+	self.doll_model = spawn("script_model", self.origin);
+	data_index = parent.nesting_dolls_randomized_indices[id][index];
+	name = level.nesting_dolls_data[data_index].name;
 	model_index = index + 1;
 	model_name = "wpn_t7_zmb_hd_nesting_dolls_" + name + "_doll" + model_index + "_world";
-	self.var_96967264 SetModel(model_name);
-	self.var_96967264 useanimtree(-1);
-	self.var_96967264 LinkTo(self);
-	self.var_96967264.angles = self.angles;
-	self.var_96967264 thread function_23b41a73(self);
+	self.doll_model SetModel(model_name);
+	self.doll_model useanimtree(-1);
+	self.doll_model LinkTo(self);
+	self.doll_model.angles = self.angles;
+	self.doll_model thread nesting_dolls_cleanup(self);
 	wait(0.1);
-	PlayFXOnTag(level.var_7379c29d[var_7bdf50dc].trailfx, self.var_96967264, "tag_origin");
+	PlayFXOnTag(level.nesting_dolls_data[data_index].trailfx, self.doll_model, "tag_origin");
 }
 
 /*
-	Name: function_88994d32
+	Name: doll_behavior_explode_when_stopped
 	Namespace: namespace_d2920ea5
 	Checksum: 0xDEE34D19
 	Offset: 0x14C0
@@ -403,7 +403,7 @@ function function_1499b9a4(id, index, parent)
 	Parameters: 3
 	Flags: None
 */
-function function_88994d32(parent, var_b1cb3746, index)
+function doll_behavior_explode_when_stopped(parent, doll_id, index)
 {
 	velocitySq = 100000000;
 	oldpos = self.origin;
@@ -419,21 +419,21 @@ function function_88994d32(parent, var_b1cb3746, index)
 	}
 	if(isdefined(self))
 	{
-		self.var_96967264 Unlink();
-		self.var_96967264.origin = self.origin;
-		self.var_96967264.angles = self.angles;
-		parent notify("hash_e78f395e", self.origin, self.angles);
-		self thread function_e29d07ea(self.origin, parent, var_b1cb3746, index);
-		self ResetMissileDetonationTime(level.var_a2b87344);
+		self.doll_model Unlink();
+		self.doll_model.origin = self.origin;
+		self.doll_model.angles = self.angles;
+		parent notify("spawn_doll", self.origin, self.angles);
+		self thread doll_do_damage(self.origin, parent, doll_id, index);
+		self ResetMissileDetonationTime(level.nesting_dolls_det_time);
 		if(isdefined(index) && index == 3)
 		{
-			parent thread function_49591ea0(var_b1cb3746);
+			parent thread nesting_dolls_end_achievement_tracking(doll_id);
 		}
 	}
 }
 
 /*
-	Name: function_49591ea0
+	Name: nesting_dolls_end_achievement_tracking
 	Namespace: namespace_d2920ea5
 	Checksum: 0x836615AA
 	Offset: 0x1650
@@ -441,14 +441,14 @@ function function_88994d32(parent, var_b1cb3746, index)
 	Parameters: 1
 	Flags: None
 */
-function function_49591ea0(var_b1cb3746)
+function nesting_dolls_end_achievement_tracking(doll_id)
 {
-	wait(level.var_a2b87344 + 0.1);
-	self notify("end_achievement_tracker" + var_b1cb3746);
+	wait(level.nesting_dolls_det_time + 0.1);
+	self notify("end_achievement_tracker" + doll_id);
 }
 
 /*
-	Name: function_6485d610
+	Name: get_player_aim_best_doll_target
 	Namespace: namespace_d2920ea5
 	Checksum: 0x72DCC9C7
 	Offset: 0x1688
@@ -456,7 +456,7 @@ function function_49591ea0(var_b1cb3746)
 	Parameters: 1
 	Flags: None
 */
-function function_6485d610(range)
+function get_player_aim_best_doll_target(range)
 {
 	view_pos = self GetWeaponMuzzlePoint();
 	zombies = util::get_array_of_closest(view_pos, zombie_utility::get_round_enemy_array(), undefined, undefined, range * 1.1);
@@ -467,7 +467,7 @@ function function_6485d610(range)
 	range_squared = range * range;
 	forward_view_angles = self GetWeaponForwardDir();
 	end_pos = view_pos + VectorScale(forward_view_angles, range);
-	var_388e0ae3 = -999;
+	best_dot = -999;
 	best_target = undefined;
 	for(i = 0; i < zombies.size; i++)
 	{
@@ -487,7 +487,7 @@ function function_6485d610(range)
 		{
 			continue;
 		}
-		if(dot < level.var_c7ce5820)
+		if(dot < level.nesting_dolls_player_aim_dot)
 		{
 			continue;
 		}
@@ -495,9 +495,9 @@ function function_6485d610(range)
 		{
 			continue;
 		}
-		if(dot > var_388e0ae3)
+		if(dot > best_dot)
 		{
-			var_388e0ae3 = dot;
+			best_dot = dot;
 			best_target = zombies[i];
 		}
 	}
@@ -507,7 +507,7 @@ function function_6485d610(range)
 }
 
 /*
-	Name: function_11d2fdaa
+	Name: get_doll_best_doll_target
 	Namespace: namespace_d2920ea5
 	Checksum: 0x8E42A65
 	Offset: 0x1928
@@ -515,20 +515,20 @@ function function_6485d610(range)
 	Parameters: 2
 	Flags: None
 */
-function function_11d2fdaa(origin, range)
+function get_doll_best_doll_target(origin, range)
 {
 	zombies = GetAIArray(level.zombie_team);
 	if(zombies.size > 0)
 	{
-		var_45e7db0a = util::get_array_of_closest(origin, zombies, undefined, undefined, range);
-		for(i = 0; i < var_45e7db0a.size; i++)
+		zombie_sort = util::get_array_of_closest(origin, zombies, undefined, undefined, range);
+		for(i = 0; i < zombie_sort.size; i++)
 		{
-			if(isdefined(var_45e7db0a[i]) && isalive(var_45e7db0a[i]))
+			if(isdefined(zombie_sort[i]) && isalive(zombie_sort[i]))
 			{
-				centroid = var_45e7db0a[i] GetCentroid();
+				centroid = zombie_sort[i] GetCentroid();
 				if(BulletTracePassed(origin, centroid, 0, undefined))
 				{
-					return var_45e7db0a[i];
+					return zombie_sort[i];
 				}
 			}
 		}
@@ -537,7 +537,7 @@ function function_11d2fdaa(origin, range)
 }
 
 /*
-	Name: function_23b41a73
+	Name: nesting_dolls_cleanup
 	Namespace: namespace_d2920ea5
 	Checksum: 0x1AD87A5C
 	Offset: 0x1A58
@@ -545,7 +545,7 @@ function function_11d2fdaa(origin, range)
 	Parameters: 1
 	Flags: None
 */
-function function_23b41a73(parent)
+function nesting_dolls_cleanup(parent)
 {
 	while(1)
 	{
@@ -559,7 +559,7 @@ function function_23b41a73(parent)
 }
 
 /*
-	Name: function_aa44140a
+	Name: do_nesting_dolls_sound
 	Namespace: namespace_d2920ea5
 	Checksum: 0x74312B56
 	Offset: 0x1AA8
@@ -567,7 +567,7 @@ function function_23b41a73(parent)
 	Parameters: 2
 	Flags: None
 */
-function function_aa44140a(model, info)
+function do_nesting_dolls_sound(model, info)
 {
 	monk_scream_vox = 0;
 	if(level.music_override == 0)
@@ -579,7 +579,7 @@ function function_aa44140a(model, info)
 }
 
 /*
-	Name: function_cf5a6be4
+	Name: get_thrown_nesting_dolls
 	Namespace: namespace_d2920ea5
 	Checksum: 0x1772A031
 	Offset: 0x1B30
@@ -587,14 +587,14 @@ function function_aa44140a(model, info)
 	Parameters: 0
 	Flags: None
 */
-function function_cf5a6be4()
+function get_thrown_nesting_dolls()
 {
 	self endon("disconnect");
-	self endon("hash_c3d84139");
+	self endon("starting_nesting_dolls");
 	while(1)
 	{
 		self waittill("grenade_fire", grenade, weapon);
-		if(weapon == level.var_21ae0b78)
+		if(weapon == level.w_nesting_dolls)
 		{
 			return grenade;
 		}
@@ -603,7 +603,7 @@ function function_cf5a6be4()
 }
 
 /*
-	Name: function_ed6a01ce
+	Name: nesting_dolls_debug_print
 	Namespace: namespace_d2920ea5
 	Checksum: 0xAC58E4B0
 	Offset: 0x1BA8
@@ -611,7 +611,7 @@ function function_cf5a6be4()
 	Parameters: 2
 	Flags: None
 */
-function function_ed6a01ce(msg, color)
+function nesting_dolls_debug_print(msg, color)
 {
 	/#
 		if(!isdefined(color))
@@ -623,7 +623,7 @@ function function_ed6a01ce(msg, color)
 }
 
 /*
-	Name: function_38be5ec1
+	Name: nesting_dolls_set_id
 	Namespace: namespace_d2920ea5
 	Checksum: 0x2CCBA0BD
 	Offset: 0x1C20
@@ -631,22 +631,22 @@ function function_ed6a01ce(msg, color)
 	Parameters: 0
 	Flags: None
 */
-function function_38be5ec1()
+function nesting_dolls_set_id()
 {
-	if(!isdefined(self.var_b1cb3746))
+	if(!isdefined(self.doll_id))
 	{
-		self.var_b1cb3746 = 0;
+		self.doll_id = 0;
 		return;
 	}
-	self.var_b1cb3746 = self.var_b1cb3746 + 1;
-	if(self.var_b1cb3746 >= level.var_db1bba6e)
+	self.doll_id = self.doll_id + 1;
+	if(self.doll_id >= level.nesting_dolls_max_ids)
 	{
-		self.var_b1cb3746 = 0;
+		self.doll_id = 0;
 	}
 }
 
 /*
-	Name: function_f1cbce42
+	Name: nesting_dolls_track_achievement
 	Namespace: namespace_d2920ea5
 	Checksum: 0x85970470
 	Offset: 0x1C80
@@ -654,25 +654,25 @@ function function_38be5ec1()
 	Parameters: 1
 	Flags: None
 */
-function function_f1cbce42(var_b1cb3746)
+function nesting_dolls_track_achievement(doll_id)
 {
-	self endon("end_achievement_tracker" + var_b1cb3746);
-	if(!isdefined(self.var_2f6526f3))
+	self endon("end_achievement_tracker" + doll_id);
+	if(!isdefined(self.nesting_dolls_tracker))
 	{
-		self.var_2f6526f3 = [];
-		for(i = 0; i < level.var_db1bba6e; i++)
+		self.nesting_dolls_tracker = [];
+		for(i = 0; i < level.nesting_dolls_max_ids; i++)
 		{
-			self.var_2f6526f3[i] = [];
+			self.nesting_dolls_tracker[i] = [];
 		}
 	}
 	for(i = 0; i < 4; i++)
 	{
-		self.var_2f6526f3[var_b1cb3746][i] = 0;
+		self.nesting_dolls_tracker[doll_id][i] = 0;
 	}
 }
 
 /*
-	Name: function_553c8cdb
+	Name: nesting_dolls_check_achievement
 	Namespace: namespace_d2920ea5
 	Checksum: 0x145525F6
 	Offset: 0x1D30
@@ -680,13 +680,13 @@ function function_f1cbce42(var_b1cb3746)
 	Parameters: 1
 	Flags: None
 */
-function function_553c8cdb(var_b1cb3746)
+function nesting_dolls_check_achievement(doll_id)
 {
-	self waittill("end_achievement_tracker" + var_b1cb3746);
-	var_d704b2c3 = 1;
+	self waittill("end_achievement_tracker" + doll_id);
+	min_kills_per_doll = 1;
 	for(i = 0; i < 4; i++)
 	{
-		if(self.var_2f6526f3[var_b1cb3746][i] < var_d704b2c3)
+		if(self.nesting_dolls_tracker[doll_id][i] < min_kills_per_doll)
 		{
 			return;
 		}
@@ -694,7 +694,7 @@ function function_553c8cdb(var_b1cb3746)
 }
 
 /*
-	Name: function_f4b4582d
+	Name: nesting_dolls_create_randomized_indices
 	Namespace: namespace_d2920ea5
 	Checksum: 0x1396AB39
 	Offset: 0x1DB0
@@ -702,18 +702,18 @@ function function_553c8cdb(var_b1cb3746)
 	Parameters: 1
 	Flags: None
 */
-function function_f4b4582d(id)
+function nesting_dolls_create_randomized_indices(id)
 {
-	if(!isdefined(self.var_295a50c4))
+	if(!isdefined(self.nesting_dolls_randomized_indices))
 	{
-		self.var_295a50c4 = [];
+		self.nesting_dolls_randomized_indices = [];
 	}
-	var_7b2bee5c = Array(0, 1, 2, 3);
-	self.var_295a50c4[id] = Array::randomize(var_7b2bee5c);
+	base_indices = Array(0, 1, 2, 3);
+	self.nesting_dolls_randomized_indices[id] = Array::randomize(base_indices);
 }
 
 /*
-	Name: function_92b451d9
+	Name: nesting_dolls_setup_next_doll_throw
 	Namespace: namespace_d2920ea5
 	Checksum: 0xC0252611
 	Offset: 0x1E30
@@ -721,21 +721,21 @@ function function_f4b4582d(id)
 	Parameters: 0
 	Flags: None
 */
-function function_92b451d9()
+function nesting_dolls_setup_next_doll_throw()
 {
 	self endon("death");
 	self endon("disconnect");
 	wait(0.5);
-	var_10601dca = self.var_b1cb3746 + 1;
-	if(var_10601dca >= level.var_db1bba6e)
+	next_id = self.doll_id + 1;
+	if(next_id >= level.nesting_dolls_max_ids)
 	{
-		var_10601dca = 0;
+		next_id = 0;
 	}
-	self function_f4b4582d(var_10601dca);
-	if(self HasWeapon(level.var_21ae0b78))
+	self nesting_dolls_create_randomized_indices(next_id);
+	if(self HasWeapon(level.w_nesting_dolls))
 	{
-		cammo = level.var_7379c29d[self.var_295a50c4[var_10601dca][0]].id;
-		self function_c8540b60(level.var_21ae0b78, self CalcWeaponOptions(cammo, 0, 0));
+		cammo = level.nesting_dolls_data[self.nesting_dolls_randomized_indices[next_id][0]].id;
+		self updateweaponoptions(level.w_nesting_dolls, self CalcWeaponOptions(cammo, 0, 0));
 	}
 }
 

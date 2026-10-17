@@ -671,7 +671,7 @@ function minus_to_player_score(points)
 	level notify("spent_points", self, points);
 	if(isdefined(level.bgb_in_use) && level.bgb_in_use && level.onlineGame)
 	{
-		self bgb_token::function_51cf4361(points);
+		self bgb_token::award_check(points);
 	}
 }
 

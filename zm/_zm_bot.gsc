@@ -43,17 +43,17 @@ function __init__()
 	#/
 	/#
 		level.onBotSpawned = &on_bot_spawned;
-		level.var_93a32db5 = &bot_combat::get_ai_threats;
+		level.getbotthreats = &bot_combat::get_ai_threats;
 		level.botPreCombat = &bot::coop_pre_combat;
 		level.botPostCombat = &bot::coop_post_combat;
 		level.botIdle = &bot::follow_coop_players;
 		level.botDevguiCmd = &bot::coop_bot_devgui_cmd;
-		thread function_6e62d3e3();
+		thread debug_coop_bot_test();
 	#/
 }
 
 /*
-	Name: function_6e62d3e3
+	Name: debug_coop_bot_test
 	Namespace: zm_bot
 	Checksum: 0xB1F46EEA
 	Offset: 0x308
@@ -61,7 +61,7 @@ function __init__()
 	Parameters: 0
 	Flags: None
 */
-function function_6e62d3e3()
+function debug_coop_bot_test()
 {
 	/#
 		botCount = 0;
@@ -76,13 +76,13 @@ function function_6e62d3e3()
 					{
 						AddDebugCommand("Dev Block strings are not supported");
 						botCount--;
-						function_aacf4c41("Dev Block strings are not supported" + botCount);
+						debugmsg("Dev Block strings are not supported" + botCount);
 					}
 					else if(botCount < GetDvarInt("Dev Block strings are not supported") && RandomInt(100) > 50)
 					{
 						AddDebugCommand("Dev Block strings are not supported");
 						botCount++;
-						function_aacf4c41("Dev Block strings are not supported" + botCount);
+						debugmsg("Dev Block strings are not supported" + botCount);
 					}
 					wait(randomIntRange(1, 3));
 				}
@@ -92,7 +92,7 @@ function function_6e62d3e3()
 			{
 				AddDebugCommand("Dev Block strings are not supported");
 				botCount--;
-				function_aacf4c41("Dev Block strings are not supported" + botCount);
+				debugmsg("Dev Block strings are not supported" + botCount);
 				wait(1);
 			}
 			wait(1);
@@ -119,7 +119,7 @@ function on_bot_spawned()
 }
 
 /*
-	Name: function_aacf4c41
+	Name: debugmsg
 	Namespace: zm_bot
 	Checksum: 0x95D1E69
 	Offset: 0x568
@@ -127,13 +127,13 @@ function on_bot_spawned()
 	Parameters: 1
 	Flags: None
 */
-function function_aacf4c41(var_69ae6753)
+function debugmsg(str_txt)
 {
 	/#
-		IPrintLnBold(var_69ae6753);
+		IPrintLnBold(str_txt);
 		if(isdefined(level.name))
 		{
-			println("Dev Block strings are not supported" + level.name + "Dev Block strings are not supported" + var_69ae6753);
+			println("Dev Block strings are not supported" + level.name + "Dev Block strings are not supported" + str_txt);
 		}
 	#/
 }

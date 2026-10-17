@@ -31,7 +31,7 @@
 */
 function autoexec init()
 {
-	function_b5da43f3();
+	initzmtombbehaviorsandasm();
 	SetDvar("scr_zm_use_code_enemy_selection", 0);
 	level thread update_closest_player();
 	level.validate_on_navmesh = 1;
@@ -39,7 +39,7 @@ function autoexec init()
 }
 
 /*
-	Name: function_b5da43f3
+	Name: initzmtombbehaviorsandasm
 	Namespace: namespace_ba5e3d70
 	Checksum: 0xA4FE2CFE
 	Offset: 0x528
@@ -47,7 +47,7 @@ function autoexec init()
 	Parameters: 0
 	Flags: Private
 */
-function private function_b5da43f3()
+function private initzmtombbehaviorsandasm()
 {
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("wasKilledByWaterStaff", &function_901a96ec);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("wasKilledByFireStaff", &function_7ae408dd);
@@ -61,12 +61,12 @@ function private function_b5da43f3()
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("tombSetFindFleshState", &function_92b303d1);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("tombClearFindFleshState", &function_7ccc282a);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("tombOnTankDeathActionStart", &function_4bf50754);
-	spawner::add_archetype_spawn_function("zombie", &function_59f740e7);
+	spawner::add_archetype_spawn_function("zombie", &tomb_zombie_spawned);
 	AnimationStateNetwork::RegisterNotetrackHandlerFunction("shatter", &function_e24c6a3f);
 }
 
 /*
-	Name: function_59f740e7
+	Name: tomb_zombie_spawned
 	Namespace: namespace_ba5e3d70
 	Checksum: 0xB56819E3
 	Offset: 0x768
@@ -74,7 +74,7 @@ function private function_b5da43f3()
 	Parameters: 0
 	Flags: None
 */
-function function_59f740e7()
+function tomb_zombie_spawned()
 {
 	self.zombieMoveActionCallback = &function_92b303d1;
 }
@@ -320,7 +320,7 @@ function function_66e3edec(var_25c21be0)
 }
 
 /*
-	Name: function_ce3464b9
+	Name: tomb_validate_last_closest_player
 	Namespace: namespace_ba5e3d70
 	Checksum: 0x7BE2B94B
 	Offset: 0xBB0
@@ -328,7 +328,7 @@ function function_66e3edec(var_25c21be0)
 	Parameters: 1
 	Flags: Private
 */
-function private function_ce3464b9(players)
+function private tomb_validate_last_closest_player(players)
 {
 	if(isdefined(self.last_closest_player) && (isdefined(self.last_closest_player.am_i_valid) && self.last_closest_player.am_i_valid))
 	{
@@ -347,7 +347,7 @@ function private function_ce3464b9(players)
 }
 
 /*
-	Name: function_3394e22d
+	Name: tomb_closest_player
 	Namespace: namespace_ba5e3d70
 	Checksum: 0xF424BBA4
 	Offset: 0xCB8
@@ -355,7 +355,7 @@ function private function_ce3464b9(players)
 	Parameters: 2
 	Flags: Private
 */
-function private function_3394e22d(origin, players)
+function private tomb_closest_player(origin, players)
 {
 	if(players.size == 0)
 	{
@@ -380,7 +380,7 @@ function private function_3394e22d(origin, players)
 	}
 	if(isdefined(level.last_closest_time) && level.last_closest_time >= level.time)
 	{
-		self function_ce3464b9(players);
+		self tomb_validate_last_closest_player(players);
 		return self.last_closest_player;
 	}
 	if(isdefined(self.need_closest_player) && self.need_closest_player)
@@ -417,7 +417,7 @@ function private function_3394e22d(origin, players)
 	{
 		self zm_utility::approximate_path_dist(closest);
 	}
-	self function_ce3464b9(players);
+	self tomb_validate_last_closest_player(players);
 	return self.last_closest_player;
 }
 
@@ -437,10 +437,10 @@ function private update_closest_player()
 	{
 		reset_closest_player = 1;
 		zombies = zombie_utility::get_zombie_array();
-		var_6aad1b23 = GetAIArchetypeArray("mechz", level.zombie_team);
-		if(var_6aad1b23.size)
+		mechzs = GetAIArchetypeArray("mechz", level.zombie_team);
+		if(mechzs.size)
 		{
-			zombies = ArrayCombine(zombies, var_6aad1b23, 0, 0);
+			zombies = ArrayCombine(zombies, mechzs, 0, 0);
 		}
 		foreach(zombie in zombies)
 		{

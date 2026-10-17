@@ -144,7 +144,7 @@ function get_unused_struct(a_structs)
 }
 
 /*
-	Name: function_add29756
+	Name: setup_dogfights
 	Namespace: zm_tomb_ambient_scripts
 	Checksum: 0x20A75E48
 	Offset: 0x890
@@ -152,7 +152,7 @@ function get_unused_struct(a_structs)
 	Parameters: 0
 	Flags: None
 */
-function function_add29756()
+function setup_dogfights()
 {
 	var_e1149395 = GetEnt("ambiance_dogfights_1", "targetname");
 	var_7170dfe = GetEnt("ambiance_dogfights_2", "targetname");
@@ -209,12 +209,12 @@ function function_511ab91d()
 	var_7170dfe = GetEnt("ambiance_dogfights_2", "targetname");
 	while(1)
 	{
-		var_f4570d42 = RandomInt(3);
+		n_scenario = RandomInt(3);
 		if(level.var_1766c187)
 		{
-			var_f4570d42 = 0;
+			n_scenario = 0;
 		}
-		switch(var_f4570d42)
+		switch(n_scenario)
 		{
 			case 0:
 			{

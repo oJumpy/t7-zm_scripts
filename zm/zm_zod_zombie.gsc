@@ -28,18 +28,18 @@
 */
 function autoexec init()
 {
-	function_3606a81c();
-	level.zombie_init_done = &function_e4da8c4d;
+	initzmzodbehaviorsandasm();
+	level.zombie_init_done = &zod_zombie_init_done;
 	SetDvar("scr_zm_use_code_enemy_selection", 0);
 	SetDvar("tu5_zmPathDistanceCheckTolarance", 20);
-	level.closest_player_override = &function_e33b6e60;
+	level.closest_player_override = &zod_closest_player;
 	level thread update_closest_player();
 	level.move_valid_poi_to_navmesh = 1;
 	level.pathdist_type = 2;
 }
 
 /*
-	Name: function_3606a81c
+	Name: initzmzodbehaviorsandasm
 	Namespace: namespace_99cd1d55
 	Checksum: 0xA71748A2
 	Offset: 0x410
@@ -47,14 +47,14 @@ function autoexec init()
 	Parameters: 0
 	Flags: Private
 */
-function private function_3606a81c()
+function private initzmzodbehaviorsandasm()
 {
-	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_teleport_traversal@zombie", &function_5683b5d5, undefined, undefined);
+	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_teleport_traversal@zombie", &teleporttraversalmocompstart, undefined, undefined);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodShouldMove", &function_d0ef2cea);
 }
 
 /*
-	Name: function_5683b5d5
+	Name: teleporttraversalmocompstart
 	Namespace: namespace_99cd1d55
 	Checksum: 0x40247A63
 	Offset: 0x478
@@ -62,7 +62,7 @@ function private function_3606a81c()
 	Parameters: 5
 	Flags: None
 */
-function function_5683b5d5(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
+function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
 	entity.is_teleporting = 1;
 	entity OrientMode("face angle", entity.angles[1]);
@@ -71,7 +71,7 @@ function function_5683b5d5(entity, mocompAnim, mocompAnimBlendOutTime, mocompAni
 	{
 		portal_trig = entity.traverseStartNode.portal_trig;
 		level clientfield::increment("pulse_" + portal_trig.script_noteworthy);
-		portal_trig thread namespace_8e2647d0::function_eb1242c8(entity);
+		portal_trig thread namespace_8e2647d0::portal_teleport_ai(entity);
 	}
 }
 
@@ -130,7 +130,7 @@ function function_d0ef2cea(entity)
 }
 
 /*
-	Name: function_e4da8c4d
+	Name: zod_zombie_init_done
 	Namespace: namespace_99cd1d55
 	Checksum: 0xCFAB10C5
 	Offset: 0x728
@@ -138,13 +138,13 @@ function function_d0ef2cea(entity)
 	Parameters: 0
 	Flags: None
 */
-function function_e4da8c4d()
+function zod_zombie_init_done()
 {
 	self PushActors(0);
 }
 
 /*
-	Name: function_8e555efc
+	Name: zod_validate_last_closest_player
 	Namespace: namespace_99cd1d55
 	Checksum: 0x47AB5626
 	Offset: 0x750
@@ -152,7 +152,7 @@ function function_e4da8c4d()
 	Parameters: 1
 	Flags: Private
 */
-function private function_8e555efc(players)
+function private zod_validate_last_closest_player(players)
 {
 	if(isdefined(self.last_closest_player) && (isdefined(self.last_closest_player.am_i_valid) && self.last_closest_player.am_i_valid))
 	{
@@ -171,7 +171,7 @@ function private function_8e555efc(players)
 }
 
 /*
-	Name: function_e33b6e60
+	Name: zod_closest_player
 	Namespace: namespace_99cd1d55
 	Checksum: 0x8502ECF4
 	Offset: 0x858
@@ -179,7 +179,7 @@ function private function_8e555efc(players)
 	Parameters: 2
 	Flags: Private
 */
-function private function_e33b6e60(origin, players)
+function private zod_closest_player(origin, players)
 {
 	if(players.size == 0)
 	{
@@ -192,7 +192,7 @@ function private function_e33b6e60(origin, players)
 	if(players.size == 1)
 	{
 		self.last_closest_player = players[0];
-		self function_8e555efc(players);
+		self zod_validate_last_closest_player(players);
 		return self.last_closest_player;
 	}
 	if(!isdefined(self.last_closest_player))
@@ -205,7 +205,7 @@ function private function_e33b6e60(origin, players)
 	}
 	if(isdefined(level.last_closest_time) && level.last_closest_time >= level.time)
 	{
-		self function_8e555efc(players);
+		self zod_validate_last_closest_player(players);
 		return self.last_closest_player;
 	}
 	if(isdefined(self.need_closest_player) && self.need_closest_player)
@@ -242,7 +242,7 @@ function private function_e33b6e60(origin, players)
 	{
 		self zm_utility::approximate_path_dist(closest);
 	}
-	self function_8e555efc(players);
+	self zod_validate_last_closest_player(players);
 	return self.last_closest_player;
 }
 

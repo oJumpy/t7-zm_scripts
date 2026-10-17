@@ -26,14 +26,14 @@ function init()
 {
 	clientfield::register("allplayers", "oneinchpunch_impact", 21000, 1, "int");
 	clientfield::register("actor", "oneinchpunch_physics_launchragdoll", 21000, 1, "int");
-	level.var_653c9585 = GetWeapon("one_inch_punch");
-	level.var_4f241554 = GetWeapon("one_inch_punch_fire");
-	level.var_e27d2514 = GetWeapon("one_inch_punch_air");
-	level.var_590c486e = GetWeapon("one_inch_punch_lightning");
-	level.var_af96dd85 = GetWeapon("one_inch_punch_ice");
-	level.var_75ef78a0 = GetWeapon("one_inch_punch_upgraded");
-	level.var_9d7b544c = GetWeapon("zombie_one_inch_punch_flourish");
-	level.var_ee516197 = GetWeapon("zombie_one_inch_punch_upgrade_flourish");
+	level.w_one_inch_punch = GetWeapon("one_inch_punch");
+	level.w_one_inch_punch_fire = GetWeapon("one_inch_punch_fire");
+	level.w_one_inch_punch_air = GetWeapon("one_inch_punch_air");
+	level.w_one_inch_punch_lightning = GetWeapon("one_inch_punch_lightning");
+	level.w_one_inch_punch_water = GetWeapon("one_inch_punch_ice");
+	level.w_one_inch_punch_upgraded = GetWeapon("one_inch_punch_upgraded");
+	level.w_one_inch_punch_flourish = GetWeapon("zombie_one_inch_punch_flourish");
+	level.w_one_inch_punch_flourish_upgraded = GetWeapon("zombie_one_inch_punch_upgrade_flourish");
 	level._effect["oneinch_impact"] = "dlc5/tomb/fx_one_inch_punch_impact";
 	level._effect["punch_knockdown_ground"] = "dlc5/zmb_weapon/fx_thundergun_knockback_ground";
 	callback::on_connect(&one_inch_punch_take_think);
@@ -91,50 +91,50 @@ function one_inch_punch_melee_attack()
 	{
 		w_weapon = self GetCurrentWeapon();
 		self zm_utility::disable_player_move_states(1);
-		self GiveWeapon(level.var_9d7b544c);
-		self SwitchToWeapon(level.var_9d7b544c);
+		self GiveWeapon(level.w_one_inch_punch_flourish);
+		self SwitchToWeapon(level.w_one_inch_punch_flourish);
 		self util::waittill_any("player_downed", "weapon_change_complete");
 		self SwitchToWeapon(w_weapon);
 		self zm_utility::enable_player_move_states();
-		self TakeWeapon(level.var_9d7b544c);
+		self TakeWeapon(level.w_one_inch_punch_flourish);
 		if(self.str_punch_element == "air")
 		{
-			self GiveWeapon(level.var_e27d2514);
-			self zm_utility::set_player_melee_weapon(level.var_e27d2514);
+			self GiveWeapon(level.w_one_inch_punch_air);
+			self zm_utility::set_player_melee_weapon(level.w_one_inch_punch_air);
 		}
 		else if(self.str_punch_element == "fire")
 		{
-			self GiveWeapon(level.var_4f241554);
-			self zm_utility::set_player_melee_weapon(level.var_4f241554);
+			self GiveWeapon(level.w_one_inch_punch_fire);
+			self zm_utility::set_player_melee_weapon(level.w_one_inch_punch_fire);
 		}
 		else if(self.str_punch_element == "ice")
 		{
-			self GiveWeapon(level.var_af96dd85);
-			self zm_utility::set_player_melee_weapon(level.var_af96dd85);
+			self GiveWeapon(level.w_one_inch_punch_water);
+			self zm_utility::set_player_melee_weapon(level.w_one_inch_punch_water);
 		}
 		else if(self.str_punch_element == "lightning")
 		{
-			self GiveWeapon(level.var_590c486e);
-			self zm_utility::set_player_melee_weapon(level.var_590c486e);
+			self GiveWeapon(level.w_one_inch_punch_lightning);
+			self zm_utility::set_player_melee_weapon(level.w_one_inch_punch_lightning);
 		}
 		else
 		{
-			self GiveWeapon(level.var_75ef78a0);
-			self zm_utility::set_player_melee_weapon(level.var_75ef78a0);
+			self GiveWeapon(level.w_one_inch_punch_upgraded);
+			self zm_utility::set_player_melee_weapon(level.w_one_inch_punch_upgraded);
 		}
 	}
 	else
 	{
 		w_weapon = self GetCurrentWeapon();
 		self zm_utility::disable_player_move_states(1);
-		self GiveWeapon(level.var_9d7b544c);
-		self SwitchToWeapon(level.var_9d7b544c);
+		self GiveWeapon(level.w_one_inch_punch_flourish);
+		self SwitchToWeapon(level.w_one_inch_punch_flourish);
 		self util::waittill_any("player_downed", "weapon_change_complete");
 		self SwitchToWeapon(w_weapon);
 		self zm_utility::enable_player_move_states();
-		self TakeWeapon(level.var_9d7b544c);
-		self GiveWeapon(level.var_653c9585);
-		self zm_utility::set_player_melee_weapon(level.var_653c9585);
+		self TakeWeapon(level.w_one_inch_punch_flourish);
+		self GiveWeapon(level.w_one_inch_punch);
+		self zm_utility::set_player_melee_weapon(level.w_one_inch_punch);
 		self thread zm_audio::create_and_play_dialog("perk", "one_inch");
 	}
 	self thread monitor_melee_swipe();
@@ -155,14 +155,14 @@ function monitor_melee_swipe()
 	self notify("stop_monitor_melee_swipe");
 	self endon("stop_monitor_melee_swipe");
 	self endon("bled_out");
-	var_ac486a40 = GetWeapon("tomb_shield");
+	w_shield = GetWeapon("tomb_shield");
 	while(1)
 	{
 		while(!self IsMeleeing())
 		{
 			wait(0.05);
 		}
-		if(self GetCurrentWeapon() == var_ac486a40)
+		if(self GetCurrentWeapon() == w_shield)
 		{
 			wait(0.1);
 			continue;
@@ -237,7 +237,7 @@ function is_player_facing(zombie, v_punch_yaw)
 */
 function is_oneinch_punch_damage()
 {
-	return isdefined(self.damageWeapon) && self.damageWeapon == level.var_653c9585;
+	return isdefined(self.damageWeapon) && self.damageWeapon == level.w_one_inch_punch;
 }
 
 /*

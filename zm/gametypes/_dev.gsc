@@ -147,12 +147,12 @@ function warpAllToHost(team)
 {
 	/#
 		host = util::getHostPlayer();
-		function_93f46504(team, host.name);
+		warpalltoplayer(team, host.name);
 	#/
 }
 
 /*
-	Name: function_93f46504
+	Name: warpalltoplayer
 	Namespace: dev
 	Checksum: 0xAC4B34D4
 	Offset: 0x720
@@ -160,7 +160,7 @@ function warpAllToHost(team)
 	Parameters: 2
 	Flags: None
 */
-function function_93f46504(team, player)
+function warpalltoplayer(team, player)
 {
 	/#
 		players = GetPlayers();
@@ -380,17 +380,17 @@ function updateDevSettings()
 			else if(StrStartsWith(GetDvarString("Dev Block strings are not supported"), "Dev Block strings are not supported"))
 			{
 				name = GetSubStr(GetDvarString("Dev Block strings are not supported"), 8);
-				function_93f46504(GetDvarString("Dev Block strings are not supported"), name);
+				warpalltoplayer(GetDvarString("Dev Block strings are not supported"), name);
 			}
 			else if(StrStartsWith(GetDvarString("Dev Block strings are not supported"), "Dev Block strings are not supported"))
 			{
 				name = GetSubStr(GetDvarString("Dev Block strings are not supported"), 11);
-				function_93f46504(GetDvarString("Dev Block strings are not supported"), name);
+				warpalltoplayer(GetDvarString("Dev Block strings are not supported"), name);
 			}
 			else if(StrStartsWith(GetDvarString("Dev Block strings are not supported"), "Dev Block strings are not supported"))
 			{
 				name = GetSubStr(GetDvarString("Dev Block strings are not supported"), 4);
-				function_93f46504(undefined, name);
+				warpalltoplayer(undefined, name);
 			}
 			else if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
@@ -2324,7 +2324,7 @@ function draw_point(origin, color)
 }
 
 /*
-	Name: function_7a7785fc
+	Name: point_get
 	Namespace: dev
 	Checksum: 0xA73E3740
 	Offset: 0x65B0
@@ -2332,7 +2332,7 @@ function draw_point(origin, color)
 	Parameters: 1
 	Flags: None
 */
-function function_7a7785fc(player)
+function point_get(player)
 {
 	/#
 		for(;;)
@@ -2353,7 +2353,7 @@ function function_7a7785fc(player)
 }
 
 /*
-	Name: function_2258c623
+	Name: dev_get_point_pair
 	Namespace: dev
 	Checksum: 0x510A2EAE
 	Offset: 0x6658
@@ -2361,7 +2361,7 @@ function function_7a7785fc(player)
 	Parameters: 0
 	Flags: None
 */
-function function_2258c623()
+function dev_get_point_pair()
 {
 	/#
 		player = util::getHostPlayer();
@@ -2369,7 +2369,7 @@ function function_2258c623()
 		points = [];
 		while(!isdefined(start))
 		{
-			start = function_7a7785fc(player);
+			start = point_get(player);
 			if(!isdefined(start))
 			{
 				return points;
@@ -2382,7 +2382,7 @@ function function_2258c623()
 		end = undefined;
 		while(!isdefined(end))
 		{
-			end = function_7a7785fc(player);
+			end = point_get(player);
 			if(!isdefined(end))
 			{
 				return points;

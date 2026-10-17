@@ -19,7 +19,7 @@ function private _UpdateThrottleThread(Throttle)
 }
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: Throttle
 	Checksum: 0xE3809695
 	Offset: 0xC0
@@ -27,7 +27,7 @@ function private _UpdateThrottleThread(Throttle)
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self.queue_ = [];
 	self.processed_ = 0;
@@ -36,7 +36,7 @@ function function_9b385ca5()
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: Throttle
 	Checksum: 0x99EC1590
 	Offset: 0x100
@@ -44,7 +44,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -145,8 +145,8 @@ function private autoexec Throttle()
 	classes.Throttle[0].__vtable[1123417372] = &WaitInQueue;
 	classes.Throttle[0].__vtable[-422924033] = &Initialize;
 	classes.Throttle[0].__vtable[-1487653173] = &_UpdateThrottle;
-	classes.Throttle[0].__vtable[1606033458] = &function_5fba2032;
-	classes.Throttle[0].__vtable[-1690805083] = &function_9b385ca5;
+	classes.Throttle[0].__vtable[1606033458] = &__destructor;
+	classes.Throttle[0].__vtable[-1690805083] = &__constructor;
 	classes.Throttle[0].__vtable[-758537977] = &_UpdateThrottleThread;
 }
 

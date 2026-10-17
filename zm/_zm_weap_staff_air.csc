@@ -31,16 +31,16 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	level._effect["whirlwind"] = "dlc5/zmb_weapon/fx_staff_air_impact_ug_miss";
-	clientfield::register("scriptmover", "whirlwind_play_fx", 21000, 1, "int", &function_c6b66912, 0, 0);
+	clientfield::register("scriptmover", "whirlwind_play_fx", 21000, 1, "int", &whirlwind_fx, 0, 0);
 	clientfield::register("actor", "air_staff_launch", 21000, 1, "int", &function_5640a6aa, 0, 0);
-	clientfield::register("allplayers", "air_staff_source", 21000, 1, "int", &function_869adfb, 0, 0);
-	level.var_1e7d95e0 = (0, 0, 0);
-	level.var_654c7116 = [];
+	clientfield::register("allplayers", "air_staff_source", 21000, 1, "int", &set_air_staff_source, 0, 0);
+	level.launch_source = (0, 0, 0);
+	level.whirlwind_pos = [];
 	namespace_c9806b9::function_4be5e665(GetWeapon("staff_air_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_air_lv1");
 }
 
 /*
-	Name: function_869adfb
+	Name: set_air_staff_source
 	Namespace: namespace_589e3c80
 	Checksum: 0x2A8C6E2E
 	Offset: 0x3B0
@@ -48,9 +48,9 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_869adfb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function set_air_staff_source(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	level.var_1e7d95e0 = self.origin;
+	level.launch_source = self.origin;
 }
 
 /*
@@ -111,29 +111,29 @@ function ragdoll_impact_watch(localClientNum)
 */
 function function_5640a6aa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	v_source = level.var_1e7d95e0;
-	var_8178243a = RandomFloatRange(0.05, 0.35);
-	var_bf0620ca = level.var_654c7116[localClientNum];
-	if(isdefined(var_bf0620ca))
+	v_source = level.launch_source;
+	n_verticality = RandomFloatRange(0.05, 0.35);
+	v_whirlwind = level.whirlwind_pos[localClientNum];
+	if(isdefined(v_whirlwind))
 	{
-		dist_sq = DistanceSquared(var_bf0620ca, self.origin);
+		dist_sq = DistanceSquared(v_whirlwind, self.origin);
 		if(dist_sq < 22500)
 		{
-			var_5321b51d = (RandomFloatRange(-1000, 1000), RandomFloatRange(-1000, 1000), 0);
-			v_source = var_bf0620ca + var_5321b51d;
+			v_random_offset = (RandomFloatRange(-1000, 1000), RandomFloatRange(-1000, 1000), 0);
+			v_source = v_whirlwind + v_random_offset;
 		}
 	}
 	dir = self.origin - v_source;
 	dir = VectorNormalize(dir);
 	v_force = length(dir) * 300;
-	launch = (dir[0], dir[1], var_8178243a);
+	launch = (dir[0], dir[1], n_verticality);
 	launch = VectorScale(launch, v_force);
 	self LaunchRagdoll(launch);
 	self thread ragdoll_impact_watch(localClientNum);
 }
 
 /*
-	Name: function_c6b66912
+	Name: whirlwind_fx
 	Namespace: namespace_589e3c80
 	Checksum: 0xC2DE390E
 	Offset: 0x830
@@ -141,27 +141,27 @@ function function_5640a6aa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_c6b66912(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function whirlwind_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("entityshutdown");
 	if(newVal)
 	{
 		self.is_active = 1;
 		original_pos = self.origin;
-		level.var_654c7116[localClientNum] = self.origin;
-		level.var_c6b66912 = PlayFXOnTag(localClientNum, level._effect["whirlwind"], self, "tag_origin");
+		level.whirlwind_pos[localClientNum] = self.origin;
+		level.whirlwind_fx = PlayFXOnTag(localClientNum, level._effect["whirlwind"], self, "tag_origin");
 		if(!isdefined(self.sndent))
 		{
 			self.sndent = spawn(0, self.origin, "script_origin");
 			self.sndent.n_id = self.sndent PlayLoopSound("wpn_airstaff_tornado", 1);
-			self.sndent thread function_3a4d4e97();
+			self.sndent thread snddemojumpmonitor();
 		}
 	}
-	else if(isdefined(level.var_c6b66912))
+	else if(isdefined(level.whirlwind_fx))
 	{
 		self.is_active = 0;
-		level.var_654c7116[localClientNum] = undefined;
-		stopfx(localClientNum, level.var_c6b66912);
+		level.whirlwind_pos[localClientNum] = undefined;
+		stopfx(localClientNum, level.whirlwind_fx);
 	}
 	if(isdefined(self.sndent))
 	{
@@ -172,7 +172,7 @@ function function_c6b66912(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_3a4d4e97
+	Name: snddemojumpmonitor
 	Namespace: namespace_589e3c80
 	Checksum: 0x76CA7CFE
 	Offset: 0xA28
@@ -180,7 +180,7 @@ function function_c6b66912(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 0
 	Flags: None
 */
-function function_3a4d4e97()
+function snddemojumpmonitor()
 {
 	self endon("entityshutdown");
 	level waittill("demo_jump");

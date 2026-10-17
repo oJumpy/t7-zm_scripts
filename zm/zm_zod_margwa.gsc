@@ -110,11 +110,11 @@ function function_5e93cd08()
 	#/
 	level.var_67b254fb = 1;
 	level.var_b383deb1 = 0;
-	level thread function_4575bd06();
+	level thread margwa_round_tracker();
 }
 
 /*
-	Name: function_4575bd06
+	Name: margwa_round_tracker
 	Namespace: namespace_d17e1da0
 	Checksum: 0x57FA69FC
 	Offset: 0x4E8
@@ -122,7 +122,7 @@ function function_5e93cd08()
 	Parameters: 0
 	Flags: None
 */
-function function_4575bd06()
+function margwa_round_tracker()
 {
 	level.var_bf361dc0 = randomIntRange(8, 9);
 	level.var_6e63e659 = 0;
@@ -190,8 +190,8 @@ function function_aea74ccd()
 		{
 			wait(1);
 		}
-		var_225347e1 = function_8bcb72e9(1);
-		if(isdefined(var_225347e1))
+		ai_margwa = function_8bcb72e9(1);
+		if(isdefined(ai_margwa))
 		{
 			var_e0191376--;
 		}
@@ -274,7 +274,7 @@ function function_8d578a58()
 	level.var_6e63e659++;
 	level.zombie_ai_limit--;
 	self waittill("death");
-	level thread namespace_b8707f8e::function_c11b8117(self.origin);
+	level thread namespace_b8707f8e::margwa_dead_vo(self.origin);
 	level.var_6e63e659--;
 	level.zombie_ai_limit++;
 	level notify("hash_e332d537");
@@ -299,22 +299,22 @@ function function_8bcb72e9(var_8f401985, s_loc)
 		}
 		s_loc = Array::random(level.zm_loc_types["margwa_location"]);
 	}
-	var_225347e1 = namespace_ca5ef87d::function_8a0708c2(s_loc);
-	var_225347e1.var_26f9f957 = &function_26f9f957;
-	level.var_95981590 = var_225347e1;
+	ai_margwa = zm_ai_margwa::spawn_margwa(s_loc);
+	ai_margwa.var_26f9f957 = &function_26f9f957;
+	level.var_95981590 = ai_margwa;
 	level notify("hash_c484afcb");
-	if(isdefined(var_225347e1))
+	if(isdefined(ai_margwa))
 	{
-		var_225347e1.b_ignore_cleanup = 1;
-		var_225347e1 thread function_8d578a58();
+		ai_margwa.b_ignore_cleanup = 1;
+		ai_margwa thread function_8d578a58();
 		n_health = level.round_number * 100 + 100;
-		var_225347e1 MargwaServerUtils::margwaSetHeadHealth(n_health);
+		ai_margwa MargwaServerUtils::margwaSetHeadHealth(n_health);
 	}
 	if(!(isdefined(var_8f401985) && var_8f401985))
 	{
 		level.var_bf361dc0 = level.round_number + randomIntRange(5, 7);
 	}
-	return var_225347e1;
+	return ai_margwa;
 }
 
 /*
@@ -330,7 +330,7 @@ function function_26f9f957(modelHit, e_attacker)
 {
 	if(zm_utility::is_player_valid(e_attacker))
 	{
-		e_attacker thread namespace_b8707f8e::function_7e398d3();
+		e_attacker thread namespace_b8707f8e::margwa_headshot_vo();
 	}
 }
 

@@ -149,12 +149,12 @@ function function_c497263d()
 		var_beb7660e.var_575a869f = var_575a869f;
 		var_a68e698 = undefined;
 		var_f31f3fa4 = GetEntArray(var_beb7660e.target, "targetname");
-		foreach(var_3929e8a2 in var_f31f3fa4)
+		foreach(mdl_target in var_f31f3fa4)
 		{
-			if(var_3929e8a2.model == "p7_zm_moo_crane_mining_arm")
+			if(mdl_target.model == "p7_zm_moo_crane_mining_arm")
 			{
-				var_beb7660e.var_26dbb029 = var_3929e8a2;
-				var_a68e698 = var_3929e8a2;
+				var_beb7660e.mdl_arm = mdl_target;
+				var_a68e698 = mdl_target;
 				break;
 			}
 		}
@@ -1192,15 +1192,15 @@ function diggers_visible(visible)
 	else
 	{
 		level clientfield::set("DH", 0);
-		blade function_267c538a();
-		arm function_267c538a();
-		tracks function_267c538a();
-		self function_267c538a();
+		blade moon_show();
+		arm moon_show();
+		tracks moon_show();
+		self moon_show();
 	}
 }
 
 /*
-	Name: function_267c538a
+	Name: moon_show
 	Namespace: zm_moon_digger
 	Checksum: 0x18428E03
 	Offset: 0x4390
@@ -1208,7 +1208,7 @@ function diggers_visible(visible)
 	Parameters: 0
 	Flags: None
 */
-function function_267c538a()
+function moon_show()
 {
 	self show();
 	foreach(player in level.players)

@@ -75,22 +75,22 @@ function function_46df8306(localClientNum, str_name, b_on)
 	foreach(s_spawn_point in a_s_spawn_points)
 	{
 		s_spawn_point function_267f859f(localClientNum, level._effect["keeper_spawn"], b_on);
-		if(!isdefined(s_spawn_point.var_d52fc488))
+		if(!isdefined(s_spawn_point.sndactive))
 		{
-			s_spawn_point.var_d52fc488 = 0;
+			s_spawn_point.sndactive = 0;
 		}
 		if(isdefined(b_on) && b_on)
 		{
-			if(!(isdefined(s_spawn_point.var_d52fc488) && s_spawn_point.var_d52fc488))
+			if(!(isdefined(s_spawn_point.sndactive) && s_spawn_point.sndactive))
 			{
-				s_spawn_point.var_d52fc488 = 1;
+				s_spawn_point.sndactive = 1;
 				playsound(0, "evt_keeper_portal_start", s_spawn_point.origin);
 				audio::playloopat("evt_keeper_portal_loop", s_spawn_point.origin);
 			}
 		}
-		else if(isdefined(s_spawn_point.var_d52fc488) && s_spawn_point.var_d52fc488)
+		else if(isdefined(s_spawn_point.sndactive) && s_spawn_point.sndactive)
 		{
-			s_spawn_point.var_d52fc488 = 0;
+			s_spawn_point.sndactive = 0;
 			playsound(0, "evt_keeper_portal_end", s_spawn_point.origin);
 			audio::stoploopat("evt_keeper_portal_loop", s_spawn_point.origin);
 		}
@@ -118,15 +118,15 @@ function function_f58977cd(localClientNum, str_name, b_on)
 	{
 		s_spawn_point function_267f859f(localClientNum, level._effect["ritual_portal_start"], b_on);
 		s_spawn_point function_267f859f(localClientNum, level._effect["ritual_portal_loop"], b_on);
-		if(!isdefined(s_spawn_point.var_d52fc488))
+		if(!isdefined(s_spawn_point.sndactive))
 		{
-			s_spawn_point.var_d52fc488 = 0;
+			s_spawn_point.sndactive = 0;
 		}
 		if(isdefined(b_on) && b_on)
 		{
-			if(!(isdefined(s_spawn_point.var_d52fc488) && s_spawn_point.var_d52fc488))
+			if(!(isdefined(s_spawn_point.sndactive) && s_spawn_point.sndactive))
 			{
-				s_spawn_point.var_d52fc488 = 1;
+				s_spawn_point.sndactive = 1;
 				playsound(0, "zmb_skull_ritual_portal_start", s_spawn_point.origin);
 				audio::playloopat("zmb_skull_ritual_portal_lp", s_spawn_point.origin);
 			}
@@ -134,9 +134,9 @@ function function_f58977cd(localClientNum, str_name, b_on)
 		else
 		{
 			s_spawn_point function_267f859f(localClientNum, level._effect["ritual_portal_end"], b_on);
-			if(isdefined(s_spawn_point.var_d52fc488) && s_spawn_point.var_d52fc488)
+			if(isdefined(s_spawn_point.sndactive) && s_spawn_point.sndactive)
 			{
-				s_spawn_point.var_d52fc488 = 0;
+				s_spawn_point.sndactive = 0;
 				playsound(0, "zmb_skull_ritual_portal_end", s_spawn_point.origin);
 				audio::stoploopat("zmb_skull_ritual_portal_lp", s_spawn_point.origin);
 			}
@@ -210,7 +210,7 @@ function function_7c9daad6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_4dcbb3a6(localClientNum, var_f2e38849, n_fx_type)
+function function_4dcbb3a6(localClientNum, n_ritual, n_fx_type)
 {
 	if(!isdefined(n_fx_type))
 	{
@@ -224,7 +224,7 @@ function function_4dcbb3a6(localClientNum, var_f2e38849, n_fx_type)
 	var_d9cf2ecd = struct::get_array("s_skulltar_skull_pos", "targetname");
 	foreach(var_89669ffb in var_d9cf2ecd)
 	{
-		if(var_89669ffb.script_special == var_f2e38849)
+		if(var_89669ffb.script_special == n_ritual)
 		{
 			var_b9533b1f = var_89669ffb;
 			break;
@@ -233,12 +233,12 @@ function function_4dcbb3a6(localClientNum, var_f2e38849, n_fx_type)
 	var_14c8adef = struct::get_array("s_skulltar_base_pos", "targetname");
 	foreach(var_9915798f in var_14c8adef)
 	{
-		if(var_9915798f.script_special == var_f2e38849)
+		if(var_9915798f.script_special == n_ritual)
 		{
 			var_4b429234 = var_9915798f;
 		}
 	}
-	var_4a347901 = "skulltar_" + var_f2e38849 + "_spawnpts";
+	var_4a347901 = "skulltar_" + n_ritual + "_spawnpts";
 	if(isdefined(n_fx_type) && n_fx_type >= 0 && n_fx_type < 5)
 	{
 		var_b9533b1f function_267f859f(localClientNum, var_f4fc4e39[n_fx_type], n_fx_type);
@@ -249,14 +249,14 @@ function function_4dcbb3a6(localClientNum, var_f2e38849, n_fx_type)
 			{
 				level thread function_f58977cd(localClientNum, var_4a347901, 1);
 			}
-			if(!(isdefined(var_b9533b1f.var_d52fc488) && var_b9533b1f.var_d52fc488))
+			if(!(isdefined(var_b9533b1f.sndactive) && var_b9533b1f.sndactive))
 			{
-				var_b9533b1f.var_d52fc488 = 1;
+				var_b9533b1f.sndactive = 1;
 			}
 		}
-		else if(isdefined(var_b9533b1f.var_d52fc488) && var_b9533b1f.var_d52fc488)
+		else if(isdefined(var_b9533b1f.sndactive) && var_b9533b1f.sndactive)
 		{
-			var_b9533b1f.var_d52fc488 = 0;
+			var_b9533b1f.sndactive = 0;
 		}
 	}
 	else
@@ -383,9 +383,9 @@ function function_4b50c64(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 			self.var_341f7209 = PlayFXOnTag(localClientNum, level._effect["keeper_glow"], self, "j_spineupper");
 			self.var_c5e3cf4b = PlayFXOnTag(localClientNum, level._effect["keeper_mouth"], self, "j_head");
 			self.var_2d3cc156 = PlayFXOnTag(localClientNum, level._effect["keeper_trail"], self, "j_robe_front_03");
-			if(!isdefined(self.var_78ca62e9))
+			if(!isdefined(self.sndlooper))
 			{
-				self.var_78ca62e9 = self PlayLoopSound("zmb_keeper_looper");
+				self.sndlooper = self PlayLoopSound("zmb_keeper_looper");
 			}
 		}
 		else if(isdefined(self.var_341f7209))
@@ -437,9 +437,9 @@ function function_4bcd15cf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			{
 				self.var_341f7209 = PlayFXOnTag(localClientNum, level._effect["ritual_attacker"], self, "tag_origin");
 			}
-			if(!isdefined(self.var_78ca62e9))
+			if(!isdefined(self.sndlooper))
 			{
-				self.var_78ca62e9 = self PlayLoopSound("zmb_keeper_looper");
+				self.sndlooper = self PlayLoopSound("zmb_keeper_looper");
 			}
 		}
 		else if(isdefined(self.var_341f7209))
@@ -466,7 +466,7 @@ function function_4bcd15cf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 5
 	Flags: None
 */
-function function_267f859f(localClientNum, fx_id, b_on, var_afcc5d76, str_tag)
+function function_267f859f(localClientNum, fx_id, b_on, b_is_ent, str_tag)
 {
 	if(!isdefined(fx_id))
 	{
@@ -476,17 +476,17 @@ function function_267f859f(localClientNum, fx_id, b_on, var_afcc5d76, str_tag)
 	{
 		b_on = 1;
 	}
-	if(!isdefined(var_afcc5d76))
+	if(!isdefined(b_is_ent))
 	{
-		var_afcc5d76 = 0;
+		b_is_ent = 0;
 	}
 	if(!isdefined(str_tag))
 	{
 		str_tag = "tag_origin";
 	}
-	if(!isdefined(self.var_270913b5))
+	if(!isdefined(self.vfx_ref))
 	{
-		self.var_270913b5 = [];
+		self.vfx_ref = [];
 	}
 	if(b_on)
 	{
@@ -494,23 +494,23 @@ function function_267f859f(localClientNum, fx_id, b_on, var_afcc5d76, str_tag)
 		{
 			return;
 		}
-		if(isdefined(self.var_270913b5[localClientNum]))
+		if(isdefined(self.vfx_ref[localClientNum]))
 		{
-			stopfx(localClientNum, self.var_270913b5[localClientNum]);
+			stopfx(localClientNum, self.vfx_ref[localClientNum]);
 		}
-		if(var_afcc5d76)
+		if(b_is_ent)
 		{
-			self.var_270913b5[localClientNum] = PlayFXOnTag(localClientNum, fx_id, self, str_tag);
+			self.vfx_ref[localClientNum] = PlayFXOnTag(localClientNum, fx_id, self, str_tag);
 		}
 		else
 		{
-			self.var_270913b5[localClientNum] = playFX(localClientNum, fx_id, self.origin, AnglesToForward(self.angles));
+			self.vfx_ref[localClientNum] = playFX(localClientNum, fx_id, self.origin, AnglesToForward(self.angles));
 		}
 	}
-	else if(isdefined(self.var_270913b5[localClientNum]))
+	else if(isdefined(self.vfx_ref[localClientNum]))
 	{
-		stopfx(localClientNum, self.var_270913b5[localClientNum]);
-		self.var_270913b5[localClientNum] = undefined;
+		stopfx(localClientNum, self.vfx_ref[localClientNum]);
+		self.vfx_ref[localClientNum] = undefined;
 	}
 }
 

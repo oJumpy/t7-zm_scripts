@@ -100,7 +100,7 @@ function main()
 	start_zombie_stuff();
 	level thread zm_prototype_amb::main();
 	util::waitforclient(0);
-	level thread function_6ac83719();
+	level thread init_fog_vol_to_visionset();
 	namespace_5150364b::main_end();
 }
 
@@ -118,7 +118,7 @@ function start_zombie_stuff()
 	include_weapons();
 	load::main();
 	_zm_weap_cymbal_monkey::init();
-	level thread function_d87a7dcc();
+	level thread watch_for_power();
 }
 
 /*
@@ -136,7 +136,7 @@ function include_weapons()
 }
 
 /*
-	Name: function_d87a7dcc
+	Name: watch_for_power
 	Namespace: zm_prototype
 	Checksum: 0x7B8DE698
 	Offset: 0x778
@@ -144,15 +144,15 @@ function include_weapons()
 	Parameters: 0
 	Flags: None
 */
-function function_d87a7dcc()
+function watch_for_power()
 {
-	var_bd7ba30 = 0;
+	looped_once = 0;
 	while(1)
 	{
 		if(!level clientfield::get("zombie_power_on"))
 		{
 			level.power_on = 0;
-			if(var_bd7ba30)
+			if(looped_once)
 			{
 				level notify("power_controlled_light");
 			}
@@ -160,12 +160,12 @@ function function_d87a7dcc()
 		}
 		level notify("power_controlled_light");
 		level util::waittill_any("pwo", "ZPOff");
-		var_bd7ba30 = 1;
+		looped_once = 1;
 	}
 }
 
 /*
-	Name: function_6ac83719
+	Name: init_fog_vol_to_visionset
 	Namespace: zm_prototype
 	Checksum: 0x1FD1531D
 	Offset: 0x850
@@ -173,7 +173,7 @@ function function_d87a7dcc()
 	Parameters: 0
 	Flags: None
 */
-function function_6ac83719()
+function init_fog_vol_to_visionset()
 {
 	visionset_mgr::init_fog_vol_to_visionset_monitor("zm_prototype", 0.1);
 	visionset_mgr::fog_vol_to_visionset_set_suffix("");

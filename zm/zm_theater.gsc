@@ -121,7 +121,7 @@ function main()
 	level.laststandpistol = level.default_laststandpistol;
 	level.start_weapon = level.default_laststandpistol;
 	level thread zm::last_stand_pistol_rank_init();
-	level.var_9aaae7ae = &function_869d6f66;
+	level.zm_bgb_anywhere_but_here_validation_override = &anywhere_but_here_validation_override;
 	level.var_9cef605e = &function_823705c7;
 	if(GetDvarInt("artist") > 0)
 	{
@@ -137,11 +137,11 @@ function main()
 	level._allow_melee_weapon_switching = 1;
 	_zm_weap_cymbal_monkey::init();
 	zm_ai_dogs::enable_dog_rounds();
-	level.zombie_init_done = &function_ec7faaac;
+	level.zombie_init_done = &zm_theater_init_done;
 	init_zombie_theater();
 	compass::setupMiniMap("menu_map_zombie_theater");
 	level.ignore_spawner_func = &theater_ignore_spawner;
-	level.player_out_of_playable_area_monitor_callback = &function_d1ca1764;
+	level.player_out_of_playable_area_monitor_callback = &zm_theater_zone_monitor_callback;
 	level.zones = [];
 	level.zone_manager_init_func = &theater_zone_init;
 	init_zones[0] = "foyer_zone";
@@ -156,7 +156,7 @@ function main()
 	level thread add_powerups_after_round_1();
 	level thread function_6452fa9d();
 	/#
-		function_27cb39f1();
+		display_traversals();
 	#/
 	chandelier = GetEntArray("theater_chandelier", "targetname");
 	Array::thread_all(chandelier, &theater_chandelier_model_scale);
@@ -181,11 +181,11 @@ function function_8d0bd61d(a_ents)
 	exploder::kill_exploder("teleporter_light_red");
 	exploder::exploder("fxexp_200");
 	exploder::exploder("teleporter_light_green");
-	foreach(var_6cae1ad0 in a_ents)
+	foreach(mdl_ent in a_ents)
 	{
-		if(IsSubStr(var_6cae1ad0.model, "body"))
+		if(IsSubStr(mdl_ent.model, "body"))
 		{
-			var_6cae1ad0 clientfield::set("zombie_has_eyes", 1);
+			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
 	level waittill("hash_1a22222d");
@@ -214,7 +214,7 @@ function init_clientfields()
 }
 
 /*
-	Name: function_ec7faaac
+	Name: zm_theater_init_done
 	Namespace: namespace_aed37ba8
 	Checksum: 0x3A18AF7A
 	Offset: 0x1C50
@@ -222,13 +222,13 @@ function init_clientfields()
 	Parameters: 0
 	Flags: None
 */
-function function_ec7faaac()
+function zm_theater_init_done()
 {
 	self.allowPain = 0;
 }
 
 /*
-	Name: function_869d6f66
+	Name: anywhere_but_here_validation_override
 	Namespace: namespace_aed37ba8
 	Checksum: 0x9C118035
 	Offset: 0x1C68
@@ -236,7 +236,7 @@ function function_ec7faaac()
 	Parameters: 0
 	Flags: None
 */
-function function_869d6f66()
+function anywhere_but_here_validation_override()
 {
 	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
 	{
@@ -260,8 +260,8 @@ function function_823705c7()
 	{
 		return 0;
 	}
-	var_7d7ca0ea = GetEnt("trigger_teleport_pad_0", "targetname");
-	if(self istouching(var_7d7ca0ea))
+	t_teleporter = GetEnt("trigger_teleport_pad_0", "targetname");
+	if(self istouching(t_teleporter))
 	{
 		return 0;
 	}
@@ -284,16 +284,16 @@ function function_823705c7()
 function function_6452fa9d()
 {
 	var_174ba740 = GetEnt("use_elec_switch", "targetname");
-	var_cf413835 = struct::get("power_switch", "targetname");
+	s_power_switch = struct::get("power_switch", "targetname");
 	var_174ba740 setcursorhint("HINT_NOICON");
 	var_174ba740 waittill("trigger", User);
-	playsoundatposition("zmb_switch_flip", var_cf413835.origin);
+	playsoundatposition("zmb_switch_flip", s_power_switch.origin);
 	playFX(level._effect["switch_sparks"], struct::get("elec_switch_fx", "script_noteworthy").origin);
-	var_cf413835 scene::Play("p7_fxanim_zmhd_power_switch_bundle");
+	s_power_switch scene::Play("p7_fxanim_zmhd_power_switch_bundle");
 }
 
 /*
-	Name: function_d1ca1764
+	Name: zm_theater_zone_monitor_callback
 	Namespace: namespace_aed37ba8
 	Checksum: 0xF707A806
 	Offset: 0x1E60
@@ -301,14 +301,14 @@ function function_6452fa9d()
 	Parameters: 0
 	Flags: None
 */
-function function_d1ca1764()
+function zm_theater_zone_monitor_callback()
 {
-	var_7fed53df = 1;
+	do_kill_player = 1;
 	if(isdefined(self.is_teleporting) && self.is_teleporting == 1)
 	{
-		var_7fed53df = 0;
+		do_kill_player = 0;
 	}
-	return var_7fed53df;
+	return do_kill_player;
 }
 
 /*
@@ -487,7 +487,7 @@ function offhand_weapon_overrride()
 }
 
 /*
-	Name: function_ce6ee03b
+	Name: theater_open_curtains
 	Namespace: namespace_aed37ba8
 	Checksum: 0xC2C93E0D
 	Offset: 0x2470
@@ -495,12 +495,12 @@ function offhand_weapon_overrride()
 	Parameters: 0
 	Flags: None
 */
-function function_ce6ee03b()
+function theater_open_curtains()
 {
 	scene::add_scene_func("p7_fxanim_zm_kino_curtains_stage_main_bundle", &function_9a38ad2c, "play");
-	var_5be55f14 = GetEnt("theater_curtains", "targetname");
-	var_5be55f14 thread scene::Play("p7_fxanim_zm_kino_curtains_stage_main_bundle", var_5be55f14);
-	playsoundatposition("evt_curtain_open", var_5be55f14.origin);
+	mdl_curtains = GetEnt("theater_curtains", "targetname");
+	mdl_curtains thread scene::Play("p7_fxanim_zm_kino_curtains_stage_main_bundle", mdl_curtains);
+	playsoundatposition("evt_curtain_open", mdl_curtains.origin);
 }
 
 /*
@@ -514,8 +514,8 @@ function function_ce6ee03b()
 */
 function function_9a38ad2c(a_ents)
 {
-	var_115bc805 = a_ents["main_stage_curtains"];
-	var_115bc805 connectpaths();
+	e_curtain = a_ents["main_stage_curtains"];
+	e_curtain connectpaths();
 }
 
 /*
@@ -682,7 +682,7 @@ function init_sounds()
 	zm_utility::add_sound("zmb_fence_door", "zmb_door_fence_open");
 	zm_utility::add_sound("zmb_heavy_door_open", "zmb_heavy_door_open");
 	level thread custom_add_vox();
-	level.audio_get_mod_type = &function_642e6aef;
+	level.audio_get_mod_type = &custom_get_mod_type;
 	level.vox_response_override = 1;
 }
 
@@ -879,7 +879,7 @@ function theater_chandelier_model_scale()
 }
 
 /*
-	Name: function_27cb39f1
+	Name: display_traversals
 	Namespace: namespace_aed37ba8
 	Checksum: 0x9D448B91
 	Offset: 0x33E8
@@ -887,7 +887,7 @@ function theater_chandelier_model_scale()
 	Parameters: 0
 	Flags: None
 */
-function function_27cb39f1()
+function display_traversals()
 {
 	/#
 		if(!GetDvarInt("Dev Block strings are not supported"))
@@ -955,7 +955,7 @@ function init_level_specific_audio()
 }
 
 /*
-	Name: function_642e6aef
+	Name: custom_get_mod_type
 	Namespace: namespace_aed37ba8
 	Checksum: 0xC1C76D52
 	Offset: 0x3860
@@ -963,7 +963,7 @@ function init_level_specific_audio()
 	Parameters: 7
 	Flags: None
 */
-function function_642e6aef(impact, mod, weapon, zombie, instakill, dist, player)
+function custom_get_mod_type(impact, mod, weapon, zombie, instakill, dist, player)
 {
 	var_adac242b = 4096;
 	var_2c1bd1bd = 15376;

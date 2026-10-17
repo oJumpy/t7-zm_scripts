@@ -34,7 +34,7 @@
 function function_91912a79()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_17d8768b);
+		zm_devgui::add_custom_devgui_callback(&function_17d8768b);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -177,7 +177,7 @@ function function_17d8768b(cmd)
 			case "Dev Block strings are not supported":
 			{
 				level.var_8cc024f2 = level.var_583e4a97.var_5d8406ed[cmd];
-				level thread namespace_2e6e7fce::function_d1a91c4f(level.var_8cc024f2);
+				level thread zm_stalingrad_drop_pod::function_d1a91c4f(level.var_8cc024f2);
 				return 1;
 			}
 			case "Dev Block strings are not supported":
@@ -443,62 +443,62 @@ function function_a7e8b47b()
 	/#
 		var_1a0a3da9 = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
 		var_ff1b68c0 = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
-		var_4562cbcf = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
-		var_50e0150f = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
-		var_b9e116c5 = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
+		a_e_collision = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
+		a_e_gates = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
+		a_e_hatches = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
 		var_6f3f4356 = GetNodeArray("Dev Block strings are not supported", "Dev Block strings are not supported");
-		if(level.var_de98e3ce.var_1467b926)
+		if(level.var_de98e3ce.gates_open)
 		{
-			level.var_de98e3ce.var_1467b926 = 0;
-			foreach(e_collision in var_4562cbcf)
+			level.var_de98e3ce.gates_open = 0;
+			foreach(e_collision in a_e_collision)
 			{
 				e_collision MoveZ(600, 0.1);
 				e_collision disconnectpaths();
 			}
-			foreach(var_a7c049ac in var_50e0150f)
+			foreach(e_gate in a_e_gates)
 			{
-				var_a7c049ac MoveZ(600, 0.25);
+				e_gate MoveZ(600, 0.25);
 			}
 			foreach(e_door in var_1a0a3da9)
 			{
 				e_door MoveX(114, 1);
 				e_door disconnectpaths();
 			}
-			foreach(e_hatch in var_b9e116c5)
+			foreach(e_hatch in a_e_hatches)
 			{
 				e_hatch RotateRoll(-90, 1);
 			}
-			foreach(var_b0a376a4 in var_6f3f4356)
+			foreach(nd_traverse in var_6f3f4356)
 			{
-				UnlinkTraversal(var_b0a376a4);
+				UnlinkTraversal(nd_traverse);
 			}
 			var_ff1b68c0 MoveY(-84, 1);
 			level thread scene::Play("Dev Block strings are not supported");
 		}
 		else
 		{
-			level.var_de98e3ce.var_1467b926 = 1;
-			foreach(e_collision in var_4562cbcf)
+			level.var_de98e3ce.gates_open = 1;
+			foreach(e_collision in a_e_collision)
 			{
 				e_collision connectpaths();
 				e_collision MoveZ(-600, 0.1);
 			}
-			foreach(var_a7c049ac in var_50e0150f)
+			foreach(e_gate in a_e_gates)
 			{
-				var_a7c049ac MoveZ(-600, 0.25);
+				e_gate MoveZ(-600, 0.25);
 			}
 			foreach(e_door in var_1a0a3da9)
 			{
 				e_door MoveX(-114, 1);
 				e_door connectpaths();
 			}
-			foreach(e_hatch in var_b9e116c5)
+			foreach(e_hatch in a_e_hatches)
 			{
 				e_hatch RotateRoll(90, 1);
 			}
-			foreach(var_b0a376a4 in var_6f3f4356)
+			foreach(nd_traverse in var_6f3f4356)
 			{
-				LinkTraversal(var_b0a376a4);
+				LinkTraversal(nd_traverse);
 			}
 			var_ff1b68c0 MoveY(84, 1);
 			var_21ce8765 = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -517,12 +517,12 @@ function function_a7e8b47b()
 	Parameters: 1
 	Flags: None
 */
-function function_31f1d173(var_41ef115f)
+function function_31f1d173(n_direction)
 {
 	/#
 		level notify("hash_31f1d173");
 		wait(1);
-		switch(var_41ef115f)
+		switch(n_direction)
 		{
 			case 0:
 			{
@@ -586,8 +586,8 @@ function function_31f1d173(var_41ef115f)
 function function_4b210fe6(var_b87a2184)
 {
 	/#
-		dragon::function_30560c4b();
-		dragon::function_cf119cfd();
+		dragon::dragon_boss_stop();
+		dragon::dragon_boss_cleanup();
 		level flag::set("Dev Block strings are not supported");
 		level namespace_48c05c81::function_3804dbf1();
 		namespace_48c05c81::function_adf4d1d0();
@@ -674,7 +674,7 @@ function function_1b0d61c5()
 		level flag::clear("Dev Block strings are not supported");
 		foreach(e_player in level.players)
 		{
-			e_player namespace_19e79ea1::function_8258d71c();
+			e_player stalingrad_dragon_strike::function_8258d71c();
 		}
 	#/
 }
@@ -694,7 +694,7 @@ function function_fd68eee0()
 		level flag::set("Dev Block strings are not supported");
 		foreach(e_player in level.players)
 		{
-			e_player namespace_19e79ea1::function_8258d71c();
+			e_player stalingrad_dragon_strike::function_8258d71c();
 		}
 	#/
 }

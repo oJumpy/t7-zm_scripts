@@ -99,11 +99,11 @@ function main()
 	ForceStreamXModel("p7_zm_vending_jugg");
 	ForceStreamXModel("p7_zm_vending_sleight");
 	ForceStreamXModel("p7_zm_vending_three_gun");
-	level.var_6f8e5f09 = [];
-	Array::add(level.var_6f8e5f09, "boxer");
-	Array::add(level.var_6f8e5f09, "detective");
-	Array::add(level.var_6f8e5f09, "femme");
-	Array::add(level.var_6f8e5f09, "magician");
+	level.zod_character_names = [];
+	Array::add(level.zod_character_names, "boxer");
+	Array::add(level.zod_character_names, "detective");
+	Array::add(level.zod_character_names, "femme");
+	Array::add(level.zod_character_names, "magician");
 	register_clientfields();
 	level.setupCustomCharacterExerts = &setup_personality_character_exerts;
 	level.debug_keyline_zombies = 0;
@@ -121,7 +121,7 @@ function main()
 	level._uses_sticky_grenades = 1;
 	level._uses_taser_knuckles = 1;
 	include_weapons();
-	namespace_cfbe948b::init();
+	zm_magicbox_zod::init();
 	zm_zod_craftables::include_craftables();
 	zm_zod_craftables::init_craftables();
 	namespace_bb738c6::init();
@@ -185,7 +185,7 @@ function on_player_spawned(localClientNum)
 {
 	if(self == GetLocalPlayer(localClientNum))
 	{
-		self thread function_48d14da2(localClientNum);
+		self thread player_rain_thread(localClientNum);
 		if(!IsDemoPlaying() || GetDemoVersion() >= 8)
 		{
 			util::spawn_model(localClientNum, "p7_zm_zod_cipher_06", (2600.75, -3538, -364.75), (110, 180, 0));
@@ -219,7 +219,7 @@ function toggle_rain_overlay(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 }
 
 /*
-	Name: function_48d14da2
+	Name: player_rain_thread
 	Namespace: zm_zod
 	Checksum: 0xF5A5366E
 	Offset: 0x2280
@@ -227,7 +227,7 @@ function toggle_rain_overlay(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 	Parameters: 1
 	Flags: None
 */
-function function_48d14da2(localClientNum)
+function player_rain_thread(localClientNum)
 {
 	self endon("disconnect");
 	self endon("entityshutdown");
@@ -250,7 +250,7 @@ function function_48d14da2(localClientNum)
 		{
 			fxid = playFX(localClientNum, level._effect["rain_heavy"], self.origin);
 		}
-		function_7a6170fb(localClientNum, fxid);
+		setfxoutdoor(localClientNum, fxid);
 		wait(0.25);
 	}
 }
@@ -267,16 +267,16 @@ function function_48d14da2(localClientNum)
 function function_b339a5f5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	wait(0.016);
-	var_4cec7cba = GetEnt(localClientNum, "junction_crane_crate_phrase", "targetname");
+	e_phrase = GetEnt(localClientNum, "junction_crane_crate_phrase", "targetname");
 	e_crane = GetEnt(localClientNum, "quest_personal_item_junction_crane", "targetname");
-	var_970f30f6 = GetEnt(localClientNum, "junction_crane_crate", "targetname");
-	var_385d73c3 = function_de7504ea("fxanim_crate_junction_break_static");
+	e_crate = GetEnt(localClientNum, "junction_crane_crate", "targetname");
+	var_385d73c3 = findstaticmodelindexarray("fxanim_crate_junction_break_static");
 	HideStaticModel(var_385d73c3[0]);
-	var_3153c901 = function_de7504ea("fxanim_junction_crane_static");
+	var_3153c901 = findstaticmodelindexarray("fxanim_junction_crane_static");
 	if(newVal == 1)
 	{
 		HideStaticModel(var_3153c901[0]);
-		var_49dac624 = function_de7504ea("fxanim_crate_junction_static");
+		var_49dac624 = findstaticmodelindexarray("fxanim_crate_junction_static");
 		HideStaticModel(var_49dac624[0]);
 		level thread function_8db965a5(var_385d73c3[0]);
 		scene::Play("p7_fxanim_zm_zod_crate_breakable_03_junction_bundle");
@@ -289,9 +289,9 @@ function function_b339a5f5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		{
 			PlayFXOnTag(localClientNum, level._effect["crane_light"], e_crane, "j_light");
 		}
-		if(isdefined(var_4cec7cba))
+		if(isdefined(e_phrase))
 		{
-			PlayFXOnTag(localClientNum, level._effect["cultist_crate_personal_item"], var_4cec7cba, "tag_origin");
+			PlayFXOnTag(localClientNum, level._effect["cultist_crate_personal_item"], e_phrase, "tag_origin");
 		}
 	}
 }
@@ -447,7 +447,7 @@ function setup_personality_character_exerts()
 }
 
 /*
-	Name: function_7d846745
+	Name: show_hide_pap_weed
 	Namespace: zm_zod
 	Checksum: 0xA2299820
 	Offset: 0x3788
@@ -455,12 +455,12 @@ function setup_personality_character_exerts()
 	Parameters: 7
 	Flags: None
 */
-function function_7d846745(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function show_hide_pap_weed(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_3082faeb = function_de7504ea("pap_weed");
+	a_misc_model = findstaticmodelindexarray("pap_weed");
 	if(newVal == 1)
 	{
-		foreach(model in var_3082faeb)
+		foreach(model in a_misc_model)
 		{
 			UnhideStaticModel(model);
 			if(i % 25 == 0)
@@ -470,7 +470,7 @@ function function_7d846745(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		}
 		break;
 	}
-	foreach(model in var_3082faeb)
+	foreach(model in a_misc_model)
 	{
 		HideStaticModel(model);
 		if(i % 10 == 0)
@@ -509,7 +509,7 @@ function function_2cf3dd37(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_f650f42a
+	Name: ghost_player
 	Namespace: zm_zod
 	Checksum: 0xDD510285
 	Offset: 0x3AD0
@@ -517,7 +517,7 @@ function function_2cf3dd37(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_f650f42a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ghost_player(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(self isPlayer() && self isLocalPlayer() && !IsDemoPlaying())
 	{
@@ -556,8 +556,8 @@ function function_b48f294(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 */
 function function_f8cdd387(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_bc94ac00 = function_de7504ea("fxanim_crate_waterfront_break_static");
-	var_90dba62a = function_de7504ea("fxanim_crate_canal_static");
+	var_bc94ac00 = findstaticmodelindexarray("fxanim_crate_waterfront_break_static");
+	var_90dba62a = findstaticmodelindexarray("fxanim_crate_canal_static");
 	for(i = 0; i < var_bc94ac00.size; i++)
 	{
 		HideStaticModel(var_bc94ac00[i]);
@@ -566,18 +566,18 @@ function function_f8cdd387(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		HideStaticModel(var_90dba62a[i]);
 	}
-	var_48d31804 = function_de7504ea("fxanim_pap_bridge_01_static");
-	HideStaticModel(var_48d31804[0]);
-	var_48d31804 = function_de7504ea("fxanim_pap_bridge_02_static");
-	HideStaticModel(var_48d31804[0]);
-	var_48d31804 = function_de7504ea("fxanim_crate_footlight_static");
-	HideStaticModel(var_48d31804[0]);
-	var_48d31804 = function_de7504ea("fxanim_crate_footlight_break_static");
-	HideStaticModel(var_48d31804[0]);
-	var_48d31804 = function_de7504ea("fxanim_crate_start_static");
-	HideStaticModel(var_48d31804[0]);
-	var_48d31804 = function_de7504ea("fxanim_crate_start_break_static");
-	HideStaticModel(var_48d31804[0]);
+	a_model = findstaticmodelindexarray("fxanim_pap_bridge_01_static");
+	HideStaticModel(a_model[0]);
+	a_model = findstaticmodelindexarray("fxanim_pap_bridge_02_static");
+	HideStaticModel(a_model[0]);
+	a_model = findstaticmodelindexarray("fxanim_crate_footlight_static");
+	HideStaticModel(a_model[0]);
+	a_model = findstaticmodelindexarray("fxanim_crate_footlight_break_static");
+	HideStaticModel(a_model[0]);
+	a_model = findstaticmodelindexarray("fxanim_crate_start_static");
+	HideStaticModel(a_model[0]);
+	a_model = findstaticmodelindexarray("fxanim_crate_start_break_static");
+	HideStaticModel(a_model[0]);
 }
 
 /*
@@ -595,14 +595,14 @@ function function_66fdd0a3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		case 1:
 		{
-			var_48d31804 = function_de7504ea("fxanim_crate_start_static");
-			UnhideStaticModel(var_48d31804[0]);
+			a_model = findstaticmodelindexarray("fxanim_crate_start_static");
+			UnhideStaticModel(a_model[0]);
 			break;
 		}
 		case 2:
 		{
-			var_48d31804 = function_de7504ea("fxanim_crate_start_break_static");
-			UnhideStaticModel(var_48d31804[0]);
+			a_model = findstaticmodelindexarray("fxanim_crate_start_break_static");
+			UnhideStaticModel(a_model[0]);
 			break;
 		}
 	}
@@ -623,14 +623,14 @@ function function_5a6fb328(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		case 1:
 		{
-			var_48d31804 = function_de7504ea("fxanim_crate_start_static");
-			HideStaticModel(var_48d31804[0]);
+			a_model = findstaticmodelindexarray("fxanim_crate_start_static");
+			HideStaticModel(a_model[0]);
 			break;
 		}
 		case 2:
 		{
-			var_48d31804 = function_de7504ea("fxanim_crate_start_break_static");
-			HideStaticModel(var_48d31804[0]);
+			a_model = findstaticmodelindexarray("fxanim_crate_start_break_static");
+			HideStaticModel(a_model[0]);
 			break;
 		}
 	}

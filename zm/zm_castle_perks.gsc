@@ -120,7 +120,7 @@ function function_5508b348()
 */
 function function_4a2261fa()
 {
-	level waittill("hash_609d22d4");
+	level waittill("widows_wine_on");
 	clientfield::set("perk_light_widows_wine", 1);
 }
 

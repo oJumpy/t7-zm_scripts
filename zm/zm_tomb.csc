@@ -95,42 +95,42 @@ function main()
 {
 	level thread zm_tomb_ffotd::main_start();
 	clientfield::register("scriptmover", "glow_biplane_trail_fx", 21000, 1, "int", &function_ea1ce3fa, 0, 0);
-	clientfield::register("scriptmover", "element_glow_fx", 21000, 4, "int", &function_e25324c6, 0, 0);
-	clientfield::register("scriptmover", "bryce_cake", 21000, 2, "int", &function_f6e2b5fc, 0, 0);
-	clientfield::register("scriptmover", "switch_spark", 21000, 1, "int", &function_81f3b018, 0, 0);
+	clientfield::register("scriptmover", "element_glow_fx", 21000, 4, "int", &crystal_fx, 0, 0);
+	clientfield::register("scriptmover", "bryce_cake", 21000, 2, "int", &init_central_crypt_disc, 0, 0);
+	clientfield::register("scriptmover", "switch_spark", 21000, 1, "int", &switch_spark_fx, 0, 0);
 	clientfield::register("scriptmover", "plane_fx", 21000, 1, "int", &function_ae268bd3, 0, 0);
-	clientfield::register("world", "cooldown_steam", 21000, 2, "int", &function_61fd4b0c, 0, 0);
-	clientfield::register("scriptmover", "teleporter_fx", 21000, 1, "int", &zm_tomb_teleporter::function_a8255fab, 0, 0);
+	clientfield::register("world", "cooldown_steam", 21000, 2, "int", &switch_cooldown_fx, 0, 0);
+	clientfield::register("scriptmover", "teleporter_fx", 21000, 1, "int", &zm_tomb_teleporter::teleporter_fx_play, 0, 0);
 	n_bits = GetMinBitCountForNum(6);
 	clientfield::register("toplayer", "player_rumble_and_shake", 21000, n_bits, "int", &function_f118a0e7, 0, 0);
-	clientfield::register("scriptmover", "stone_frozen", 21000, 1, "int", &function_eb515bc3, 0, 0);
+	clientfield::register("scriptmover", "stone_frozen", 21000, 1, "int", &stone_frozen_shader, 0, 0);
 	n_bits = GetMinBitCountForNum(5);
-	clientfield::register("world", "rain_level", 21000, n_bits, "int", &function_c62fcc7d, 0, 0);
-	clientfield::register("world", "snow_level", 21000, n_bits, "int", &function_fbc162aa, 0, 0);
-	clientfield::register("toplayer", "player_weather_visionset", 21000, 2, "int", &function_2feb8fa1, 0, 0);
-	clientfield::register("scriptmover", "sky_pillar", 21000, 1, "int", &function_90b75360, 0, 0);
-	clientfield::register("scriptmover", "staff_charger", 21000, 3, "int", &function_cef99197, 0, 0);
-	clientfield::register("toplayer", "player_staff_charge", 21000, 2, "int", &function_35da9753, 0, 0);
+	clientfield::register("world", "rain_level", 21000, n_bits, "int", &set_level_rain, 0, 0);
+	clientfield::register("world", "snow_level", 21000, n_bits, "int", &set_level_snow, 0, 0);
+	clientfield::register("toplayer", "player_weather_visionset", 21000, 2, "int", &set_player_weather_visionset, 0, 0);
+	clientfield::register("scriptmover", "sky_pillar", 21000, 1, "int", &sky_pillar_fx, 0, 0);
+	clientfield::register("scriptmover", "staff_charger", 21000, 3, "int", &staff_charger_init, 0, 0);
+	clientfield::register("toplayer", "player_staff_charge", 21000, 2, "int", &player_staff_charge_level, 0, 0);
 	clientfield::register("toplayer", "player_tablet_state", 21000, 2, "int", &zm_utility::setInventoryUIModels, 0, 1);
 	n_bits = GetMinBitCountForNum(4);
-	clientfield::register("actor", "zombie_soul", 21000, n_bits, "int", &function_1ee903c, 0, 0);
-	clientfield::register("zbarrier", "magicbox_runes", 21000, 1, "int", &function_1c88eb29, 0, 0);
+	clientfield::register("actor", "zombie_soul", 21000, n_bits, "int", &zombie_soul_fx, 0, 0);
+	clientfield::register("zbarrier", "magicbox_runes", 21000, 1, "int", &magicbox_shader_cb, 0, 0);
 	clientfield::register("actor", "foot_print_box_fx", 21000, 1, "int", &function_d89b75a4, 0, 0);
 	clientfield::register("scriptmover", "foot_print_box_glow", 21000, 1, "int", &function_d4976b7d, 0, 0);
-	clientfield::register("world", "crypt_open_exploder", 21000, 1, "int", &function_d20e4b5a, 0, 0);
-	clientfield::register("world", "lantern_fx", 21000, 1, "int", &function_24a5862d, 0, 0);
+	clientfield::register("world", "crypt_open_exploder", 21000, 1, "int", &crypt_open, 0, 0);
+	clientfield::register("world", "lantern_fx", 21000, 1, "int", &toggle_lantern_fx, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.widget_shield_parts", 21000, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.player_crafted_shield", 21000, 1, "int", undefined, 0, 0);
 	clientfield::register("toplayer", "sndMudSlow", 21000, 1, "int", &zm_tomb_amb::function_8189f66f, 0, 0);
-	clientfield::register("world", "mus_zmb_egg_snapshot_loop", 21000, 1, "int", &zm_tomb_amb::function_ec990408, 1, 0);
+	clientfield::register("world", "mus_zmb_egg_snapshot_loop", 21000, 1, "int", &zm_tomb_amb::audio_snapshot_clientfield_callback, 1, 0);
 	clientfield::register("toplayer", "sndMaelstrom", 21000, 1, "int", &zm_tomb_amb::sndmaelstrom, 0, 0);
 	clientfield::register("actor", "crusader_emissive_fx", 21000, 1, "int", &function_6b9d2513, 0, 0);
 	clientfield::register("actor", "zombie_instant_explode", 21000, 1, "int", &function_b3ff5e6d, 0, 1);
 	level.default_start_location = "tomb";
 	level.default_game_mode = "zclassic";
 	level._no_water_risers = 1;
-	level.var_7d2be23b = 3;
-	level.zombie_eyes_clientfield_cb_additional = &function_e20b060c;
+	level.eyeball_luminance_override = 3;
+	level.zombie_eyes_clientfield_cb_additional = &zm_tomb_zombie_eyes_think;
 	level._uses_sticky_grenades = 1;
 	level.disable_fx_zmb_wall_buy_semtex = 1;
 	level._uses_taser_knuckles = 0;
@@ -152,7 +152,7 @@ function main()
 	namespace_711a44f0::init();
 	zm_tomb_teleporter::init();
 	level thread zm_tomb_ambient_scripts::main();
-	level._entityspawned_override = &function_b1ef089b;
+	level._entityspawned_override = &entityspawned_tomb;
 	zm_tomb_craftables::include_craftables();
 	zm_tomb_craftables::init_craftables();
 	zm_tomb_capture_zones::init_structs();
@@ -161,8 +161,8 @@ function main()
 	level.n_level_sunlight = GetDvarFloat("r_lightTweakSunLight");
 	util::waitforclient(0);
 	level thread zm_tomb_fx::setup_prop_anims();
-	level thread function_6ac83719();
-	level thread zm_tomb_capture_zones::function_902e1a6d();
+	level thread init_fog_vol_to_visionset();
+	level thread zm_tomb_capture_zones::init_custom_pap();
 	level.sndNoMeleeOnClient = 1;
 	SetDvar("bg_chargeShotExponentialAmmoPerChargeLevel", 1);
 	level thread zm_tomb_ffotd::main_end();
@@ -351,7 +351,7 @@ function setup_personality_character_exerts()
 }
 
 /*
-	Name: function_6ac83719
+	Name: init_fog_vol_to_visionset
 	Namespace: zm_tomb
 	Checksum: 0x954C4FFD
 	Offset: 0x3F60
@@ -359,7 +359,7 @@ function setup_personality_character_exerts()
 	Parameters: 0
 	Flags: None
 */
-function function_6ac83719()
+function init_fog_vol_to_visionset()
 {
 	visionset_mgr::init_fog_vol_to_visionset_monitor("zm_tomb", 1);
 	visionset_mgr::fog_vol_to_visionset_set_suffix("");
@@ -409,7 +409,7 @@ function include_weapons()
 }
 
 /*
-	Name: function_b1ef089b
+	Name: entityspawned_tomb
 	Namespace: zm_tomb
 	Checksum: 0x61C7CBA4
 	Offset: 0x4040
@@ -417,7 +417,7 @@ function include_weapons()
 	Parameters: 1
 	Flags: None
 */
-function function_b1ef089b(localClientNum)
+function entityspawned_tomb(localClientNum)
 {
 	if(!isdefined(self.type))
 	{
@@ -463,7 +463,7 @@ function function_b14689f(localClientNum)
 }
 
 /*
-	Name: function_5efb4f48
+	Name: player_staff_charge_rumble
 	Namespace: zm_tomb
 	Checksum: 0x92355B63
 	Offset: 0x41A0
@@ -471,9 +471,9 @@ function function_b14689f(localClientNum)
 	Parameters: 2
 	Flags: None
 */
-function function_5efb4f48(localClientNum, str_rumble)
+function player_staff_charge_rumble(localClientNum, str_rumble)
 {
-	self endon("hash_9c289640");
+	self endon("stop_charge_rumble");
 	self endon("disconnect");
 	delta_time = 0.1;
 	n_max_time = 10;
@@ -485,7 +485,7 @@ function function_5efb4f48(localClientNum, str_rumble)
 }
 
 /*
-	Name: function_35da9753
+	Name: player_staff_charge_level
 	Namespace: zm_tomb
 	Checksum: 0x4CF35DA1
 	Offset: 0x4230
@@ -493,9 +493,9 @@ function function_5efb4f48(localClientNum, str_rumble)
 	Parameters: 7
 	Flags: None
 */
-function function_35da9753(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function player_staff_charge_level(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	self notify("hash_9c289640");
+	self notify("stop_charge_rumble");
 	str_rumble = undefined;
 	switch(newVal)
 	{
@@ -521,12 +521,12 @@ function function_35da9753(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	if(isdefined(str_rumble))
 	{
-		self thread function_5efb4f48(localClientNum, str_rumble);
+		self thread player_staff_charge_rumble(localClientNum, str_rumble);
 	}
 }
 
 /*
-	Name: function_cef99197
+	Name: staff_charger_init
 	Namespace: zm_tomb
 	Checksum: 0x33332CC3
 	Offset: 0x4328
@@ -534,33 +534,33 @@ function function_35da9753(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_cef99197(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function staff_charger_init(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	if(!isdefined(level.var_d1435401))
+	if(!isdefined(level.charger_origins))
 	{
-		level.var_d1435401 = [];
+		level.charger_origins = [];
 	}
 	if(newVal != 0)
 	{
-		level.var_d1435401[newVal] = self.origin;
+		level.charger_origins[newVal] = self.origin;
 		break;
 	}
-	keys = getArrayKeys(level.var_d1435401);
+	keys = getArrayKeys(level.charger_origins);
 	foreach(i in keys)
 	{
-		if(!isdefined(level.var_d1435401[i]))
+		if(!isdefined(level.charger_origins[i]))
 		{
 			continue;
 		}
-		if(DistanceSquared(level.var_d1435401[i], self.origin) < 100)
+		if(DistanceSquared(level.charger_origins[i], self.origin) < 100)
 		{
-			level.var_d1435401[i] = undefined;
+			level.charger_origins[i] = undefined;
 		}
 	}
 }
 
 /*
-	Name: function_1ee903c
+	Name: zombie_soul_fx
 	Namespace: zm_tomb
 	Checksum: 0x654FAF55
 	Offset: 0x4490
@@ -568,17 +568,17 @@ function function_cef99197(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_1ee903c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function zombie_soul_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	v_origin = self GetTagOrigin("J_SpineUpper");
 	v_dest = undefined;
-	if(!isdefined(level.var_d1435401))
+	if(!isdefined(level.charger_origins))
 	{
-		level.var_d1435401 = [];
+		level.charger_origins = [];
 	}
-	if(isdefined(level.var_d1435401[newVal]))
+	if(isdefined(level.charger_origins[newVal]))
 	{
-		v_dest = level.var_d1435401[newVal];
+		v_dest = level.charger_origins[newVal];
 	}
 	if(!isdefined(v_dest) || !isdefined(v_origin))
 	{
@@ -602,7 +602,7 @@ function function_1ee903c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_1c88eb29
+	Name: magicbox_shader_cb
 	Namespace: zm_tomb
 	Checksum: 0xE266AF9D
 	Offset: 0x4728
@@ -610,12 +610,12 @@ function function_1ee903c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	Parameters: 7
 	Flags: None
 */
-function function_1c88eb29(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function magicbox_shader_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	var_183f4dbd = self GetNumZBarrierPieces();
+	n_pieces = self GetNumZBarrierPieces();
 	if(!isdefined(self.mapped_const))
 	{
-		for(i = 0; i < var_183f4dbd; i++)
+		for(i = 0; i < n_pieces; i++)
 		{
 			e_piece = self ZBarrierGetPiece(i);
 			e_piece MapShaderConstant(localClientNum, 1, "ScriptVector0");
@@ -624,14 +624,14 @@ function function_1c88eb29(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	if(newVal)
 	{
-		for(i = 0; i < var_183f4dbd; i++)
+		for(i = 0; i < n_pieces; i++)
 		{
 			e_piece = self ZBarrierGetPiece(i);
 			e_piece SetShaderConstant(localClientNum, 1, 0, 1, 0, 0);
 		}
 		break;
 	}
-	for(i = 0; i < var_183f4dbd; i++)
+	for(i = 0; i < n_pieces; i++)
 	{
 		e_piece = self ZBarrierGetPiece(i);
 		e_piece SetShaderConstant(localClientNum, 1, 0, 0, 0, 0);
@@ -662,7 +662,7 @@ function angle_dif(oldangle, newangle)
 }
 
 /*
-	Name: function_d56fa005
+	Name: get_disc_color
 	Namespace: zm_tomb
 	Checksum: 0x3484E440
 	Offset: 0x4978
@@ -670,17 +670,17 @@ function angle_dif(oldangle, newangle)
 	Parameters: 0
 	Flags: None
 */
-function function_d56fa005()
+function get_disc_color()
 {
 	for(i = 0; i < 5; i++)
 	{
-		if(!isdefined(level.var_3e984f03[i]))
+		if(!isdefined(level.element_rotations[i]))
 		{
 			continue;
 		}
-		var_c4c2c426 = Int(level.var_3e984f03[i]);
-		var_f205fd17 = Int(self.angles[1]);
-		diff = Abs(angle_dif(var_f205fd17, var_c4c2c426));
+		n_rotation = Int(level.element_rotations[i]);
+		n_target = Int(self.angles[1]);
+		diff = Abs(angle_dif(n_target, n_rotation));
 		if(diff <= 45)
 		{
 			return i;
@@ -690,7 +690,7 @@ function function_d56fa005()
 }
 
 /*
-	Name: function_657fb719
+	Name: central_crypt_disc_update_color
 	Namespace: zm_tomb
 	Checksum: 0xA3A07C8
 	Offset: 0x4A70
@@ -698,30 +698,30 @@ function function_d56fa005()
 	Parameters: 2
 	Flags: None
 */
-function function_657fb719(localClientNum, light_on)
+function central_crypt_disc_update_color(localClientNum, light_on)
 {
-	if(!isdefined(level.var_3e984f03))
+	if(!isdefined(level.element_rotations))
 	{
-		level.var_3e984f03 = [];
-		level.var_3e984f03[2] = 270;
-		level.var_3e984f03[1] = 180;
-		level.var_3e984f03[3] = 90;
-		level.var_3e984f03[4] = 0;
+		level.element_rotations = [];
+		level.element_rotations[2] = 270;
+		level.element_rotations[1] = 180;
+		level.element_rotations[3] = 90;
+		level.element_rotations[4] = 0;
 	}
-	if(!isdefined(level.var_1aa82a7e))
+	if(!isdefined(level.element_colors))
 	{
-		level.var_1aa82a7e = [];
-		level.var_1aa82a7e[0] = -1;
-		level.var_1aa82a7e[2] = 2;
-		level.var_1aa82a7e[1] = 3;
-		level.var_1aa82a7e[3] = 0;
-		level.var_1aa82a7e[4] = 1;
-		level.var_1aa82a7e[5] = 4;
+		level.element_colors = [];
+		level.element_colors[0] = -1;
+		level.element_colors[2] = 2;
+		level.element_colors[1] = 3;
+		level.element_colors[3] = 0;
+		level.element_colors[4] = 1;
+		level.element_colors[5] = 4;
 	}
-	var_477f7b08 = self function_d56fa005();
-	v_color = level.var_1aa82a7e[var_477f7b08];
-	var_70f85c31 = 0.1;
-	if(isdefined(level.var_fdb98849) && light_on)
+	var_477f7b08 = self get_disc_color();
+	v_color = level.element_colors[var_477f7b08];
+	n_brightness = 0.1;
+	if(isdefined(level.light_on_color) && light_on)
 	{
 		var_904d8a16 = level clientfield::get("light_show");
 		switch(var_904d8a16)
@@ -747,23 +747,23 @@ function function_657fb719(localClientNum, light_on)
 				break;
 			}
 		}
-		var_70f85c31 = var_70f85c31 * 10;
+		n_brightness = n_brightness * 10;
 	}
-	else if(isdefined(level.var_656c2f5) && !light_on)
+	else if(isdefined(level.light_off_color) && !light_on)
 	{
 		var_477f7b08 = 0;
-		var_70f85c31 = 0;
+		n_brightness = 0;
 	}
 	else if(light_on)
 	{
-		var_70f85c31 = var_70f85c31 * 10;
+		n_brightness = n_brightness * 10;
 	}
 	playsound(0, "zmb_crypt_disc_light", self.origin);
-	var_f9e79b00 = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, var_70f85c31, level.var_1aa82a7e[var_477f7b08], 0);
+	n_test = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, n_brightness, level.element_colors[var_477f7b08], 0);
 }
 
 /*
-	Name: function_f6e2b5fc
+	Name: init_central_crypt_disc
 	Namespace: zm_tomb
 	Checksum: 0xFCD857D8
 	Offset: 0x4D50
@@ -771,20 +771,20 @@ function function_657fb719(localClientNum, light_on)
 	Parameters: 7
 	Flags: None
 */
-function function_f6e2b5fc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function init_central_crypt_disc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 2)
 	{
-		self thread function_657fb719(localClientNum, 1);
+		self thread central_crypt_disc_update_color(localClientNum, 1);
 	}
 	else
 	{
-		self thread function_657fb719(localClientNum, 0);
+		self thread central_crypt_disc_update_color(localClientNum, 0);
 	}
 }
 
 /*
-	Name: function_81f3b018
+	Name: switch_spark_fx
 	Namespace: zm_tomb
 	Checksum: 0x266ED6FE
 	Offset: 0x4DE0
@@ -792,7 +792,7 @@ function function_f6e2b5fc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_81f3b018(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function switch_spark_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(isdefined(self.spark_fx))
 	{
@@ -818,16 +818,16 @@ function function_ae268bd3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal)
 	{
-		self.var_c304583e = PlayFXOnTag(localClientNum, level._effect["biplane_glow"], self, "tag_origin");
+		self.fx_element_glow = PlayFXOnTag(localClientNum, level._effect["biplane_glow"], self, "tag_origin");
 	}
-	else if(isdefined(self.var_c304583e))
+	else if(isdefined(self.fx_element_glow))
 	{
-		stopfx(localClientNum, self.var_c304583e);
+		stopfx(localClientNum, self.fx_element_glow);
 	}
 }
 
 /*
-	Name: function_61fd4b0c
+	Name: switch_cooldown_fx
 	Namespace: zm_tomb
 	Checksum: 0xBB2912BC
 	Offset: 0x4F50
@@ -835,29 +835,29 @@ function function_ae268bd3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_61fd4b0c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function switch_cooldown_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	level notify("stop_cooldown_fx");
 	if(newVal == 1)
 	{
-		var_4c2b197a = struct::get("cooldown_steam_1", "targetname");
+		cooldown_struct = struct::get("cooldown_steam_1", "targetname");
 	}
 	else if(newVal == 2)
 	{
-		var_4c2b197a = struct::get("cooldown_steam_2", "targetname");
+		cooldown_struct = struct::get("cooldown_steam_2", "targetname");
 	}
 	else if(newVal == 3)
 	{
-		var_4c2b197a = struct::get("cooldown_steam_3", "targetname");
+		cooldown_struct = struct::get("cooldown_steam_3", "targetname");
 	}
-	if(isdefined(var_4c2b197a))
+	if(isdefined(cooldown_struct))
 	{
-		var_4c2b197a thread function_bebc67a2(localClientNum);
+		cooldown_struct thread loop_cooldown_fx(localClientNum);
 	}
 }
 
 /*
-	Name: function_bebc67a2
+	Name: loop_cooldown_fx
 	Namespace: zm_tomb
 	Checksum: 0xCA755F68
 	Offset: 0x5078
@@ -865,7 +865,7 @@ function function_61fd4b0c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_bebc67a2(localClientNum)
+function loop_cooldown_fx(localClientNum)
 {
 	level endon("stop_cooldown_fx");
 	while(1)
@@ -911,8 +911,8 @@ function function_1a4fa7a(localClientNum, enum)
 			break;
 		}
 	}
-	self.var_c304583e = PlayFXOnTag(localClientNum, level._effect[str_fx], self, "tag_origin");
-	SetFXIgnorePause(localClientNum, self.var_c304583e, 1);
+	self.fx_element_glow = PlayFXOnTag(localClientNum, level._effect[str_fx], self, "tag_origin");
+	SetFXIgnorePause(localClientNum, self.fx_element_glow, 1);
 }
 
 /*
@@ -933,7 +933,7 @@ function function_ea1ce3fa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_e25324c6
+	Name: crystal_fx
 	Namespace: zm_tomb
 	Checksum: 0x8C3E277
 	Offset: 0x5258
@@ -941,42 +941,42 @@ function function_ea1ce3fa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_e25324c6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function crystal_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal >= 5)
 	{
-		var_1f503d41 = newVal - 4;
-		function_1a4fa7a(localClientNum, var_1f503d41);
+		element_enum = newVal - 4;
+		function_1a4fa7a(localClientNum, element_enum);
 		return;
 	}
 	if(newVal == 1)
 	{
-		self.var_c304583e = PlayFXOnTag(localClientNum, level._effect["fire_glow"], self, "tag_origin");
-		SetFXIgnorePause(localClientNum, self.var_c304583e, 1);
+		self.fx_element_glow = PlayFXOnTag(localClientNum, level._effect["fire_glow"], self, "tag_origin");
+		SetFXIgnorePause(localClientNum, self.fx_element_glow, 1);
 	}
 	else if(newVal == 2)
 	{
-		self.var_c304583e = PlayFXOnTag(localClientNum, level._effect["air_glow"], self, "tag_origin");
-		SetFXIgnorePause(localClientNum, self.var_c304583e, 1);
+		self.fx_element_glow = PlayFXOnTag(localClientNum, level._effect["air_glow"], self, "tag_origin");
+		SetFXIgnorePause(localClientNum, self.fx_element_glow, 1);
 	}
 	else if(newVal == 3)
 	{
-		self.var_c304583e = PlayFXOnTag(localClientNum, level._effect["elec_glow"], self, "tag_origin");
-		SetFXIgnorePause(localClientNum, self.var_c304583e, 1);
+		self.fx_element_glow = PlayFXOnTag(localClientNum, level._effect["elec_glow"], self, "tag_origin");
+		SetFXIgnorePause(localClientNum, self.fx_element_glow, 1);
 	}
 	else if(newVal == 4)
 	{
-		self.var_c304583e = PlayFXOnTag(localClientNum, level._effect["ice_glow"], self, "tag_origin");
-		SetFXIgnorePause(localClientNum, self.var_c304583e, 1);
+		self.fx_element_glow = PlayFXOnTag(localClientNum, level._effect["ice_glow"], self, "tag_origin");
+		SetFXIgnorePause(localClientNum, self.fx_element_glow, 1);
 	}
 	else if(newVal == 0)
 	{
-		stopfx(localClientNum, self.var_c304583e);
+		stopfx(localClientNum, self.fx_element_glow);
 	}
 }
 
 /*
-	Name: function_eb515bc3
+	Name: stone_frozen_shader
 	Namespace: zm_tomb
 	Checksum: 0x963CADC4
 	Offset: 0x54B0
@@ -984,7 +984,7 @@ function function_e25324c6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_eb515bc3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function stone_frozen_shader(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("entityshutdown");
 	if(newVal)
@@ -999,7 +999,7 @@ function function_eb515bc3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_5abafae8
+	Name: sky_pillar_fade
 	Namespace: zm_tomb
 	Checksum: 0x8EA6C2E
 	Offset: 0x55B0
@@ -1007,10 +1007,10 @@ function function_eb515bc3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_5abafae8(localClientNum, fade_in, fade_time)
+function sky_pillar_fade(localClientNum, fade_in, fade_time)
 {
-	self notify("hash_35d6955f");
-	self endon("hash_35d6955f");
+	self notify("sky_pillar_fade_stop");
+	self endon("sky_pillar_fade_stop");
 	self endon("entityshutdown");
 	start_val = 0;
 	end_val = 1;
@@ -1019,8 +1019,8 @@ function function_5abafae8(localClientNum, fade_in, fade_time)
 		start_val = 1;
 		end_val = 0;
 	}
-	var_e7e3bd98 = 0.0166;
-	num_steps = Int(fade_time / var_e7e3bd98);
+	frame_time = 0.0166;
+	num_steps = Int(fade_time / frame_time);
 	step_size = 1 / num_steps;
 	for(i = 0; i < num_steps; i++)
 	{
@@ -1035,12 +1035,12 @@ function function_5abafae8(localClientNum, fade_in, fade_time)
 		}
 		value = LerpFloat(start_val, end_val, pct);
 		self SetShaderConstant(localClientNum, 0, value, value, value, value);
-		util::server_wait(localClientNum, var_e7e3bd98);
+		util::server_wait(localClientNum, frame_time);
 	}
 }
 
 /*
-	Name: function_90b75360
+	Name: sky_pillar_fx
 	Namespace: zm_tomb
 	Checksum: 0x7D6FD5AE
 	Offset: 0x5788
@@ -1048,12 +1048,12 @@ function function_5abafae8(localClientNum, fade_in, fade_time)
 	Parameters: 7
 	Flags: None
 */
-function function_90b75360(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function sky_pillar_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{
 		self MapShaderConstant(localClientNum, 0, "ScriptVector0");
-		self thread function_5abafae8(localClientNum, 1, 1);
+		self thread sky_pillar_fade(localClientNum, 1, 1);
 		playsound(0, "zmb_squest_crystal_sky_pillar_start", (3, 0, 218));
 		audio::playloopat("zmb_squest_crystal_sky_pillar_loop", (0, -2, 435));
 		audio::playloopat("zmb_squest_crystal_sky_pillar_loop_fx", VectorScale((0, 0, 1), 150));
@@ -1063,7 +1063,7 @@ function function_90b75360(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		self thread function_5abafae8(localClientNum, 0, 4);
+		self thread sky_pillar_fade(localClientNum, 0, 4);
 		playsound(0, "zmb_squest_crystal_sky_pillar_stop", (3, 0, 218));
 		audio::stoploopat("zmb_squest_crystal_sky_pillar_loop", (0, -2, 435));
 		audio::stoploopat("zmb_squest_crystal_sky_pillar_loop_fx", VectorScale((0, 0, 1), 150));
@@ -1087,11 +1087,11 @@ function function_f118a0e7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	self endon("disconnect");
 	if(newVal == 4)
 	{
-		self thread function_878b1e6c(localClientNum, 1);
+		self thread player_continuous_rumble(localClientNum, 1);
 	}
 	else if(newVal == 5)
 	{
-		self thread function_878b1e6c(localClientNum, 2);
+		self thread player_continuous_rumble(localClientNum, 2);
 	}
 	else if(newVal == 3)
 	{
@@ -1110,16 +1110,16 @@ function function_f118a0e7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else if(newVal == 6)
 	{
-		self thread function_878b1e6c(localClientNum, 1, 0);
+		self thread player_continuous_rumble(localClientNum, 1, 0);
 	}
 	else
 	{
-		self notify("hash_f9095a82");
+		self notify("stop_rumble_and_shake");
 	}
 }
 
 /*
-	Name: function_878b1e6c
+	Name: player_continuous_rumble
 	Namespace: zm_tomb
 	Checksum: 0xE7266FB
 	Offset: 0x5B90
@@ -1127,29 +1127,29 @@ function function_f118a0e7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_878b1e6c(localClientNum, var_4be1e559, var_d2e77e71)
+function player_continuous_rumble(localClientNum, rumble_level, shake_camera)
 {
-	if(!isdefined(var_d2e77e71))
+	if(!isdefined(shake_camera))
 	{
-		var_d2e77e71 = 1;
+		shake_camera = 1;
 	}
-	self notify("hash_f9095a82");
+	self notify("stop_rumble_and_shake");
 	self endon("disconnect");
-	self endon("hash_f9095a82");
+	self endon("stop_rumble_and_shake");
 	while(1)
 	{
 		if(isdefined(self) && self isLocalPlayer() && isdefined(self))
 		{
-			if(var_4be1e559 == 1)
+			if(rumble_level == 1)
 			{
-				if(var_d2e77e71)
+				if(shake_camera)
 				{
 					self Earthquake(0.2, 1, self.origin, 100);
 				}
 				self PlayRumbleOnEntity(localClientNum, "reload_small");
 				wait(0.05);
 			}
-			else if(var_d2e77e71)
+			else if(shake_camera)
 			{
 				self Earthquake(0.3, 1, self.origin, 100);
 			}
@@ -1160,7 +1160,7 @@ function function_878b1e6c(localClientNum, var_4be1e559, var_d2e77e71)
 }
 
 /*
-	Name: function_d20e4b5a
+	Name: crypt_open
 	Namespace: zm_tomb
 	Checksum: 0x113B4F07
 	Offset: 0x5CF8
@@ -1168,13 +1168,13 @@ function function_878b1e6c(localClientNum, var_4be1e559, var_d2e77e71)
 	Parameters: 7
 	Flags: None
 */
-function function_d20e4b5a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function crypt_open(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	exploder::exploder(222);
 }
 
 /*
-	Name: function_24a5862d
+	Name: toggle_lantern_fx
 	Namespace: zm_tomb
 	Checksum: 0x8C2F72B8
 	Offset: 0x5D58
@@ -1182,30 +1182,30 @@ function function_d20e4b5a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_24a5862d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function toggle_lantern_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	var_aa8e992 = Array("phys_lantern01", "phys_lantern02", "phys_lantern03", "phys_lantern04", "phys_lantern05", "phys_lantern06", "phys_lantern07", "phys_lantern08", "phys_lantern09", "phys_lantern10", "phys_lantern11", "phys_lantern12", "phys_lantern13", "phys_lantern14", "phys_lantern15", "phys_lantern16", "phys_lantern17", "phys_lantern18", "phys_lantern19");
-	var_e531bd52 = [];
-	foreach(str_name in var_aa8e992)
+	a_lantern_names = Array("phys_lantern01", "phys_lantern02", "phys_lantern03", "phys_lantern04", "phys_lantern05", "phys_lantern06", "phys_lantern07", "phys_lantern08", "phys_lantern09", "phys_lantern10", "phys_lantern11", "phys_lantern12", "phys_lantern13", "phys_lantern14", "phys_lantern15", "phys_lantern16", "phys_lantern17", "phys_lantern18", "phys_lantern19");
+	a_lanterns = [];
+	foreach(str_name in a_lantern_names)
 	{
-		var_e531bd52 = ArrayCombine(var_e531bd52, getdynentarray(str_name), 0, 0);
+		a_lanterns = ArrayCombine(a_lanterns, getdynentarray(str_name), 0, 0);
 	}
 	if(newVal)
 	{
-		foreach(lantern in var_e531bd52)
+		foreach(lantern in a_lanterns)
 		{
-			lantern function_ea74b5ce(localClientNum);
+			lantern lantern_fx_enable(localClientNum);
 		}
 		break;
 	}
-	foreach(lantern in var_e531bd52)
+	foreach(lantern in a_lanterns)
 	{
-		lantern function_b44167d(localClientNum);
+		lantern lantern_fx_disable(localClientNum);
 	}
 }
 
 /*
-	Name: function_ea74b5ce
+	Name: lantern_fx_enable
 	Namespace: zm_tomb
 	Checksum: 0x22D00797
 	Offset: 0x6020
@@ -1213,14 +1213,14 @@ function function_24a5862d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_ea74b5ce(localClientNumber)
+function lantern_fx_enable(localClientNumber)
 {
-	self function_b44167d(localClientNumber);
+	self lantern_fx_disable(localClientNumber);
 	self.a_fx[localClientNumber] = PlayFXOnDynEnt(level._effect["fx_tomb_light_expensive"], self);
 }
 
 /*
-	Name: function_b44167d
+	Name: lantern_fx_disable
 	Namespace: zm_tomb
 	Checksum: 0x5EEB385E
 	Offset: 0x6088
@@ -1228,7 +1228,7 @@ function function_ea74b5ce(localClientNumber)
 	Parameters: 1
 	Flags: None
 */
-function function_b44167d(localClientNumber)
+function lantern_fx_disable(localClientNumber)
 {
 	if(!isdefined(self.a_fx))
 	{
@@ -1241,7 +1241,7 @@ function function_b44167d(localClientNumber)
 }
 
 /*
-	Name: function_c62fcc7d
+	Name: set_level_rain
 	Namespace: zm_tomb
 	Checksum: 0x98E8F10
 	Offset: 0x60F0
@@ -1249,13 +1249,13 @@ function function_b44167d(localClientNumber)
 	Parameters: 7
 	Flags: None
 */
-function function_c62fcc7d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function set_level_rain(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	level.weather_rain = newVal;
 }
 
 /*
-	Name: function_fbc162aa
+	Name: set_level_snow
 	Namespace: zm_tomb
 	Checksum: 0xFE6C8A97
 	Offset: 0x6140
@@ -1263,13 +1263,13 @@ function function_c62fcc7d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_fbc162aa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function set_level_snow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	level.weather_snow = newVal;
 }
 
 /*
-	Name: function_5f9e6e69
+	Name: set_player_snow
 	Namespace: zm_tomb
 	Checksum: 0x89A6B808
 	Offset: 0x6190
@@ -1277,27 +1277,27 @@ function function_fbc162aa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_5f9e6e69(localClientNum)
+function set_player_snow(localClientNum)
 {
-	if(!isdefined(level.var_1c69bb12))
+	if(!isdefined(level.sndweather))
 	{
-		level thread zm_tomb_amb::function_33be1969();
+		level thread zm_tomb_amb::sndweathersetup();
 	}
 	if(level.weather_snow == 0)
 	{
 		level notify("_snow_thread" + localClientNum);
-		level.var_1c69bb12.var_308c43c8 = 0;
+		level.sndweather.issnow = 0;
 	}
 	else
 	{
 		self thread function_50664fc(level.weather_snow, localClientNum);
-		level.var_1c69bb12.var_308c43c8 = 1;
+		level.sndweather.issnow = 1;
 	}
-	level thread function_f099c69d(self);
+	level thread sndweatherupdate(self);
 }
 
 /*
-	Name: function_4a9e7e2
+	Name: set_player_rain
 	Namespace: zm_tomb
 	Checksum: 0x453E4B00
 	Offset: 0x6248
@@ -1305,11 +1305,11 @@ function function_5f9e6e69(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_4a9e7e2(localClientNum)
+function set_player_rain(localClientNum)
 {
-	if(!isdefined(level.var_1c69bb12))
+	if(!isdefined(level.sndweather))
 	{
-		level thread zm_tomb_amb::function_33be1969();
+		level thread zm_tomb_amb::sndweathersetup();
 	}
 	if(!isdefined(self.b_lightning))
 	{
@@ -1319,19 +1319,19 @@ function function_4a9e7e2(localClientNum)
 	{
 		level notify("_rain_thread" + localClientNum);
 		self.b_lightning = 0;
-		level.var_1c69bb12.var_b13d6dfb = 0;
+		level.sndweather.israin = 0;
 	}
 	else if(isdefined(self.b_lightning) && !self.b_lightning)
 	{
 		self thread function_2a8d9095(localClientNum);
 	}
 	self thread _rain_thread(level.weather_rain, localClientNum);
-	level.var_1c69bb12.var_b13d6dfb = 1;
-	level thread function_f099c69d(self);
+	level.sndweather.israin = 1;
+	level thread sndweatherupdate(self);
 }
 
 /*
-	Name: function_2feb8fa1
+	Name: set_player_weather_visionset
 	Namespace: zm_tomb
 	Checksum: 0xC7080D4C
 	Offset: 0x6358
@@ -1339,17 +1339,17 @@ function function_4a9e7e2(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_2feb8fa1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function set_player_weather_visionset(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	var_750d7c17 = 10;
+	n_suncolor_lerp_time = 10;
 	if(bNewEnt || bInitialSnap || bWasDemoJump)
 	{
-		var_750d7c17 = 0;
+		n_suncolor_lerp_time = 0;
 	}
 	if(isdefined(self))
 	{
-		self function_4a9e7e2(localClientNum);
-		self function_5f9e6e69(localClientNum);
+		self set_player_rain(localClientNum);
+		self set_player_snow(localClientNum);
 	}
 	if(newVal == 0 || newVal == 3)
 	{
@@ -1401,12 +1401,12 @@ function function_2feb8fa1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_b5ac96ec(var_d8a51337, localClientNum)
+function function_b5ac96ec(str_weather, localClientNum)
 {
 	exploder::stop_exploder("fxexp_111", localClientNum);
 	exploder::stop_exploder("fxexp_112", localClientNum);
 	exploder::stop_exploder("fxexp_113", localClientNum);
-	switch(var_d8a51337)
+	switch(str_weather)
 	{
 		case "clear":
 		{
@@ -1431,7 +1431,7 @@ function function_b5ac96ec(var_d8a51337, localClientNum)
 }
 
 /*
-	Name: function_ee40d15e
+	Name: lerp_suncolor_dvar
 	Namespace: zm_tomb
 	Checksum: 0xDA1AAEE5
 	Offset: 0x6728
@@ -1439,12 +1439,12 @@ function function_b5ac96ec(var_d8a51337, localClientNum)
 	Parameters: 4
 	Flags: None
 */
-function function_ee40d15e(localClientNum, var_24ba9457, var_c5799b7a, n_lerp_time)
+function lerp_suncolor_dvar(localClientNum, src_suncolor, tgt_suncolor, n_lerp_time)
 {
 }
 
 /*
-	Name: function_f099c69d
+	Name: sndweatherupdate
 	Namespace: zm_tomb
 	Checksum: 0x10230E36
 	Offset: 0x6758
@@ -1452,17 +1452,17 @@ function function_ee40d15e(localClientNum, var_24ba9457, var_c5799b7a, n_lerp_ti
 	Parameters: 1
 	Flags: None
 */
-function function_f099c69d(player)
+function sndweatherupdate(player)
 {
-	level notify("hash_72666748");
-	level endon("hash_72666748");
+	level notify("sndweatherupdating");
+	level endon("sndweatherupdating");
 	wait(0.5);
-	level notify("hash_f099c69d");
-	player thread function_7820d164();
+	level notify("sndweatherupdate");
+	player thread sndupdateroomweather();
 }
 
 /*
-	Name: function_7820d164
+	Name: sndupdateroomweather
 	Namespace: zm_tomb
 	Checksum: 0x1979B466
 	Offset: 0x67B8
@@ -1470,7 +1470,7 @@ function function_f099c69d(player)
 	Parameters: 0
 	Flags: None
 */
-function function_7820d164()
+function sndupdateroomweather()
 {
 	wait(0.1);
 	name = level.activeAmbientPackage;
@@ -1578,7 +1578,7 @@ function function_2a8d9095(localClientNum)
 			exploder::exploder("fxexp_400");
 			playsound(0, "amb_thunder_clap_zm", v_end_pos);
 			util::server_wait(localClientNum, RandomFloatRange(0.2, 0.3));
-			self thread function_d4089806(localClientNum);
+			self thread _lightning_disconnect_thread(localClientNum);
 			n_strikes = randomIntRange(3, 5);
 			for(i = 0; i < n_strikes; i++)
 			{
@@ -1586,7 +1586,7 @@ function function_2a8d9095(localClientNum)
 				n_blend_time = RandomFloatRange(0.1, 0.35);
 				playsound(0, "amb_thunder_flash_zm", v_end_pos);
 			}
-			self notify("hash_48ec464");
+			self notify("lightning_done");
 			util::server_wait(localClientNum, RandomFloatRange(5, 10));
 		}
 	}
@@ -1625,7 +1625,7 @@ function function_508af4e9(localClientNum)
 }
 
 /*
-	Name: function_d4089806
+	Name: _lightning_disconnect_thread
 	Namespace: zm_tomb
 	Checksum: 0x58C0165B
 	Offset: 0x6E90
@@ -1633,9 +1633,9 @@ function function_508af4e9(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_d4089806(localClientNum)
+function _lightning_disconnect_thread(localClientNum)
 {
-	self endon("hash_48ec464");
+	self endon("lightning_done");
 	self waittill("_lightning_thread" + localClientNum);
 }
 
@@ -1720,20 +1720,20 @@ function function_d4976b7d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		if(!isdefined(self.fx_glow))
 		{
 			self.fx_glow = PlayFXOnTag(localClientNum, level._effect["foot_box_glow"], self, "tag_origin");
-			self thread function_91953add(localClientNum);
+			self thread foot_print_box_glow_in(localClientNum);
 		}
 		if(!isdefined(self.sndent))
 		{
 			self.sndent = spawn(0, self.origin, "script_origin");
 			self.sndent PlayLoopSound("zmb_footprintbox_glow_lp", 1);
-			self.sndent thread function_3a4d4e97();
+			self.sndent thread snddemojumpmonitor();
 		}
 	}
 	else if(isdefined(self.fx_glow))
 	{
 		stopfx(localClientNum, self.fx_glow);
 		self.fx_glow = undefined;
-		self thread function_526683dc(localClientNum);
+		self thread foot_print_box_glow_out(localClientNum);
 	}
 	if(isdefined(self.sndent))
 	{
@@ -1743,7 +1743,7 @@ function function_d4976b7d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_3a4d4e97
+	Name: snddemojumpmonitor
 	Namespace: zm_tomb
 	Checksum: 0x4C5C73F1
 	Offset: 0x7428
@@ -1751,7 +1751,7 @@ function function_d4976b7d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 0
 	Flags: None
 */
-function function_3a4d4e97()
+function snddemojumpmonitor()
 {
 	self endon("entityshutdown");
 	level waittill("demo_jump");
@@ -1759,7 +1759,7 @@ function function_3a4d4e97()
 }
 
 /*
-	Name: function_91953add
+	Name: foot_print_box_glow_in
 	Namespace: zm_tomb
 	Checksum: 0x3DCE0B30
 	Offset: 0x7468
@@ -1767,7 +1767,7 @@ function function_3a4d4e97()
 	Parameters: 1
 	Flags: None
 */
-function function_91953add(localClientNum)
+function foot_print_box_glow_in(localClientNum)
 {
 	self endon("entityshutdown");
 	self MapShaderConstant(localClientNum, 0, "ScriptVector1");
@@ -1784,7 +1784,7 @@ function function_91953add(localClientNum)
 }
 
 /*
-	Name: function_526683dc
+	Name: foot_print_box_glow_out
 	Namespace: zm_tomb
 	Checksum: 0x952B828A
 	Offset: 0x7580
@@ -1792,7 +1792,7 @@ function function_91953add(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_526683dc(localClientNum)
+function foot_print_box_glow_out(localClientNum)
 {
 	self endon("entityshutdown");
 	self MapShaderConstant(localClientNum, 0, "ScriptVector1");
@@ -1932,7 +1932,7 @@ function function_b3ff5e6d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_e20b060c
+	Name: zm_tomb_zombie_eyes_think
 	Namespace: zm_tomb
 	Checksum: 0x5A927049
 	Offset: 0x7938
@@ -1940,7 +1940,7 @@ function function_b3ff5e6d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_e20b060c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function zm_tomb_zombie_eyes_think(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
@@ -1949,7 +1949,7 @@ function function_e20b060c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			self._eyeglow_fx_override = level._effect["eye_glow_blue"];
 			self zm::deleteZombieEyes(localClientNum);
 			self zm::createZombieEyes(localClientNum);
-			self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, level.var_7d2be23b, 0);
+			self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, level.eyeball_luminance_override, 0);
 		}
 	}
 }

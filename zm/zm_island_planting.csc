@@ -254,8 +254,8 @@ function function_b8ba462e(localClientNum, b_on)
 		b_on = 1;
 	}
 	self endon("entityshutdown");
-	self notify("hash_67a9e087");
-	self endon("hash_67a9e087");
+	self notify("fade_interrupt");
+	self endon("fade_interrupt");
 	level endon("demo_jump");
 	n_start_time = GetTime();
 	n_end_time = n_start_time + 2 * 1000;

@@ -568,7 +568,7 @@ function giant_robot_foot_waittill_sole_shot(m_sole)
 		str_tag = "TAG_ATTACH_HATCH_RI";
 		n_foot = 1;
 	}
-	self waittill("hash_5ebbf30b");
+	self waittill("kill_zombies_leftfoot_1");
 	wait(1);
 	m_sole waittill("damage", amount, inflictor, direction, point, type, tagName, modelName, partName, weaponName, iDFlags);
 	m_sole.health = 99999;
@@ -1592,7 +1592,7 @@ function giant_robot_head_player_eject_thread(m_linkpoint, str_tube, b_timeout)
 	}
 	level endon("intermission");
 	self endon("death_or_disconnect");
-	var_1bcd223d = self GetCurrentWeapon();
+	w_current_weapon = self GetCurrentWeapon();
 	self DisableWeapons();
 	self disableOffhandWeapons();
 	self EnableInvulnerability();
@@ -1638,9 +1638,9 @@ function giant_robot_head_player_eject_thread(m_linkpoint, str_tube, b_timeout)
 	self waittill("gr_eject_fall_complete");
 	self SetVisibleToAll();
 	self enableWeapons();
-	if(isdefined(var_1bcd223d) && var_1bcd223d != level.weaponNone)
+	if(isdefined(w_current_weapon) && w_current_weapon != level.weaponNone)
 	{
-		self SwitchToWeaponImmediate(var_1bcd223d);
+		self SwitchToWeaponImmediate(w_current_weapon);
 	}
 	self EnableOffhandWeapons();
 	self Unlink();

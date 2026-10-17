@@ -176,7 +176,7 @@ function include_weapons()
 */
 function register_clientfields()
 {
-	clientfield::register("toplayer", "player_snow_fx", 5000, 1, "counter", &function_e9ccaf60, 0, 0);
+	clientfield::register("toplayer", "player_snow_fx", 5000, 1, "counter", &callback_player_snow_fx_logic, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.widget_shield_parts", 1, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.widget_fuses", 1, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.player_crafted_shield", 1, 1, "int", undefined, 0, 0);
@@ -312,7 +312,7 @@ function setup_personality_character_exerts()
 }
 
 /*
-	Name: function_e9ccaf60
+	Name: callback_player_snow_fx_logic
 	Namespace: namespace_c491e335
 	Checksum: 0xF0E84355
 	Offset: 0x2AE8
@@ -320,7 +320,7 @@ function setup_personality_character_exerts()
 	Parameters: 7
 	Flags: None
 */
-function function_e9ccaf60(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function callback_player_snow_fx_logic(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(level.var_18402cb[localClientNum]))
 	{
@@ -328,7 +328,7 @@ function function_e9ccaf60(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		level.var_18402cb[localClientNum] = undefined;
 	}
 	level.var_18402cb[localClientNum] = PlayFXOnTag(localClientNum, level._effect["snow"], self, "tag_origin");
-	function_7a6170fb(localClientNum, level.var_18402cb[localClientNum]);
+	setfxoutdoor(localClientNum, level.var_18402cb[localClientNum]);
 }
 
 /*

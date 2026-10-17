@@ -127,13 +127,13 @@ function main()
 	level.use_multiple_spawns = 1;
 	level.use_low_gravity_risers = 1;
 	level.sndZHDAudio = 1;
-	level.var_bbd4901d = GetWeapon("equip_hacker");
+	level.w_hacker = GetWeapon("equip_hacker");
 	level._num_overriden_models = 0;
 	level._use_choke_weapon_hints = 1;
 	level._use_choke_blockers = 1;
 	level._special_blackhole_bomb_structs = &blackhole_bomb_area_check;
 	level._limited_equipment = [];
-	level._limited_equipment[level._limited_equipment.size] = level.var_bbd4901d;
+	level._limited_equipment[level._limited_equipment.size] = level.w_hacker;
 	level._override_blackhole_destination_logic = &get_blackholebomb_destination_point;
 	level._blackhole_bomb_valid_area_check = &blackhole_bomb_in_invalid_area;
 	level.quantum_bomb_prevent_player_getting_teleported = &quantum_bomb_prevent_player_getting_teleported_override;
@@ -158,7 +158,7 @@ function main()
 	{
 		return;
 	}
-	level.var_6225e4bb = function_1556496c("gamedata/tables/zm/zm_astro_names.csv");
+	level.var_6225e4bb = tablelookuprowcount("gamedata/tables/zm/zm_astro_names.csv");
 	register_clientfields();
 	zm_moon_sq::init_clientfields();
 	level.player_out_of_playable_area_monitor = 1;
@@ -182,7 +182,7 @@ function main()
 	}
 	level.custom_ai_type[level.custom_ai_type.size] = &zm_ai_dogs::init;
 	spawner::add_archetype_spawn_function("zombie_dog", &function_6db62803);
-	spawner::add_archetype_spawn_function("astronaut", &function_ff7d3b7);
+	spawner::add_archetype_spawn_function("astronaut", &set_astro_name);
 	level thread zm_moon_utility::hacker_location_random_init();
 	level._zombie_custom_add_weapons = &custom_add_weapons;
 	level.zombiemode_gasmask_reset_player_model = &gasmask_reset_player_model;
@@ -193,26 +193,26 @@ function main()
 	level.register_offhand_weapons_for_level_defaults_override = &moon_offhand_weapon_overrride;
 	level.zombiemode_offhand_weapon_give_override = &offhand_weapon_give_override;
 	level._allow_melee_weapon_switching = 1;
-	level._hack_perks_override = &function_9f47ebff;
+	level._hack_perks_override = &moon_perks_override;
 	level.giveCustomCharacters = &giveCustomCharacters;
 	initCharacterStartIndex();
 	level.use_zombie_heroes = 1;
 	level.moon_startmap = 1;
-	level._zm_blocker_trigger_think_return_override = &function_d70e1ddb;
-	level._zm_build_trigger_from_unitrigger_stub_override = &function_89f86341;
+	level._zm_blocker_trigger_think_return_override = &check_blocker_trigger_for_hacker_tool;
+	level._zm_build_trigger_from_unitrigger_stub_override = &moon_unitrigger_stub_override;
 	load::main();
 	level.default_laststandpistol = GetWeapon("pistol_m1911");
 	level.default_solo_laststandpistol = GetWeapon("pistol_m1911_upgraded");
 	level.laststandpistol = level.default_laststandpistol;
 	level.start_weapon = level.default_laststandpistol;
 	level thread zm::last_stand_pistol_rank_init();
-	namespace_1d58b607::function_5af423f4();
+	namespace_1d58b607::activate_quad_spawners();
 	level thread zm_moon_sq::start_moon_sidequest();
 	level thread function_54bf648f();
-	level.var_9aaae7ae = &function_869d6f66;
+	level.zm_bgb_anywhere_but_here_validation_override = &anywhere_but_here_validation_override;
 	level.var_2d4e3645 = &function_d9e1ec4d;
 	level.var_35efa94c = &function_f97e7fed;
-	level.var_9f5c2c50 = &function_e36dbcf4;
+	level.zm_bgb_killing_time_validation_override = &bgb_killing_time_validation_override;
 	level.var_4824bb2d = &function_69e4bd99;
 	level thread zm::register_sidequest("EOA", "ZOMBIE_TEMPLE_SIDEQUEST");
 	level thread zm::register_sidequest("MOON", "ZOMBIE_MOON_SIDEQUEST_TOTAL");
@@ -267,7 +267,7 @@ function main()
 }
 
 /*
-	Name: function_ff7d3b7
+	Name: set_astro_name
 	Namespace: zm_moon
 	Checksum: 0x7462CAC5
 	Offset: 0x29B8
@@ -275,7 +275,7 @@ function main()
 	Parameters: 0
 	Flags: None
 */
-function function_ff7d3b7()
+function set_astro_name()
 {
 	do
 	{
@@ -313,20 +313,20 @@ function function_ff7d3b7()
 function function_71153721(a_ents)
 {
 	level.disable_print3d_ent = 1;
-	var_3aa9d35a = GetEntArray("airlock_bridge_zone", "script_parameters");
-	foreach(var_1cec30db in var_3aa9d35a)
+	a_t_airlocks = GetEntArray("airlock_bridge_zone", "script_parameters");
+	foreach(t_airlock in a_t_airlocks)
 	{
-		var_7be3ca60 = GetEntArray(var_1cec30db.target, "targetname");
-		foreach(var_adad709 in var_7be3ca60)
+		a_mdl_doors = GetEntArray(t_airlock.target, "targetname");
+		foreach(mdl_door in a_mdl_doors)
 		{
-			var_adad709 Hide();
+			mdl_door Hide();
 		}
 	}
-	foreach(var_6cae1ad0 in a_ents)
+	foreach(mdl_ent in a_ents)
 	{
-		if(IsSubStr(var_6cae1ad0.model, "body"))
+		if(IsSubStr(mdl_ent.model, "body"))
 		{
-			var_6cae1ad0 clientfield::set("zombie_has_eyes", 1);
+			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
 }
@@ -361,7 +361,7 @@ function moon_push_zombies_when_astro_explodes(position)
 }
 
 /*
-	Name: function_869d6f66
+	Name: anywhere_but_here_validation_override
 	Namespace: zm_moon
 	Checksum: 0x309CCA86
 	Offset: 0x2D98
@@ -369,7 +369,7 @@ function moon_push_zombies_when_astro_explodes(position)
 	Parameters: 0
 	Flags: None
 */
-function function_869d6f66()
+function anywhere_but_here_validation_override()
 {
 	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
 	{
@@ -401,7 +401,7 @@ function function_f97e7fed()
 }
 
 /*
-	Name: function_e36dbcf4
+	Name: bgb_killing_time_validation_override
 	Namespace: zm_moon
 	Checksum: 0x7D7ADF58
 	Offset: 0x2E08
@@ -409,7 +409,7 @@ function function_f97e7fed()
 	Parameters: 0
 	Flags: None
 */
-function function_e36dbcf4()
+function bgb_killing_time_validation_override()
 {
 	if(isdefined(level.var_d8417111) && level.var_d8417111)
 	{
@@ -445,11 +445,11 @@ function function_69e4bd99()
 	Parameters: 1
 	Flags: None
 */
-function function_d9e1ec4d(var_bbf77908)
+function function_d9e1ec4d(a_s_valid_respawn_points)
 {
 	var_7de051f = struct::get("nml_zone", "script_noteworthy");
-	ArrayRemoveValue(var_bbf77908, var_7de051f);
-	return var_bbf77908;
+	ArrayRemoveValue(a_s_valid_respawn_points, var_7de051f);
+	return a_s_valid_respawn_points;
 }
 
 /*
@@ -471,9 +471,9 @@ function moon_post_respawn_callback()
 	{
 		self clientfield::set_to_player("player_sky_transition", 0);
 	}
-	if(!zm_equipment::limited_in_use(level.var_bbd4901d))
+	if(!zm_equipment::limited_in_use(level.w_hacker))
 	{
-		self zm_equipment::set_equipment_invisibility_to_player(level.var_bbd4901d, 0);
+		self zm_equipment::set_equipment_invisibility_to_player(level.w_hacker, 0);
 	}
 }
 
@@ -562,20 +562,20 @@ function turn_area51_perks_on()
 */
 function init_hackables()
 {
-	level thread namespace_359e846b::hack_wallbuys();
-	level thread namespace_75cc53cb::hack_perks();
-	level thread namespace_b03b0164::hack_packapunch();
-	level thread namespace_b1d3fbb7::hack_boards();
-	level thread namespace_65fac977::hack_doors("zombie_airlock_buy", &zm_moon_utility::moon_door_opened);
-	level thread namespace_65fac977::hack_doors();
-	level thread namespace_27e18f93::hack_powerups();
-	level thread namespace_bcde73b7::box_hacks();
+	level thread zm_hackables_wallbuys::hack_wallbuys();
+	level thread zm_hackables_perks::hack_perks();
+	level thread zm_hackables_packapunch::hack_packapunch();
+	level thread zm_hackables_boards::hack_boards();
+	level thread zm_hackables_doors::hack_doors("zombie_airlock_buy", &zm_moon_utility::moon_door_opened);
+	level thread zm_hackables_doors::hack_doors();
+	level thread zm_hackables_powerups::hack_powerups();
+	level thread zm_hackables_box::box_hacks();
 	level thread packapunch_hack_think();
 	level thread pack_gate_poi_init();
 }
 
 /*
-	Name: function_d70e1ddb
+	Name: check_blocker_trigger_for_hacker_tool
 	Namespace: zm_moon
 	Checksum: 0xF7E9F78E
 	Offset: 0x3440
@@ -583,9 +583,9 @@ function init_hackables()
 	Parameters: 1
 	Flags: None
 */
-function function_d70e1ddb(player)
+function check_blocker_trigger_for_hacker_tool(player)
 {
-	if(player zm_equipment::is_active(level.var_bbd4901d))
+	if(player zm_equipment::is_active(level.w_hacker))
 	{
 		if(isdefined(self.unitrigger_stub.playertrigger))
 		{
@@ -600,7 +600,7 @@ function function_d70e1ddb(player)
 }
 
 /*
-	Name: function_89f86341
+	Name: moon_unitrigger_stub_override
 	Namespace: zm_moon
 	Checksum: 0x5EA24D39
 	Offset: 0x34B8
@@ -608,9 +608,9 @@ function function_d70e1ddb(player)
 	Parameters: 1
 	Flags: None
 */
-function function_89f86341(player)
+function moon_unitrigger_stub_override(player)
 {
-	if(player zm_equipment::is_active(level.var_bbd4901d))
+	if(player zm_equipment::is_active(level.w_hacker))
 	{
 		if(isdefined(self.trigger_target))
 		{
@@ -684,7 +684,7 @@ function packapunch_hack_think()
 		level thread pack_gate_poi_activate(time);
 		wait(time);
 		level flag::set("packapunch_hacked");
-		namespace_6d813654::register_pooled_hackable_struct(level._pack_hack_struct, &namespace_b03b0164::packapunch_hack);
+		namespace_6d813654::register_pooled_hackable_struct(level._pack_hack_struct, &zm_hackables_packapunch::packapunch_hack);
 	}
 }
 
@@ -1309,7 +1309,7 @@ function moon_round_think_func(restart)
 		level thread [[level.round_spawn_func]]();
 		level notify("start_of_round");
 		RecordZombieRoundStart();
-		bb::function_2c248b75("start_of_round");
+		bb::logroundevent("start_of_round");
 		players = GetPlayers();
 		for(index = 0; index < players.size; index++)
 		{
@@ -1335,7 +1335,7 @@ function moon_round_think_func(restart)
 		level.first_round = 0;
 		level notify("end_of_round");
 		level flag::set("between_rounds");
-		bb::function_2c248b75("end_of_round");
+		bb::logroundevent("end_of_round");
 		UploadStats();
 		players = GetPlayers();
 		if(!level flag::get("teleporter_used"))
@@ -1618,7 +1618,7 @@ function assign_lowest_unused_character_index()
 		return charindexarray[2];
 		level.has_richtofen = 1;
 	}
-	else if(!function_5c35365f(players))
+	else if(!is_there_a_richtofen(players))
 	{
 		return charindexarray[2];
 	}
@@ -1639,7 +1639,7 @@ function assign_lowest_unused_character_index()
 }
 
 /*
-	Name: function_5c35365f
+	Name: is_there_a_richtofen
 	Namespace: zm_moon
 	Checksum: 0xA7C062A0
 	Offset: 0x6620
@@ -1647,7 +1647,7 @@ function assign_lowest_unused_character_index()
 	Parameters: 1
 	Flags: None
 */
-function function_5c35365f(players)
+function is_there_a_richtofen(players)
 {
 	foreach(player in players)
 	{
@@ -1832,13 +1832,13 @@ function offhand_weapon_give_override(str_weapon)
 		self SetWeaponAmmoClip(self zm_utility::get_player_tactical_grenade(), 0);
 		self TakeWeapon(self zm_utility::get_player_tactical_grenade());
 	}
-	if(str_weapon == level.var_453e74a0)
+	if(str_weapon == level.w_black_hole_bomb)
 	{
 		self namespace_d6b63386::player_give_black_hole_bomb();
 		self zm_weapons::play_weapon_vo(str_weapon);
 		return 1;
 	}
-	if(str_weapon == level.var_17bac01d)
+	if(str_weapon == level.w_quantum_bomb)
 	{
 		self namespace_ddd35ff::player_give_quantum_bomb();
 		self zm_weapons::play_weapon_vo(str_weapon);
@@ -1913,9 +1913,9 @@ function delayed_poweron_vox()
 */
 function wait_for_power()
 {
-	var_cf413835 = struct::get("power_switch", "targetname");
+	s_power_switch = struct::get("power_switch", "targetname");
 	level flag::wait_till("power_on");
-	playsoundatposition("zmb_switch_flip", var_cf413835.origin);
+	playsoundatposition("zmb_switch_flip", s_power_switch.origin);
 	level notify("electric_door");
 	level scene::Play("power_switch", "targetname");
 	playFX(level._effect["switch_sparks"], struct::get("elec_switch_fx", "targetname").origin);
@@ -1959,9 +1959,9 @@ function moon_devgui(cmd)
 				players = GetPlayers();
 				foreach(player in players)
 				{
-					if(player HasWeapon(level.var_17bac01d))
+					if(player HasWeapon(level.w_quantum_bomb))
 					{
-						player TakeWeapon(level.var_17bac01d);
+						player TakeWeapon(level.w_quantum_bomb);
 						player zm_utility::set_player_tactical_grenade("Dev Block strings are not supported");
 						player notify("starting_quantum_bomb");
 					}
@@ -1974,9 +1974,9 @@ function moon_devgui(cmd)
 				players = GetPlayers();
 				foreach(player in players)
 				{
-					if(player HasWeapon(level.var_453e74a0))
+					if(player HasWeapon(level.w_black_hole_bomb))
 					{
-						player TakeWeapon(level.var_453e74a0);
+						player TakeWeapon(level.w_black_hole_bomb);
 						player zm_utility::set_player_tactical_grenade("Dev Block strings are not supported");
 						player notify("starting_black_hole_bomb");
 					}
@@ -2738,7 +2738,7 @@ function init_level_specific_audio()
 }
 
 /*
-	Name: function_9f47ebff
+	Name: moon_perks_override
 	Namespace: zm_moon
 	Checksum: 0x4B358A9
 	Offset: 0x9308
@@ -2746,7 +2746,7 @@ function init_level_specific_audio()
 	Parameters: 0
 	Flags: None
 */
-function function_9f47ebff()
+function moon_perks_override()
 {
 	if(self.perk.script_noteworthy == "specialty_rof")
 	{
@@ -2817,18 +2817,18 @@ function function_35a61719()
 	var_93997cd = GetEntArray("airlock_biodome_zone", "script_parameters");
 	var_66cca975 = GetEntArray("airlock_labs_2_biodome", "script_parameters");
 	var_93997cd = ArrayCombine(var_93997cd, var_66cca975, 0, 0);
-	foreach(var_1cec30db in var_93997cd)
+	foreach(t_airlock in var_93997cd)
 	{
-		switch(var_1cec30db.script_int)
+		switch(t_airlock.script_int)
 		{
 			case 1:
 			{
-				var_1cec30db thread function_cc87f235(self);
+				t_airlock thread function_cc87f235(self);
 				break;
 			}
 			case 0:
 			{
-				var_1cec30db thread function_ff7d5f3b(self);
+				t_airlock thread function_ff7d5f3b(self);
 				break;
 			}
 		}
@@ -2925,30 +2925,30 @@ function function_54da140a()
 		{
 			var_343b1937 = a_s_spots[i].script_int;
 		}
-		var_c15b2128 = [];
-		foreach(var_a0bd4da1 in level.zombie_spawners)
+		a_sp_zombies = [];
+		foreach(sp_zombie in level.zombie_spawners)
 		{
-			if(var_a0bd4da1.script_int == var_343b1937)
+			if(sp_zombie.script_int == var_343b1937)
 			{
-				if(!isdefined(var_c15b2128))
+				if(!isdefined(a_sp_zombies))
 				{
-					var_c15b2128 = [];
+					a_sp_zombies = [];
 				}
-				else if(!IsArray(var_c15b2128))
+				else if(!IsArray(a_sp_zombies))
 				{
-					var_c15b2128 = Array(var_c15b2128);
+					a_sp_zombies = Array(a_sp_zombies);
 				}
-				var_c15b2128[var_c15b2128.size] = var_a0bd4da1;
+				a_sp_zombies[a_sp_zombies.size] = sp_zombie;
 			}
 		}
-		if(var_c15b2128.size)
+		if(a_sp_zombies.size)
 		{
-			var_a0bd4da1 = Array::random(var_c15b2128);
-			return var_a0bd4da1;
+			sp_zombie = Array::random(a_sp_zombies);
+			return sp_zombie;
 		}
 	}
 	/#
-		Assert(isdefined(var_a0bd4da1), "Dev Block strings are not supported" + var_343b1937);
+		Assert(isdefined(sp_zombie), "Dev Block strings are not supported" + var_343b1937);
 	#/
 }
 

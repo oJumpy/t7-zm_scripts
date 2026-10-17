@@ -184,7 +184,7 @@ function teleport_core_think(index)
 				exploder::kill_exploder("fxexp_200");
 				level clientfield::increment("teleporter_initiate_fx");
 				trigger player_teleporting(index);
-				level.var_4f3df77f clientfield::set("teleporter_link_cable_mtl", 0);
+				level.link_cable clientfield::set("teleporter_link_cable_mtl", 0);
 				trigger setHintString(&"ZOMBIE_TELEPORT_COOLDOWN");
 				wait(90);
 				active = 0;
@@ -243,7 +243,7 @@ function teleport_pad_hide_use()
 	core = GetEnt(trigger_name, "targetname");
 	Pad = GetEnt(core.target, "targetname");
 	Pad setcursorhint("HINT_NOICON");
-	level.var_4f3df77f = GetEnt("teleporter_link_cable", "targetname");
+	level.link_cable = GetEnt("teleporter_link_cable", "targetname");
 	Pad setHintString(&"ZOMBIE_NEED_POWER");
 	level flag::wait_till("power_on");
 	Pad setHintString(&"ZM_THEATER_START_CORE");
@@ -272,7 +272,7 @@ function teleport_pad_think()
 			Pad setHintString("");
 			Pad playsound("evt_teleporter_activate_finish");
 			level flag::set("teleporter_linked");
-			level.var_4f3df77f clientfield::set("teleporter_link_cable_mtl", 1);
+			level.link_cable clientfield::set("teleporter_link_cable_mtl", 1);
 		}
 		util::wait_network_frame();
 	}
@@ -1239,7 +1239,7 @@ function function_bc057378(var_4e54c41)
 */
 function theater_fly_me_to_the_moon()
 {
-	self endon("hash_64fcb4a6");
+	self endon("rocket_launched");
 	self setHintString("");
 	self setcursorhint("HINT_NOICON");
 	while(isdefined(self))
@@ -1295,15 +1295,15 @@ function theater_moon_jump_go()
 function function_7e0ed731(var_f7b84b84, v_offset)
 {
 	self endon("disconnect");
-	var_51bf1eed = var_f7b84b84 + 1;
-	var_2d8dac7a = "teleport_room_fx_" + var_51bf1eed;
+	n_room = var_f7b84b84 + 1;
+	var_2d8dac7a = "teleport_room_fx_" + n_room;
 	var_b4c5584f = struct::get(var_2d8dac7a, "targetname");
-	var_5a10e76c = struct::spawn(var_b4c5584f.origin - v_offset, var_b4c5584f.angles);
-	if(isdefined(var_5a10e76c))
+	s_wormhole = struct::spawn(var_b4c5584f.origin - v_offset, var_b4c5584f.angles);
+	if(isdefined(s_wormhole))
 	{
 		waittillframeend;
-		var_5a10e76c scene::Play("p7_fxanim_zm_kino_wormhole_bundle");
-		var_5a10e76c struct::delete();
+		s_wormhole scene::Play("p7_fxanim_zm_kino_wormhole_bundle");
+		s_wormhole struct::delete();
 	}
 }
 

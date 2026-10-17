@@ -103,7 +103,7 @@ function ruins_fist_glow_monitor()
 				inflictor.n_ee_punch_souls = 0;
 				inflictor.b_punch_upgraded = 0;
 			}
-			if(self.has_soul && inflictor.n_ee_punch_souls < 20 && isdefined(weapon) && weapon == level.var_653c9585 && (isdefined(self.completed_emerging_into_playable_area) && self.completed_emerging_into_playable_area))
+			if(self.has_soul && inflictor.n_ee_punch_souls < 20 && isdefined(weapon) && weapon == level.w_one_inch_punch && (isdefined(self.completed_emerging_into_playable_area) && self.completed_emerging_into_playable_area))
 			{
 				self clientfield::set("ee_zombie_fist_fx", 0);
 				self.has_soul = 0;
@@ -162,11 +162,11 @@ function spawn_punch_upgrade_tablet(v_origin, e_player)
 		}
 		wait(1);
 		e_player.b_punch_upgraded = 1;
-		foreach(var_acc90d1d in level.a_elemental_staffs_upgraded)
+		foreach(mdl_staff in level.a_elemental_staffs_upgraded)
 		{
-			if(e_player HasWeapon(var_acc90d1d.w_weapon))
+			if(e_player HasWeapon(mdl_staff.w_weapon))
 			{
-				e_player.str_punch_element = var_acc90d1d.w_weapon.element;
+				e_player.str_punch_element = mdl_staff.w_weapon.element;
 			}
 		}
 		if(!isdefined(e_player.str_punch_element))

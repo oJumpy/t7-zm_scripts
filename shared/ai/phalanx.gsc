@@ -523,7 +523,7 @@ function private _UpdatePhalanxThread(phalanx)
 }
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: phalanx
 	Checksum: 0x6E402192
 	Offset: 0x18C8
@@ -531,7 +531,7 @@ function private _UpdatePhalanxThread(phalanx)
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self.sentientTiers_ = [];
 	self.startSentientCount_ = 0;
@@ -541,7 +541,7 @@ function function_9b385ca5()
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: phalanx
 	Checksum: 0x99EC1590
 	Offset: 0x1910
@@ -549,7 +549,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -766,8 +766,8 @@ function private autoexec phalanx()
 	classes.phalanx[0].__vtable[1167879746] = &HaltAdvance;
 	classes.phalanx[0].__vtable[-2118610224] = &HaltFire;
 	classes.phalanx[0].__vtable[972280915] = &_UpdatePhalanx;
-	classes.phalanx[0].__vtable[1606033458] = &function_5fba2032;
-	classes.phalanx[0].__vtable[-1690805083] = &function_9b385ca5;
+	classes.phalanx[0].__vtable[1606033458] = &__destructor;
+	classes.phalanx[0].__vtable[-1690805083] = &__constructor;
 	classes.phalanx[0].__vtable[-381269537] = &_UpdatePhalanxThread;
 	classes.phalanx[0].__vtable[-362582783] = &_RotateVec;
 	classes.phalanx[0].__vtable[2035712678] = &_ResumeFireSentients;

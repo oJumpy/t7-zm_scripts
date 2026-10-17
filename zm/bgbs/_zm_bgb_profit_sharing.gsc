@@ -42,7 +42,7 @@ function __init__()
 	clientfield::register("allplayers", "zm_bgb_profit_sharing_3p_fx", 15000, 1, "int");
 	clientfield::register("toplayer", "zm_bgb_profit_sharing_1p_fx", 15000, 1, "int");
 	bgb::register("zm_bgb_profit_sharing", "time", 600, &enable, &disable, undefined, undefined);
-	bgb::function_ff4b2998("zm_bgb_profit_sharing", &add_to_player_score_override, 1);
+	bgb::register_add_to_player_score_override("zm_bgb_profit_sharing", &add_to_player_score_override, 1);
 }
 
 /*
@@ -127,7 +127,7 @@ function add_to_player_score_override(n_points, str_awarded_by, var_1ed9bd9b)
 	{
 		foreach(e_player in level.players)
 		{
-			if(isdefined(e_player) && "zm_bgb_profit_sharing" == e_player bgb::function_51fc7e9d())
+			if(isdefined(e_player) && "zm_bgb_profit_sharing" == e_player bgb::get_enabled())
 			{
 				if(isdefined(e_player.var_6638f10b) && Array::contains(e_player.var_6638f10b, self))
 				{

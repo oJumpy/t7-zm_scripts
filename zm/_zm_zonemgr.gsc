@@ -597,7 +597,7 @@ function enable_zone(zone_name)
 		entry_points[i].is_active = 1;
 		entry_points[i] TriggerEnable(1);
 	}
-	bb::function_2c248b75("zone_enable_" + zone_name);
+	bb::logroundevent("zone_enable_" + zone_name);
 }
 
 /*

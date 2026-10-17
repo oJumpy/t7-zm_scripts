@@ -48,7 +48,7 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	level.var_edf1e590 = GetWeapon("elemental_bow_demongate");
+	level.w_bow_demongate = GetWeapon("elemental_bow_demongate");
 	level.var_e106fba5 = GetWeapon("elemental_bow_demongate4");
 	level.var_ecd0c077 = [];
 	clientfield::register("toplayer", "elemental_bow_demongate" + "_ambient_bow_fx", 5000, 1, "int");
@@ -419,9 +419,9 @@ function function_a3e439a5(e_player, var_67eb721b)
 	self.var_e3146903 = 1;
 	self.origin = self.origin + (0, 0, randomIntRange(Int(-51.2), Int(51.2)));
 	self.angles = (self.angles[0] + randomIntRange(-30, 30), self.angles[1] + randomIntRange(-45, 45), self.angles[2]);
-	var_69a783ad = self.origin + AnglesToForward(self.angles) * 96;
+	v_goto = self.origin + AnglesToForward(self.angles) * 96;
 	self.angles = (0, self.angles[1], 0);
-	self moveto(var_69a783ad, 0.4);
+	self moveto(v_goto, 0.4);
 	wait(0.4);
 	self.var_e3146903 = 0;
 	self function_ab77890b(e_player);
@@ -439,7 +439,7 @@ function function_a3e439a5(e_player, var_67eb721b)
 function function_ab77890b(e_player)
 {
 	self function_99d2c8aa(e_player);
-	if(isdefined(self.var_4288770f))
+	if(isdefined(self.target_enemy))
 	{
 		self function_b6e7ec91(e_player);
 	}
@@ -499,21 +499,21 @@ function function_9fcea3e8(e_player)
 	if(zm_utility::is_player_valid(e_player))
 	{
 		var_6073ac1c = e_player.angles;
-		var_150aaea = e_player GetEye();
+		v_eyes = e_player GetEye();
 	}
 	else
 	{
 		var_6073ac1c = self.angles;
-		var_150aaea = self.origin;
+		v_eyes = self.origin;
 	}
 	var_9ef67615 = (var_6073ac1c[0] + var_13fe538c, var_6073ac1c[1] + var_3a00cdf5, var_6073ac1c[2] + var_6003485e);
 	var_962558f1 = VectorNormalize(AnglesToForward(var_9ef67615));
-	a_trace = PhysicsTraceEx(var_150aaea, var_150aaea + var_962558f1 * 512, VectorScale((-1, -1, -1), 16), VectorScale((1, 1, 1), 16));
-	var_69a783ad = a_trace["position"] + var_962558f1 * -32;
-	n_dist = Distance(self.origin, var_69a783ad);
+	a_trace = PhysicsTraceEx(v_eyes, v_eyes + var_962558f1 * 512, VectorScale((-1, -1, -1), 16), VectorScale((1, 1, 1), 16));
+	v_goto = a_trace["position"] + var_962558f1 * -32;
+	n_dist = Distance(self.origin, v_goto);
 	n_time = n_dist / 48;
-	var_d1979001 = var_69a783ad - self.origin;
-	var_d1979001 = (0, var_d1979001[1], 0);
+	v_rotate = v_goto - self.origin;
+	v_rotate = (0, v_rotate[1], 0);
 	if(!isdefined(level.var_a9ac7b97))
 	{
 		level.var_a9ac7b97 = GetTime();
@@ -523,11 +523,11 @@ function function_9fcea3e8(e_player)
 		wait(RandomFloatRange(0.1, 0.2));
 	}
 	level.var_a9ac7b97 = GetTime();
-	self moveto(var_69a783ad, n_time);
-	self RotateTo(VectorToAngles(var_d1979001), n_time * 0.5);
+	self moveto(v_goto, n_time);
+	self RotateTo(VectorToAngles(v_rotate), n_time * 0.5);
 	self thread function_f9dd2ee2(e_player);
 	self util::waittill_any_timeout(n_time * 2, "movedone", "demongate_chomper_found_target", "demongate_chomper_despawning", "death");
-	if(isdefined(self.var_4288770f))
+	if(isdefined(self.target_enemy))
 	{
 		self clientfield::set("demongate_wander_locomotion_anim", 0);
 		self function_b6e7ec91(e_player);
@@ -553,7 +553,7 @@ function function_f9dd2ee2(e_player)
 	self endon("hash_7b23407");
 	self endon("movedone");
 	self endon("death");
-	while(!isdefined(self.var_4288770f))
+	while(!isdefined(self.target_enemy))
 	{
 		wait(0.2);
 		self thread function_99d2c8aa(e_player);
@@ -571,23 +571,23 @@ function function_f9dd2ee2(e_player)
 */
 function function_b6e7ec91(e_player)
 {
-	var_c32fcb8f = self.var_4288770f.health;
+	var_c32fcb8f = self.target_enemy.health;
 	self function_5dee133f();
-	if(zm_weap_elemental_bow::function_5aec3adc(self.var_4288770f))
+	if(zm_weap_elemental_bow::function_5aec3adc(self.target_enemy))
 	{
 		var_aad66aa4 = randomIntRange(1, 7);
-		var_7364b0dd = self.var_4288770f.missingLegs;
-		self.var_4288770f.var_98056717 = 1;
+		b_is_crawler = self.target_enemy.missingLegs;
+		self.target_enemy.var_98056717 = 1;
 		self.var_603f1f19 = 0;
 		self.var_fcd07456 = self.var_fcd07456 - var_c32fcb8f;
-		self thread function_3c03253d(var_aad66aa4, var_7364b0dd);
+		self thread function_3c03253d(var_aad66aa4, b_is_crawler);
 		self thread function_3a5a56c7();
 		self thread function_67903a83(e_player);
-		if(isdefined(self.var_4288770f.isdog) && self.var_4288770f.isdog || isVehicle(self.var_4288770f))
+		if(isdefined(self.target_enemy.isdog) && self.target_enemy.isdog || isVehicle(self.target_enemy))
 		{
 			n_wait_time = 0.8;
 		}
-		else if(self.var_4288770f.archetype === "mechz")
+		else if(self.target_enemy.archetype === "mechz")
 		{
 			n_wait_time = 2.6;
 			self.var_fcd07456 = 0;
@@ -595,20 +595,20 @@ function function_b6e7ec91(e_player)
 		else
 		{
 			n_wait_time = RandomFloatRange(2, 3);
-			self.var_4288770f SetPlayerCollision(0);
+			self.target_enemy SetPlayerCollision(0);
 		}
-		self.var_4288770f util::waittill_notify_or_timeout("death", n_wait_time);
+		self.target_enemy util::waittill_notify_or_timeout("death", n_wait_time);
 		self notify("hash_368634cd");
-		self function_43415734(var_aad66aa4, var_7364b0dd);
+		self function_43415734(var_aad66aa4, b_is_crawler);
 		if(self.var_fcd07456 < 1)
 		{
 			self thread function_308e6c6f();
 			return;
 		}
 	}
-	else if(isdefined(self.var_4288770f))
+	else if(isdefined(self.target_enemy))
 	{
-		self.var_4288770f.var_bc9b5fbd = 0;
+		self.target_enemy.var_bc9b5fbd = 0;
 	}
 	self flag::clear("chomper_attacking");
 	self thread function_ab77890b(e_player);
@@ -627,7 +627,7 @@ function function_3a5a56c7()
 {
 	self endon("death");
 	self endon("hash_368634cd");
-	if(self.var_4288770f.archetype === "mechz")
+	if(self.target_enemy.archetype === "mechz")
 	{
 		while(1)
 		{
@@ -652,29 +652,29 @@ function function_3a5a56c7()
 	Parameters: 2
 	Flags: None
 */
-function function_3c03253d(var_aad66aa4, var_7364b0dd)
+function function_3c03253d(var_aad66aa4, b_is_crawler)
 {
-	self.var_4288770f endon("death");
-	if(isdefined(self.var_4288770f.isdog) && self.var_4288770f.isdog)
+	self.target_enemy endon("death");
+	if(isdefined(self.target_enemy.isdog) && self.target_enemy.isdog)
 	{
-		self.var_4288770f ai::set_ignoreall(1);
+		self.target_enemy ai::set_ignoreall(1);
 	}
-	else if(self.var_4288770f.archetype === "mechz")
+	else if(self.target_enemy.archetype === "mechz")
 	{
 		self thread function_c5e710f7();
 	}
-	else if(isVehicle(self.var_4288770f))
+	else if(isVehicle(self.target_enemy))
 	{
-		self.var_4288770f.ignoreall = 1;
+		self.target_enemy.ignoreall = 1;
 	}
-	else if(isdefined(var_7364b0dd) && var_7364b0dd)
+	else if(isdefined(b_is_crawler) && b_is_crawler)
 	{
-		self.var_4288770f scene::Play("ai_zm_dlc1_zombie_demongate_chomper_attack_crawler", Array(self.var_4288770f, self));
+		self.target_enemy scene::Play("ai_zm_dlc1_zombie_demongate_chomper_attack_crawler", Array(self.target_enemy, self));
 	}
 	else
 	{
-		self.var_4288770f scene::init("ai_zm_dlc1_zombie_demongate_chomper_attack_0" + var_aad66aa4, Array(self.var_4288770f, self));
-		self.var_4288770f scene::Play("ai_zm_dlc1_zombie_demongate_chomper_attack_0" + var_aad66aa4, Array(self.var_4288770f, self));
+		self.target_enemy scene::init("ai_zm_dlc1_zombie_demongate_chomper_attack_0" + var_aad66aa4, Array(self.target_enemy, self));
+		self.target_enemy scene::Play("ai_zm_dlc1_zombie_demongate_chomper_attack_0" + var_aad66aa4, Array(self.target_enemy, self));
 	}
 }
 
@@ -689,21 +689,21 @@ function function_3c03253d(var_aad66aa4, var_7364b0dd)
 */
 function function_c5e710f7()
 {
-	var_f1d8a1fc = self.var_4288770f;
+	e_mechz = self.target_enemy;
 	self endon("death");
 	self endon("hash_368634cd");
-	var_f1d8a1fc endon("death");
+	e_mechz endon("death");
 	while(1)
 	{
-		if(isdefined(var_f1d8a1fc.has_faceplate) && var_f1d8a1fc.has_faceplate)
+		if(isdefined(e_mechz.has_faceplate) && e_mechz.has_faceplate)
 		{
 		}
 		else
 		{
 		}
 		var_e388672 = 1;
-		var_85b50675 = AnglesToForward(self.var_4288770f.angles) * var_e388672;
-		self.origin = self.var_4288770f GetTagOrigin("j_faceplate") + var_85b50675;
+		var_85b50675 = AnglesToForward(self.target_enemy.angles) * var_e388672;
+		self.origin = self.target_enemy GetTagOrigin("j_faceplate") + var_85b50675;
 		self.angles = VectorToAngles(var_85b50675 * -1);
 		wait(0.05);
 	}
@@ -718,25 +718,25 @@ function function_c5e710f7()
 	Parameters: 2
 	Flags: None
 */
-function function_43415734(var_aad66aa4, var_7364b0dd)
+function function_43415734(var_aad66aa4, b_is_crawler)
 {
-	if(isdefined(self.var_4288770f) && self.var_4288770f.archetype === "mechz")
+	if(isdefined(self.target_enemy) && self.target_enemy.archetype === "mechz")
 	{
-		self.var_4288770f thread function_aa5b14d0();
+		self.target_enemy thread function_aa5b14d0();
 		return;
 	}
-	if(isdefined(self.var_4288770f) && (!isdefined(self.var_4288770f.isdog) && self.var_4288770f.isdog))
+	if(isdefined(self.target_enemy) && (!isdefined(self.target_enemy.isdog) && self.target_enemy.isdog))
 	{
-		if(isdefined(var_7364b0dd) && var_7364b0dd)
+		if(isdefined(b_is_crawler) && b_is_crawler)
 		{
-			self.var_4288770f thread scene::stop("ai_zm_dlc1_zombie_demongate_chomper_attack_crawler");
+			self.target_enemy thread scene::stop("ai_zm_dlc1_zombie_demongate_chomper_attack_crawler");
 		}
 		else
 		{
-			self.var_4288770f thread scene::stop("ai_zm_dlc1_zombie_demongate_chomper_attack_0" + var_aad66aa4);
+			self.target_enemy thread scene::stop("ai_zm_dlc1_zombie_demongate_chomper_attack_0" + var_aad66aa4);
 		}
 	}
-	if(isdefined(var_7364b0dd) && var_7364b0dd)
+	if(isdefined(b_is_crawler) && b_is_crawler)
 	{
 		self thread scene::stop("ai_zm_dlc1_zombie_demongate_chomper_attack_crawler");
 	}
@@ -775,9 +775,9 @@ function function_aa5b14d0()
 function function_5dee133f()
 {
 	self flag::set("chomper_attacking");
-	var_b710c4e5 = self.var_4288770f GetEye();
+	var_b710c4e5 = self.target_enemy GetEye();
 	n_dist = Distance(self.origin, var_b710c4e5);
-	var_e5e24312 = 1;
+	n_loop_count = 1;
 	if(math::cointoss())
 	{
 	}
@@ -786,18 +786,18 @@ function function_5dee133f()
 	}
 	var_4e26e12a = -1;
 	self clientfield::set("demongate_attack_locomotion_anim", 1);
-	while(n_dist > 32 && isdefined(self.var_4288770f) && isalive(self.var_4288770f))
+	while(n_dist > 32 && isdefined(self.target_enemy) && isalive(self.target_enemy))
 	{
-		var_b710c4e5 = self.var_4288770f GetEye();
+		var_b710c4e5 = self.target_enemy GetEye();
 		n_time = n_dist / 640;
-		var_5d76b65c = 1 / var_e5e24312;
+		var_5d76b65c = 1 / n_loop_count;
 		var_ef096040 = VectorScale((0, 0, 1), 160) * var_5d76b65c;
 		var_c5a0d28e = AnglesToRight(VectorToAngles(var_b710c4e5 - self.origin)) * 256;
 		var_c5a0d28e = var_c5a0d28e * var_5d76b65c;
 		var_c5a0d28e = var_c5a0d28e * var_4e26e12a;
 		var_74490e48 = var_b710c4e5 + var_c5a0d28e + var_ef096040;
-		var_d1979001 = var_74490e48 - self.origin;
-		var_d1979001 = (0, var_d1979001[1], 0);
+		v_rotate = var_74490e48 - self.origin;
+		v_rotate = (0, v_rotate[1], 0);
 		if(!isdefined(level.var_a9ac7b97))
 		{
 			level.var_a9ac7b97 = GetTime();
@@ -808,7 +808,7 @@ function function_5dee133f()
 		}
 		level.var_a9ac7b97 = GetTime();
 		self moveto(var_74490e48, n_time);
-		self RotateTo(VectorToAngles(var_d1979001), n_time * 0.5);
+		self RotateTo(VectorToAngles(v_rotate), n_time * 0.5);
 		n_time = n_time * 0.3;
 		if(n_time < 0.1)
 		{
@@ -818,11 +818,11 @@ function function_5dee133f()
 		}
 		n_time = n_time;
 		wait(n_time);
-		var_e5e24312++;
+		n_loop_count++;
 		n_dist = Distance(self.origin, var_b710c4e5);
 	}
 	self clientfield::set("demongate_attack_locomotion_anim", 0);
-	if(isdefined(self.var_4288770f) && isalive(self.var_4288770f))
+	if(isdefined(self.target_enemy) && isalive(self.target_enemy))
 	{
 		self.origin = var_b710c4e5;
 	}
@@ -839,7 +839,7 @@ function function_5dee133f()
 */
 function function_67903a83(e_player)
 {
-	e_target = self.var_4288770f;
+	e_target = self.target_enemy;
 	e_target endon("death");
 	if(e_target.archetype === "mechz")
 	{
@@ -859,7 +859,7 @@ function function_67903a83(e_player)
 	{
 		var_38fe557 = undefined;
 	}
-	e_target DoDamage(n_damage, e_target.origin, var_38fe557, var_38fe557, undefined, "MOD_UNKNOWN", 0, level.var_edf1e590);
+	e_target DoDamage(n_damage, e_target.origin, var_38fe557, var_38fe557, undefined, "MOD_UNKNOWN", 0, level.w_bow_demongate);
 	GibServerUtils::GibHead(e_target);
 }
 
@@ -874,7 +874,7 @@ function function_67903a83(e_player)
 */
 function function_3f57ba41(e_player)
 {
-	e_target = self.var_4288770f;
+	e_target = self.target_enemy;
 	e_target endon("death");
 	var_3bb42832 = level.mechz_health;
 	if(isdefined(level.var_f4dc2834))
@@ -890,7 +890,7 @@ function function_3f57ba41(e_player)
 	{
 		var_38fe557 = undefined;
 	}
-	e_target DoDamage(n_damage, e_target.origin, var_38fe557, var_38fe557, undefined, "MOD_PROJECTILE_SPLASH", 0, level.var_edf1e590);
+	e_target DoDamage(n_damage, e_target.origin, var_38fe557, var_38fe557, undefined, "MOD_PROJECTILE_SPLASH", 0, level.w_bow_demongate);
 	self waittill("hash_368634cd");
 	e_target.var_bc9b5fbd = 0;
 	e_target.var_98056717 = 0;
@@ -911,7 +911,7 @@ function function_99d2c8aa(e_player)
 	{
 		return;
 	}
-	self.var_4288770f = undefined;
+	self.target_enemy = undefined;
 	var_51b6a540 = self.origin;
 	var_6f3820ea = 1024;
 	if(isdefined(self.var_603f1f19) && self.var_603f1f19)
@@ -930,7 +930,7 @@ function function_99d2c8aa(e_player)
 	{
 		var_9183256c = var_237d778f[0];
 		var_9183256c.var_bc9b5fbd = 1;
-		self.var_4288770f = var_9183256c;
+		self.target_enemy = var_9183256c;
 		self notify("hash_7b23407");
 	}
 }

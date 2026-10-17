@@ -39,7 +39,7 @@ function register_clientfields()
 	clientfield::register("actor", "ghost_actor", 1, 1, "int", &function_b48f294, 0, 0);
 	clientfield::register("scriptmover", "channeling_stone_glow", 5000, 2, "int", &function_e23bc630, 0, 0);
 	clientfield::register("world", "flip_skybox", 5000, 1, "int", &function_3965d72d, 0, 0);
-	clientfield::register("scriptmover", "pod_monitor_enable", 5000, 1, "int", &function_3c1114e8, 0, 0);
+	clientfield::register("scriptmover", "pod_monitor_enable", 5000, 1, "int", &pod_monitor_disable, 0, 0);
 	clientfield::register("world", "sndDeathRayToMoon", 5000, 1, "int", &function_2145e814, 0, 0);
 	clientfield::register("toplayer", "outro_lighting_banks", 5000, 1, "int", &function_12c888d5, 0, 0);
 	clientfield::register("toplayer", "moon_explosion_bank", 5000, 1, "int", &function_890770df, 0, 0);
@@ -151,7 +151,7 @@ function function_e23bc630(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_3c1114e8
+	Name: pod_monitor_disable
 	Namespace: namespace_c93e4c32
 	Checksum: 0x3386FE12
 	Offset: 0xAB8
@@ -159,7 +159,7 @@ function function_e23bc630(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_3c1114e8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pod_monitor_disable(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, newVal, 0);
 }
@@ -219,13 +219,13 @@ function function_12c888d5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal == 1)
 	{
-		function_4c5bfec4(localClientNum, 2);
-		function_2f183a94(localClientNum, 2);
+		setpbgactivebank(localClientNum, 2);
+		setexposureactivebank(localClientNum, 2);
 	}
 	else
 	{
-		function_4c5bfec4(localClientNum, 1);
-		function_2f183a94(localClientNum, 1);
+		setpbgactivebank(localClientNum, 1);
+		setexposureactivebank(localClientNum, 1);
 	}
 }
 
@@ -242,11 +242,11 @@ function function_890770df(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal == 1)
 	{
-		function_2f183a94(localClientNum, 4);
+		setexposureactivebank(localClientNum, 4);
 	}
 	else
 	{
-		function_2f183a94(localClientNum, 1);
+		setexposureactivebank(localClientNum, 1);
 	}
 }
 

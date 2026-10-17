@@ -150,7 +150,7 @@ function function_89d7e567(localClientNum)
 	self endon("entityshutdown");
 	while(1)
 	{
-		self waittill("hash_1323c42e");
+		self waittill("gunner_weapon_fired");
 		self SetAnim("ai_zm_dlc3_russian_mech_shoot_gunbarrel", 1, 0, 1);
 	}
 }
@@ -334,12 +334,12 @@ function function_66f3947f(n_local_client, n_val_old, n_val_new, b_ent_new, b_in
 	self endon("entityshutdown");
 	if(n_val_new)
 	{
-		self.var_9fa8c7a2 = PlayFXOnTag(n_local_client, level._effect["nikolai_raps_trail"], self, "tag_body");
+		self.fx_trail = PlayFXOnTag(n_local_client, level._effect["nikolai_raps_trail"], self, "tag_body");
 		self playsound(0, "wpn_nikolaibot_raps_launch");
 	}
-	else if(isdefined(self.var_9fa8c7a2))
+	else if(isdefined(self.fx_trail))
 	{
-		stopfx(n_local_client, self.var_9fa8c7a2);
+		stopfx(n_local_client, self.fx_trail);
 	}
 }
 

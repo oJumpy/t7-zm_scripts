@@ -44,7 +44,7 @@ function __init__()
 	level._effect["spider_web_doorbuy_tear_complete"] = "dlc2/island/fx_web_barrier_reveal";
 	level._effect["spider_web_tear_explosive"] = "dlc2/island/fx_web_impact_rocket";
 	register_clientfields();
-	vehicle::add_vehicletype_callback("spider", &function_7c1ef59b);
+	vehicle::add_vehicletype_callback("spider", &spider_init);
 	visionset_mgr::register_visionset_info("zm_isl_parasite_spider_visionset", 9000, 16, undefined, "zm_isl_parasite_spider");
 }
 
@@ -83,7 +83,7 @@ function register_clientfields()
 }
 
 /*
-	Name: function_7c1ef59b
+	Name: spider_init
 	Namespace: namespace_27f8b154
 	Checksum: 0x5FC1C07B
 	Offset: 0x9B8
@@ -91,7 +91,7 @@ function register_clientfields()
 	Parameters: 1
 	Flags: None
 */
-function function_7c1ef59b(localClientNum)
+function spider_init(localClientNum)
 {
 	self.str_tag_tesla_death_fx = "J_SpineUpper";
 	self.str_tag_tesla_shock_eyes_fx = "J_SpineUpper";
@@ -169,19 +169,19 @@ function function_ea4a561d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_alpha, var_abf03d83, var_c0ce8db2)
+function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_alpha, b_instant, b_sqrt)
 {
 	if(!isdefined(n_alpha))
 	{
 		n_alpha = 1;
 	}
-	if(!isdefined(var_abf03d83))
+	if(!isdefined(b_instant))
 	{
-		var_abf03d83 = 0;
+		b_instant = 0;
 	}
-	if(!isdefined(var_c0ce8db2))
+	if(!isdefined(b_sqrt))
 	{
-		var_c0ce8db2 = 0;
+		b_sqrt = 0;
 	}
 	self endon("entityshutdown");
 	if(self.b_on === b_on)
@@ -192,7 +192,7 @@ function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_a
 	{
 		self.b_on = b_on;
 	}
-	if(var_abf03d83)
+	if(b_instant)
 	{
 		if(b_on)
 		{
@@ -206,18 +206,18 @@ function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_a
 	}
 	if(b_on)
 	{
-		var_24fbb6c6 = 0;
+		n_eval = 0;
 		i = 0;
-		while(var_24fbb6c6 <= n_alpha)
+		while(n_eval <= n_alpha)
 		{
-			self transition_shader(localClientNum, var_24fbb6c6, var_afc7cc94);
-			if(var_c0ce8db2)
+			self transition_shader(localClientNum, n_eval, var_afc7cc94);
+			if(b_sqrt)
 			{
-				var_24fbb6c6 = sqrt(i);
+				n_eval = sqrt(i);
 			}
 			else
 			{
-				var_24fbb6c6 = i;
+				n_eval = i;
 			}
 			wait(0.01);
 			i = i + var_b05b3457;
@@ -233,18 +233,18 @@ function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_a
 	{
 		var_bbfa5d7d = 1;
 	}
-	var_24fbb6c6 = var_bbfa5d7d;
+	n_eval = var_bbfa5d7d;
 	i = var_bbfa5d7d;
-	while(var_24fbb6c6 >= 0)
+	while(n_eval >= 0)
 	{
-		self transition_shader(localClientNum, var_24fbb6c6, var_afc7cc94);
-		if(var_c0ce8db2)
+		self transition_shader(localClientNum, n_eval, var_afc7cc94);
+		if(b_sqrt)
 		{
-			var_24fbb6c6 = sqrt(i);
+			n_eval = sqrt(i);
 		}
 		else
 		{
-			var_24fbb6c6 = i;
+			n_eval = i;
 		}
 		wait(0.01);
 		i = i - var_b05b3457;

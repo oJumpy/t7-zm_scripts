@@ -1644,12 +1644,12 @@ function script_resume_speed(msg, rate)
 	}
 	self notify("resuming speed");
 	/#
-		self thread function_f15f4528(msg + "Dev Block strings are not supported" + type);
+		self thread debug_resume(msg + "Dev Block strings are not supported" + type);
 	#/
 }
 
 /*
-	Name: function_f15f4528
+	Name: debug_resume
 	Namespace: vehicle
 	Checksum: 0xE01AFE90
 	Offset: 0x48A8
@@ -1657,7 +1657,7 @@ function script_resume_speed(msg, rate)
 	Parameters: 1
 	Flags: None
 */
-function function_f15f4528(msg)
+function debug_resume(msg)
 {
 	/#
 		if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")

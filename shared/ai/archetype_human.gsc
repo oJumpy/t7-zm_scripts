@@ -86,7 +86,7 @@ function private ArchetypeHumanBlackboardInit()
 	self.___ArchetypeOnAnimscriptedCallback = &ArchetypeHumanOnAnimscriptedCallback;
 	self.___ArchetypeOnBehaveCallback = &ArchetypeHumanOnBehaveCallback;
 	/#
-		self function_89398c57();
+		self finalizetrackedblackboardattributes();
 	#/
 	self thread gameskill::accuracy_buildup_before_fire(self);
 	if(self.accurateFire)

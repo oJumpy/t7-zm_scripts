@@ -120,11 +120,11 @@ function function_dcfb71f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	self endon("death");
 	if(newVal == 1)
 	{
-		self.var_e4e89382 = PlayFXOnTag(localClientNum, level._effect["portal_3p"], self, "j_spineupper");
+		self.fx_portal_3p = PlayFXOnTag(localClientNum, level._effect["portal_3p"], self, "j_spineupper");
 	}
 	else
 	{
-		function_f9eb885e(localClientNum, self.var_e4e89382);
+		stop_fx_if_defined(localClientNum, self.fx_portal_3p);
 	}
 }
 
@@ -139,7 +139,7 @@ function function_dcfb71f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 */
 function function_b3ee6c81(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	function_35d5bf67(localClientNum, "canal", newVal);
+	portal_state_internal(localClientNum, "canal", newVal);
 }
 
 /*
@@ -153,7 +153,7 @@ function function_b3ee6c81(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_8e86ff36(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	function_35d5bf67(localClientNum, "slums", newVal);
+	portal_state_internal(localClientNum, "slums", newVal);
 }
 
 /*
@@ -167,11 +167,11 @@ function function_8e86ff36(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_ec77bf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	function_35d5bf67(localClientNum, "theater", newVal);
+	portal_state_internal(localClientNum, "theater", newVal);
 }
 
 /*
-	Name: function_35d5bf67
+	Name: portal_state_internal
 	Namespace: namespace_8e2647d0
 	Checksum: 0x241E96EF
 	Offset: 0xE68
@@ -179,34 +179,34 @@ function function_ec77bf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, 
 	Parameters: 3
 	Flags: None
 */
-function function_35d5bf67(localClientNum, var_d42f02cf, newVal)
+function portal_state_internal(localClientNum, str_areaname, newVal)
 {
-	var_eed93042 = function_227344a6("teleport_effect_origin", var_d42f02cf, 1);
-	var_2a948ed5 = function_227344a6("teleport_effect_origin", var_d42f02cf, 0);
+	s_loc_upper = get_portal_fx_loc("teleport_effect_origin", str_areaname, 1);
+	s_loc_lower = get_portal_fx_loc("teleport_effect_origin", str_areaname, 0);
 	switch(newVal)
 	{
 		case 0:
 		{
-			level thread function_c0c1771a(localClientNum, var_eed93042, 0, 0);
-			level thread function_c0c1771a(localClientNum, var_2a948ed5, 0, 1);
-			level thread function_a2d0d0e4(var_eed93042.origin, var_2a948ed5.origin, "amb_teleporter_off_lp", "amb_teleporter_on_lp");
-			exploder::stop_exploder("lgt_portal_" + var_d42f02cf);
+			level thread function_c0c1771a(localClientNum, s_loc_upper, 0, 0);
+			level thread function_c0c1771a(localClientNum, s_loc_lower, 0, 1);
+			level thread sndportal(s_loc_upper.origin, s_loc_lower.origin, "amb_teleporter_off_lp", "amb_teleporter_on_lp");
+			exploder::stop_exploder("lgt_portal_" + str_areaname);
 			break;
 		}
 		case 1:
 		{
-			level thread function_c0c1771a(localClientNum, var_eed93042, 1, 0);
-			level thread function_c0c1771a(localClientNum, var_2a948ed5, 1, 1);
-			level thread function_a2d0d0e4(var_eed93042.origin, var_2a948ed5.origin, "amb_teleporter_on_lp", "amb_teleporter_off_lp", "amb_teleporter_activate");
-			exploder::exploder("lgt_portal_" + var_d42f02cf);
+			level thread function_c0c1771a(localClientNum, s_loc_upper, 1, 0);
+			level thread function_c0c1771a(localClientNum, s_loc_lower, 1, 1);
+			level thread sndportal(s_loc_upper.origin, s_loc_lower.origin, "amb_teleporter_on_lp", "amb_teleporter_off_lp", "amb_teleporter_activate");
+			exploder::exploder("lgt_portal_" + str_areaname);
 			break;
 		}
 		case 2:
 		{
-			level thread function_c0c1771a(localClientNum, var_eed93042, 1, 0);
-			level thread function_c0c1771a(localClientNum, var_2a948ed5, 1, 1);
-			level thread function_a2d0d0e4(var_eed93042.origin, var_2a948ed5.origin, "amb_teleporter_on_lp", "amb_teleporter_off_lp", "amb_teleporter_activate");
-			exploder::exploder("lgt_portal_" + var_d42f02cf);
+			level thread function_c0c1771a(localClientNum, s_loc_upper, 1, 0);
+			level thread function_c0c1771a(localClientNum, s_loc_lower, 1, 1);
+			level thread sndportal(s_loc_upper.origin, s_loc_lower.origin, "amb_teleporter_on_lp", "amb_teleporter_off_lp", "amb_teleporter_activate");
+			exploder::exploder("lgt_portal_" + str_areaname);
 			break;
 		}
 	}
@@ -351,15 +351,15 @@ function function_8fbd3c13(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_11ac3c33(localClientNum, var_d42f02cf, var_a5e295bc)
+function function_11ac3c33(localClientNum, str_areaname, b_is_top)
 {
-	s_loc = function_227344a6("teleport_effect_origin", var_d42f02cf, var_a5e295bc);
-	var_836f2873 = function_86743484(localClientNum, s_loc);
+	s_loc = get_portal_fx_loc("teleport_effect_origin", str_areaname, b_is_top);
+	mdl_portal = function_86743484(localClientNum, s_loc);
 	for(i = 1; i < 25; i++)
 	{
 		if(i % 5 === 0)
 		{
-			PlayFXOnTag(localClientNum, level._effect["portal_shortcut_pulse"], var_836f2873, "tag_fx_ring_" + i);
+			PlayFXOnTag(localClientNum, level._effect["portal_shortcut_pulse"], mdl_portal, "tag_fx_ring_" + i);
 		}
 	}
 }
@@ -373,11 +373,11 @@ function function_11ac3c33(localClientNum, var_d42f02cf, var_a5e295bc)
 	Parameters: 4
 	Flags: None
 */
-function function_c0c1771a(localClientNum, s_loc, b_open, var_9c9cfb54)
+function function_c0c1771a(localClientNum, s_loc, b_open, b_is_subway)
 {
-	if(!isdefined(var_9c9cfb54))
+	if(!isdefined(b_is_subway))
 	{
-		var_9c9cfb54 = 0;
+		b_is_subway = 0;
 	}
 	v_fwd = AnglesToForward(s_loc.angles);
 	if(!isdefined(s_loc.var_7c0ed442))
@@ -392,33 +392,33 @@ function function_c0c1771a(localClientNum, s_loc, b_open, var_9c9cfb54)
 	{
 		s_loc.var_1db71ac6 = [];
 	}
-	function_f9eb885e(localClientNum, s_loc.var_7c0ed442[localClientNum]);
-	function_f9eb885e(localClientNum, s_loc.var_20dc3b64[localClientNum]);
+	stop_fx_if_defined(localClientNum, s_loc.var_7c0ed442[localClientNum]);
+	stop_fx_if_defined(localClientNum, s_loc.var_20dc3b64[localClientNum]);
 	if(isdefined(b_open) && b_open)
 	{
 		s_loc.var_1db71ac6[localClientNum] = playFX(localClientNum, level._effect["portal_shortcut_opening"], s_loc.origin, v_fwd);
 	}
-	var_836f2873 = function_86743484(localClientNum, s_loc);
-	var_836f2873 HidePart(localClientNum, "tag_portal_open");
+	mdl_portal = function_86743484(localClientNum, s_loc);
+	mdl_portal HidePart(localClientNum, "tag_portal_open");
 	if(b_open)
 	{
 		wait(1.3);
-		var_836f2873 ShowPart(localClientNum, "tag_portal_open");
+		mdl_portal ShowPart(localClientNum, "tag_portal_open");
 		for(i = 1; i < 25; i++)
 		{
-			PlayFXOnTag(localClientNum, level._effect["portal_shortcut_open_border"], var_836f2873, "tag_fx_ring_" + i);
+			PlayFXOnTag(localClientNum, level._effect["portal_shortcut_open_border"], mdl_portal, "tag_fx_ring_" + i);
 		}
 	}
 	else
 	{
-		var_836f2873 HidePart(localClientNum, "tag_portal_open");
+		mdl_portal HidePart(localClientNum, "tag_portal_open");
 	}
-	function_f9eb885e(localClientNum, s_loc.var_1db71ac6[localClientNum]);
+	stop_fx_if_defined(localClientNum, s_loc.var_1db71ac6[localClientNum]);
 	if(isdefined(b_open) && b_open)
 	{
 		s_loc.var_7c0ed442[localClientNum] = playFX(localClientNum, level._effect["portal_shortcut_ambient"], s_loc.origin, v_fwd);
 	}
-	else if(var_9c9cfb54)
+	else if(b_is_subway)
 	{
 		s_loc.var_20dc3b64[localClientNum] = playFX(localClientNum, level._effect["portal_shortcut_closed_base"], s_loc.origin - VectorScale((0, 0, 1), 48), v_fwd);
 	}
@@ -450,20 +450,20 @@ function function_86743484(localClientNum, s_loc)
 	str_name = s_loc.script_noteworthy;
 	if(isdefined(level.var_ef51ee6d[localClientNum][str_name]))
 	{
-		return level.var_ef51ee6d[localClientNum][str_name].var_836f2873;
+		return level.var_ef51ee6d[localClientNum][str_name].mdl_portal;
 	}
 	level.var_ef51ee6d[localClientNum][str_name] = spawnstruct();
-	level.var_ef51ee6d[localClientNum][str_name].var_836f2873 = spawn(localClientNum, s_loc.origin, "script_model");
-	level.var_ef51ee6d[localClientNum][str_name].var_836f2873.angles = s_loc.angles;
-	level.var_ef51ee6d[localClientNum][str_name].var_836f2873 SetModel("p7_zm_zod_keeper_portal_01");
-	level.var_ef51ee6d[localClientNum][str_name].var_807d2a5a = spawn(localClientNum, s_loc.origin - VectorScale((0, 0, 1), 48), "script_model");
-	level.var_ef51ee6d[localClientNum][str_name].var_807d2a5a.angles = s_loc.angles;
-	level.var_ef51ee6d[localClientNum][str_name].var_807d2a5a SetModel("p7_zm_zod_keeper_portal_base");
-	return level.var_ef51ee6d[localClientNum][str_name].var_836f2873;
+	level.var_ef51ee6d[localClientNum][str_name].mdl_portal = spawn(localClientNum, s_loc.origin, "script_model");
+	level.var_ef51ee6d[localClientNum][str_name].mdl_portal.angles = s_loc.angles;
+	level.var_ef51ee6d[localClientNum][str_name].mdl_portal SetModel("p7_zm_zod_keeper_portal_01");
+	level.var_ef51ee6d[localClientNum][str_name].mdl_base = spawn(localClientNum, s_loc.origin - VectorScale((0, 0, 1), 48), "script_model");
+	level.var_ef51ee6d[localClientNum][str_name].mdl_base.angles = s_loc.angles;
+	level.var_ef51ee6d[localClientNum][str_name].mdl_base SetModel("p7_zm_zod_keeper_portal_base");
+	return level.var_ef51ee6d[localClientNum][str_name].mdl_portal;
 }
 
 /*
-	Name: function_227344a6
+	Name: get_portal_fx_loc
 	Namespace: namespace_8e2647d0
 	Checksum: 0x904FDAEF
 	Offset: 0x1DE8
@@ -471,31 +471,31 @@ function function_86743484(localClientNum, s_loc)
 	Parameters: 3
 	Flags: None
 */
-function function_227344a6(str_targetname, var_d42f02cf, var_a5e295bc)
+function get_portal_fx_loc(str_targetname, str_areaname, b_is_top)
 {
-	var_3842f06d = struct::get_array(str_targetname, "targetname");
-	var_216e113e = undefined;
-	var_a889df54 = undefined;
-	if(isdefined(var_a5e295bc) && var_a5e295bc)
+	a_s_portal_locs = struct::get_array(str_targetname, "targetname");
+	s_return_loc = undefined;
+	str_top_or_bottom = undefined;
+	if(isdefined(b_is_top) && b_is_top)
 	{
-		var_a889df54 = "top";
+		str_top_or_bottom = "top";
 	}
 	else
 	{
-		var_a889df54 = "bottom";
+		str_top_or_bottom = "bottom";
 	}
-	foreach(var_50f27682 in var_3842f06d)
+	foreach(s_portal_loc in a_s_portal_locs)
 	{
-		if(var_50f27682.script_noteworthy === var_d42f02cf + "_portal_" + var_a889df54)
+		if(s_portal_loc.script_noteworthy === str_areaname + "_portal_" + str_top_or_bottom)
 		{
-			var_216e113e = var_50f27682;
+			s_return_loc = s_portal_loc;
 		}
 	}
-	return var_216e113e;
+	return s_return_loc;
 }
 
 /*
-	Name: function_f9eb885e
+	Name: stop_fx_if_defined
 	Namespace: namespace_8e2647d0
 	Checksum: 0xF0426A88
 	Offset: 0x1F30
@@ -503,16 +503,16 @@ function function_227344a6(str_targetname, var_d42f02cf, var_a5e295bc)
 	Parameters: 2
 	Flags: None
 */
-function function_f9eb885e(localClientNum, var_55518655)
+function stop_fx_if_defined(localClientNum, fx_reference)
 {
-	if(isdefined(var_55518655))
+	if(isdefined(fx_reference))
 	{
-		stopfx(localClientNum, var_55518655);
+		stopfx(localClientNum, fx_reference);
 	}
 }
 
 /*
-	Name: function_a2d0d0e4
+	Name: sndportal
 	Namespace: namespace_8e2647d0
 	Checksum: 0x703BCBC
 	Offset: 0x1F78
@@ -520,16 +520,16 @@ function function_f9eb885e(localClientNum, var_55518655)
 	Parameters: 5
 	Flags: None
 */
-function function_a2d0d0e4(origin1, origin2, var_4358f968, var_2978dbc6, activation)
+function sndportal(origin1, origin2, onloop, var_2978dbc6, activation)
 {
-	audio::playloopat(var_4358f968, origin1);
+	audio::playloopat(onloop, origin1);
 	audio::stoploopat(var_2978dbc6, origin1);
 	if(isdefined(activation))
 	{
 		playsound(0, activation, origin1);
 	}
 	wait(0.05);
-	audio::playloopat(var_4358f968, origin2);
+	audio::playloopat(onloop, origin2);
 	audio::stoploopat(var_2978dbc6, origin2);
 	if(isdefined(activation))
 	{
@@ -546,7 +546,7 @@ function function_a2d0d0e4(origin1, origin2, var_4358f968, var_2978dbc6, activat
 	Parameters: 4
 	Flags: None
 */
-function function_c968dcbc(origin1, var_4358f968, oneshot, activate)
+function function_c968dcbc(origin1, onloop, oneshot, activate)
 {
 	if(!isdefined(activate))
 	{
@@ -554,11 +554,11 @@ function function_c968dcbc(origin1, var_4358f968, oneshot, activate)
 	}
 	if(isdefined(activate) && activate)
 	{
-		audio::playloopat(var_4358f968, origin1);
+		audio::playloopat(onloop, origin1);
 	}
 	else
 	{
-		audio::stoploopat(var_4358f968, origin1);
+		audio::stoploopat(onloop, origin1);
 	}
 	playsound(0, oneshot, origin1);
 }

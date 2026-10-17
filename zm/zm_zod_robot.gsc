@@ -66,20 +66,20 @@ function init()
 	level flag::init("police_box_ready");
 	level flag::init("police_box_in_use");
 	level flag::init("police_box_hide");
-	level.var_47ef623d = 2000;
+	level.ai_robot_remaining_cost = 2000;
 	level flag::wait_till("initial_blackscreen_passed");
-	zombie_utility::add_zombie_gib_weapon_callback("ar_standard_companion", &function_906dfe04, &function_9e3debe7);
-	level.var_2b602c66 = GetEntArray("zombie_robot_spawner", "script_noteworthy");
-	level.var_c1b7d765 = GetEntArray("zombie_robot_gold_spawner", "script_noteworthy");
+	zombie_utility::add_zombie_gib_weapon_callback("ar_standard_companion", &gib_check, &gib_head_check);
+	level.zombie_robot_spawners = GetEntArray("zombie_robot_spawner", "script_noteworthy");
+	level.zombie_robot_gold_spawners = GetEntArray("zombie_robot_gold_spawner", "script_noteworthy");
 	a_e_triggers = GetEntArray("robot_activate_trig", "targetname");
-	level.var_1181e09b = Array("junction", "slums", "canal", "theater");
-	foreach(var_d42f02cf in level.var_1181e09b)
+	level.a_robot_areanames = Array("junction", "slums", "canal", "theater");
+	foreach(str_areaname in level.a_robot_areanames)
 	{
-		function_d6bdaaa4(var_d42f02cf, &function_1ad591a3, &function_58485745);
+		create_callbox_unitrigger(str_areaname, &robot_callbox_trigger_visibility, &robot_callbox_trigger_think);
 	}
-	level thread function_b80bbad2();
+	level thread monitor_robot_power();
 	level thread function_63fe1ddd();
-	level thread function_cc935dda();
+	level thread update_readouts_for_remaining_robot_cost();
 	/#
 		level thread function_33a20979();
 	#/
@@ -101,11 +101,11 @@ function function_63fe1ddd()
 	while(1)
 	{
 		level clientfield::set("robot_lights", 1);
-		level waittill("hash_421e5b59");
+		level waittill("robot_called");
 		level clientfield::set("robot_lights", 2);
-		level waittill("hash_10a36fa2");
+		level waittill("robot_arrives");
 		level clientfield::set("robot_lights", 3);
-		while(isdefined(level.var_f6c5842))
+		while(isdefined(level.ai_robot))
 		{
 			wait(0.05);
 		}
@@ -113,7 +113,7 @@ function function_63fe1ddd()
 }
 
 /*
-	Name: function_b80bbad2
+	Name: monitor_robot_power
 	Namespace: namespace_2cce1885
 	Checksum: 0xFEA27E6A
 	Offset: 0xAF0
@@ -121,18 +121,18 @@ function function_63fe1ddd()
 	Parameters: 0
 	Flags: None
 */
-function function_b80bbad2()
+function monitor_robot_power()
 {
 	level waittill("hash_5b9acfd8");
 	level flag::set("police_box_ready");
-	var_6f73bd35 = GetEnt("police_box", "targetname");
-	if(isdefined(var_6f73bd35))
+	e_police_box = GetEnt("police_box", "targetname");
+	if(isdefined(e_police_box))
 	{
-		var_6f73bd35 playsound("zmb_bm_interaction_machine_start");
+		e_police_box playsound("zmb_bm_interaction_machine_start");
 	}
-	e_player = zm_utility::get_closest_player(var_6f73bd35.origin);
+	e_player = zm_utility::get_closest_player(e_police_box.origin);
 	e_player namespace_b8707f8e::function_81ba60e2();
-	var_6f73bd35 clientfield::set("robot_switch", 1);
+	e_police_box clientfield::set("robot_switch", 1);
 }
 
 /*
@@ -153,7 +153,7 @@ function function_33a20979()
 }
 
 /*
-	Name: function_d6bdaaa4
+	Name: create_callbox_unitrigger
 	Namespace: namespace_2cce1885
 	Checksum: 0x7D576DF
 	Offset: 0xC18
@@ -161,28 +161,28 @@ function function_33a20979()
 	Parameters: 3
 	Flags: None
 */
-function function_d6bdaaa4(var_d42f02cf, var_175bc9b5, var_5a170a81)
+function create_callbox_unitrigger(str_areaname, func_trigger_visibility, func_trigger_thread)
 {
 	width = 110;
 	height = 90;
 	length = 110;
-	var_9ff0b626 = struct::get("robot_callbox_" + var_d42f02cf, "script_noteworthy");
-	var_9ff0b626.unitrigger_stub = spawnstruct();
-	var_9ff0b626.unitrigger_stub.origin = var_9ff0b626.origin;
-	var_9ff0b626.unitrigger_stub.angles = var_9ff0b626.angles;
-	var_9ff0b626.unitrigger_stub.script_unitrigger_type = "unitrigger_box_use";
-	var_9ff0b626.unitrigger_stub.cursor_hint = "HINT_NOICON";
-	var_9ff0b626.unitrigger_stub.script_width = width;
-	var_9ff0b626.unitrigger_stub.script_height = height;
-	var_9ff0b626.unitrigger_stub.script_length = length;
-	var_9ff0b626.unitrigger_stub.require_look_at = 0;
-	var_9ff0b626.unitrigger_stub.var_d42f02cf = var_d42f02cf;
-	var_9ff0b626.unitrigger_stub.prompt_and_visibility_func = var_175bc9b5;
-	zm_unitrigger::register_static_unitrigger(var_9ff0b626.unitrigger_stub, var_5a170a81);
+	s_callbox = struct::get("robot_callbox_" + str_areaname, "script_noteworthy");
+	s_callbox.unitrigger_stub = spawnstruct();
+	s_callbox.unitrigger_stub.origin = s_callbox.origin;
+	s_callbox.unitrigger_stub.angles = s_callbox.angles;
+	s_callbox.unitrigger_stub.script_unitrigger_type = "unitrigger_box_use";
+	s_callbox.unitrigger_stub.cursor_hint = "HINT_NOICON";
+	s_callbox.unitrigger_stub.script_width = width;
+	s_callbox.unitrigger_stub.script_height = height;
+	s_callbox.unitrigger_stub.script_length = length;
+	s_callbox.unitrigger_stub.require_look_at = 0;
+	s_callbox.unitrigger_stub.str_areaname = str_areaname;
+	s_callbox.unitrigger_stub.prompt_and_visibility_func = func_trigger_visibility;
+	zm_unitrigger::register_static_unitrigger(s_callbox.unitrigger_stub, func_trigger_thread);
 }
 
 /*
-	Name: function_1ad591a3
+	Name: robot_callbox_trigger_visibility
 	Namespace: namespace_2cce1885
 	Checksum: 0x2F2DB86E
 	Offset: 0xE10
@@ -190,7 +190,7 @@ function function_d6bdaaa4(var_d42f02cf, var_175bc9b5, var_5a170a81)
 	Parameters: 1
 	Flags: None
 */
-function function_1ad591a3(player)
+function robot_callbox_trigger_visibility(player)
 {
 	b_is_invis = isdefined(player.beastmode) && player.beastmode || level flag::get("police_box_hide");
 	self SetInvisibleToPlayer(player, b_is_invis);
@@ -198,34 +198,34 @@ function function_1ad591a3(player)
 	{
 		self setHintString(&"ZM_ZOD_ROBOT_NEEDS_POWER");
 	}
-	else if(isdefined(level.var_f6c5842))
+	else if(isdefined(level.ai_robot))
 	{
-		switch(level.var_1ae05c2e)
+		switch(level.ai_robot_area_called)
 		{
 			case "junction":
 			{
-				var_554cba06 = &"ZM_ZOD_AREA_NAME_JUNCTION";
+				hintstring_areaname = &"ZM_ZOD_AREA_NAME_JUNCTION";
 				break;
 			}
 			case "slums":
 			{
-				var_554cba06 = &"ZM_ZOD_AREA_NAME_SLUMS";
+				hintstring_areaname = &"ZM_ZOD_AREA_NAME_SLUMS";
 				break;
 			}
 			case "canal":
 			{
-				var_554cba06 = &"ZM_ZOD_AREA_NAME_CANAL";
+				hintstring_areaname = &"ZM_ZOD_AREA_NAME_CANAL";
 				break;
 			}
 			case "theater":
 			{
-				var_554cba06 = &"ZM_ZOD_AREA_NAME_THEATER";
+				hintstring_areaname = &"ZM_ZOD_AREA_NAME_THEATER";
 				break;
 			}
 		}
-		self setHintString(&"ZM_ZOD_ROBOT_ONCALL_IN", var_554cba06);
+		self setHintString(&"ZM_ZOD_ROBOT_ONCALL_IN", hintstring_areaname);
 	}
-	else if(player.score < level.var_47ef623d)
+	else if(player.score < level.ai_robot_remaining_cost)
 	{
 		self setHintString(&"ZM_ZOD_ROBOT_PAY_TOWARDS");
 	}
@@ -237,7 +237,7 @@ function function_1ad591a3(player)
 }
 
 /*
-	Name: function_58485745
+	Name: robot_callbox_trigger_think
 	Namespace: namespace_2cce1885
 	Checksum: 0x4F19BDDA
 	Offset: 0xFE8
@@ -245,7 +245,7 @@ function function_1ad591a3(player)
 	Parameters: 0
 	Flags: None
 */
-function function_58485745()
+function robot_callbox_trigger_think()
 {
 	while(1)
 	{
@@ -262,7 +262,7 @@ function function_58485745()
 		{
 			continue;
 		}
-		if(isdefined(level.var_f6c5842))
+		if(isdefined(level.ai_robot))
 		{
 			continue;
 		}
@@ -274,27 +274,27 @@ function function_58485745()
 		{
 			continue;
 		}
-		if(!player zm_score::can_player_purchase(level.var_47ef623d))
+		if(!player zm_score::can_player_purchase(level.ai_robot_remaining_cost))
 		{
-			level.var_47ef623d = level.var_47ef623d - player.score;
+			level.ai_robot_remaining_cost = level.ai_robot_remaining_cost - player.score;
 			player zm_score::minus_to_player_score(player.score);
 			self.stub zm_unitrigger::run_visibility_function_for_all_triggers();
-			level thread function_cc935dda();
+			level thread update_readouts_for_remaining_robot_cost();
 		}
 		else
 		{
 			level flag::set("police_box_in_use");
 			self setHintString("");
-			player zm_score::minus_to_player_score(level.var_47ef623d);
+			player zm_score::minus_to_player_score(level.ai_robot_remaining_cost);
 			if(!player bgb::is_enabled("zm_bgb_shopping_free"))
 			{
-				level.var_47ef623d = 0;
-				level thread function_cc935dda();
+				level.ai_robot_remaining_cost = 0;
+				level thread update_readouts_for_remaining_robot_cost();
 			}
 			n_spawn_delay = 3;
-			level thread function_99d41d5f(player, self.stub, n_spawn_delay);
+			level thread spawn_robot(player, self.stub, n_spawn_delay);
 			player notify("hash_b7f8e77c");
-			level notify("hash_421e5b59");
+			level notify("robot_called");
 			level thread function_f9a6039c(self, "activated");
 			self playsound("evt_police_box_siren");
 			wait(1.5);
@@ -304,7 +304,7 @@ function function_58485745()
 }
 
 /*
-	Name: function_99d41d5f
+	Name: spawn_robot
 	Namespace: namespace_2cce1885
 	Checksum: 0x2DF3CEE5
 	Offset: 0x12B8
@@ -312,11 +312,11 @@ function function_58485745()
 	Parameters: 3
 	Flags: None
 */
-function function_99d41d5f(player, trig_stub, n_spawn_delay)
+function spawn_robot(player, trig_stub, n_spawn_delay)
 {
-	var_7a54d4da = struct::get_array("robot_start_pos", "targetname");
-	var_7a54d4da = Array::filter(var_7a54d4da, 0, &function_b16968ad, trig_stub.var_d42f02cf);
-	var_b410e4d9 = var_7a54d4da[0];
+	a_s_start_pos = struct::get_array("robot_start_pos", "targetname");
+	a_s_start_pos = Array::filter(a_s_start_pos, 0, &filter_callbox_name, trig_stub.str_areaname);
+	var_b410e4d9 = a_s_start_pos[0];
 	trace = bullettrace(var_b410e4d9.origin, var_b410e4d9.origin + VectorScale((0, 0, -1), 256), 0, var_b410e4d9);
 	v_ground_position = trace["position"];
 	var_36e9b69a = v_ground_position + VectorScale((0, 0, 1), 650);
@@ -327,42 +327,42 @@ function function_99d41d5f(player, trig_stub, n_spawn_delay)
 	}
 	if(level flag::get("ee_complete"))
 	{
-		spawner = level.var_c1b7d765[0];
+		spawner = level.zombie_robot_gold_spawners[0];
 	}
 	else
 	{
-		spawner = level.var_2b602c66[0];
+		spawner = level.zombie_robot_spawners[0];
 	}
-	level.var_f6c5842 = spawner SpawnFromSpawner("companion_spawner", 1);
-	level.var_f6c5842.maxhealth = level.var_f6c5842.health;
-	level.var_f6c5842.allow_zombie_to_target_ai = 0;
-	level.var_f6c5842.on_train = 0;
-	level.var_f6c5842.can_gib_zombies = 1;
-	level.var_f6c5842 SetCanDamage(0);
-	level.var_1ae05c2e = trig_stub.var_d42f02cf;
+	level.ai_robot = spawner SpawnFromSpawner("companion_spawner", 1);
+	level.ai_robot.maxhealth = level.ai_robot.health;
+	level.ai_robot.allow_zombie_to_target_ai = 0;
+	level.ai_robot.on_train = 0;
+	level.ai_robot.can_gib_zombies = 1;
+	level.ai_robot SetCanDamage(0);
+	level.ai_robot_area_called = trig_stub.str_areaname;
 	trig_stub zm_unitrigger::run_visibility_function_for_all_triggers();
-	level.var_f6c5842.var_af6a29a8 = 0;
-	level.var_f6c5842 PlayLoopSound("fly_civil_protector_loop");
-	level.var_bfd9ed83 = player;
+	level.ai_robot.time_expired = 0;
+	level.ai_robot PlayLoopSound("fly_civil_protector_loop");
+	level.companion_leader = player;
 	foreach(player in level.players)
 	{
 		player setPerk("specialty_pistoldeath");
 	}
-	if(isdefined(level.var_f6c5842))
+	if(isdefined(level.ai_robot))
 	{
-		level.var_f6c5842 ForceTeleport(var_36e9b69a);
-		level.var_f6c5842 thread function_ab4d9ece(v_ground_position, player);
-		level.var_f6c5842 scene::Play("cin_zod_robot_companion_entrance");
-		level notify("hash_10a36fa2");
-		level.var_f6c5842.var_173c72a4 = v_ground_position;
+		level.ai_robot ForceTeleport(var_36e9b69a);
+		level.ai_robot thread function_ab4d9ece(v_ground_position, player);
+		level.ai_robot scene::Play("cin_zod_robot_companion_entrance");
+		level notify("robot_arrives");
+		level.ai_robot.companion_anchor_point = v_ground_position;
 	}
-	level thread function_f9a6039c(level.var_f6c5842, "active", 2);
-	level.var_f6c5842 thread function_be60a9fd();
-	level.var_f6c5842 thread function_677061ac();
+	level thread function_f9a6039c(level.ai_robot, "active", 2);
+	level.ai_robot thread function_be60a9fd();
+	level.ai_robot thread function_677061ac();
 	level flag::clear("police_box_in_use");
 	function_490cbdf5();
-	level.var_f6c5842.var_af6a29a8 = 1;
-	while(level.var_f6c5842.var_a25cf4c9 == 1)
+	level.ai_robot.time_expired = 1;
+	while(level.ai_robot.reviving_a_player == 1)
 	{
 		wait(0.05);
 	}
@@ -370,24 +370,24 @@ function function_99d41d5f(player, trig_stub, n_spawn_delay)
 	{
 		player unsetPerk("specialty_pistoldeath");
 	}
-	level.var_f6c5842 SetCanDamage(1);
+	level.ai_robot SetCanDamage(1);
 	if(isdefined(level.o_zod_train))
 	{
-		if(function_406e4ba9(level.o_zod_train))
+		if(is_touching_train_volume(level.o_zod_train))
 		{
-			level.var_f6c5842 LinkTo(function_8cf8e3a5());
+			level.ai_robot LinkTo(get_train_vehicle());
 		}
 	}
-	level.var_f6c5842 scene::Play("cin_zod_robot_companion_exit_death");
-	level.var_f6c5842 = undefined;
+	level.ai_robot scene::Play("cin_zod_robot_companion_exit_death");
+	level.ai_robot = undefined;
 	players = GetPlayers();
 	if(players.size != 1 || !level flag::get("solo_game") || (!isdefined(players[0].waiting_to_revive) && players[0].waiting_to_revive))
 	{
 		level zm::checkForAllDead();
 	}
-	level.var_47ef623d = 2000;
+	level.ai_robot_remaining_cost = 2000;
 	trig_stub zm_unitrigger::run_visibility_function_for_all_triggers();
-	level thread function_cc935dda();
+	level thread update_readouts_for_remaining_robot_cost();
 }
 
 /*
@@ -416,7 +416,7 @@ function function_490cbdf5()
 */
 function function_ab4d9ece(var_21e230b7, e_player)
 {
-	level.var_f6c5842 thread function_32ce0dec();
+	level.ai_robot thread function_32ce0dec();
 	wait(0.5);
 	Earthquake(0.55, 1.2, var_21e230b7, 1200);
 	playFX(level._effect["robot_landing"], var_21e230b7);
@@ -443,12 +443,12 @@ function function_ab4d9ece(var_21e230b7, e_player)
 */
 function function_32ce0dec()
 {
-	var_8d888091 = spawn("script_model", self.origin);
-	var_8d888091 SetModel("tag_origin");
-	PlayFXOnTag(level._effect["robot_sky_trail"], var_8d888091, "tag_origin");
-	var_8d888091 LinkTo(self);
-	level waittill("hash_10a36fa2");
-	var_8d888091 delete();
+	m_sky_trail = spawn("script_model", self.origin);
+	m_sky_trail SetModel("tag_origin");
+	PlayFXOnTag(level._effect["robot_sky_trail"], m_sky_trail, "tag_origin");
+	m_sky_trail LinkTo(self);
+	level waittill("robot_arrives");
+	m_sky_trail delete();
 }
 
 /*
@@ -465,7 +465,7 @@ function function_70541dc1(v_ground_position)
 	var_b47822ca = spawn("script_model", v_ground_position);
 	var_b47822ca SetModel("tag_origin");
 	PlayFXOnTag(level._effect["robot_ground_spawn"], var_b47822ca, "tag_origin");
-	level waittill("hash_10a36fa2");
+	level waittill("robot_arrives");
 	var_b47822ca delete();
 }
 
@@ -511,7 +511,7 @@ function function_fa1df614(v_origin, eAttacker, n_radius)
 }
 
 /*
-	Name: function_b16968ad
+	Name: filter_callbox_name
 	Namespace: namespace_2cce1885
 	Checksum: 0xC9B003F5
 	Offset: 0x1F08
@@ -519,9 +519,9 @@ function function_fa1df614(v_origin, eAttacker, n_radius)
 	Parameters: 2
 	Flags: None
 */
-function function_b16968ad(e_entity, var_d42f02cf)
+function filter_callbox_name(e_entity, str_areaname)
 {
-	if(!isdefined(e_entity.script_string) || e_entity.script_string != var_d42f02cf)
+	if(!isdefined(e_entity.script_string) || e_entity.script_string != str_areaname)
 	{
 		return 0;
 	}
@@ -529,7 +529,7 @@ function function_b16968ad(e_entity, var_d42f02cf)
 }
 
 /*
-	Name: function_cc935dda
+	Name: update_readouts_for_remaining_robot_cost
 	Namespace: namespace_2cce1885
 	Checksum: 0x80F9912B
 	Offset: 0x1F58
@@ -537,17 +537,17 @@ function function_b16968ad(e_entity, var_d42f02cf)
 	Parameters: 0
 	Flags: None
 */
-function function_cc935dda()
+function update_readouts_for_remaining_robot_cost()
 {
-	var_43d4ba3a = GetEntArray("robot_readout_model", "targetname");
-	foreach(var_f638c7bb in var_43d4ba3a)
+	a_e_readouts = GetEntArray("robot_readout_model", "targetname");
+	foreach(e_readout in a_e_readouts)
 	{
-		var_f638c7bb function_fcc9dd();
+		e_readout update_readout_for_remaining_robot_cost();
 	}
 }
 
 /*
-	Name: function_fcc9dd
+	Name: update_readout_for_remaining_robot_cost
 	Namespace: namespace_2cce1885
 	Checksum: 0x15FF3F96
 	Offset: 0x2018
@@ -555,21 +555,21 @@ function function_cc935dda()
 	Parameters: 0
 	Flags: None
 */
-function function_fcc9dd()
+function update_readout_for_remaining_robot_cost()
 {
-	var_bfdb622 = function_e122ede6(level.var_47ef623d);
+	a_cost = get_placed_array_from_number(level.ai_robot_remaining_cost);
 	for(i = 0; i < 4; i++)
 	{
 		for(j = 0; j < 10; j++)
 		{
 			self HidePart("J_" + i + "_" + j);
 		}
-		self ShowPart("J_" + i + "_" + var_bfdb622[i]);
+		self ShowPart("J_" + i + "_" + a_cost[i]);
 	}
 }
 
 /*
-	Name: function_e122ede6
+	Name: get_placed_array_from_number
 	Namespace: namespace_2cce1885
 	Checksum: 0x425271C4
 	Offset: 0x2100
@@ -577,20 +577,20 @@ function function_fcc9dd()
 	Parameters: 1
 	Flags: None
 */
-function function_e122ede6(var_852832cf)
+function get_placed_array_from_number(n_number)
 {
-	var_c6f3ff8a = [];
+	a_number = [];
 	for(i = 0; i < 4; i++)
 	{
-		var_75e21c4d = pow(10, 3 - i);
-		var_c6f3ff8a[i] = floor(var_852832cf / var_75e21c4d);
-		var_852832cf = var_852832cf - var_c6f3ff8a[i] * var_75e21c4d;
+		n_place = pow(10, 3 - i);
+		a_number[i] = floor(n_number / n_place);
+		n_number = n_number - a_number[i] * n_place;
 	}
-	return var_c6f3ff8a;
+	return a_number;
 }
 
 /*
-	Name: function_9e3debe7
+	Name: gib_head_check
 	Namespace: namespace_2cce1885
 	Checksum: 0x29201CF4
 	Offset: 0x21C0
@@ -598,7 +598,7 @@ function function_e122ede6(var_852832cf)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e3debe7(DAMAGE_LOCATION)
+function private gib_head_check(DAMAGE_LOCATION)
 {
 	if(!isdefined(DAMAGE_LOCATION))
 	{
@@ -626,7 +626,7 @@ function private function_9e3debe7(DAMAGE_LOCATION)
 }
 
 /*
-	Name: function_906dfe04
+	Name: gib_check
 	Namespace: namespace_2cce1885
 	Checksum: 0x94F9E
 	Offset: 0x2230
@@ -634,7 +634,7 @@ function private function_9e3debe7(DAMAGE_LOCATION)
 	Parameters: 1
 	Flags: Private
 */
-function private function_906dfe04(damage_percent)
+function private gib_check(damage_percent)
 {
 	return 1;
 }
@@ -690,7 +690,7 @@ function function_be60a9fd()
 		self waittill("killed", who);
 		if(randomIntRange(0, 101) <= 30)
 		{
-			level thread function_f9a6039c(level.var_f6c5842, "kills");
+			level thread function_f9a6039c(level.ai_robot, "kills");
 		}
 	}
 }
@@ -711,7 +711,7 @@ function function_677061ac()
 	while(1)
 	{
 		wait(randomIntRange(15, 25));
-		level thread function_f9a6039c(level.var_f6c5842, "active");
+		level thread function_f9a6039c(level.ai_robot, "active");
 	}
 }
 

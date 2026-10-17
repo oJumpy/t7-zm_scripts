@@ -431,11 +431,11 @@ function function_383d6ca4(var_9ffdb9e2, var_2c11866b)
 	n_damage = self.maxhealth / 4;
 	while(zm_utility::is_player_valid(self) && self function_55b881b7(var_2c11866b))
 	{
-		var_7929bbd6 = GetTime();
-		if(!isdefined(self.var_bf3163c8) || var_7929bbd6 - self.var_bf3163c8 > 2000)
+		n_cur_time = GetTime();
+		if(!isdefined(self.var_bf3163c8) || n_cur_time - self.var_bf3163c8 > 2000)
 		{
 			self thread function_991ffb6c(var_9ffdb9e2);
-			self.var_bf3163c8 = var_7929bbd6;
+			self.var_bf3163c8 = n_cur_time;
 			if(n_damage >= self.health)
 			{
 				self DoDamage(self.health + 100, self.origin, undefined, undefined, undefined, "MOD_ELECTROCUTED");
@@ -489,12 +489,12 @@ function function_55b881b7(var_2c11866b)
 	Parameters: 2
 	Flags: None
 */
-function function_120a8b07(var_ecf98bb6, var_7c2cfb61)
+function function_120a8b07(var_ecf98bb6, e_panel)
 {
 	self endon("death");
 	if(self.isdog)
 	{
-		self kill(self.origin, var_7c2cfb61);
+		self kill(self.origin, e_panel);
 	}
 	else if(self.archetype == "mechz")
 	{
@@ -546,7 +546,7 @@ function function_120a8b07(var_ecf98bb6, var_7c2cfb61)
 			var_ecf98bb6.zapped_zombies++;
 			var_ecf98bb6 notify("zombie_zapped");
 		}
-		self thread function_67cc41d(var_ecf98bb6, var_7c2cfb61);
+		self thread function_67cc41d(var_ecf98bb6, e_panel);
 	}
 }
 
@@ -559,7 +559,7 @@ function function_120a8b07(var_ecf98bb6, var_7c2cfb61)
 	Parameters: 2
 	Flags: None
 */
-function function_67cc41d(attacker, var_7c2cfb61)
+function function_67cc41d(attacker, e_panel)
 {
 	self zombie_utility::zombie_eye_glow_stop();
 	self clientfield::increment("death_ray_explode_fx");
@@ -568,7 +568,7 @@ function function_67cc41d(attacker, var_7c2cfb61)
 	self playsound("zmb_deathray_zombie_poof");
 	if(isdefined(attacker))
 	{
-		self notify("death", var_7c2cfb61);
+		self notify("death", e_panel);
 		level notify("trap_kill", self, attacker);
 	}
 	self ghost();

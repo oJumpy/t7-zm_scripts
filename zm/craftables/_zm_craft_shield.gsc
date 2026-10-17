@@ -107,7 +107,7 @@ function init(shield_equipment, shield_weapon, shield_model, str_to_craft, str_t
 function __main__()
 {
 	/#
-		function_f3127c4f();
+		shield_devgui();
 	#/
 }
 
@@ -268,7 +268,7 @@ function on_buy_weapon_riotshield(player)
 }
 
 /*
-	Name: function_f3127c4f
+	Name: shield_devgui
 	Namespace: zm_craft_shield
 	Checksum: 0x4C2E5071
 	Offset: 0xD80
@@ -276,12 +276,12 @@ function on_buy_weapon_riotshield(player)
 	Parameters: 0
 	Flags: None
 */
-function function_f3127c4f()
+function shield_devgui()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_b6937313);
+		zm_devgui::add_custom_devgui_callback(&shield_devgui_callback);
 		SetDvar("Dev Block strings are not supported", 0);
 		AddDebugCommand("Dev Block strings are not supported" + level.craftable_shield_equipment + "Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported" + level.craftable_shield_equipment + "Dev Block strings are not supported");
@@ -290,7 +290,7 @@ function function_f3127c4f()
 }
 
 /*
-	Name: function_b6937313
+	Name: shield_devgui_callback
 	Namespace: zm_craft_shield
 	Checksum: 0x40B6BD33
 	Offset: 0xE80
@@ -298,7 +298,7 @@ function function_f3127c4f()
 	Parameters: 1
 	Flags: None
 */
-function function_b6937313(cmd)
+function shield_devgui_callback(cmd)
 {
 	/#
 		players = GetPlayers();
@@ -359,7 +359,7 @@ function function_b6937313(cmd)
 }
 
 /*
-	Name: function_2449723c
+	Name: detect_reentry
 	Namespace: zm_craft_shield
 	Checksum: 0xF5AE50B3
 	Offset: 0x1058
@@ -367,17 +367,17 @@ function function_b6937313(cmd)
 	Parameters: 0
 	Flags: None
 */
-function function_2449723c()
+function detect_reentry()
 {
 	/#
-		if(isdefined(self.var_9dc82bca))
+		if(isdefined(self.devgui_preserve_time))
 		{
-			if(self.var_9dc82bca == GetTime())
+			if(self.devgui_preserve_time == GetTime())
 			{
 				return 1;
 			}
 		}
-		self.var_9dc82bca = GetTime();
+		self.devgui_preserve_time = GetTime();
 		return 0;
 	#/
 }
@@ -394,7 +394,7 @@ function function_2449723c()
 function function_2b0b208f()
 {
 	/#
-		if(self function_2449723c())
+		if(self detect_reentry())
 		{
 			return;
 		}
@@ -445,7 +445,7 @@ function function_2b0b208f()
 function function_70d7908d()
 {
 	/#
-		if(self function_2449723c())
+		if(self detect_reentry())
 		{
 			return;
 		}

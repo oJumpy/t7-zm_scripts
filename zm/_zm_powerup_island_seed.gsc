@@ -95,10 +95,10 @@ function register_clientfields()
 */
 function function_6adb5862(player)
 {
-	var_f65b973 = player clientfield::get_to_player("has_island_seed");
-	if(var_f65b973 < 3)
+	n_seed_count = player clientfield::get_to_player("has_island_seed");
+	if(n_seed_count < 3)
 	{
-		var_b5c360bd = var_f65b973 + 1;
+		var_b5c360bd = n_seed_count + 1;
 		player clientfield::set_to_player("has_island_seed", var_b5c360bd);
 		player function_3968a493(1);
 		player notify("hash_97e69ab7");
@@ -116,10 +116,10 @@ function function_6adb5862(player)
 */
 function function_58b6724f(player)
 {
-	var_f65b973 = player clientfield::get_to_player("has_island_seed");
-	if(var_f65b973 > 0)
+	n_seed_count = player clientfield::get_to_player("has_island_seed");
+	if(n_seed_count > 0)
 	{
-		var_b5c360bd = var_f65b973 - 1;
+		var_b5c360bd = n_seed_count - 1;
 		player clientfield::set_to_player("has_island_seed", var_b5c360bd);
 		player function_3968a493(1);
 		player notify("hash_9d289b3a");
@@ -154,9 +154,9 @@ function function_735cfef2(player)
 	Parameters: 1
 	Flags: None
 */
-function function_aeda54f6(var_f65b973)
+function function_aeda54f6(n_seed_count)
 {
-	self clientfield::set_to_player("has_island_seed", var_f65b973);
+	self clientfield::set_to_player("has_island_seed", n_seed_count);
 	self function_3968a493();
 }
 
@@ -175,8 +175,8 @@ function function_3968a493(var_b89973c8)
 	{
 		var_b89973c8 = 0;
 	}
-	var_f65b973 = function_735cfef2(self);
-	switch(var_f65b973)
+	n_seed_count = function_735cfef2(self);
+	switch(n_seed_count)
 	{
 		case 0:
 		{
@@ -299,9 +299,9 @@ function function_7a25b639(drop_point)
 	}
 	if(math::cointoss() || GetAICount() < 1)
 	{
-		var_93eb638b = zm_powerups::specific_powerup_drop("island_seed", drop_point);
+		e_powerup = zm_powerups::specific_powerup_drop("island_seed", drop_point);
 		level flag::set("round_1_seed_spawned");
-		level thread function_ca5485fa(var_93eb638b);
+		level thread function_ca5485fa(e_powerup);
 		level.var_9895ed0d++;
 		return 1;
 	}
@@ -343,8 +343,8 @@ function function_1f5d3f75(drop_point)
 	}
 	/#
 	#/
-	var_93eb638b = zm_powerups::specific_powerup_drop("island_seed", drop_point);
-	level thread function_ca5485fa(var_93eb638b);
+	e_powerup = zm_powerups::specific_powerup_drop("island_seed", drop_point);
+	level thread function_ca5485fa(e_powerup);
 	level.var_9895ed0d++;
 	level.var_e964b72 = 0;
 	return 1;
@@ -395,10 +395,10 @@ function function_af95a19e()
 	Parameters: 1
 	Flags: None
 */
-function function_ca5485fa(var_93eb638b)
+function function_ca5485fa(e_powerup)
 {
-	var_93eb638b endon("powerup_grabbed");
-	var_93eb638b waittill("powerup_timedout");
+	e_powerup endon("powerup_grabbed");
+	e_powerup waittill("powerup_timedout");
 	if(level.var_9895ed0d > 0)
 	{
 		level.var_9895ed0d--;
@@ -430,11 +430,11 @@ function show_infotext_for_duration(str_infotext, n_duration)
 	Parameters: 3
 	Flags: None
 */
-function function_ea405166(var_1d640f59, str_widget_clientuimodel, var_18bfcc38)
+function function_ea405166(var_1d640f59, str_widget_clientuimodel, b_acquired)
 {
 	self notify("hash_6c34b226");
 	self endon("hash_6c34b226");
-	if(var_18bfcc38)
+	if(b_acquired)
 	{
 		if(isdefined(var_1d640f59))
 		{
@@ -492,7 +492,7 @@ function function_7b74396f()
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_903fbe7);
+		zm_devgui::add_custom_devgui_callback(&function_903fbe7);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 	#/

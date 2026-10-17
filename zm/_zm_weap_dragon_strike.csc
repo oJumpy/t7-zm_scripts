@@ -85,13 +85,13 @@ function function_a911d32e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal)
 	{
-		self function_38b917b0(1);
+		self dragonstrike_enable(1);
 		self thread function_778495b0(localClientNum);
 	}
 	else
 	{
 		self notify("hash_e98f7ec4");
-		self function_38b917b0(0);
+		self dragonstrike_enable(0);
 	}
 }
 
@@ -110,7 +110,7 @@ function function_778495b0(localClientNum)
 	self endon("entityshutdown");
 	while(isdefined(self))
 	{
-		self function_808efef6(self.origin);
+		self dragonstrike_setposition(self.origin);
 		wait(0.016);
 	}
 }
@@ -126,7 +126,7 @@ function function_778495b0(localClientNum)
 */
 function function_ba315afb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self function_32fc2895(0.25, 3, 0.25, 128, 0.5, 0);
+	self dragonstrike_setcolorradiusspinpulse(0.25, 3, 0.25, 128, 0.5, 0);
 }
 
 /*
@@ -140,7 +140,7 @@ function function_ba315afb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_64751666(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self function_32fc2895(0.15, 3, 0.15, 128, 0.75, 0);
+	self dragonstrike_setcolorradiusspinpulse(0.15, 3, 0.15, 128, 0.75, 0);
 }
 
 /*
@@ -154,7 +154,7 @@ function function_64751666(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_20b03867(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self function_32fc2895(4, 0.5, 0.25, 128, 0.5, 0);
+	self dragonstrike_setcolorradiusspinpulse(4, 0.5, 0.25, 128, 0.5, 0);
 }
 
 /*
@@ -168,7 +168,7 @@ function function_20b03867(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_6072780a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self function_32fc2895(4, 0.5, 0.25, 128, 0.75, 0);
+	self dragonstrike_setcolorradiusspinpulse(4, 0.5, 0.25, 128, 0.75, 0);
 }
 
 /*
@@ -240,7 +240,7 @@ function function_1ba92b11(var_6d056a0e, var_9ad65443, var_cddc37e, var_76d07324
 		var_6d056a0e = var_6d056a0e - var_e0a873d1;
 		var_9ad65443 = var_9ad65443 - var_24ce51da;
 		var_cddc37e = var_cddc37e - var_1e73d761;
-		self function_32fc2895(var_6d056a0e, var_9ad65443, var_cddc37e, 128, var_76d07324, 0);
+		self dragonstrike_setcolorradiusspinpulse(var_6d056a0e, var_9ad65443, var_cddc37e, 128, var_76d07324, 0);
 		wait(0.016);
 	}
 }

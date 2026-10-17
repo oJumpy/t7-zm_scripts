@@ -116,389 +116,389 @@ function RegisterUtilityBlackboardAttributes()
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_context", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_context2", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_cover_concealed", undefined, &BB_GetCoverConcealed);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_cover_direction", "cover_front_direction", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_cover_mode", "cover_mode_none", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_cover_type", undefined, &BB_GetCurrentCoverNodeType);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_current_location_cover_type", undefined, &BB_GetCurrentLocationCoverNodeType);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_exposed_type", undefined, &BB_GetCurrentExposedType);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_damage_direction", undefined, &BB_GetDamageDirection);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_damage_location", undefined, &BB_ActorGetDamageLocation);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_damage_weapon_class", undefined, &BB_GetDamageWeaponClass);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_damage_weapon", undefined, &BB_GetDamageWeapon);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_damage_mod", undefined, &BB_GetDamageMOD);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_damage_taken", undefined, &BB_GetDamageTaken);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_desired_stance", "stand", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_enemy", undefined, &BB_ActorHasEnemy);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_enemy_yaw", undefined, &BB_ActorGetEnemyYaw);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_react_yaw", undefined, &BB_ActorGetReactYaw);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_fatal_damage_location", undefined, &BB_ActorGetFatalDamageLocation);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_fire_mode", undefined, &GetFireMode);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_gib_location", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_juke_direction", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_juke_distance", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_locomotion_arrival_distance", undefined, &BB_GetLocomotionArrivalDistance);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_locomotion_arrival_yaw", undefined, &BB_GetLocomotionArrivalYaw);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_locomotion_exit_yaw", undefined, &BB_GetLocomotionExitYaw);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_locomotion_face_enemy_quadrant", "locomotion_face_enemy_none", &BB_GetLocomotionFaceEnemyQuadrant);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_locomotion_motion_angle", undefined, &BB_GetLocomotionMotionAngle);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_locomotion_face_enemy_quadrant_previous", "locomotion_face_enemy_none", &BB_GetLocomotionFaceEnemyQuadrantPrevious);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_locomotion_pain_type", undefined, &BB_GetLocomotionPainType);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_locomotion_turn_yaw", undefined, &BB_GetLocomotionTurnYaw);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_lookahead_angle", undefined, &BB_GetLookaheadAngle);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_patrol", undefined, &BB_ActorIsPatroling);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_perfect_enemy_yaw", undefined, &BB_ActorGetPerfectEnemyYaw);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_previous_cover_direction", "cover_front_direction", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_previous_cover_mode", "cover_mode_none", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_previous_cover_type", undefined, &BB_GetPreviousCoverNodeType);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_stance", "stand", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_traversal_type", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_melee_distance", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_tracking_turn_yaw", undefined, &BB_ActorGetTrackingTurnYaw);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_weapon_class", "rifle", &BB_GetWeaponClass);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_throw_distance", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_yaw_to_cover", undefined, &BB_GetYawToCoverNode);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_special_death", "none", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_awareness", "combat", &BB_GetAwareness);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_awareness_prev", "combat", &BB_GetAwarenessPrevious);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_melee_enemy_type", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_staircase_num_steps", 0, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_staircase_num_total_steps", 0, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_staircase_state", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_staircase_direction", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_staircase_exit_type", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_staircase_skip_num", undefined, &BB_GetStairsNumSkipSteps);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	/#
-		self function_89398c57();
+		self finalizetrackedblackboardattributes();
 	#/
 }
 

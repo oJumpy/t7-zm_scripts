@@ -35,10 +35,10 @@ function function_86f0587(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 {
 	if(newVal == 1)
 	{
-		var_6f80c1d8 = GetEntArray(localClientNum, "swamp_planter_skull_reveal", "targetname");
-		foreach(var_31678178 in var_6f80c1d8)
+		a_e_plant = GetEntArray(localClientNum, "swamp_planter_skull_reveal", "targetname");
+		foreach(e_plant in a_e_plant)
 		{
-			var_31678178 MoveZ(-45, 2);
+			e_plant MoveZ(-45, 2);
 		}
 	}
 }

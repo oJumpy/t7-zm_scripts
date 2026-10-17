@@ -196,14 +196,14 @@ function recordBBDataForPlayer(breadcrumb_Table)
 	{
 		return;
 	}
-	var_2b0e341 = self function_eacb3569();
-	if(var_2b0e341 == -1)
+	playerlifeidx = self getmatchrecordlifeindex();
+	if(playerlifeidx == -1)
 	{
 		return;
 	}
 	movementType = "";
 	stance = "";
-	bbPrint(breadcrumb_Table, "gametime %d lifeIndex %d posx %d posy %d posz %d yaw %d pitch %d movetype %s stance %s", GetTime(), var_2b0e341, self.origin, self.angles[0], self.angles[1], movementType, stance);
+	bbPrint(breadcrumb_Table, "gametime %d lifeIndex %d posx %d posy %d posz %d yaw %d pitch %d movetype %s stance %s", GetTime(), playerlifeidx, self.origin, self.angles[0], self.angles[1], movementType, stance);
 }
 
 /*

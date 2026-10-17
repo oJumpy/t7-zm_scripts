@@ -73,7 +73,7 @@ function __init__()
 		level.soul_catchers[i] thread function_e775e6a4("bow_door_sign_" + i + 1);
 		level.soul_catchers_vol[i] = GetEnt(level.soul_catchers[i].target, "targetname");
 	}
-	level.var_423db59a = 0;
+	level.n_soul_catchers_charged = 0;
 }
 
 /*
@@ -105,8 +105,8 @@ function create_anim_references_on_server()
 	var_dd277883 = %o_zm_dlc1_dragonhead_intro;
 	var_160f7e80 = %o_zm_dlc1_dragonhead_outtro;
 	var_b86a93ed = %o_zm_dlc1_dragonhead_static;
-	var_92a5d68e = %o_zm_dlc1_dragonhead_consume_pre_eat_l_2_r;
-	var_799790fe = %o_zm_dlc1_dragonhead_consume_pre_eat_r_2_l;
+	dragonhead_pre_eat_l_2_r = %o_zm_dlc1_dragonhead_consume_pre_eat_l_2_r;
+	dragonhead_pre_eat_r_2_l = %o_zm_dlc1_dragonhead_consume_pre_eat_r_2_l;
 	var_917cf7dd = [];
 	var_917cf7dd[0] = %o_zm_dlc1_dragonhead_idle;
 	var_16db17aa = [];
@@ -270,8 +270,8 @@ function zombie_soul_catcher_death(eInflictor, attacker, iDamage, sMeansOfDeath,
 	{
 		level clientfield::set(var_56269cbf.script_parameters, 0);
 	}
-	var_f41bc81e = %ai_zm_dlc1_dragonhead_zombie_impact;
-	n_anim_time = getanimlength(var_f41bc81e) + 0.2;
+	fake_body_death_anim = %ai_zm_dlc1_dragonhead_zombie_impact;
+	n_anim_time = getanimlength(fake_body_death_anim) + 0.2;
 	wait(n_anim_time);
 	level clientfield::set(var_56269cbf.script_parameters, n_eating_anim);
 	if(n_eating_anim == 3)
@@ -397,18 +397,18 @@ function soul_catcher_check()
 	{
 		if(self.var_98730ffa >= 8)
 		{
-			level.var_423db59a++;
+			level.n_soul_catchers_charged++;
 			self.is_charged = 1;
 			self notify("fully_charged");
 			break;
 		}
 		wait(0.05);
 	}
-	if(level.var_423db59a == 1)
+	if(level.n_soul_catchers_charged == 1)
 	{
 		self thread function_54af3e05();
 	}
-	else if(level.var_423db59a >= level.soul_catchers.size)
+	else if(level.n_soul_catchers_charged >= level.soul_catchers.size)
 	{
 		level flag::set("soul_catchers_charged");
 		self thread function_b7dd8bb3();
@@ -498,11 +498,11 @@ function function_a01a53de()
 		}
 		level flag::set("Dev Block strings are not supported");
 	#/
-	var_14ea0734 = struct::get("base_bow_pickup_struct", "targetname");
+	s_bow_pickup = struct::get("base_bow_pickup_struct", "targetname");
 	level thread scene::Play("p7_fxanim_zm_castle_quest_base_bow_idle_bundle");
 	wait(0.25);
 	level.var_15acc392 = GetEnt("base_bow_pickup", "targetname");
-	var_14ea0734 function_bb60c970();
+	s_bow_pickup function_bb60c970();
 	Array::thread_all(level.players, &function_9376cff9);
 	callback::on_connect(&function_c9cdf051);
 	var_65a03676 = Array("rune_prison_spawned", "demon_gate_spawned", "elemental_storm_spawned", "wolf_howl_spawned", "ee_start_done");
@@ -514,7 +514,7 @@ function function_a01a53de()
 	}
 	level scene::stop("p7_fxanim_zm_castle_quest_base_bow_idle_bundle");
 	callback::remove_on_connect(&function_c9cdf051);
-	zm_unitrigger::unregister_unitrigger(var_14ea0734.var_67b5dd94);
+	zm_unitrigger::unregister_unitrigger(s_bow_pickup.var_67b5dd94);
 	wait(5);
 	level thread struct::delete_script_bundle("scene", "p7_fxanim_zm_castle_quest_base_bow_idle_bundle");
 }
@@ -533,7 +533,7 @@ function function_9376cff9()
 	self endon("death");
 	level endon("hash_1deaef05");
 	self clientfield::set_to_player("bow_pickup_fx", 1);
-	var_14ea0734 = struct::get("base_bow_pickup_struct", "targetname");
+	s_bow_pickup = struct::get("base_bow_pickup_struct", "targetname");
 	while(1)
 	{
 		self util::waittill_either("weapon_change", "show_base_bow");
@@ -550,7 +550,7 @@ function function_9376cff9()
 			level.var_15acc392 SetInvisibleToPlayer(self);
 		}
 		self clientfield::set_to_player("bow_pickup_fx", 0);
-		var_14ea0734.var_67b5dd94 thread zm_unitrigger::run_visibility_function_for_all_triggers();
+		s_bow_pickup.var_67b5dd94 thread zm_unitrigger::run_visibility_function_for_all_triggers();
 	}
 }
 
@@ -587,14 +587,14 @@ function function_fb853e2c()
 	self endon("death");
 	self endon("hash_99ff6d52");
 	level endon("hash_1deaef05");
-	var_890bca07 = GetWeapon("elemental_bow");
+	w_elemental_bow = GetWeapon("elemental_bow");
 	while(1)
 	{
 		self util::waittill_either("projectile_impact", "zmb_max_ammo");
-		if(self HasWeapon(var_890bca07))
+		if(self HasWeapon(w_elemental_bow))
 		{
-			self.var_e8e28d9e = self GetWeaponAmmoStock(var_890bca07);
-			self.var_8f97fa0b = self GetWeaponAmmoClip(var_890bca07);
+			self.var_e8e28d9e = self GetWeaponAmmoStock(w_elemental_bow);
+			self.var_8f97fa0b = self GetWeaponAmmoClip(w_elemental_bow);
 		}
 	}
 }
@@ -614,14 +614,14 @@ function function_71d4f620()
 	self endon("death");
 	self endon("hash_a1f46392");
 	level endon("hash_1deaef05");
-	var_890bca07 = GetWeapon("elemental_bow");
+	w_elemental_bow = GetWeapon("elemental_bow");
 	var_d95a0cf3 = -1;
 	while(var_d95a0cf3 != self.characterindex)
 	{
 		level waittill("bleed_out", var_d95a0cf3);
 	}
-	self.var_e8e28d9e = var_890bca07.maxAmmo;
-	self.var_8f97fa0b = var_890bca07.clipSize;
+	self.var_e8e28d9e = w_elemental_bow.maxAmmo;
+	self.var_8f97fa0b = w_elemental_bow.clipSize;
 }
 
 /*
@@ -703,29 +703,29 @@ function function_26e22a99()
 		{
 			continue;
 		}
-		var_dd27188c = zm_utility::get_player_weapon_limit(e_who);
-		var_d4434fab = e_who GetWeaponsListPrimaries();
-		if(var_d4434fab.size > var_dd27188c)
+		n_weapon_limit = zm_utility::get_player_weapon_limit(e_who);
+		a_w_primary = e_who GetWeaponsListPrimaries();
+		if(a_w_primary.size > n_weapon_limit)
 		{
 			w_current = e_who GetCurrentWeapon();
 			e_who zm_weapons::weapon_take(w_current);
 		}
-		var_e1041201 = GetWeapon("elemental_bow");
-		e_who zm_weapons::weapon_give(var_e1041201, 0, 0, 1);
+		w_bow = GetWeapon("elemental_bow");
+		e_who zm_weapons::weapon_give(w_bow, 0, 0, 1);
 		e_who thread namespace_97ddfc0d::function_db92bdf2();
 		if(isdefined(e_who.var_e8e28d9e))
 		{
-			e_who SetWeaponAmmoStock(var_e1041201, e_who.var_e8e28d9e);
+			e_who SetWeaponAmmoStock(w_bow, e_who.var_e8e28d9e);
 		}
 		if(isdefined(e_who.var_8f97fa0b))
 		{
-			e_who SetWeaponAmmoClip(var_e1041201, e_who.var_8f97fa0b);
+			e_who SetWeaponAmmoClip(w_bow, e_who.var_8f97fa0b);
 		}
 		else
 		{
-			e_who SetWeaponAmmoClip(var_e1041201, var_e1041201.clipSize);
+			e_who SetWeaponAmmoClip(w_bow, w_bow.clipSize);
 		}
-		e_who SwitchToWeapon(var_e1041201);
+		e_who SwitchToWeapon(w_bow);
 		e_who thread function_fb853e2c();
 		e_who thread function_71d4f620();
 		level.var_15acc392 SetInvisibleToPlayer(e_who);
@@ -745,7 +745,7 @@ function function_26e22a99()
 */
 function function_9dfa159b()
 {
-	if(!self function_d7cc60fb() || !self function_17893c41())
+	if(!self weaponcyclingenabled() || !self offhandweaponsenabled())
 	{
 		return 1;
 	}

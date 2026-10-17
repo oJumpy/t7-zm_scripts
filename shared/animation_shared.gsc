@@ -152,19 +152,19 @@ function debug_print(str_animation, str_msg)
 		str_dvar = GetDvarString("Dev Block strings are not supported", "Dev Block strings are not supported");
 		if(str_dvar != "Dev Block strings are not supported")
 		{
-			var_a08ef19d = 0;
+			b_print = 0;
 			if(StrIsNumber(str_dvar))
 			{
 				if(Int(str_dvar) > 0)
 				{
-					var_a08ef19d = 1;
+					b_print = 1;
 				}
 			}
 			else if(IsSubStr(str_animation, str_dvar) || (isdefined(self.animName) && IsSubStr(self.animName, str_dvar)))
 			{
-				var_a08ef19d = 1;
+				b_print = 1;
 			}
-			if(var_a08ef19d)
+			if(b_print)
 			{
 				PrintTopRightln(str_animation + "Dev Block strings are not supported" + string::rfill(str_msg, 10) + "Dev Block strings are not supported" + string::rfill("Dev Block strings are not supported" + self GetEntityNumber(), 4) + "Dev Block strings are not supported" + string::rfill("Dev Block strings are not supported" + GetTime(), 6) + "Dev Block strings are not supported", (1, 1, 0), -1);
 			}
@@ -492,7 +492,7 @@ function _reach(s_tracker, animation, v_origin_or_ent, v_angles_or_tag, b_disabl
 		}
 		self thread ai::force_goal(goal, 15, 1, undefined, 0, 1);
 		/#
-			self thread function_a7d7182a();
+			self thread debug_anim_reach();
 		#/
 		self util::waittill_any("goal", "new_anim_reach", "new_scripted_anim", "stop_scripted_anim");
 		if(ai::has_behavior_attribute("disablearrivals"))
@@ -515,7 +515,7 @@ function _reach(s_tracker, animation, v_origin_or_ent, v_angles_or_tag, b_disabl
 }
 
 /*
-	Name: function_a7d7182a
+	Name: debug_anim_reach
 	Namespace: animation
 	Checksum: 0x1742E918
 	Offset: 0x1820
@@ -523,7 +523,7 @@ function _reach(s_tracker, animation, v_origin_or_ent, v_angles_or_tag, b_disabl
 	Parameters: 0
 	Flags: None
 */
-function function_a7d7182a()
+function debug_anim_reach()
 {
 	/#
 		self endon("death");

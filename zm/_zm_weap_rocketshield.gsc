@@ -537,17 +537,17 @@ function create_bottle_unitrigger(v_origin, v_angles)
 	Parameters: 1
 	Flags: None
 */
-function function_fc8bb1d(var_cde5eb87)
+function function_fc8bb1d(a_spawnpoints)
 {
 	/#
 		level notify("hash_afd0dfa9");
 		level endon("hash_afd0dfa9");
 		while(1)
 		{
-			var_228edad9 = GetDvarInt("Dev Block strings are not supported", 0);
-			if(var_228edad9 > 0)
+			n_debug = GetDvarInt("Dev Block strings are not supported", 0);
+			if(n_debug > 0)
 			{
-				foreach(spawnpoint in var_cde5eb87)
+				foreach(spawnpoint in a_spawnpoints)
 				{
 					v_color = (1, 1, 1);
 					if(isdefined(spawnpoint.spawned) && spawnpoint.spawned)
@@ -654,7 +654,7 @@ function function_3f94d6cf()
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_e2f5a93);
+		zm_devgui::add_custom_devgui_callback(&function_e2f5a93);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -706,7 +706,7 @@ function function_e2f5a93(cmd)
 }
 
 /*
-	Name: function_2449723c
+	Name: detect_reentry
 	Namespace: rocketshield
 	Checksum: 0xE6E7E36E
 	Offset: 0x2128
@@ -714,17 +714,17 @@ function function_e2f5a93(cmd)
 	Parameters: 0
 	Flags: None
 */
-function function_2449723c()
+function detect_reentry()
 {
 	/#
-		if(isdefined(self.var_9dc82bca))
+		if(isdefined(self.devgui_preserve_time))
 		{
-			if(self.var_9dc82bca == GetTime())
+			if(self.devgui_preserve_time == GetTime())
 			{
 				return 1;
 			}
 		}
-		self.var_9dc82bca = GetTime();
+		self.devgui_preserve_time = GetTime();
 		return 0;
 	#/
 }
@@ -758,7 +758,7 @@ function function_e7c51939()
 function function_3796f8bc()
 {
 	/#
-		if(self function_2449723c())
+		if(self detect_reentry())
 		{
 			return;
 		}

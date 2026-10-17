@@ -34,7 +34,7 @@
 function autoexec init()
 {
 	SetDvar("scr_zm_use_code_enemy_selection", 0);
-	level.closest_player_override = &namespace_1d57720d::function_3ff94b60;
+	level.closest_player_override = &namespace_1d57720d::remaster_closest_player;
 	level thread namespace_1d57720d::update_closest_player();
 	level.move_valid_poi_to_navmesh = 1;
 	level.pathdist_type = 2;

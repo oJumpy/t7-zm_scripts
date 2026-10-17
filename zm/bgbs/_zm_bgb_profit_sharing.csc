@@ -54,10 +54,10 @@ function __init__()
 */
 function function_df72a623(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_b84b5692 = GetLocalPlayer(localClientNum);
+	e_local_player = GetLocalPlayer(localClientNum);
 	if(newVal)
 	{
-		if(var_b84b5692 != self)
+		if(e_local_player != self)
 		{
 			if(!isdefined(self.var_3485cf73))
 			{

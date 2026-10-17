@@ -27,11 +27,11 @@
 */
 function autoexec init()
 {
-	function_66da4eb0();
+	initzmtheaterbehaviorsandasm();
 }
 
 /*
-	Name: function_66da4eb0
+	Name: initzmtheaterbehaviorsandasm
 	Namespace: namespace_1e94246a
 	Checksum: 0x7AE4CD28
 	Offset: 0x670
@@ -39,17 +39,17 @@ function autoexec init()
 	Parameters: 0
 	Flags: Private
 */
-function private function_66da4eb0()
+function private initzmtheaterbehaviorsandasm()
 {
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeAction("traverseWallCrawlAction", &function_2b4dc5b6, &function_7d285db1, undefined);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeAction("traverseWallCrawlAction", &function_2b4dc5b6, &traversewallcrawlactionupdate, undefined);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldWallTraverse", &function_61ee6c82);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldWallCrawl", &function_36178109);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("traverseWallIntro", &function_df42db1b);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("traverseWallJumpOff", &function_631f2f0e);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("quadCollisionService", &function_f2b3a201);
-	AnimationStateNetwork::RegisterAnimationMocomp("quad_wall_traversal", &function_dd3e35df, undefined, undefined);
+	AnimationStateNetwork::RegisterAnimationMocomp("quad_wall_traversal", &mocompquadwalltraversalinit, undefined, undefined);
 	AnimationStateNetwork::RegisterAnimationMocomp("quad_wall_jump_off", &function_5d8b540c, undefined, &function_18650281);
-	AnimationStateNetwork::RegisterAnimationMocomp("quad_move_strict_traversal", &function_9e9b3f8b, undefined, &function_2433815e);
+	AnimationStateNetwork::RegisterAnimationMocomp("quad_move_strict_traversal", &mocompquadmovestricttraversalinit, undefined, &mocompquadmovestricttraversalterminate);
 }
 
 /*
@@ -68,7 +68,7 @@ function function_2b4dc5b6(entity, asmStateName)
 }
 
 /*
-	Name: function_7d285db1
+	Name: traversewallcrawlactionupdate
 	Namespace: namespace_1e94246a
 	Checksum: 0xF3A23C38
 	Offset: 0x858
@@ -76,7 +76,7 @@ function function_2b4dc5b6(entity, asmStateName)
 	Parameters: 2
 	Flags: None
 */
-function function_7d285db1(entity, asmStateName)
+function traversewallcrawlactionupdate(entity, asmStateName)
 {
 	if(!function_36178109(entity))
 	{
@@ -229,7 +229,7 @@ function function_77876867()
 }
 
 /*
-	Name: function_dd3e35df
+	Name: mocompquadwalltraversalinit
 	Namespace: namespace_1e94246a
 	Checksum: 0x2B82FE84
 	Offset: 0xC90
@@ -237,7 +237,7 @@ function function_77876867()
 	Parameters: 5
 	Flags: Private
 */
-function private function_dd3e35df(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
+function private mocompquadwalltraversalinit(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
 	animDist = Abs(GetMoveDelta(mocompAnim, 0, 1)[2]);
 	self.ground_pos = bullettrace(self.var_7531a5e3.origin, self.var_7531a5e3.origin + VectorScale((0, 0, -1), 100000), 0, self)["position"];
@@ -277,7 +277,7 @@ function private function_18650281(entity, mocompAnim, mocompAnimBlendOutTime, m
 }
 
 /*
-	Name: function_9e9b3f8b
+	Name: mocompquadmovestricttraversalinit
 	Namespace: namespace_1e94246a
 	Checksum: 0xE7F116BC
 	Offset: 0xEA8
@@ -285,7 +285,7 @@ function private function_18650281(entity, mocompAnim, mocompAnimBlendOutTime, m
 	Parameters: 5
 	Flags: Private
 */
-function private function_9e9b3f8b(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
+function private mocompquadmovestricttraversalinit(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
 	/#
 		Assert(isdefined(entity.traverseStartNode));
@@ -298,7 +298,7 @@ function private function_9e9b3f8b(entity, mocompAnim, mocompAnimBlendOutTime, m
 }
 
 /*
-	Name: function_2433815e
+	Name: mocompquadmovestricttraversalterminate
 	Namespace: namespace_1e94246a
 	Checksum: 0xA7A9829B
 	Offset: 0xFC8
@@ -306,7 +306,7 @@ function private function_9e9b3f8b(entity, mocompAnim, mocompAnimBlendOutTime, m
 	Parameters: 5
 	Flags: Private
 */
-function private function_2433815e(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
+function private mocompquadmovestricttraversalterminate(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
 	entity finishtraversal();
 	entity.useGoalAnimWeight = 0;
@@ -328,7 +328,7 @@ function init_roofs()
 	level thread quad_stage_roof_break();
 	level thread quad_lobby_roof_break();
 	level thread quad_dining_roof_break();
-	level thread function_79dea782();
+	level thread quad_roof_crumblefx_10_trig_check();
 }
 
 /*
@@ -382,68 +382,68 @@ function function_b7b3e976(n_index)
 	{
 		case 0:
 		{
-			var_a58a7b24 = "fxexp_1012";
+			str_exploder_name = "fxexp_1012";
 			break;
 		}
 		case 1:
 		{
-			var_a58a7b24 = "fxexp_1007";
+			str_exploder_name = "fxexp_1007";
 			break;
 		}
 		case 2:
 		{
-			var_a58a7b24 = "fxexp_1008";
+			str_exploder_name = "fxexp_1008";
 			break;
 		}
 		case 3:
 		{
-			var_a58a7b24 = "fxexp_1009";
+			str_exploder_name = "fxexp_1009";
 			break;
 		}
 		case 4:
 		{
-			var_a58a7b24 = "fxexp_1010";
+			str_exploder_name = "fxexp_1010";
 			break;
 		}
 		case 5:
 		{
-			var_a58a7b24 = "fxexp_1003";
+			str_exploder_name = "fxexp_1003";
 			break;
 		}
 		case 6:
 		{
-			var_a58a7b24 = "fxexp_1004";
+			str_exploder_name = "fxexp_1004";
 			break;
 		}
 		case 7:
 		{
-			var_a58a7b24 = "fxexp_1001";
+			str_exploder_name = "fxexp_1001";
 			break;
 		}
 		case 8:
 		{
-			var_a58a7b24 = "fxexp_1002";
+			str_exploder_name = "fxexp_1002";
 			break;
 		}
 		case 10:
 		{
-			var_a58a7b24 = "fxexp_1006";
+			str_exploder_name = "fxexp_1006";
 			break;
 		}
 		case 12:
 		{
-			var_a58a7b24 = "fxexp_1014";
+			str_exploder_name = "fxexp_1014";
 			break;
 		}
 		case 15:
 		{
-			var_a58a7b24 = "fxexp_1011";
+			str_exploder_name = "fxexp_1011";
 			break;
 		}
 	}
-	if(isdefined(var_a58a7b24))
+	if(isdefined(str_exploder_name))
 	{
-		exploder::exploder(var_a58a7b24);
+		exploder::exploder(str_exploder_name);
 	}
 }
 
@@ -849,7 +849,7 @@ function quad_lobby_roof_break()
 */
 function quad_dining_roof_break()
 {
-	level endon("hash_e1db2a20");
+	level endon("quad_roof_crumblefx_10_triggered");
 	zone = level.zones["dining_zone"];
 	while(1)
 	{
@@ -896,7 +896,7 @@ function quad_stage_roof_break()
 	quad_stage_roof_break_single(13);
 	wait(0.35);
 	quad_stage_roof_break_single(14);
-	namespace_1d58b607::function_5af423f4();
+	namespace_1d58b607::activate_quad_spawners();
 }
 
 /*
@@ -931,7 +931,7 @@ function play_quad_start_vo()
 }
 
 /*
-	Name: function_79dea782
+	Name: quad_roof_crumblefx_10_trig_check
 	Namespace: namespace_1e94246a
 	Checksum: 0xFC971E39
 	Offset: 0x2318
@@ -939,11 +939,11 @@ function play_quad_start_vo()
 	Parameters: 0
 	Flags: None
 */
-function function_79dea782()
+function quad_roof_crumblefx_10_trig_check()
 {
 	trigger = GetEnt("quad_roof_crumble_fx_origin_10", "target");
 	trigger waittill("trigger", who);
-	level notify("hash_e1db2a20");
+	level notify("quad_roof_crumblefx_10_triggered");
 	roof_parts = GetEntArray(trigger.target, "targetname");
 	if(isdefined(roof_parts))
 	{

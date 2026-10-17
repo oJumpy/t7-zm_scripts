@@ -106,7 +106,7 @@ function function_83b9f02b()
 	Array::thread_all(GetEntArray("spider_spit_damage", "targetname"), &function_1b11ad0);
 	Array::thread_all(GetEntArray("spider_spit_damage", "targetname"), &function_9ee2204c, var_85683d05);
 	var_85683d05 function_c225d3aa();
-	var_85683d05 thread function_f0c6c167();
+	var_85683d05 thread spider_queen_killed();
 	var_85683d05 thread function_7b31e716();
 	var_85683d05 thread function_9b964659();
 	var_85683d05 thread function_e2b5f12f();
@@ -513,18 +513,18 @@ function function_e949d1d7()
 	Parameters: 1
 	Flags: None
 */
-function function_82ae321c(var_db04d156)
+function function_82ae321c(n_stage)
 {
 	/#
 		level endon("hash_9a8b82c3");
 	#/
 	level notify("hash_c69c8ddc");
-	self clientfield::set("spider_queen_stage_bleed", var_db04d156);
+	self clientfield::set("spider_queen_stage_bleed", n_stage);
 	level flag::clear("spider_queen_weak_spot_exposed");
 	if(level flag::get("spider_queen_spawn_babies"))
 	{
 		level flag::set("spider_baby_hit_react");
-		if(var_db04d156 == 2)
+		if(n_stage == 2)
 		{
 			level scene::Play("cin_t7_ai_zm_dlc2_spider_queen_baby_drop_pain_react_phase_2", self);
 		}
@@ -541,7 +541,7 @@ function function_82ae321c(var_db04d156)
 			level scene::Play("cin_t7_ai_zm_dlc2_spider_queen_backwall_outro", self);
 		}
 	}
-	else if(var_db04d156 == 2)
+	else if(n_stage == 2)
 	{
 		level scene::Play("cin_t7_ai_zm_dlc2_spider_queen_arm_attack_pain_react_phase_2", self);
 	}
@@ -553,7 +553,7 @@ function function_82ae321c(var_db04d156)
 	self thread function_9b964659();
 	self thread function_b6ea5d0d();
 	level thread scene::Play("cin_t7_ai_zm_dlc2_spider_queen_idle", self);
-	if(var_db04d156 == 2)
+	if(n_stage == 2)
 	{
 		level.var_4e5986ea = 3;
 	}
@@ -565,7 +565,7 @@ function function_82ae321c(var_db04d156)
 }
 
 /*
-	Name: function_f0c6c167
+	Name: spider_queen_killed
 	Namespace: namespace_13425205
 	Checksum: 0xF9FF3FBE
 	Offset: 0x2840
@@ -573,7 +573,7 @@ function function_82ae321c(var_db04d156)
 	Parameters: 0
 	Flags: None
 */
-function function_f0c6c167()
+function spider_queen_killed()
 {
 	level flag::wait_till("spider_queen_dead");
 	self clientfield::set("spider_queen_stage_bleed", 1);
@@ -925,7 +925,7 @@ function function_9ee2204c(var_85683d05)
 {
 	level endon("hash_2dc546da");
 	s_left = struct::get("spider_spit_org_left");
-	var_150c4640 = struct::get("spider_spit_org_center");
+	s_center = struct::get("spider_spit_org_center");
 	s_right = struct::get("spider_spit_org_right");
 	while(1)
 	{
@@ -938,7 +938,7 @@ function function_9ee2204c(var_85683d05)
 		else if(self.script_noteworthy == "center")
 		{
 			var_e70fce50 = "fxexp_711";
-			var_e066ed22 = var_150c4640;
+			var_e066ed22 = s_center;
 		}
 		else
 		{
@@ -1049,15 +1049,15 @@ function function_b6ea5d0d()
 		{
 			if(var_cc724e2d.size != 0)
 			{
-				var_54219006 = Array::random(var_cc724e2d);
-				ArrayRemoveValue(var_cc724e2d, var_54219006);
+				s_rand = Array::random(var_cc724e2d);
+				ArrayRemoveValue(var_cc724e2d, s_rand);
 			}
 			else
 			{
-				var_54219006 = Array::random(var_4e46d51e);
-				ArrayRemoveValue(var_4e46d51e, var_54219006);
+				s_rand = Array::random(var_4e46d51e);
+				ArrayRemoveValue(var_4e46d51e, s_rand);
 			}
-			var_54219006 thread function_3d4c345d();
+			s_rand thread function_3d4c345d();
 			wait(RandomFloatRange(0.5, 1));
 		}
 		var_cc724e2d = undefined;
@@ -1133,7 +1133,7 @@ function function_fb907799(n_count)
 {
 	level endon("hash_5c69a79c");
 	level endon("hash_c69c8ddc");
-	for(var_d67f0d95 = 0; var_d67f0d95 != n_count;  = 0)
+	for(n_destroyed_count = 0; n_destroyed_count != n_count;  = 0)
 	{
 		level waittill("hash_7e0a837a");
 	}
@@ -1175,11 +1175,11 @@ function function_5c69a79c(n_count)
 function function_3d4c345d()
 {
 	level endon("hash_2dc546da");
-	var_c79d3f71 = zombie_utility::spawn_zombie(level.var_c38a4fee[0], "spider_baby", self);
-	var_c79d3f71 thread function_5d1bd65f();
-	var_c79d3f71.favoriteenemy = namespace_27f8b154::get_favorite_enemy();
-	self thread namespace_27f8b154::function_49e57a3b(var_c79d3f71, self);
-	var_c79d3f71 thread function_46c109d1();
+	ai_spider = zombie_utility::spawn_zombie(level.spider_spawners[0], "spider_baby", self);
+	ai_spider thread function_5d1bd65f();
+	ai_spider.favoriteenemy = namespace_27f8b154::get_favorite_enemy();
+	self thread namespace_27f8b154::spider_spawn_fx(ai_spider, self);
+	ai_spider thread function_46c109d1();
 	playsoundatposition("zmb_foley_squeen_birth_spider", self.origin);
 	level.var_e18ab0f2++;
 }
@@ -1334,7 +1334,7 @@ function function_199d01b5()
 function function_4f46a12()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_a4e9dacc);
+		zm_devgui::add_custom_devgui_callback(&function_a4e9dacc);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -1518,7 +1518,7 @@ function function_10abb15e()
 		wait(2);
 		self upgrade_weapon();
 		wait(2);
-		self thread function_f77f0da9();
+		self thread give_player_jug();
 	#/
 }
 
@@ -1531,10 +1531,10 @@ function function_10abb15e()
 	Parameters: 1
 	Flags: None
 */
-function swap_weapon(var_9f85aad5)
+function swap_weapon(wpn_new)
 {
 	/#
-		var_913ae498 = self GetCurrentWeapon();
+		wpn_current = self GetCurrentWeapon();
 		if(!zm_utility::is_player_valid(self))
 		{
 			return;
@@ -1543,26 +1543,26 @@ function swap_weapon(var_9f85aad5)
 		{
 			return;
 		}
-		if(zm_utility::is_placeable_mine(var_913ae498) || zm_equipment::is_equipment(var_913ae498) || var_913ae498 == level.weaponNone)
+		if(zm_utility::is_placeable_mine(wpn_current) || zm_equipment::is_equipment(wpn_current) || wpn_current == level.weaponNone)
 		{
 			return;
 		}
-		if(!self HasWeapon(var_9f85aad5.rootweapon, 1))
+		if(!self HasWeapon(wpn_new.rootweapon, 1))
 		{
-			if(var_9f85aad5.type === "Dev Block strings are not supported")
+			if(wpn_new.type === "Dev Block strings are not supported")
 			{
-				self function_3420bc2f(var_9f85aad5);
+				self function_3420bc2f(wpn_new);
 			}
 			else
 			{
-				self take_old_weapon_and_give_new(var_913ae498, var_9f85aad5);
+				self take_old_weapon_and_give_new(wpn_current, wpn_new);
 			}
 		}
 		else
 		{
-			self giveMaxAmmo(var_9f85aad5);
+			self giveMaxAmmo(wpn_new);
 		}
-		self SwitchToWeaponImmediate(var_9f85aad5);
+		self SwitchToWeaponImmediate(wpn_new);
 	#/
 }
 
@@ -1598,7 +1598,7 @@ function take_old_weapon_and_give_new(current_weapon, weapon)
 	Parameters: 1
 	Flags: None
 */
-function function_3420bc2f(var_9f85aad5)
+function function_3420bc2f(wpn_new)
 {
 	/#
 		var_c5716cdc = self GetWeaponsList(1);
@@ -1610,7 +1610,7 @@ function function_3420bc2f(var_9f85aad5)
 				break;
 			}
 		}
-		var_7b9ca68 = self zm_weapons::give_build_kit_weapon(var_9f85aad5);
+		var_7b9ca68 = self zm_weapons::give_build_kit_weapon(wpn_new);
 		self GiveWeapon(var_7b9ca68);
 	#/
 }
@@ -1627,19 +1627,19 @@ function function_3420bc2f(var_9f85aad5)
 function upgrade_weapon()
 {
 	/#
-		var_1d94ca2b = self GetCurrentWeapon();
-		var_a08320d8 = self GetWeaponAmmoClip(var_1d94ca2b);
-		var_7298c138 = self GetWeaponAmmoStock(var_1d94ca2b);
-		var_19dc14f6 = zm_weapons::get_upgrade_weapon(var_1d94ca2b);
-		var_19dc14f6 = self zm_weapons::give_build_kit_weapon(var_19dc14f6);
-		self GiveStartAmmo(var_19dc14f6);
-		self SwitchToWeaponImmediate(var_19dc14f6);
-		self TakeWeapon(var_1d94ca2b, 1);
+		w_orig_weapon = self GetCurrentWeapon();
+		n_orig_clip = self GetWeaponAmmoClip(w_orig_weapon);
+		n_orig_stock = self GetWeaponAmmoStock(w_orig_weapon);
+		w_upgraded_weapon = zm_weapons::get_upgrade_weapon(w_orig_weapon);
+		w_upgraded_weapon = self zm_weapons::give_build_kit_weapon(w_upgraded_weapon);
+		self GiveStartAmmo(w_upgraded_weapon);
+		self SwitchToWeaponImmediate(w_upgraded_weapon);
+		self TakeWeapon(w_orig_weapon, 1);
 	#/
 }
 
 /*
-	Name: function_f77f0da9
+	Name: give_player_jug
 	Namespace: namespace_13425205
 	Checksum: 0x4232F756
 	Offset: 0x5288
@@ -1647,17 +1647,17 @@ function upgrade_weapon()
 	Parameters: 0
 	Flags: None
 */
-function function_f77f0da9()
+function give_player_jug()
 {
 	/#
 		self endon("disconnect");
-		var_6c9b76cd = self zm_perks::perk_give_bottle_begin("Dev Block strings are not supported");
+		e_gun = self zm_perks::perk_give_bottle_begin("Dev Block strings are not supported");
 		str_notify = self util::waittill_any_return("Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported");
 		if(str_notify == "Dev Block strings are not supported")
 		{
 			self thread zm_perks::wait_give_perk("Dev Block strings are not supported", 1);
 		}
-		self zm_perks::perk_give_bottle_end(var_6c9b76cd, "Dev Block strings are not supported");
+		self zm_perks::perk_give_bottle_end(e_gun, "Dev Block strings are not supported");
 	#/
 }
 
@@ -1745,13 +1745,13 @@ function function_25762e4()
 	if(!(isdefined(self.var_9b95533e) && self.var_9b95533e))
 	{
 		self.var_9b95533e = 1;
-		var_6c9b76cd = self zm_perks::perk_give_bottle_begin("specialty_widowswine");
+		e_gun = self zm_perks::perk_give_bottle_begin("specialty_widowswine");
 		str_notify = self util::waittill_any_return("fake_death", "death", "player_downed", "weapon_change_complete", "disconnect");
 		if(str_notify == "weapon_change_complete")
 		{
 			self thread zm_perks::wait_give_perk("specialty_widowswine", 1);
 		}
-		self zm_perks::perk_give_bottle_end(var_6c9b76cd, "specialty_widowswine");
+		self zm_perks::perk_give_bottle_end(e_gun, "specialty_widowswine");
 		wait(15);
 		self.var_9b95533e = 0;
 	}

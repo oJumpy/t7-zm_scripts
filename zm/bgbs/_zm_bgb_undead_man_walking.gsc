@@ -58,7 +58,7 @@ function enable()
 	self endon("bled_out");
 	self endon("hash_994d5e9e");
 	self thread function_40e95c74();
-	if(bgb::function_f345a8ce("zm_bgb_undead_man_walking"))
+	if(bgb::increment_ref_count("zm_bgb_undead_man_walking"))
 	{
 		return;
 	}
@@ -78,7 +78,7 @@ function enable()
 function function_40e95c74()
 {
 	self util::waittill_any("disconnect", "bled_out", "bgb_update");
-	if(bgb::function_72936116("zm_bgb_undead_man_walking"))
+	if(bgb::decrement_ref_count("zm_bgb_undead_man_walking"))
 	{
 		return;
 	}
@@ -95,11 +95,11 @@ function function_40e95c74()
 	Parameters: 1
 	Flags: None
 */
-function function_b41dc007(var_1d00995b)
+function function_b41dc007(b_walk)
 {
-	if(!isdefined(var_1d00995b))
+	if(!isdefined(b_walk))
 	{
-		var_1d00995b = 1;
+		b_walk = 1;
 	}
 	a_ai = GetAIArray();
 	for(i = 0; i < a_ai.size; i++)
@@ -115,7 +115,7 @@ function function_b41dc007(var_1d00995b)
 		}
 		if(var_3812f8bd)
 		{
-			if(var_1d00995b)
+			if(b_walk)
 			{
 				a_ai[i] zombie_utility::set_zombie_run_cycle_override_value("walk");
 				continue;

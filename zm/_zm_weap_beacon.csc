@@ -16,21 +16,21 @@
 */
 function init()
 {
-	level.var_25ef5fab = GetWeapon("beacon");
-	level.var_67735adb = "wpn_t7_zmb_hd_g_strike_world";
+	level.w_beacon = GetWeapon("beacon");
+	level.beacon_model = "wpn_t7_zmb_hd_g_strike_world";
 	level._effect["beacon_glow"] = "dlc5/tomb/fx_tomb_beacon_glow";
 	level._effect["beacon_launch_fx"] = "dlc5/tomb/fx_tomb_beacon_launch";
 	level._effect["beacon_shell_explosion"] = "dlc5/tomb/fx_tomb_beacon_exp";
 	level._effect["beacon_shell_trail"] = "dlc5/tomb/fx_tomb_beacon_trail";
-	clientfield::register("world", "play_launch_artillery_fx_robot_0", 21000, 1, "int", &function_59491961, 0, 0);
-	clientfield::register("world", "play_launch_artillery_fx_robot_1", 21000, 1, "int", &function_59491961, 0, 0);
-	clientfield::register("world", "play_launch_artillery_fx_robot_2", 21000, 1, "int", &function_59491961, 0, 0);
-	clientfield::register("scriptmover", "play_beacon_fx", 21000, 1, "int", &function_dc4ed336, 0, 0);
+	clientfield::register("world", "play_launch_artillery_fx_robot_0", 21000, 1, "int", &play_artillery_fx, 0, 0);
+	clientfield::register("world", "play_launch_artillery_fx_robot_1", 21000, 1, "int", &play_artillery_fx, 0, 0);
+	clientfield::register("world", "play_launch_artillery_fx_robot_2", 21000, 1, "int", &play_artillery_fx, 0, 0);
+	clientfield::register("scriptmover", "play_beacon_fx", 21000, 1, "int", &play_beacon_glow, 0, 0);
 	clientfield::register("scriptmover", "play_artillery_barrage", 21000, 2, "int", &function_1e3322d1, 0, 0);
 }
 
 /*
-	Name: function_59491961
+	Name: play_artillery_fx
 	Namespace: _zm_weap_beacon
 	Checksum: 0x2310849F
 	Offset: 0x568
@@ -38,29 +38,29 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_59491961(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function play_artillery_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(IsSubStr(fieldName, 0))
 	{
-		var_f6c5842 = level.a_giant_robots[localClientNum][0];
+		ai_robot = level.a_giant_robots[localClientNum][0];
 	}
 	else if(IsSubStr(fieldName, 1))
 	{
-		var_f6c5842 = level.a_giant_robots[localClientNum][1];
+		ai_robot = level.a_giant_robots[localClientNum][1];
 	}
 	else
 	{
-		var_f6c5842 = level.a_giant_robots[localClientNum][2];
+		ai_robot = level.a_giant_robots[localClientNum][2];
 	}
 	if(newVal == 1)
 	{
-		playFX(localClientNum, level._effect["beacon_launch_fx"], var_f6c5842 GetTagOrigin("tag_rocketpod"));
-		level thread function_d391c94e(var_f6c5842 GetTagOrigin("tag_rocketpod"));
+		playFX(localClientNum, level._effect["beacon_launch_fx"], ai_robot GetTagOrigin("tag_rocketpod"));
+		level thread sndfakelaunchaudio(ai_robot GetTagOrigin("tag_rocketpod"));
 	}
 }
 
 /*
-	Name: function_d391c94e
+	Name: sndfakelaunchaudio
 	Namespace: _zm_weap_beacon
 	Checksum: 0xAC61E5EF
 	Offset: 0x6C8
@@ -68,7 +68,7 @@ function function_59491961(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_d391c94e(origin)
+function sndfakelaunchaudio(origin)
 {
 	playsound(0, "zmb_homingbeacon_missiile_alarm", origin);
 	for(i = 0; i < 5; i++)
@@ -79,7 +79,7 @@ function function_d391c94e(origin)
 }
 
 /*
-	Name: function_dc4ed336
+	Name: play_beacon_glow
 	Namespace: _zm_weap_beacon
 	Checksum: 0x59668049
 	Offset: 0x750
@@ -87,9 +87,9 @@ function function_d391c94e(origin)
 	Parameters: 7
 	Flags: None
 */
-function function_dc4ed336(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function play_beacon_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	self endon("hash_962e0148");
+	self endon("weapon_beacon_destroyed");
 	while(isdefined(self))
 	{
 		playsound(0, "evt_beacon_beep", self.origin);
@@ -151,21 +151,21 @@ function function_1e3322d1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			self.a_v_start_offsets[localClientNum] = self build_weap_beacon_start_offsets_ee();
 		}
 	}
-	if(!isdefined(self.var_f510f618))
+	if(!isdefined(self.num_rockets_fired))
 	{
-		self.var_f510f618 = [];
+		self.num_rockets_fired = [];
 	}
-	if(!isdefined(self.var_f510f618[localClientNum]))
+	if(!isdefined(self.num_rockets_fired[localClientNum]))
 	{
-		self.var_f510f618[localClientNum] = 0;
+		self.num_rockets_fired[localClientNum] = 0;
 	}
-	n_index = self.var_f510f618[localClientNum];
+	n_index = self.num_rockets_fired[localClientNum];
 	v_start = self.origin + self.a_v_start_offsets[localClientNum][n_index];
 	shell = spawn(localClientNum, v_start, "script_model");
 	shell.angles = VectorScale((-1, 0, 0), 90);
 	shell SetModel("tag_origin");
-	shell thread function_3700164e(self, n_index, v_start, localClientNum);
-	self.var_f510f618[localClientNum]++;
+	shell thread shell_logic(self, n_index, v_start, localClientNum);
+	self.num_rockets_fired[localClientNum]++;
 }
 
 /*
@@ -269,7 +269,7 @@ function build_weap_beacon_start_offsets_ee()
 }
 
 /*
-	Name: function_3700164e
+	Name: shell_logic
 	Namespace: _zm_weap_beacon
 	Checksum: 0xA062F7EA
 	Offset: 0xF28
@@ -277,20 +277,20 @@ function build_weap_beacon_start_offsets_ee()
 	Parameters: 4
 	Flags: None
 */
-function function_3700164e(model, index, v_start, localClientNum)
+function shell_logic(model, index, v_start, localClientNum)
 {
-	var_89ea469b = model.origin + model.a_v_land_offsets[localClientNum][index];
+	v_land = model.origin + model.a_v_land_offsets[localClientNum][index];
 	v_start_trace = v_start - VectorScale((0, 0, 1), 5000);
-	trace = bullettrace(v_start_trace, var_89ea469b, 0, undefined);
-	var_89ea469b = trace["position"];
-	self moveto(var_89ea469b, 3);
+	trace = bullettrace(v_start_trace, v_land, 0, undefined);
+	v_land = trace["position"];
+	self moveto(v_land, 3);
 	PlayFXOnTag(localClientNum, level._effect["beacon_shell_trail"], self, "tag_origin");
 	self playsound(0, "zmb_homingbeacon_missile_boom");
-	self thread function_42cb41ec(var_89ea469b);
+	self thread sndplayincoming(v_land);
 	self waittill("movedone");
 	if(index == 1)
 	{
-		model notify("hash_962e0148");
+		model notify("weapon_beacon_destroyed");
 	}
 	playFX(localClientNum, level._effect["beacon_shell_explosion"], self.origin);
 	playsound(0, "wpn_rocket_explode", self.origin);
@@ -298,7 +298,7 @@ function function_3700164e(model, index, v_start, localClientNum)
 }
 
 /*
-	Name: function_42cb41ec
+	Name: sndplayincoming
 	Namespace: _zm_weap_beacon
 	Checksum: 0xC674DA7
 	Offset: 0x1108
@@ -306,7 +306,7 @@ function function_3700164e(model, index, v_start, localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_42cb41ec(origin)
+function sndplayincoming(origin)
 {
 	wait(2);
 	playsound(0, "zmb_homingbeacon_missile_incoming", origin);

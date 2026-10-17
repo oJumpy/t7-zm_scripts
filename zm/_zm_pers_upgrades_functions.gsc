@@ -1163,9 +1163,9 @@ function pers_treasure_chest_choosespecialweapon(player)
 		}
 		keys = Array::randomize(level.pers_box_weapons);
 		/#
-			var_397dd859 = GetDvarString("Dev Block strings are not supported");
-			forced_weapon = GetWeapon(var_397dd859);
-			if(var_397dd859 != "Dev Block strings are not supported" && isdefined(level.zombie_weapons[GetWeapon(forced_weapon)]))
+			forced_weapon_name = GetDvarString("Dev Block strings are not supported");
+			forced_weapon = GetWeapon(forced_weapon_name);
+			if(forced_weapon_name != "Dev Block strings are not supported" && isdefined(level.zombie_weapons[GetWeapon(forced_weapon)]))
 			{
 				ArrayInsert(keys, forced_weapon, 0);
 			}
@@ -1417,15 +1417,15 @@ function pers_nube_weapon_ammo_check(player, weapon)
 		{
 			if(isdefined(player.pers_upgrades_awarded["nube"]) && player.pers_upgrades_awarded["nube"])
 			{
-				var_1fc5e233 = GetWeapon("ray_gun");
-				if(player HasWeapon(var_1fc5e233))
+				ray_gun_weapon = GetWeapon("ray_gun");
+				if(player HasWeapon(ray_gun_weapon))
 				{
-					weapon = GetWeapon(var_1fc5e233);
+					weapon = GetWeapon(ray_gun_weapon);
 				}
-				var_fd2f2ee6 = GetWeapon("ray_gun_upgraded");
-				if(player HasWeapon(var_fd2f2ee6))
+				ray_gun_upgraded_weapon = GetWeapon("ray_gun_upgraded");
+				if(player HasWeapon(ray_gun_upgraded_weapon))
 				{
-					weapon = GetWeapon(var_fd2f2ee6);
+					weapon = GetWeapon(ray_gun_upgraded_weapon);
 				}
 			}
 		}
@@ -1456,12 +1456,12 @@ function pers_nube_should_we_give_raygun(player_has_weapon, player, weapon_buy)
 	{
 		return player_has_weapon;
 	}
-	var_bf2681a = GetWeapon("rottweil72");
-	if(weapon_buy != var_bf2681a)
+	rottweil_weapon = GetWeapon("rottweil72");
+	if(weapon_buy != rottweil_weapon)
 	{
 		return player_has_weapon;
 	}
-	player_has_olympia = player HasWeapon(var_bf2681a) || player HasWeapon(GetWeapon("rottweil72_upgraded"));
+	player_has_olympia = player HasWeapon(rottweil_weapon) || player HasWeapon(GetWeapon("rottweil72_upgraded"));
 	player_has_raygun = player HasWeapon(GetWeapon("ray_gun")) || player HasWeapon(GetWeapon("ray_gun_upgraded"));
 	if(player_has_olympia && player_has_raygun)
 	{

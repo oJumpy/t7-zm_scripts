@@ -38,17 +38,17 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_burned_out", "event");
-	clientfield::register("toplayer", "zm_bgb_burned_out" + "_1p" + "toplayer", 1, 1, "counter", &function_9c2ec371, 0, 0);
-	clientfield::register("allplayers", "zm_bgb_burned_out" + "_3p" + "_allplayers", 1, 1, "counter", &function_c8cfe3c0, 0, 0);
-	clientfield::register("actor", "zm_bgb_burned_out" + "_fire_torso" + "_actor", 1, 1, "counter", &function_34caa903, 0, 0);
-	clientfield::register("vehicle", "zm_bgb_burned_out" + "_fire_torso" + "_vehicle", 1, 1, "counter", &function_69abda16, 0, 0);
+	clientfield::register("toplayer", "zm_bgb_burned_out" + "_1p" + "toplayer", 1, 1, "counter", &zm_bgb_burned_out_1p_toplayer_cb, 0, 0);
+	clientfield::register("allplayers", "zm_bgb_burned_out" + "_3p" + "_allplayers", 1, 1, "counter", &zm_bgb_burned_out_3p_allplayers_cb, 0, 0);
+	clientfield::register("actor", "zm_bgb_burned_out" + "_fire_torso" + "_actor", 1, 1, "counter", &zm_bgb_burned_out_fire_torso_actor_cb, 0, 0);
+	clientfield::register("vehicle", "zm_bgb_burned_out" + "_fire_torso" + "_vehicle", 1, 1, "counter", &zm_bgb_burned_out_fire_torso_vehicle_cb, 0, 0);
 	level._effect["zm_bgb_burned_out" + "_1p"] = "zombie/fx_bgb_burned_out_1p_zmb";
 	level._effect["zm_bgb_burned_out" + "_3p"] = "zombie/fx_bgb_burned_out_3p_zmb";
 	level._effect["zm_bgb_burned_out" + "_fire_torso"] = "zombie/fx_bgb_burned_out_fire_torso_zmb";
 }
 
 /*
-	Name: function_9c2ec371
+	Name: zm_bgb_burned_out_1p_toplayer_cb
 	Namespace: namespace_403823cc
 	Checksum: 0xCD973B6D
 	Offset: 0x498
@@ -56,7 +56,7 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_9c2ec371(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zm_bgb_burned_out_1p_toplayer_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!IsThirdPerson(localClientNum))
 	{
@@ -65,7 +65,7 @@ function function_9c2ec371(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c8cfe3c0
+	Name: zm_bgb_burned_out_3p_allplayers_cb
 	Namespace: namespace_403823cc
 	Checksum: 0xBCAB3E15
 	Offset: 0x530
@@ -73,7 +73,7 @@ function function_9c2ec371(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_c8cfe3c0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zm_bgb_burned_out_3p_allplayers_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!self isLocalPlayer() || self getlocalclientnumber() != localClientNum || IsThirdPerson(localClientNum))
 	{
@@ -82,7 +82,7 @@ function function_c8cfe3c0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_34caa903
+	Name: zm_bgb_burned_out_fire_torso_actor_cb
 	Namespace: namespace_403823cc
 	Checksum: 0x9AEB5676
 	Offset: 0x600
@@ -90,18 +90,18 @@ function function_c8cfe3c0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_34caa903(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zm_bgb_burned_out_fire_torso_actor_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_68b2c2e8 = "j_spinelower";
-	if(isdefined(self GetTagOrigin(var_68b2c2e8)))
+	fire_torso_tag = "j_spinelower";
+	if(isdefined(self GetTagOrigin(fire_torso_tag)))
 	{
-		var_68b2c2e8 = "tag_origin";
+		fire_torso_tag = "tag_origin";
 	}
-	PlayFXOnTag(localClientNum, level._effect["zm_bgb_burned_out" + "_fire_torso"], self, var_68b2c2e8);
+	PlayFXOnTag(localClientNum, level._effect["zm_bgb_burned_out" + "_fire_torso"], self, fire_torso_tag);
 }
 
 /*
-	Name: function_69abda16
+	Name: zm_bgb_burned_out_fire_torso_vehicle_cb
 	Namespace: namespace_403823cc
 	Checksum: 0xEF5091D4
 	Offset: 0x6C0
@@ -109,13 +109,13 @@ function function_34caa903(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_69abda16(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zm_bgb_burned_out_fire_torso_vehicle_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_68b2c2e8 = "tag_body";
-	if(isdefined(self GetTagOrigin(var_68b2c2e8)))
+	fire_torso_tag = "tag_body";
+	if(isdefined(self GetTagOrigin(fire_torso_tag)))
 	{
-		var_68b2c2e8 = "tag_origin";
+		fire_torso_tag = "tag_origin";
 	}
-	PlayFXOnTag(localClientNum, level._effect["zm_bgb_burned_out" + "_fire_torso"], self, var_68b2c2e8);
+	PlayFXOnTag(localClientNum, level._effect["zm_bgb_burned_out" + "_fire_torso"], self, fire_torso_tag);
 }
 

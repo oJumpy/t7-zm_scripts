@@ -73,15 +73,15 @@ function __init__()
 function warlordDamageStateHandler(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
 {
 	entity = self;
-	if(isdefined(entity.var_4154355f))
+	if(isdefined(entity.damagestatefx))
 	{
-		stopfx(localClientNum, entity.var_4154355f);
-		entity.var_4154355f = undefined;
+		stopfx(localClientNum, entity.damagestatefx);
+		entity.damagestatefx = undefined;
 	}
-	if(isdefined(entity.var_c57c11b8))
+	if(isdefined(entity.damageheavystatefx))
 	{
-		stopfx(localClientNum, entity.var_c57c11b8);
-		entity.var_c57c11b8 = undefined;
+		stopfx(localClientNum, entity.damageheavystatefx);
+		entity.damageheavystatefx = undefined;
 	}
 	switch(newValue)
 	{
@@ -91,12 +91,12 @@ function warlordDamageStateHandler(localClientNum, oldValue, newValue, bNewEnt, 
 		}
 		case 2:
 		{
-			entity.var_c57c11b8 = PlayFXOnTag(localClientNum, level._effect["fx_elec_warlord_damage_2"], entity, "j_spine4");
+			entity.damageheavystatefx = PlayFXOnTag(localClientNum, level._effect["fx_elec_warlord_damage_2"], entity, "j_spine4");
 			PlayFXOnTag(localClientNum, level._effect["fx_elec_warlord_lower_damage_2"], entity, "j_mainroot");
 		}
 		case 1:
 		{
-			entity.var_4154355f = PlayFXOnTag(localClientNum, level._effect["fx_elec_warlord_damage_1"], entity, "j_spine4");
+			entity.damagestatefx = PlayFXOnTag(localClientNum, level._effect["fx_elec_warlord_damage_1"], entity, "j_spine4");
 			PlayFXOnTag(localClientNum, level._effect["fx_elec_warlord_lower_damage_1"], entity, "j_mainroot");
 			break;
 		}
@@ -120,7 +120,7 @@ function warlordDamageStateHandler(localClientNum, oldValue, newValue, bNewEnt, 
 function warlordTypeHandler(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
 {
 	entity = self;
-	entity.var_e69b4288 = newValue;
+	entity.warlordtype = newValue;
 }
 
 /*
@@ -135,17 +135,17 @@ function warlordTypeHandler(localClientNum, oldValue, newValue, bNewEnt, bInitia
 function warlordThrusterHandler(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
 {
 	entity = self;
-	if(isdefined(entity.var_a8d008e0))
+	if(isdefined(entity.thrusterfx))
 	{
 		/#
-			Assert(IsArray(entity.var_a8d008e0));
+			Assert(IsArray(entity.thrusterfx));
 		#/
-		for(index = 0; index < entity.var_a8d008e0.size; index++)
+		for(index = 0; index < entity.thrusterfx.size; index++)
 		{
-			stopfx(localClientNum, entity.var_a8d008e0[index]);
+			stopfx(localClientNum, entity.thrusterfx[index]);
 		}
 	}
-	entity.var_a8d008e0 = [];
+	entity.thrusterfx = [];
 	tags = [];
 	switch(newValue)
 	{
@@ -176,7 +176,7 @@ function warlordThrusterHandler(localClientNum, oldValue, newValue, bNewEnt, bIn
 	}
 	for(index = 0; index < tags.size; index++)
 	{
-		entity.var_a8d008e0[entity.var_a8d008e0.size] = PlayFXOnTag(localClientNum, level._effect["fx_exhaust_jetpack_warlord_juke"], entity, tags[index]);
+		entity.thrusterfx[entity.thrusterfx.size] = PlayFXOnTag(localClientNum, level._effect["fx_exhaust_jetpack_warlord_juke"], entity, tags[index]);
 	}
 }
 

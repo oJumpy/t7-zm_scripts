@@ -12,7 +12,7 @@
 #namespace cContainer;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: cContainer
 	Checksum: 0x99EC1590
 	Offset: 0x2D0
@@ -20,12 +20,12 @@
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: cContainer
 	Checksum: 0x99EC1590
 	Offset: 0x2E0
@@ -33,7 +33,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -71,8 +71,8 @@ function private autoexec cContainer()
 {
 	classes.cContainer[0] = spawnstruct();
 	classes.cContainer[0].__vtable[-1234449151] = &cContainer::init_xmodel;
-	classes.cContainer[0].__vtable[1606033458] = &cContainer::function_5fba2032;
-	classes.cContainer[0].__vtable[-1690805083] = &cContainer::function_9b385ca5;
+	classes.cContainer[0].__vtable[1606033458] = &cContainer::__destructor;
+	classes.cContainer[0].__vtable[-1690805083] = &cContainer::__constructor;
 }
 
 /*
@@ -141,7 +141,7 @@ function init()
 */
 function setup_container_scriptbundle(s_bundle, s_container_instance)
 {
-	function_9b385ca5();
+	__constructor();
 	c_container = cContainer;
 	c_container.m_s_container_bundle = s_bundle;
 	c_container.m_s_fxanim_bundle = struct::get_script_bundle("scene", s_bundle.TheEffectBundle);

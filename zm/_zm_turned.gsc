@@ -28,8 +28,8 @@ function init()
 	dvar = GetDvarString("ui_gametype");
 	if(dvar == "zcleansed")
 	{
-		level.var_c20c02c0 = GetWeapon("zombiemelee");
-		level.var_eef57dd3 = GetWeapon("zombiemelee_dw");
+		level.weaponzmturnedmelee = GetWeapon("zombiemelee");
+		level.weaponzmturnedmeleedw = GetWeapon("zombiemelee_dw");
 		if(!isdefined(level.vsmgr_prio_visionset_zombie_turned))
 		{
 			level.vsmgr_prio_visionset_zombie_turned = 123;
@@ -324,22 +324,22 @@ function deleteZombiesInRadius(origin)
 function turned_give_melee_weapon()
 {
 	/#
-		Assert(isdefined(self.var_c20c02c0));
+		Assert(isdefined(self.weaponzmturnedmelee));
 	#/
 	/#
-		Assert(self.var_c20c02c0 != level.weaponNone);
+		Assert(self.weaponzmturnedmelee != level.weaponNone);
 	#/
 	self.turned_had_knife = self HasWeapon(level.weaponBaseMelee);
 	if(isdefined(self.turned_had_knife) && self.turned_had_knife)
 	{
 		self TakeWeapon(level.weaponBaseMelee);
 	}
-	self GiveWeapon(self.var_eef57dd3);
-	self giveMaxAmmo(self.var_eef57dd3);
-	self GiveWeapon(self.var_c20c02c0);
-	self giveMaxAmmo(self.var_c20c02c0);
-	self SwitchToWeapon(self.var_eef57dd3);
-	self SwitchToWeapon(self.var_c20c02c0);
+	self GiveWeapon(self.weaponzmturnedmeleedw);
+	self giveMaxAmmo(self.weaponzmturnedmeleedw);
+	self GiveWeapon(self.weaponzmturnedmelee);
+	self giveMaxAmmo(self.weaponzmturnedmelee);
+	self SwitchToWeapon(self.weaponzmturnedmeleedw);
+	self SwitchToWeapon(self.weaponzmturnedmelee);
 }
 
 /*
@@ -409,13 +409,13 @@ function turned_disable_player_weapons()
 	self SetLastStandPrevWeap(self.lastActiveWeapon);
 	self.laststandpistol = undefined;
 	self.hadpistol = 0;
-	if(!isdefined(self.var_c20c02c0))
+	if(!isdefined(self.weaponzmturnedmelee))
 	{
-		self.var_c20c02c0 = level.var_c20c02c0;
+		self.weaponzmturnedmelee = level.weaponzmturnedmelee;
 	}
-	if(!isdefined(self.var_eef57dd3))
+	if(!isdefined(self.weaponzmturnedmeleedw))
 	{
-		self.var_eef57dd3 = level.var_eef57dd3;
+		self.weaponzmturnedmeleedw = level.weaponzmturnedmeleedw;
 	}
 	self TakeAllWeapons();
 	self DisableWeaponCycling();
@@ -436,16 +436,16 @@ function turned_enable_player_weapons()
 	self EnableWeaponCycling();
 	self EnableOffhandWeapons();
 	self.turned_had_knife = undefined;
-	var_bf2681a = GetWeapon("rottweil72");
+	rottweil_weapon = GetWeapon("rottweil72");
 	if(isdefined(level.humanify_custom_loadout))
 	{
 		self thread [[level.humanify_custom_loadout]]();
 		return;
 	}
-	else if(!self HasWeapon(var_bf2681a))
+	else if(!self HasWeapon(rottweil_weapon))
 	{
-		self GiveWeapon(var_bf2681a);
-		self SwitchToWeapon(var_bf2681a);
+		self GiveWeapon(rottweil_weapon);
+		self SwitchToWeapon(rottweil_weapon);
 	}
 	if(!isdefined(self.is_zombie) && self.is_zombie && !self HasWeapon(level.start_weapon))
 	{
@@ -455,10 +455,10 @@ function turned_enable_player_weapons()
 		}
 		self zm_utility::give_start_weapon(0);
 	}
-	if(self HasWeapon(var_bf2681a))
+	if(self HasWeapon(rottweil_weapon))
 	{
-		self SetWeaponAmmoClip(var_bf2681a, 2);
-		self SetWeaponAmmoStock(var_bf2681a, 0);
+		self SetWeaponAmmoClip(rottweil_weapon, 2);
+		self SetWeaponAmmoStock(rottweil_weapon, 0);
 	}
 	if(self HasWeapon(level.start_weapon))
 	{

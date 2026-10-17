@@ -221,11 +221,11 @@ function setup_prop_anims()
 function play_fx_prop_anims()
 {
 	var_56728a17 = struct::get_array("fxanim_chamber_rocks", "targetname");
-	Array::thread_all(var_56728a17, &function_1c1d65fb);
+	Array::thread_all(var_56728a17, &chamber_rocks_think);
 }
 
 /*
-	Name: function_1c1d65fb
+	Name: chamber_rocks_think
 	Namespace: zm_tomb_fx
 	Checksum: 0xC466133C
 	Offset: 0x2CF8
@@ -233,7 +233,7 @@ function play_fx_prop_anims()
 	Parameters: 0
 	Flags: None
 */
-function function_1c1d65fb()
+function chamber_rocks_think()
 {
 	self endon("delete");
 	scene::add_scene_func(self.scriptbundlename, &function_b9b12551, "done");
@@ -275,19 +275,19 @@ function trap_fx_monitor(str_name, str_side)
 	while(1)
 	{
 		level waittill(str_name);
-		var_276d0f92 = struct::get_array(str_name, "targetname");
-		for(i = 0; i < var_276d0f92.size; i++)
+		a_trap_points = struct::get_array(str_name, "targetname");
+		for(i = 0; i < a_trap_points.size; i++)
 		{
 			if(str_name == "flame_trap")
 			{
-				var_276d0f92[i] thread function_ea3d061(str_name, str_side);
+				a_trap_points[i] thread flame_trap_fx(str_name, str_side);
 			}
 		}
 	}
 }
 
 /*
-	Name: function_ea3d061
+	Name: flame_trap_fx
 	Namespace: zm_tomb_fx
 	Checksum: 0x8654C2A5
 	Offset: 0x2EE0
@@ -295,47 +295,47 @@ function trap_fx_monitor(str_name, str_side)
 	Parameters: 2
 	Flags: None
 */
-function function_ea3d061(str_name, str_side)
+function flame_trap_fx(str_name, str_side)
 {
-	var_498b0d1c = self.angles;
-	vec_forward = AnglesToForward(var_498b0d1c);
-	if(isdefined(self.var_6d5392e9))
+	vec_ang = self.angles;
+	vec_forward = AnglesToForward(vec_ang);
+	if(isdefined(self.a_loopfx))
 	{
-		for(i = 0; i < self.var_6d5392e9.size; i++)
+		for(i = 0; i < self.a_loopfx.size; i++)
 		{
-			stopfx(i, self.var_6d5392e9[i]);
+			stopfx(i, self.a_loopfx[i]);
 		}
-		self.var_6d5392e9 = [];
+		self.a_loopfx = [];
 	}
-	if(!isdefined(self.var_6d5392e9))
+	if(!isdefined(self.a_loopfx))
 	{
-		self.var_6d5392e9 = [];
+		self.a_loopfx = [];
 	}
 	a_players = GetLocalPlayers();
 	for(i = 0; i < a_players.size; i++)
 	{
-		self.var_6d5392e9[i] = playFX(i, level._effect["flame_trap_start"], self.origin, vec_forward);
+		self.a_loopfx[i] = playFX(i, level._effect["flame_trap_start"], self.origin, vec_forward);
 		wait(1);
-		level.var_d9c7b303 = 1;
-		level thread function_b8462abd();
-		while(level.var_d9c7b303)
+		level.b_play_fire_loop_fx = 1;
+		level thread monitor_fire_loop();
+		while(level.b_play_fire_loop_fx)
 		{
-			self.var_6d5392e9[i] = playFX(i, level._effect["flame_trap_loop"], self.origin, vec_forward);
+			self.a_loopfx[i] = playFX(i, level._effect["flame_trap_loop"], self.origin, vec_forward);
 			wait(1);
 		}
-		self.var_6d5392e9[i] = playFX(i, level._effect["flame_trap_start"], self.origin, vec_forward);
+		self.a_loopfx[i] = playFX(i, level._effect["flame_trap_start"], self.origin, vec_forward);
 		wait(1);
 	}
 	level waittill(str_side + "off");
-	for(i = 0; i < self.var_6d5392e9.size; i++)
+	for(i = 0; i < self.a_loopfx.size; i++)
 	{
-		stopfx(i, self.var_6d5392e9[i]);
+		stopfx(i, self.a_loopfx[i]);
 	}
-	self.var_6d5392e9 = [];
+	self.a_loopfx = [];
 }
 
 /*
-	Name: function_b8462abd
+	Name: monitor_fire_loop
 	Namespace: zm_tomb_fx
 	Checksum: 0xA91DAD0F
 	Offset: 0x3168
@@ -343,9 +343,9 @@ function function_ea3d061(str_name, str_side)
 	Parameters: 0
 	Flags: None
 */
-function function_b8462abd()
+function monitor_fire_loop()
 {
 	wait(25);
-	level.var_d9c7b303 = 0;
+	level.b_play_fire_loop_fx = 0;
 }
 

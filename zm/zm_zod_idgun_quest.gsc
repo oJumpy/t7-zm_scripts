@@ -64,8 +64,8 @@ function __init__()
 		level flag::init("idgun_cocoon_" + i + "_found");
 	}
 	/#
-		level thread function_1c946455();
-		level thread function_e4e5cd30();
+		level thread idgun_devgui();
+		level thread idgun_quest_devgui();
 	#/
 }
 
@@ -80,22 +80,22 @@ function __init__()
 */
 function __main__()
 {
-	var_fd261f68 = Array("idgun_0", "idgun_1", "idgun_2", "idgun_3");
-	level function_436486f7();
-	zm_spawner::register_zombie_death_event_callback(&function_101cc4e2);
+	a_str_idgun_wpnnames = Array("idgun_0", "idgun_1", "idgun_2", "idgun_3");
+	level construct_idgun_weapon_array();
+	zm_spawner::register_zombie_death_event_callback(&idgun_zombie_death_watch);
 	for(i = 0; i < 2; i++)
 	{
 		level.idgun[i] = spawnstruct();
 		level.idgun[i].kill_count = 0;
-		level.idgun[i].var_356fbd8b = i;
-		var_fd261f68 = Array::randomize(var_fd261f68);
-		level.idgun[i].var_e4be281f = Array::pop_front(var_fd261f68);
-		zm_weapons::add_limited_weapon(level.idgun[i].var_e4be281f, 1);
+		level.idgun[i].n_gun_index = i;
+		a_str_idgun_wpnnames = Array::randomize(a_str_idgun_wpnnames);
+		level.idgun[i].str_wpnname = Array::pop_front(a_str_idgun_wpnnames);
+		zm_weapons::add_limited_weapon(level.idgun[i].str_wpnname, 1);
 		for(j = 0; j < level.idgun_weapons.size; j++)
 		{
-			if(level.idgun[i].var_e4be281f == level.idgun_weapons[j].name)
+			if(level.idgun[i].str_wpnname == level.idgun_weapons[j].name)
 			{
-				level.idgun[i].var_e787e99a = j;
+				level.idgun[i].n_gun_id = j;
 				break;
 			}
 		}
@@ -104,7 +104,7 @@ function __main__()
 }
 
 /*
-	Name: function_e1efbc50
+	Name: add_idgun
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0x8B83F51F
 	Offset: 0x990
@@ -112,9 +112,9 @@ function __main__()
 	Parameters: 1
 	Flags: None
 */
-function function_e1efbc50(var_9727e47e)
+function add_idgun(w_idgun)
 {
-	if(var_9727e47e != level.weaponNone)
+	if(w_idgun != level.weaponNone)
 	{
 		if(!isdefined(level.idgun_weapons))
 		{
@@ -124,12 +124,12 @@ function function_e1efbc50(var_9727e47e)
 		{
 			level.idgun_weapons = Array(level.idgun_weapons);
 		}
-		level.idgun_weapons[level.idgun_weapons.size] = var_9727e47e;
+		level.idgun_weapons[level.idgun_weapons.size] = w_idgun;
 	}
 }
 
 /*
-	Name: function_436486f7
+	Name: construct_idgun_weapon_array
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0x283CFE5B
 	Offset: 0xA28
@@ -137,17 +137,17 @@ function function_e1efbc50(var_9727e47e)
 	Parameters: 0
 	Flags: None
 */
-function function_436486f7()
+function construct_idgun_weapon_array()
 {
 	level.idgun_weapons = [];
-	function_e1efbc50(GetWeapon("idgun_0"));
-	function_e1efbc50(GetWeapon("idgun_1"));
-	function_e1efbc50(GetWeapon("idgun_2"));
-	function_e1efbc50(GetWeapon("idgun_3"));
-	function_e1efbc50(GetWeapon("idgun_upgraded_0"));
-	function_e1efbc50(GetWeapon("idgun_upgraded_1"));
-	function_e1efbc50(GetWeapon("idgun_upgraded_2"));
-	function_e1efbc50(GetWeapon("idgun_upgraded_3"));
+	add_idgun(GetWeapon("idgun_0"));
+	add_idgun(GetWeapon("idgun_1"));
+	add_idgun(GetWeapon("idgun_2"));
+	add_idgun(GetWeapon("idgun_3"));
+	add_idgun(GetWeapon("idgun_upgraded_0"));
+	add_idgun(GetWeapon("idgun_upgraded_1"));
+	add_idgun(GetWeapon("idgun_upgraded_2"));
+	add_idgun(GetWeapon("idgun_upgraded_3"));
 }
 
 /*
@@ -219,13 +219,13 @@ function function_14e2eca6(params)
 	var_dcaa8f8e = (var_72cd7c0a[0], var_72cd7c0a[1], 0);
 	if(var_ca79e2ce == var_dcaa8f8e)
 	{
-		function_f5469e1(var_72cd7c0a, "part_xenomatter");
+		special_craftable_spawn(var_72cd7c0a, "part_xenomatter");
 	}
 	if(!level flag::get("part_xenomatter" + "_found"))
 	{
-		var_71e3d70a = level zm_craftables::get_craftable_piece_model("idgun", "part_xenomatter");
+		mdl_part = level zm_craftables::get_craftable_piece_model("idgun", "part_xenomatter");
 		var_55d0f940 = struct::get("safe_place_for_items", "targetname");
-		var_71e3d70a.origin = var_55d0f940.origin;
+		mdl_part.origin = var_55d0f940.origin;
 		level.var_689ff92e = 0;
 	}
 }
@@ -274,12 +274,12 @@ function function_44e0f6b4()
 	level.var_359f6a1d = 1;
 	drop_point = self GetOrigin();
 	drop_point = drop_point + VectorScale((0, 0, 1), 30);
-	function_f5469e1(drop_point, "part_heart");
+	special_craftable_spawn(drop_point, "part_heart");
 	if(!level flag::get("part_heart" + "_found"))
 	{
-		var_71e3d70a = level zm_craftables::get_craftable_piece_model("idgun", "part_heart");
+		mdl_part = level zm_craftables::get_craftable_piece_model("idgun", "part_heart");
 		var_55d0f940 = struct::get("safe_place_for_items", "targetname");
-		var_71e3d70a.origin = var_55d0f940.origin;
+		mdl_part.origin = var_55d0f940.origin;
 		level.var_359f6a1d = 0;
 	}
 }
@@ -298,12 +298,12 @@ function function_6893c200()
 	level.var_5fadf2ff = 1;
 	drop_point = self GetOrigin();
 	drop_point = drop_point + VectorScale((0, 0, 1), 30);
-	function_f5469e1(drop_point, "part_skeleton");
+	special_craftable_spawn(drop_point, "part_skeleton");
 	if(!level flag::get("part_skeleton" + "_found"))
 	{
-		var_71e3d70a = level zm_craftables::get_craftable_piece_model("idgun", "part_skeleton");
+		mdl_part = level zm_craftables::get_craftable_piece_model("idgun", "part_skeleton");
 		var_55d0f940 = struct::get("safe_place_for_items", "targetname");
-		var_71e3d70a.origin = var_55d0f940.origin;
+		mdl_part.origin = var_55d0f940.origin;
 		level.var_5fadf2ff = 0;
 	}
 }
@@ -321,9 +321,9 @@ function function_6baaa92e()
 {
 	drop_point = self GetOrigin();
 	drop_point = drop_point + VectorScale((0, 0, 1), 30);
-	var_5404ad23 = spawn("script_model", drop_point);
-	var_5404ad23 SetModel("p7_zm_zod_margwa_heart");
-	function_a3712047(var_5404ad23);
+	e_heart = spawn("script_model", drop_point);
+	e_heart SetModel("p7_zm_zod_margwa_heart");
+	function_a3712047(e_heart);
 }
 
 /*
@@ -335,23 +335,23 @@ function function_6baaa92e()
 	Parameters: 1
 	Flags: None
 */
-function function_a3712047(var_5404ad23)
+function function_a3712047(e_heart)
 {
 	width = 128;
 	height = 128;
 	length = 128;
-	var_5404ad23.unitrigger_stub = spawnstruct();
-	var_5404ad23.unitrigger_stub.origin = var_5404ad23.origin;
-	var_5404ad23.unitrigger_stub.script_unitrigger_type = "unitrigger_box_use";
-	var_5404ad23.unitrigger_stub.cursor_hint = "HINT_NOICON";
-	var_5404ad23.unitrigger_stub.script_width = width;
-	var_5404ad23.unitrigger_stub.script_height = height;
-	var_5404ad23.unitrigger_stub.script_length = length;
-	var_5404ad23.unitrigger_stub.require_look_at = 0;
-	var_5404ad23.unitrigger_stub.prompt_and_visibility_func = &function_12fffd19;
-	zm_unitrigger::register_static_unitrigger(var_5404ad23.unitrigger_stub, &function_dd2f6fe3);
+	e_heart.unitrigger_stub = spawnstruct();
+	e_heart.unitrigger_stub.origin = e_heart.origin;
+	e_heart.unitrigger_stub.script_unitrigger_type = "unitrigger_box_use";
+	e_heart.unitrigger_stub.cursor_hint = "HINT_NOICON";
+	e_heart.unitrigger_stub.script_width = width;
+	e_heart.unitrigger_stub.script_height = height;
+	e_heart.unitrigger_stub.script_length = length;
+	e_heart.unitrigger_stub.require_look_at = 0;
+	e_heart.unitrigger_stub.prompt_and_visibility_func = &function_12fffd19;
+	zm_unitrigger::register_static_unitrigger(e_heart.unitrigger_stub, &function_dd2f6fe3);
 	wait(5);
-	var_5404ad23 delete();
+	e_heart delete();
 }
 
 /*
@@ -411,17 +411,17 @@ function function_dd2f6fe3()
 	Parameters: 1
 	Flags: None
 */
-function function_32d36516(var_5404ad23)
+function function_32d36516(e_heart)
 {
 	foreach(player in level.activePlayers)
 	{
 		player RevivePlayer();
 	}
-	var_5404ad23 delete();
+	e_heart delete();
 }
 
 /*
-	Name: function_f5469e1
+	Name: special_craftable_spawn
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0x32C4DBC8
 	Offset: 0x1548
@@ -429,7 +429,7 @@ function function_32d36516(var_5404ad23)
 	Parameters: 4
 	Flags: None
 */
-function function_f5469e1(v_origin, str_part, var_1907d45e, var_6a2f1c3a)
+function special_craftable_spawn(v_origin, str_part, var_1907d45e, var_6a2f1c3a)
 {
 	if(!isdefined(var_1907d45e))
 	{
@@ -439,44 +439,44 @@ function function_f5469e1(v_origin, str_part, var_1907d45e, var_6a2f1c3a)
 	{
 		var_6a2f1c3a = 0;
 	}
-	level endon("hash_14edc619");
+	level endon("idgun_part_found");
 	if(!var_6a2f1c3a)
 	{
-		var_71e3d70a = level zm_craftables::get_craftable_piece_model("idgun", str_part);
+		mdl_part = level zm_craftables::get_craftable_piece_model("idgun", str_part);
 	}
 	else
 	{
-		var_71e3d70a = level zm_craftables::get_craftable_piece_model("second_idgun", str_part);
+		mdl_part = level zm_craftables::get_craftable_piece_model("second_idgun", str_part);
 	}
-	var_71e3d70a.origin = v_origin;
+	mdl_part.origin = v_origin;
 	playable_area = GetEntArray("player_volume", "script_noteworthy");
 	valid_drop = 0;
 	for(i = 0; i < playable_area.size; i++)
 	{
-		if(var_71e3d70a istouching(playable_area[i]))
+		if(mdl_part istouching(playable_area[i]))
 		{
 			valid_drop = 1;
 		}
 	}
 	if(!valid_drop)
 	{
-		var_71e3d70a SetInvisibleToAll();
+		mdl_part SetInvisibleToAll();
 		return;
 	}
-	var_71e3d70a SetVisibleToAll();
+	mdl_part SetVisibleToAll();
 	if(!var_1907d45e)
 	{
 		return;
 	}
 	wait(10);
-	level thread function_21ad8866(var_71e3d70a);
+	level thread idgun_part_blinks(mdl_part);
 	wait(10);
-	var_71e3d70a SetInvisibleToAll();
-	level notify("hash_21ad8866");
+	mdl_part SetInvisibleToAll();
+	level notify("idgun_part_blinks");
 }
 
 /*
-	Name: function_21ad8866
+	Name: idgun_part_blinks
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0x349E75F1
 	Offset: 0x1740
@@ -484,22 +484,22 @@ function function_f5469e1(v_origin, str_part, var_1907d45e, var_6a2f1c3a)
 	Parameters: 1
 	Flags: None
 */
-function function_21ad8866(var_71e3d70a)
+function idgun_part_blinks(mdl_part)
 {
-	level notify("hash_21ad8866");
-	level endon("hash_21ad8866");
-	level endon("hash_14edc619");
+	level notify("idgun_part_blinks");
+	level endon("idgun_part_blinks");
+	level endon("idgun_part_found");
 	while(1)
 	{
-		var_71e3d70a SetInvisibleToAll();
+		mdl_part SetInvisibleToAll();
 		wait(0.5);
-		var_71e3d70a SetVisibleToAll();
+		mdl_part SetVisibleToAll();
 		wait(0.5);
 	}
 }
 
 /*
-	Name: function_e70e794e
+	Name: idgun_vo
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0x7EF2E29E
 	Offset: 0x17C8
@@ -507,16 +507,16 @@ function function_21ad8866(var_71e3d70a)
 	Parameters: 1
 	Flags: None
 */
-function function_e70e794e(var_bd705d9a)
+function idgun_vo(s_idgun)
 {
-	if(isdefined(var_bd705d9a.is_speaking) && var_bd705d9a.is_speaking)
+	if(isdefined(s_idgun.is_speaking) && s_idgun.is_speaking)
 	{
 		return;
 	}
 }
 
 /*
-	Name: function_101cc4e2
+	Name: idgun_zombie_death_watch
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0xE6DC09AA
 	Offset: 0x1808
@@ -524,18 +524,18 @@ function function_e70e794e(var_bd705d9a)
 	Parameters: 1
 	Flags: None
 */
-function function_101cc4e2(attacker)
+function idgun_zombie_death_watch(attacker)
 {
 	for(i = 0; i < level.idgun_weapons.size; i++)
 	{
-		var_d2af076 = level.idgun_weapons[i];
+		wpn = level.idgun_weapons[i];
 		if(!isdefined(self))
 		{
 			return;
 		}
-		if(self.damageWeapon === var_d2af076)
+		if(self.damageWeapon === wpn)
 		{
-			idgun = function_b9729f28(self.attacker);
+			idgun = get_idgun_from_owner(self.attacker);
 			if(!isdefined(idgun))
 			{
 				return;
@@ -555,7 +555,7 @@ function function_101cc4e2(attacker)
 }
 
 /*
-	Name: function_b9729f28
+	Name: get_idgun_from_owner
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0x7114FF0D
 	Offset: 0x1940
@@ -563,7 +563,7 @@ function function_101cc4e2(attacker)
 	Parameters: 1
 	Flags: None
 */
-function function_b9729f28(player)
+function get_idgun_from_owner(player)
 {
 	for(i = 0; i < 2; i++)
 	{
@@ -575,7 +575,7 @@ function function_b9729f28(player)
 }
 
 /*
-	Name: function_b4c3b798
+	Name: setup_idgun_upgrade_quest
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0x78A12DB5
 	Offset: 0x19B0
@@ -583,10 +583,10 @@ function function_b9729f28(player)
 	Parameters: 0
 	Flags: None
 */
-function function_b4c3b798()
+function setup_idgun_upgrade_quest()
 {
 	level flag::wait_till("second_idgun_time");
-	var_ffcd34fb = struct::get_array("idgun_cocoon_point", "targetname");
+	a_s_cocoons = struct::get_array("idgun_cocoon_point", "targetname");
 	if(!isdefined(level.var_a26610f1))
 	{
 		level.var_a26610f1 = [];
@@ -597,38 +597,38 @@ function function_b4c3b798()
 		{
 			case 0:
 			{
-				var_d42f02cf = "theater";
+				str_areaname = "theater";
 				str_part = "part_heart";
 				break;
 			}
 			case 1:
 			{
-				var_d42f02cf = "slums";
+				str_areaname = "slums";
 				str_part = "part_skeleton";
 				break;
 			}
 			case 2:
 			{
-				var_d42f02cf = "canal";
+				str_areaname = "canal";
 				str_part = "part_xenomatter";
 				break;
 			}
 		}
-		var_c6a8002 = Array::filter(var_ffcd34fb, 0, &function_1bfbfa4c, var_d42f02cf);
+		var_c6a8002 = Array::filter(a_s_cocoons, 0, &filter_areaname, str_areaname);
 		level.var_a26610f1[i] = Array::random(var_c6a8002);
-		var_e6d966e = spawn("script_model", level.var_a26610f1[i].origin);
-		var_e6d966e SetModel("p7_zm_zod_cocoon");
-		var_e6d966e SetCanDamage(1);
-		var_e6d966e thread function_47867b41(i, str_part);
+		mdl_cocoon = spawn("script_model", level.var_a26610f1[i].origin);
+		mdl_cocoon SetModel("p7_zm_zod_cocoon");
+		mdl_cocoon SetCanDamage(1);
+		mdl_cocoon thread function_47867b41(i, str_part);
 		if(isdefined(level.idgun[0].owner))
 		{
-			level.idgun[0].owner thread function_538643a3(i);
+			level.idgun[0].owner thread idgun_proximity_sensor(i);
 		}
 	}
 }
 
 /*
-	Name: function_1bfbfa4c
+	Name: filter_areaname
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0xC809A9E1
 	Offset: 0x1C10
@@ -636,9 +636,9 @@ function function_b4c3b798()
 	Parameters: 2
 	Flags: None
 */
-function function_1bfbfa4c(e_entity, var_d42f02cf)
+function filter_areaname(e_entity, str_areaname)
 {
-	if(!isdefined(e_entity.script_string) || e_entity.script_string != var_d42f02cf)
+	if(!isdefined(e_entity.script_string) || e_entity.script_string != str_areaname)
 	{
 		return 0;
 	}
@@ -676,13 +676,13 @@ function function_47867b41(var_3fbc06aa, str_part)
 		wait(1);
 		self Hide();
 		playFX(level._effect["idgun_cocoon_off"], self.origin);
-		function_f5469e1(drop_point, str_part, 0, 1);
+		special_craftable_spawn(drop_point, str_part, 0, 1);
 		return;
 	}
 }
 
 /*
-	Name: function_538643a3
+	Name: idgun_proximity_sensor
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0xE68DD99B
 	Offset: 0x1EE8
@@ -690,74 +690,74 @@ function function_47867b41(var_3fbc06aa, str_part)
 	Parameters: 1
 	Flags: None
 */
-function function_538643a3(var_3fbc06aa)
+function idgun_proximity_sensor(var_3fbc06aa)
 {
 	self endon("bleed_out");
 	self endon("death");
 	self endon("disconnect");
-	var_e610614b = level.var_a26610f1[var_3fbc06aa].origin;
-	var_76cf6eef = 262144;
-	var_9d192e2d = 4096;
-	var_2509d2fc = var_76cf6eef - var_9d192e2d;
-	var_4a166ae5 = 0.7;
-	var_f6b0cbe4 = undefined;
-	var_ac3d0ec3 = undefined;
+	v_cocoon = level.var_a26610f1[var_3fbc06aa].origin;
+	n_proximity_max_2 = 262144;
+	n_proximity_min_2 = 4096;
+	n_proximity_diff_2 = n_proximity_max_2 - n_proximity_min_2;
+	n_pulse_delay_range = 0.7;
+	n_scaled_pulse_delay = undefined;
+	n_time_before_next_pulse = undefined;
 	n_scale = undefined;
-	var_887c2fcb = undefined;
+	n_rumble = undefined;
 	while(1)
 	{
-		var_5cc8da3f = self GetCurrentWeapon();
-		var_3262a5f7 = GetWeapon(level.idgun[0].var_e4be281f);
-		if(var_5cc8da3f !== var_3262a5f7)
+		weapon_player = self GetCurrentWeapon();
+		weapon_idgun = GetWeapon(level.idgun[0].str_wpnname);
+		if(weapon_player !== weapon_idgun)
 		{
 			wait(0.1);
 			break;
 		}
-		var_888da1cf = (var_e610614b[0], var_e610614b[1], self.origin[2]);
-		var_30c97f9b = DistanceSquared(self.origin, var_888da1cf);
-		if(var_30c97f9b <= var_76cf6eef)
+		var_888da1cf = (v_cocoon[0], v_cocoon[1], self.origin[2]);
+		n_dist_2 = DistanceSquared(self.origin, var_888da1cf);
+		if(n_dist_2 <= n_proximity_max_2)
 		{
-			var_ac3d0ec3 = 1;
+			n_time_before_next_pulse = 1;
 			v_eye_origin = self GetPlayerCameraPos();
 			v_eye_direction = AnglesToForward(self getPlayerAngles());
-			var_744d3805 = VectorNormalize(var_e610614b - v_eye_origin);
+			var_744d3805 = VectorNormalize(v_cocoon - v_eye_origin);
 			n_dot = VectorDot(var_744d3805, v_eye_direction);
 			if(n_dot > 0.9)
 			{
-				var_ac3d0ec3 = 0.3;
+				n_time_before_next_pulse = 0.3;
 				n_scale = 1;
-				var_887c2fcb = 2;
+				n_rumble = 2;
 			}
 			else if(n_dot <= 0.5)
 			{
 				n_dot = 0.5;
 				n_scale = n_dot / 0.9;
-				var_f6b0cbe4 = n_scale * var_4a166ae5;
-				var_ac3d0ec3 = 0.3 + var_f6b0cbe4;
-				var_887c2fcb = 1;
+				n_scaled_pulse_delay = n_scale * n_pulse_delay_range;
+				n_time_before_next_pulse = 0.3 + n_scaled_pulse_delay;
+				n_rumble = 1;
 			}
 			else
 			{
 				n_scale = n_dot / 0.9;
-				var_f6b0cbe4 = n_scale * var_4a166ae5;
-				var_ac3d0ec3 = 0.3 + var_f6b0cbe4;
-				var_887c2fcb = 1;
+				n_scaled_pulse_delay = n_scale * n_pulse_delay_range;
+				n_time_before_next_pulse = 0.3 + n_scaled_pulse_delay;
+				n_rumble = 1;
 			}
 		}
 		else
 		{
-			var_ac3d0ec3 = undefined;
+			n_time_before_next_pulse = undefined;
 		}
 		if(level flag::get("idgun_cocoon_" + var_3fbc06aa + "_found"))
 		{
 			return;
 		}
-		if(isdefined(var_ac3d0ec3))
+		if(isdefined(n_time_before_next_pulse))
 		{
-			wait(var_ac3d0ec3);
-			self namespace_8e578893::function_6edf48d5(2);
+			wait(n_time_before_next_pulse);
+			self namespace_8e578893::set_rumble_to_player(2);
 			util::wait_network_frame();
-			self namespace_8e578893::function_6edf48d5(0);
+			self namespace_8e578893::set_rumble_to_player(0);
 		}
 		else
 		{
@@ -767,7 +767,7 @@ function function_538643a3(var_3fbc06aa)
 }
 
 /*
-	Name: function_eaadff84
+	Name: give_idgun
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0xDB675B88
 	Offset: 0x22D8
@@ -775,22 +775,22 @@ function function_538643a3(var_3fbc06aa)
 	Parameters: 1
 	Flags: None
 */
-function function_eaadff84(var_f7cef040)
+function give_idgun(n_idgun_level)
 {
-	if(var_f7cef040 == 0)
+	if(n_idgun_level == 0)
 	{
-		var_566556d8 = GetWeapon(level.idgun[0].var_e4be281f);
+		wpn_idgun = GetWeapon(level.idgun[0].str_wpnname);
 	}
 	else
 	{
-		var_566556d8 = GetWeapon(level.idgun[0].var_e4be281f);
-		var_566556d8 = zm_weapons::get_upgrade_weapon(var_566556d8, 0);
+		wpn_idgun = GetWeapon(level.idgun[0].str_wpnname);
+		wpn_idgun = zm_weapons::get_upgrade_weapon(wpn_idgun, 0);
 	}
 	/#
-		Assert(isdefined(var_566556d8));
+		Assert(isdefined(wpn_idgun));
 	#/
-	self zm_weapons::weapon_give(var_566556d8, 0, 0);
-	self SwitchToWeapon(var_566556d8);
+	self zm_weapons::weapon_give(wpn_idgun, 0, 0);
+	self SwitchToWeapon(wpn_idgun);
 	if(!isdefined(level.idgun[0].owner))
 	{
 		var_6aa62cd2 = 0;
@@ -808,7 +808,7 @@ function function_eaadff84(var_f7cef040)
 }
 
 /*
-	Name: function_1c946455
+	Name: idgun_devgui
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0xEA757C4E
 	Offset: 0x2460
@@ -816,17 +816,17 @@ function function_eaadff84(var_f7cef040)
 	Parameters: 0
 	Flags: None
 */
-function function_1c946455()
+function idgun_devgui()
 {
 	/#
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 0, &function_9e990d87);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_9e990d87);
+		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 0, &devgui_idgun_give);
+		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &devgui_idgun_give);
 		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_8c7ac1b9);
 	#/
 }
 
 /*
-	Name: function_e4e5cd30
+	Name: idgun_quest_devgui
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0x8AD5C04E
 	Offset: 0x2518
@@ -834,7 +834,7 @@ function function_1c946455()
 	Parameters: 0
 	Flags: None
 */
-function function_e4e5cd30()
+function idgun_quest_devgui()
 {
 	/#
 		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 0, &function_1f7b4ebf);
@@ -842,7 +842,7 @@ function function_e4e5cd30()
 }
 
 /*
-	Name: function_9e990d87
+	Name: devgui_idgun_give
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0xF26F30E3
 	Offset: 0x2560
@@ -850,12 +850,12 @@ function function_e4e5cd30()
 	Parameters: 1
 	Flags: None
 */
-function function_9e990d87(n_value)
+function devgui_idgun_give(n_value)
 {
 	/#
 		foreach(e_player in level.players)
 		{
-			e_player function_eaadff84(n_value);
+			e_player give_idgun(n_value);
 			util::wait_network_frame();
 		}
 	#/

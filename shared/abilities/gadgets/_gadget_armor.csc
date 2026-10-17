@@ -40,7 +40,7 @@ function __init__()
 	clientfield::register("toplayer", "player_damage_type", 1, 1, "int", &player_damage_type_changed, 0, 0);
 	duplicate_render::set_dr_filter_framebuffer_duplicate("armor_pl", 40, "armor_on", undefined, 1, "mc/mtl_power_armor", 0);
 	/#
-		level thread function_cc0cff2a();
+		level thread armor_overlay_think();
 	#/
 }
 
@@ -241,7 +241,7 @@ function armor_is_local_player(localClientNum)
 }
 
 /*
-	Name: function_cc0cff2a
+	Name: armor_overlay_think
 	Namespace: _gadget_armor
 	Checksum: 0xEF0A8C9A
 	Offset: 0xAB8
@@ -249,16 +249,16 @@ function armor_is_local_player(localClientNum)
 	Parameters: 0
 	Flags: None
 */
-function function_cc0cff2a()
+function armor_overlay_think()
 {
 	/#
-		var_72e51998 = 0;
+		armorstatus = 0;
 		SetDvar("Dev Block strings are not supported", 0);
 		while(1)
 		{
 			wait(0.1);
 			armorStatusNew = GetDvarInt("Dev Block strings are not supported");
-			if(armorStatusNew != var_72e51998)
+			if(armorStatusNew != armorstatus)
 			{
 				players = GetLocalPlayers();
 				foreach(localPlayer in players)
@@ -269,7 +269,7 @@ function function_cc0cff2a()
 					}
 					localPlayer player_armor_changed_event(i, armorStatusNew);
 				}
-				var_72e51998 = armorStatusNew;
+				armorstatus = armorStatusNew;
 			}
 		}
 	#/

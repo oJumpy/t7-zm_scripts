@@ -34,15 +34,15 @@ function __init__()
 	level._effect["lightning_arc"] = "dlc5/zmb_weapon/fx_staff_elec_trail_bolt_cheap";
 	level._effect["lightning_impact"] = "dlc5/zmb_weapon/fx_staff_elec_impact_ug_hit_torso";
 	level._effect["tesla_shock_eyes"] = "zombie/fx_tesla_shock_eyes_zmb";
-	clientfield::register("actor", "lightning_impact_fx", 21000, 1, "int", &function_41819534, 0, 0);
-	clientfield::register("scriptmover", "lightning_miss_fx", 21000, 1, "int", &function_6a2c832a, 0, 0);
-	clientfield::register("actor", "lightning_arc_fx", 21000, 1, "int", &function_fb3ed342, 0, 0);
-	level.var_1d5f245c = [];
+	clientfield::register("actor", "lightning_impact_fx", 21000, 1, "int", &lightning_impact_play_fx, 0, 0);
+	clientfield::register("scriptmover", "lightning_miss_fx", 21000, 1, "int", &lightning_miss_play_fx, 0, 0);
+	clientfield::register("actor", "lightning_arc_fx", 21000, 1, "int", &lightning_arc_play_fx, 0, 0);
+	level.lightning_ball_fx = [];
 	namespace_c9806b9::function_4be5e665(GetWeapon("staff_lightning_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_elec_lv1");
 }
 
 /*
-	Name: function_41819534
+	Name: lightning_impact_play_fx
 	Namespace: namespace_dc4ed61a
 	Checksum: 0x9FCEE703
 	Offset: 0x4B0
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_41819534(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function lightning_impact_play_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
@@ -60,7 +60,7 @@ function function_41819534(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_6a2c832a
+	Name: lightning_miss_play_fx
 	Namespace: namespace_dc4ed61a
 	Checksum: 0xB771C5C6
 	Offset: 0x550
@@ -68,21 +68,21 @@ function function_41819534(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_6a2c832a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function lightning_miss_play_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
 		PlayFXOnTag(localClientNum, level._effect["lightning_miss"], self, "tag_origin");
-		level.var_1d5f245c[localClientNum] = self;
+		level.lightning_ball_fx[localClientNum] = self;
 		ent = spawn(0, self.origin, "script_origin");
 		ent LinkTo(self);
-		self thread function_80209369(localClientNum, ent);
+		self thread watch_ball_fx_killed(localClientNum, ent);
 		level notify("lightning_ball_created");
 	}
 }
 
 /*
-	Name: function_80209369
+	Name: watch_ball_fx_killed
 	Namespace: namespace_dc4ed61a
 	Checksum: 0xCCFE6267
 	Offset: 0x660
@@ -90,15 +90,15 @@ function function_6a2c832a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_80209369(localClientNum, ent)
+function watch_ball_fx_killed(localClientNum, ent)
 {
 	self waittill("entityshutdown");
 	ent delete();
-	level.var_1d5f245c[localClientNum] = undefined;
+	level.lightning_ball_fx[localClientNum] = undefined;
 }
 
 /*
-	Name: function_749acb79
+	Name: lightning_arc_play_fx_thread
 	Namespace: namespace_dc4ed61a
 	Checksum: 0x55347330
 	Offset: 0x6A8
@@ -106,32 +106,32 @@ function function_80209369(localClientNum, ent)
 	Parameters: 1
 	Flags: None
 */
-function function_749acb79(localClientNum)
+function lightning_arc_play_fx_thread(localClientNum)
 {
 	self endon("entityshutdown");
-	self endon("hash_7a8f9f49");
-	if(!isdefined(level.var_1d5f245c[localClientNum]))
+	self endon("stop_arc_fx");
+	if(!isdefined(level.lightning_ball_fx[localClientNum]))
 	{
 		level waittill("lightning_ball_created");
 	}
-	var_46352a82 = level.var_1d5f245c[localClientNum];
-	var_46352a82 endon("entityshutdown");
+	e_ball = level.lightning_ball_fx[localClientNum];
+	e_ball endon("entityshutdown");
 	util::server_wait(localClientNum, RandomFloatRange(0.1, 0.5));
-	self.e_fx = spawn(localClientNum, var_46352a82.origin, "script_model");
+	self.e_fx = spawn(localClientNum, e_ball.origin, "script_model");
 	self.e_fx SetModel("tag_origin");
-	self.var_3de869a2 = PlayFXOnTag(localClientNum, level._effect["lightning_arc"], self.e_fx, "tag_origin");
+	self.fx_arc = PlayFXOnTag(localClientNum, level._effect["lightning_arc"], self.e_fx, "tag_origin");
 	while(1)
 	{
-		var_8d0b58f1 = self GetTagOrigin("J_SpineUpper");
-		self.e_fx moveto(var_8d0b58f1, 0.1);
+		v_spine = self GetTagOrigin("J_SpineUpper");
+		self.e_fx moveto(v_spine, 0.1);
 		util::server_wait(localClientNum, 0.5);
-		self.e_fx moveto(var_46352a82.origin, 0.1);
+		self.e_fx moveto(e_ball.origin, 0.1);
 		util::server_wait(localClientNum, 0.5);
 	}
 }
 
 /*
-	Name: function_fb3ed342
+	Name: lightning_arc_play_fx
 	Namespace: namespace_dc4ed61a
 	Checksum: 0xB75706CA
 	Offset: 0x8A8
@@ -139,19 +139,19 @@ function function_749acb79(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_fb3ed342(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function lightning_arc_play_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
-		self thread function_749acb79(localClientNum);
+		self thread lightning_arc_play_fx_thread(localClientNum);
 	}
 	else
 	{
-		self notify("hash_7a8f9f49");
-		if(isdefined(self.var_3de869a2))
+		self notify("stop_arc_fx");
+		if(isdefined(self.fx_arc))
 		{
-			stopfx(localClientNum, self.var_3de869a2);
-			self.var_3de869a2 = undefined;
+			stopfx(localClientNum, self.fx_arc);
+			self.fx_arc = undefined;
 		}
 		if(isdefined(self.e_fx))
 		{

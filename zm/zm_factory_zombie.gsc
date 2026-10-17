@@ -26,7 +26,7 @@
 function autoexec init()
 {
 	InitZmFactoryBehaviorsAndASM();
-	level.zombie_init_done = &function_f06eec12;
+	level.zombie_init_done = &factory_zombie_init_done;
 	SetDvar("scr_zm_use_code_enemy_selection", 0);
 	level.closest_player_override = &factory_closest_player;
 	level thread update_closest_player();
@@ -105,7 +105,7 @@ function private mocompIdleSpecialFactoryTerminate(entity, mocompAnim, mocompAni
 }
 
 /*
-	Name: function_f06eec12
+	Name: factory_zombie_init_done
 	Namespace: namespace_27d8454e
 	Checksum: 0x6C30432E
 	Offset: 0x5A0
@@ -113,7 +113,7 @@ function private mocompIdleSpecialFactoryTerminate(entity, mocompAnim, mocompAni
 	Parameters: 0
 	Flags: None
 */
-function function_f06eec12()
+function factory_zombie_init_done()
 {
 	self PushActors(0);
 }

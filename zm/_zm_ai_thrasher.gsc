@@ -104,8 +104,8 @@ function init()
 	Precache();
 	level.can_revive = &ThrasherServerUtils::thrasherCanBeRevived;
 	level.var_11b06c2f = &function_6f6d7a0b;
-	level.var_82212ebb = 1;
-	level.var_f51fb588 = 0;
+	level.thrashers_enabled = 1;
+	level.thrasher_rounds_enabled = 0;
 	level.var_175273f2 = 1;
 	level.var_35a5aa88 = [];
 	level.var_b5799c7c = 1;
@@ -117,13 +117,13 @@ function init()
 	level.AAT["zm_aat_fire_works"].immune_trigger["thrasher"] = 1;
 	level.AAT["zm_aat_thunder_wall"].immune_result_direct["thrasher"] = 1;
 	level.AAT["zm_aat_thunder_wall"].immune_result_indirect["thrasher"] = 1;
-	level.var_feebf312 = [];
-	level.var_feebf312 = GetEntArray("zombie_thrasher_spawner", "script_noteworthy");
-	if(level.var_feebf312.size == 0)
+	level.thrasher_spawners = [];
+	level.thrasher_spawners = GetEntArray("zombie_thrasher_spawner", "script_noteworthy");
+	if(level.thrasher_spawners.size == 0)
 	{
 		return;
 	}
-	Array::thread_all(level.var_feebf312, &spawner::add_spawn_function, &function_a716de1f);
+	Array::thread_all(level.thrasher_spawners, &spawner::add_spawn_function, &function_a716de1f);
 	scene::add_scene_func("scene_zm_dlc2_thrasher_transform_thrasher", &function_1c624caf, "done");
 	scene::add_scene_func("scene_zm_dlc2_thrasher_transform_zombie", &function_1c624caf, "done");
 	scene::add_scene_func("scene_zm_dlc2_thrasher_transform_zombie_friendly", &function_1c624caf, "done");
@@ -188,7 +188,7 @@ function Precache()
 }
 
 /*
-	Name: function_5e5433d8
+	Name: enable_thrasher_rounds
 	Namespace: namespace_756d2c3d
 	Checksum: 0xE2378BD6
 	Offset: 0xC58
@@ -196,9 +196,9 @@ function Precache()
 	Parameters: 0
 	Flags: None
 */
-function function_5e5433d8()
+function enable_thrasher_rounds()
 {
-	level.var_f51fb588 = 1;
+	level.thrasher_rounds_enabled = 1;
 	if(!isdefined(level.var_fc6fe2e6))
 	{
 		level.var_fc6fe2e6 = &function_8aac3fe;
@@ -224,7 +224,7 @@ function function_8aac3fe()
 	{
 		level waittill("between_round_over");
 		level.var_e51f5b82 = 0;
-		if(isdefined(level.var_3013498) && level.round_number == level.var_3013498)
+		if(isdefined(level.n_next_spider_round) && level.round_number == level.n_next_spider_round)
 		{
 			level.var_ebc4830 = level.var_ebc4830 + 1;
 			continue;
@@ -461,7 +461,7 @@ function function_68ee76ee(var_d1cba433, var_48cf4a3d)
 		{
 			if(function_6d24956b())
 			{
-				var_e3372b59 = function_8b323113(var_a4ef4373);
+				ai_thrasher = function_8b323113(var_a4ef4373);
 				ArrayRemoveValue(var_d1cba433, var_a4ef4373);
 			}
 		}
@@ -501,7 +501,7 @@ function function_8b323113(var_a4ef4373, var_42fbb5b1, var_ab0dd5e8, var_be10dc4
 	{
 		wait(0.05);
 	}
-	if(isdefined(var_a4ef4373.var_61f7b3a0) && var_a4ef4373.var_61f7b3a0)
+	if(isdefined(var_a4ef4373.b_is_thrasher) && var_a4ef4373.b_is_thrasher)
 	{
 		return;
 	}
@@ -541,17 +541,17 @@ function function_8b323113(var_a4ef4373, var_42fbb5b1, var_ab0dd5e8, var_be10dc4
 		{
 			return;
 		}
-		var_e3372b59 = zombie_utility::spawn_zombie(level.var_feebf312[0], "thrasher");
-		if(!isdefined(var_e3372b59))
+		ai_thrasher = zombie_utility::spawn_zombie(level.thrasher_spawners[0], "thrasher");
+		if(!isdefined(ai_thrasher))
 		{
 			return;
 		}
 		v_origin = var_a4ef4373.origin;
 		v_angles = var_a4ef4373.angles;
-		var_e3372b59 ForceTeleport(v_origin, v_angles, 1, 1);
+		ai_thrasher ForceTeleport(v_origin, v_angles, 1, 1);
 		if(var_be10dc4f)
 		{
-			var_e3372b59 ai::set_behavior_attribute("move_mode", "friendly");
+			ai_thrasher ai::set_behavior_attribute("move_mode", "friendly");
 		}
 		a_ai_zombies = GetAIArchetypeArray("zombie", "axis");
 		foreach(ai_zombie in a_ai_zombies)
@@ -559,17 +559,17 @@ function function_8b323113(var_a4ef4373, var_42fbb5b1, var_ab0dd5e8, var_be10dc4
 			if(isalive(ai_zombie) && (!isdefined(ai_zombie.var_3f6ea790) && ai_zombie.var_3f6ea790) && ai_zombie != var_a4ef4373)
 			{
 				var_ee9aed61 = 60 * 60;
-				if(DistanceSquared(ai_zombie.origin, var_e3372b59.origin) <= var_ee9aed61)
+				if(DistanceSquared(ai_zombie.origin, ai_thrasher.origin) <= var_ee9aed61)
 				{
-					ThrasherServerUtils::thrasherKnockdownZombie(var_e3372b59, ai_zombie);
+					ThrasherServerUtils::thrasherKnockdownZombie(ai_thrasher, ai_zombie);
 				}
 			}
 		}
-		var_ab201dd8 = util::spawn_model("tag_origin", var_e3372b59.origin, var_e3372b59.angles);
-		var_ab201dd8 thread scene::Play("scene_zm_dlc2_thrasher_transform_thrasher", var_e3372b59);
+		var_ab201dd8 = util::spawn_model("tag_origin", ai_thrasher.origin, ai_thrasher.angles);
+		var_ab201dd8 thread scene::Play("scene_zm_dlc2_thrasher_transform_thrasher", ai_thrasher);
 		level.var_1f0937ce = level.round_number;
 		level thread function_e2049637();
-		return var_e3372b59;
+		return ai_thrasher;
 	}
 }
 
@@ -656,26 +656,26 @@ function function_c75116aa(var_42fbb5b1)
 	{
 		return;
 	}
-	s_loc = function_22338aad();
-	var_e3372b59 = zombie_utility::spawn_zombie(level.var_feebf312[0], "thrasher", s_loc);
-	if(isdefined(var_e3372b59) && isdefined(s_loc))
+	s_loc = thrasher_spawn_logic();
+	ai_thrasher = zombie_utility::spawn_zombie(level.thrasher_spawners[0], "thrasher", s_loc);
+	if(isdefined(ai_thrasher) && isdefined(s_loc))
 	{
-		var_e3372b59 ForceTeleport(s_loc.origin, s_loc.angles);
-		playsoundatposition("zmb_vocals_thrash_spawn", var_e3372b59.origin);
-		if(!var_e3372b59 zm_utility::in_playable_area())
+		ai_thrasher ForceTeleport(s_loc.origin, s_loc.angles);
+		playsoundatposition("zmb_vocals_thrash_spawn", ai_thrasher.origin);
+		if(!ai_thrasher zm_utility::in_playable_area())
 		{
 			player = Array::random(level.players);
 			if(zm_utility::is_player_valid(player, 0, 1))
 			{
-				var_e3372b59 thread function_89976d94(player.origin);
+				ai_thrasher thread thrasher_teleport(player.origin);
 			}
 		}
-		return var_e3372b59;
+		return ai_thrasher;
 	}
 }
 
 /*
-	Name: function_89976d94
+	Name: thrasher_teleport
 	Namespace: namespace_756d2c3d
 	Checksum: 0xB226B203
 	Offset: 0x1D70
@@ -683,18 +683,18 @@ function function_c75116aa(var_42fbb5b1)
 	Parameters: 1
 	Flags: None
 */
-function function_89976d94(v_pos)
+function thrasher_teleport(v_pos)
 {
 	self endon("death");
 	var_2e57f81c = util::spawn_model("tag_origin", self.origin, self.angles);
 	var_2e57f81c thread scene::Play("scene_zm_dlc2_thrasher_teleport_out", self);
 	self util::waittill_notify_or_timeout("thrasher_teleport_out_done", 4);
-	var_72237359 = util::PositionQuery_PointArray(v_pos, 128, 750, 32, 64, self);
+	a_v_points = util::PositionQuery_PointArray(v_pos, 128, 750, 32, 64, self);
 	if(isdefined(self.thrasher_teleport_dest_func))
 	{
-		var_72237359 = self [[self.thrasher_teleport_dest_func]](var_72237359);
+		a_v_points = self [[self.thrasher_teleport_dest_func]](a_v_points);
 	}
-	var_72436e1a = function_f270b41d(v_pos, var_72237359);
+	var_72436e1a = function_f270b41d(v_pos, a_v_points);
 	if(isdefined(var_72436e1a))
 	{
 		v_dir = v_pos - var_72436e1a;
@@ -713,7 +713,7 @@ function function_89976d94(v_pos)
 }
 
 /*
-	Name: function_22338aad
+	Name: thrasher_spawn_logic
 	Namespace: namespace_756d2c3d
 	Checksum: 0x4AB3F3B9
 	Offset: 0x1FB8
@@ -721,7 +721,7 @@ function function_89976d94(v_pos)
 	Parameters: 0
 	Flags: None
 */
-function function_22338aad()
+function thrasher_spawn_logic()
 {
 	var_38efd13c = level.zm_loc_types["thrasher_location"];
 	for(i = 0; i < var_38efd13c.size; i++)
@@ -750,7 +750,7 @@ function function_22338aad()
 */
 function function_a716de1f()
 {
-	self.var_61f7b3a0 = 1;
+	self.b_is_thrasher = 1;
 	zombiehealth = level.zombie_health;
 	if(!isdefined(zombiehealth))
 	{
@@ -810,8 +810,8 @@ function function_a716de1f()
 	self.head_gibbed = 1;
 	self.missingLegs = 0;
 	self.b_ignore_cleanup = 1;
-	self thread function_871a3bd5();
-	self thread function_632dead();
+	self thread thrasher_death();
+	self thread sndthrasher();
 	if(!isdefined(level.var_35a5aa88))
 	{
 		level.var_35a5aa88 = [];
@@ -866,10 +866,10 @@ function function_cb4aac76(zombie)
 	Parameters: 1
 	Flags: None
 */
-function function_82522cfc(var_72237359)
+function function_82522cfc(a_v_points)
 {
 	var_ba9cdbc3 = [];
-	foreach(v_point in var_72237359)
+	foreach(v_point in a_v_points)
 	{
 		if(zm_utility::check_point_in_enabled_zone(v_point, 1) && function_eeeff8b3(v_point))
 		{
@@ -935,8 +935,8 @@ function function_a7b4c742(player, gib)
 function function_74b91821(entity)
 {
 	var_6a9eb5b0 = zombie_utility::get_zombie_array();
-	var_e38f15ea = ArraySortClosest(var_6a9eb5b0, entity.origin, 5, 50, 96);
-	foreach(zombie in var_e38f15ea)
+	addressable_braces = ArraySortClosest(var_6a9eb5b0, entity.origin, 5, 50, 96);
+	foreach(zombie in addressable_braces)
 	{
 		if(!isdefined(zombie) || (isdefined(zombie.KNOCKDOWN) && zombie.KNOCKDOWN) || (isdefined(zombie.var_3f6ea790) && zombie.var_3f6ea790) || (isdefined(zombie.missingLegs) && zombie.missingLegs) || (isdefined(zombie.thrasherConsumed) && zombie.thrasherConsumed) || zombie IsRagdoll())
 		{
@@ -949,10 +949,10 @@ function function_74b91821(entity)
 		FORWARD = AnglesToForward(entity.angles);
 		FORWARD = (FORWARD[0], FORWARD[1], 0);
 		FORWARD = VectorNormalize(FORWARD);
-		var_537120b8 = zombie.origin - entity.origin;
-		var_537120b8 = (var_537120b8[0], var_537120b8[1], 0);
-		var_537120b8 = VectorNormalize(var_537120b8);
-		if(isalive(zombie) && zombie.archetype == "zombie" && zombie !== entity && !zombie IsPlayingAnimScripted() && VectorDot(FORWARD, var_537120b8) >= 0.9063 && zm_utility::check_point_in_playable_area(zombie.origin))
+		tozombie = zombie.origin - entity.origin;
+		tozombie = (tozombie[0], tozombie[1], 0);
+		tozombie = VectorNormalize(tozombie);
+		if(isalive(zombie) && zombie.archetype == "zombie" && zombie !== entity && !zombie IsPlayingAnimScripted() && VectorDot(FORWARD, tozombie) >= 0.9063 && zm_utility::check_point_in_playable_area(zombie.origin))
 		{
 			return zombie;
 		}
@@ -991,9 +991,9 @@ function function_7dfa2cf1(entity, zombie)
 	zombie.allowdeath = 0;
 	zombie.b_ignore_cleanup = 1;
 	zombie.thrasherConsumed = 1;
-	var_d30f1cde = AnglesToForward(zombie.angles);
+	zombieforward = AnglesToForward(zombie.angles);
 	entityForward = AnglesToForward(entity.angles);
-	if(VectorDot(var_d30f1cde, entityForward) > 0)
+	if(VectorDot(zombieforward, entityForward) > 0)
 	{
 		entity thread scene::Play("scene_zm_dlc2_thrasher_eat_f_zombie", Array(entity, zombie));
 	}
@@ -1022,10 +1022,10 @@ function function_7dfa2cf1(entity, zombie)
 */
 function function_5185e56a(entity)
 {
-	var_650c1f8b = function_74b91821(entity);
-	if(isdefined(var_650c1f8b))
+	addressable_brace = function_74b91821(entity);
+	if(isdefined(addressable_brace))
 	{
-		entity thread function_7dfa2cf1(entity, var_650c1f8b);
+		entity thread function_7dfa2cf1(entity, addressable_brace);
 		return 1;
 	}
 	return 0;
@@ -1214,7 +1214,7 @@ function function_70622dc9()
 }
 
 /*
-	Name: function_871a3bd5
+	Name: thrasher_death
 	Namespace: namespace_756d2c3d
 	Checksum: 0xFBCFDDDB
 	Offset: 0x3518
@@ -1222,7 +1222,7 @@ function function_70622dc9()
 	Parameters: 0
 	Flags: None
 */
-function function_871a3bd5()
+function thrasher_death()
 {
 	self waittill("death", e_attacker);
 	ArrayRemoveValue(level.var_35a5aa88, self);
@@ -1250,7 +1250,7 @@ function function_871a3bd5()
 }
 
 /*
-	Name: function_632dead
+	Name: sndthrasher
 	Namespace: namespace_756d2c3d
 	Checksum: 0xF6ED57DB
 	Offset: 0x3690
@@ -1258,7 +1258,7 @@ function function_871a3bd5()
 	Parameters: 0
 	Flags: None
 */
-function function_632dead()
+function sndthrasher()
 {
 	self endon("death");
 	self PlayLoopSound("zmb_thrasher_lp_close", 2);
@@ -1266,7 +1266,7 @@ function function_632dead()
 	while(1)
 	{
 		self PlaySoundOnTag("zmb_vocals_thrash_ambient", "j_head");
-		level notify("hash_9b1446c2", self);
+		level notify("thrasher_roared", self);
 		wait(randomIntRange(3, 9));
 	}
 }
@@ -1314,7 +1314,7 @@ function function_ae069b1c()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
-		zm_devgui::function_4acecab5(&function_da954e93);
+		zm_devgui::add_custom_devgui_callback(&function_da954e93);
 	#/
 }
 
@@ -1342,10 +1342,10 @@ function function_11d343a5(thrasher)
 			pointList = queryResult.data;
 			foreach(point in pointList)
 			{
-				var_5bc0390c = DistanceSquared(point.origin, thrasher.origin);
-				if(var_5bc0390c > var_f749ad3e && zm_utility::check_point_in_playable_area(point.origin))
+				disttopointsq = DistanceSquared(point.origin, thrasher.origin);
+				if(disttopointsq > var_f749ad3e && zm_utility::check_point_in_playable_area(point.origin))
 				{
-					var_f749ad3e = var_5bc0390c;
+					var_f749ad3e = disttopointsq;
 					var_46b60716 = point.origin;
 				}
 			}
@@ -1421,7 +1421,7 @@ function function_da954e93(cmd)
 				{
 					spot.origin = queryResult.data[0].origin;
 				}
-				thrasher = zombie_utility::spawn_zombie(level.var_feebf312[0], "Dev Block strings are not supported", spot);
+				thrasher = zombie_utility::spawn_zombie(level.thrasher_spawners[0], "Dev Block strings are not supported", spot);
 				if(isdefined(thrasher))
 				{
 					e_player = zm_utility::get_closest_player(spot.origin);

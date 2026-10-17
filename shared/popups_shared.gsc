@@ -98,7 +98,7 @@ function on_player_connect()
 }
 
 /*
-	Name: function_d661ce6
+	Name: devgui_notif_getgunleveltablename
 	Namespace: popups
 	Checksum: 0xB34EB0A6
 	Offset: 0x510
@@ -106,7 +106,7 @@ function on_player_connect()
 	Parameters: 0
 	Flags: None
 */
-function function_d661ce6()
+function devgui_notif_getgunleveltablename()
 {
 	/#
 		if(SessionModeIsCampaignGame())
@@ -125,7 +125,7 @@ function function_d661ce6()
 }
 
 /*
-	Name: function_bcf0ce52
+	Name: devgui_notif_getchallengestablecount
 	Namespace: popups
 	Checksum: 0xA0AAB2C2
 	Offset: 0x570
@@ -133,7 +133,7 @@ function function_d661ce6()
 	Parameters: 0
 	Flags: None
 */
-function function_bcf0ce52()
+function devgui_notif_getchallengestablecount()
 {
 	/#
 		if(SessionModeIsCampaignGame())
@@ -152,7 +152,7 @@ function function_bcf0ce52()
 }
 
 /*
-	Name: function_5f5fa154
+	Name: devgui_notif_getchallengestablename
 	Namespace: popups
 	Checksum: 0x6CFDA47E
 	Offset: 0x5C8
@@ -160,7 +160,7 @@ function function_bcf0ce52()
 	Parameters: 1
 	Flags: None
 */
-function function_5f5fa154(tableID)
+function devgui_notif_getchallengestablename(tableID)
 {
 	/#
 		if(SessionModeIsCampaignGame())
@@ -198,7 +198,7 @@ function set_statstable_id()
 }
 
 /*
-	Name: function_fd48e858
+	Name: devgui_create_weapon_levels_table
 	Namespace: popups
 	Checksum: 0xBED6750F
 	Offset: 0x6B0
@@ -206,7 +206,7 @@ function set_statstable_id()
 	Parameters: 0
 	Flags: None
 */
-function function_fd48e858()
+function devgui_create_weapon_levels_table()
 {
 	/#
 		level.tbl_weaponIDs = [];
@@ -259,13 +259,13 @@ function function_9a14a686()
 			SetDvar("Dev Block strings are not supported", 0);
 		}
 		var_deda26ca = "Dev Block strings are not supported";
-		util::function_e2ac06bb(var_deda26ca + "Dev Block strings are not supported", "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported");
+		util::add_devgui(var_deda26ca + "Dev Block strings are not supported", "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported");
 		while(1)
 		{
 			if(GetDvarInt("Dev Block strings are not supported", 0) > 0)
 			{
-				util::function_181cbd1a(var_deda26ca);
-				level thread function_4b6c58e5();
+				util::remove_devgui(var_deda26ca);
+				level thread devgui_notif_init();
 				break;
 			}
 			wait(1);
@@ -274,7 +274,7 @@ function function_9a14a686()
 }
 
 /*
-	Name: function_4b6c58e5
+	Name: devgui_notif_init
 	Namespace: popups
 	Checksum: 0x6C6630A3
 	Offset: 0x9E0
@@ -282,7 +282,7 @@ function function_9a14a686()
 	Parameters: 0
 	Flags: None
 */
-function function_4b6c58e5()
+function devgui_notif_init()
 {
 	/#
 		SetDvar("Dev Block strings are not supported", 0);
@@ -294,17 +294,17 @@ function function_4b6c58e5()
 		{
 			return;
 		}
-		level thread function_e2246547();
-		level thread function_c3cec5b6();
+		level thread notif_devgui_rank();
+		level thread notif_devgui_gun_rank();
 		if(!SessionModeIsCampaignGame())
 		{
-			level thread function_eafd7f5b();
+			level thread notif_devgui_challenges();
 		}
 	#/
 }
 
 /*
-	Name: function_e2246547
+	Name: notif_devgui_rank
 	Namespace: popups
 	Checksum: 0xA431CF3
 	Offset: 0xAD8
@@ -312,34 +312,34 @@ function function_4b6c58e5()
 	Parameters: 0
 	Flags: None
 */
-function function_e2246547()
+function notif_devgui_rank()
 {
 	/#
 		if(!isdefined(level.rankTable))
 		{
 			return;
 		}
-		var_224b06c1 = "Dev Block strings are not supported";
+		notif_rank_devgui_base = "Dev Block strings are not supported";
 		for(i = 1; i < level.rankTable.size; i++)
 		{
-			var_ef841aa = i + 1;
-			if(var_ef841aa < 10)
+			display_level = i + 1;
+			if(display_level < 10)
 			{
-				var_ef841aa = "Dev Block strings are not supported" + var_ef841aa;
+				display_level = "Dev Block strings are not supported" + display_level;
 			}
-			AddDebugCommand(var_224b06c1 + var_ef841aa + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + i + "Dev Block strings are not supported");
+			AddDebugCommand(notif_rank_devgui_base + display_level + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + i + "Dev Block strings are not supported");
 			if(i % 10 == 0)
 			{
 				wait(0.05);
 			}
 		}
 		wait(0.05);
-		level thread function_69d13854();
+		level thread notif_devgui_rank_up_think();
 	#/
 }
 
 /*
-	Name: function_69d13854
+	Name: notif_devgui_rank_up_think
 	Namespace: popups
 	Checksum: 0x71C447B5
 	Offset: 0xC08
@@ -347,18 +347,18 @@ function function_e2246547()
 	Parameters: 0
 	Flags: None
 */
-function function_69d13854()
+function notif_devgui_rank_up_think()
 {
 	/#
 		for(;;)
 		{
-			var_1d37f2d9 = GetDvarInt("Dev Block strings are not supported");
-			if(var_1d37f2d9 == 0)
+			rank_number = GetDvarInt("Dev Block strings are not supported");
+			if(rank_number == 0)
 			{
 				wait(0.05);
 				continue;
 			}
-			level.players[0] rank::CodeCallback_RankUp(var_1d37f2d9, 0, 1);
+			level.players[0] rank::CodeCallback_RankUp(rank_number, 0, 1);
 			SetDvar("Dev Block strings are not supported", 0);
 			wait(1);
 		}
@@ -366,7 +366,7 @@ function function_69d13854()
 }
 
 /*
-	Name: function_c3cec5b6
+	Name: notif_devgui_gun_rank
 	Namespace: popups
 	Checksum: 0x3982CB3B
 	Offset: 0xCA8
@@ -374,18 +374,18 @@ function function_69d13854()
 	Parameters: 0
 	Flags: None
 */
-function function_c3cec5b6()
+function notif_devgui_gun_rank()
 {
 	/#
-		var_e018f980 = "Dev Block strings are not supported";
-		var_2ce93f4e = 0;
-		var_ed402ca6 = 2;
-		var_47c6ecb9 = 3;
-		var_374718d1 = 4;
+		notif_gun_rank_devgui_base = "Dev Block strings are not supported";
+		gunlevel_rankid_col = 0;
+		gunlevel_gunref_col = 2;
+		gunlevel_attachment_unlock_col = 3;
+		gunlevel_xpgained_col = 4;
 		level flag::wait_till("Dev Block strings are not supported");
 		if(!isdefined(level.tbl_weaponIDs))
 		{
-			function_fd48e858();
+			devgui_create_weapon_levels_table();
 		}
 		if(!isdefined(level.tbl_weaponIDs))
 		{
@@ -400,20 +400,20 @@ function function_c3cec5b6()
 		a_weapons["Dev Block strings are not supported"] = [];
 		a_weapons["Dev Block strings are not supported"] = [];
 		a_weapons["Dev Block strings are not supported"] = [];
-		var_42bc0e48 = function_d661ce6();
+		gun_levels_table = devgui_notif_getgunleveltablename();
 		foreach(weapon in level.tbl_weaponIDs)
 		{
 			gun = [];
 			gun["Dev Block strings are not supported"] = weapon["Dev Block strings are not supported"];
 			gun["Dev Block strings are not supported"] = GetItemIndexFromRef(weapon["Dev Block strings are not supported"]);
 			gun["Dev Block strings are not supported"] = [];
-			var_311c337b = StrTok(weapon["Dev Block strings are not supported"], "Dev Block strings are not supported");
-			foreach(attachment in var_311c337b)
+			gun_weapon_attachments = StrTok(weapon["Dev Block strings are not supported"], "Dev Block strings are not supported");
+			foreach(attachment in gun_weapon_attachments)
 			{
 				gun["Dev Block strings are not supported"][attachment] = [];
-				gun["Dev Block strings are not supported"][attachment]["Dev Block strings are not supported"] = function_e0e8d954(attachment);
-				gun["Dev Block strings are not supported"][attachment]["Dev Block strings are not supported"] = tableLookup(var_42bc0e48, var_ed402ca6, gun["Dev Block strings are not supported"], var_47c6ecb9, attachment, var_2ce93f4e);
-				gun["Dev Block strings are not supported"][attachment]["Dev Block strings are not supported"] = tableLookup(var_42bc0e48, var_ed402ca6, gun["Dev Block strings are not supported"], var_47c6ecb9, attachment, var_374718d1);
+				gun["Dev Block strings are not supported"][attachment]["Dev Block strings are not supported"] = getattachmenttableindex(attachment);
+				gun["Dev Block strings are not supported"][attachment]["Dev Block strings are not supported"] = tableLookup(gun_levels_table, gunlevel_gunref_col, gun["Dev Block strings are not supported"], gunlevel_attachment_unlock_col, attachment, gunlevel_rankid_col);
+				gun["Dev Block strings are not supported"][attachment]["Dev Block strings are not supported"] = tableLookup(gun_levels_table, gunlevel_gunref_col, gun["Dev Block strings are not supported"], gunlevel_attachment_unlock_col, attachment, gunlevel_xpgained_col);
 			}
 			switch(weapon["Dev Block strings are not supported"])
 			{
@@ -466,24 +466,24 @@ function function_c3cec5b6()
 				}
 			}
 		}
-		foreach(var_ba41c56d in a_weapons)
+		foreach(gun_group in a_weapons)
 		{
-			foreach(var_ef156e02 in var_ba41c56d)
+			foreach(attachment_group in gun_group)
 			{
-				foreach(var_10e20df5 in var_ef156e02["Dev Block strings are not supported"])
+				foreach(attachment_data in attachment_group["Dev Block strings are not supported"])
 				{
-					var_ba046d31 = var_e018f980 + group_name + "Dev Block strings are not supported" + var_ba41c56d[gun]["Dev Block strings are not supported"] + "Dev Block strings are not supported" + attachment;
-					AddDebugCommand(var_ba046d31 + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_10e20df5["Dev Block strings are not supported"] + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_10e20df5["Dev Block strings are not supported"] + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_ba41c56d[gun]["Dev Block strings are not supported"] + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_10e20df5["Dev Block strings are not supported"] + "Dev Block strings are not supported");
+					devgui_cmd_gun_path = notif_gun_rank_devgui_base + group_name + "Dev Block strings are not supported" + gun_group[gun]["Dev Block strings are not supported"] + "Dev Block strings are not supported" + attachment;
+					AddDebugCommand(devgui_cmd_gun_path + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + attachment_data["Dev Block strings are not supported"] + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + attachment_data["Dev Block strings are not supported"] + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + gun_group[gun]["Dev Block strings are not supported"] + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + attachment_data["Dev Block strings are not supported"] + "Dev Block strings are not supported");
 				}
 			}
 			wait(0.05);
 		}
-		level thread function_503b1c43();
+		level thread notif_devgui_gun_level_think();
 	#/
 }
 
 /*
-	Name: function_503b1c43
+	Name: notif_devgui_gun_level_think
 	Namespace: popups
 	Checksum: 0x7DF47C8F
 	Offset: 0x14B0
@@ -491,21 +491,21 @@ function function_c3cec5b6()
 	Parameters: 0
 	Flags: None
 */
-function function_503b1c43()
+function notif_devgui_gun_level_think()
 {
 	/#
 		for(;;)
 		{
-			var_be219c34 = GetDvarInt("Dev Block strings are not supported");
-			if(var_be219c34 == 0)
+			weapon_item_index = GetDvarInt("Dev Block strings are not supported");
+			if(weapon_item_index == 0)
 			{
 				wait(0.05);
 				continue;
 			}
-			var_9e7ab2f5 = GetDvarInt("Dev Block strings are not supported");
-			var_a0fa640f = GetDvarInt("Dev Block strings are not supported");
-			var_5c1bbe91 = GetDvarInt("Dev Block strings are not supported");
-			level.players[0] persistence::CodeCallback_GunChallengeComplete(var_9e7ab2f5, var_a0fa640f, var_be219c34, var_5c1bbe91);
+			xp_reward = GetDvarInt("Dev Block strings are not supported");
+			attachment_index = GetDvarInt("Dev Block strings are not supported");
+			rank_id = GetDvarInt("Dev Block strings are not supported");
+			level.players[0] persistence::CodeCallback_GunChallengeComplete(xp_reward, attachment_index, weapon_item_index, rank_id);
 			SetDvar("Dev Block strings are not supported", 0);
 			SetDvar("Dev Block strings are not supported", 0);
 			SetDvar("Dev Block strings are not supported", 0);
@@ -516,7 +516,7 @@ function function_503b1c43()
 }
 
 /*
-	Name: function_eafd7f5b
+	Name: notif_devgui_challenges
 	Namespace: popups
 	Checksum: 0xE91159F8
 	Offset: 0x1610
@@ -524,43 +524,43 @@ function function_503b1c43()
 	Parameters: 0
 	Flags: None
 */
-function function_eafd7f5b()
+function notif_devgui_challenges()
 {
 	/#
-		var_1f037201 = "Dev Block strings are not supported";
-		for(i = 1; i <= function_bcf0ce52(); i++)
+		notif_challenges_devgui_base = "Dev Block strings are not supported";
+		for(i = 1; i <= devgui_notif_getchallengestablecount(); i++)
 		{
-			tableName = function_5f5fa154(i);
-			rows = function_1556496c(tableName);
+			tableName = devgui_notif_getchallengestablename(i);
+			rows = tablelookuprowcount(tableName);
 			for(j = 1; j < rows; j++)
 			{
-				var_9a0d8e07 = TableLookupColumnForRow(tableName, j, 0);
-				if(var_9a0d8e07 != "Dev Block strings are not supported" && StrIsInt(TableLookupColumnForRow(tableName, j, 0)))
+				challengeid = TableLookupColumnForRow(tableName, j, 0);
+				if(challengeid != "Dev Block strings are not supported" && StrIsInt(TableLookupColumnForRow(tableName, j, 0)))
 				{
 					challengeString = TableLookupColumnForRow(tableName, j, 5);
 					type = TableLookupColumnForRow(tableName, j, 3);
 					challengeTier = Int(TableLookupColumnForRow(tableName, j, 1));
-					var_9a5d32ff = "Dev Block strings are not supported" + challengeTier;
+					challengetierstring = "Dev Block strings are not supported" + challengeTier;
 					if(challengeTier < 10)
 					{
-						var_9a5d32ff = "Dev Block strings are not supported" + challengeTier;
+						challengetierstring = "Dev Block strings are not supported" + challengeTier;
 					}
 					name = TableLookupColumnForRow(tableName, j, 5);
-					var_61711a6a = var_1f037201 + type + "Dev Block strings are not supported" + MakeLocalizedString(name) + "Dev Block strings are not supported" + var_9a5d32ff + "Dev Block strings are not supported" + var_9a0d8e07;
-					AddDebugCommand(var_61711a6a + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + j + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + i + "Dev Block strings are not supported");
-					if(Int(var_9a0d8e07) % 10 == 0)
+					devgui_cmd_challenge_path = notif_challenges_devgui_base + type + "Dev Block strings are not supported" + MakeLocalizedString(name) + "Dev Block strings are not supported" + challengetierstring + "Dev Block strings are not supported" + challengeid;
+					AddDebugCommand(devgui_cmd_challenge_path + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + j + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + i + "Dev Block strings are not supported");
+					if(Int(challengeid) % 10 == 0)
 					{
 						wait(0.05);
 					}
 				}
 			}
 		}
-		level thread function_7ece286a();
+		level thread notif_devgui_challenges_think();
 	#/
 }
 
 /*
-	Name: function_7ece286a
+	Name: notif_devgui_challenges_think
 	Namespace: popups
 	Checksum: 0xB79669BD
 	Offset: 0x1948
@@ -568,7 +568,7 @@ function function_eafd7f5b()
 	Parameters: 0
 	Flags: None
 */
-function function_7ece286a()
+function notif_devgui_challenges_think()
 {
 	/#
 		SetDvar("Dev Block strings are not supported", 0);
@@ -577,13 +577,13 @@ function function_7ece286a()
 		{
 			row = GetDvarInt("Dev Block strings are not supported");
 			table = GetDvarInt("Dev Block strings are not supported");
-			if(table < 1 || table > function_bcf0ce52())
+			if(table < 1 || table > devgui_notif_getchallengestablecount())
 			{
 				wait(0.05);
 				continue;
 			}
-			tableName = function_5f5fa154(table);
-			if(row < 1 || row > function_1556496c(tableName))
+			tableName = devgui_notif_getchallengestablename(table);
+			if(row < 1 || row > tablelookuprowcount(tableName))
 			{
 				wait(0.05);
 				continue;
@@ -617,10 +617,10 @@ function function_7ece286a()
 				itemIndex = 23;
 				type = 1;
 			}
-			var_5f763e28 = Int(TableLookupColumnForRow(tableName, row, 6));
-			var_9a0d8e07 = Int(TableLookupColumnForRow(tableName, row, 0));
+			xpreward = Int(TableLookupColumnForRow(tableName, row, 6));
+			challengeid = Int(TableLookupColumnForRow(tableName, row, 0));
 			maxValue = Int(TableLookupColumnForRow(tableName, row, 2));
-			level.players[0] persistence::CodeCallback_ChallengeComplete(var_5f763e28, maxValue, row, table - 1, type, itemIndex, var_9a0d8e07);
+			level.players[0] persistence::CodeCallback_ChallengeComplete(xpreward, maxValue, row, table - 1, type, itemIndex, challengeid);
 			SetDvar("Dev Block strings are not supported", 0);
 			SetDvar("Dev Block strings are not supported", 0);
 			wait(1);

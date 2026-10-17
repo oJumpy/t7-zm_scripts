@@ -413,7 +413,7 @@ function play_futz_or_not_moonvox(sound_to_play)
 	}
 	for(i = 0; i < players.size; i++)
 	{
-		if(self zm_equipment::is_active(level.var_f486078e))
+		if(self zm_equipment::is_active(level.w_gasmask))
 		{
 			if(self == players[i])
 			{
@@ -622,7 +622,7 @@ function do_mooncomp_vox(alias)
 	players = GetPlayers();
 	for(i = 0; i < players.size; i++)
 	{
-		if(players[i] zm_equipment::is_active(level.var_f486078e))
+		if(players[i] zm_equipment::is_active(level.w_gasmask))
 		{
 			players[i] playsoundtoplayer(alias + "_f", players[i]);
 		}
@@ -789,7 +789,7 @@ function play_warning_vox()
 		{
 			wait(0.1);
 		}
-		if(isdefined(self.in_low_gravity && self HasWeapon(level.var_f486078e) && !self namespace_11fcf241::gasmask_active()) && self.in_low_gravity && self HasWeapon(level.var_f486078e) && !self namespace_11fcf241::gasmask_active())
+		if(isdefined(self.in_low_gravity && self HasWeapon(level.w_gasmask) && !self namespace_11fcf241::gasmask_active()) && self.in_low_gravity && self HasWeapon(level.w_gasmask) && !self namespace_11fcf241::gasmask_active())
 		{
 			self stopsounds();
 			wait(0.05);
@@ -892,16 +892,16 @@ function function_e091daa4()
 */
 function function_3630300b()
 {
-	var_d1f154fd = struct::get_array("s_ballerina_timed", "targetname");
-	var_d1f154fd = Array::sort_by_script_int(var_d1f154fd, 1);
-	level.var_aa39de8 = 0;
+	a_s_ballerina_timed = struct::get_array("s_ballerina_timed", "targetname");
+	a_s_ballerina_timed = Array::sort_by_script_int(a_s_ballerina_timed, 1);
+	level.n_ballerina_count = 0;
 	wait(1);
-	foreach(var_6d450235 in var_d1f154fd)
+	foreach(s_ballerina in a_s_ballerina_timed)
 	{
-		var_6d450235 thread function_b8227f87();
+		s_ballerina thread function_b8227f87();
 		wait(1);
 	}
-	while(level.var_aa39de8 < var_d1f154fd.size)
+	while(level.n_ballerina_count < a_s_ballerina_timed.size)
 	{
 		wait(0.1);
 	}
@@ -920,15 +920,15 @@ function function_3630300b()
 */
 function function_b8227f87()
 {
-	self.var_ac086ffb = util::spawn_model(self.model, self.origin, self.angles);
-	self.var_ac086ffb clientfield::set("snd_zhdegg", 1);
-	self.var_ac086ffb PlayLoopSound("mus_musicbox_lp", 2);
+	self.mdl_ballerina = util::spawn_model(self.model, self.origin, self.angles);
+	self.mdl_ballerina clientfield::set("snd_zhdegg", 1);
+	self.mdl_ballerina PlayLoopSound("mus_musicbox_lp", 2);
 	self thread namespace_52adc03e::function_9d55fd08();
 	self thread namespace_52adc03e::function_2fdaabf3();
 	self util::waittill_any("ballerina_destroyed");
-	level.var_aa39de8++;
-	self.var_ac086ffb clientfield::set("snd_zhdegg", 0);
+	level.n_ballerina_count++;
+	self.mdl_ballerina clientfield::set("snd_zhdegg", 0);
 	util::wait_network_frame();
-	self.var_ac086ffb delete();
+	self.mdl_ballerina delete();
 }
 

@@ -1396,7 +1396,7 @@ function private function_a05da9fb()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
-		zm_devgui::function_4acecab5(&function_d3a31a35);
+		zm_devgui::add_custom_devgui_callback(&function_d3a31a35);
 	#/
 }
 

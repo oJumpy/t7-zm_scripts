@@ -231,22 +231,22 @@ function private function_785afcbe(localClientNum, thrasher, player)
 	var_e494fe3c = AngleClamp180(GetCamAnglesByLocalClientNum(player.localClientNum)[1]);
 	thrasher.var_18fd72ff.angles = (0, var_e494fe3c, 0);
 	maxYawDelta = 0.01;
-	var_c0756dfb = 2;
+	maxyawdiff = 2;
 	lastTime = player getClientTime() / 1000;
 	wait(interpolate);
 	while(isdefined(thrasher.var_18fd72ff))
 	{
 		currentTime = player getClientTime() / 1000;
-		var_4a945648 = currentTime - lastTime;
+		timedelta = currentTime - lastTime;
 		var_50a8bb46 = thrasher.var_18fd72ff.angles[1];
 		newYaw = GetCamAnglesByLocalClientNum(player.localClientNum)[1];
-		while(var_4a945648 > interpolate)
+		while(timedelta > interpolate)
 		{
 			var_50a8bb46 = AngleClamp180(AngleLerp(var_50a8bb46, newYaw, 0.15));
-			var_4a945648 = var_4a945648 - interpolate;
+			timedelta = timedelta - interpolate;
 		}
 		thrasher.var_18fd72ff.angles = (0, var_50a8bb46, 0);
-		lastTime = currentTime - var_4a945648;
+		lastTime = currentTime - timedelta;
 		wait(interpolate);
 	}
 }

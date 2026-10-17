@@ -46,42 +46,42 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	clientfield::register("scriptmover", "demonic_rune_fx", 5000, 1, "int");
-	zm_powerups::register_powerup("demonic_rune_lor", &function_b11a0932);
+	zm_powerups::register_powerup("demonic_rune_lor", &grab_demonic_rune);
 	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
 	{
 		zm_powerups::add_zombie_powerup("demonic_rune_lor", "p7_zm_ctl_demon_gate_power_up_icons_lor", &"", &zm_powerups::func_should_never_drop, 1, 0, 0);
 		zm_powerups::powerup_set_statless_powerup("demonic_rune_lor");
 		zm_powerups::powerup_set_player_specific("demonic_rune_lor", 1);
 	}
-	zm_powerups::register_powerup("demonic_rune_ulla", &function_b11a0932);
+	zm_powerups::register_powerup("demonic_rune_ulla", &grab_demonic_rune);
 	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
 	{
 		zm_powerups::add_zombie_powerup("demonic_rune_ulla", "p7_zm_ctl_demon_gate_power_up_icons_door", &"", &zm_powerups::func_should_never_drop, 1, 0, 0);
 		zm_powerups::powerup_set_statless_powerup("demonic_rune_ulla");
 		zm_powerups::powerup_set_player_specific("demonic_rune_ulla", 1);
 	}
-	zm_powerups::register_powerup("demonic_rune_oth", &function_b11a0932);
+	zm_powerups::register_powerup("demonic_rune_oth", &grab_demonic_rune);
 	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
 	{
 		zm_powerups::add_zombie_powerup("demonic_rune_oth", "p7_zm_ctl_demon_gate_power_up_icons_oth", &"", &zm_powerups::func_should_never_drop, 1, 0, 0);
 		zm_powerups::powerup_set_statless_powerup("demonic_rune_oth");
 		zm_powerups::powerup_set_player_specific("demonic_rune_oth", 1);
 	}
-	zm_powerups::register_powerup("demonic_rune_zor", &function_b11a0932);
+	zm_powerups::register_powerup("demonic_rune_zor", &grab_demonic_rune);
 	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
 	{
 		zm_powerups::add_zombie_powerup("demonic_rune_zor", "p7_zm_ctl_demon_gate_power_up_icons_zor", &"", &zm_powerups::func_should_never_drop, 1, 0, 0);
 		zm_powerups::powerup_set_statless_powerup("demonic_rune_zor");
 		zm_powerups::powerup_set_player_specific("demonic_rune_zor", 1);
 	}
-	zm_powerups::register_powerup("demonic_rune_mar", &function_b11a0932);
+	zm_powerups::register_powerup("demonic_rune_mar", &grab_demonic_rune);
 	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
 	{
 		zm_powerups::add_zombie_powerup("demonic_rune_mar", "p7_zm_ctl_demon_gate_power_up_icons_stag", &"", &zm_powerups::func_should_never_drop, 1, 0, 0);
 		zm_powerups::powerup_set_statless_powerup("demonic_rune_mar");
 		zm_powerups::powerup_set_player_specific("demonic_rune_mar", 1);
 	}
-	zm_powerups::register_powerup("demonic_rune_uja", &function_b11a0932);
+	zm_powerups::register_powerup("demonic_rune_uja", &grab_demonic_rune);
 	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
 	{
 		zm_powerups::add_zombie_powerup("demonic_rune_uja", "p7_zm_ctl_demon_gate_power_up_icons_uja", &"", &zm_powerups::func_should_never_drop, 1, 0, 0);
@@ -95,7 +95,7 @@ function __init__()
 }
 
 /*
-	Name: function_b11a0932
+	Name: grab_demonic_rune
 	Namespace: namespace_e581e076
 	Checksum: 0xA6FDB452
 	Offset: 0xA70
@@ -103,7 +103,7 @@ function __init__()
 	Parameters: 1
 	Flags: None
 */
-function function_b11a0932(player)
+function grab_demonic_rune(player)
 {
 	level flag::clear("demonic_rune_dropped");
 	level notify("hash_968008cb");
@@ -183,7 +183,7 @@ function function_15732f56()
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_a4207c70);
+		zm_devgui::add_custom_devgui_callback(&function_a4207c70);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -194,7 +194,7 @@ function function_15732f56()
 }
 
 /*
-	Name: function_2449723c
+	Name: detect_reentry
 	Namespace: namespace_e581e076
 	Checksum: 0xB0634DD7
 	Offset: 0xD78
@@ -202,7 +202,7 @@ function function_15732f56()
 	Parameters: 0
 	Flags: None
 */
-function function_2449723c()
+function detect_reentry()
 {
 	/#
 		if(isdefined(self.var_1688944a))
@@ -238,62 +238,62 @@ function function_a4207c70(cmd)
 		{
 			case "Dev Block strings are not supported":
 			{
-				if(level function_2449723c())
+				if(level detect_reentry())
 				{
 					return 1;
 				}
 				level.var_bb00a6cd = cmd;
-				level.var_6e68c0d8 thread zm_devgui::function_9589a11f(cmd, 1);
+				level.var_6e68c0d8 thread zm_devgui::zombie_devgui_give_powerup_player(cmd, 1);
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
-				if(level function_2449723c())
+				if(level detect_reentry())
 				{
 					return 1;
 				}
 				level.var_bb00a6cd = cmd;
-				level.var_6e68c0d8 thread zm_devgui::function_9589a11f(cmd, 1);
+				level.var_6e68c0d8 thread zm_devgui::zombie_devgui_give_powerup_player(cmd, 1);
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
-				if(level function_2449723c())
+				if(level detect_reentry())
 				{
 					return 1;
 				}
 				level.var_bb00a6cd = cmd;
-				level.var_6e68c0d8 thread zm_devgui::function_9589a11f(cmd, 1);
+				level.var_6e68c0d8 thread zm_devgui::zombie_devgui_give_powerup_player(cmd, 1);
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
-				if(level function_2449723c())
+				if(level detect_reentry())
 				{
 					return 1;
 				}
 				level.var_bb00a6cd = cmd;
-				level.var_6e68c0d8 thread zm_devgui::function_9589a11f(cmd, 1);
+				level.var_6e68c0d8 thread zm_devgui::zombie_devgui_give_powerup_player(cmd, 1);
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
-				if(level function_2449723c())
+				if(level detect_reentry())
 				{
 					return 1;
 				}
 				level.var_bb00a6cd = cmd;
-				level.var_6e68c0d8 thread zm_devgui::function_9589a11f(cmd, 1);
+				level.var_6e68c0d8 thread zm_devgui::zombie_devgui_give_powerup_player(cmd, 1);
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
-				if(level function_2449723c())
+				if(level detect_reentry())
 				{
 					return 1;
 				}
 				level.var_bb00a6cd = cmd;
-				level.var_6e68c0d8 thread zm_devgui::function_9589a11f(cmd, 1);
+				level.var_6e68c0d8 thread zm_devgui::zombie_devgui_give_powerup_player(cmd, 1);
 				return 1;
 			}
 		}

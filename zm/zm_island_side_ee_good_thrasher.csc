@@ -120,26 +120,26 @@ function function_9993f1d3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal == 1)
 	{
-		if(isdefined(self.var_ba9281dc))
+		if(isdefined(self.fx_ids))
 		{
-			foreach(fx_id in self.var_ba9281dc)
+			foreach(fx_id in self.fx_ids)
 			{
 				stopfx(localClientNum, fx_id);
 			}
 		}
-		self.var_ba9281dc = [];
-		self.var_ba9281dc["eyes"] = PlayFXOnTag(localClientNum, level._effect["SIDE_EE_GT_EYES"], self, "j_eyeball_le");
-		self.var_ba9281dc["spine"] = PlayFXOnTag(localClientNum, level._effect["SIDE_EE_GT_SPINE"], self, "j_spinelower");
-		self.var_ba9281dc["leg_l"] = PlayFXOnTag(localClientNum, level._effect["SIDE_EE_GT_LEG_L"], self, "j_hip_le");
-		self.var_ba9281dc["leg_r"] = PlayFXOnTag(localClientNum, level._effect["SIDE_EE_GT_LEG_R"], self, "j_hip_rt");
+		self.fx_ids = [];
+		self.fx_ids["eyes"] = PlayFXOnTag(localClientNum, level._effect["SIDE_EE_GT_EYES"], self, "j_eyeball_le");
+		self.fx_ids["spine"] = PlayFXOnTag(localClientNum, level._effect["SIDE_EE_GT_SPINE"], self, "j_spinelower");
+		self.fx_ids["leg_l"] = PlayFXOnTag(localClientNum, level._effect["SIDE_EE_GT_LEG_L"], self, "j_hip_le");
+		self.fx_ids["leg_r"] = PlayFXOnTag(localClientNum, level._effect["SIDE_EE_GT_LEG_R"], self, "j_hip_rt");
 	}
-	else if(isdefined(self.var_ba9281dc))
+	else if(isdefined(self.fx_ids))
 	{
-		foreach(fx_id in self.var_ba9281dc)
+		foreach(fx_id in self.fx_ids)
 		{
 			stopfx(localClientNum, fx_id);
 		}
-		self.var_ba9281dc = undefined;
+		self.fx_ids = undefined;
 	}
 }
 

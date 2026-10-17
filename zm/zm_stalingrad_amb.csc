@@ -22,7 +22,7 @@
 */
 function main()
 {
-	thread function_d19cb2f8();
+	thread startzmbspawnersoundloops();
 	level thread function_bab3ea62();
 	level thread function_b21d9845();
 	level thread function_d4a3f122();
@@ -33,7 +33,7 @@ function main()
 }
 
 /*
-	Name: function_d19cb2f8
+	Name: startzmbspawnersoundloops
 	Namespace: namespace_db83306f
 	Checksum: 0x89D2D487
 	Offset: 0x410
@@ -41,7 +41,7 @@ function main()
 	Parameters: 0
 	Flags: None
 */
-function function_d19cb2f8()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("exterior_goal", "targetname");
 	if(isdefined(loopers) && loopers.size > 0)
@@ -196,17 +196,17 @@ function function_95d61fc1()
 function function_53b9afad()
 {
 	level.var_b6342abd = "mus_stalingrad_underscore_outdoor";
-	level.var_6d9d81aa = "mus_stalingrad_underscore_outdoor";
+	level.newmus = "mus_stalingrad_underscore_outdoor";
 	level.var_eb526c90 = spawn(0, (0, 0, 0), "script_origin");
 	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(level.var_b6342abd, 2);
 	while(1)
 	{
 		level waittill("hash_51d7bc7c", location);
-		level.var_6d9d81aa = "mus_stalingrad_underscore_" + location;
-		if(level.var_6d9d81aa != level.var_b6342abd)
+		level.newmus = "mus_stalingrad_underscore_" + location;
+		if(level.newmus != level.var_b6342abd)
 		{
-			level thread function_51d7bc7c(level.var_6d9d81aa);
-			level.var_b6342abd = level.var_6d9d81aa;
+			level thread function_51d7bc7c(level.newmus);
+			level.var_b6342abd = level.newmus;
 		}
 	}
 }
@@ -220,12 +220,12 @@ function function_53b9afad()
 	Parameters: 1
 	Flags: None
 */
-function function_51d7bc7c(var_6d9d81aa)
+function function_51d7bc7c(newmus)
 {
 	level endon("hash_51d7bc7c");
 	level.var_eb526c90 StopAllLoopSounds(2);
 	wait(1);
-	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(var_6d9d81aa, 2);
+	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(newmus, 2);
 }
 
 /*

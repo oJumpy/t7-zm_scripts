@@ -4791,14 +4791,14 @@ function run_craftables_devgui()
 				}
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
-			var_f86eaea5 = GetDvarString("Dev Block strings are not supported");
-			if(var_f86eaea5 != "Dev Block strings are not supported")
+			equipment_id = GetDvarString("Dev Block strings are not supported");
+			if(equipment_id != "Dev Block strings are not supported")
 			{
 				foreach(player in GetPlayers())
 				{
-					if(zm_equipment::is_included(var_f86eaea5))
+					if(zm_equipment::is_included(equipment_id))
 					{
-						player zm_equipment::buy(var_f86eaea5);
+						player zm_equipment::buy(equipment_id);
 					}
 				}
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -4831,25 +4831,25 @@ function run_craftables_devgui()
 			craftable_id = GetDvarString("Dev Block strings are not supported", "Dev Block strings are not supported");
 			if(craftable_id != "Dev Block strings are not supported")
 			{
-				var_f53fd362 = [];
+				a_tables = [];
 				foreach(unitrigger_stub in level.a_uts_craftables)
 				{
 					if(unitrigger_stub.equipname === craftable_id)
 					{
-						if(!isdefined(var_f53fd362))
+						if(!isdefined(a_tables))
 						{
-							var_f53fd362 = [];
+							a_tables = [];
 						}
-						else if(!IsArray(var_f53fd362))
+						else if(!IsArray(a_tables))
 						{
-							var_f53fd362 = Array(var_f53fd362);
+							a_tables = Array(a_tables);
 						}
-						var_f53fd362[var_f53fd362.size] = unitrigger_stub;
+						a_tables[a_tables.size] = unitrigger_stub;
 					}
 				}
-				if(var_f53fd362.size)
+				if(a_tables.size)
 				{
-					v_pos = ArrayGetClosest(level.players[0].origin, var_f53fd362).origin;
+					v_pos = ArrayGetClosest(level.players[0].origin, a_tables).origin;
 					queryResult = PositionQuery_Source_Navigation(v_pos, 100, 200, 200, 15);
 					if(queryResult.data.size)
 					{

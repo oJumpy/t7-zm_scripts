@@ -20,11 +20,11 @@
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\zm_stalingrad_pap_quest;
 
-#namespace namespace_19e79ea1;
+#namespace stalingrad_dragon_strike;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x42D8F5FA
 	Offset: 0x828
 	Size: 0x3B
@@ -38,7 +38,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x2C8E5FDD
 	Offset: 0x870
 	Size: 0x43
@@ -53,7 +53,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x61DCD413
 	Offset: 0x8C0
 	Size: 0x113
@@ -73,7 +73,7 @@ function __main__()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0xCB33EFF
 	Offset: 0x9E0
 	Size: 0x103
@@ -102,7 +102,7 @@ function on_player_spawned()
 
 /*
 	Name: function_43b5419a
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x9BB5F7F5
 	Offset: 0xAF0
 	Size: 0xAD
@@ -123,7 +123,7 @@ function function_43b5419a(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 
 /*
 	Name: function_ea7e3000
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x6F8426A7
 	Offset: 0xBA8
 	Size: 0xC3
@@ -148,16 +148,16 @@ function function_ea7e3000(s_unitrigger, var_df61c394, var_60e07243)
 
 /*
 	Name: function_748696f0
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x89C76558
 	Offset: 0xC78
 	Size: 0x73
 	Parameters: 2
 	Flags: None
 */
-function function_748696f0(b_on, var_f9ec3a04)
+function function_748696f0(b_on, n_tag)
 {
-	str_clientfield = "lockbox_light_" + var_f9ec3a04;
+	str_clientfield = "lockbox_light_" + n_tag;
 	if(b_on)
 	{
 		self clientfield::set(str_clientfield, 1);
@@ -170,7 +170,7 @@ function function_748696f0(b_on, var_f9ec3a04)
 
 /*
 	Name: function_41457bd1
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0xE27E0EE9
 	Offset: 0xCF8
 	Size: 0x22D
@@ -218,7 +218,7 @@ function function_41457bd1()
 
 /*
 	Name: function_8f02cb7e
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0xF55A5E79
 	Offset: 0xF30
 	Size: 0x24D
@@ -269,7 +269,7 @@ function function_8f02cb7e()
 
 /*
 	Name: function_316be9a7
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0xA2628307
 	Offset: 0x1188
 	Size: 0x2F3
@@ -299,14 +299,14 @@ function function_316be9a7()
 	zm_unitrigger::register_static_unitrigger(s_unitrigger, &function_68299355);
 	var_620858e1 = s_unitrigger.var_f30d1f8f GetTagOrigin("tag_animate");
 	var_14dae7af = s_unitrigger.var_f30d1f8f GetTagAngles("tag_animate");
-	s_unitrigger.var_f30d1f8f.var_6306226 = util::spawn_model("tag_origin", var_620858e1, var_14dae7af);
-	s_unitrigger.var_f30d1f8f.var_6306226 scene::init("p7_fxanim_zm_stal_dragon_strike_console_bundle", s_unitrigger.var_f30d1f8f.var_6306226);
-	s_unitrigger.var_f30d1f8f.var_6306226 thread function_f25c1083();
+	s_unitrigger.var_f30d1f8f.mdl_rings = util::spawn_model("tag_origin", var_620858e1, var_14dae7af);
+	s_unitrigger.var_f30d1f8f.mdl_rings scene::init("p7_fxanim_zm_stal_dragon_strike_console_bundle", s_unitrigger.var_f30d1f8f.mdl_rings);
+	s_unitrigger.var_f30d1f8f.mdl_rings thread function_f25c1083();
 }
 
 /*
 	Name: function_10d61b3
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x39BE6252
 	Offset: 0x1488
 	Size: 0x479
@@ -317,39 +317,39 @@ function function_10d61b3(player)
 {
 	if(level flag::get("draconite_available") && player zm_utility::get_player_placeable_mine() != GetWeapon("launcher_dragon_strike_upgraded"))
 	{
-		self function_cb2c15eb(player, &"ZM_STALINGRAD_DRAGON_STRIKE_UPGRADED_PICKUP");
+		self sethintstringforplayer(player, &"ZM_STALINGRAD_DRAGON_STRIKE_UPGRADED_PICKUP");
 		return 1;
 	}
 	else if(level flag::get("dragon_strike_quest_complete") && !level flag::get("draconite_available") && player zm_utility::get_player_placeable_mine() != GetWeapon("launcher_dragon_strike"))
 	{
-		self function_cb2c15eb(player, &"ZM_STALINGRAD_DRAGON_STRIKE_PICKUP");
+		self sethintstringforplayer(player, &"ZM_STALINGRAD_DRAGON_STRIKE_PICKUP");
 		return 1;
 	}
 	else if(level flag::get("dragon_strike_unlocked") && player zm_utility::get_player_placeable_mine() == GetWeapon("launcher_dragon_strike") && !level flag::get("dragon_stage3_started") || (level flag::get("dragon_strike_unlocked") && !level flag::get("dragon_strike_quest_complete")) || (level flag::get("draconite_available") && player zm_utility::get_player_placeable_mine() == GetWeapon("launcher_dragon_strike_upgraded")) || (!level flag::get("draconite_available") && level flag::get("dragon_stage4_started")) || level flag::get("special_round") || level.round_number == level.var_a78effc7 || level flag::get("scenario_active"))
 	{
-		self function_cb2c15eb(player, "");
+		self sethintstringforplayer(player, "");
 		return 0;
 	}
 	else if(level flag::get("dragon_stage3_started") && !player flag::get("dragon_strike_lockbox_upgraded_trigger_used"))
 	{
-		self function_cb2c15eb(player, &"ZM_STALINGRAD_DRAGON_STRIKE_UPGRADED_UNLOCK");
+		self sethintstringforplayer(player, &"ZM_STALINGRAD_DRAGON_STRIKE_UPGRADED_UNLOCK");
 		return 1;
 	}
 	else if(player flag::get("dragon_strike_lockbox_trigger_used") && !level flag::get("dragon_strike_unlocked") || (player flag::get("dragon_strike_lockbox_upgraded_trigger_used") && !level flag::get("dragon_stage4_started")))
 	{
-		self function_cb2c15eb(player, &"ZM_STALINGRAD_DRAGON_STRIKE_UNLOCK_INCOMPLETE");
+		self sethintstringforplayer(player, &"ZM_STALINGRAD_DRAGON_STRIKE_UNLOCK_INCOMPLETE");
 		return 0;
 	}
 	else if(!player flag::get("dragon_strike_lockbox_trigger_used") && !level flag::get("dragon_strike_unlocked"))
 	{
-		self function_cb2c15eb(player, &"ZM_STALINGRAD_DRAGON_STRIKE_UNLOCK");
+		self sethintstringforplayer(player, &"ZM_STALINGRAD_DRAGON_STRIKE_UNLOCK");
 		return 1;
 	}
 }
 
 /*
 	Name: function_68299355
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x5E41BE97
 	Offset: 0x1910
 	Size: 0x3C7
@@ -395,7 +395,7 @@ function function_68299355()
 
 /*
 	Name: function_f25c1083
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0xF85A7C84
 	Offset: 0x1CE0
 	Size: 0x93
@@ -415,7 +415,7 @@ function function_f25c1083()
 
 /*
 	Name: function_8258d71c
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0xA8EE90DA
 	Offset: 0x1D80
 	Size: 0x143
@@ -426,25 +426,25 @@ function function_8258d71c()
 {
 	if(level flag::get("draconite_available"))
 	{
-		var_5a0c399b = GetWeapon("launcher_dragon_strike_upgraded");
-		var_7bf8ceb7 = 2;
+		w_dragon_strike = GetWeapon("launcher_dragon_strike_upgraded");
+		n_max_ammo = 2;
 	}
 	else
 	{
-		var_5a0c399b = GetWeapon("launcher_dragon_strike");
-		var_7bf8ceb7 = 1;
+		w_dragon_strike = GetWeapon("launcher_dragon_strike");
+		n_max_ammo = 1;
 	}
-	self thread zm_placeable_mine::setup_for_player(var_5a0c399b, "hudItems.showDpadRight_DragonStrike");
+	self thread zm_placeable_mine::setup_for_player(w_dragon_strike, "hudItems.showDpadRight_DragonStrike");
 	self thread function_b8ea3482("zmInventory.widget_dragon_strike");
-	self zm_weapons::weapon_give(var_5a0c399b);
-	self SetWeaponAmmoClip(var_5a0c399b, var_7bf8ceb7);
+	self zm_weapons::weapon_give(w_dragon_strike);
+	self SetWeaponAmmoClip(w_dragon_strike, n_max_ammo);
 	self thread zm_equipment::show_hint_text(&"ZM_STALINGRAD_DRAGON_STRIKE_EQUIP");
 	self zm_audio::create_and_play_dialog("weapon_pickup", "controller");
 }
 
 /*
 	Name: function_b8ea3482
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0xBF45FAC4
 	Offset: 0x1ED0
 	Size: 0x53
@@ -461,7 +461,7 @@ function function_b8ea3482(str_widget_clientuimodel)
 
 /*
 	Name: function_56059128
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x303BE90C
 	Offset: 0x1F30
 	Size: 0xBB
@@ -480,7 +480,7 @@ function function_56059128()
 
 /*
 	Name: function_93510b8b
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x3BC239FA
 	Offset: 0x1FF8
 	Size: 0x343
@@ -527,7 +527,7 @@ function function_93510b8b()
 
 /*
 	Name: function_e6794c49
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x2EEFBE17
 	Offset: 0x2348
 	Size: 0x43
@@ -545,7 +545,7 @@ function function_e6794c49()
 
 /*
 	Name: function_af4562b1
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x4B795451
 	Offset: 0x2398
 	Size: 0xD9
@@ -554,19 +554,19 @@ function function_e6794c49()
 */
 function function_af4562b1()
 {
-	var_5a0c399b = GetWeapon("launcher_dragon_strike");
+	w_dragon_strike = GetWeapon("launcher_dragon_strike");
 	foreach(player in level.players)
 	{
-		if(player zm_utility::get_player_placeable_mine() === var_5a0c399b)
+		if(player zm_utility::get_player_placeable_mine() === w_dragon_strike)
 		{
-			player SetWeaponAmmoClip(var_5a0c399b, 1);
+			player SetWeaponAmmoClip(w_dragon_strike, 1);
 		}
 	}
 }
 
 /*
 	Name: function_2e107eef
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0xC41B03DA
 	Offset: 0x2480
 	Size: 0xC1
@@ -586,7 +586,7 @@ function function_2e107eef(e_attacker)
 
 /*
 	Name: function_815a155e
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x5BE9FB9D
 	Offset: 0x2550
 	Size: 0xA3
@@ -613,7 +613,7 @@ function function_815a155e(var_62a210b7)
 
 /*
 	Name: function_5cb61169
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x13EEE73
 	Offset: 0x2600
 	Size: 0x103
@@ -636,7 +636,7 @@ function function_5cb61169()
 
 /*
 	Name: function_75a7ba2d
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x1E6B4E4A
 	Offset: 0x2710
 	Size: 0x153
@@ -669,7 +669,7 @@ function function_75a7ba2d()
 
 /*
 	Name: function_46c8b621
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x97A910BF
 	Offset: 0x2870
 	Size: 0xA3

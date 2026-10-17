@@ -70,7 +70,7 @@ function private ArchetypeCloneBlackboardInit()
 	ai::CreateInterfaceForEntity(entity);
 	entity.___ArchetypeOnAnimscriptedCallback = &ArchetypeCloneOnAnimscriptedCallback;
 	/#
-		entity function_89398c57();
+		entity finalizetrackedblackboardattributes();
 	#/
 }
 

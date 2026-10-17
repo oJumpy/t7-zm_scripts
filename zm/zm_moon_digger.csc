@@ -292,7 +292,7 @@ function do_digger_arm_fx(localClientNum, ent)
 }
 
 /*
-	Name: function_245b13ce
+	Name: digger_visibility
 	Namespace: zm_moon_digger
 	Checksum: 0xA1753AB6
 	Offset: 0xCC0
@@ -300,7 +300,7 @@ function do_digger_arm_fx(localClientNum, ent)
 	Parameters: 7
 	Flags: None
 */
-function function_245b13ce(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function digger_visibility(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
@@ -380,18 +380,18 @@ function init_excavator_consoles()
 	{
 		if(!level clientfield::get("TCA"))
 		{
-			var_cc373138 = GetEnt(index, "tunnel_console", "targetname");
-			function_9b3daafa(index, var_cc373138, 0);
+			mdl_console = GetEnt(index, "tunnel_console", "targetname");
+			function_9b3daafa(index, mdl_console, 0);
 		}
 		if(!level clientfield::get("HCA"))
 		{
-			var_cc373138 = GetEnt(index, "hangar_console", "targetname");
-			function_9b3daafa(index, var_cc373138, 0);
+			mdl_console = GetEnt(index, "hangar_console", "targetname");
+			function_9b3daafa(index, mdl_console, 0);
 		}
 		if(!level clientfield::get("BCA"))
 		{
-			var_cc373138 = GetEnt(index, "biodome_console", "targetname");
-			function_9b3daafa(index, var_cc373138, 0);
+			mdl_console = GetEnt(index, "biodome_console", "targetname");
+			function_9b3daafa(index, mdl_console, 0);
 		}
 	}
 }
@@ -425,14 +425,14 @@ function function_774edb15(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			break;
 		}
 	}
-	var_cc373138 = GetEnt(localClientNum, var_ffc320da, "targetname");
+	mdl_console = GetEnt(localClientNum, var_ffc320da, "targetname");
 	if(newVal)
 	{
-		function_9b3daafa(localClientNum, var_cc373138, 1);
+		function_9b3daafa(localClientNum, mdl_console, 1);
 	}
 	else
 	{
-		function_9b3daafa(localClientNum, var_cc373138, 0);
+		function_9b3daafa(localClientNum, mdl_console, 0);
 	}
 }
 
@@ -445,19 +445,19 @@ function function_774edb15(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_9b3daafa(localClientNum, var_cc373138, var_a61a4e58)
+function function_9b3daafa(localClientNum, mdl_console, b_is_on)
 {
-	if(isdefined(var_cc373138.n_fx_id))
+	if(isdefined(mdl_console.n_fx_id))
 	{
-		stopfx(localClientNum, var_cc373138.n_fx_id);
+		stopfx(localClientNum, mdl_console.n_fx_id);
 	}
-	if(var_a61a4e58)
+	if(b_is_on)
 	{
-		var_cc373138.n_fx_id = PlayFXOnTag(localClientNum, level._effect["panel_on"], var_cc373138, "tag_origin");
+		mdl_console.n_fx_id = PlayFXOnTag(localClientNum, level._effect["panel_on"], mdl_console, "tag_origin");
 	}
 	else
 	{
-		var_cc373138.n_fx_id = PlayFXOnTag(localClientNum, level._effect["panel_off"], var_cc373138, "tag_origin");
+		mdl_console.n_fx_id = PlayFXOnTag(localClientNum, level._effect["panel_off"], mdl_console, "tag_origin");
 	}
 }
 

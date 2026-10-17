@@ -1144,68 +1144,68 @@ function private ArchetypeRobotBlackboardInit()
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_mind_control", "normal", &robotIsMindControlled);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_move_mode", "normal", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_gibbed_limbs", undefined, &robotGetGibbedLimbs);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_robot_jump_direction", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_robot_locomotion_type", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_robot_traversal_type", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_robot_wallrun_direction", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	blackboard::RegisterBlackBoardAttribute(self, "_robot_mode", "normal", undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	entity.___ArchetypeOnAnimscriptedCallback = &ArchetypeRobotOnAnimScriptedCallback;
 	/#
-		entity function_89398c57();
+		entity finalizetrackedblackboardattributes();
 	#/
 	if(SessionModeIsCampaignGame() || SessionModeIsZombiesGame())
 	{

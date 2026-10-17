@@ -112,22 +112,22 @@ function private setup_devgui()
 	/#
 		waittillframeend;
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
-		var_7ea63cce = "Dev Block strings are not supported";
+		aat_devgui_base = "Dev Block strings are not supported";
 		keys = getArrayKeys(level.AAT);
 		foreach(key in keys)
 		{
 			if(key != "Dev Block strings are not supported")
 			{
-				AddDebugCommand(var_7ea63cce + key + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + key + "Dev Block strings are not supported");
+				AddDebugCommand(aat_devgui_base + key + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + key + "Dev Block strings are not supported");
 			}
 		}
-		AddDebugCommand(var_7ea63cce + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported");
-		level thread function_832cf813();
+		AddDebugCommand(aat_devgui_base + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported");
+		level thread aat_devgui_think();
 	#/
 }
 
 /*
-	Name: function_832cf813
+	Name: aat_devgui_think
 	Namespace: AAT
 	Checksum: 0x249169AE
 	Offset: 0x6B8
@@ -135,25 +135,25 @@ function private setup_devgui()
 	Parameters: 0
 	Flags: Private
 */
-function private function_832cf813()
+function private aat_devgui_think()
 {
 	/#
 		for(;;)
 		{
-			var_ad818af9 = GetDvarString("Dev Block strings are not supported");
-			if(var_ad818af9 != "Dev Block strings are not supported")
+			aat_name = GetDvarString("Dev Block strings are not supported");
+			if(aat_name != "Dev Block strings are not supported")
 			{
 				for(i = 0; i < level.players.size; i++)
 				{
-					if(var_ad818af9 == "Dev Block strings are not supported")
+					if(aat_name == "Dev Block strings are not supported")
 					{
 						level.players[i] thread remove(level.players[i] GetCurrentWeapon());
 					}
 					else
 					{
-						level.players[i] thread acquire(level.players[i] GetCurrentWeapon(), var_ad818af9);
+						level.players[i] thread acquire(level.players[i] GetCurrentWeapon(), aat_name);
 					}
-					level.players[i] thread function_288d5482(var_ad818af9, 0, 0, 0);
+					level.players[i] thread aat_set_debug_text(aat_name, 0, 0, 0);
 				}
 			}
 			SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -163,7 +163,7 @@ function private function_832cf813()
 }
 
 /*
-	Name: function_6d77b957
+	Name: aat_debug_text_display_init
 	Namespace: AAT
 	Checksum: 0x516DC590
 	Offset: 0x818
@@ -171,29 +171,29 @@ function private function_832cf813()
 	Parameters: 0
 	Flags: Private
 */
-function private function_6d77b957()
+function private aat_debug_text_display_init()
 {
 	/#
-		self.var_169d4d7d = newClientHudElem(self);
-		self.var_169d4d7d.elemType = "Dev Block strings are not supported";
-		self.var_169d4d7d.font = "Dev Block strings are not supported";
-		self.var_169d4d7d.fontscale = 1.8;
-		self.var_169d4d7d.horzAlign = "Dev Block strings are not supported";
-		self.var_169d4d7d.vertAlign = "Dev Block strings are not supported";
-		self.var_169d4d7d.alignX = "Dev Block strings are not supported";
-		self.var_169d4d7d.alignY = "Dev Block strings are not supported";
-		self.var_169d4d7d.x = 15;
-		self.var_169d4d7d.y = 15;
-		self.var_169d4d7d.sort = 2;
-		self.var_169d4d7d.color = (1, 1, 1);
-		self.var_169d4d7d.alpha = 1;
-		self.var_169d4d7d.hidewheninmenu = 1;
-		self thread function_3d05ca49();
+		self.aat_debug_text = newClientHudElem(self);
+		self.aat_debug_text.elemType = "Dev Block strings are not supported";
+		self.aat_debug_text.font = "Dev Block strings are not supported";
+		self.aat_debug_text.fontscale = 1.8;
+		self.aat_debug_text.horzAlign = "Dev Block strings are not supported";
+		self.aat_debug_text.vertAlign = "Dev Block strings are not supported";
+		self.aat_debug_text.alignX = "Dev Block strings are not supported";
+		self.aat_debug_text.alignY = "Dev Block strings are not supported";
+		self.aat_debug_text.x = 15;
+		self.aat_debug_text.y = 15;
+		self.aat_debug_text.sort = 2;
+		self.aat_debug_text.color = (1, 1, 1);
+		self.aat_debug_text.alpha = 1;
+		self.aat_debug_text.hidewheninmenu = 1;
+		self thread aat_debug_text_display_monitor();
 	#/
 }
 
 /*
-	Name: function_3d05ca49
+	Name: aat_debug_text_display_monitor
 	Namespace: AAT
 	Checksum: 0x7B8DE09D
 	Offset: 0x980
@@ -201,7 +201,7 @@ function private function_6d77b957()
 	Parameters: 0
 	Flags: Private
 */
-function private function_3d05ca49()
+function private aat_debug_text_display_monitor()
 {
 	/#
 		self endon("disconnect");
@@ -213,13 +213,13 @@ function private function_3d05ca49()
 			{
 				name = self.AAT[weapon];
 			}
-			self thread function_288d5482(name, 0, 0, 0);
+			self thread aat_set_debug_text(name, 0, 0, 0);
 		}
 	#/
 }
 
 /*
-	Name: function_288d5482
+	Name: aat_set_debug_text
 	Namespace: AAT
 	Checksum: 0x7EAA0364
 	Offset: 0xA18
@@ -227,13 +227,13 @@ function private function_3d05ca49()
 	Parameters: 4
 	Flags: Private
 */
-function private function_288d5482(name, success, var_5448a493, fail)
+function private aat_set_debug_text(name, success, success_reroll, fail)
 {
 	/#
-		self notify("hash_a9ea8db9");
-		self endon("hash_a9ea8db9");
+		self notify("aat_set_debug_text_thread");
+		self endon("aat_set_debug_text_thread");
 		self endon("disconnect");
-		if(!isdefined(self.var_169d4d7d))
+		if(!isdefined(self.aat_debug_text))
 		{
 			return;
 		}
@@ -242,31 +242,31 @@ function private function_288d5482(name, success, var_5448a493, fail)
 		{
 			percentage = level.AAT[name].percentage;
 		}
-		self.var_169d4d7d fadeOverTime(0.05);
-		self.var_169d4d7d.alpha = 1;
-		self.var_169d4d7d setText("Dev Block strings are not supported" + name + "Dev Block strings are not supported" + percentage);
+		self.aat_debug_text fadeOverTime(0.05);
+		self.aat_debug_text.alpha = 1;
+		self.aat_debug_text setText("Dev Block strings are not supported" + name + "Dev Block strings are not supported" + percentage);
 		if(success)
 		{
-			self.var_169d4d7d.color = (0, 1, 0);
+			self.aat_debug_text.color = (0, 1, 0);
 		}
-		else if(var_5448a493)
+		else if(success_reroll)
 		{
-			self.var_169d4d7d.color = VectorScale((1, 0, 1), 0.8);
+			self.aat_debug_text.color = VectorScale((1, 0, 1), 0.8);
 		}
 		else if(fail)
 		{
-			self.var_169d4d7d.color = (1, 0, 0);
+			self.aat_debug_text.color = (1, 0, 0);
 		}
 		else
 		{
-			self.var_169d4d7d.color = (1, 1, 1);
+			self.aat_debug_text.color = (1, 1, 1);
 		}
 		wait(1);
-		self.var_169d4d7d fadeOverTime(1);
-		self.var_169d4d7d.color = (1, 1, 1);
+		self.aat_debug_text fadeOverTime(1);
+		self.aat_debug_text.color = (1, 1, 1);
 		if("Dev Block strings are not supported" == name)
 		{
-			self.var_169d4d7d.alpha = 0;
+			self.aat_debug_text.alpha = 0;
 		}
 	#/
 }
@@ -388,16 +388,16 @@ function aat_response(death, inflictor, attacker, damage, flags, mod, weapon, vP
 	reroll_icon = undefined;
 	percentage = level.AAT[name].percentage;
 	/#
-		var_7bab268f = GetDvarFloat("Dev Block strings are not supported");
-		if(var_7bab268f > 0)
+		aat_percentage_override = GetDvarFloat("Dev Block strings are not supported");
+		if(aat_percentage_override > 0)
 		{
-			percentage = var_7bab268f;
+			percentage = aat_percentage_override;
 		}
 	#/
 	if(percentage >= RandomFloat(1))
 	{
 		success = 1;
-		attacker thread function_288d5482(name, 1, 0, 0);
+		attacker thread aat_set_debug_text(name, 1, 0, 0);
 	}
 	if(!success)
 	{
@@ -413,7 +413,7 @@ function aat_response(death, inflictor, attacker, damage, flags, mod, weapon, vP
 					{
 						success = 1;
 						reroll_icon = level.aat_reroll[key].damage_feedback_icon;
-						attacker thread function_288d5482(name, 0, 1, 0);
+						attacker thread aat_set_debug_text(name, 0, 1, 0);
 						break;
 					}
 				}
@@ -426,7 +426,7 @@ function aat_response(death, inflictor, attacker, damage, flags, mod, weapon, vP
 	}
 	else if(!success)
 	{
-		attacker thread function_288d5482(name, 0, 0, 1);
+		attacker thread aat_set_debug_text(name, 0, 0, 1);
 		return;
 	}
 	level.AAT[name].cooldown_time_global_start = now;

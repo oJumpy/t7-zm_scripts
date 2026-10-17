@@ -61,7 +61,7 @@ function __init__()
 */
 function main()
 {
-	var_53564731 = GetEnt("ee_vista_monster", "targetname");
+	mdl_monster = GetEnt("ee_vista_monster", "targetname");
 	level thread function_e94b80b9();
 	/#
 		level thread function_abe01b4d();
@@ -127,14 +127,14 @@ function function_549b07cb()
 	e_vehicle Hide();
 	nd_start = GetVehicleNode(e_vehicle.target, "targetname");
 	e_vehicle AttachPath(nd_start);
-	var_53564731 = GetEnt("ee_vista_monster", "targetname");
-	var_53564731 SetForceNoCull();
-	var_53564731.origin = e_vehicle.origin;
-	var_53564731.angles = e_vehicle.angles;
-	var_53564731 LinkTo(e_vehicle);
+	mdl_monster = GetEnt("ee_vista_monster", "targetname");
+	mdl_monster SetForceNoCull();
+	mdl_monster.origin = e_vehicle.origin;
+	mdl_monster.angles = e_vehicle.angles;
+	mdl_monster LinkTo(e_vehicle);
 	e_vehicle SetSpeed(5, 100);
 	e_vehicle StartPath();
-	var_53564731 playsound("zmb_distant_monster_mash");
+	mdl_monster playsound("zmb_distant_monster_mash");
 	e_vehicle waittill("reached_end_node");
 	e_vehicle.delete_on_death = 1;
 	e_vehicle notify("death");
@@ -156,7 +156,7 @@ function function_549b07cb()
 function function_abe01b4d()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_603ad7e1);
+		zm_devgui::add_custom_devgui_callback(&function_603ad7e1);
 		level.var_7b18dfab = 0;
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");

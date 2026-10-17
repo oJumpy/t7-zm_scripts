@@ -60,7 +60,7 @@ function on_player_connect_crypt()
 */
 function chamber_disc_puzzle_init()
 {
-	scene::add_scene_func("p7_fxanim_zm_ori_chamber_mid_ring_bundle", &function_746282b3, "init");
+	scene::add_scene_func("p7_fxanim_zm_ori_chamber_mid_ring_bundle", &link_disc, "init");
 	level.gem_start_pos = [];
 	level.gem_start_pos["crypt_gem_fire"] = 2;
 	level.gem_start_pos["crypt_gem_air"] = 3;
@@ -84,9 +84,9 @@ function chamber_disc_puzzle_init()
 function chamber_disc_run()
 {
 	self.position = 0;
-	if(!isdefined(level.var_6d86123b))
+	if(!isdefined(level.a_chamber_disc))
 	{
-		level.var_6d86123b = [];
+		level.a_chamber_disc = [];
 	}
 	level flag::wait_till("start_zombie_round_logic");
 	self bryce_cake_light_update(0);
@@ -108,7 +108,7 @@ function chamber_disc_run()
 		self AnimScripted("disc_idle", self.origin, self.angles, "p7_fxanim_zm_ori_chamber_mid_ring_idle_anim");
 		return;
 	}
-	level.var_6d86123b[self.script_int] = self;
+	level.a_chamber_disc[self.script_int] = self;
 	n_wait = RandomFloatRange(0, 5);
 	wait(n_wait);
 	self.v_start_origin = self.origin;
@@ -119,7 +119,7 @@ function chamber_disc_run()
 }
 
 /*
-	Name: function_746282b3
+	Name: link_disc
 	Namespace: zm_tomb_quest_crypt
 	Checksum: 0x983B703D
 	Offset: 0xBF8
@@ -127,9 +127,9 @@ function chamber_disc_run()
 	Parameters: 1
 	Flags: None
 */
-function function_746282b3(a_ents)
+function link_disc(a_ents)
 {
-	var_4316fdf6 = a_ents["chamber_mid_ring"];
+	mdl_disc = a_ents["chamber_mid_ring"];
 	switch(self.targetname)
 	{
 		case "fxanim_disc1":
@@ -153,10 +153,10 @@ function function_746282b3(a_ents)
 			break;
 		}
 	}
-	var_4316fdf6 LinkTo(level.var_6d86123b[n_index]);
-	level.var_6d86123b[n_index].var_b1c02d8a = var_4316fdf6;
+	mdl_disc LinkTo(level.a_chamber_disc[n_index]);
+	level.a_chamber_disc[n_index].mdl_animated = mdl_disc;
 	wait(0.05);
-	level.var_6d86123b[n_index] ghost();
+	level.a_chamber_disc[n_index] ghost();
 }
 
 /*
@@ -460,9 +460,9 @@ function bryce_cake_light_update(b_on)
 	{
 		self.n_bryce_cake = 2;
 	}
-	if(isdefined(self.var_b1c02d8a))
+	if(isdefined(self.mdl_animated))
 	{
-		self.var_b1c02d8a clientfield::set("bryce_cake", self.n_bryce_cake);
+		self.mdl_animated clientfield::set("bryce_cake", self.n_bryce_cake);
 	}
 }
 

@@ -72,7 +72,7 @@ function __main__()
 {
 	level flag::init("low_grav_countdown");
 	level flag::init("low_grav_on");
-	level.var_a75d7260 = GetEnt("trig_low_gravity_zone", "targetname");
+	level.e_grav_trig = GetEnt("trig_low_gravity_zone", "targetname");
 	level.func_override_wallbuy_prompt = &function_efa3deb8;
 	/#
 		level thread function_ab786717();
@@ -105,10 +105,10 @@ function function_3fa7f11a()
 	var_15ed352b = GetEntArray("grav_pad_trigger", "targetname");
 	level.var_d19d5236 = 0;
 	level.var_cddeb078 = [];
-	foreach(var_3b9a12e0 in var_15ed352b)
+	foreach(t_pad_trigger in var_15ed352b)
 	{
-		var_3b9a12e0 thread function_e49e9c09();
-		var_8ecbce0a = GetEnt(var_3b9a12e0.target, "targetname");
+		t_pad_trigger thread function_e49e9c09();
+		var_8ecbce0a = GetEnt(t_pad_trigger.target, "targetname");
 		var_4f15c74f = GetEnt(var_8ecbce0a.target, "targetname");
 		Array::add(level.var_cddeb078, var_4f15c74f);
 	}
@@ -116,9 +116,9 @@ function function_3fa7f11a()
 	{
 		wait(0.05);
 	}
-	foreach(var_3b9a12e0 in var_15ed352b)
+	foreach(t_pad_trigger in var_15ed352b)
 	{
-		var_544a882 = GetEnt(var_3b9a12e0.target, "targetname");
+		var_544a882 = GetEnt(t_pad_trigger.target, "targetname");
 	}
 	level thread function_ed0d48ca();
 	level flag::set("pressure_pads_activated");
@@ -207,7 +207,7 @@ function function_554db684()
 	SetDvar("wallRun_maxTimeMs_zm", 10000);
 	SetDvar("playerEnergy_maxReserve_zm", 200);
 	SetDvar("wallRun_peakTest_zm", 0);
-	level.var_a75d7260 = GetEnt("trig_low_gravity_zone", "targetname");
+	level.e_grav_trig = GetEnt("trig_low_gravity_zone", "targetname");
 	level thread function_fceff7eb();
 }
 
@@ -289,14 +289,14 @@ function function_3ccd9604()
 	self endon("death");
 	while(1)
 	{
-		if(self istouching(level.var_a75d7260) && level flag::get("low_grav_on") && self.LOW_GRAVITY == 0)
+		if(self istouching(level.e_grav_trig) && level flag::get("low_grav_on") && self.LOW_GRAVITY == 0)
 		{
-			self namespace_e9d5a0ce::function_104ff02c("low");
+			self namespace_e9d5a0ce::set_gravity("low");
 			self.LOW_GRAVITY = 1;
 		}
-		else if(!self istouching(level.var_a75d7260) || !level flag::get("low_grav_on"))
+		else if(!self istouching(level.e_grav_trig) || !level flag::get("low_grav_on"))
 		{
-			self namespace_e9d5a0ce::function_104ff02c("normal");
+			self namespace_e9d5a0ce::set_gravity("normal");
 			self.LOW_GRAVITY = 0;
 		}
 		wait(0.5);
@@ -317,12 +317,12 @@ function function_f4766f6()
 	self endon("death");
 	while(1)
 	{
-		if(self istouching(level.var_a75d7260) && level flag::get("low_grav_on") && (!isdefined(self.LOW_GRAVITY) && self.LOW_GRAVITY))
+		if(self istouching(level.e_grav_trig) && level flag::get("low_grav_on") && (!isdefined(self.LOW_GRAVITY) && self.LOW_GRAVITY))
 		{
 			self ai::set_behavior_attribute("gravity", "low");
 			self.LOW_GRAVITY = 1;
 		}
-		else if(!self istouching(level.var_a75d7260) || !level flag::get("low_grav_on"))
+		else if(!self istouching(level.e_grav_trig) || !level flag::get("low_grav_on"))
 		{
 			self ai::set_behavior_attribute("gravity", "normal");
 			self.LOW_GRAVITY = 0;
@@ -348,14 +348,14 @@ function function_c3f6aa22()
 	self.var_7dd18a0 = 0;
 	while(1)
 	{
-		while(self istouching(level.var_a75d7260))
+		while(self istouching(level.e_grav_trig))
 		{
-			while(level flag::get("low_grav_on") && self istouching(level.var_a75d7260))
+			while(level flag::get("low_grav_on") && self istouching(level.e_grav_trig))
 			{
 				if(self.var_7dd18a0 == 0)
 				{
-					self function_f0051f1b(1);
-					self function_7c34e9c7(1);
+					self allowwallrun(1);
+					self allowdoublejump(1);
 					self setPerk("specialty_lowgravity");
 					self.var_7dd18a0 = 1;
 					self clientfield::set_to_player("player_screen_fx", 1);
@@ -373,8 +373,8 @@ function function_c3f6aa22()
 			}
 			if(self.var_7dd18a0 == 1)
 			{
-				self function_7c34e9c7(0);
-				self function_f0051f1b(0);
+				self allowdoublejump(0);
+				self allowwallrun(0);
 				self unsetPerk("specialty_lowgravity");
 				self clientfield::set_to_player("player_screen_fx", 0);
 				self clientfield::set_to_player("player_postfx", 0);
@@ -457,17 +457,17 @@ function function_767bba0()
 	#/
 	var_470f053a = struct::get_array("wall_buy_trigger", "targetname");
 	var_6ad23999 = GetEntArray("lowgrav_glow", "targetname");
-	var_8ff7104f = GetEntArray("pyramid", "targetname");
-	var_6ad23999 = ArrayCombine(var_8ff7104f, var_6ad23999, 0, 0);
+	a_e_pyramid = GetEntArray("pyramid", "targetname");
+	var_6ad23999 = ArrayCombine(a_e_pyramid, var_6ad23999, 0, 0);
 	while(1)
 	{
 		level flag::wait_till("low_grav_on");
 		var_89ba571 = [];
-		foreach(var_7b3fce7b in var_470f053a)
+		foreach(t_wall_trigger in var_470f053a)
 		{
-			if(!(isdefined(var_7b3fce7b.activated) && var_7b3fce7b.activated))
+			if(!(isdefined(t_wall_trigger.activated) && t_wall_trigger.activated))
 			{
-				var_b8ac84e8 = GetEnt(var_7b3fce7b.target, "targetname");
+				var_b8ac84e8 = GetEnt(t_wall_trigger.target, "targetname");
 				Array::add(var_89ba571, var_b8ac84e8);
 			}
 		}
@@ -481,11 +481,11 @@ function function_767bba0()
 		level flag::wait_till("low_grav_countdown");
 		wait(10);
 		var_89ba571 = [];
-		foreach(var_7b3fce7b in var_470f053a)
+		foreach(t_wall_trigger in var_470f053a)
 		{
-			if(!(isdefined(var_7b3fce7b.activated) && var_7b3fce7b.activated))
+			if(!(isdefined(t_wall_trigger.activated) && t_wall_trigger.activated))
 			{
-				var_b8ac84e8 = GetEnt(var_7b3fce7b.target, "targetname");
+				var_b8ac84e8 = GetEnt(t_wall_trigger.target, "targetname");
 				Array::add(var_89ba571, var_b8ac84e8);
 			}
 		}
@@ -614,8 +614,8 @@ function function_8b18e3ce()
 	}
 	function_7f2caa5(4, "ar_marksman");
 	function_7f2caa5(5, "pistol_burst");
-	var_d99e0864 = GetEnt("zm_fam", "targetname");
-	if(!isdefined(var_d99e0864))
+	e_floater = GetEnt("zm_fam", "targetname");
+	if(!isdefined(e_floater))
 	{
 		return;
 	}
@@ -629,10 +629,10 @@ function function_8b18e3ce()
 	{
 		return;
 	}
-	level thread function_f67d5866();
+	level thread floater_timer();
 	level.players[0] util::waittill_player_looking_at(var_feb1d46b.origin + VectorScale((0, 0, 1), 50), 90);
 	level notify("hash_d64d78d6");
-	var_d99e0864.origin = var_feb1d46b.origin + VectorScale((0, 0, 1), 64);
+	e_floater.origin = var_feb1d46b.origin + VectorScale((0, 0, 1), 64);
 	e_floor.origin = var_feb1d46b.origin;
 	e_floor EnableLinkTo();
 	var_5ed20759 = spawn("script_model", var_feb1d46b.origin);
@@ -643,13 +643,13 @@ function function_8b18e3ce()
 		var_5ed20759 RotateTo(var_5ed20759.angles + VectorScale((0, 1, 0), 180), 3);
 		var_5ed20759 waittill("rotatedone");
 	}
-	var_d99e0864 delete();
+	e_floater delete();
 	var_5ed20759 delete();
 	e_floor delete();
 }
 
 /*
-	Name: function_f67d5866
+	Name: floater_timer
 	Namespace: namespace_8e89abe3
 	Checksum: 0xF34F77C4
 	Offset: 0x2B28
@@ -657,7 +657,7 @@ function function_8b18e3ce()
 	Parameters: 0
 	Flags: None
 */
-function function_f67d5866()
+function floater_timer()
 {
 	level endon("hash_d64d78d6");
 	wait(5);
@@ -673,10 +673,10 @@ function function_f67d5866()
 	Parameters: 2
 	Flags: None
 */
-function function_7f2caa5(n_num, var_42133686)
+function function_7f2caa5(n_num, str_weap)
 {
 	level waittill("weapon_bought", player, weapon);
-	if(weapon.name != var_42133686)
+	if(weapon.name != str_weap)
 	{
 		level notify("hash_6580ea04");
 		return;
@@ -728,8 +728,8 @@ function function_644bd455()
 */
 function function_d09bda12()
 {
-	var_60532813 = GetEnt(self.script_noteworthy, "targetname");
-	self.var_cafd3848 = 1;
+	t_trap = GetEnt(self.script_noteworthy, "targetname");
+	self.trap_available = 1;
 	var_c5728235 = GetEnt(self.script_string, "targetname");
 	var_6b2a60d = GetEnt(self.target, "targetname");
 	var_c5728235 EnableLinkTo();
@@ -737,9 +737,9 @@ function function_d09bda12()
 	var_c5728235 thread trigger_damage();
 	while(1)
 	{
-		var_60532813 waittill("trigger", e_player);
+		t_trap waittill("trigger", e_player);
 		n_distance = Distance2D(e_player.origin, self.origin);
-		if(e_player.var_b94b5f2f == 1 && self.var_cafd3848 == 1 && n_distance > 500 && n_distance < 1000 && e_player IsWallRunning() && !level.dog_intermission)
+		if(e_player.var_b94b5f2f == 1 && self.trap_available == 1 && n_distance > 500 && n_distance < 1000 && e_player IsWallRunning() && !level.dog_intermission)
 		{
 			e_player thread function_d04113df(3);
 			n_rand = RandomFloatRange(0, 1);
@@ -767,13 +767,13 @@ function function_e7a4bc31(e_player)
 	var_6b2a60d.original_location = var_6b2a60d.origin;
 	var_477663ed = AnglesToForward(self.origin) * 25 + self.origin;
 	var_6b2a60d moveto(var_477663ed, 1);
-	var_286c5204 = struct::get(var_6b2a60d.target, "targetname");
-	var_bb7b50d = zombie_utility::spawn_zombie(level.zombie_spawners[0], "wall_trap_zombie", var_286c5204, 1);
+	s_anim_struct = struct::get(var_6b2a60d.target, "targetname");
+	var_bb7b50d = zombie_utility::spawn_zombie(level.zombie_spawners[0], "wall_trap_zombie", s_anim_struct, 1);
 	var_bb7b50d.health = 5;
 	var_bb7b50d thread function_f7d8fe24(var_6b2a60d);
-	var_5ed20759 = spawn("script_model", var_286c5204.origin);
+	var_5ed20759 = spawn("script_model", s_anim_struct.origin);
 	var_5ed20759 SetModel("tag_origin");
-	var_5ed20759.angles = var_286c5204.angles;
+	var_5ed20759.angles = s_anim_struct.angles;
 	util::wait_network_frame();
 	var_5ed20759 clientfield::increment("zombie_wall_dust");
 	if(self.script_int == 1)
@@ -840,9 +840,9 @@ function function_30b0d4ab(n_wait_time)
 {
 	self notify("new_timer");
 	self endon("new_timer");
-	self.var_cafd3848 = 0;
+	self.trap_available = 0;
 	wait(n_wait_time);
-	self.var_cafd3848 = 1;
+	self.trap_available = 1;
 }
 
 /*
@@ -926,7 +926,7 @@ function function_2cb9125b()
 	s_unitrigger_stub.script_length = 32;
 	s_unitrigger_stub.script_width = 64;
 	s_unitrigger_stub.script_height = 64;
-	s_unitrigger_stub.var_bf3837fa = var_9369bf6c;
+	s_unitrigger_stub.owner_struct = var_9369bf6c;
 	level flag::set("undercroft_powerup_available");
 	level.var_57c06a96 = 1;
 	s_unitrigger_stub.prompt_and_visibility_func = &function_94073af5;
@@ -970,20 +970,20 @@ function function_81be0b2f()
 	if(e_player IsWallRunning() && level flag::get("undercroft_powerup_available"))
 	{
 		level flag::clear("undercroft_powerup_available");
-		var_7c68b1e = GetEnt(self.stub.var_bf3837fa.target, "targetname");
-		var_17ff3d6f = VectorNormalize(AnglesToForward(self.stub.var_bf3837fa.angles)) * 0;
+		var_7c68b1e = GetEnt(self.stub.owner_struct.target, "targetname");
+		var_17ff3d6f = VectorNormalize(AnglesToForward(self.stub.owner_struct.angles)) * 0;
 		var_e16f14a2 = var_17ff3d6f + var_7c68b1e.origin;
 		var_7c68b1e.old_origin = var_7c68b1e.origin;
 		var_7c68b1e moveto(var_e16f14a2, 0.5);
 		var_7c68b1e clientfield::increment("low_grav_powerup_triggered");
 		e_player PlayRumbleOnEntity("zm_castle_low_grav_panel_rumble");
 		level.var_6f0e5d4c clientfield::increment("undercroft_wall_panel_shutdown");
-		self thread function_34091daf(var_7c68b1e);
+		self thread powerup_spawn(var_7c68b1e);
 	}
 }
 
 /*
-	Name: function_34091daf
+	Name: powerup_spawn
 	Namespace: namespace_8e89abe3
 	Checksum: 0xEFE7059E
 	Offset: 0x3998
@@ -991,7 +991,7 @@ function function_81be0b2f()
 	Parameters: 1
 	Flags: None
 */
-function function_34091daf(var_7c68b1e)
+function powerup_spawn(var_7c68b1e)
 {
 	var_c21c2ac2 = struct::get("low_grav_powerup_spawn", "targetname");
 	powerup = zm_powerups::specific_powerup_drop("minigun", var_c21c2ac2.origin);
@@ -1098,8 +1098,8 @@ function function_20c76956()
 	s_unitrigger_stub.script_length = 32;
 	s_unitrigger_stub.script_width = 64;
 	s_unitrigger_stub.script_height = 64;
-	s_unitrigger_stub.var_bf3837fa = self;
-	s_unitrigger_stub.var_bf3837fa.activated = 0;
+	s_unitrigger_stub.owner_struct = self;
+	s_unitrigger_stub.owner_struct.activated = 0;
 	thread zm_unitrigger::register_static_unitrigger(s_unitrigger_stub, &function_147f328);
 }
 
@@ -1115,10 +1115,10 @@ function function_20c76956()
 function function_147f328(var_607fccfa)
 {
 	e_player = self.parent_player;
-	if(e_player IsWallRunning() && self.stub.var_bf3837fa.activated == 0)
+	if(e_player IsWallRunning() && self.stub.owner_struct.activated == 0)
 	{
-		self.stub.var_bf3837fa.activated = 1;
-		var_544a882 = GetEnt(self.stub.var_bf3837fa.target, "targetname");
+		self.stub.owner_struct.activated = 1;
+		var_544a882 = GetEnt(self.stub.owner_struct.target, "targetname");
 		playsoundatposition("evt_stone_plate_down", var_544a882.origin);
 		e_player PlayRumbleOnEntity("zm_castle_low_grav_panel_rumble");
 		level.var_aed784b3++;
@@ -1163,7 +1163,7 @@ function function_efa3deb8(e_player)
 }
 
 /*
-	Name: function_2449723c
+	Name: detect_reentry
 	Namespace: namespace_8e89abe3
 	Checksum: 0xF1FDBA37
 	Offset: 0x4088
@@ -1171,17 +1171,17 @@ function function_efa3deb8(e_player)
 	Parameters: 0
 	Flags: None
 */
-function function_2449723c()
+function detect_reentry()
 {
 	/#
-		if(isdefined(self.var_8665ab89))
+		if(isdefined(self.devgui_time))
 		{
-			if(self.var_8665ab89 == GetTime())
+			if(self.devgui_time == GetTime())
 			{
 				return 1;
 			}
 		}
-		self.var_8665ab89 = GetTime();
+		self.devgui_time = GetTime();
 		return 0;
 	#/
 }
@@ -1200,7 +1200,7 @@ function function_ab786717()
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_e41a2453);
+		zm_devgui::add_custom_devgui_callback(&function_e41a2453);
 		AddDebugCommand("Dev Block strings are not supported");
 	#/
 }
@@ -1221,7 +1221,7 @@ function function_e41a2453(cmd)
 		{
 			case "Dev Block strings are not supported":
 			{
-				if(level function_2449723c())
+				if(level detect_reentry())
 				{
 					return 1;
 				}

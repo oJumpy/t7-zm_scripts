@@ -42,7 +42,7 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	zm_powerups::register_powerup("beast_mana", &function_fb2447d7);
+	zm_powerups::register_powerup("beast_mana", &grab_beast_mana);
 	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
 	{
 		zm_powerups::add_zombie_powerup("beast_mana", "zombie_z_money_icon", &"ZM_ZOD_POWERUP_BEAST_MANA", &zm_powerups::func_should_never_drop, 1, 0, 0);
@@ -50,7 +50,7 @@ function __init__()
 }
 
 /*
-	Name: function_fb2447d7
+	Name: grab_beast_mana
 	Namespace: namespace_6500cb2b
 	Checksum: 0x7FED1127
 	Offset: 0x430
@@ -58,14 +58,14 @@ function __init__()
 	Parameters: 1
 	Flags: None
 */
-function function_fb2447d7(player)
+function grab_beast_mana(player)
 {
-	level thread function_98d4dd81(self, player);
+	level thread beast_mana_powerup(self, player);
 	player thread zm_powerups::powerup_vo("bonus_points_solo");
 }
 
 /*
-	Name: function_98d4dd81
+	Name: beast_mana_powerup
 	Namespace: namespace_6500cb2b
 	Checksum: 0x168E0B4D
 	Offset: 0x480
@@ -73,7 +73,7 @@ function function_fb2447d7(player)
 	Parameters: 2
 	Flags: None
 */
-function function_98d4dd81(item, player)
+function beast_mana_powerup(item, player)
 {
 	players = GetPlayers();
 	for(i = 0; i < players.size; i++)
@@ -82,17 +82,17 @@ function function_98d4dd81(item, player)
 		{
 			if(isdefined(players[i].beastmode) && players[i].beastmode)
 			{
-				players[i].var_39f3c137 = 1;
+				players[i].beastmana = 1;
 				continue;
 			}
 			players[i].var_5e82a563++;
 		}
 	}
-	level thread function_5cff02a2(item, player.team);
+	level thread mana_on_hud(item, player.team);
 }
 
 /*
-	Name: function_5cff02a2
+	Name: mana_on_hud
 	Namespace: namespace_6500cb2b
 	Checksum: 0x189DE10B
 	Offset: 0x5B8
@@ -100,7 +100,7 @@ function function_98d4dd81(item, player)
 	Parameters: 2
 	Flags: None
 */
-function function_5cff02a2(drop_item, player_team)
+function mana_on_hud(drop_item, player_team)
 {
 	self endon("disconnect");
 	hudelem = hud::createServerFontString("objective", 2, player_team);

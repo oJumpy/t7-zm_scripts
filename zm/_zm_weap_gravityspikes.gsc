@@ -59,10 +59,10 @@ function __init__()
 	level.n_zombies_lifted_for_ragdoll = 0;
 	level.SPIKES_CHOP_CONE_RANGE = 120;
 	level.spikes_chop_cone_range_sq = level.SPIKES_CHOP_CONE_RANGE * level.SPIKES_CHOP_CONE_RANGE;
-	function_9b385ca5();
+	__constructor();
 	level.ai_gravity_throttle = Throttle;
 	Initialize(level.ai_gravity_throttle, 2);
-	function_9b385ca5();
+	__constructor();
 	level.ai_spikes_chop_throttle = Throttle;
 	Initialize(level.ai_spikes_chop_throttle, 6);
 	register_clientfields();
@@ -1594,23 +1594,23 @@ function function_81889ac5()
 		level waittill("start_zombie_round_logic");
 		wait(0.05);
 		wpn_gravityspikes = GetWeapon("Dev Block strings are not supported");
-		var_f86eaea5 = wpn_gravityspikes.name;
-		str_cmd = "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported";
+		equipment_id = wpn_gravityspikes.name;
+		str_cmd = "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported";
 		AddDebugCommand(str_cmd);
-		str_cmd = "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported";
+		str_cmd = "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported";
 		AddDebugCommand(str_cmd);
-		str_cmd = "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported";
+		str_cmd = "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported";
 		AddDebugCommand(str_cmd);
-		str_cmd = "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported" + var_f86eaea5 + "Dev Block strings are not supported";
+		str_cmd = "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported" + equipment_id + "Dev Block strings are not supported";
 		AddDebugCommand(str_cmd);
 		while(1)
 		{
-			var_f86eaea5 = GetDvarString("Dev Block strings are not supported");
-			if(var_f86eaea5 != "Dev Block strings are not supported")
+			equipment_id = GetDvarString("Dev Block strings are not supported");
+			if(equipment_id != "Dev Block strings are not supported")
 			{
 				foreach(player in GetPlayers())
 				{
-					if(var_f86eaea5 == wpn_gravityspikes.name)
+					if(equipment_id == wpn_gravityspikes.name)
 					{
 						player zm_weapons::weapon_give(wpn_gravityspikes, 0, 1);
 						player thread zm_equipment::show_hint_text(&"Dev Block strings are not supported", 3);
@@ -1622,36 +1622,36 @@ function function_81889ac5()
 				}
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
-			var_f86eaea5 = GetDvarString("Dev Block strings are not supported");
-			if(var_f86eaea5 != "Dev Block strings are not supported")
+			equipment_id = GetDvarString("Dev Block strings are not supported");
+			if(equipment_id != "Dev Block strings are not supported")
 			{
 				foreach(player in GetPlayers())
 				{
-					if(var_f86eaea5 == wpn_gravityspikes.name)
+					if(equipment_id == wpn_gravityspikes.name)
 					{
 						gravityspikes_power_update(player);
 					}
 				}
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
-			var_f86eaea5 = GetDvarString("Dev Block strings are not supported");
-			if(var_f86eaea5 != "Dev Block strings are not supported")
+			equipment_id = GetDvarString("Dev Block strings are not supported");
+			if(equipment_id != "Dev Block strings are not supported")
 			{
 				foreach(player in GetPlayers())
 				{
-					if(var_f86eaea5 == wpn_gravityspikes.name)
+					if(equipment_id == wpn_gravityspikes.name)
 					{
 						SetDvar("Dev Block strings are not supported", 1);
 					}
 				}
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
-			var_f86eaea5 = GetDvarString("Dev Block strings are not supported");
-			if(var_f86eaea5 != "Dev Block strings are not supported")
+			equipment_id = GetDvarString("Dev Block strings are not supported");
+			if(equipment_id != "Dev Block strings are not supported")
 			{
 				foreach(player in GetPlayers())
 				{
-					if(var_f86eaea5 == wpn_gravityspikes.name)
+					if(equipment_id == wpn_gravityspikes.name)
 					{
 						SetDvar("Dev Block strings are not supported", 0);
 					}

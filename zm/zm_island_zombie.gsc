@@ -28,9 +28,9 @@
 */
 function autoexec init()
 {
-	function_f4226854();
+	initzmislandbehaviorsandasm();
 	SetDvar("scr_zm_use_code_enemy_selection", 0);
-	level.closest_player_override = &function_c3d4cc46;
+	level.closest_player_override = &island_closest_player;
 	level thread update_closest_player();
 	level.pathdist_type = 2;
 	zm_utility::register_custom_spawner_entry("quick_riser_location", &function_50565360);
@@ -38,7 +38,7 @@ function autoexec init()
 }
 
 /*
-	Name: function_f4226854
+	Name: initzmislandbehaviorsandasm
 	Namespace: namespace_5b19fee7
 	Checksum: 0xF58059DD
 	Offset: 0x550
@@ -46,7 +46,7 @@ function autoexec init()
 	Parameters: 0
 	Flags: Private
 */
-function private function_f4226854()
+function private initzmislandbehaviorsandasm()
 {
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("ZmIslandAttackableObjectService", &function_e5272d25);
 }
@@ -63,11 +63,11 @@ function private function_f4226854()
 function private function_1d7e9058()
 {
 	self ai::set_behavior_attribute("use_attackable", 1);
-	self.cant_move_cb = &function_69768b33;
+	self.cant_move_cb = &island_cant_move_cb;
 }
 
 /*
-	Name: function_69768b33
+	Name: island_cant_move_cb
 	Namespace: namespace_5b19fee7
 	Checksum: 0xF4408998
 	Offset: 0x5D0
@@ -75,7 +75,7 @@ function private function_1d7e9058()
 	Parameters: 0
 	Flags: Private
 */
-function private function_69768b33()
+function private island_cant_move_cb()
 {
 	if(isdefined(self.attackable))
 	{
@@ -305,7 +305,7 @@ function private function_f8e95ea2(players)
 }
 
 /*
-	Name: function_c3d4cc46
+	Name: island_closest_player
 	Namespace: namespace_5b19fee7
 	Checksum: 0xB7C70C19
 	Offset: 0xD70
@@ -313,7 +313,7 @@ function private function_f8e95ea2(players)
 	Parameters: 2
 	Flags: Private
 */
-function private function_c3d4cc46(origin, players)
+function private island_closest_player(origin, players)
 {
 	if(self.ignoreall === 1)
 	{
@@ -450,26 +450,26 @@ function function_50565360(s_spot)
 {
 	self endon("death");
 	self.in_the_ground = 1;
-	var_b35375be = util::spawn_model("tag_origin", self.origin, self.angles);
-	self LinkTo(var_b35375be);
+	mdl_anchor = util::spawn_model("tag_origin", self.origin, self.angles);
+	self LinkTo(mdl_anchor);
 	self thread function_cd5d6101();
-	var_b35375be moveto(s_spot.origin, 0.05);
-	var_b35375be waittill("movedone");
+	mdl_anchor moveto(s_spot.origin, 0.05);
+	mdl_anchor waittill("movedone");
 	var_ac82e424 = zombie_utility::get_desired_origin();
 	if(isdefined(var_ac82e424))
 	{
 		var_585cefca = VectorToAngles(var_ac82e424 - self.origin);
-		var_b35375be RotateTo((0, var_585cefca[1], 0), 0.05);
-		var_b35375be waittill("rotatedone");
+		mdl_anchor RotateTo((0, var_585cefca[1], 0), 0.05);
+		mdl_anchor waittill("rotatedone");
 	}
 	self Unlink();
-	var_b35375be thread scene::Play("scene_zm_dlc2_zombie_quick_rise_v2", self);
+	mdl_anchor thread scene::Play("scene_zm_dlc2_zombie_quick_rise_v2", self);
 	self notify("risen", s_spot.script_string);
 	self.in_the_ground = 0;
-	var_b35375be waittill("scene_done");
-	if(isdefined(var_b35375be))
+	mdl_anchor waittill("scene_done");
+	if(isdefined(mdl_anchor))
 	{
-		var_b35375be delete();
+		mdl_anchor delete();
 	}
 }
 

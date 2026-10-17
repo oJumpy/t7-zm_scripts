@@ -541,12 +541,12 @@ function private function_7efad7ec(entity, asmStateName)
 function private function_58e29f36(entity, asmStateName)
 {
 	entity.var_1ea3b675 = undefined;
-	var_be0ab0a1 = get_best_mechz_spawn_pos(1);
-	if(!isdefined(var_be0ab0a1.angles))
+	landing_point = get_best_mechz_spawn_pos(1);
+	if(!isdefined(landing_point.angles))
 	{
-		var_be0ab0a1.angles = (0, 0, 0);
+		landing_point.angles = (0, 0, 0);
 	}
-	entity ForceTeleport(var_be0ab0a1.origin, var_be0ab0a1.angles);
+	entity ForceTeleport(landing_point.origin, landing_point.angles);
 	entity.mechz_hidden = 0;
 	entity show();
 	if(isdefined(entity.m_claw))
@@ -703,7 +703,7 @@ function private function_5276dd35(entity, asmStateName)
 	{
 		entity notsolid();
 		entity ghost();
-		if(isdefined(entity.var_b1d5a124))
+		if(isdefined(entity.m_clas))
 		{
 			entity.m_claw ghost();
 		}
@@ -1054,7 +1054,7 @@ function mechz_spawning_logic()
 		level waittill("spawn_mechz");
 		while(level.mechz_left_to_spawn)
 		{
-			s_loc = function_27b9fdd3();
+			s_loc = get_spawn_location();
 			if(!isdefined(s_loc))
 			{
 				continue;
@@ -1091,8 +1091,8 @@ function mechz_death()
 	level notify("mechz_killed", self.origin);
 	if(level flag::get("zombie_drop_powerups") && (!isdefined(self.no_powerups) && self.no_powerups))
 	{
-		var_d54b1ec = Array("double_points", "insta_kill", "full_ammo", "nuke");
-		str_type = Array::random(var_d54b1ec);
+		a_bonus_types = Array("double_points", "insta_kill", "full_ammo", "nuke");
+		str_type = Array::random(a_bonus_types);
 		zm_powerups::specific_powerup_drop(str_type, self.origin);
 	}
 }
@@ -1708,7 +1708,7 @@ function mechz_stomped_by_giant_robot_vo()
 }
 
 /*
-	Name: function_27b9fdd3
+	Name: get_spawn_location
 	Namespace: namespace_baebcb1
 	Checksum: 0xF1B73085
 	Offset: 0x4B28
@@ -1716,20 +1716,20 @@ function mechz_stomped_by_giant_robot_vo()
 	Parameters: 0
 	Flags: None
 */
-function function_27b9fdd3()
+function get_spawn_location()
 {
 	var_fffe05f0 = Array::randomize(level.mechz_locations);
-	var_1fae6c0 = [];
+	a_spawn_locs = [];
 	for(i = 0; i < var_fffe05f0.size; i++)
 	{
 		s_loc = var_fffe05f0[i];
 		str_zone = zm_zonemgr::get_zone_from_position(s_loc.origin, 1);
 		if(isdefined(str_zone) && level.zones[str_zone].is_occupied)
 		{
-			var_1fae6c0[var_1fae6c0.size] = s_loc;
+			a_spawn_locs[a_spawn_locs.size] = s_loc;
 		}
 	}
-	if(var_1fae6c0.size == 0)
+	if(a_spawn_locs.size == 0)
 	{
 		for(i = 0; i < var_fffe05f0.size; i++)
 		{
@@ -1737,13 +1737,13 @@ function function_27b9fdd3()
 			str_zone = zm_zonemgr::get_zone_from_position(s_loc.origin, 1);
 			if(isdefined(str_zone) && level.zones[str_zone].is_active)
 			{
-				var_1fae6c0[var_1fae6c0.size] = s_loc;
+				a_spawn_locs[a_spawn_locs.size] = s_loc;
 			}
 		}
 	}
-	else if(var_1fae6c0.size > 0)
+	else if(a_spawn_locs.size > 0)
 	{
-		return var_1fae6c0[0];
+		return a_spawn_locs[0];
 	}
 	foreach(s_loc in var_fffe05f0)
 	{

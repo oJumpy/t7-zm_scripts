@@ -59,12 +59,12 @@ function event()
 	self endon("disconnect");
 	self endon("bled_out");
 	self.var_c3a5a8 = [];
-	var_2cf032a6 = self.var_98ba48a2;
-	foreach(var_410edbc8 in level.bgb)
+	var_2cf032a6 = self.bgb_pack;
+	foreach(s_bgb in level.bgb)
 	{
-		if(var_410edbc8.var_e0715b48 == 1)
+		if(s_bgb.consumable == 1)
 		{
-			if(!IsInArray(var_2cf032a6, var_23359ff6) && var_23359ff6 != "zm_bgb_flavor_hexed")
+			if(!IsInArray(var_2cf032a6, str_bgb) && str_bgb != "zm_bgb_flavor_hexed")
 			{
 				if(!isdefined(self.var_c3a5a8))
 				{
@@ -74,7 +74,7 @@ function event()
 				{
 					self.var_c3a5a8 = Array(self.var_c3a5a8);
 				}
-				self.var_c3a5a8[self.var_c3a5a8.size] = var_23359ff6;
+				self.var_c3a5a8[self.var_c3a5a8.size] = str_bgb;
 			}
 		}
 	}

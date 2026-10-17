@@ -184,7 +184,7 @@ function function_d6856592(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	if(oldVal == 0 && newVal == 1)
 	{
 		self.notifyOnBulletImpact = 1;
-		self thread function_2ce58010(localClientNum);
+		self thread dragon_damage(localClientNum);
 	}
 	else if(oldVal == 1 && newVal == 0)
 	{
@@ -194,7 +194,7 @@ function function_d6856592(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_2ce58010
+	Name: dragon_damage
 	Namespace: dragon
 	Checksum: 0xCBD9C71C
 	Offset: 0x1300
@@ -202,18 +202,18 @@ function function_d6856592(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_2ce58010(n_local_client)
+function dragon_damage(n_local_client)
 {
 	self endon("entityshutdown");
 	level endon("hash_a35dee4e");
 	while(1)
 	{
-		self waittill("damage", e_attacker, v_impact_pos, var_778fe70f, var_77cbbb1b);
+		self waittill("damage", e_attacker, v_impact_pos, var_778fe70f, str_bone);
 		if(level.var_ef6a691 > 0)
 		{
 			foreach(var_61c194b7 in level.var_61699bd7[level.var_ef6a691])
 			{
-				if(var_61c194b7 == var_77cbbb1b)
+				if(var_61c194b7 == str_bone)
 				{
 					switch(level.var_ef6a691)
 					{
@@ -290,71 +290,71 @@ function function_bb6d58d0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_bd038ea4(n_local_client, var_2c17cb9d, var_116b515b)
+function function_bd038ea4(n_local_client, n_wound, b_glow)
 {
 	self notify("hash_bd038ea4");
 	self endon("hash_bd038ea4");
 	self endon("entityshutdown");
-	var_4361a688 = undefined;
-	switch(var_2c17cb9d)
+	str_vector = undefined;
+	switch(n_wound)
 	{
 		case 1:
 		{
-			var_4361a688 = "scriptVector5";
+			str_vector = "scriptVector5";
 			break;
 		}
 		case 2:
 		{
-			var_4361a688 = "scriptVector4";
+			str_vector = "scriptVector4";
 			break;
 		}
 		case 3:
 		{
-			var_4361a688 = "scriptVector3";
+			str_vector = "scriptVector3";
 			break;
 		}
 		case default:
 		{
-			var_4361a688 = undefined;
+			str_vector = undefined;
 			break;
 		}
 	}
-	if(var_116b515b)
+	if(b_glow)
 	{
 		while(1)
 		{
-			for(i = self.var_6f4c2683[var_2c17cb9d]; i < 1;  = self.var_6f4c2683[var_2c17cb9d])
+			for(i = self.var_6f4c2683[n_wound]; i < 1;  = self.var_6f4c2683[n_wound])
 			{
 				if(!isdefined(self))
 				{
 					return;
 				}
-				self MapShaderConstant(n_local_client, 0, var_4361a688, 0, i, 0, 0);
-				self.var_6f4c2683[var_2c17cb9d] = i;
+				self MapShaderConstant(n_local_client, 0, str_vector, 0, i, 0, 0);
+				self.var_6f4c2683[n_wound] = i;
 				wait(0.01);
 			}
-			for(i = self.var_6f4c2683[var_2c17cb9d]; i > 0.1;  = self.var_6f4c2683[var_2c17cb9d])
+			for(i = self.var_6f4c2683[n_wound]; i > 0.1;  = self.var_6f4c2683[n_wound])
 			{
 				if(!isdefined(self))
 				{
 					return;
 				}
-				self MapShaderConstant(n_local_client, 0, var_4361a688, 0, i, 0, 0);
-				self.var_6f4c2683[var_2c17cb9d] = i;
+				self MapShaderConstant(n_local_client, 0, str_vector, 0, i, 0, 0);
+				self.var_6f4c2683[n_wound] = i;
 				wait(0.01);
 			}
 		}
 	}
 	else
 	{
-		for(i = self.var_6f4c2683[var_2c17cb9d]; i > 0.1;  = self.var_6f4c2683[var_2c17cb9d])
+		for(i = self.var_6f4c2683[n_wound]; i > 0.1;  = self.var_6f4c2683[n_wound])
 		{
 			if(!isdefined(self))
 			{
 				return;
 			}
-			self MapShaderConstant(n_local_client, 0, var_4361a688, 0, i, 0, 0);
-			self.var_6f4c2683[var_2c17cb9d] = i;
+			self MapShaderConstant(n_local_client, 0, str_vector, 0, i, 0, 0);
+			self.var_6f4c2683[n_wound] = i;
 			wait(0.01);
 		}
 		for(i = 1; i > 0.1;  = 1)
@@ -363,11 +363,11 @@ function function_bd038ea4(n_local_client, var_2c17cb9d, var_116b515b)
 			{
 				return;
 			}
-			self MapShaderConstant(n_local_client, 0, var_4361a688, 0, i, 1, 0);
-			self.var_6f4c2683[var_2c17cb9d] = i;
+			self MapShaderConstant(n_local_client, 0, str_vector, 0, i, 1, 0);
+			self.var_6f4c2683[n_wound] = i;
 			wait(0.01);
 		}
-		self MapShaderConstant(n_local_client, 0, var_4361a688, 0, 0.1, 1, 0);
+		self MapShaderConstant(n_local_client, 0, str_vector, 0, 0.1, 1, 0);
 	}
 }
 
@@ -569,10 +569,10 @@ function function_6865d0d5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			level.var_a4d6e1f1 = undefined;
 			level scene::add_scene_func("p7_fxanim_zm_stal_dragon_hazard_library_banner_01_bundle", &function_ae0e995e, "play");
 		}
-		var_f8efe776 = GetEntArray(localClientNum, "library_banner_01", "targetname");
-		foreach(var_f558224f in var_f8efe776)
+		a_mdl_banners = GetEntArray(localClientNum, "library_banner_01", "targetname");
+		foreach(mdl_banner in a_mdl_banners)
 		{
-			var_f558224f thread scene::Play("p7_fxanim_zm_stal_dragon_hazard_library_banner_01_bundle", var_f558224f);
+			mdl_banner thread scene::Play("p7_fxanim_zm_stal_dragon_hazard_library_banner_01_bundle", mdl_banner);
 		}
 	}
 }

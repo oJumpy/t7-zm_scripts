@@ -30,7 +30,7 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("actor", "fire_char_fx", 21000, 1, "int", &function_657b61e3, 0, 0);
+	clientfield::register("actor", "fire_char_fx", 21000, 1, "int", &zombie_fire_fx, 0, 0);
 	clientfield::register("toplayer", "fire_muzzle_fx", 21000, 1, "counter", &function_d6107b2c, 0, 0);
 	level._effect["fire_muzzle"] = "dlc5/zmb_weapon/fx_staff_fire_muz_flash_1p";
 	level._effect["fire_muzzle_ug"] = "dlc5/zmb_weapon/fx_staff_fire_muz_flash_1p_ug";
@@ -63,7 +63,7 @@ function function_d6107b2c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_657b61e3
+	Name: zombie_fire_fx
 	Namespace: namespace_ecdcc148
 	Checksum: 0x685522FD
 	Offset: 0x4D0
@@ -71,19 +71,19 @@ function function_d6107b2c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_657b61e3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function zombie_fire_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("entityshutdown");
 	rate = RandomFloatRange(0.01, 0.015);
-	if(isdefined(self.var_a90ff836))
+	if(isdefined(self.torso_fire_fx))
 	{
-		stopfx(localClientNum, self.var_a90ff836);
-		self.var_a90ff836 = undefined;
+		stopfx(localClientNum, self.torso_fire_fx);
+		self.torso_fire_fx = undefined;
 	}
-	if(isdefined(self.var_44f239e3))
+	if(isdefined(self.head_fire_fx))
 	{
-		stopfx(localClientNum, self.var_44f239e3);
-		self.var_44f239e3 = undefined;
+		stopfx(localClientNum, self.head_fire_fx);
+		self.head_fire_fx = undefined;
 	}
 	if(isdefined(self.sndent))
 	{
@@ -93,18 +93,18 @@ function function_657b61e3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	if(newVal == 1)
 	{
-		self.var_a90ff836 = PlayFXOnTag(localClientNum, level._effect["character_fire_death_torso"], self, "j_spinelower");
-		self.var_44f239e3 = PlayFXOnTag(localClientNum, level._effect["character_fire_death_sm"], self, "j_head");
+		self.torso_fire_fx = PlayFXOnTag(localClientNum, level._effect["character_fire_death_torso"], self, "j_spinelower");
+		self.head_fire_fx = PlayFXOnTag(localClientNum, level._effect["character_fire_death_sm"], self, "j_head");
 		self.sndent = spawn(0, self.origin, "script_origin");
 		self.sndent LinkTo(self);
 		self.sndent PlayLoopSound("zmb_fire_loop", 0.5);
 		self.sndent thread function_613e39fa(self);
-		if(!(isdefined(self.var_ff3ddd5b) && self.var_ff3ddd5b))
+		if(!(isdefined(self.has_charred) && self.has_charred))
 		{
-			self.var_ff3ddd5b = 1;
+			self.has_charred = 1;
 		}
-		var_5e5728a8 = 1;
-		var_2094128c = 0.6;
+		max_charamount = 1;
+		char_amount = 0.6;
 		for(i = 0; i < 2; i++)
 		{
 			for(f = 0.6; f <= 0.85;  = 0.6)

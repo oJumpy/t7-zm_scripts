@@ -70,12 +70,12 @@ function init_duplicate_render_bundles()
 	self.forceStopdupRenderBundle = 0;
 	self.exitdupRenderBundle = 0;
 	/#
-		self thread function_4d534504();
+		self thread duprenderbundledebuglisten();
 	#/
 }
 
 /*
-	Name: function_4d534504
+	Name: duprenderbundledebuglisten
 	Namespace: duplicate_render_bundle
 	Checksum: 0xDF8C00CC
 	Offset: 0x338
@@ -83,7 +83,7 @@ function init_duplicate_render_bundles()
 	Parameters: 0
 	Flags: None
 */
-function function_4d534504()
+function duprenderbundledebuglisten()
 {
 	/#
 		self endon("entityshutdown");
@@ -98,14 +98,14 @@ function function_4d534504()
 				self thread playDupRenderBundle(playBundleName);
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
-			var_7802baf4 = GetDvarString("Dev Block strings are not supported");
-			if(var_7802baf4 != "Dev Block strings are not supported")
+			stopbundlename = GetDvarString("Dev Block strings are not supported");
+			if(stopbundlename != "Dev Block strings are not supported")
 			{
 				self thread stopdupRenderBundle();
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
-			var_7802baf4 = GetDvarString("Dev Block strings are not supported");
-			if(var_7802baf4 != "Dev Block strings are not supported")
+			stopbundlename = GetDvarString("Dev Block strings are not supported");
+			if(stopbundlename != "Dev Block strings are not supported")
 			{
 				self thread exitdupRenderBundle();
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");

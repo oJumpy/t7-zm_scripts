@@ -293,7 +293,7 @@ function air_puzzle_2_run()
 	{
 		s_smoke_pos thread air_puzzle_smoke();
 	}
-	var_3481edfa = level.a_elemental_staffs["staff_air"].w_weapon;
+	w_staff_air = level.a_elemental_staffs["staff_air"].w_weapon;
 	while(1)
 	{
 		level waittill("air_puzzle_smoke_solved");
@@ -310,7 +310,7 @@ function air_puzzle_2_run()
 			a_players = GetPlayers();
 			foreach(e_player in a_players)
 			{
-				if(e_player HasWeapon(var_3481edfa))
+				if(e_player HasWeapon(w_staff_air))
 				{
 					e_player thread zm_tomb_vo::say_puzzle_completion_line(2);
 					break;

@@ -80,8 +80,8 @@ function __init__()
 */
 function __main__()
 {
-	var_a0cf8f2b = GetEntArray("trigger_teleport_pad", "targetname");
-	foreach(e_trig in var_a0cf8f2b)
+	a_e_trig = GetEntArray("trigger_teleport_pad", "targetname");
+	foreach(e_trig in a_e_trig)
 	{
 		level.var_27b3c884[n_index] = e_trig;
 		e_trig thread teleport_pad_think();
@@ -367,13 +367,13 @@ function function_ad16f13c(e_who)
 */
 function function_6b3344b4()
 {
-	var_a0cf8f2b = GetEntArray("trigger_teleport_pad", "targetname");
+	a_e_trig = GetEntArray("trigger_teleport_pad", "targetname");
 	var_d30fe07b = 1;
 	players = level.activePlayers;
 	foreach(player in players)
 	{
 		var_1a19680c = 0;
-		foreach(e_trig in var_a0cf8f2b)
+		foreach(e_trig in a_e_trig)
 		{
 			if(player istouching(e_trig))
 			{
@@ -511,8 +511,8 @@ function function_e421dd3f()
 {
 	level notify("hash_bff04a2b");
 	level endon("hash_bff04a2b");
-	var_9e5ac8d1 = GetEnt("trig_mechz_ee_a10", "targetname");
-	var_9e5ac8d1 waittill("trigger", e_who);
+	t_mechz = GetEnt("trig_mechz_ee_a10", "targetname");
+	t_mechz waittill("trigger", e_who);
 	s_spawn_pos = ArrayGetClosest(e_who.origin, level.zm_loc_types["mechz_location"]);
 	if(isPlayer(e_who) && isdefined(s_spawn_pos))
 	{
@@ -583,18 +583,18 @@ function function_f5a06c(n_duration)
 	Parameters: 2
 	Flags: None
 */
-function teleport_pad_player_fx(var_7d7ca0ea, n_duration)
+function teleport_pad_player_fx(t_teleporter, n_duration)
 {
-	var_7d7ca0ea endon("fx_done");
+	t_teleporter endon("fx_done");
 	n_start_time = GetTime();
 	n_total_time = 0;
 	while(n_total_time < n_duration)
 	{
-		if(var_7d7ca0ea player_is_near_pad(self))
+		if(t_teleporter player_is_near_pad(self))
 		{
 			visionset_mgr::activate("overlay", "zm_factory_teleport", self, n_duration, n_duration);
 			self PlayRumbleOnEntity("zm_castle_pulsing_rumble");
-			while(n_total_time < n_duration && var_7d7ca0ea player_is_near_pad(self))
+			while(n_total_time < n_duration && t_teleporter player_is_near_pad(self))
 			{
 				n_current_time = GetTime();
 				n_total_time = n_current_time - n_start_time / 1000;
@@ -631,14 +631,14 @@ function teleport_players(var_edc2ee2a, var_66f7e6b9)
 	n_player_radius = 24;
 	if(var_edc2ee2a && !var_66f7e6b9)
 	{
-		var_764d9cb = struct::get_array("past_laboratory_telepoints", "targetname");
+		a_e_core_pos = struct::get_array("past_laboratory_telepoints", "targetname");
 	}
 	else
 	{
-		var_764d9cb = struct::get_array(self.target, "targetname");
+		a_e_core_pos = struct::get_array(self.target, "targetname");
 	}
 	var_492a5e1e = struct::get_array("teleport_room_pos", "targetname");
-	var_19ff0dfb = [];
+	a_players_touching = [];
 	var_daad3c3c = VectorScale((0, 0, 1), 49);
 	var_6b55b1c4 = VectorScale((0, 0, 1), 20);
 	var_3abe10e2 = (0, 0, 0);
@@ -652,8 +652,8 @@ function teleport_players(var_edc2ee2a, var_66f7e6b9)
 				level flag::clear("time_travel_teleporter_ready");
 			}
 		}
-		v_dest_origin = var_764d9cb[i].origin;
-		var_a9d3e161 = var_764d9cb[i].angles;
+		v_dest_origin = a_e_core_pos[i].origin;
+		var_a9d3e161 = a_e_core_pos[i].angles;
 		if(var_edc2ee2a || self player_is_near_pad(player))
 		{
 			if(var_edc2ee2a && var_66f7e6b9)
@@ -697,7 +697,7 @@ function teleport_players(var_edc2ee2a, var_66f7e6b9)
 				{
 					desired_origin = var_492a5e1e[i].origin + var_3abe10e2;
 				}
-				Array::add(var_19ff0dfb, player, 0);
+				Array::add(a_players_touching, player, 0);
 				player.var_601ebf01 = util::spawn_model("tag_origin", player.origin, player.angles);
 				player LinkTo(player.var_601ebf01);
 				player DontInterpolate();
@@ -717,29 +717,29 @@ function teleport_players(var_edc2ee2a, var_66f7e6b9)
 		visionset_mgr::deactivate("overlay", "zm_factory_teleport", player);
 	}
 	wait(2);
-	Array::random(var_764d9cb) thread teleport_nuke(undefined, 300);
+	Array::random(a_e_core_pos) thread teleport_nuke(undefined, 300);
 	for(i = 0; i < level.activePlayers.size; i++)
 	{
 		util::setClientSysState("levelNotify", "black_box_end", level.activePlayers[i]);
 	}
 	util::wait_network_frame();
-	for(i = 0; i < var_19ff0dfb.size; i++)
+	for(i = 0; i < a_players_touching.size; i++)
 	{
-		player = var_19ff0dfb[i];
+		player = a_players_touching[i];
 		if(!isdefined(player))
 		{
 			continue;
 		}
 		player Unlink();
-		if(positionWouldTelefrag(var_764d9cb[i].origin))
+		if(positionWouldTelefrag(a_e_core_pos[i].origin))
 		{
-			player SetOrigin(var_764d9cb[i].origin + (RandomFloatRange(-16, 16), RandomFloatRange(-16, 16), 0));
+			player SetOrigin(a_e_core_pos[i].origin + (RandomFloatRange(-16, 16), RandomFloatRange(-16, 16), 0));
 		}
 		else
 		{
-			player SetOrigin(var_764d9cb[i].origin);
+			player SetOrigin(a_e_core_pos[i].origin);
 		}
-		player SetPlayerAngles(var_764d9cb[i].angles);
+		player SetPlayerAngles(a_e_core_pos[i].angles);
 		if(var_edc2ee2a)
 		{
 			player clientfield::set_to_player("ee_quest_back_in_time_teleport_fx", 0);
@@ -760,7 +760,7 @@ function teleport_players(var_edc2ee2a, var_66f7e6b9)
 	level.var_47f4765c++;
 	if(level.var_47f4765c == 1 || level.var_47f4765c % 3 == 0)
 	{
-		playsoundatposition("vox_maxis_teleporter_pa_success_0", var_764d9cb[0].origin);
+		playsoundatposition("vox_maxis_teleporter_pa_success_0", a_e_core_pos[0].origin);
 	}
 	exploder::exploder("fxexp_102");
 }

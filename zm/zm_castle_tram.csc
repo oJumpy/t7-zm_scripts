@@ -36,7 +36,7 @@ function __init__()
 	level._effect["tram_fuse_fx"] = "dlc1/castle/fx_glow_115_fuse_castle";
 	clientfield::register("scriptmover", "tram_fuse_destroy", 1, 1, "counter", &function_1bf93100, 0, 0);
 	clientfield::register("scriptmover", "tram_fuse_fx", 1, 1, "counter", &function_1383302a, 0, 0);
-	clientfield::register("scriptmover", "cleanup_dynents", 1, 1, "counter", &function_8a2bbd06, 0, 0);
+	clientfield::register("scriptmover", "cleanup_dynents", 1, 1, "counter", &remove_dyn_ents, 0, 0);
 	clientfield::register("world", "snd_tram", 5000, 2, "int", &function_965b3fb9, 0, 0);
 	thread function_58a73de9();
 	thread function_60283937();
@@ -220,7 +220,7 @@ function function_60283937()
 }
 
 /*
-	Name: function_8a2bbd06
+	Name: remove_dyn_ents
 	Namespace: namespace_30db0d4
 	Checksum: 0x12C754A6
 	Offset: 0xB20
@@ -228,7 +228,7 @@ function function_60283937()
 	Parameters: 7
 	Flags: None
 */
-function function_8a2bbd06(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function remove_dyn_ents(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	CleanupSpawnedDynents();
 }

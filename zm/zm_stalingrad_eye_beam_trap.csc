@@ -116,8 +116,8 @@ function function_ea1e41d4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 function function_3975127(localClientNum, str_location)
 {
 	var_459eee06 = struct::get("eye_beam_rumble_" + str_location, "targetname");
-	var_7cbc8176 = util::spawn_model(localClientNum, "tag_origin", var_459eee06.origin);
-	var_7cbc8176 PlayRumbleOnEntity(localClientNum, "zm_stalingrad_eye_beam_rumble");
-	return var_7cbc8176;
+	e_rumble = util::spawn_model(localClientNum, "tag_origin", var_459eee06.origin);
+	e_rumble PlayRumbleOnEntity(localClientNum, "zm_stalingrad_eye_beam_rumble");
+	return e_rumble;
 }
 

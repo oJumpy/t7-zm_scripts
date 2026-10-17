@@ -31,7 +31,7 @@
 */
 function autoexec init()
 {
-	function_83f83141();
+	initzmcastlebehaviorsandasm();
 	level.var_4fb25bb9 = [];
 	level.var_4fb25bb9["walk"] = 4;
 	level.var_4fb25bb9["run"] = 4;
@@ -42,14 +42,14 @@ function autoexec init()
 	level.closest_player_override = &function_c4a8cdff;
 	level thread update_closest_player();
 	/#
-		thread function_e250a9f();
+		thread castle_zombie_devgui();
 	#/
 	level.move_valid_poi_to_navmesh = 1;
 	level.pathdist_type = 2;
 }
 
 /*
-	Name: function_83f83141
+	Name: initzmcastlebehaviorsandasm
 	Namespace: namespace_e9d5a0ce
 	Checksum: 0xE1C68A03
 	Offset: 0x590
@@ -57,15 +57,15 @@ function autoexec init()
 	Parameters: 0
 	Flags: Private
 */
-function private function_83f83141()
+function private initzmcastlebehaviorsandasm()
 {
-	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_teleport_traversal@zombie", &function_5683b5d5, undefined, undefined);
+	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_teleport_traversal@zombie", &teleporttraversalmocompstart, undefined, undefined);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldMoveLowg", &shouldMoveLowg);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodShouldMove", &function_d0ef2cea);
 }
 
 /*
-	Name: function_5683b5d5
+	Name: teleporttraversalmocompstart
 	Namespace: namespace_e9d5a0ce
 	Checksum: 0xD127E1E7
 	Offset: 0x620
@@ -73,7 +73,7 @@ function private function_83f83141()
 	Parameters: 5
 	Flags: None
 */
-function function_5683b5d5(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
+function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
 	entity OrientMode("face angle", entity.angles[1]);
 	entity animMode("normal");
@@ -156,7 +156,7 @@ function shouldMoveLowg(entity)
 }
 
 /*
-	Name: function_104ff02c
+	Name: set_gravity
 	Namespace: namespace_e9d5a0ce
 	Checksum: 0xF4992EBB
 	Offset: 0x998
@@ -164,7 +164,7 @@ function shouldMoveLowg(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_104ff02c(gravity)
+function set_gravity(gravity)
 {
 	if(gravity == "low")
 	{
@@ -252,7 +252,7 @@ function function_7b63bf24(player)
 }
 
 /*
-	Name: function_3cc0a9c3
+	Name: castle_validate_last_closest_player
 	Namespace: namespace_e9d5a0ce
 	Checksum: 0x2520D9A7
 	Offset: 0xDB8
@@ -260,7 +260,7 @@ function function_7b63bf24(player)
 	Parameters: 1
 	Flags: Private
 */
-function private function_3cc0a9c3(players)
+function private castle_validate_last_closest_player(players)
 {
 	if(isdefined(self.last_closest_player) && (isdefined(self.last_closest_player.am_i_valid) && self.last_closest_player.am_i_valid))
 	{
@@ -345,7 +345,7 @@ function private function_c4a8cdff(origin, var_6c55ba74)
 	}
 	if(isdefined(level.last_closest_time) && level.last_closest_time >= level.time)
 	{
-		self function_3cc0a9c3(players);
+		self castle_validate_last_closest_player(players);
 		AIProfile_EndEntry();
 		return self.last_closest_player;
 	}
@@ -391,7 +391,7 @@ function private function_c4a8cdff(origin, var_6c55ba74)
 	{
 		self zm_utility::approximate_path_dist(closest);
 	}
-	self function_3cc0a9c3(players);
+	self castle_validate_last_closest_player(players);
 	AIProfile_EndEntry();
 	return self.last_closest_player;
 }
@@ -430,10 +430,10 @@ function private update_closest_player()
 	{
 		reset_closest_player = 1;
 		zombies = zombie_utility::get_round_enemy_array();
-		var_6aad1b23 = GetAIArchetypeArray("mechz", level.zombie_team);
-		if(var_6aad1b23.size)
+		mechzs = GetAIArchetypeArray("mechz", level.zombie_team);
+		if(mechzs.size)
 		{
-			zombies = ArrayCombine(zombies, var_6aad1b23, 0, 0);
+			zombies = ArrayCombine(zombies, mechzs, 0, 0);
 		}
 		foreach(zombie in zombies)
 		{
@@ -458,7 +458,7 @@ function private update_closest_player()
 }
 
 /*
-	Name: function_e250a9f
+	Name: castle_zombie_devgui
 	Namespace: namespace_e9d5a0ce
 	Checksum: 0xF9CF446A
 	Offset: 0x1598
@@ -466,17 +466,17 @@ function private update_closest_player()
 	Parameters: 0
 	Flags: Private
 */
-function private function_e250a9f()
+function private castle_zombie_devgui()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
-		zm_devgui::function_4acecab5(&function_e48879e3);
+		zm_devgui::add_custom_devgui_callback(&castle_zombie_devgui_callback);
 		AddDebugCommand("Dev Block strings are not supported");
 	#/
 }
 
 /*
-	Name: function_e48879e3
+	Name: castle_zombie_devgui_callback
 	Namespace: namespace_e9d5a0ce
 	Checksum: 0xB791EA9D
 	Offset: 0x1600
@@ -484,7 +484,7 @@ function private function_e250a9f()
 	Parameters: 1
 	Flags: Private
 */
-function private function_e48879e3(cmd)
+function private castle_zombie_devgui_callback(cmd)
 {
 	/#
 		switch(cmd)
@@ -504,14 +504,14 @@ function private function_e48879e3(cmd)
 				{
 					if(isdefined(level.var_c43a1504) && level.var_c43a1504)
 					{
-						zombie function_104ff02c("Dev Block strings are not supported");
+						zombie set_gravity("Dev Block strings are not supported");
 						if(zombie ai::has_behavior_attribute("Dev Block strings are not supported"))
 						{
 							zombie ai::set_behavior_attribute("Dev Block strings are not supported", "Dev Block strings are not supported");
 						}
 						continue;
 					}
-					zombie function_104ff02c("Dev Block strings are not supported");
+					zombie set_gravity("Dev Block strings are not supported");
 					if(zombie ai::has_behavior_attribute("Dev Block strings are not supported"))
 					{
 						zombie ai::set_behavior_attribute("Dev Block strings are not supported", "Dev Block strings are not supported");

@@ -6,7 +6,7 @@
 #namespace cDoor;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: cDoor
 	Checksum: 0x9F3F54B6
 	Offset: 0x230
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self.m_n_trigger_height = 80;
 	self.m_override_swing_angle = undefined;
@@ -23,7 +23,7 @@ function function_9b385ca5()
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: cDoor
 	Checksum: 0x8DA9AEA7
 	Offset: 0x270
@@ -31,7 +31,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 	if(isdefined(self.m_e_trigger))
 	{
@@ -667,8 +667,8 @@ function private autoexec cDoor()
 	classes.cDoor[0].__vtable[-696337716] = &cDoor::get_hack_angles;
 	classes.cDoor[0].__vtable[1794592682] = &cDoor::get_hack_pos;
 	classes.cDoor[0].__vtable[-1234449151] = &cDoor::init_xmodel;
-	classes.cDoor[0].__vtable[1606033458] = &cDoor::function_5fba2032;
-	classes.cDoor[0].__vtable[-1690805083] = &cDoor::function_9b385ca5;
+	classes.cDoor[0].__vtable[1606033458] = &cDoor::__destructor;
+	classes.cDoor[0].__vtable[-1690805083] = &cDoor::__constructor;
 }
 
 /*

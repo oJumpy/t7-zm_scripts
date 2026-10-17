@@ -44,98 +44,98 @@ function autoexec __init__()
 	level._effect["rezzed_skeleton_eye_glow"] = "zombie/fx_glow_eye_blue_stalingrad";
 	level._effect["rezzed_skeleton_sparky"] = "dlc3/stalingrad/fx_elec_sparky_chest";
 	level._effect["rezzed_skeleton_spark_light"] = "dlc3/stalingrad/fx_light_sparky_chest";
-	level.var_4d7b6b0 = [];
-	if(!isdefined(level.var_4d7b6b0))
+	level._sentinel_resurrect_taunts = [];
+	if(!isdefined(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = [];
+		level._sentinel_resurrect_taunts = [];
 	}
-	else if(!IsArray(level.var_4d7b6b0))
+	else if(!IsArray(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = Array(level.var_4d7b6b0);
+		level._sentinel_resurrect_taunts = Array(level._sentinel_resurrect_taunts);
 	}
-	level.var_4d7b6b0[level.var_4d7b6b0.size] = "vox_valk_valkyrie_resurrect_0";
-	if(!isdefined(level.var_4d7b6b0))
+	level._sentinel_resurrect_taunts[level._sentinel_resurrect_taunts.size] = "vox_valk_valkyrie_resurrect_0";
+	if(!isdefined(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = [];
+		level._sentinel_resurrect_taunts = [];
 	}
-	else if(!IsArray(level.var_4d7b6b0))
+	else if(!IsArray(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = Array(level.var_4d7b6b0);
+		level._sentinel_resurrect_taunts = Array(level._sentinel_resurrect_taunts);
 	}
-	level.var_4d7b6b0[level.var_4d7b6b0.size] = "vox_valk_valkyrie_resurrect_1";
-	if(!isdefined(level.var_4d7b6b0))
+	level._sentinel_resurrect_taunts[level._sentinel_resurrect_taunts.size] = "vox_valk_valkyrie_resurrect_1";
+	if(!isdefined(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = [];
+		level._sentinel_resurrect_taunts = [];
 	}
-	else if(!IsArray(level.var_4d7b6b0))
+	else if(!IsArray(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = Array(level.var_4d7b6b0);
+		level._sentinel_resurrect_taunts = Array(level._sentinel_resurrect_taunts);
 	}
-	level.var_4d7b6b0[level.var_4d7b6b0.size] = "vox_valk_valkyrie_resurrect_2";
-	if(!isdefined(level.var_4d7b6b0))
+	level._sentinel_resurrect_taunts[level._sentinel_resurrect_taunts.size] = "vox_valk_valkyrie_resurrect_2";
+	if(!isdefined(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = [];
+		level._sentinel_resurrect_taunts = [];
 	}
-	else if(!IsArray(level.var_4d7b6b0))
+	else if(!IsArray(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = Array(level.var_4d7b6b0);
+		level._sentinel_resurrect_taunts = Array(level._sentinel_resurrect_taunts);
 	}
-	level.var_4d7b6b0[level.var_4d7b6b0.size] = "vox_valk_valkyrie_resurrect_3";
-	if(!isdefined(level.var_4d7b6b0))
+	level._sentinel_resurrect_taunts[level._sentinel_resurrect_taunts.size] = "vox_valk_valkyrie_resurrect_3";
+	if(!isdefined(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = [];
+		level._sentinel_resurrect_taunts = [];
 	}
-	else if(!IsArray(level.var_4d7b6b0))
+	else if(!IsArray(level._sentinel_resurrect_taunts))
 	{
-		level.var_4d7b6b0 = Array(level.var_4d7b6b0);
+		level._sentinel_resurrect_taunts = Array(level._sentinel_resurrect_taunts);
 	}
-	level.var_4d7b6b0[level.var_4d7b6b0.size] = "vox_valk_valkyrie_resurrect_4";
-	level.var_266194a = [];
-	if(!isdefined(level.var_266194a))
+	level._sentinel_resurrect_taunts[level._sentinel_resurrect_taunts.size] = "vox_valk_valkyrie_resurrect_4";
+	level._sentinel_scanning_taunts = [];
+	if(!isdefined(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = [];
+		level._sentinel_scanning_taunts = [];
 	}
-	else if(!IsArray(level.var_266194a))
+	else if(!IsArray(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = Array(level.var_266194a);
+		level._sentinel_scanning_taunts = Array(level._sentinel_scanning_taunts);
 	}
-	level.var_266194a[level.var_266194a.size] = "vox_valk_valkyrie_scanner_0";
-	if(!isdefined(level.var_266194a))
+	level._sentinel_scanning_taunts[level._sentinel_scanning_taunts.size] = "vox_valk_valkyrie_scanner_0";
+	if(!isdefined(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = [];
+		level._sentinel_scanning_taunts = [];
 	}
-	else if(!IsArray(level.var_266194a))
+	else if(!IsArray(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = Array(level.var_266194a);
+		level._sentinel_scanning_taunts = Array(level._sentinel_scanning_taunts);
 	}
-	level.var_266194a[level.var_266194a.size] = "vox_valk_valkyrie_scanner_1";
-	if(!isdefined(level.var_266194a))
+	level._sentinel_scanning_taunts[level._sentinel_scanning_taunts.size] = "vox_valk_valkyrie_scanner_1";
+	if(!isdefined(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = [];
+		level._sentinel_scanning_taunts = [];
 	}
-	else if(!IsArray(level.var_266194a))
+	else if(!IsArray(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = Array(level.var_266194a);
+		level._sentinel_scanning_taunts = Array(level._sentinel_scanning_taunts);
 	}
-	level.var_266194a[level.var_266194a.size] = "vox_valk_valkyrie_scanner_2";
-	if(!isdefined(level.var_266194a))
+	level._sentinel_scanning_taunts[level._sentinel_scanning_taunts.size] = "vox_valk_valkyrie_scanner_2";
+	if(!isdefined(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = [];
+		level._sentinel_scanning_taunts = [];
 	}
-	else if(!IsArray(level.var_266194a))
+	else if(!IsArray(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = Array(level.var_266194a);
+		level._sentinel_scanning_taunts = Array(level._sentinel_scanning_taunts);
 	}
-	level.var_266194a[level.var_266194a.size] = "vox_valk_valkyrie_scanner_3";
-	if(!isdefined(level.var_266194a))
+	level._sentinel_scanning_taunts[level._sentinel_scanning_taunts.size] = "vox_valk_valkyrie_scanner_3";
+	if(!isdefined(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = [];
+		level._sentinel_scanning_taunts = [];
 	}
-	else if(!IsArray(level.var_266194a))
+	else if(!IsArray(level._sentinel_scanning_taunts))
 	{
-		level.var_266194a = Array(level.var_266194a);
+		level._sentinel_scanning_taunts = Array(level._sentinel_scanning_taunts);
 	}
-	level.var_266194a[level.var_266194a.size] = "vox_valk_valkyrie_scanner_4";
+	level._sentinel_scanning_taunts[level._sentinel_scanning_taunts.size] = "vox_valk_valkyrie_scanner_4";
 }
 
 /*
@@ -227,7 +227,7 @@ function function_11f14e16(n_local_client, n_val_old, n_val_new, b_ent_new, b_in
 	wait(1);
 	if(isdefined(self))
 	{
-		sentinel_play_taunt(n_local_client, level.var_266194a);
+		sentinel_play_taunt(n_local_client, level._sentinel_scanning_taunts);
 	}
 }
 
@@ -246,7 +246,7 @@ function function_af7e8dd4(n_local_client, n_val_old, n_val_new, b_ent_new, b_in
 	{
 		self.var_5ec69ff1 = PlayFXOnTag(n_local_client, level._effect["sentinel_ground_radiation"], self, "tag_origin");
 		SetFXIgnorePause(n_local_client, self.var_5ec69ff1, 1);
-		sentinel_play_taunt(n_local_client, level.var_4d7b6b0);
+		sentinel_play_taunt(n_local_client, level._sentinel_resurrect_taunts);
 	}
 	else if(isdefined(self.var_5ec69ff1))
 	{

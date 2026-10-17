@@ -20,11 +20,11 @@
 */
 function main_start()
 {
-	level.custom_umbra_hotfix = &function_36b03ba5;
+	level.custom_umbra_hotfix = &zod_custom_umbra_hotfix;
 }
 
 /*
-	Name: function_36b03ba5
+	Name: zod_custom_umbra_hotfix
 	Namespace: namespace_b65ec48a
 	Checksum: 0xCF06E402
 	Offset: 0x198
@@ -32,7 +32,7 @@ function main_start()
 	Parameters: 1
 	Flags: None
 */
-function function_36b03ba5(localClientNum)
+function zod_custom_umbra_hotfix(localClientNum)
 {
 	return 0;
 }

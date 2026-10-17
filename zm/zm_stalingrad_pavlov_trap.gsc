@@ -30,16 +30,16 @@
 */
 function main()
 {
-	var_565a8d95 = struct::get_array("flinger_trigger", "targetname");
-	foreach(var_a3ed6ea in var_565a8d95)
+	a_t_flinger = struct::get_array("flinger_trigger", "targetname");
+	foreach(s_flinger in a_t_flinger)
 	{
-		var_66e182a0 = GetEntArray(var_a3ed6ea.target, "targetname");
-		var_a3ed6ea.var_66e182a0 = var_66e182a0;
+		var_66e182a0 = GetEntArray(s_flinger.target, "targetname");
+		s_flinger.var_66e182a0 = var_66e182a0;
 		foreach(var_a70a7d09 in var_66e182a0)
 		{
-			var_a3ed6ea.var_a70a7d09 = var_a70a7d09;
+			s_flinger.var_a70a7d09 = var_a70a7d09;
 		}
-		var_a3ed6ea function_41b278b3();
+		s_flinger function_41b278b3();
 	}
 }
 
@@ -85,7 +85,7 @@ function function_fbea6a64(e_player)
 		self setHintString(&"ZM_STALINGRAD_FLINGER_DISABLED");
 		return 0;
 	}
-	else if(isdefined(self.stub.var_66a9cd70) && self.stub.var_66a9cd70)
+	else if(isdefined(self.stub.trap_on) && self.stub.trap_on)
 	{
 		self setHintString(&"ZOMBIE_TRAP_ACTIVE");
 		return 0;
@@ -154,23 +154,23 @@ function function_335dff5e()
 */
 function function_d9a07413(e_player, var_a70a7d09)
 {
-	self.var_66a9cd70 = 1;
+	self.trap_on = 1;
 	if(self.target === "flinger_pavlov_street")
 	{
 		var_76b899c0 = struct::get_array("flinger_pavlov_street", "target");
 		foreach(s_struct in var_76b899c0)
 		{
-			s_struct.var_66a9cd70 = 1;
+			s_struct.trap_on = 1;
 		}
 	}
 	self namespace_48c05c81::function_903f6b36(1);
 	var_b4f536a1 = struct::get(var_a70a7d09.target);
-	var_ebbae7d4 = GetEnt(var_b4f536a1.target, "targetname");
+	e_flinger = GetEnt(var_b4f536a1.target, "targetname");
 	v_fling = AnglesToForward(var_b4f536a1.angles);
-	n_rotate_angle = var_ebbae7d4.script_int;
-	if(isdefined(var_ebbae7d4.target))
+	n_rotate_angle = e_flinger.script_int;
+	if(isdefined(e_flinger.target))
 	{
-		var_d617e29b = GetEnt(var_ebbae7d4.target, "targetname");
+		var_d617e29b = GetEnt(e_flinger.target, "targetname");
 	}
 	n_start_time = GetTime();
 	n_total_time = 0;
@@ -184,7 +184,7 @@ function function_d9a07413(e_player, var_a70a7d09)
 		n_total_time = GetTime() - n_start_time / 1000;
 		wait(0.5);
 	}
-	self.var_66a9cd70 = 0;
+	self.trap_on = 0;
 	self.var_dd690f31 = 0;
 	var_76b899c0 = struct::get_array("flinger_pavlov_street", "target");
 	if(self.target === "flinger_pavlov_street")
@@ -192,7 +192,7 @@ function function_d9a07413(e_player, var_a70a7d09)
 		foreach(s_struct in var_76b899c0)
 		{
 			s_struct.var_dd690f31 = 0;
-			s_struct.var_66a9cd70 = 0;
+			s_struct.trap_on = 0;
 		}
 	}
 	wait(120);

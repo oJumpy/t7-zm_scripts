@@ -86,7 +86,7 @@ function __init__()
 		level._gadgets_level = [];
 	}
 	/#
-		level thread function_d88cbcf7();
+		level thread abilities_devgui_init();
 	#/
 }
 
@@ -132,7 +132,7 @@ function on_player_connect()
 		self._gadgets_player = [];
 	}
 	/#
-		self thread function_138fec31();
+		self thread abilities_devgui_player_connect();
 	#/
 }
 
@@ -165,7 +165,7 @@ function on_player_spawned()
 function on_player_disconnect()
 {
 	/#
-		self thread function_74f14d77();
+		self thread abilities_devgui_player_disconnect();
 	#/
 }
 
@@ -1028,7 +1028,7 @@ function gadget_primed(slot, weapon)
 }
 
 /*
-	Name: function_5b41aa09
+	Name: abilities_print
 	Namespace: ability_player
 	Checksum: 0x99DAABCB
 	Offset: 0x30D8
@@ -1036,16 +1036,16 @@ function gadget_primed(slot, weapon)
 	Parameters: 1
 	Flags: None
 */
-function function_5b41aa09(STR)
+function abilities_print(STR)
 {
 	/#
-		var_ce775097 = "Dev Block strings are not supported" + STR;
-		println(var_ce775097);
+		toprint = "Dev Block strings are not supported" + STR;
+		println(toprint);
 	#/
 }
 
 /*
-	Name: function_d88cbcf7
+	Name: abilities_devgui_init
 	Namespace: ability_player
 	Checksum: 0x2504E69E
 	Offset: 0x3128
@@ -1053,7 +1053,7 @@ function function_5b41aa09(STR)
 	Parameters: 0
 	Flags: None
 */
-function function_d88cbcf7()
+function abilities_devgui_init()
 {
 	/#
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -1063,13 +1063,13 @@ function function_d88cbcf7()
 		{
 			return;
 		}
-		level.var_bdc308fa = "Dev Block strings are not supported";
-		level thread function_893680af();
+		level.abilities_devgui_base = "Dev Block strings are not supported";
+		level thread abilities_devgui_think();
 	#/
 }
 
 /*
-	Name: function_138fec31
+	Name: abilities_devgui_player_connect
 	Namespace: ability_player
 	Checksum: 0x5774A221
 	Offset: 0x31D0
@@ -1077,10 +1077,10 @@ function function_d88cbcf7()
 	Parameters: 0
 	Flags: None
 */
-function function_138fec31()
+function abilities_devgui_player_connect()
 {
 	/#
-		if(!isdefined(level.var_bdc308fa))
+		if(!isdefined(level.abilities_devgui_base))
 		{
 			return;
 		}
@@ -1091,14 +1091,14 @@ function function_138fec31()
 			{
 				continue;
 			}
-			function_ecf89e27(level.var_bdc308fa, players[i].playerName, i + 1);
+			abilities_devgui_add_player_commands(level.abilities_devgui_base, players[i].playerName, i + 1);
 			return;
 		}
 	#/
 }
 
 /*
-	Name: function_ecf89e27
+	Name: abilities_devgui_add_player_commands
 	Namespace: ability_player
 	Checksum: 0x8AF9FB44
 	Offset: 0x3288
@@ -1106,19 +1106,19 @@ function function_138fec31()
 	Parameters: 3
 	Flags: None
 */
-function function_ecf89e27(root, var_f9bd308a, index)
+function abilities_devgui_add_player_commands(root, pname, index)
 {
 	/#
-		var_621b6331 = "Dev Block strings are not supported" + root + var_f9bd308a + "Dev Block strings are not supported";
+		add_cmd_with_root = "Dev Block strings are not supported" + root + pname + "Dev Block strings are not supported";
 		pId = "Dev Block strings are not supported" + index;
 		menu_index = 1;
-		menu_index = function_500f9600(var_621b6331, pId, menu_index);
-		menu_index = function_32f354(var_621b6331, pId, menu_index);
+		menu_index = abilities_devgui_add_gadgets(add_cmd_with_root, pId, menu_index);
+		menu_index = abilities_devgui_add_power(add_cmd_with_root, pId, menu_index);
 	#/
 }
 
 /*
-	Name: function_644ec934
+	Name: abilities_devgui_add_player_command
 	Namespace: ability_player
 	Checksum: 0x10C2ECE4
 	Offset: 0x3348
@@ -1126,19 +1126,19 @@ function function_ecf89e27(root, var_f9bd308a, index)
 	Parameters: 6
 	Flags: None
 */
-function function_644ec934(root, pId, var_f8243fba, menu_index, var_c9e2ded0, var_9ae49f90)
+function abilities_devgui_add_player_command(root, pId, cmdname, menu_index, cmddvar, argdvar)
 {
 	/#
-		if(!isdefined(var_9ae49f90))
+		if(!isdefined(argdvar))
 		{
-			var_9ae49f90 = "Dev Block strings are not supported";
+			argdvar = "Dev Block strings are not supported";
 		}
-		AddDebugCommand(root + var_f8243fba + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + pId + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_c9e2ded0 + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_9ae49f90 + "Dev Block strings are not supported");
+		AddDebugCommand(root + cmdname + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + pId + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + cmddvar + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + argdvar + "Dev Block strings are not supported");
 	#/
 }
 
 /*
-	Name: function_32f354
+	Name: abilities_devgui_add_power
 	Namespace: ability_player
 	Checksum: 0xB088DF98
 	Offset: 0x3428
@@ -1146,19 +1146,19 @@ function function_644ec934(root, pId, var_f8243fba, menu_index, var_c9e2ded0, va
 	Parameters: 3
 	Flags: None
 */
-function function_32f354(var_621b6331, pId, menu_index)
+function abilities_devgui_add_power(add_cmd_with_root, pId, menu_index)
 {
 	/#
-		root = var_621b6331 + "Dev Block strings are not supported" + menu_index + "Dev Block strings are not supported";
-		function_644ec934(root, pId, "Dev Block strings are not supported", 1, "Dev Block strings are not supported", "Dev Block strings are not supported");
-		function_644ec934(root, pId, "Dev Block strings are not supported", 2, "Dev Block strings are not supported", "Dev Block strings are not supported");
+		root = add_cmd_with_root + "Dev Block strings are not supported" + menu_index + "Dev Block strings are not supported";
+		abilities_devgui_add_player_command(root, pId, "Dev Block strings are not supported", 1, "Dev Block strings are not supported", "Dev Block strings are not supported");
+		abilities_devgui_add_player_command(root, pId, "Dev Block strings are not supported", 2, "Dev Block strings are not supported", "Dev Block strings are not supported");
 		menu_index++;
 		return menu_index;
 	#/
 }
 
 /*
-	Name: function_500f9600
+	Name: abilities_devgui_add_gadgets
 	Namespace: ability_player
 	Checksum: 0x4550D7DC
 	Offset: 0x34F0
@@ -1166,12 +1166,12 @@ function function_32f354(var_621b6331, pId, menu_index)
 	Parameters: 3
 	Flags: None
 */
-function function_500f9600(var_621b6331, pId, menu_index)
+function abilities_devgui_add_gadgets(add_cmd_with_root, pId, menu_index)
 {
 	/#
 		a_weapons = EnumerateWeapons("Dev Block strings are not supported");
 		a_hero = [];
-		var_a67dfb09 = [];
+		a_abilities = [];
 		for(i = 0; i < a_weapons.size; i++)
 		{
 			if(a_weapons[i].isgadget)
@@ -1181,19 +1181,19 @@ function function_500f9600(var_621b6331, pId, menu_index)
 					ArrayInsert(a_hero, a_weapons[i], 0);
 					continue;
 				}
-				ArrayInsert(var_a67dfb09, a_weapons[i], 0);
+				ArrayInsert(a_abilities, a_weapons[i], 0);
 			}
 		}
-		function_876574ac(var_621b6331, pId, var_a67dfb09, "Dev Block strings are not supported", menu_index);
+		abilities_devgui_add_player_weapons(add_cmd_with_root, pId, a_abilities, "Dev Block strings are not supported", menu_index);
 		menu_index++;
-		function_876574ac(var_621b6331, pId, a_hero, "Dev Block strings are not supported", menu_index);
+		abilities_devgui_add_player_weapons(add_cmd_with_root, pId, a_hero, "Dev Block strings are not supported", menu_index);
 		menu_index++;
 		return menu_index;
 	#/
 }
 
 /*
-	Name: function_876574ac
+	Name: abilities_devgui_add_player_weapons
 	Namespace: ability_player
 	Checksum: 0x1B3BA78A
 	Offset: 0x3670
@@ -1201,15 +1201,15 @@ function function_500f9600(var_621b6331, pId, menu_index)
 	Parameters: 5
 	Flags: None
 */
-function function_876574ac(root, pId, a_weapons, weapon_type, menu_index)
+function abilities_devgui_add_player_weapons(root, pId, a_weapons, weapon_type, menu_index)
 {
 	/#
 		if(isdefined(a_weapons))
 		{
-			var_acce17e = root + weapon_type + "Dev Block strings are not supported";
+			player_devgui_root = root + weapon_type + "Dev Block strings are not supported";
 			for(i = 0; i < a_weapons.size; i++)
 			{
-				function_79aa7c68(var_acce17e, pId, a_weapons[i].name, i + 1);
+				abilities_devgui_add_player_weap_command(player_devgui_root, pId, a_weapons[i].name, i + 1);
 				wait(0.05);
 			}
 		}
@@ -1217,7 +1217,7 @@ function function_876574ac(root, pId, a_weapons, weapon_type, menu_index)
 }
 
 /*
-	Name: function_79aa7c68
+	Name: abilities_devgui_add_player_weap_command
 	Namespace: ability_player
 	Checksum: 0xE2DAE482
 	Offset: 0x3740
@@ -1225,7 +1225,7 @@ function function_876574ac(root, pId, a_weapons, weapon_type, menu_index)
 	Parameters: 4
 	Flags: None
 */
-function function_79aa7c68(root, pId, weap_name, var_62cae919)
+function abilities_devgui_add_player_weap_command(root, pId, weap_name, cmdindex)
 {
 	/#
 		AddDebugCommand(root + weap_name + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + pId + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + weap_name + "Dev Block strings are not supported");
@@ -1233,7 +1233,7 @@ function function_79aa7c68(root, pId, weap_name, var_62cae919)
 }
 
 /*
-	Name: function_74f14d77
+	Name: abilities_devgui_player_disconnect
 	Namespace: ability_player
 	Checksum: 0x6FAD21CC
 	Offset: 0x37F8
@@ -1241,20 +1241,20 @@ function function_79aa7c68(root, pId, weap_name, var_62cae919)
 	Parameters: 0
 	Flags: None
 */
-function function_74f14d77()
+function abilities_devgui_player_disconnect()
 {
 	/#
-		if(!isdefined(level.var_bdc308fa))
+		if(!isdefined(level.abilities_devgui_base))
 		{
 			return;
 		}
-		var_3c9704ee = "Dev Block strings are not supported" + level.var_bdc308fa + self.playerName + "Dev Block strings are not supported";
-		util::function_316771cc(var_3c9704ee);
+		remove_cmd_with_root = "Dev Block strings are not supported" + level.abilities_devgui_base + self.playerName + "Dev Block strings are not supported";
+		util::add_queued_debug_command(remove_cmd_with_root);
 	#/
 }
 
 /*
-	Name: function_893680af
+	Name: abilities_devgui_think
 	Namespace: ability_player
 	Checksum: 0x4528A55A
 	Offset: 0x3860
@@ -1262,7 +1262,7 @@ function function_74f14d77()
 	Parameters: 0
 	Flags: None
 */
-function function_893680af()
+function abilities_devgui_think()
 {
 	/#
 		for(;;)
@@ -1278,17 +1278,17 @@ function function_893680af()
 			{
 				case "Dev Block strings are not supported":
 				{
-					function_18e9e633(cmd, &function_10f3334);
+					abilities_devgui_handle_player_command(cmd, &abilities_devgui_power_fill);
 					break;
 				}
 				case "Dev Block strings are not supported":
 				{
-					function_18e9e633(cmd, &function_231e39c9);
+					abilities_devgui_handle_player_command(cmd, &abilities_devgui_power_toggle_auto_fill);
 					break;
 				}
 				case "Dev Block strings are not supported":
 				{
-					function_18e9e633(cmd, &function_99f4bfee, arg);
+					abilities_devgui_handle_player_command(cmd, &abilities_devgui_give, arg);
 				}
 				case "Dev Block strings are not supported":
 				{
@@ -1306,7 +1306,7 @@ function function_893680af()
 }
 
 /*
-	Name: function_99f4bfee
+	Name: abilities_devgui_give
 	Namespace: ability_player
 	Checksum: 0x91375EF0
 	Offset: 0x39B8
@@ -1314,10 +1314,10 @@ function function_893680af()
 	Parameters: 1
 	Flags: None
 */
-function function_99f4bfee(weapon_name)
+function abilities_devgui_give(weapon_name)
 {
 	/#
-		level.var_e76bb7e3 = 1;
+		level.devgui_giving_abilities = 1;
 		for(i = 0; i < 3; i++)
 		{
 			if(isdefined(self._gadgets_player[i]))
@@ -1325,7 +1325,7 @@ function function_99f4bfee(weapon_name)
 				self TakeWeapon(self._gadgets_player[i]);
 			}
 		}
-		self notify("hash_d8d44ed2");
+		self notify("gadget_devgui_give");
 		weapon = GetWeapon(weapon_name);
 		self GiveWeapon(weapon);
 		if(self util::is_bot())
@@ -1334,12 +1334,12 @@ function function_99f4bfee(weapon_name)
 			self GadgetPowerSet(slot, 100);
 			self bot::activate_hero_gadget(weapon);
 		}
-		level.var_e76bb7e3 = undefined;
+		level.devgui_giving_abilities = undefined;
 	#/
 }
 
 /*
-	Name: function_18e9e633
+	Name: abilities_devgui_handle_player_command
 	Namespace: ability_player
 	Checksum: 0xAC66A026
 	Offset: 0x3B08
@@ -1347,7 +1347,7 @@ function function_99f4bfee(weapon_name)
 	Parameters: 3
 	Flags: None
 */
-function function_18e9e633(cmd, var_abf3fa43, var_439858f6)
+function abilities_devgui_handle_player_command(cmd, playercallback, pcb_param)
 {
 	/#
 		pId = GetDvarInt("Dev Block strings are not supported");
@@ -1356,26 +1356,26 @@ function function_18e9e633(cmd, var_abf3fa43, var_439858f6)
 			player = GetPlayers()[pId - 1];
 			if(isdefined(player))
 			{
-				if(isdefined(var_439858f6))
+				if(isdefined(pcb_param))
 				{
-					player thread [[var_abf3fa43]](var_439858f6);
+					player thread [[playercallback]](pcb_param);
 				}
 				else
 				{
-					player thread [[var_abf3fa43]]();
+					player thread [[playercallback]]();
 				}
 			}
 		}
 		else
 		{
-			Array::thread_all(GetPlayers(), var_abf3fa43, var_439858f6);
+			Array::thread_all(GetPlayers(), playercallback, pcb_param);
 		}
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 	#/
 }
 
 /*
-	Name: function_10f3334
+	Name: abilities_devgui_power_fill
 	Namespace: ability_player
 	Checksum: 0xE1EABF1B
 	Offset: 0x3C20
@@ -1383,7 +1383,7 @@ function function_18e9e633(cmd, var_abf3fa43, var_439858f6)
 	Parameters: 0
 	Flags: None
 */
-function function_10f3334()
+function abilities_devgui_power_fill()
 {
 	/#
 		if(!isdefined(self) || !isdefined(self._gadgets_player))
@@ -1394,14 +1394,14 @@ function function_10f3334()
 		{
 			if(isdefined(self._gadgets_player[i]))
 			{
-				self GadgetPowerSet(i, self._gadgets_player[i].var_782747a7);
+				self GadgetPowerSet(i, self._gadgets_player[i].gadget_powermax);
 			}
 		}
 	#/
 }
 
 /*
-	Name: function_231e39c9
+	Name: abilities_devgui_power_toggle_auto_fill
 	Namespace: ability_player
 	Checksum: 0x24513600
 	Offset: 0x3CB8
@@ -1409,20 +1409,20 @@ function function_10f3334()
 	Parameters: 0
 	Flags: None
 */
-function function_231e39c9()
+function abilities_devgui_power_toggle_auto_fill()
 {
 	/#
 		if(!isdefined(self) || !isdefined(self._gadgets_player))
 		{
 			return;
 		}
-		self.var_231e39c9 = !isdefined(self.var_231e39c9) && self.var_231e39c9;
-		self thread function_44f4c5cc();
+		self.abilities_devgui_power_toggle_auto_fill = !isdefined(self.abilities_devgui_power_toggle_auto_fill) && self.abilities_devgui_power_toggle_auto_fill;
+		self thread abilities_devgui_power_toggle_auto_fill_think();
 	#/
 }
 
 /*
-	Name: function_44f4c5cc
+	Name: abilities_devgui_power_toggle_auto_fill_think
 	Namespace: ability_player
 	Checksum: 0xC26C35E5
 	Offset: 0x3D18
@@ -1430,16 +1430,16 @@ function function_231e39c9()
 	Parameters: 0
 	Flags: None
 */
-function function_44f4c5cc()
+function abilities_devgui_power_toggle_auto_fill_think()
 {
 	/#
 		self endon("disconnect");
-		self notify("hash_a69f0c7d");
-		self endon("hash_a69f0c7d");
+		self notify("auto_fill_think");
+		self endon("auto_fill_think");
 		while(!isdefined(self) || !isdefined(self._gadgets_player))
 		{
 			return;
-			if(!(isdefined(self.var_231e39c9) && self.var_231e39c9))
+			if(!(isdefined(self.abilities_devgui_power_toggle_auto_fill) && self.abilities_devgui_power_toggle_auto_fill))
 			{
 				return;
 			}
@@ -1449,7 +1449,7 @@ function function_44f4c5cc()
 				{
 					if(!self gadget_is_in_use(i) && self GadgetCharging(i))
 					{
-						self GadgetPowerSet(i, self._gadgets_player[i].var_782747a7);
+						self GadgetPowerSet(i, self._gadgets_player[i].gadget_powermax);
 					}
 				}
 			}

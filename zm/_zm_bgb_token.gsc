@@ -37,7 +37,7 @@ function autoexec __init__sytem__()
 */
 function private __init__()
 {
-	if(!function_4922937f())
+	if(!is_bgb_token_in_use())
 	{
 		return;
 	}
@@ -55,13 +55,13 @@ function private __init__()
 */
 function private __main__()
 {
-	if(!function_4922937f())
+	if(!is_bgb_token_in_use())
 	{
 		return;
 	}
-	if(!isdefined(level.var_a73c4888))
+	if(!isdefined(level.bgb_token_max_per_game))
 	{
-		level.var_a73c4888 = -1;
+		level.bgb_token_max_per_game = -1;
 	}
 	if(!isdefined(level.var_baa8fd09))
 	{
@@ -116,7 +116,7 @@ function private on_player_spawned()
 }
 
 /*
-	Name: function_4922937f
+	Name: is_bgb_token_in_use
 	Namespace: bgb_token
 	Checksum: 0xDED9743F
 	Offset: 0x400
@@ -124,13 +124,13 @@ function private on_player_spawned()
 	Parameters: 0
 	Flags: Private
 */
-function private function_4922937f()
+function private is_bgb_token_in_use()
 {
 	if(!isdefined(level.bgb_in_use) && level.bgb_in_use || !level.onlineGame || !GetDvarInt("loot_enabled"))
 	{
 		return 0;
 	}
-	if(function_77110410())
+	if(isusingmods())
 	{
 		return 0;
 	}
@@ -148,7 +148,7 @@ function private function_4922937f()
 */
 function function_c2f81136(increment)
 {
-	if(!function_4922937f())
+	if(!is_bgb_token_in_use())
 	{
 		return;
 	}
@@ -175,14 +175,14 @@ function private setup_devgui()
 	/#
 		waittillframeend;
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
-		var_33b4e7c1 = "Dev Block strings are not supported";
-		AddDebugCommand(var_33b4e7c1 + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported");
-		level thread function_a29384f8();
+		bgb_devgui_base = "Dev Block strings are not supported";
+		AddDebugCommand(bgb_devgui_base + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported");
+		level thread bgb_token_devgui_think();
 	#/
 }
 
 /*
-	Name: function_a29384f8
+	Name: bgb_token_devgui_think
 	Namespace: bgb_token
 	Checksum: 0xD305B917
 	Offset: 0x5D8
@@ -190,15 +190,15 @@ function private setup_devgui()
 	Parameters: 0
 	Flags: Private
 */
-function private function_a29384f8()
+function private bgb_token_devgui_think()
 {
 	/#
 		for(;;)
 		{
-			var_2e29895e = GetDvarString("Dev Block strings are not supported");
-			if(var_2e29895e != "Dev Block strings are not supported")
+			bgb_award_token_dvar = GetDvarString("Dev Block strings are not supported");
+			if(bgb_award_token_dvar != "Dev Block strings are not supported")
 			{
-				level.players[0] function_32692a60();
+				level.players[0] bgb_token_give_to_player();
 			}
 			SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			wait(0.5);
@@ -207,7 +207,7 @@ function private function_a29384f8()
 }
 
 /*
-	Name: function_32692a60
+	Name: bgb_token_give_to_player
 	Namespace: bgb_token
 	Checksum: 0xA9E07ABA
 	Offset: 0x668
@@ -215,23 +215,23 @@ function private function_a29384f8()
 	Parameters: 0
 	Flags: Private
 */
-function private function_32692a60()
+function private bgb_token_give_to_player()
 {
-	var_90491adb = Int(self function_5d823f3c());
+	var_90491adb = Int(self getvialsscale());
 	for(count = 0; count < var_90491adb; count++)
 	{
-		self function_6ed2bf5();
+		self incrementbgbtokensgained();
 	}
 	self.var_f191a1fc = self.var_f191a1fc + var_90491adb;
 	self.var_bc978de9 = self.var_bc978de9 + level.var_c50e9bdb;
 	self.var_27b6cdab = self zm_stats::get_global_stat("TIME_PLAYED_TOTAL");
 	self zm_stats::set_global_stat("BGB_TOKEN_LAST_GIVEN_TIME", self.var_27b6cdab);
 	UploadStats(self);
-	self function_fac43b6c("3", var_90491adb);
+	self reportlootreward("3", var_90491adb);
 }
 
 /*
-	Name: function_2d75b98d
+	Name: bgb_token_percent_chance
 	Namespace: bgb_token
 	Checksum: 0xFB292A0
 	Offset: 0x7A0
@@ -239,9 +239,9 @@ function private function_32692a60()
 	Parameters: 1
 	Flags: Private
 */
-function private function_2d75b98d(var_ce9d31c4)
+function private bgb_token_percent_chance(target_percent)
 {
-	if(RandomFloat(1) < var_ce9d31c4)
+	if(RandomFloat(1) < target_percent)
 	{
 		return 1;
 	}
@@ -249,7 +249,7 @@ function private function_2d75b98d(var_ce9d31c4)
 }
 
 /*
-	Name: function_51cf4361
+	Name: award_check
 	Namespace: bgb_token
 	Checksum: 0x9FEF18D2
 	Offset: 0x7E0
@@ -257,22 +257,22 @@ function private function_2d75b98d(var_ce9d31c4)
 	Parameters: 1
 	Flags: None
 */
-function function_51cf4361(var_5561679e)
+function award_check(var_5561679e)
 {
-	if(!function_4922937f())
+	if(!is_bgb_token_in_use())
 	{
 		return;
 	}
-	if(0 <= level.var_a73c4888 && self.var_f191a1fc >= level.var_a73c4888)
+	if(0 <= level.bgb_token_max_per_game && self.var_f191a1fc >= level.bgb_token_max_per_game)
 	{
 		return;
 	}
 	var_6865f10f = self zm_stats::get_global_stat("TIME_PLAYED_TOTAL");
 	if(var_6865f10f - level.var_baa8fd09 > self.var_27b6cdab)
 	{
-		if(function_2d75b98d(level.var_342aa5b2))
+		if(bgb_token_percent_chance(level.var_342aa5b2))
 		{
-			self function_32692a60();
+			self bgb_token_give_to_player();
 		}
 		return;
 	}
@@ -282,7 +282,7 @@ function function_51cf4361(var_5561679e)
 	}
 	var_95d14cf5 = math::clamp(var_5561679e, 0, level.var_5f0752c5);
 	var_741485e6 = float(var_95d14cf5) / level.var_5f0752c5;
-	if(!function_2d75b98d(var_741485e6 * level.var_af87760a))
+	if(!bgb_token_percent_chance(var_741485e6 * level.var_af87760a))
 	{
 		return;
 	}
@@ -292,10 +292,10 @@ function function_51cf4361(var_5561679e)
 		var_edfe0eb4 = 1;
 	}
 	var_b8a1486b = float(var_edfe0eb4 * var_edfe0eb4);
-	if(!function_2d75b98d(1 / var_b8a1486b))
+	if(!bgb_token_percent_chance(1 / var_b8a1486b))
 	{
 		return;
 	}
-	self function_32692a60();
+	self bgb_token_give_to_player();
 }
 

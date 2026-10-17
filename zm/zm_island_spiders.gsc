@@ -56,10 +56,10 @@ function function_c102a998()
 	{
 		if(player IsPlayerUnderwater())
 		{
-			var_f97c401 = player zm_utility::get_current_zone();
-			if(isdefined(var_f97c401))
+			str_current_zone = player zm_utility::get_current_zone();
+			if(isdefined(str_current_zone))
 			{
-				if(var_f97c401 == "zone_start_water" || var_f97c401 == "zone_meteor_site" || var_f97c401 == "zone_meteor_site_2")
+				if(str_current_zone == "zone_start_water" || str_current_zone == "zone_meteor_site" || str_current_zone == "zone_meteor_site_2")
 				{
 					player clientfield::set_to_player("set_world_fog", 1);
 				}
@@ -85,78 +85,78 @@ function function_c102a998()
 */
 function function_33aa4940()
 {
-	var_7ac5425b = 0;
+	b_spawn_spider = 0;
 	var_622d2c20 = 0;
 	if(level.round_number > 35)
 	{
 		if(RandomFloat(100) < 10)
 		{
-			var_7ac5425b = 1;
+			b_spawn_spider = 1;
 		}
 	}
 	else if(level.round_number > 30)
 	{
 		if(RandomFloat(100) < 8)
 		{
-			var_7ac5425b = 1;
+			b_spawn_spider = 1;
 		}
 	}
 	else if(level.round_number > 25)
 	{
 		if(RandomFloat(100) < 7)
 		{
-			var_7ac5425b = 1;
+			b_spawn_spider = 1;
 		}
 	}
 	else if(level.round_number > 20)
 	{
 		if(RandomFloat(100) < 5)
 		{
-			var_7ac5425b = 1;
+			b_spawn_spider = 1;
 		}
 	}
 	if(level.round_number > level.var_5ccd3661 && level.round_number > 7)
 	{
-		if(zm_zonemgr::any_player_in_zone("zone_spider_lair") || (zm_zonemgr::any_player_in_zone("zone_jungle_lab") || zm_zonemgr::any_player_in_zone("zone_jungle_lab_upper") && level.var_90e478e7))
+		if(zm_zonemgr::any_player_in_zone("zone_spider_lair") || (zm_zonemgr::any_player_in_zone("zone_jungle_lab") || zm_zonemgr::any_player_in_zone("zone_jungle_lab_upper") && level.b_cage_down))
 		{
 			if(RandomFloat(100) < 30 && level.var_ab7eb3d4 < 3)
 			{
-				var_7ac5425b = 1;
+				b_spawn_spider = 1;
 				var_622d2c20 = 1;
 			}
 		}
 	}
-	if(var_7ac5425b)
+	if(b_spawn_spider)
 	{
 		if(var_622d2c20)
 		{
 			var_a5f01313 = struct::get_array("zone_spider_lair_spawners", "targetname");
-			var_901f5ace = [];
+			a_spider_spawners = [];
 			foreach(s_spawner in var_a5f01313)
 			{
 				if(s_spawner.script_noteworthy == "spider_location")
 				{
-					if(!isdefined(var_901f5ace))
+					if(!isdefined(a_spider_spawners))
 					{
-						var_901f5ace = [];
+						a_spider_spawners = [];
 					}
-					else if(!IsArray(var_901f5ace))
+					else if(!IsArray(a_spider_spawners))
 					{
-						var_901f5ace = Array(var_901f5ace);
+						a_spider_spawners = Array(a_spider_spawners);
 					}
-					var_901f5ace[var_901f5ace.size] = s_spawner;
+					a_spider_spawners[a_spider_spawners.size] = s_spawner;
 				}
 			}
-			namespace_27f8b154::function_f4bd92a2(1, Array::random(var_901f5ace));
+			namespace_27f8b154::special_spider_spawn(1, Array::random(a_spider_spawners));
 			level.var_ab7eb3d4++;
 		}
 		else
 		{
-			namespace_27f8b154::function_f4bd92a2(1);
+			namespace_27f8b154::special_spider_spawn(1);
 		}
 		level.zombie_total--;
 	}
-	return var_7ac5425b;
+	return b_spawn_spider;
 }
 
 /*

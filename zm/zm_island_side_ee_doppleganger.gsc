@@ -52,7 +52,7 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	callback::on_connect(&function_8feafce2);
+	callback::on_connect(&on_player_connected);
 	callback::on_spawned(&on_player_spawned);
 	callback::on_disconnect(&on_player_disconnected);
 	level.var_5f4ff545 = -1;
@@ -76,7 +76,7 @@ function main()
 }
 
 /*
-	Name: function_8feafce2
+	Name: on_player_connected
 	Namespace: namespace_28a54cd6
 	Checksum: 0x6ACA1D38
 	Offset: 0x598
@@ -84,7 +84,7 @@ function main()
 	Parameters: 0
 	Flags: None
 */
-function function_8feafce2()
+function on_player_connected()
 {
 	self flag::init("doppleganger_enabled");
 }
@@ -145,11 +145,11 @@ function function_46051422(n_time)
 			if(var_f72c48e9 == 7)
 			{
 				wait(randomIntRange(60, 300));
-				var_2bb7b39d = function_8c3f76f3();
-				if(zm_utility::is_player_valid(var_2bb7b39d))
+				e_loner = function_8c3f76f3();
+				if(zm_utility::is_player_valid(e_loner))
 				{
-					var_2bb7b39d thread function_5ee3951f();
-					while(isalive(var_2bb7b39d.var_c748f21c))
+					e_loner thread function_5ee3951f();
+					while(isalive(e_loner.var_c748f21c))
 					{
 						wait(1);
 					}
@@ -222,18 +222,18 @@ function function_8c3f76f3()
 {
 	var_9876cb30 = [];
 	var_7378d690 = [];
-	var_2bb7b39d = undefined;
-	var_506c0a63 = [];
+	e_loner = undefined;
+	a_alive_players = [];
 	foreach(player in level.activePlayers)
 	{
 		if(zm_utility::is_player_valid(player) && player flag::get("doppleganger_enabled"))
 		{
-			Array::add(var_506c0a63, player);
+			Array::add(a_alive_players, player);
 		}
 	}
-	if(var_506c0a63.size)
+	if(a_alive_players.size)
 	{
-		foreach(player in var_506c0a63)
+		foreach(player in a_alive_players)
 		{
 			n_index = player zm_zonemgr::get_player_zone();
 			if(!isdefined(var_9876cb30[n_index]))
@@ -256,14 +256,14 @@ function function_8c3f76f3()
 					e_closest_player = ArrayGetClosest(var_8662c367.origin, var_fb6aeae6);
 					if(zm_utility::is_player_valid(e_closest_player) && Distance2DSquared(var_8662c367.origin, e_closest_player.origin) >= 1000000)
 					{
-						var_2bb7b39d = var_8662c367;
+						e_loner = var_8662c367;
 						break;
 					}
 				}
 			}
 		}
 	}
-	return var_2bb7b39d;
+	return e_loner;
 }
 
 /*
@@ -309,25 +309,25 @@ function function_5ee3951f()
 			ArrayRemoveValue(a_players, self);
 			do
 			{
-				var_52b4a338 = Array::random(a_players);
-				ArrayRemoveValue(a_players, var_52b4a338);
+				e_clone = Array::random(a_players);
+				ArrayRemoveValue(a_players, e_clone);
 			}
-			while(!(!zm_utility::is_player_valid(var_52b4a338) && a_players.size > 0));
+			while(!(!zm_utility::is_player_valid(e_clone) && a_players.size > 0));
 		}
-		if(!zm_utility::is_player_valid(var_52b4a338))
+		if(!zm_utility::is_player_valid(e_clone))
 		{
-			var_52b4a338 = self;
+			e_clone = self;
 		}
-		self.var_c748f21c CloneServerUtils::clonePlayerLook(self.var_c748f21c, var_52b4a338, self);
+		self.var_c748f21c CloneServerUtils::clonePlayerLook(self.var_c748f21c, e_clone, self);
 		self.var_c748f21c Hide();
 		self.var_c748f21c ShowToPlayer(self);
-		self thread function_c948de86();
+		self thread doppleganger_think();
 		self flag::clear("doppleganger_enabled");
 	}
 }
 
 /*
-	Name: function_c948de86
+	Name: doppleganger_think
 	Namespace: namespace_28a54cd6
 	Checksum: 0x4C1CE2EC
 	Offset: 0x1050
@@ -335,7 +335,7 @@ function function_5ee3951f()
 	Parameters: 0
 	Flags: None
 */
-function function_c948de86()
+function doppleganger_think()
 {
 	self.var_c748f21c endon("death");
 	self endon("death");
@@ -343,25 +343,25 @@ function function_c948de86()
 	util::magic_bullet_shield(self.var_c748f21c);
 	var_4010e215 = 10000;
 	var_66d72d36 = 360000;
-	var_87c6d702 = "";
+	str_do = "";
 	do
 	{
 		n_dist_sq = DistanceSquared(self.origin, self.var_c748f21c.origin);
 		if(n_dist_sq <= var_4010e215 && self namespace_8aed53c9::is_facing(self.var_c748f21c, 0.7))
 		{
-			var_87c6d702 = "scare";
+			str_do = "scare";
 		}
 		else if(n_dist_sq > var_66d72d36 && !self namespace_8aed53c9::is_facing(self.var_c748f21c, 0.5))
 		{
-			var_87c6d702 = "delete";
+			str_do = "delete";
 		}
 		else
 		{
 			wait(0.1);
 		}
 	}
-	while(!(zm_utility::is_player_valid(self) && isdefined(self.var_c748f21c) && var_87c6d702 == ""));
-	switch(var_87c6d702)
+	while(!(zm_utility::is_player_valid(self) && isdefined(self.var_c748f21c) && str_do == ""));
+	switch(str_do)
 	{
 		case "scare":
 		{
@@ -469,7 +469,7 @@ function function_38165cb6()
 function function_bece461b()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_8924dbff);
+		zm_devgui::add_custom_devgui_callback(&function_8924dbff);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");

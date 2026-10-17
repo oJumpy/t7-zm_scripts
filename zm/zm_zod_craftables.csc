@@ -60,24 +60,24 @@ function include_craftables()
 */
 function register_clientfields()
 {
-	var_a0199abd = 1;
-	RegisterClientField("world", "police_box" + "_" + "fuse_01", 1, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0);
-	RegisterClientField("world", "police_box" + "_" + "fuse_02", 1, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0);
-	RegisterClientField("world", "police_box" + "_" + "fuse_03", 1, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0);
-	RegisterClientField("world", "idgun" + "_" + "part_heart", 1, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
-	RegisterClientField("world", "idgun" + "_" + "part_skeleton", 1, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
-	RegisterClientField("world", "idgun" + "_" + "part_xenomatter", 1, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
-	RegisterClientField("world", "second_idgun" + "_" + "part_heart", 1, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
-	RegisterClientField("world", "second_idgun" + "_" + "part_skeleton", 1, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
-	RegisterClientField("world", "second_idgun" + "_" + "part_xenomatter", 1, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
-	foreach(character_name in level.var_6f8e5f09)
+	shared_bits = 1;
+	RegisterClientField("world", "police_box" + "_" + "fuse_01", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0);
+	RegisterClientField("world", "police_box" + "_" + "fuse_02", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0);
+	RegisterClientField("world", "police_box" + "_" + "fuse_03", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0);
+	RegisterClientField("world", "idgun" + "_" + "part_heart", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
+	RegisterClientField("world", "idgun" + "_" + "part_skeleton", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
+	RegisterClientField("world", "idgun" + "_" + "part_xenomatter", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
+	RegisterClientField("world", "second_idgun" + "_" + "part_heart", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
+	RegisterClientField("world", "second_idgun" + "_" + "part_skeleton", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
+	RegisterClientField("world", "second_idgun" + "_" + "part_xenomatter", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
+	foreach(character_name in level.zod_character_names)
 	{
 		RegisterClientField("world", "holder_of_" + character_name, 1, 3, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
 	}
-	RegisterClientField("world", "quest_state_" + "boxer", 1, 3, "int", &namespace_1f61c67f::function_b8553178, 0, 1);
-	RegisterClientField("world", "quest_state_" + "detective", 1, 3, "int", &namespace_1f61c67f::function_42da8b5f, 0, 1);
-	RegisterClientField("world", "quest_state_" + "femme", 1, 3, "int", &namespace_1f61c67f::function_6fa910ac, 0, 1);
-	RegisterClientField("world", "quest_state_" + "magician", 1, 3, "int", &namespace_1f61c67f::function_2c62c721, 0, 1);
+	RegisterClientField("world", "quest_state_" + "boxer", 1, 3, "int", &namespace_1f61c67f::quest_state_boxer, 0, 1);
+	RegisterClientField("world", "quest_state_" + "detective", 1, 3, "int", &namespace_1f61c67f::quest_state_detective, 0, 1);
+	RegisterClientField("world", "quest_state_" + "femme", 1, 3, "int", &namespace_1f61c67f::quest_state_femme, 0, 1);
+	RegisterClientField("world", "quest_state_" + "magician", 1, 3, "int", &namespace_1f61c67f::quest_state_magician, 0, 1);
 	clientfield::register("toplayer", "ZM_ZOD_UI_FUSE_PICKUP", 1, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);
 	clientfield::register("toplayer", "ZM_ZOD_UI_FUSE_PLACED", 1, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);
 	clientfield::register("toplayer", "ZM_ZOD_UI_FUSE_CRAFTED", 1, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);

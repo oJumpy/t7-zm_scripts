@@ -55,7 +55,7 @@ function main()
 		level thread function_83ead54e();
 	#/
 	/#
-		level thread function_5b3bc8();
+		level thread bucket_devgui();
 	#/
 }
 
@@ -289,8 +289,8 @@ function function_e9f46546()
 	{
 		wait(1);
 	}
-	var_e08b3d94 = GetEnt("penstock_web_trigger", "targetname");
-	var_e08b3d94 namespace_27f8b154::function_7428955c();
+	t_web = GetEnt("penstock_web_trigger", "targetname");
+	t_web namespace_27f8b154::function_7428955c();
 	if(!isdefined(level.var_d3b40681))
 	{
 		level.var_d3b40681 = [];
@@ -299,16 +299,16 @@ function function_e9f46546()
 	{
 		level.var_d3b40681 = Array(level.var_d3b40681);
 	}
-	level.var_d3b40681[level.var_d3b40681.size] = var_e08b3d94;
-	var_e08b3d94 namespace_27f8b154::function_f375c6d9(1, 1);
-	var_e08b3d94.var_e084d7bd = 1;
-	var_e08b3d94 waittill("hash_bbf62f57");
+	level.var_d3b40681[level.var_d3b40681.size] = t_web;
+	t_web namespace_27f8b154::function_f375c6d9(1, 1);
+	t_web.var_e084d7bd = 1;
+	t_web waittill("hash_bbf62f57");
 	level util::clientNotify("snd_valve");
 	level thread namespace_f333593c::function_3bf2d62a("unblock_penstock", 0, 1, 0);
-	var_e08b3d94 namespace_27f8b154::function_f375c6d9(0);
-	ArrayRemoveValue(level.var_d3b40681, var_e08b3d94);
-	var_e08b3d94.var_1e831600 util::delay(5, undefined, &delete);
-	var_e08b3d94 util::delay(6, undefined, &delete);
+	t_web namespace_27f8b154::function_f375c6d9(0);
+	ArrayRemoveValue(level.var_d3b40681, t_web);
+	t_web.var_1e831600 util::delay(5, undefined, &delete);
+	t_web util::delay(6, undefined, &delete);
 }
 
 /*
@@ -450,7 +450,7 @@ function function_156f973e()
 			self playsound("zmb_temp_power_alert");
 			level clientfield::set("power_switch_" + self.script_int + "_fx", 1);
 			var_b46e7d63.var_5260546a clientfield::set("power_plant_glow", 0);
-			var_b46e7d63 thread scene::Play("p7_fxanim_zm_island_power_plant_off_bundle", var_b46e7d63.var_969af1da);
+			var_b46e7d63 thread scene::Play("p7_fxanim_zm_island_power_plant_off_bundle", var_b46e7d63.e_dials);
 			if(self.script_int == 1)
 			{
 				exploder::exploder_stop("ex_power_bdoor_left");
@@ -493,7 +493,7 @@ function function_156f973e()
 */
 function function_f0a1682d(a_ents)
 {
-	self.var_969af1da = a_ents["power_plant_dials"];
+	self.e_dials = a_ents["power_plant_dials"];
 	self.var_5260546a = a_ents["power_plant"];
 	self.var_8c4b44d4 = a_ents;
 }
@@ -594,7 +594,7 @@ function function_53f26a4c()
 		{
 			if(isdefined(var_5972e249))
 			{
-				var_5972e249 function_cb2c15eb(self, &"ZOMBIE_ELECTRIC_SWITCH");
+				var_5972e249 sethintstringforplayer(self, &"ZOMBIE_ELECTRIC_SWITCH");
 			}
 		}
 		break;
@@ -605,7 +605,7 @@ function function_53f26a4c()
 		{
 			if(isdefined(var_5972e249))
 			{
-				var_5972e249 function_cb2c15eb(self, &"ZM_ISLAND_POWER_SWITCH_NEEEDS_MORE_WATER");
+				var_5972e249 sethintstringforplayer(self, &"ZM_ISLAND_POWER_SWITCH_NEEEDS_MORE_WATER");
 			}
 		}
 		break;
@@ -614,7 +614,7 @@ function function_53f26a4c()
 	{
 		if(isdefined(var_5972e249))
 		{
-			var_5972e249 function_cb2c15eb(self, &"ZM_ISLAND_POWER_SWITCH_NEEEDS_WATER");
+			var_5972e249 sethintstringforplayer(self, &"ZM_ISLAND_POWER_SWITCH_NEEEDS_WATER");
 		}
 	}
 }
@@ -816,11 +816,11 @@ function function_662fba30()
 	for(i = 1; i < 5; i++)
 	{
 		a_temp = [];
-		foreach(var_991ffe1 in var_c66f413a)
+		foreach(s_bucket in var_c66f413a)
 		{
-			if(var_991ffe1.script_int === i)
+			if(s_bucket.script_int === i)
 			{
-				a_temp[a_temp.size] = var_991ffe1;
+				a_temp[a_temp.size] = s_bucket;
 			}
 		}
 		var_623d6569 = Array::random(a_temp);
@@ -842,7 +842,7 @@ function private function_75656c0a()
 	while(1)
 	{
 		self.model = util::spawn_model("p7_zm_isl_bucket_115", self.origin, self.angles);
-		self.trigger = namespace_8aed53c9::function_d095318(self.origin, 50, 1, &function_16434440);
+		self.trigger = namespace_8aed53c9::spawn_trigger_radius(self.origin, 50, 1, &function_16434440);
 		self.model clientfield::set("bucket_fx", 1);
 		while(!isdefined(self.trigger))
 		{
@@ -1045,7 +1045,7 @@ function function_3945e60c(var_c6cad973, var_44bdb80e, var_3f242b55, var_b89973c
 }
 
 /*
-	Name: function_d570abb
+	Name: give_bucket
 	Namespace: namespace_f3e3de78
 	Checksum: 0x7DDB49C1
 	Offset: 0x37A8
@@ -1053,7 +1053,7 @@ function function_3945e60c(var_c6cad973, var_44bdb80e, var_3f242b55, var_b89973c
 	Parameters: 0
 	Flags: None
 */
-function function_d570abb()
+function give_bucket()
 {
 	if(!self clientfield::get_to_player("bucket_held"))
 	{
@@ -1227,7 +1227,7 @@ function function_16ae5bf5()
 }
 
 /*
-	Name: function_5b3bc8
+	Name: bucket_devgui
 	Namespace: namespace_f3e3de78
 	Checksum: 0x12899B10
 	Offset: 0x3E80
@@ -1235,10 +1235,10 @@ function function_16ae5bf5()
 	Parameters: 0
 	Flags: None
 */
-function function_5b3bc8()
+function bucket_devgui()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_d8d81d72);
+		zm_devgui::add_custom_devgui_callback(&function_d8d81d72);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -1341,14 +1341,14 @@ function function_d8d81d72(cmd)
 function function_1b3134ae()
 {
 	/#
-		var_5646068 = struct::get_array("Dev Block strings are not supported", "Dev Block strings are not supported");
-		foreach(var_991ffe1 in var_5646068)
+		a_s_buckets = struct::get_array("Dev Block strings are not supported", "Dev Block strings are not supported");
+		foreach(s_bucket in a_s_buckets)
 		{
-			if(isdefined(var_991ffe1.trigger))
+			if(isdefined(s_bucket.trigger))
 			{
 				continue;
 			}
-			var_991ffe1 thread function_75656c0a();
+			s_bucket thread function_75656c0a();
 		}
 	#/
 }

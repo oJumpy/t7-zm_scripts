@@ -37,9 +37,9 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_slaughter_slide", "event", &event, undefined, undefined, undefined);
-	bgb::function_3422638b("zm_bgb_slaughter_slide", &actor_damage_override);
-	bgb::function_e22c6124("zm_bgb_slaughter_slide", &vehicle_damage_override);
-	level.var_77eb3698 = GetWeapon("frag_grenade_slaughter_slide");
+	bgb::register_actor_damage_override("zm_bgb_slaughter_slide", &actor_damage_override);
+	bgb::register_vehicle_damage_override("zm_bgb_slaughter_slide", &vehicle_damage_override);
+	level.w_bgb_slaughter_slide = GetWeapon("frag_grenade_slaughter_slide");
 }
 
 /*
@@ -106,9 +106,9 @@ function function_42722ac4()
 	v_launch_offset = VectorScale((0, 0, 1), 48);
 	v_facing = AnglesToForward(self.angles);
 	v_right = AnglesToRight(self.angles);
-	self MagicGrenadeType(level.var_77eb3698, self.origin + v_launch_offset, v_facing * 1000, 0.5);
+	self MagicGrenadeType(level.w_bgb_slaughter_slide, self.origin + v_launch_offset, v_facing * 1000, 0.5);
 	util::wait_network_frame();
-	self MagicGrenadeType(level.var_77eb3698, self.origin + v_launch_offset, v_facing * -1 * 100, 0.05);
+	self MagicGrenadeType(level.w_bgb_slaughter_slide, self.origin + v_launch_offset, v_facing * -1 * 100, 0.05);
 	self bgb::do_one_shot_use();
 	self.var_abd23dd0--;
 	self bgb::set_timer(self.var_abd23dd0, 6);
@@ -125,7 +125,7 @@ function function_42722ac4()
 */
 function actor_damage_override(inflictor, attacker, damage, flags, meansOfDeath, weapon, vPoint, vDir, sHitLoc, psOffsetTime, boneIndex, surfaceType)
 {
-	if(weapon === level.var_77eb3698)
+	if(weapon === level.w_bgb_slaughter_slide)
 	{
 		if(isdefined(self.ignore_nuke) && self.ignore_nuke || (isdefined(self.marked_for_death) && self.marked_for_death) || zm_utility::is_magic_bullet_shield_enabled(self))
 		{
@@ -147,7 +147,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansOfDeath,
 */
 function vehicle_damage_override(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, weapon, vPoint, vDir, sHitLoc, vDamageOrigin, psOffsetTime, damageFromUnderneath, modelIndex, partName, vSurfaceNormal)
 {
-	if(weapon === level.var_77eb3698)
+	if(weapon === level.w_bgb_slaughter_slide)
 	{
 		if(isdefined(self.ignore_nuke) && self.ignore_nuke || (isdefined(self.marked_for_death) && self.marked_for_death) || zm_utility::is_magic_bullet_shield_enabled(self))
 		{

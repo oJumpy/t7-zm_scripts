@@ -50,13 +50,13 @@ function autoexec init()
 */
 function private InitZmBehaviorsAndASM()
 {
-	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_teleport_traversal@zombie", &function_5683b5d5, undefined, undefined);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodShouldMove", &function_7f985cab);
+	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_teleport_traversal@zombie", &teleporttraversalmocompstart, undefined, undefined);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodShouldMove", &shouldmove);
 	spawner::add_archetype_spawn_function("zombie", &function_9fb7c76f);
 }
 
 /*
-	Name: function_5683b5d5
+	Name: teleporttraversalmocompstart
 	Namespace: namespace_1d57720d
 	Checksum: 0x9A389FBF
 	Offset: 0x4F0
@@ -64,7 +64,7 @@ function private InitZmBehaviorsAndASM()
 	Parameters: 5
 	Flags: None
 */
-function function_5683b5d5(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
+function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
 	entity OrientMode("face angle", entity.angles[1]);
 	entity animMode("normal");
@@ -80,7 +80,7 @@ function function_5683b5d5(entity, mocompAnim, mocompAnimBlendOutTime, mocompAni
 }
 
 /*
-	Name: function_7f985cab
+	Name: shouldmove
 	Namespace: namespace_1d57720d
 	Checksum: 0xDD9B5A6D
 	Offset: 0x698
@@ -88,7 +88,7 @@ function function_5683b5d5(entity, mocompAnim, mocompAnimBlendOutTime, mocompAni
 	Parameters: 1
 	Flags: None
 */
-function function_7f985cab(entity)
+function shouldmove(entity)
 {
 	if(isdefined(entity.zombie_tesla_hit) && entity.zombie_tesla_hit && (!isdefined(entity.tesla_death) && entity.tesla_death))
 	{
@@ -162,7 +162,7 @@ function private function_f05a4eb4()
 }
 
 /*
-	Name: function_9b05f3fc
+	Name: remaster_validate_last_closest_player
 	Namespace: namespace_1d57720d
 	Checksum: 0x85EABAFE
 	Offset: 0x890
@@ -170,7 +170,7 @@ function private function_f05a4eb4()
 	Parameters: 1
 	Flags: Private
 */
-function private function_9b05f3fc(players)
+function private remaster_validate_last_closest_player(players)
 {
 	if(isdefined(self.last_closest_player) && (isdefined(self.last_closest_player.am_i_valid) && self.last_closest_player.am_i_valid))
 	{
@@ -189,7 +189,7 @@ function private function_9b05f3fc(players)
 }
 
 /*
-	Name: function_3ff94b60
+	Name: remaster_closest_player
 	Namespace: namespace_1d57720d
 	Checksum: 0x699B5775
 	Offset: 0x998
@@ -197,7 +197,7 @@ function private function_9b05f3fc(players)
 	Parameters: 2
 	Flags: None
 */
-function function_3ff94b60(origin, players)
+function remaster_closest_player(origin, players)
 {
 	if(players.size == 0)
 	{
@@ -226,7 +226,7 @@ function function_3ff94b60(origin, players)
 	}
 	if(isdefined(level.last_closest_time) && level.last_closest_time >= level.time)
 	{
-		self function_9b05f3fc(players);
+		self remaster_validate_last_closest_player(players);
 		return self.last_closest_player;
 	}
 	if(isdefined(self.need_closest_player) && self.need_closest_player)
@@ -263,7 +263,7 @@ function function_3ff94b60(origin, players)
 	{
 		self zm_utility::approximate_path_dist(closest);
 	}
-	self function_9b05f3fc(players);
+	self remaster_validate_last_closest_player(players);
 	return self.last_closest_player;
 }
 

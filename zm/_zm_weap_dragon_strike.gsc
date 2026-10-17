@@ -145,12 +145,12 @@ function function_1939853d()
 	{
 		self waittill("zmb_max_ammo");
 		wait(0.05);
-		self function_ab4fad2f();
+		self add_ammo();
 	}
 }
 
 /*
-	Name: function_ab4fad2f
+	Name: add_ammo
 	Namespace: namespace_42aab40d
 	Checksum: 0x3028027E
 	Offset: 0xBD0
@@ -158,28 +158,28 @@ function function_1939853d()
 	Parameters: 0
 	Flags: None
 */
-function function_ab4fad2f()
+function add_ammo()
 {
-	var_5a0c399b = self zm_utility::get_player_placeable_mine();
-	if(var_5a0c399b == GetWeapon("launcher_dragon_strike"))
+	w_dragon_strike = self zm_utility::get_player_placeable_mine();
+	if(w_dragon_strike == GetWeapon("launcher_dragon_strike"))
 	{
-		var_7bf8ceb7 = 1;
+		n_max_ammo = 1;
 	}
-	else if(var_5a0c399b == GetWeapon("launcher_dragon_strike_upgraded"))
+	else if(w_dragon_strike == GetWeapon("launcher_dragon_strike_upgraded"))
 	{
-		var_7bf8ceb7 = 2;
+		n_max_ammo = 2;
 	}
 	else
 	{
 		return;
 	}
-	if(self getammocount(var_5a0c399b) < var_7bf8ceb7)
+	if(self getammocount(w_dragon_strike) < n_max_ammo)
 	{
 		if(Array::contains(level.var_163a43e4, self))
 		{
-			self waittill("hash_2e47bc4a");
+			self waittill("entering_hatchery");
 		}
-		self SetWeaponAmmoClip(var_5a0c399b, var_7bf8ceb7);
+		self SetWeaponAmmoClip(w_dragon_strike, n_max_ammo);
 	}
 }
 
@@ -197,20 +197,20 @@ function function_ff07e778()
 	a_players = GetPlayers();
 	for(i = 0; i < a_players.size; i++)
 	{
-		foreach(var_3ef7692 in level.placeable_mines)
+		foreach(w_mine in level.placeable_mines)
 		{
-			if(a_players[i] zm_utility::is_player_placeable_mine(var_3ef7692))
+			if(a_players[i] zm_utility::is_player_placeable_mine(w_mine))
 			{
-				if(var_3ef7692 == GetWeapon("launcher_dragon_strike") || var_3ef7692 == GetWeapon("launcher_dragon_strike_upgraded"))
+				if(w_mine == GetWeapon("launcher_dragon_strike") || w_mine == GetWeapon("launcher_dragon_strike_upgraded"))
 				{
-					a_players[i] function_ab4fad2f();
+					a_players[i] add_ammo();
 					continue;
 					continue;
 				}
-				a_players[i] GiveWeapon(var_3ef7692);
-				a_players[i] zm_utility::set_player_placeable_mine(var_3ef7692);
-				a_players[i] SetActionSlot(4, "weapon", var_3ef7692);
-				a_players[i] SetWeaponAmmoClip(var_3ef7692, 2);
+				a_players[i] GiveWeapon(w_mine);
+				a_players[i] zm_utility::set_player_placeable_mine(w_mine);
+				a_players[i] SetActionSlot(4, "weapon", w_mine);
+				a_players[i] SetWeaponAmmoClip(w_mine, 2);
 				break;
 			}
 		}
@@ -229,12 +229,12 @@ function function_ff07e778()
 function on_player_disconnect()
 {
 	self waittill("disconnect");
-	if(isdefined(self.var_3929e8a2) && !self flag::get("dragon_strike_active"))
+	if(isdefined(self.mdl_target) && !self flag::get("dragon_strike_active"))
 	{
-		var_3929e8a2 = self.var_3929e8a2;
-		var_3929e8a2 clientfield::set("dragon_strike_marker_on", 0);
+		mdl_target = self.mdl_target;
+		mdl_target clientfield::set("dragon_strike_marker_on", 0);
 		wait(0.3);
-		var_3929e8a2 delete();
+		mdl_target delete();
 	}
 }
 
@@ -333,7 +333,7 @@ function function_3e8c94e3()
 	self endon("disconnect");
 	while(1)
 	{
-		self waittill("hash_937f376b", weapon);
+		self waittill("specify_weapon_request", weapon);
 		if(function_9e0c324b(weapon) && (self getammocount(weapon) == 0 || self.var_8660deae === 0))
 		{
 			self clientfield::increment_uimodel("dragon_strike_invalid_use");
@@ -350,9 +350,9 @@ function function_3e8c94e3()
 	Parameters: 1
 	Flags: None
 */
-function function_9e0c324b(var_382bb75)
+function function_9e0c324b(w_check)
 {
-	if(var_382bb75 == GetWeapon("launcher_dragon_strike") || var_382bb75 == GetWeapon("launcher_dragon_strike_upgraded"))
+	if(w_check == GetWeapon("launcher_dragon_strike") || w_check == GetWeapon("launcher_dragon_strike_upgraded"))
 	{
 		return 1;
 	}
@@ -432,8 +432,8 @@ function function_2864e2c1()
 	self.var_8660deae = 1;
 	if(isdefined(level.var_d4286019) && level.var_d4286019)
 	{
-		var_5a0c399b = self zm_utility::get_player_placeable_mine();
-		self function_ab4fad2f();
+		w_dragon_strike = self zm_utility::get_player_placeable_mine();
+		self add_ammo();
 	}
 }
 
@@ -464,25 +464,25 @@ function function_42ab5fbb(var_5d020ece)
 function function_a3b69ec0(var_5d020ece)
 {
 	self endon("disconnect");
-	var_5a0c399b = self zm_utility::get_player_placeable_mine();
-	if(var_5a0c399b == GetWeapon("launcher_dragon_strike_upgraded"))
+	w_dragon_strike = self zm_utility::get_player_placeable_mine();
+	if(w_dragon_strike == GetWeapon("launcher_dragon_strike_upgraded"))
 	{
-		var_2826b50 = 1;
+		b_upgraded = 1;
 		var_35ab0c48 = 400;
 		var_825b87b9 = 800;
-		var_6646a04b = GetWeapon("launcher_dragon_fire_upgraded");
+		w_fire = GetWeapon("launcher_dragon_fire_upgraded");
 	}
 	else
 	{
-		var_2826b50 = 0;
+		b_upgraded = 0;
 		var_35ab0c48 = 300;
 		var_825b87b9 = 600;
-		var_6646a04b = GetWeapon("launcher_dragon_fire");
+		w_fire = GetWeapon("launcher_dragon_fire");
 	}
-	self SetWeaponAmmoClip(var_5a0c399b, self getammocount(var_5a0c399b) - 1);
+	self SetWeaponAmmoClip(w_dragon_strike, self getammocount(w_dragon_strike) - 1);
 	self flag::clear("show_dragon_strike_reticule");
-	self.var_3929e8a2 thread function_6efadb82(var_825b87b9, var_5a0c399b);
-	level thread function_9af893e8(self, var_5d020ece, var_2826b50, var_35ab0c48, var_6646a04b);
+	self.mdl_target thread function_6efadb82(var_825b87b9, w_dragon_strike);
+	level thread function_9af893e8(self, var_5d020ece, b_upgraded, var_35ab0c48, w_fire);
 	level waittill("hash_d3a01285");
 	self notify("hash_ddb84fad", self.var_8e17738c);
 	self flag::clear("dragon_strike_active");
@@ -497,30 +497,30 @@ function function_a3b69ec0(var_5d020ece)
 	Parameters: 5
 	Flags: None
 */
-function function_9af893e8(e_player, var_5d020ece, var_2826b50, var_35ab0c48, var_6646a04b)
+function function_9af893e8(e_player, var_5d020ece, b_upgraded, var_35ab0c48, w_fire)
 {
-	var_2fcea154 = util::spawn_anim_model("c_zom_dlc3_dragon_body_airstrike", var_5d020ece.var_53d81d57, var_5d020ece.angles + VectorScale((1, 0, 0), 25));
-	var_2fcea154 function_42ab5fbb(var_5d020ece);
+	mdl_dragon = util::spawn_anim_model("c_zom_dlc3_dragon_body_airstrike", var_5d020ece.var_53d81d57, var_5d020ece.angles + VectorScale((1, 0, 0), 25));
+	mdl_dragon function_42ab5fbb(var_5d020ece);
 	if(isdefined(e_player))
 	{
-		var_2fcea154.player = e_player;
+		mdl_dragon.player = e_player;
 		e_player.var_8e17738c = 0;
 	}
 	for(i = 0; i < 4; i++)
 	{
-		var_2fcea154 waittill("fireball");
-		var_2fcea154.var_201fdf35 = var_2fcea154 GetTagOrigin("tag_throat_fx");
-		var_c606eb7 = 6;
+		mdl_dragon waittill("fireball");
+		mdl_dragon.v_mouth = mdl_dragon GetTagOrigin("tag_throat_fx");
+		n_checks = 6;
 		do
 		{
 			var_2410d5ad = var_5d020ece.v_loc + function_adac83c4();
-			var_c606eb7--;
+			n_checks--;
 		}
-		while(!(BulletTracePassed(var_2fcea154.var_201fdf35, var_2410d5ad, 0, var_2fcea154) && var_c606eb7 > 0));
-		var_aa911866 = MagicBullet(var_6646a04b, var_2fcea154.var_201fdf35, var_2410d5ad, var_2fcea154);
-		level thread function_a6d19957(var_2826b50, var_aa911866, var_5d020ece.v_loc, var_35ab0c48);
+		while(!(BulletTracePassed(mdl_dragon.v_mouth, var_2410d5ad, 0, mdl_dragon) && n_checks > 0));
+		var_aa911866 = MagicBullet(w_fire, mdl_dragon.v_mouth, var_2410d5ad, mdl_dragon);
+		level thread function_a6d19957(b_upgraded, var_aa911866, var_5d020ece.v_loc, var_35ab0c48);
 	}
-	var_2fcea154 thread function_604af93b();
+	mdl_dragon thread function_604af93b();
 	while(isdefined(var_aa911866))
 	{
 		wait(0.05);
@@ -537,14 +537,14 @@ function function_9af893e8(e_player, var_5d020ece, var_2826b50, var_35ab0c48, va
 	Parameters: 4
 	Flags: None
 */
-function function_a6d19957(var_2826b50, var_aa911866, var_950f1cf3, n_range)
+function function_a6d19957(b_upgraded, var_aa911866, v_hitloc, n_range)
 {
 	while(isdefined(var_aa911866))
 	{
 		wait(0.05);
 	}
-	a_ai_zombies = Array::get_all_closest(var_950f1cf3, GetAIArchetypeArray("zombie"), undefined, undefined, n_range);
-	if(var_2826b50)
+	a_ai_zombies = Array::get_all_closest(v_hitloc, GetAIArchetypeArray("zombie"), undefined, undefined, n_range);
+	if(b_upgraded)
 	{
 		n_clientfield = 2;
 	}
@@ -588,17 +588,17 @@ function function_adac83c4()
 	Parameters: 2
 	Flags: None
 */
-function function_6efadb82(var_825b87b9, var_5a0c399b)
+function function_6efadb82(var_825b87b9, w_dragon_strike)
 {
 	self clientfield::set("dragon_strike_flare_fx", 1);
 	var_dc5fde65 = GetClosestPointOnNavMesh(self.origin, 128);
-	var_1e43571f = util::spawn_model("tag_origin", var_dc5fde65);
-	var_1e43571f zm_utility::create_zombie_point_of_interest(var_825b87b9, 64, 10000);
+	mdl_attractor = util::spawn_model("tag_origin", var_dc5fde65);
+	mdl_attractor zm_utility::create_zombie_point_of_interest(var_825b87b9, 64, 10000);
 	level waittill("hash_d67e330d");
 	if(isdefined(self))
 	{
 		self clientfield::set("dragon_strike_flare_fx", 0);
-		if(var_5a0c399b == GetWeapon("launcher_dragon_strike_upgraded"))
+		if(w_dragon_strike == GetWeapon("launcher_dragon_strike_upgraded"))
 		{
 			self clientfield::increment("dragon_strike_marker_upgraded_fx_fadeout");
 		}
@@ -607,7 +607,7 @@ function function_6efadb82(var_825b87b9, var_5a0c399b)
 			self clientfield::increment("dragon_strike_marker_fx_fadeout");
 		}
 	}
-	var_1e43571f delete();
+	mdl_attractor delete();
 	wait(3.5);
 	if(isdefined(self))
 	{
@@ -671,27 +671,27 @@ function function_7fcb14a8()
 	self endon("hash_26b100ad");
 	self endon("disconnect");
 	var_b912cdaf = VectorScale((0, 0, 1), 8);
-	if(!isdefined(self.var_3929e8a2))
+	if(!isdefined(self.mdl_target))
 	{
-		self.var_3929e8a2 = util::spawn_model("tag_origin", self.origin);
+		self.mdl_target = util::spawn_model("tag_origin", self.origin);
 	}
 	util::wait_network_frame();
-	self.var_3929e8a2 clientfield::set("dragon_strike_marker_on", 1);
-	var_5a0c399b = self zm_utility::get_player_placeable_mine();
-	if(var_5a0c399b == GetWeapon("launcher_dragon_strike_upgraded"))
+	self.mdl_target clientfield::set("dragon_strike_marker_on", 1);
+	w_dragon_strike = self zm_utility::get_player_placeable_mine();
+	if(w_dragon_strike == GetWeapon("launcher_dragon_strike_upgraded"))
 	{
-		var_78f8828b = "dragon_strike_marker_upgraded_fx";
+		str_marker = "dragon_strike_marker_upgraded_fx";
 		var_854898eb = "dragon_strike_marker_upgraded_invalid_fx";
 		continue;
 	}
-	var_78f8828b = "dragon_strike_marker_fx";
+	str_marker = "dragon_strike_marker_fx";
 	var_854898eb = "dragon_strike_marker_invalid_fx";
 	while(self flag::get("show_dragon_strike_reticule"))
 	{
 		v_start = self GetEye();
 		v_forward = self GetWeaponForwardDir();
 		v_end = v_start + v_forward * 2500;
-		a_trace = bullettrace(v_start, v_end, 0, self.var_3929e8a2, 1, 0, self.var_1e43571f);
+		a_trace = bullettrace(v_start, v_end, 0, self.mdl_target, 1, 0, self.mdl_attractor);
 		self.var_be00572f = a_trace["position"];
 		if(isdefined(self.var_5d020ece))
 		{
@@ -704,17 +704,17 @@ function function_7fcb14a8()
 			wait(0.1);
 			continue;
 		}
-		self.var_3929e8a2 clientfield::increment(var_78f8828b);
-		self.var_3929e8a2 moveto(self.var_be00572f + var_b912cdaf, 0.05);
+		self.mdl_target clientfield::increment(str_marker);
+		self.mdl_target moveto(self.var_be00572f + var_b912cdaf, 0.05);
 		wait(0.1);
 	}
 	if(self flag::get("dragon_strike_active"))
 	{
 		return;
 	}
-	self.var_3929e8a2 clientfield::set("dragon_strike_marker_on", 0);
+	self.mdl_target clientfield::set("dragon_strike_marker_on", 0);
 	wait(0.3);
-	self.var_3929e8a2 delete();
+	self.mdl_target delete();
 }
 
 /*
@@ -736,7 +736,7 @@ function function_c7832a90(v_loc)
 	var_53d81d57 = (v_loc[0] + var_1ccc854e[0] * 1000, v_loc[1] + var_1ccc854e[1] * 1000, v_loc[2] + 2000);
 	while(var_feed8b5b < 360)
 	{
-		if(BulletTracePassed(var_53d81d57, v_loc + (0, 0, 96), 0, self.var_3929e8a2))
+		if(BulletTracePassed(var_53d81d57, v_loc + (0, 0, 96), 0, self.mdl_target))
 		{
 			var_1914c03e = spawnstruct();
 			var_1914c03e.origin = (v_loc[0] + var_1ccc854e[0] * 20000, v_loc[1] + var_1ccc854e[1] * 20000, v_loc[2] + 8000);
@@ -768,8 +768,8 @@ function function_c7832a90(v_loc)
 */
 function function_5a9be7d8(var_854898eb)
 {
-	self.var_3929e8a2 clientfield::increment(var_854898eb);
-	self.var_3929e8a2 moveto(self.var_be00572f, 0.05);
+	self.mdl_target clientfield::increment(var_854898eb);
+	self.mdl_target moveto(self.var_be00572f, 0.05);
 	self.var_be00572f = undefined;
 }
 
@@ -796,10 +796,10 @@ function function_6c8dfca2(w_weapon)
 		}
 		else
 		{
-			var_e30cfc3e = self GetWeaponsListPrimaries();
-			if(var_e30cfc3e.size > 0)
+			a_w_current = self GetWeaponsListPrimaries();
+			if(a_w_current.size > 0)
 			{
-				w_weapon = var_e30cfc3e[0];
+				w_weapon = a_w_current[0];
 			}
 			else
 			{

@@ -38,7 +38,7 @@ function __init__()
 	{
 		return;
 	}
-	clientfield::register("actor", "projectile_vomit", 12000, 1, "counter", &function_6ac13208, 0, 0);
+	clientfield::register("actor", "projectile_vomit", 12000, 1, "counter", &play_vomit_fx, 0, 0);
 	bgb::register("zm_bgb_projectile_vomiting", "rounds");
 	level._effect["bgb_puke_reaction"] = "zombie/fx_liquid_vomit_stream_zmb";
 	level._effect["bgb_puke_reaction_no_head"] = "zombie/fx_liquid_vomit_stream_neck_zmb";
@@ -46,7 +46,7 @@ function __init__()
 }
 
 /*
-	Name: function_6ac13208
+	Name: play_vomit_fx
 	Namespace: namespace_a5a0319c
 	Checksum: 0xB59A22BA
 	Offset: 0x358
@@ -54,7 +54,7 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_6ac13208(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_vomit_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(level.var_e0154011 < 10)
 	{

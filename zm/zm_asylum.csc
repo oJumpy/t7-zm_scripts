@@ -77,9 +77,9 @@ function main()
 	_zm_weap_cymbal_monkey::init();
 	_zm_weap_tesla::init();
 	util::waitforclient(0);
-	level thread function_d87a7dcc();
+	level thread watch_for_power();
 	level thread function_c9207335();
-	level thread function_d19cb2f8();
+	level thread startzmbspawnersoundloops();
 	/#
 		println("Dev Block strings are not supported");
 	#/
@@ -99,7 +99,7 @@ function init_clientfields()
 {
 	clientfield::register("world", "asylum_trap_fx_north", 21000, 1, "int", &namespace_bf71ff59::function_93f91575, 0, 0);
 	clientfield::register("world", "asylum_trap_fx_south", 21000, 1, "int", &namespace_bf71ff59::function_4c17ba1b, 0, 0);
-	clientfield::register("world", "asylum_generator_state", 21000, 1, "int", &function_d56a2c4b, 0, 0);
+	clientfield::register("world", "asylum_generator_state", 21000, 1, "int", &set_generator_state, 0, 0);
 }
 
 /*
@@ -132,7 +132,7 @@ function include_weapons()
 }
 
 /*
-	Name: function_d87a7dcc
+	Name: watch_for_power
 	Namespace: namespace_f69b3b38
 	Checksum: 0xBAE1FC32
 	Offset: 0xA08
@@ -140,15 +140,15 @@ function include_weapons()
 	Parameters: 0
 	Flags: None
 */
-function function_d87a7dcc()
+function watch_for_power()
 {
-	var_bd7ba30 = 0;
+	looped_once = 0;
 	while(1)
 	{
 		if(!level clientfield::get("zombie_power_on"))
 		{
 			level.power_on = 0;
-			if(var_bd7ba30)
+			if(looped_once)
 			{
 				level notify("power_controlled_light");
 			}
@@ -156,12 +156,12 @@ function function_d87a7dcc()
 		}
 		level notify("power_controlled_light");
 		level util::waittill_any("pwo", "ZPOff");
-		var_bd7ba30 = 1;
+		looped_once = 1;
 	}
 }
 
 /*
-	Name: function_d56a2c4b
+	Name: set_generator_state
 	Namespace: namespace_f69b3b38
 	Checksum: 0x61FE4A2C
 	Offset: 0xAE0
@@ -169,7 +169,7 @@ function function_d87a7dcc()
 	Parameters: 7
 	Flags: None
 */
-function function_d56a2c4b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function set_generator_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
@@ -258,17 +258,17 @@ function function_60a32834()
 function function_d667714e()
 {
 	level.var_b6342abd = "mus_asylum_underscore_default";
-	level.var_6d9d81aa = "mus_asylum_underscore_default";
+	level.newmus = "mus_asylum_underscore_default";
 	level.var_eb526c90 = spawn(0, (0, 0, 0), "script_origin");
 	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(level.var_b6342abd, 2);
 	while(1)
 	{
 		level waittill("hash_51d7bc7c", location);
-		level.var_6d9d81aa = "mus_asylum_underscore_" + location;
-		if(level.var_6d9d81aa != level.var_b6342abd)
+		level.newmus = "mus_asylum_underscore_" + location;
+		if(level.newmus != level.var_b6342abd)
 		{
-			level thread function_b234849(level.var_6d9d81aa);
-			level.var_b6342abd = level.var_6d9d81aa;
+			level thread function_b234849(level.newmus);
+			level.var_b6342abd = level.newmus;
 		}
 	}
 }
@@ -282,16 +282,16 @@ function function_d667714e()
 	Parameters: 1
 	Flags: None
 */
-function function_b234849(var_6d9d81aa)
+function function_b234849(newmus)
 {
 	level endon("hash_51d7bc7c");
 	level.var_eb526c90 StopAllLoopSounds(2);
 	wait(1);
-	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(var_6d9d81aa, 2);
+	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(newmus, 2);
 }
 
 /*
-	Name: function_d19cb2f8
+	Name: startzmbspawnersoundloops
 	Namespace: namespace_f69b3b38
 	Checksum: 0xCC7C49F1
 	Offset: 0xE60
@@ -299,7 +299,7 @@ function function_b234849(var_6d9d81aa)
 	Parameters: 0
 	Flags: None
 */
-function function_d19cb2f8()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("exterior_goal", "targetname");
 	if(isdefined(loopers) && loopers.size > 0)

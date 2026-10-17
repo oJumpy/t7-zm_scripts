@@ -60,7 +60,7 @@ function private function_dd3133f7()
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("castleMechzShouldAttackTrap", &function_e4f26ac8);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("casteMechzTrapMoveTerminate", &function_cf4879ad);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("casteMechzTrapAttackTerminate", &function_7c295452);
-	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_trap_attack@mechz", &function_f467e83, undefined, &function_e37c4112);
+	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_trap_attack@mechz", &trapattackmocompstart, undefined, &trapattackmocompterminate);
 }
 
 /*
@@ -96,7 +96,7 @@ function private function_76e7495b()
 */
 function private function_78c0d00b(entity)
 {
-	if(isdefined(entity.var_7c963fc4) && entity.var_7c963fc4 || (isdefined(entity.var_8993e21) && entity.var_8993e21))
+	if(isdefined(entity.move_trap) && entity.move_trap || (isdefined(entity.attack_trap) && entity.attack_trap))
 	{
 		return 1;
 	}
@@ -129,10 +129,10 @@ function private function_78c0d00b(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_ced5d8b0(var_2dba2212)
+function private function_ced5d8b0(trap_name)
 {
-	traps = struct::get_array(var_2dba2212, "script_noteworthy");
-	self.var_7df36560 = undefined;
+	traps = struct::get_array(trap_name, "script_noteworthy");
+	self.trap_struct = undefined;
 	closest_dist_sq = 57600;
 	foreach(trap in traps)
 	{
@@ -140,14 +140,14 @@ function private function_ced5d8b0(var_2dba2212)
 		if(dist_sq < closest_dist_sq)
 		{
 			closest_dist_sq = dist_sq;
-			self.var_7df36560 = trap;
+			self.trap_struct = trap;
 		}
 	}
-	if(isdefined(self.var_7df36560))
+	if(isdefined(self.trap_struct))
 	{
-		self.var_7c963fc4 = 1;
+		self.move_trap = 1;
 		self.ignoreall = 1;
-		self SetGoal(self.var_7df36560.origin);
+		self SetGoal(self.trap_struct.origin);
 		self thread function_216e21ed();
 		return 1;
 	}
@@ -167,10 +167,10 @@ function function_216e21ed()
 {
 	self endon("death");
 	wait(60);
-	if(isdefined(self.var_7c963fc4) && self.var_7c963fc4 || (isdefined(self.var_8993e21) && self.var_8993e21) || (isdefined(self.ignoreall) && self.ignoreall))
+	if(isdefined(self.move_trap) && self.move_trap || (isdefined(self.attack_trap) && self.attack_trap) || (isdefined(self.ignoreall) && self.ignoreall))
 	{
-		self.var_7c963fc4 = 0;
-		self.var_8993e21 = 0;
+		self.move_trap = 0;
+		self.attack_trap = 0;
 		self.ignoreall = 0;
 		MechzBehavior::mechzTargetService(self);
 	}
@@ -187,7 +187,7 @@ function function_216e21ed()
 */
 function function_697928b7(entity)
 {
-	if(isdefined(entity.var_7c963fc4) && entity.var_7c963fc4)
+	if(isdefined(entity.move_trap) && entity.move_trap)
 	{
 		return 1;
 	}
@@ -223,7 +223,7 @@ function function_829fa81c(entity)
 */
 function function_e4f26ac8(entity)
 {
-	if(isdefined(entity.var_8993e21) && entity.var_8993e21)
+	if(isdefined(entity.attack_trap) && entity.attack_trap)
 	{
 		return 1;
 	}
@@ -241,8 +241,8 @@ function function_e4f26ac8(entity)
 */
 function function_cf4879ad(entity)
 {
-	entity.var_7c963fc4 = 0;
-	entity.var_8993e21 = 1;
+	entity.move_trap = 0;
+	entity.attack_trap = 1;
 }
 
 /*
@@ -256,11 +256,11 @@ function function_cf4879ad(entity)
 */
 function function_7c295452(entity)
 {
-	entity.var_8993e21 = 0;
+	entity.attack_trap = 0;
 	entity.ignoreall = 0;
-	if(isdefined(entity.var_7df36560))
+	if(isdefined(entity.trap_struct))
 	{
-		if(entity.var_7df36560.script_noteworthy == "masher_trap_switch")
+		if(entity.trap_struct.script_noteworthy == "masher_trap_switch")
 		{
 			level flag::clear("masher_on");
 		}
@@ -273,7 +273,7 @@ function function_7c295452(entity)
 }
 
 /*
-	Name: function_f467e83
+	Name: trapattackmocompstart
 	Namespace: namespace_48131a3f
 	Checksum: 0xE5B8BD5E
 	Offset: 0xD88
@@ -281,14 +281,14 @@ function function_7c295452(entity)
 	Parameters: 5
 	Flags: None
 */
-function function_f467e83(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
+function trapattackmocompstart(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
-	entity OrientMode("face angle", entity.var_7df36560.angles[1]);
+	entity OrientMode("face angle", entity.trap_struct.angles[1]);
 	entity animMode("normal");
 }
 
 /*
-	Name: function_e37c4112
+	Name: trapattackmocompterminate
 	Namespace: namespace_48131a3f
 	Checksum: 0xAC0D896E
 	Offset: 0xE18
@@ -296,7 +296,7 @@ function function_f467e83(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnim
 	Parameters: 5
 	Flags: None
 */
-function function_e37c4112(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
+function trapattackmocompterminate(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
 	entity OrientMode("face default");
 }
@@ -371,12 +371,12 @@ function mechz_health_increases()
 		level.MECHZ_FACEPLATE_HEALTH = Int(n_player_modifier * level.var_fa14536d + level.var_1a5bb9d8 * var_485a2c2c);
 		level.MECHZ_POWERCAP_COVER_HEALTH = Int(n_player_modifier * level.MECHZ_POWERCAP_COVER_HEALTH + level.var_a1943286 * var_485a2c2c);
 		level.MECHZ_POWERCAP_HEALTH = Int(n_player_modifier * level.MECHZ_POWERCAP_HEALTH + level.var_9684c99e * var_485a2c2c);
-		level.var_2cbc5b59 = Int(n_player_modifier * level.var_3f1bf221 + level.var_158234c * var_485a2c2c);
+		level.mechz_armor_health = Int(n_player_modifier * level.var_3f1bf221 + level.var_158234c * var_485a2c2c);
 		level.mechz_health = function_26beb37e(level.mechz_health, 17500, n_player_modifier);
 		level.MECHZ_FACEPLATE_HEALTH = function_26beb37e(level.MECHZ_FACEPLATE_HEALTH, 16000, n_player_modifier);
 		level.MECHZ_POWERCAP_COVER_HEALTH = function_26beb37e(level.MECHZ_POWERCAP_COVER_HEALTH, 7500, n_player_modifier);
 		level.MECHZ_POWERCAP_HEALTH = function_26beb37e(level.MECHZ_POWERCAP_HEALTH, 5000, n_player_modifier);
-		level.var_2cbc5b59 = function_26beb37e(level.var_2cbc5b59, 3500, n_player_modifier);
+		level.mechz_armor_health = function_26beb37e(level.mechz_armor_health, 3500, n_player_modifier);
 		level.mechz_last_spawn_round = level.round_number;
 	}
 }
@@ -390,11 +390,11 @@ function mechz_health_increases()
 	Parameters: 3
 	Flags: None
 */
-function function_26beb37e(value, limit, var_69de4866)
+function function_26beb37e(value, limit, player_modifier)
 {
-	if(value >= limit * var_69de4866)
+	if(value >= limit * player_modifier)
 	{
-		value = Int(limit * var_69de4866);
+		value = Int(limit * player_modifier);
 	}
 	return value;
 }
@@ -410,25 +410,25 @@ function function_26beb37e(value, limit, var_69de4866)
 */
 function mechz_round_tracker()
 {
-	level.var_b20dd348 = randomIntRange(12, 13);
-	level.var_2f0a5661 = 0;
+	level.n_next_mechz_round = randomIntRange(12, 13);
+	level.n_mechz_alive = 0;
 	while(1)
 	{
-		while(level.round_number < level.var_b20dd348)
+		while(level.round_number < level.n_next_mechz_round)
 		{
 			level waittill("between_round_over");
 			/#
-				if(level.round_number > level.var_b20dd348)
+				if(level.round_number > level.n_next_mechz_round)
 				{
-					level.var_b20dd348 = level.round_number + 1;
+					level.n_next_mechz_round = level.round_number + 1;
 				}
 			#/
 		}
 		if(level flag::get("dog_round") && level.dog_round_count == 1)
 		{
-			level.var_b20dd348++;
+			level.n_next_mechz_round++;
 		}
-		else if(level.var_b20dd348 >= level.round_number)
+		else if(level.n_next_mechz_round >= level.round_number)
 		{
 			function_6592b947();
 		}
@@ -451,7 +451,7 @@ function function_6592b947()
 	wait(5);
 	while(var_b29defde > 0)
 	{
-		while(!function_b1a145c4())
+		while(!ready_to_spawn_mechz())
 		{
 			wait(1);
 		}
@@ -467,12 +467,12 @@ function function_6592b947()
 			wait(RandomFloatRange(5, 10));
 		}
 	}
-	level.var_b20dd348 = level.round_number + randomIntRange(5, 7);
+	level.n_next_mechz_round = level.round_number + randomIntRange(5, 7);
 	level.mechz_round_count++;
 }
 
 /*
-	Name: function_b1a145c4
+	Name: ready_to_spawn_mechz
 	Namespace: namespace_48131a3f
 	Checksum: 0x283E7125
 	Offset: 0x14A8
@@ -480,7 +480,7 @@ function function_6592b947()
 	Parameters: 0
 	Flags: None
 */
-function function_b1a145c4()
+function ready_to_spawn_mechz()
 {
 	var_f52ee0b1 = zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit;
 	if(var_f52ee0b1 || !level flag::get("spawn_zombies") || !level flag::get("can_spawn_mechz"))
@@ -538,23 +538,23 @@ function function_c7730c11()
 */
 function function_d8d01032()
 {
-	level.var_2f0a5661++;
+	level.n_mechz_alive++;
 	level.zombie_ai_limit--;
 	level thread achievement_watcher(self);
-	self thread function_b2a1b297();
+	self thread mechz_corpse();
 	self waittill("death");
 	self thread function_2a2bfc25();
 	if(isdefined(self.attacker) && isPlayer(self.attacker) && self.attacker HasWeapon(GetWeapon("knife_plunger")))
 	{
-		level thread namespace_61c0be00::function_c7bb86e5(self.attacker);
+		level thread namespace_61c0be00::charge_plunger(self.attacker);
 	}
-	level.var_2f0a5661--;
+	level.n_mechz_alive--;
 	level.zombie_ai_limit++;
 	level notify("hash_8f65ad3d");
 }
 
 /*
-	Name: function_b2a1b297
+	Name: mechz_corpse
 	Namespace: namespace_48131a3f
 	Checksum: 0x11D6F9FE
 	Offset: 0x16F0
@@ -562,7 +562,7 @@ function function_d8d01032()
 	Parameters: 0
 	Flags: None
 */
-function function_b2a1b297()
+function mechz_corpse()
 {
 	self waittill("actor_corpse", mechz);
 	wait(60);
@@ -588,8 +588,8 @@ function function_2a2bfc25()
 	{
 		if(level flag::get("zombie_drop_powerups") && (!isdefined(self.no_powerups) && self.no_powerups))
 		{
-			var_d54b1ec = Array("double_points", "insta_kill", "full_ammo", "nuke");
-			str_type = Array::random(var_d54b1ec);
+			a_bonus_types = Array("double_points", "insta_kill", "full_ammo", "nuke");
+			str_type = Array::random(a_bonus_types);
 			zm_powerups::specific_powerup_drop(str_type, self.origin);
 		}
 	}
@@ -643,7 +643,7 @@ function function_314d744b(var_2533389a, s_loc, var_4211ee1f)
 	}
 	if(!(isdefined(var_2533389a) && var_2533389a))
 	{
-		level.var_b20dd348 = level.round_number + randomIntRange(4, 6);
+		level.n_next_mechz_round = level.round_number + randomIntRange(4, 6);
 	}
 	return ai_mechz;
 }

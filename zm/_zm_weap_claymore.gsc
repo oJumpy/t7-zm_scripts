@@ -86,7 +86,7 @@ function claymore_detonation(e_planter)
 		damagearea SetMovingPlatformEnabled(1);
 	}
 	self.damagearea = damagearea;
-	self thread function_f58eb4ac(self.owner, damagearea);
+	self thread delete_mines_on_death(self.owner, damagearea);
 	if(!isdefined(self.owner.placeable_mines))
 	{
 		self.owner.placeable_mines = [];
@@ -107,11 +107,11 @@ function claymore_detonation(e_planter)
 		{
 			continue;
 		}
-		if(isdefined(ent.var_17e5703) && ent.var_17e5703)
+		if(isdefined(ent.ignore_placeable_mine) && ent.ignore_placeable_mine)
 		{
 			continue;
 		}
-		if(!ent function_93447eb4(self))
+		if(!ent should_trigger_claymore(self))
 		{
 			continue;
 		}
@@ -133,7 +133,7 @@ function claymore_detonation(e_planter)
 }
 
 /*
-	Name: function_93447eb4
+	Name: should_trigger_claymore
 	Namespace: _zm_weap_claymore
 	Checksum: 0x514284A6
 	Offset: 0x760
@@ -141,12 +141,12 @@ function claymore_detonation(e_planter)
 	Parameters: 1
 	Flags: Private
 */
-function private function_93447eb4(var_ddb66ba0)
+function private should_trigger_claymore(e_mine)
 {
-	var_bee1848b = cos(70);
+	n_detonation_dot = cos(70);
 	pos = self.origin + VectorScale((0, 0, 1), 32);
-	dirToPos = pos - var_ddb66ba0.origin;
-	objectForward = AnglesToForward(var_ddb66ba0.angles);
+	dirToPos = pos - e_mine.origin;
+	objectForward = AnglesToForward(e_mine.angles);
 	dist = VectorDot(dirToPos, objectForward);
 	if(dist < 20)
 	{
@@ -154,11 +154,11 @@ function private function_93447eb4(var_ddb66ba0)
 	}
 	dirToPos = VectorNormalize(dirToPos);
 	dot = VectorDot(dirToPos, objectForward);
-	return dot > var_bee1848b;
+	return dot > n_detonation_dot;
 }
 
 /*
-	Name: function_f58eb4ac
+	Name: delete_mines_on_death
 	Namespace: _zm_weap_claymore
 	Checksum: 0xD5036324
 	Offset: 0x8A8
@@ -166,7 +166,7 @@ function private function_93447eb4(var_ddb66ba0)
 	Parameters: 2
 	Flags: Private
 */
-function private function_f58eb4ac(player, ent)
+function private delete_mines_on_death(player, ent)
 {
 	self waittill("death");
 	if(isdefined(player))

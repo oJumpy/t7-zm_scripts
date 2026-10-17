@@ -724,7 +724,7 @@ function treasure_chest_think()
 		self.grab_weapon_hint = 1;
 		self.grab_weapon = self.zbarrier.weapon;
 		self.chest_user = User;
-		bb::function_91f32a58(User, self, user_cost, self.grab_weapon, 0, "_magicbox", "_offered");
+		bb::logpurchaseevent(User, self, user_cost, self.grab_weapon, 0, "_magicbox", "_offered");
 		weaponIdx = undefined;
 		if(isdefined(self.grab_weapon))
 		{
@@ -779,7 +779,7 @@ function treasure_chest_think()
 			}
 			if(grabber == User && zm_utility::is_player_valid(User) && !User.IS_DRINKING > 0 && !zm_utility::is_placeable_mine(current_weapon) && !zm_equipment::is_equipment(current_weapon) && !User zm_utility::is_player_revive_tool(current_weapon) && !current_weapon.isHeroWeapon && !current_weapon.isgadget)
 			{
-				bb::function_91f32a58(User, self, user_cost, self.zbarrier.weapon, 0, "_magicbox", "_grabbed");
+				bb::logpurchaseevent(User, self, user_cost, self.zbarrier.weapon, 0, "_magicbox", "_grabbed");
 				weaponIdx = undefined;
 				if(isdefined(self.zbarrier) && isdefined(self.zbarrier.weapon))
 				{
@@ -800,7 +800,7 @@ function treasure_chest_think()
 			else if(grabber == level)
 			{
 				self.timedOut = 1;
-				bb::function_91f32a58(User, self, user_cost, self.zbarrier.weapon, 0, "_magicbox", "_returned");
+				bb::logpurchaseevent(User, self, user_cost, self.zbarrier.weapon, 0, "_magicbox", "_returned");
 				weaponIdx = undefined;
 				if(isdefined(self.zbarrier) && isdefined(self.zbarrier.weapon))
 				{
@@ -1280,9 +1280,9 @@ function treasure_chest_ChooseWeightedRandomWeapon(player)
 		keys = player [[level.CustomRandomWeaponWeights]](keys);
 	}
 	/#
-		var_397dd859 = GetDvarString("Dev Block strings are not supported");
-		forced_weapon = GetWeapon(var_397dd859);
-		if(var_397dd859 != "Dev Block strings are not supported" && isdefined(level.zombie_weapons[forced_weapon]))
+		forced_weapon_name = GetDvarString("Dev Block strings are not supported");
+		forced_weapon = GetWeapon(forced_weapon_name);
+		if(forced_weapon_name != "Dev Block strings are not supported" && isdefined(level.zombie_weapons[forced_weapon]))
 		{
 			ArrayInsert(keys, forced_weapon, 0);
 		}

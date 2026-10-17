@@ -33,9 +33,9 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("allplayers", "slam_fx", 1, 1, "counter", &function_69a90263, 0, 0);
+	clientfield::register("allplayers", "slam_fx", 1, 1, "counter", &do_slam_fx, 0, 0);
 	clientfield::register("toplayer", "throw_fx", 1, 1, "counter", &function_6b6e650c, 0, 0);
-	clientfield::register("toplayer", "swipe_fx", 1, 1, "counter", &function_b881d4aa, 0, 0);
+	clientfield::register("toplayer", "swipe_fx", 1, 1, "counter", &do_swipe_fx, 0, 0);
 	clientfield::register("toplayer", "swipe_lv2_fx", 1, 1, "counter", &function_647dc27d, 0, 0);
 	clientfield::register("actor", "zombie_slice_r", 1, 2, "counter", &function_bbeb4c2c, 1, 0);
 	clientfield::register("actor", "zombie_slice_l", 1, 2, "counter", &function_38924d95, 1, 0);
@@ -51,7 +51,7 @@ function __init__()
 }
 
 /*
-	Name: function_b881d4aa
+	Name: do_swipe_fx
 	Namespace: namespace_2318f091
 	Checksum: 0x14C14BCE
 	Offset: 0x6D0
@@ -59,7 +59,7 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_b881d4aa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function do_swipe_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	owner = self GetOwner(localClientNum);
 	if(isdefined(owner) && owner == GetLocalPlayer(localClientNum))
@@ -141,7 +141,7 @@ function function_38924d95(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_69a90263
+	Name: do_slam_fx
 	Namespace: namespace_2318f091
 	Checksum: 0x639F2132
 	Offset: 0xAE0
@@ -149,7 +149,7 @@ function function_38924d95(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_69a90263(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function do_slam_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	thread do_gravity_spike_fx(localClientNum, self, self.origin);
 }
@@ -185,15 +185,15 @@ function function_6b6e650c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function do_gravity_spike_fx(localClientNum, owner, position)
 {
-	var_f31c9d4c = 0;
+	usefirst = 0;
 	if(self isPlayer() && self isLocalPlayer() && !IsDemoPlaying())
 	{
 		if(!isdefined(self getlocalclientnumber()) || localClientNum == self getlocalclientnumber())
 		{
-			var_f31c9d4c = 1;
+			usefirst = 1;
 		}
 	}
-	if(var_f31c9d4c)
+	if(usefirst)
 	{
 		FX = level._effect["groundhit_1p"];
 		fwd = AnglesToForward(owner.angles);

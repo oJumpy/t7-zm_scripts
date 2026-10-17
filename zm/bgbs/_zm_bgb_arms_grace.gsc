@@ -77,7 +77,7 @@ function giveStartLoadout()
 	if(isdefined(self.var_e445bfc6) && self.var_e445bfc6)
 	{
 		self.var_e445bfc6 = 0;
-		function_f1adaf91(self);
+		return_weapons_to_player(self);
 	}
 	else if(isdefined(level.giveCustomLoadout))
 	{
@@ -86,7 +86,7 @@ function giveStartLoadout()
 }
 
 /*
-	Name: function_f1adaf91
+	Name: return_weapons_to_player
 	Namespace: namespace_fec23565
 	Checksum: 0x9C90067D
 	Offset: 0x360
@@ -94,14 +94,14 @@ function giveStartLoadout()
 	Parameters: 1
 	Flags: None
 */
-function function_f1adaf91(player)
+function return_weapons_to_player(player)
 {
-	var_f49711f9 = player GetCurrentWeapon();
+	orig_weapon = player GetCurrentWeapon();
 	weapon_limit = zm_utility::get_player_weapon_limit(player);
 	var_a430f97e = 0;
 	weapon_switched = 0;
 	pap_triggers = zm_pap_util::get_triggers();
-	var_1fc5e233 = GetWeapon("ray_gun");
+	ray_gun_weapon = GetWeapon("ray_gun");
 	var_52633155 = 0;
 	player GiveWeapon(level.weaponBaseMelee);
 	if(isdefined(player.laststandPrimaryWeapons))
@@ -111,7 +111,7 @@ function function_f1adaf91(player)
 		{
 			if(weapon.isPrimary)
 			{
-				if(var_1fc5e233 == zm_weapons::get_base_weapon(weapon))
+				if(ray_gun_weapon == zm_weapons::get_base_weapon(weapon))
 				{
 					var_f0e082e = 1;
 					break;
@@ -120,7 +120,7 @@ function function_f1adaf91(player)
 		}
 		foreach(weapon in player.laststandPrimaryWeapons)
 		{
-			if(weapon == var_f49711f9)
+			if(weapon == orig_weapon)
 			{
 				continue;
 			}
@@ -132,9 +132,9 @@ function function_f1adaf91(player)
 				{
 					if(!var_52633155)
 					{
-						if(!var_f0e082e && !player zm_weapons::has_weapon_or_upgrade(var_1fc5e233))
+						if(!var_f0e082e && !player zm_weapons::has_weapon_or_upgrade(ray_gun_weapon))
 						{
-							var_cbbc46c5 = var_1fc5e233;
+							var_cbbc46c5 = ray_gun_weapon;
 							var_52633155 = 1;
 						}
 					}

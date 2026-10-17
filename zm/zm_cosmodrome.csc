@@ -93,8 +93,8 @@ function main()
 	util::waitforclient(0);
 	level thread radar_dish_init();
 	level.nml_spark_pull = struct::get("nml_spark_pull", "targetname");
-	function_6ac83719();
-	level thread function_d87a7dcc();
+	init_fog_vol_to_visionset();
+	level thread watch_for_power();
 	namespace_79efb23f::main_end();
 }
 
@@ -127,8 +127,8 @@ function function_85c8e13c(localClientNum)
 	self endon("disconnect");
 	while(1)
 	{
-		var_f4570d42 = RandomInt(5);
-		switch(var_f4570d42)
+		n_scenario = RandomInt(5);
+		switch(n_scenario)
 		{
 			case 0:
 			{
@@ -279,7 +279,7 @@ function function_85c8e13c(localClientNum)
 }
 
 /*
-	Name: function_6ac83719
+	Name: init_fog_vol_to_visionset
 	Namespace: namespace_670cb61
 	Checksum: 0x3AD0C86
 	Offset: 0x2B58
@@ -287,7 +287,7 @@ function function_85c8e13c(localClientNum)
 	Parameters: 0
 	Flags: None
 */
-function function_6ac83719()
+function init_fog_vol_to_visionset()
 {
 	visionset_mgr::init_fog_vol_to_visionset_monitor("zombie_cosmodrome", 0.01);
 	visionset_mgr::fog_vol_to_visionset_set_suffix("");
@@ -448,7 +448,7 @@ function register_client_fields()
 	clientfield::register("actor", "COSMO_SOULPULL", 21000, 1, "int", &actor_flag_soulpull_handler, 0, 0);
 	clientfield::register("scriptmover", "COSMO_ROCKET_FX", 21000, 1, "int", &rocket_fx, 0, 0);
 	clientfield::register("scriptmover", "COSMO_MONKEY_LANDER_FX", 21000, 1, "int", &monkey_lander_fx, 0, 0);
-	clientfield::register("world", "COSMO_EGG_SAM_ANGRY", 21000, 1, "int", &function_28a46c0d, 0, 0);
+	clientfield::register("world", "COSMO_EGG_SAM_ANGRY", 21000, 1, "int", &samantha_is_angry, 0, 0);
 	clientfield::register("scriptmover", "COSMO_LANDER_ENGINE_FX", 21000, 1, "int", &lander_engine_fx, 0, 0);
 	clientfield::register("allplayers", "COSMO_PLAYER_LANDER_FOG", 21000, 1, "int", &player_lander_fog, 0, 0);
 	clientfield::register("scriptmover", "COSMO_LANDER_MOVE_FX", 21000, 1, "int", &lander_move_fx, 0, 0);
@@ -473,7 +473,7 @@ function register_client_fields()
 }
 
 /*
-	Name: function_d87a7dcc
+	Name: watch_for_power
 	Namespace: namespace_670cb61
 	Checksum: 0xC4372349
 	Offset: 0x38E8
@@ -481,14 +481,14 @@ function register_client_fields()
 	Parameters: 0
 	Flags: None
 */
-function function_d87a7dcc()
+function watch_for_power()
 {
-	var_bd7ba30 = 0;
+	looped_once = 0;
 	while(1)
 	{
 		if(!level clientfield::get("zombie_power_on"))
 		{
-			if(var_bd7ba30)
+			if(looped_once)
 			{
 				level notify("power_controlled_light");
 			}
@@ -503,7 +503,7 @@ function function_d87a7dcc()
 		}
 		level function_2f143630("_powerup", 0.1, 1, "_poweron", 2.5);
 		level util::waittill_any("pwo", "ZPOff");
-		var_bd7ba30 = 1;
+		looped_once = 1;
 	}
 }
 
@@ -899,12 +899,12 @@ function function_18769931(localClientNum, n_state, door_name)
 	doors = GetEntArray(localClientNum, door_name, "targetname");
 	for(i = 0; i < doors.size; i++)
 	{
-		var_1f9cab23 = doors[i] function_b2c64ce4(n_state);
-		var_fd0b5358 = doors[i] function_b27e98c0(var_1f9cab23);
-		b_move = doors[i] function_53c16d30(var_fd0b5358);
+		b_seal = doors[i] function_b2c64ce4(n_state);
+		v_move_pos = doors[i] function_b27e98c0(b_seal);
+		b_move = doors[i] function_53c16d30(v_move_pos);
 		if(b_move)
 		{
-			doors[i] moveto(var_fd0b5358, 1);
+			doors[i] moveto(v_move_pos, 1);
 			if(sound_count == 0)
 			{
 				playsound(0, "zmb_lander_door", doors[i].origin);
@@ -1407,11 +1407,11 @@ function function_32db5393(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal == 1)
 	{
-		level namespace_eb3fb2b6::function_3b3f16da("red", localClientNum);
+		level namespace_eb3fb2b6::toggle_lander_lights("red", localClientNum);
 	}
 	else if(newVal == 2)
 	{
-		level namespace_eb3fb2b6::function_3b3f16da("green", localClientNum);
+		level namespace_eb3fb2b6::toggle_lander_lights("green", localClientNum);
 	}
 }
 
@@ -1888,7 +1888,7 @@ function monkey_lander_fx(local_client_num, oldVal, newVal, bNewEnt, bInitialSna
 }
 
 /*
-	Name: function_28a46c0d
+	Name: samantha_is_angry
 	Namespace: namespace_670cb61
 	Checksum: 0x16AE9243
 	Offset: 0x6FF0
@@ -1896,11 +1896,11 @@ function monkey_lander_fx(local_client_num, oldVal, newVal, bNewEnt, bInitialSna
 	Parameters: 7
 	Flags: None
 */
-function function_28a46c0d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function samantha_is_angry(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
-		namespace_9dd378ec::function_84e46cfe(localClientNum);
+		namespace_9dd378ec::samantha_is_angry_earthquake_and_rumbles(localClientNum);
 	}
 }
 

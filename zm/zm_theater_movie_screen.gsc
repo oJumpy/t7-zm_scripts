@@ -40,7 +40,7 @@ function setupCurtains()
 	curtains_clip = GetEnt("theater_curtains_clip", "targetname");
 	curtains_clip notsolid();
 	curtains_clip connectpaths();
-	level namespace_aed37ba8::function_ce6ee03b();
+	level namespace_aed37ba8::theater_open_curtains();
 	wait(3);
 	level thread lower_movie_screen();
 	wait(6);
@@ -143,9 +143,9 @@ function open_right_curtain()
 */
 function lower_movie_screen()
 {
-	var_d647fedd = GetEntArray("movie_screen", "targetname");
-	var_d647fedd[0] playsound("evt_screen_lower");
-	Array::run_all(var_d647fedd, &MoveZ, -466, 6);
+	a_mdl_screen = GetEntArray("movie_screen", "targetname");
+	a_mdl_screen[0] playsound("evt_screen_lower");
+	Array::run_all(a_mdl_screen, &MoveZ, -466, 6);
 	wait(8);
 	level clientfield::set("zm_theater_screen_in_place", 1);
 	util::clientNotify("sip");

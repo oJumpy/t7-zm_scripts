@@ -40,8 +40,8 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_pop_shocks", "event", &event, undefined, undefined, undefined);
-	bgb::function_3422638b("zm_bgb_pop_shocks", &actor_damage_override);
-	bgb::function_e22c6124("zm_bgb_pop_shocks", &vehicle_damage_override);
+	bgb::register_actor_damage_override("zm_bgb_pop_shocks", &actor_damage_override);
+	bgb::register_vehicle_damage_override("zm_bgb_pop_shocks", &vehicle_damage_override);
 }
 
 /*
@@ -58,8 +58,8 @@ function event()
 	self endon("disconnect");
 	self endon("death");
 	self endon("hash_994d5e9e");
-	self.var_69d5dd7c = 5;
-	while(self.var_69d5dd7c > 0)
+	self.bgb_remaining_hits = 5;
+	while(self.bgb_remaining_hits > 0)
 	{
 		wait(0.1);
 	}
@@ -78,7 +78,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansOfDeath,
 {
 	if(meansOfDeath === "MOD_MELEE")
 	{
-		attacker function_e0e68a99(self);
+		attacker electric_strike(self);
 	}
 	return damage;
 }
@@ -96,13 +96,13 @@ function vehicle_damage_override(eInflictor, eAttacker, iDamage, iDFlags, sMeans
 {
 	if(sMeansOfDeath === "MOD_MELEE")
 	{
-		eAttacker function_e0e68a99(self);
+		eAttacker electric_strike(self);
 	}
 	return iDamage;
 }
 
 /*
-	Name: function_e0e68a99
+	Name: electric_strike
 	Namespace: namespace_112fb534
 	Checksum: 0xB40BFF8C
 	Offset: 0x468
@@ -110,15 +110,15 @@ function vehicle_damage_override(eInflictor, eAttacker, iDamage, iDFlags, sMeans
 	Parameters: 1
 	Flags: None
 */
-function function_e0e68a99(target)
+function electric_strike(target)
 {
 	if(isdefined(self.beastmode) && self.beastmode)
 	{
 		return;
 	}
 	self bgb::do_one_shot_use();
-	self.var_69d5dd7c = self.var_69d5dd7c - 1;
-	self bgb::set_timer(self.var_69d5dd7c, 5);
+	self.bgb_remaining_hits = self.bgb_remaining_hits - 1;
+	self bgb::set_timer(self.bgb_remaining_hits, 5);
 	self playsound("zmb_bgb_popshocks_impact");
 	zombie_list = GetAITeamArray(level.zombie_team);
 	foreach(ai in zombie_list)
@@ -131,13 +131,13 @@ function function_e0e68a99(target)
 		dist_sq = DistanceSquared(target.origin, test_origin);
 		if(dist_sq < 16384)
 		{
-			self thread function_20654ca0(ai);
+			self thread electrocute_actor(ai);
 		}
 	}
 }
 
 /*
-	Name: function_20654ca0
+	Name: electrocute_actor
 	Namespace: namespace_112fb534
 	Checksum: 0x4D924C41
 	Offset: 0x640
@@ -145,7 +145,7 @@ function function_e0e68a99(target)
 	Parameters: 1
 	Flags: None
 */
-function function_20654ca0(ai)
+function electrocute_actor(ai)
 {
 	self endon("disconnect");
 	if(!isdefined(ai) || !isalive(ai))
@@ -157,14 +157,14 @@ function function_20654ca0(ai)
 	{
 		self.tesla_enemies_hit = 1;
 	}
-	function_3e9ddcc7();
+	create_lightning_params();
 	ai.tesla_death = 0;
-	ai thread function_fe8a580e(self);
+	ai thread arc_damage_init(self);
 	ai thread tesla_death();
 }
 
 /*
-	Name: function_3e9ddcc7
+	Name: create_lightning_params
 	Namespace: namespace_112fb534
 	Checksum: 0x2FBCB64C
 	Offset: 0x710
@@ -172,16 +172,16 @@ function function_20654ca0(ai)
 	Parameters: 0
 	Flags: None
 */
-function function_3e9ddcc7()
+function create_lightning_params()
 {
-	level.var_96e991b8 = lightning_chain::create_lightning_chain_params(5);
-	level.var_96e991b8.head_gib_chance = 100;
-	level.var_96e991b8.network_death_choke = 4;
-	level.var_96e991b8.should_kill_enemies = 0;
+	level.zm_bgb_pop_shocks_lightning_params = lightning_chain::create_lightning_chain_params(5);
+	level.zm_bgb_pop_shocks_lightning_params.head_gib_chance = 100;
+	level.zm_bgb_pop_shocks_lightning_params.network_death_choke = 4;
+	level.zm_bgb_pop_shocks_lightning_params.should_kill_enemies = 0;
 }
 
 /*
-	Name: function_fe8a580e
+	Name: arc_damage_init
 	Namespace: namespace_112fb534
 	Checksum: 0x2DA98F28
 	Offset: 0x778
@@ -189,14 +189,14 @@ function function_3e9ddcc7()
 	Parameters: 1
 	Flags: None
 */
-function function_fe8a580e(player)
+function arc_damage_init(player)
 {
 	player endon("disconnect");
 	if(isdefined(self.zombie_tesla_hit) && self.zombie_tesla_hit)
 	{
 		return;
 	}
-	self lightning_chain::arc_damage_ent(player, 1, level.var_96e991b8);
+	self lightning_chain::arc_damage_ent(player, 1, level.zm_bgb_pop_shocks_lightning_params);
 }
 
 /*
@@ -211,13 +211,13 @@ function function_fe8a580e(player)
 function tesla_death()
 {
 	self endon("death");
-	self thread function_862aadab(1);
+	self thread zombie_explodes_on_swipe(1);
 	wait(2);
 	self DoDamage(self.health + 1, self.origin);
 }
 
 /*
-	Name: function_862aadab
+	Name: zombie_explodes_on_swipe
 	Namespace: namespace_112fb534
 	Checksum: 0xB70D9173
 	Offset: 0x838
@@ -225,7 +225,7 @@ function tesla_death()
 	Parameters: 1
 	Flags: None
 */
-function function_862aadab(random_gibs)
+function zombie_explodes_on_swipe(random_gibs)
 {
 	self waittill("death");
 	if(isdefined(self) && IsActor(self))

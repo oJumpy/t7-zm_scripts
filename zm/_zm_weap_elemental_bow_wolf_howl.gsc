@@ -47,7 +47,7 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	level.var_e93874ed = GetWeapon("elemental_bow_wolf_howl");
+	level.w_bow_wolf_howl = GetWeapon("elemental_bow_wolf_howl");
 	level.var_30611368 = GetWeapon("elemental_bow_wolf_howl4");
 	clientfield::register("toplayer", "elemental_bow_wolf_howl" + "_ambient_bow_fx", 5000, 1, "int");
 	clientfield::register("missile", "elemental_bow_wolf_howl" + "_arrow_impact_fx", 5000, 1, "int");
@@ -229,27 +229,27 @@ function function_a2209df2(e_player, var_307bab92, var_c807e383, v_up, var_5c447
 		if(var_20d031ed > 32)
 		{
 			var_28388a90.var_76a58ed1 = var_28388a90.var_76a58ed1 + var_20d031ed;
-			var_69a783ad = a_trace["position"] - var_c807e383 * 32;
+			v_goto = a_trace["position"] - var_c807e383 * 32;
 			var_72027ac3 = var_20d031ed / 1920;
-			var_bc5cda7b = "none";
+			str_return = "none";
 			if(var_72027ac3 > 0)
 			{
-				var_28388a90 moveto(var_69a783ad, var_72027ac3, var_72027ac3 * 0.3, 0);
+				var_28388a90 moveto(v_goto, var_72027ac3, var_72027ac3 * 0.3, 0);
 				level thread function_2abb74b7(e_player, var_8f0f462c, var_c807e383);
 				level thread function_a6220124(var_8f0f462c);
 				if(var_5c44718b)
 				{
 					level thread function_b7d621a1(e_player, var_8f0f462c);
 				}
-				var_bc5cda7b = var_28388a90 util::waittill_any_return("movedone", "mechz_impact");
+				str_return = var_28388a90 util::waittill_any_return("movedone", "mechz_impact");
 			}
-			if(var_bc5cda7b != "mechz_impact" && var_5c44718b)
+			if(str_return != "mechz_impact" && var_5c44718b)
 			{
 				var_307bab92 = var_28388a90.origin;
-				var_eca96ec1 = GetNavMeshFaceNormal(var_28388a90.origin, 2560);
-				if(isdefined(var_eca96ec1))
+				v_surface_normal = GetNavMeshFaceNormal(var_28388a90.origin, 2560);
+				if(isdefined(v_surface_normal))
 				{
-					v_up = var_eca96ec1;
+					v_up = v_surface_normal;
 					var_c807e383 = VectorCross(v_up, AnglesToRight(var_9259c91b.angles));
 					level thread function_a2209df2(e_player, var_307bab92, var_c807e383, v_up, 0, var_8f0f462c);
 					return;
@@ -371,8 +371,8 @@ function function_2abb74b7(e_player, var_8f0f462c, var_c807e383)
 			var_2685316e = Distance(var_28388a90.origin, var_28388a90.v_start_pos);
 			if(var_2685316e < 256)
 			{
-				var_fc3596dd = var_2685316e / 256;
-				var_ccc78552 = 64 - var_67da22f * var_fc3596dd;
+				n_ratio = var_2685316e / 256;
+				var_ccc78552 = 64 - var_67da22f * n_ratio;
 			}
 			else
 			{
@@ -752,11 +752,11 @@ function function_88bf0c4e(e_player, n_damage, v_hit_origin, weapon)
 	{
 		if(self.archetype === "mechz")
 		{
-			self DoDamage(n_damage, v_hit_origin, e_player, e_player, undefined, "MOD_PROJECTILE_SPLASH", 0, level.var_e93874ed);
+			self DoDamage(n_damage, v_hit_origin, e_player, e_player, undefined, "MOD_PROJECTILE_SPLASH", 0, level.w_bow_wolf_howl);
 		}
 		else
 		{
-			self DoDamage(self.health, self.origin, e_player, e_player, undefined, "MOD_UNKNOWN", 0, level.var_e93874ed);
+			self DoDamage(self.health, self.origin, e_player, e_player, undefined, "MOD_UNKNOWN", 0, level.w_bow_wolf_howl);
 		}
 	}
 	else

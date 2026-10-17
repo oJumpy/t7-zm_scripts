@@ -425,14 +425,14 @@ function moon_jolie_access(ent_hacker)
 */
 function function_27fd2e20(var_ad826a0f)
 {
-	var_a58a7b24 = "struct_sq_osc0" + self.script_int;
+	str_exploder_name = "struct_sq_osc0" + self.script_int;
 	if(var_ad826a0f)
 	{
-		exploder::exploder(var_a58a7b24);
+		exploder::exploder(str_exploder_name);
 	}
 	else
 	{
-		exploder::kill_exploder(var_a58a7b24);
+		exploder::kill_exploder(str_exploder_name);
 	}
 }
 

@@ -71,7 +71,7 @@ function init()
 	zm_moon_sq_ctvg::init();
 	zm_sidequests::declare_sidequest("be", undefined, undefined, undefined, undefined, undefined);
 	zm_moon_sq_be::init();
-	function_2f7d3521();
+	sd_init();
 }
 
 /*
@@ -454,7 +454,7 @@ function function_7aca917c()
 		level.var_1b3f87f7 delete();
 	}
 	level.var_1b3f87f7 = CreateStreamerHint(level.activePlayers[0].origin, 1, 0);
-	level.var_1b3f87f7 function_da46a629(1);
+	level.var_1b3f87f7 setlightingonly(1);
 }
 
 /*
@@ -767,7 +767,7 @@ function sq_flatcard_logic()
 }
 
 /*
-	Name: function_2f7d3521
+	Name: sd_init
 	Namespace: zm_moon_sq
 	Checksum: 0x8BCC1F
 	Offset: 0x2620
@@ -775,14 +775,14 @@ function sq_flatcard_logic()
 	Parameters: 0
 	Flags: None
 */
-function function_2f7d3521()
+function sd_init()
 {
 	zm_spawner::add_custom_zombie_spawn_logic(&function_69090b83);
 	level flag::init("sd_active");
 	level flag::wait_till("start_zombie_round_logic");
-	level.var_c920d4c5 = struct::get("sd_bowl", "targetname");
-	var_5e8fec3f = struct::get_array("sd_start", "script_noteworthy");
-	foreach(s_start in var_5e8fec3f)
+	level.s_sd_bowl = struct::get("sd_bowl", "targetname");
+	a_start = struct::get_array("sd_start", "script_noteworthy");
+	foreach(s_start in a_start)
 	{
 		var_12a1091 = util::spawn_model(s_start.model, s_start.origin, s_start.angles);
 		var_12a1091.targetname = s_start.targetname;
@@ -831,9 +831,9 @@ function function_7e76fe45(var_2ad32714)
 */
 function function_4ee03f50()
 {
-	var_5e8fec3f = struct::get_array("sd_start", "script_noteworthy");
+	a_start = struct::get_array("sd_start", "script_noteworthy");
 	a_flags = [];
-	foreach(s_start in var_5e8fec3f)
+	foreach(s_start in a_start)
 	{
 		if(!isdefined(a_flags))
 		{
@@ -850,12 +850,12 @@ function function_4ee03f50()
 		return;
 	}
 	level flag::wait_till_all(a_flags);
-	var_8c15cb32 = struct::get("sd_bowl", "targetname");
-	var_8c15cb32.radius = 65;
-	var_8c15cb32.height = 72;
-	var_8c15cb32.script_float = 7;
-	var_8c15cb32.custom_string = &"ZM_MOON_HACK_SILENT";
-	namespace_6d813654::register_pooled_hackable_struct(var_8c15cb32, &function_9391498d);
+	s_sd = struct::get("sd_bowl", "targetname");
+	s_sd.radius = 65;
+	s_sd.height = 72;
+	s_sd.script_float = 7;
+	s_sd.custom_string = &"ZM_MOON_HACK_SILENT";
+	namespace_6d813654::register_pooled_hackable_struct(s_sd, &function_9391498d);
 }
 
 /*
@@ -891,13 +891,13 @@ function function_948d4e7d()
 	var_51aa97ed = util::spawn_model(var_9f30ae72.model, var_9f30ae72.origin, var_9f30ae72.angles);
 	var_51aa97ed SetScale(var_9f30ae72.script_float);
 	var_c1b1cd1c = 2.3 / 30;
-	var_fa77a9e7 = 0;
+	n_fill = 0;
 	while(1)
 	{
-		level waittill("hash_9b391ed5");
-		if(var_fa77a9e7 < 30)
+		level waittill("sd_zombie");
+		if(n_fill < 30)
 		{
-			var_fa77a9e7++;
+			n_fill++;
 			var_51aa97ed.origin = var_51aa97ed.origin + (0, 0, var_c1b1cd1c);
 		}
 		else
@@ -928,13 +928,13 @@ function function_66951281()
 	var_51aa97ed = util::spawn_model(var_e7c6777b.model, var_e7c6777b.origin, var_e7c6777b.angles);
 	var_51aa97ed SetScale(var_e7c6777b.script_float);
 	var_c1b1cd1c = 2 / 15;
-	var_fa77a9e7 = 0;
+	n_fill = 0;
 	while(1)
 	{
 		level waittill("hash_d7362b52");
-		if(var_fa77a9e7 < 15)
+		if(n_fill < 15)
 		{
-			var_fa77a9e7++;
+			n_fill++;
 			var_51aa97ed.origin = var_51aa97ed.origin + (0, 0, var_c1b1cd1c);
 		}
 		else
@@ -971,7 +971,7 @@ function function_69090b83()
 	}
 	if(level flag::get("sd_active"))
 	{
-		v_end_pos = level.var_c920d4c5.origin;
+		v_end_pos = level.s_sd_bowl.origin;
 		n_dist = Distance(v_end_pos, self.origin);
 		if(self.archetype === "zombie_quad")
 		{
@@ -985,7 +985,7 @@ function function_69090b83()
 		{
 			return;
 		}
-		level notify("hash_9b391ed5");
+		level notify("sd_zombie");
 		if(n_dist <= 256)
 		{
 			self clientfield::set("sd", 1);
@@ -1007,13 +1007,13 @@ function function_cff1fcfb()
 	if(level flag::get("sd_large_complete") && level flag::get("sd_small_complete"))
 	{
 		level flag::clear("sd_active");
-		level thread function_93878170();
+		level thread spawn_sd();
 		playsoundatposition("zmb_k9_ee_bling", (0, 0, 0));
 	}
 }
 
 /*
-	Name: function_93878170
+	Name: spawn_sd
 	Namespace: zm_moon_sq
 	Checksum: 0x5455D1F8
 	Offset: 0x31C8
@@ -1021,7 +1021,7 @@ function function_cff1fcfb()
 	Parameters: 0
 	Flags: None
 */
-function function_93878170()
+function spawn_sd()
 {
 	var_653beee4 = Array("p7_fxanim_zmhd_moon_spacedog_path1_sec1_bundle", "p7_fxanim_zmhd_moon_spacedog_path1_sec2_bundle", "p7_fxanim_zmhd_moon_spacedog_path2_bundle");
 	var_efac5d38 = Array("p7_fxanim_zmhd_moon_spacedog_path1_sec2_bundle", "p7_fxanim_zmhd_moon_spacedog_path2_bundle");

@@ -505,7 +505,7 @@ function stargate_teleport_player(str_teleport_to, player, n_teleport_time_sec, 
 	player DisableWeapons();
 	player FreezeControls(1);
 	util::wait_network_frame();
-	var_64103691 = struct::get_array(str_teleport_to, "targetname");
+	a_s_destination = struct::get_array(str_teleport_to, "targetname");
 	n_total_time = n_teleport_time_sec + 4;
 	player zm_utility::create_streamer_hint(struct::get_array(str_teleport_to, "targetname")[0].origin, struct::get_array(str_teleport_to, "targetname")[0].angles, 1, n_total_time);
 	if(player GetStance() == "prone")
@@ -537,11 +537,11 @@ function stargate_teleport_player(str_teleport_to, player, n_teleport_time_sec, 
 		image_room thread stargate_play_fx();
 		visionset_mgr::activate("overlay", "zm_factory_teleport", player);
 	}
-	var_c5af343b = 0.5;
-	wait(n_teleport_time_sec - var_c5af343b);
+	hide_time = 0.5;
+	wait(n_teleport_time_sec - hide_time);
 	if(show_fx)
 	{
-		player thread hud::fade_to_black_for_x_sec(0, var_c5af343b + 0.3, 0, 0.5, "white");
+		player thread hud::fade_to_black_for_x_sec(0, hide_time + 0.3, 0, 0.5, "white");
 		util::wait_network_frame();
 	}
 	image_room notify("stop_teleport_fx");

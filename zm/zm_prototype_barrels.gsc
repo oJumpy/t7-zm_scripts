@@ -206,7 +206,7 @@ function explodable_barrel_explode()
 	level thread sound::play_in_space(level.barrelExpSound, self.origin);
 	PhysicsExplosionSphere(self.origin + offset, 100, 80, 1);
 	PlayRumbleOnPosition("barrel_explosion", self.origin + VectorScale((0, 0, 1), 32));
-	level notify("hash_83cc4809");
+	level notify("barrel_exploded");
 	level.barrelExplodingThisFrame = 1;
 	if(isdefined(self.remove))
 	{
@@ -297,9 +297,9 @@ function function_28ed3370()
 	{
 		var_69238c0b = var_69238c0b + var_53c7b11b.size;
 	}
-	for(var_1d2242bc = 0; var_1d2242bc < var_69238c0b; var_1d2242bc++)
+	for(n_barrel_count = 0; n_barrel_count < var_69238c0b; n_barrel_count++)
 	{
-		level waittill("hash_83cc4809");
+		level waittill("barrel_exploded");
 	}
 	level thread zm_audio::sndMusicSystem_PlayState("undone");
 }

@@ -163,7 +163,7 @@ function gadget_roulette_on_give(slot, weapon)
 function gadget_roulette_on_take(slot, weapon)
 {
 	/#
-		if(level.var_e76bb7e3 === 1)
+		if(level.devgui_giving_abilities === 1)
 		{
 			self.isRoulette = 0;
 		}

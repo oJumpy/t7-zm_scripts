@@ -588,7 +588,7 @@ function vending_trigger_think()
 		sound = "evt_bottle_dispense";
 		playsoundatposition(sound, self.origin);
 		player zm_score::minus_to_player_score(current_cost);
-		bb::function_91f32a58(player, self, current_cost, perk, 0, "_perk", "_purchased");
+		bb::logpurchaseevent(player, self, current_cost, perk, 0, "_perk", "_purchased");
 		perkHash = -1;
 		if(isdefined(level._custom_perks[perk]) && isdefined(level._custom_perks[perk].hash_id))
 		{

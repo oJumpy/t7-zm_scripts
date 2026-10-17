@@ -34,8 +34,8 @@ function main()
 	level thread scene::init("p7_fxanim_zm_stal_elevator_bundle");
 	s_right = struct::get("bridge_trigger_right");
 	s_left = struct::get("bridge_trigger_left");
-	var_a7c049ac = GetEnt("powered_bridge_gate", "targetname");
-	var_a7c049ac disconnectpaths();
+	e_gate = GetEnt("powered_bridge_gate", "targetname");
+	e_gate disconnectpaths();
 	var_efdf0fee = GetEntArray("bridge_light_on", "targetname");
 	Array::run_all(var_efdf0fee, &Hide);
 	s_right function_e457f1d();
@@ -149,14 +149,14 @@ function function_9aac06ba(e_player)
 	level flag::set("bridge_in_use");
 	level flag::set("activate_bridge");
 	level.zones["powered_bridge_zone"].is_enabled = 1;
-	var_a7c049ac = GetEnt("powered_bridge_gate", "targetname");
+	e_gate = GetEnt("powered_bridge_gate", "targetname");
 	s_rumble = struct::get("bridge_rumble");
 	var_cefeeda4 = GetNodeArray("powered_bridge_door", "targetname");
 	level thread scene::Play("p7_fxanim_zm_stal_elevator_bundle");
 	function_ef72d561();
-	var_a7c049ac MoveZ(100 * -1, 0.05);
-	var_a7c049ac waittill("movedone");
-	var_a7c049ac connectpaths();
+	e_gate MoveZ(100 * -1, 0.05);
+	e_gate waittill("movedone");
+	e_gate connectpaths();
 	foreach(var_8bd15b35 in var_cefeeda4)
 	{
 		LinkTraversal(var_8bd15b35);
@@ -168,9 +168,9 @@ function function_9aac06ba(e_player)
 	wait(3);
 	level flag::set("bridge_jitter_stop");
 	level flag::wait_till_clear("bridge_jitter_stop");
-	var_a7c049ac MoveZ(100, 0.05);
-	var_a7c049ac waittill("movedone");
-	var_a7c049ac disconnectpaths();
+	e_gate MoveZ(100, 0.05);
+	e_gate waittill("movedone");
+	e_gate disconnectpaths();
 	foreach(var_8bd15b35 in var_cefeeda4)
 	{
 		UnlinkTraversal(var_8bd15b35);

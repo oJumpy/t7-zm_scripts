@@ -325,9 +325,9 @@ function function_f51dbd0a()
 	else if(isdefined(var_553c631c) && var_553c631c && isdefined(self.first_node) && isdefined(self.saved_attacking_spot_index))
 	{
 		forwardVec = AnglesToForward(self.first_node.angles);
-		var_9f8b01da = self.first_node.attack_spots[self.saved_attacking_spot_index] + forwardVec * 75;
-		var_9f8b01da = GetClosestPointOnNavMesh(var_9f8b01da);
-		self ForceTeleport(var_9f8b01da, self GetAngles());
+		teleportpoint = self.first_node.attack_spots[self.saved_attacking_spot_index] + forwardVec * 75;
+		teleportpoint = GetClosestPointOnNavMesh(teleportpoint);
+		self ForceTeleport(teleportpoint, self GetAngles());
 	}
 }
 
@@ -344,11 +344,11 @@ function function_32afe89a(ai_zombie)
 {
 	self endon("disconnect");
 	ai_zombie endon("death");
-	if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0))
+	if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher))
 	{
 		ai_zombie thread zombie_utility::zombie_eye_glow_stop();
 		ai_zombie clientfield::set("death_ray_shock_eye_fx", 1);
-		if(isalive(ai_zombie) && (!isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0))
+		if(isalive(ai_zombie) && (!isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher))
 		{
 			if(ai_zombie IsPlayingAnimScripted())
 			{
@@ -362,14 +362,14 @@ function function_32afe89a(ai_zombie)
 	var_9ae6d5f2 = 0;
 	while(self util::attack_button_held() && self function_97d08b97() && !self.var_e1f8edd6 && self.var_118ab24e)
 	{
-		if(isdefined(ai_zombie.var_3940f450) && ai_zombie.var_3940f450)
+		if(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider)
 		{
 			self function_4aedb20b(1);
 			ai_zombie DoDamage(ai_zombie.health, ai_zombie.origin, self);
 			break;
 		}
 		ai_zombie.var_20b8c74a = 1;
-		if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0))
+		if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher))
 		{
 			ai_zombie thread zm_audio::zmbAIVox_PlayVox(ai_zombie, "skull_scream", 1, 11);
 			wait(1);
@@ -388,7 +388,7 @@ function function_32afe89a(ai_zombie)
 				ai_zombie playsound("evt_zombie_skull_breathe");
 			}
 			wait(0.05);
-			if(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0)
+			if(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher)
 			{
 				if(var_9ae6d5f2 == 0)
 				{
@@ -400,9 +400,9 @@ function function_32afe89a(ai_zombie)
 					{
 						ai_zombie.thrasherRageCount = 0;
 					}
-					var_9d06d0ea = ai_zombie.thrasherSpores[var_9ae6d5f2];
+					s_spore = ai_zombie.thrasherSpores[var_9ae6d5f2];
 					self function_4aedb20b(3);
-					ai_zombie DoDamage(var_9d06d0ea.health, ai_zombie GetTagOrigin(var_9d06d0ea.tag), self);
+					ai_zombie DoDamage(s_spore.health, ai_zombie GetTagOrigin(s_spore.tag), self);
 					var_9ae6d5f2++;
 					ai_zombie.thrasherRageCount = 0;
 				}
@@ -417,13 +417,13 @@ function function_32afe89a(ai_zombie)
 		}
 	}
 	ai_zombie.var_20b8c74a = 0;
-	if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0))
+	if(ai_zombie.archetype === "zombie" || (isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher))
 	{
 		ai_zombie notify("hash_2766d719");
 		ai_zombie thread scene::stop("cin_zm_dlc1_zombie_dth_deathray_04");
 		ai_zombie thread zombie_utility::zombie_eye_glow();
 		ai_zombie clientfield::set("death_ray_shock_eye_fx", 0);
-		if(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0)
+		if(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher)
 		{
 			ai_zombie clientfield::set("thrasher_skull_fire", 0);
 		}
@@ -580,7 +580,7 @@ function function_c2e953fb(ai_zombie)
 		if(ai_zombie.var_9b59d7f8 !== 1)
 		{
 			ai_zombie.var_9b59d7f8 = 1;
-			if(!(isdefined(ai_zombie.var_3940f450) && ai_zombie.var_3940f450))
+			if(!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider))
 			{
 				ai_zombie thread zombie_utility::zombie_eye_glow_stop();
 				ai_zombie clientfield::set("entranced", 1);
@@ -605,11 +605,11 @@ function function_c2e953fb(ai_zombie)
 	}
 	ai_zombie.var_9b59d7f8 = 0;
 	ai_zombie ai::set_ignoreall(0);
-	if(!(isdefined(ai_zombie.var_3940f450) && ai_zombie.var_3940f450))
+	if(!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider))
 	{
 		ai_zombie thread zombie_utility::zombie_eye_glow();
 		ai_zombie clientfield::set("entranced", 0);
-		ai_zombie notify("hash_11c32d95");
+		ai_zombie notify("stop_mes");
 		if(ai_zombie IsPlayingAnimScripted())
 		{
 			ai_zombie StopAnimScripted(0.3);
@@ -633,7 +633,7 @@ function function_c2e953fb(ai_zombie)
 function function_3fca87eb()
 {
 	self endon("death");
-	self endon("hash_11c32d95");
+	self endon("stop_mes");
 	n_index = randomIntRange(1, 7);
 	while(1)
 	{
@@ -692,13 +692,13 @@ function function_fb77a973(ai_zombie)
 	Parameters: 1
 	Flags: None
 */
-function function_3f3f64e9(var_fff2323a)
+function function_3f3f64e9(e_prop)
 {
-	if(self util::is_player_looking_at(var_fff2323a.origin, 0.85, 0))
+	if(self util::is_player_looking_at(e_prop.origin, 0.85, 0))
 	{
 		return 1;
 	}
-	if(self util::is_player_looking_at(var_fff2323a GetCentroid(), 0.85, 0))
+	if(self util::is_player_looking_at(e_prop GetCentroid(), 0.85, 0))
 	{
 		return 1;
 	}
@@ -884,11 +884,11 @@ function function_e00bc70a()
 	Parameters: 1
 	Flags: None
 */
-function function_4aedb20b(var_4ed57dca)
+function function_4aedb20b(n_drain)
 {
-	if(self.var_118ab24e >= var_4ed57dca)
+	if(self.var_118ab24e >= n_drain)
 	{
-		self GadgetPowerSet(0, self.var_118ab24e - var_4ed57dca);
+		self GadgetPowerSet(0, self.var_118ab24e - n_drain);
 	}
 	else
 	{

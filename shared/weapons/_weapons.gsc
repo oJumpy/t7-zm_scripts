@@ -1477,7 +1477,7 @@ function on_damage(eAttacker, eInflictor, weapon, meansOfDeath, damage)
 	{
 		case "concussion_grenade":
 		{
-			if(isdefined(self.var_68539036) && self.var_68539036)
+			if(isdefined(self.concussionimmune) && self.concussionimmune)
 			{
 				return;
 			}

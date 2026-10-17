@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_48e69557;
+#namespace castle_rocketshield;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x60FAEEA
 	Offset: 0x188
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0xF652FEBD
 	Offset: 0x1C8
 	Size: 0x4B
@@ -37,7 +37,7 @@ function __init__()
 
 /*
 	Name: set_rocketshield_ammo
-	Namespace: namespace_48e69557
+	Namespace: castle_rocketshield
 	Checksum: 0x992ABE1
 	Offset: 0x220
 	Size: 0xA3

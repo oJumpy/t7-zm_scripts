@@ -38,10 +38,10 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	level.var_f302359b = struct::get_array("dragon_position", "targetname");
-	clientfield::register("actor", "make_client_clone", 5000, 4, "int", &function_90c151e6, 0, 0);
+	clientfield::register("actor", "make_client_clone", 5000, 4, "int", &pose_dead_body, 0, 0);
 	for(i = 0; i < level.var_f302359b.size; i++)
 	{
-		clientfield::register("world", level.var_f302359b[i].script_parameters, 5000, 3, "int", &function_cda3a15d, 0, 0);
+		clientfield::register("world", level.var_f302359b[i].script_parameters, 5000, 3, "int", &soul_catcher_callback, 0, 0);
 	}
 	clientfield::register("toplayer", "bow_pickup_fx", 5000, 1, "int", &function_4e75b7c1, 0, 0);
 }
@@ -89,38 +89,38 @@ function main()
 	scene::add_scene_func(level.var_93ad1521[0], &function_8cce2397);
 	scene::add_scene_func(level.var_93ad1521[1], &function_8cce2397);
 	scene::add_scene_func(level.var_16db17aa[0], &function_def5820e);
-	level.var_f41bc81e = %ai_zm_dlc1_dragonhead_zombie_impact;
-	function_46c9cb0();
+	level.fake_body_death_anim = %ai_zm_dlc1_dragonhead_zombie_impact;
+	assemble_fake_body_head_arrays();
 	util::waitforallclients();
 	wait(1);
-	level.var_792780c0 = [];
-	level.var_3cc6503b = [];
+	level.dragon_heads = [];
+	level.dragon_bodies = [];
 	level.var_abd9e961 = [];
 	players = GetLocalPlayers();
 	for(j = 0; j < players.size; j++)
 	{
-		level.var_792780c0[j] = [];
-		level.var_3cc6503b[j] = [];
+		level.dragon_heads[j] = [];
+		level.dragon_bodies[j] = [];
 		level.var_abd9e961[j] = [];
 		for(i = 0; i < level.var_f302359b.size; i++)
 		{
-			level.var_792780c0[j][level.var_f302359b[i].script_parameters] = GetEnt(j, level.var_f302359b[i].script_label, "targetname");
-			level.var_792780c0[j][level.var_f302359b[i].script_parameters] useanimtree(-1);
-			level.var_792780c0[j][level.var_f302359b[i].script_parameters] flag::init("dragon_far_right");
-			level.var_792780c0[j][level.var_f302359b[i].script_parameters] flag::init("dragon_far_left");
-			level.var_792780c0[j][level.var_f302359b[i].script_parameters].var_7d382bfa = 1;
-			level.var_3cc6503b[j][level.var_f302359b[i].script_parameters] = GetEnt(j, level.var_f302359b[i].script_friendname, "targetname");
-			level.var_3cc6503b[j][level.var_f302359b[i].script_parameters] Hide();
-			level.var_3cc6503b[j][level.var_f302359b[i].script_parameters] useanimtree(-1);
+			level.dragon_heads[j][level.var_f302359b[i].script_parameters] = GetEnt(j, level.var_f302359b[i].script_label, "targetname");
+			level.dragon_heads[j][level.var_f302359b[i].script_parameters] useanimtree(-1);
+			level.dragon_heads[j][level.var_f302359b[i].script_parameters] flag::init("dragon_far_right");
+			level.dragon_heads[j][level.var_f302359b[i].script_parameters] flag::init("dragon_far_left");
+			level.dragon_heads[j][level.var_f302359b[i].script_parameters].b_depart = 1;
+			level.dragon_bodies[j][level.var_f302359b[i].script_parameters] = GetEnt(j, level.var_f302359b[i].script_friendname, "targetname");
+			level.dragon_bodies[j][level.var_f302359b[i].script_parameters] Hide();
+			level.dragon_bodies[j][level.var_f302359b[i].script_parameters] useanimtree(-1);
 			level.var_abd9e961[j][level.var_f302359b[i].script_parameters] = GetEnt(j, level.var_f302359b[i].script_label + "_mini", "targetname");
 		}
 		Array::run_all(level.var_abd9e961[j], &function_c9ca8c4b, j);
 	}
-	level.var_ab74f2fa = 1;
+	level.weap_quest_init = 1;
 }
 
 /*
-	Name: function_cda3a15d
+	Name: soul_catcher_callback
 	Namespace: namespace_2a78f3c
 	Checksum: 0x9156A2AB
 	Offset: 0x10F0
@@ -128,85 +128,85 @@ function main()
 	Parameters: 7
 	Flags: None
 */
-function function_cda3a15d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function soul_catcher_callback(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	while(!isdefined(level.var_ab74f2fa))
+	while(!isdefined(level.weap_quest_init))
 	{
 		wait(0.05);
 	}
 	if(newVal == 7)
 	{
-		if(isdefined(level.var_792780c0[localClientNum][fieldName]))
+		if(isdefined(level.dragon_heads[localClientNum][fieldName]))
 		{
-			level.var_792780c0[localClientNum][fieldName] thread function_a5ee5367(localClientNum);
+			level.dragon_heads[localClientNum][fieldName] thread function_a5ee5367(localClientNum);
 		}
 	}
 	else if(newVal == 1)
 	{
-		level.var_3cc6503b[localClientNum][fieldName] Hide();
-		if(isdefined(level.var_792780c0[localClientNum][fieldName]))
+		level.dragon_bodies[localClientNum][fieldName] Hide();
+		if(isdefined(level.dragon_heads[localClientNum][fieldName]))
 		{
-			level.var_792780c0[localClientNum][fieldName] show();
-			level.var_792780c0[localClientNum][fieldName] thread function_2731927f(localClientNum);
-			level.var_792780c0[localClientNum][fieldName] scene::Play(level.var_dd277883, level.var_792780c0[localClientNum][fieldName]);
+			level.dragon_heads[localClientNum][fieldName] show();
+			level.dragon_heads[localClientNum][fieldName] thread function_2731927f(localClientNum);
+			level.dragon_heads[localClientNum][fieldName] scene::Play(level.var_dd277883, level.dragon_heads[localClientNum][fieldName]);
 		}
 	}
 	else if(newVal == 2)
 	{
-		level.var_3cc6503b[localClientNum][fieldName] Hide();
-		if(isdefined(level.var_3cc6503b[localClientNum][fieldName].head))
+		level.dragon_bodies[localClientNum][fieldName] Hide();
+		if(isdefined(level.dragon_bodies[localClientNum][fieldName].head))
 		{
-			if(isdefined(level.var_3cc6503b[localClientNum][fieldName].head.hat))
+			if(isdefined(level.dragon_bodies[localClientNum][fieldName].head.hat))
 			{
-				level.var_3cc6503b[localClientNum][fieldName].head.hat Hide();
+				level.dragon_bodies[localClientNum][fieldName].head.hat Hide();
 			}
-			level.var_3cc6503b[localClientNum][fieldName].head Hide();
+			level.dragon_bodies[localClientNum][fieldName].head Hide();
 		}
-		if(isdefined(level.var_792780c0[localClientNum][fieldName]))
+		if(isdefined(level.dragon_heads[localClientNum][fieldName]))
 		{
-			level.var_792780c0[localClientNum][fieldName] show();
-			level.var_792780c0[localClientNum][fieldName] thread function_979d2797(localClientNum);
+			level.dragon_heads[localClientNum][fieldName] show();
+			level.dragon_heads[localClientNum][fieldName] thread dragonhead_idle(localClientNum);
 		}
 	}
 	else if(newVal == 3 || newVal == 5 || newVal == 4)
 	{
-		if(isdefined(level.var_792780c0[localClientNum][fieldName]))
+		if(isdefined(level.dragon_heads[localClientNum][fieldName]))
 		{
-			level.var_792780c0[localClientNum][fieldName] show();
+			level.dragon_heads[localClientNum][fieldName] show();
 			if(newVal == 3)
 			{
-				level.var_792780c0[localClientNum][fieldName] thread function_4ae89880(level.var_3cc6503b[localClientNum][fieldName], localClientNum, "front");
+				level.dragon_heads[localClientNum][fieldName] thread function_4ae89880(level.dragon_bodies[localClientNum][fieldName], localClientNum, "front");
 			}
 			else if(newVal == 4)
 			{
-				level.var_792780c0[localClientNum][fieldName] thread function_4ae89880(level.var_3cc6503b[localClientNum][fieldName], localClientNum, "right");
+				level.dragon_heads[localClientNum][fieldName] thread function_4ae89880(level.dragon_bodies[localClientNum][fieldName], localClientNum, "right");
 			}
 			else
 			{
-				level.var_792780c0[localClientNum][fieldName] thread function_4ae89880(level.var_3cc6503b[localClientNum][fieldName], localClientNum, "left");
+				level.dragon_heads[localClientNum][fieldName] thread function_4ae89880(level.dragon_bodies[localClientNum][fieldName], localClientNum, "left");
 			}
 		}
 	}
 	else if(newVal == 6)
 	{
-		level.var_3cc6503b[localClientNum][fieldName] Hide();
-		if(isdefined(level.var_3cc6503b[localClientNum][fieldName].head))
+		level.dragon_bodies[localClientNum][fieldName] Hide();
+		if(isdefined(level.dragon_bodies[localClientNum][fieldName].head))
 		{
-			if(isdefined(level.var_3cc6503b[localClientNum][fieldName].head.hat))
+			if(isdefined(level.dragon_bodies[localClientNum][fieldName].head.hat))
 			{
-				level.var_3cc6503b[localClientNum][fieldName].head.hat Hide();
+				level.dragon_bodies[localClientNum][fieldName].head.hat Hide();
 			}
-			level.var_3cc6503b[localClientNum][fieldName].head Hide();
+			level.dragon_bodies[localClientNum][fieldName].head Hide();
 		}
-		if(isdefined(level.var_792780c0[localClientNum][fieldName]))
+		if(isdefined(level.dragon_heads[localClientNum][fieldName]))
 		{
-			level.var_792780c0[localClientNum][fieldName] show();
-			level.var_792780c0[localClientNum][fieldName] thread function_aba7532b(localClientNum, level.var_3cc6503b[localClientNum][fieldName], level.var_abd9e961[localClientNum][fieldName]);
+			level.dragon_heads[localClientNum][fieldName] show();
+			level.dragon_heads[localClientNum][fieldName] thread function_aba7532b(localClientNum, level.dragon_bodies[localClientNum][fieldName], level.var_abd9e961[localClientNum][fieldName]);
 		}
 	}
 	else if(newVal == 0)
 	{
-		level.var_792780c0[localClientNum][fieldName] thread function_8e438650();
+		level.dragon_heads[localClientNum][fieldName] thread function_8e438650();
 	}
 }
 
@@ -348,7 +348,7 @@ function function_a5ee5367(localClientNum)
 }
 
 /*
-	Name: function_979d2797
+	Name: dragonhead_idle
 	Namespace: namespace_2a78f3c
 	Checksum: 0xFD1E4ED3
 	Offset: 0x1C88
@@ -356,11 +356,11 @@ function function_a5ee5367(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_979d2797(localClientNum)
+function dragonhead_idle(localClientNum)
 {
-	self endon("hash_4b8a9b1");
-	self endon("hash_4846b79f");
-	self notify("hash_8c17cec");
+	self endon("dragon_eating");
+	self endon("dragon_departing");
+	self notify("dragon_idling");
 	if(isdefined(self.var_d90397ef) && self.var_d90397ef)
 	{
 		return;
@@ -368,15 +368,15 @@ function function_979d2797(localClientNum)
 	self.var_d90397ef = 1;
 	while(1)
 	{
-		var_68e7aa53 = Array::random(level.var_93ad1521);
-		self scene::Play(var_68e7aa53, self);
-		var_c5577e8a = Array::random(level.var_16db17aa);
-		self scene::Play(var_c5577e8a, self);
+		random_idle_anim = Array::random(level.var_93ad1521);
+		self scene::Play(random_idle_anim, self);
+		random_twitch_anim = Array::random(level.var_16db17aa);
+		self scene::Play(random_twitch_anim, self);
 	}
 }
 
 /*
-	Name: function_90c151e6
+	Name: pose_dead_body
 	Namespace: namespace_2a78f3c
 	Checksum: 0xB10C46AC
 	Offset: 0x1D70
@@ -384,7 +384,7 @@ function function_979d2797(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_90c151e6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pose_dead_body(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	if(!self hasdobj(localClientNum))
@@ -392,7 +392,7 @@ function function_90c151e6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		self util::waittill_dobj(localClientNum);
 		wait(0.016);
 	}
-	while(!isdefined(level.var_ab74f2fa))
+	while(!isdefined(level.weap_quest_init))
 	{
 		wait(0.05);
 	}
@@ -402,7 +402,7 @@ function function_90c151e6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	s_closest = Array::get_all_closest(self.origin, level.var_f302359b);
 	fieldName = s_closest[0].script_parameters;
-	m_body = level.var_3cc6503b[localClientNum][fieldName];
+	m_body = level.dragon_bodies[localClientNum][fieldName];
 	if(isdefined(m_body))
 	{
 		m_body delete();
@@ -413,14 +413,14 @@ function function_90c151e6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			m_body HidePart(localClientNum, "tag_weapon_right");
 		}
 		m_body GibClientUtils::HandleGibNotetracks(localClientNum);
-		level.var_3cc6503b[localClientNum][fieldName] = m_body;
+		level.dragon_bodies[localClientNum][fieldName] = m_body;
 	}
 	m_body useanimtree(-1);
 	m_body.origin = self.origin;
 	m_body show();
 	m_body ClearAnim(%root, 0.1);
-	m_body SetAnimRestart(level.var_f41bc81e, 1, 0.2, 1);
-	n_anim_time = getanimlength(level.var_f41bc81e) / 1;
+	m_body SetAnimRestart(level.fake_body_death_anim, 1, 0.2, 1);
+	n_anim_time = getanimlength(level.fake_body_death_anim) / 1;
 }
 
 /*
@@ -432,17 +432,17 @@ function function_90c151e6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 4
 	Flags: None
 */
-function function_4bdc99a(m_body, var_e88629ec, localClientNum, direction)
+function function_4bdc99a(m_body, m_dragon, localClientNum, direction)
 {
 	/#
 		IPrintLnBold("Dev Block strings are not supported" + direction);
 	#/
 	var_3b282900 = level.var_c7a1f434[direction];
-	if(var_e88629ec flag::get("dragon_far_left") && direction == "right")
+	if(m_dragon flag::get("dragon_far_left") && direction == "right")
 	{
 		var_3b282900 = level.var_c7a1f434["left_2_right"];
 	}
-	else if(var_e88629ec flag::get("dragon_far_right") && direction == "left")
+	else if(m_dragon flag::get("dragon_far_right") && direction == "left")
 	{
 		var_3b282900 = level.var_c7a1f434["right_2_left"];
 	}
@@ -450,8 +450,8 @@ function function_4bdc99a(m_body, var_e88629ec, localClientNum, direction)
 	var_3c6f5c75 = s_scenedef.objects[0].mainanim;
 	m_body Unlink();
 	m_body show();
-	m_body thread function_939ae9de(var_e88629ec, localClientNum, direction, var_3c6f5c75);
-	var_e88629ec scene::Play(var_3b282900, var_e88629ec);
+	m_body thread function_939ae9de(m_dragon, localClientNum, direction, var_3c6f5c75);
+	m_dragon scene::Play(var_3b282900, m_dragon);
 }
 
 /*
@@ -467,8 +467,8 @@ function function_8cce2397(a_ents)
 {
 	self notify("hash_7291a140");
 	self endon("hash_7291a140");
-	self endon("hash_4b8a9b1");
-	self endon("hash_4846b79f");
+	self endon("dragon_eating");
+	self endon("dragon_departing");
 	while(1)
 	{
 		self waittillmatch("_anim_notify_");
@@ -495,8 +495,8 @@ function function_def5820e(a_ents)
 {
 	self notify("hash_7291a140");
 	self endon("hash_7291a140");
-	self endon("hash_4b8a9b1");
-	self endon("hash_4846b79f");
+	self endon("dragon_eating");
+	self endon("dragon_departing");
 	while(1)
 	{
 		self waittillmatch("_anim_notify_");
@@ -519,46 +519,46 @@ function function_def5820e(a_ents)
 	Parameters: 4
 	Flags: None
 */
-function function_939ae9de(var_e88629ec, localClientNum, direction, var_3c6f5c75)
+function function_939ae9de(m_dragon, localClientNum, direction, var_3c6f5c75)
 {
-	if(!isdefined(self.var_bbb1ef87))
+	if(!isdefined(self.m_soul_fx_player))
 	{
-		self.var_bbb1ef87 = spawn(localClientNum, self GetTagOrigin("J_SpineLower"), "script_model");
-		self.var_bbb1ef87 SetModel("tag_origin");
+		self.m_soul_fx_player = spawn(localClientNum, self GetTagOrigin("J_SpineLower"), "script_model");
+		self.m_soul_fx_player SetModel("tag_origin");
 	}
 	self ClearAnim(%root, 0.2);
 	self SetAnimRestart("ai_zm_dlc1_dragonhead_zombie_rise");
-	var_1d199979 = var_e88629ec.origin - self.origin;
-	var_6ea7737a = VectorScale(var_1d199979, 0.2);
-	self.var_bbb1ef87.angles = VectorToAngles(var_1d199979);
-	self.var_bbb1ef87 LinkTo(self);
+	vec_dir = m_dragon.origin - self.origin;
+	vec_dir_scaled = VectorScale(vec_dir, 0.2);
+	self.m_soul_fx_player.angles = VectorToAngles(vec_dir);
+	self.m_soul_fx_player LinkTo(self);
 	wait(0.3);
 	if(!isdefined(self))
 	{
 		return;
 	}
 	animlength = getanimlength(var_3c6f5c75);
-	animlength = animlength - animlength * var_e88629ec GetAnimTime(var_3c6f5c75);
+	animlength = animlength - animlength * m_dragon GetAnimTime(var_3c6f5c75);
 	animlength = max(animlength, 0.05);
-	self moveto(self.origin + var_6ea7737a, animlength * 0.75, animlength * 0.75, 0);
-	var_31e7de73 = var_e88629ec GetTagAngles("tag_attach");
+	self moveto(self.origin + vec_dir_scaled, animlength * 0.75, animlength * 0.75, 0);
+	var_31e7de73 = m_dragon GetTagAngles("tag_attach");
 	self RotateTo(var_31e7de73, animlength * 0.75);
 	self waittill("movedone");
 	animlength = getanimlength(var_3c6f5c75);
-	animlength = animlength - animlength * var_e88629ec GetAnimTime(var_3c6f5c75);
+	animlength = animlength - animlength * m_dragon GetAnimTime(var_3c6f5c75);
 	animlength = max(animlength, 0.05);
-	var_6b61dff7 = var_e88629ec GetTagOrigin("tag_attach");
+	var_6b61dff7 = m_dragon GetTagOrigin("tag_attach");
 	self moveto(var_6b61dff7, animlength, animlength, 0);
 	self waittill("movedone");
 	if(!isdefined(self))
 	{
 		return;
 	}
-	if(isdefined(self.var_bbb1ef87))
+	if(isdefined(self.m_soul_fx_player))
 	{
-		self.var_bbb1ef87 Unlink();
-		self.var_bbb1ef87 delete();
-		self.var_bbb1ef87 = undefined;
+		self.m_soul_fx_player Unlink();
+		self.m_soul_fx_player delete();
+		self.m_soul_fx_player = undefined;
 	}
 }
 
@@ -573,35 +573,35 @@ function function_939ae9de(var_e88629ec, localClientNum, direction, var_3c6f5c75
 */
 function function_4ae89880(body, localClientNum, direction)
 {
-	self endon("hash_8c17cec");
-	self endon("hash_4846b79f");
-	self notify("hash_4b8a9b1");
+	self endon("dragon_idling");
+	self endon("dragon_departing");
+	self notify("dragon_eating");
 	self.var_d90397ef = 0;
 	s_closest = Array::get_all_closest(self.origin, level.var_f302359b);
 	fieldName = s_closest[0].script_parameters;
-	m_body = level.var_3cc6503b[localClientNum][fieldName];
-	var_e88629ec = level.var_792780c0[localClientNum][fieldName];
-	level function_4bdc99a(m_body, var_e88629ec, localClientNum, direction);
-	if(!isdefined(var_e88629ec) || !isdefined(m_body))
+	m_body = level.dragon_bodies[localClientNum][fieldName];
+	m_dragon = level.dragon_heads[localClientNum][fieldName];
+	level function_4bdc99a(m_body, m_dragon, localClientNum, direction);
+	if(!isdefined(m_dragon) || !isdefined(m_body))
 	{
 		return;
 	}
 	m_body.animName = "zombie";
-	var_e88629ec.animName = "dragon";
-	self thread function_badc23de(localClientNum);
-	self scene::Play(level.var_977975d2[direction], Array(m_body, var_e88629ec));
-	if(!isdefined(var_e88629ec) || !isdefined(m_body))
+	m_dragon.animName = "dragon";
+	self thread play_blood_fx_on_bite(localClientNum);
+	self scene::Play(level.var_977975d2[direction], Array(m_body, m_dragon));
+	if(!isdefined(m_dragon) || !isdefined(m_body))
 	{
 		return;
 	}
 	m_body.animName = "";
-	var_e88629ec.animName = "";
-	playsound(0, "zmb_weap_wall", var_e88629ec.origin);
-	var_e88629ec thread function_979d2797(localClientNum);
+	m_dragon.animName = "";
+	playsound(0, "zmb_weap_wall", m_dragon.origin);
+	m_dragon thread dragonhead_idle(localClientNum);
 }
 
 /*
-	Name: function_badc23de
+	Name: play_blood_fx_on_bite
 	Namespace: namespace_2a78f3c
 	Checksum: 0xFEC7B7A0
 	Offset: 0x29D0
@@ -609,7 +609,7 @@ function function_4ae89880(body, localClientNum, direction)
 	Parameters: 1
 	Flags: None
 */
-function function_badc23de(localClientNum)
+function play_blood_fx_on_bite(localClientNum)
 {
 	while(1)
 	{
@@ -634,13 +634,13 @@ function function_badc23de(localClientNum)
 */
 function function_aba7532b(localClientNum, body, mini)
 {
-	if(isdefined(self.var_7d382bfa) && self.var_7d382bfa)
+	if(isdefined(self.b_depart) && self.b_depart)
 	{
-		self notify("hash_4846b79f");
-		self.var_7d382bfa = undefined;
+		self notify("dragon_departing");
+		self.b_depart = undefined;
 		var_1656bbd4 = level.var_a79e1598[self.targetname];
 		self.var_d90397ef = 0;
-		function_71c4474e(level.var_a79e1598[self.targetname]);
+		forcestreambundle(level.var_a79e1598[self.targetname]);
 		self SetModel("c_zom_dragonhead");
 		self thread function_2ea674b8(localClientNum);
 		self scene::Play(level.var_160f7e80, self);
@@ -699,7 +699,7 @@ function function_63f39fc0(localClientNum)
 }
 
 /*
-	Name: function_46c9cb0
+	Name: assemble_fake_body_head_arrays
 	Namespace: namespace_2a78f3c
 	Checksum: 0x8EC37435
 	Offset: 0x2D38
@@ -707,7 +707,7 @@ function function_63f39fc0(localClientNum)
 	Parameters: 0
 	Flags: None
 */
-function function_46c9cb0()
+function assemble_fake_body_head_arrays()
 {
 	level.var_9c6cddc9[1] = "c_zom_der_zombie_head1";
 	level.var_9c6cddc9[2] = "c_zom_der_zombie_head1";
@@ -749,10 +749,10 @@ function function_4e75b7c1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		exploder::stop_exploder("lgt_bow_family");
 	}
-	var_14ea0734 = struct::get("base_bow_pickup_struct", "targetname");
-	if(isdefined(var_14ea0734))
+	s_bow_pickup = struct::get("base_bow_pickup_struct", "targetname");
+	if(isdefined(s_bow_pickup))
 	{
-		playFX(localClientNum, level._effect["bow_spawn_fx"], var_14ea0734.origin);
+		playFX(localClientNum, level._effect["bow_spawn_fx"], s_bow_pickup.origin);
 	}
 }
 

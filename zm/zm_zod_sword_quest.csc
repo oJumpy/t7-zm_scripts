@@ -42,8 +42,8 @@ function __init__()
 	level._effect["sword_quest_ground_glow_white"] = "zombie/fx_sword_quest_egg_ground_whitepedestal_zod_zmb";
 	level._effect["sword_quest_ground_fire_white"] = "zombie/fx_sword_quest_egg_ground_whitefire_zod_zmb";
 	level._effect["sword_quest_sword_glow"] = "zombie/fx_sword_quest_glow_zod_zmb";
-	clientfield::register("scriptmover", "zod_egg_glow", 1, 1, "int", &function_a70287ee, 0, 0);
-	clientfield::register("scriptmover", "zod_egg_soul", 1, 1, "int", &function_d4d5b3f0, 0, 0);
+	clientfield::register("scriptmover", "zod_egg_glow", 1, 1, "int", &sword_egg_glow, 0, 0);
+	clientfield::register("scriptmover", "zod_egg_soul", 1, 1, "int", &blood_soul_fx, 0, 0);
 	clientfield::register("scriptmover", "sword_statue_glow", 1, 1, "int", &function_ba060b19, 0, 0);
 	n_bits = GetMinBitCountForNum(5);
 	clientfield::register("toplayer", "magic_circle_state_0", 1, n_bits, "int", &function_528aad40, 0, 1);
@@ -80,62 +80,62 @@ function __init__()
 	Parameters: 3
 	Flags: None
 */
-function function_3803b991(localClientNum, newVal, var_67a8b57)
+function function_3803b991(localClientNum, newVal, n_current_ritual)
 {
 	self notify("magic_circle_state_internal" + localClientNum);
 	self endon("magic_circle_state_internal" + localClientNum);
-	var_4126c532 = function_5dab7fb(localClientNum, var_67a8b57);
+	s_ritual = function_5dab7fb(localClientNum, n_current_ritual);
 	var_768e52e3 = undefined;
 	var_5306b772 = struct::get_array("sword_quest_magic_circle_place", "targetname");
-	foreach(var_87367d4f in var_5306b772)
+	foreach(s_circle in var_5306b772)
 	{
-		if(var_87367d4f.script_int === var_67a8b57)
+		if(s_circle.script_int === n_current_ritual)
 		{
-			var_768e52e3 = var_87367d4f;
+			var_768e52e3 = s_circle;
 		}
 	}
-	if(!isdefined(var_4126c532.var_e2a5419e))
+	if(!isdefined(s_ritual.var_e2a5419e))
 	{
-		var_4126c532.var_e2a5419e = [];
+		s_ritual.var_e2a5419e = [];
 	}
-	if(!isdefined(var_4126c532.var_bbf9b058))
+	if(!isdefined(s_ritual.var_bbf9b058))
 	{
-		var_4126c532.var_bbf9b058 = [];
+		s_ritual.var_bbf9b058 = [];
 	}
-	if(isdefined(var_4126c532.var_e2a5419e[localClientNum]))
+	if(isdefined(s_ritual.var_e2a5419e[localClientNum]))
 	{
-		stopfx(localClientNum, var_4126c532.var_e2a5419e[localClientNum]);
-		var_4126c532.var_e2a5419e[localClientNum] = undefined;
+		stopfx(localClientNum, s_ritual.var_e2a5419e[localClientNum]);
+		s_ritual.var_e2a5419e[localClientNum] = undefined;
 	}
-	if(isdefined(var_4126c532.var_bbf9b058[localClientNum]))
+	if(isdefined(s_ritual.var_bbf9b058[localClientNum]))
 	{
-		stopfx(localClientNum, var_4126c532.var_bbf9b058[localClientNum]);
-		var_4126c532.var_bbf9b058[localClientNum] = undefined;
+		stopfx(localClientNum, s_ritual.var_bbf9b058[localClientNum]);
+		s_ritual.var_bbf9b058[localClientNum] = undefined;
 	}
 	switch(newVal)
 	{
 		case 0:
 		{
-			function_cf043736(var_4126c532, 0);
+			function_cf043736(s_ritual, 0);
 			break;
 		}
 		case 1:
 		{
-			var_4126c532.var_e2a5419e[localClientNum] = playFX(localClientNum, level._effect["sword_quest_ground_tell"], var_768e52e3.origin);
-			function_cf043736(var_4126c532, 0);
+			s_ritual.var_e2a5419e[localClientNum] = playFX(localClientNum, level._effect["sword_quest_ground_tell"], var_768e52e3.origin);
+			function_cf043736(s_ritual, 0);
 			break;
 		}
 		case 2:
 		{
-			var_4126c532.var_e2a5419e[localClientNum] = playFX(localClientNum, level._effect["sword_quest_ground_glow"], var_768e52e3.origin);
-			function_cf043736(var_4126c532, 1);
+			s_ritual.var_e2a5419e[localClientNum] = playFX(localClientNum, level._effect["sword_quest_ground_glow"], var_768e52e3.origin);
+			function_cf043736(s_ritual, 1);
 			break;
 		}
 		case 3:
 		{
-			var_4126c532.var_e2a5419e[localClientNum] = playFX(localClientNum, level._effect["sword_quest_ground_glow_white"], var_768e52e3.origin);
-			var_4126c532.var_bbf9b058[localClientNum] = playFX(localClientNum, level._effect["sword_quest_ground_fire_white"], var_768e52e3.origin);
-			function_cf043736(var_4126c532, 1);
+			s_ritual.var_e2a5419e[localClientNum] = playFX(localClientNum, level._effect["sword_quest_ground_glow_white"], var_768e52e3.origin);
+			s_ritual.var_bbf9b058[localClientNum] = playFX(localClientNum, level._effect["sword_quest_ground_fire_white"], var_768e52e3.origin);
+			function_cf043736(s_ritual, 1);
 			break;
 		}
 	}
@@ -150,17 +150,17 @@ function function_3803b991(localClientNum, newVal, var_67a8b57)
 	Parameters: 2
 	Flags: None
 */
-function function_cf043736(var_4126c532, var_cbdba0c5)
+function function_cf043736(s_ritual, b_glowing)
 {
-	if(var_cbdba0c5)
+	if(b_glowing)
 	{
-		var_4126c532.var_55e0bdcf show();
-		var_4126c532.var_6a0d8b03 Hide();
+		s_ritual.var_55e0bdcf show();
+		s_ritual.var_6a0d8b03 Hide();
 	}
 	else
 	{
-		var_4126c532.var_55e0bdcf Hide();
-		var_4126c532.var_6a0d8b03 show();
+		s_ritual.var_55e0bdcf Hide();
+		s_ritual.var_6a0d8b03 show();
 	}
 }
 
@@ -177,78 +177,78 @@ function function_4d020922(localClientNum, newVal, n_character_index)
 {
 	level notify("hash_4d020922");
 	level endon("hash_4d020922");
-	var_4126c532 = function_6890ca81(localClientNum, n_character_index);
-	var_4126c532.var_d88e6f5f util::waittill_dobj(localClientNum);
-	if(!var_4126c532.var_d88e6f5f HasAnimTree())
+	s_ritual = function_6890ca81(localClientNum, n_character_index);
+	s_ritual.e_keeper util::waittill_dobj(localClientNum);
+	if(!s_ritual.e_keeper HasAnimTree())
 	{
-		var_4126c532.var_d88e6f5f useanimtree(-1);
+		s_ritual.e_keeper useanimtree(-1);
 	}
-	var_4126c532.var_d88e6f5f duplicate_render::set_dr_flag("zod_ghost", 1);
-	var_4126c532.var_d88e6f5f duplicate_render::update_dr_filters(localClientNum);
-	if(!var_4126c532.var_42bd22b8 HasAnimTree())
+	s_ritual.e_keeper duplicate_render::set_dr_flag("zod_ghost", 1);
+	s_ritual.e_keeper duplicate_render::update_dr_filters(localClientNum);
+	if(!s_ritual.e_egg HasAnimTree())
 	{
-		var_4126c532.var_42bd22b8 useanimtree(-1);
+		s_ritual.e_egg useanimtree(-1);
 	}
 	switch(newVal)
 	{
 		case 0:
 		{
-			var_4126c532.var_d88e6f5f Hide();
-			var_4126c532.var_fdd22a10 Hide();
-			var_4126c532.var_42bd22b8 Hide();
-			if(isdefined(var_4126c532.var_d88e6f5f.var_5ad6cc0c))
+			s_ritual.e_keeper Hide();
+			s_ritual.e_sword Hide();
+			s_ritual.e_egg Hide();
+			if(isdefined(s_ritual.e_keeper.sndloop))
 			{
-				var_4126c532.var_d88e6f5f StopLoopSound(var_4126c532.var_d88e6f5f.var_5ad6cc0c, 1);
+				s_ritual.e_keeper StopLoopSound(s_ritual.e_keeper.sndloop, 1);
 			}
 			break;
 		}
 		case 1:
 		{
-			v_origin = var_4126c532.var_d88e6f5f GetTagOrigin("tag_weapon_right");
-			v_angles = var_4126c532.var_d88e6f5f GetTagAngles("tag_weapon_right");
-			var_4126c532.var_42bd22b8 Unlink();
-			var_4126c532.var_42bd22b8.origin = v_origin;
-			var_4126c532.var_42bd22b8.angles = v_angles;
-			var_4126c532.var_42bd22b8 LinkTo(var_4126c532.var_d88e6f5f, "tag_weapon_right");
-			var_4126c532.var_d88e6f5f show();
-			var_4126c532.var_fdd22a10 Hide();
-			var_4126c532.var_42bd22b8 show();
-			level thread function_bd205438(localClientNum, var_4126c532);
-			var_4126c532.var_d88e6f5f playsound(0, "zmb_ee_keeper_ghost_appear");
-			if(!isdefined(var_4126c532.var_d88e6f5f.var_5ad6cc0c))
+			v_origin = s_ritual.e_keeper GetTagOrigin("tag_weapon_right");
+			v_angles = s_ritual.e_keeper GetTagAngles("tag_weapon_right");
+			s_ritual.e_egg Unlink();
+			s_ritual.e_egg.origin = v_origin;
+			s_ritual.e_egg.angles = v_angles;
+			s_ritual.e_egg LinkTo(s_ritual.e_keeper, "tag_weapon_right");
+			s_ritual.e_keeper show();
+			s_ritual.e_sword Hide();
+			s_ritual.e_egg show();
+			level thread function_bd205438(localClientNum, s_ritual);
+			s_ritual.e_keeper playsound(0, "zmb_ee_keeper_ghost_appear");
+			if(!isdefined(s_ritual.e_keeper.sndloop))
 			{
-				var_4126c532.var_d88e6f5f.var_5ad6cc0c = var_4126c532.var_d88e6f5f PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
+				s_ritual.e_keeper.sndloop = s_ritual.e_keeper PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
 			}
-			var_4126c532.var_d88e6f5f animation::Play("ai_zombie_zod_keeper_give_egg_intro", undefined, undefined, 1);
-			var_4126c532.var_d88e6f5f thread function_274ba0e6("ai_zombie_zod_keeper_give_egg_loop");
-			var_4126c532.var_42bd22b8 thread play_fx(localClientNum, "egg_glow");
+			s_ritual.e_keeper animation::Play("ai_zombie_zod_keeper_give_egg_intro", undefined, undefined, 1);
+			s_ritual.e_keeper thread function_274ba0e6("ai_zombie_zod_keeper_give_egg_loop");
+			s_ritual.e_egg thread play_fx(localClientNum, "egg_glow");
 			break;
 		}
 		case 2:
 		{
-			var_4126c532.var_d88e6f5f show();
-			var_4126c532.var_fdd22a10 Hide();
-			var_4126c532.var_42bd22b8 Hide();
-			if(!isdefined(var_4126c532.var_d88e6f5f.var_5ad6cc0c))
+			s_ritual.e_keeper show();
+			s_ritual.e_sword Hide();
+			s_ritual.e_egg Hide();
+			if(!isdefined(s_ritual.e_keeper.sndloop))
 			{
-				var_4126c532.var_d88e6f5f.var_5ad6cc0c = var_4126c532.var_d88e6f5f PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
+				s_ritual.e_keeper.sndloop = s_ritual.e_keeper PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
 			}
-			var_4126c532.var_d88e6f5f notify("hash_274ba0e6");
-			var_4126c532.var_d88e6f5f ClearAnim("ai_zombie_zod_keeper_give_egg_intro", 0);
-			var_4126c532.var_d88e6f5f ClearAnim("ai_zombie_zod_keeper_give_egg_loop", 0);
-			var_4126c532.var_d88e6f5f animation::Play("ai_zombie_zod_keeper_give_egg_outro", undefined, undefined, 1);
-			var_4126c532.var_42bd22b8 notify("remove_" + "egg_glow");
+			s_ritual.e_keeper notify("hash_274ba0e6");
+			s_ritual.e_keeper ClearAnim("ai_zombie_zod_keeper_give_egg_intro", 0);
+			s_ritual.e_keeper ClearAnim("ai_zombie_zod_keeper_give_egg_loop", 0);
+			s_ritual.e_keeper animation::Play("ai_zombie_zod_keeper_give_egg_outro", undefined, undefined, 1);
+			s_ritual.e_egg notify("remove_" + "egg_glow");
 			break;
 		}
 		case 3:
 		{
-			var_4126c532.var_d88e6f5f Hide();
-			var_4126c532.var_fdd22a10 Hide();
-			var_4126c532.var_42bd22b8 Hide();
-			var_4126c532.var_42bd22b8 notify("remove_" + "egg_glow");
-			if(isdefined(var_4126c532.var_d88e6f5f.var_5ad6cc0c))
+			s_ritual.e_keeper Hide();
+			s_ritual.e_sword Hide();
+			s_ritual.e_egg Hide();
+			s_ritual.e_egg notify("remove_" + "egg_glow");
+			if(isdefined(s_ritual.e_keeper.sndloop))
 			{
-				var_4126c532.var_d88e6f5f StopLoopSound(var_4126c532.var_d88e6f5f.var_5ad6cc0c, 1);
+				s_ritual.e_keeper StopLoopSound(s_ritual.e_keeper.sndloop, 1);
 			}
 			break;
 		}
@@ -256,83 +256,83 @@ function function_4d020922(localClientNum, newVal, n_character_index)
 		{
 			var_4d1c542 = level clientfield::get("keeper_egg_location_" + n_character_index);
 			v_origin = function_85b951d8(var_4d1c542);
-			var_4126c532.var_42bd22b8 Unlink();
-			var_4126c532.var_42bd22b8.origin = v_origin;
-			var_4126c532.var_d88e6f5f Hide();
-			var_4126c532.var_fdd22a10 Hide();
-			var_4126c532.var_42bd22b8 show();
-			if(isdefined(var_4126c532.var_d88e6f5f.var_5ad6cc0c))
+			s_ritual.e_egg Unlink();
+			s_ritual.e_egg.origin = v_origin;
+			s_ritual.e_keeper Hide();
+			s_ritual.e_sword Hide();
+			s_ritual.e_egg show();
+			if(isdefined(s_ritual.e_keeper.sndloop))
 			{
-				var_4126c532.var_d88e6f5f StopLoopSound(var_4126c532.var_d88e6f5f.var_5ad6cc0c, 1);
+				s_ritual.e_keeper StopLoopSound(s_ritual.e_keeper.sndloop, 1);
 			}
-			var_4126c532.var_42bd22b8 thread play_fx(localClientNum, "egg_glow", "egg_keeper_jnt");
-			var_4126c532.var_42bd22b8 thread function_5b78bb9e(v_origin);
+			s_ritual.e_egg thread play_fx(localClientNum, "egg_glow", "egg_keeper_jnt");
+			s_ritual.e_egg thread function_5b78bb9e(v_origin);
 			break;
 		}
 		case 5:
 		{
-			var_4126c532.var_d88e6f5f show();
-			var_4126c532.var_fdd22a10 Hide();
-			var_4126c532.var_42bd22b8 Hide();
-			if(!isdefined(var_4126c532.var_d88e6f5f.var_5ad6cc0c))
+			s_ritual.e_keeper show();
+			s_ritual.e_sword Hide();
+			s_ritual.e_egg Hide();
+			if(!isdefined(s_ritual.e_keeper.sndloop))
 			{
-				var_4126c532.var_d88e6f5f.var_5ad6cc0c = var_4126c532.var_d88e6f5f PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
+				s_ritual.e_keeper.sndloop = s_ritual.e_keeper PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
 			}
-			var_4126c532.var_42bd22b8 notify("remove_" + "egg_glow");
+			s_ritual.e_egg notify("remove_" + "egg_glow");
 			break;
 		}
 		case 6:
 		{
-			var_4126c532.var_d88e6f5f show();
-			var_4126c532.var_fdd22a10 Hide();
-			var_4126c532.var_42bd22b8 Hide();
-			if(!isdefined(var_4126c532.var_d88e6f5f.var_5ad6cc0c))
+			s_ritual.e_keeper show();
+			s_ritual.e_sword Hide();
+			s_ritual.e_egg Hide();
+			if(!isdefined(s_ritual.e_keeper.sndloop))
 			{
-				var_4126c532.var_d88e6f5f.var_5ad6cc0c = var_4126c532.var_d88e6f5f PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
+				s_ritual.e_keeper.sndloop = s_ritual.e_keeper PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
 			}
-			var_4126c532.var_d88e6f5f animation::Play("ai_zombie_zod_keeper_give_me_sword_intro", undefined, undefined, 1);
-			var_4126c532.var_d88e6f5f thread function_274ba0e6("ai_zombie_zod_keeper_give_me_sword_loop");
+			s_ritual.e_keeper animation::Play("ai_zombie_zod_keeper_give_me_sword_intro", undefined, undefined, 1);
+			s_ritual.e_keeper thread function_274ba0e6("ai_zombie_zod_keeper_give_me_sword_loop");
 			break;
 		}
 		case 7:
 		{
-			v_origin = var_4126c532.var_d88e6f5f GetTagOrigin("tag_weapon_right");
-			v_angles = var_4126c532.var_d88e6f5f GetTagAngles("tag_weapon_right");
-			var_4126c532.var_fdd22a10 Unlink();
-			var_4126c532.var_fdd22a10.origin = v_origin;
-			var_4126c532.var_fdd22a10.angles = v_angles;
-			var_4126c532.var_fdd22a10 LinkTo(var_4126c532.var_d88e6f5f, "tag_weapon_right");
-			var_4126c532.var_d88e6f5f show();
-			var_4126c532.var_fdd22a10 show();
-			var_4126c532.var_42bd22b8 Hide();
-			if(!isdefined(var_4126c532.var_d88e6f5f.var_5ad6cc0c))
+			v_origin = s_ritual.e_keeper GetTagOrigin("tag_weapon_right");
+			v_angles = s_ritual.e_keeper GetTagAngles("tag_weapon_right");
+			s_ritual.e_sword Unlink();
+			s_ritual.e_sword.origin = v_origin;
+			s_ritual.e_sword.angles = v_angles;
+			s_ritual.e_sword LinkTo(s_ritual.e_keeper, "tag_weapon_right");
+			s_ritual.e_keeper show();
+			s_ritual.e_sword show();
+			s_ritual.e_egg Hide();
+			if(!isdefined(s_ritual.e_keeper.sndloop))
 			{
-				var_4126c532.var_d88e6f5f.var_5ad6cc0c = var_4126c532.var_d88e6f5f PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
+				s_ritual.e_keeper.sndloop = s_ritual.e_keeper PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
 			}
-			var_4126c532.var_d88e6f5f notify("hash_274ba0e6");
-			var_4126c532.var_fdd22a10 play_fx(localClientNum, "sword_quest_sword_glow", "tag_knife_fx");
-			var_4126c532.var_d88e6f5f animation::Play("ai_zombie_zod_keeper_upgrade_sword", undefined, undefined, 1);
-			var_4126c532.var_d88e6f5f thread function_274ba0e6("ai_zombie_zod_keeper_give_me_sword_loop");
+			s_ritual.e_keeper notify("hash_274ba0e6");
+			s_ritual.e_sword play_fx(localClientNum, "sword_quest_sword_glow", "tag_knife_fx");
+			s_ritual.e_keeper animation::Play("ai_zombie_zod_keeper_upgrade_sword", undefined, undefined, 1);
+			s_ritual.e_keeper thread function_274ba0e6("ai_zombie_zod_keeper_give_me_sword_loop");
 			break;
 		}
 		case 8:
 		{
-			var_4126c532.var_fdd22a10 notify("remove_" + "sword_quest_sword_glow");
+			s_ritual.e_sword notify("remove_" + "sword_quest_sword_glow");
 			wait(0.016);
-			var_4126c532.var_d88e6f5f show();
-			var_4126c532.var_fdd22a10 Hide();
-			var_4126c532.var_42bd22b8 Hide();
-			if(!isdefined(var_4126c532.var_d88e6f5f.var_5ad6cc0c))
+			s_ritual.e_keeper show();
+			s_ritual.e_sword Hide();
+			s_ritual.e_egg Hide();
+			if(!isdefined(s_ritual.e_keeper.sndloop))
 			{
-				var_4126c532.var_d88e6f5f.var_5ad6cc0c = var_4126c532.var_d88e6f5f PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
+				s_ritual.e_keeper.sndloop = s_ritual.e_keeper PlayLoopSound("zmb_ee_keeper_ghost_appear_lp", 2);
 			}
-			var_4126c532.var_d88e6f5f notify("hash_274ba0e6");
-			var_4126c532.var_d88e6f5f animation::Play("ai_zombie_zod_keeper_give_me_sword_outro", undefined, undefined, 1);
-			var_4126c532.var_d88e6f5f thread function_274ba0e6("ai_zombie_zod_keeper_idle");
+			s_ritual.e_keeper notify("hash_274ba0e6");
+			s_ritual.e_keeper animation::Play("ai_zombie_zod_keeper_give_me_sword_outro", undefined, undefined, 1);
+			s_ritual.e_keeper thread function_274ba0e6("ai_zombie_zod_keeper_idle");
 			wait(2);
-			var_4126c532.var_5ab40ec3 = PlayFXOnTag(localClientNum, level._effect["keeper_spawn"], var_4126c532.var_d88e6f5f, "tag_origin");
+			s_ritual.var_5ab40ec3 = PlayFXOnTag(localClientNum, level._effect["keeper_spawn"], s_ritual.e_keeper, "tag_origin");
 			wait(0.5);
-			var_4126c532.var_d88e6f5f Hide();
+			s_ritual.e_keeper Hide();
 		}
 	}
 }
@@ -346,11 +346,11 @@ function function_4d020922(localClientNum, newVal, n_character_index)
 	Parameters: 2
 	Flags: None
 */
-function function_bd205438(localClientNum, var_4126c532)
+function function_bd205438(localClientNum, s_ritual)
 {
-	var_4126c532.var_5ab40ec3 = PlayFXOnTag(localClientNum, level._effect["keeper_spawn"], var_4126c532.var_d88e6f5f, "tag_origin");
+	s_ritual.var_5ab40ec3 = PlayFXOnTag(localClientNum, level._effect["keeper_spawn"], s_ritual.e_keeper, "tag_origin");
 	wait(1);
-	stopfx(localClientNum, var_4126c532.var_5ab40ec3);
+	stopfx(localClientNum, s_ritual.var_5ab40ec3);
 }
 
 /*
@@ -510,7 +510,7 @@ function function_4fd5e276(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_5dab7fb(localClientNum, var_67a8b57)
+function function_5dab7fb(localClientNum, n_current_ritual)
 {
 	if(!isdefined(level.var_15954023))
 	{
@@ -520,12 +520,12 @@ function function_5dab7fb(localClientNum, var_67a8b57)
 	{
 		level.var_15954023[localClientNum] = [];
 	}
-	if(!isdefined(level.var_15954023[localClientNum][var_67a8b57]))
+	if(!isdefined(level.var_15954023[localClientNum][n_current_ritual]))
 	{
-		level.var_15954023[localClientNum][var_67a8b57] = spawnstruct();
+		level.var_15954023[localClientNum][n_current_ritual] = spawnstruct();
 	}
-	var_4126c532 = level.var_15954023[localClientNum][var_67a8b57];
-	return var_4126c532;
+	s_ritual = level.var_15954023[localClientNum][n_current_ritual];
+	return s_ritual;
 }
 
 /*
@@ -540,54 +540,54 @@ function function_5dab7fb(localClientNum, var_67a8b57)
 function function_6890ca81(localClientNum, n_character_index)
 {
 	s_loc = struct::get("keeper_spirit_" + n_character_index, "targetname");
-	var_4126c532 = function_5dab7fb(localClientNum, n_character_index);
-	if(!isdefined(var_4126c532.var_d88e6f5f))
+	s_ritual = function_5dab7fb(localClientNum, n_character_index);
+	if(!isdefined(s_ritual.e_keeper))
 	{
-		var_4126c532.var_d88e6f5f = spawn(localClientNum, s_loc.origin, "script_model");
-		var_4126c532.var_d88e6f5f.angles = s_loc.angles;
-		var_4126c532.var_d88e6f5f SetModel("c_zom_zod_keeper_fb");
+		s_ritual.e_keeper = spawn(localClientNum, s_loc.origin, "script_model");
+		s_ritual.e_keeper.angles = s_loc.angles;
+		s_ritual.e_keeper SetModel("c_zom_zod_keeper_fb");
 	}
-	if(!isdefined(var_4126c532.var_fdd22a10))
+	if(!isdefined(s_ritual.e_sword))
 	{
-		var_4126c532.var_fdd22a10 = spawn(localClientNum, s_loc.origin, "script_model");
-		var_4126c532.var_fdd22a10 SetModel(level.var_e91b9e85[n_character_index]);
+		s_ritual.e_sword = spawn(localClientNum, s_loc.origin, "script_model");
+		s_ritual.e_sword SetModel(level.var_e91b9e85[n_character_index]);
 	}
-	if(!isdefined(var_4126c532.var_42bd22b8))
+	if(!isdefined(s_ritual.e_egg))
 	{
-		var_4126c532.var_42bd22b8 = spawn(localClientNum, s_loc.origin, "script_model");
-		var_4126c532.var_42bd22b8 SetModel("zm_zod_sword_egg_keeper_s1");
+		s_ritual.e_egg = spawn(localClientNum, s_loc.origin, "script_model");
+		s_ritual.e_egg SetModel("zm_zod_sword_egg_keeper_s1");
 	}
-	if(!isdefined(var_4126c532.var_55e0bdcf))
+	if(!isdefined(s_ritual.var_55e0bdcf))
 	{
-		var_e715c2a4 = GetEntArray(localClientNum, "sword_quest_magic_circle_on", "targetname");
+		a_circles = GetEntArray(localClientNum, "sword_quest_magic_circle_on", "targetname");
 		var_55e0bdcf = undefined;
-		foreach(var_f9b36141 in var_e715c2a4)
+		foreach(e_circle in a_circles)
 		{
-			if(var_f9b36141.script_int === n_character_index)
+			if(e_circle.script_int === n_character_index)
 			{
-				var_55e0bdcf = var_f9b36141;
+				var_55e0bdcf = e_circle;
 			}
 		}
-		var_4126c532.var_55e0bdcf = var_55e0bdcf;
+		s_ritual.var_55e0bdcf = var_55e0bdcf;
 	}
-	if(!isdefined(var_4126c532.var_6a0d8b03))
+	if(!isdefined(s_ritual.var_6a0d8b03))
 	{
-		var_e715c2a4 = GetEntArray(localClientNum, "sword_quest_magic_circle_off", "targetname");
+		a_circles = GetEntArray(localClientNum, "sword_quest_magic_circle_off", "targetname");
 		var_6a0d8b03 = undefined;
-		foreach(var_f9b36141 in var_e715c2a4)
+		foreach(e_circle in a_circles)
 		{
-			if(var_f9b36141.script_int === n_character_index)
+			if(e_circle.script_int === n_character_index)
 			{
-				var_6a0d8b03 = var_f9b36141;
+				var_6a0d8b03 = e_circle;
 			}
 		}
-		var_4126c532.var_6a0d8b03 = var_6a0d8b03;
+		s_ritual.var_6a0d8b03 = var_6a0d8b03;
 	}
-	return var_4126c532;
+	return s_ritual;
 }
 
 /*
-	Name: function_12955cc8
+	Name: get_name_from_ritual_clientfield_value
 	Namespace: namespace_aa27450a
 	Checksum: 0x719A89EB
 	Offset: 0x2C28
@@ -595,9 +595,9 @@ function function_6890ca81(localClientNum, n_character_index)
 	Parameters: 1
 	Flags: None
 */
-function function_12955cc8(var_67a8b57)
+function get_name_from_ritual_clientfield_value(n_current_ritual)
 {
-	switch(var_67a8b57)
+	switch(n_current_ritual)
 	{
 		case 1:
 		{
@@ -629,12 +629,12 @@ function function_12955cc8(var_67a8b57)
 */
 function function_85b951d8(var_181b74a5)
 {
-	var_79d1dcf6 = struct::get_array("sword_quest_magic_circle_place", "targetname");
-	foreach(var_87367d4f in var_79d1dcf6)
+	a_s_circles = struct::get_array("sword_quest_magic_circle_place", "targetname");
+	foreach(s_circle in a_s_circles)
 	{
-		if(var_87367d4f.script_int === var_181b74a5)
+		if(s_circle.script_int === var_181b74a5)
 		{
-			return var_87367d4f.origin;
+			return s_circle.origin;
 		}
 	}
 }
@@ -650,12 +650,12 @@ function function_85b951d8(var_181b74a5)
 */
 function function_96ae1a10(var_181b74a5, n_character_index)
 {
-	var_79d1dcf6 = struct::get_array("sword_quest_magic_circle_player_" + n_character_index, "targetname");
-	foreach(var_87367d4f in var_79d1dcf6)
+	a_s_circles = struct::get_array("sword_quest_magic_circle_player_" + n_character_index, "targetname");
+	foreach(s_circle in a_s_circles)
 	{
-		if(var_87367d4f.script_int === var_181b74a5)
+		if(s_circle.script_int === var_181b74a5)
 		{
-			return var_87367d4f;
+			return s_circle;
 		}
 	}
 }
@@ -706,7 +706,7 @@ function function_ba060b19(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_a70287ee
+	Name: sword_egg_glow
 	Namespace: namespace_aa27450a
 	Checksum: 0xD8C0C34D
 	Offset: 0x2FB0
@@ -714,7 +714,7 @@ function function_ba060b19(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_a70287ee(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sword_egg_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -727,7 +727,7 @@ function function_a70287ee(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_d4d5b3f0
+	Name: blood_soul_fx
 	Namespace: namespace_aa27450a
 	Checksum: 0x37CCDEC7
 	Offset: 0x3038
@@ -735,7 +735,7 @@ function function_a70287ee(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_d4d5b3f0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function blood_soul_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -743,7 +743,7 @@ function function_d4d5b3f0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		self notify("hash_444b78e");
+		self notify("remove_blood_soul");
 	}
 }
 

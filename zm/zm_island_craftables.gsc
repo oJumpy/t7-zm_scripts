@@ -32,7 +32,7 @@
 function include_craftables()
 {
 	level.craftable_piece_swap_allowed = 0;
-	var_2a7833c8 = getnumexpectedplayers() == 1;
+	shared_pieces = getnumexpectedplayers() == 1;
 	craftable_name = "gasmask";
 	var_a2709918 = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_visor", 32, 64, 0, undefined, &function_aef4c63, undefined, &function_3e3b2e02, undefined, undefined, undefined, "gasmask" + "_" + "part_visor", 1, undefined, undefined, &"ZOMBIE_BUILD_PIECE_GRAB", 0);
 	var_f113dd3d = zm_craftables::generate_zombie_craftable_piece(craftable_name, "part_filter", 32, 64, 0, undefined, &function_aef4c63, undefined, &function_3e3b2e02, undefined, undefined, undefined, "gasmask" + "_" + "part_filter", 1, undefined, undefined, &"ZOMBIE_BUILD_PIECE_GRAB", 0);
@@ -80,10 +80,10 @@ function init_craftables()
 */
 function register_clientfields()
 {
-	var_a0199abd = 1;
-	RegisterClientField("world", "gasmask" + "_" + "part_visor", 9000, var_a0199abd, "int", undefined, 0);
-	RegisterClientField("world", "gasmask" + "_" + "part_filter", 9000, var_a0199abd, "int", undefined, 0);
-	RegisterClientField("world", "gasmask" + "_" + "part_strap", 9000, var_a0199abd, "int", undefined, 0);
+	shared_bits = 1;
+	RegisterClientField("world", "gasmask" + "_" + "part_visor", 9000, shared_bits, "int", undefined, 0);
+	RegisterClientField("world", "gasmask" + "_" + "part_filter", 9000, shared_bits, "int", undefined, 0);
+	RegisterClientField("world", "gasmask" + "_" + "part_strap", 9000, shared_bits, "int", undefined, 0);
 	clientfield::register("toplayer", "ZMUI_GRAVITYSPIKE_PART_PICKUP", 9000, 1, "int");
 	clientfield::register("toplayer", "ZMUI_GRAVITYSPIKE_CRAFTED", 9000, 1, "int");
 }
@@ -256,11 +256,11 @@ function function_3e3b2e02(player)
 function function_4e02c665(player)
 {
 	function_aa4f440c(self.origin, self.angles);
-	var_6796a7a4 = GetEnt("mask_display", "targetname");
-	var_6796a7a4 SetScale(1.5);
-	var_6796a7a4 moveto(self.origin + AnglesToForward(self.angles) + (-5, 0, -105), 0.05);
-	var_6796a7a4 RotateTo(self.angles + VectorScale((0, 1, 0), 90), 0.05);
-	var_6796a7a4 waittill("movedone");
+	mdl_gasmask = GetEnt("mask_display", "targetname");
+	mdl_gasmask SetScale(1.5);
+	mdl_gasmask moveto(self.origin + AnglesToForward(self.angles) + (-5, 0, -105), 0.05);
+	mdl_gasmask RotateTo(self.angles + VectorScale((0, 1, 0), 90), 0.05);
+	mdl_gasmask waittill("movedone");
 	return 1;
 }
 
@@ -302,7 +302,7 @@ function function_aa4f440c(v_origin, v_angles)
 */
 function function_dbc8e9c0(player)
 {
-	if(!player.var_df4182b1)
+	if(!player.has_gasmask)
 	{
 		self setHintString(&"ZM_ISLAND_GASMASK_PICKUP");
 	}
@@ -339,7 +339,7 @@ function function_272fcc74()
 		{
 			continue;
 		}
-		if(!player.var_df4182b1)
+		if(!player.has_gasmask)
 		{
 			level thread function_b4c30297(self.stub, player);
 		}
@@ -358,7 +358,7 @@ function function_272fcc74()
 */
 function function_b4c30297(trig_stub, player)
 {
-	player.var_df4182b1 = 1;
+	player.has_gasmask = 1;
 	player notify("hash_b5ecf1dd");
 }
 
@@ -419,7 +419,7 @@ function function_d2d29a1b()
 }
 
 /*
-	Name: function_23472c70
+	Name: in_game_map_quest_item_picked_up
 	Namespace: namespace_e73c08bc
 	Checksum: 0x26509514
 	Offset: 0x1440
@@ -427,12 +427,12 @@ function function_d2d29a1b()
 	Parameters: 1
 	Flags: None
 */
-function function_23472c70(str_partname)
+function in_game_map_quest_item_picked_up(str_partname)
 {
 }
 
 /*
-	Name: function_b0c6c75a
+	Name: in_game_map_quest_item_dropped
 	Namespace: namespace_e73c08bc
 	Checksum: 0x7EA55EC1
 	Offset: 0x1458
@@ -440,7 +440,7 @@ function function_23472c70(str_partname)
 	Parameters: 1
 	Flags: None
 */
-function function_b0c6c75a(str_partname)
+function in_game_map_quest_item_dropped(str_partname)
 {
 }
 

@@ -29,8 +29,8 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("zbarrier", "magicbox_initial_fx", 21000, 1, "int", &function_cc36f894, 0, 0);
-	clientfield::register("zbarrier", "magicbox_amb_fx", 21000, 2, "int", &function_ae458229, 0, 0);
+	clientfield::register("zbarrier", "magicbox_initial_fx", 21000, 1, "int", &magicbox_initial_closed_fx, 0, 0);
+	clientfield::register("zbarrier", "magicbox_amb_fx", 21000, 2, "int", &magicbox_ambient_fx, 0, 0);
 	clientfield::register("zbarrier", "magicbox_open_fx", 21000, 1, "int", &function_c8f2b7a1, 0, 0);
 	clientfield::register("zbarrier", "magicbox_leaving_fx", 21000, 1, "int", &function_cac7ed81, 0, 0);
 }
@@ -54,7 +54,7 @@ function function_cac7ed81(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	if(newVal == 1)
 	{
-		self.fx_obj.var_6217501d = PlayFXOnTag(localClientNum, level._effect["box_is_leaving"], self.fx_obj, "tag_origin");
+		self.fx_obj.curr_leaving_fx = PlayFXOnTag(localClientNum, level._effect["box_is_leaving"], self.fx_obj, "tag_origin");
 	}
 }
 
@@ -75,28 +75,28 @@ function function_c8f2b7a1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		self.fx_obj.angles = self.angles;
 		self.fx_obj SetModel("tag_origin");
 	}
-	if(!isdefined(self.var_9b17c542))
+	if(!isdefined(self.fx_obj_2))
 	{
-		self.var_9b17c542 = spawn(localClientNum, self.origin, "script_model");
-		self.var_9b17c542.angles = self.angles;
-		self.var_9b17c542 SetModel("tag_origin");
+		self.fx_obj_2 = spawn(localClientNum, self.origin, "script_model");
+		self.fx_obj_2.angles = self.angles;
+		self.fx_obj_2 SetModel("tag_origin");
 	}
 	if(newVal == 0)
 	{
-		stopfx(localClientNum, self.fx_obj.var_80194315);
-		self.var_9b17c542 StopLoopSound(1);
-		self notify("hash_90e6e5c7");
+		stopfx(localClientNum, self.fx_obj.curr_open_fx);
+		self.fx_obj_2 StopLoopSound(1);
+		self notify("magicbox_portal_finished");
 	}
 	else if(newVal == 1)
 	{
-		self.fx_obj.var_80194315 = PlayFXOnTag(localClientNum, level._effect["box_is_open"], self.fx_obj, "tag_origin");
-		self.var_9b17c542 PlayLoopSound("zmb_hellbox_open_effect");
-		self thread function_b714c89b(localClientNum);
+		self.fx_obj.curr_open_fx = PlayFXOnTag(localClientNum, level._effect["box_is_open"], self.fx_obj, "tag_origin");
+		self.fx_obj_2 PlayLoopSound("zmb_hellbox_open_effect");
+		self thread fx_magicbox_portal(localClientNum);
 	}
 }
 
 /*
-	Name: function_b714c89b
+	Name: fx_magicbox_portal
 	Namespace: namespace_bafc277e
 	Checksum: 0x56EC1106
 	Offset: 0x6B8
@@ -104,16 +104,16 @@ function function_c8f2b7a1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_b714c89b(localClientNum)
+function fx_magicbox_portal(localClientNum)
 {
 	wait(0.5);
-	self.var_9b17c542.var_a5875243 = PlayFXOnTag(localClientNum, level._effect["box_portal"], self.var_9b17c542, "tag_origin");
-	self waittill("hash_90e6e5c7");
-	stopfx(localClientNum, self.var_9b17c542.var_a5875243);
+	self.fx_obj_2.curr_portal_fx = PlayFXOnTag(localClientNum, level._effect["box_portal"], self.fx_obj_2, "tag_origin");
+	self waittill("magicbox_portal_finished");
+	stopfx(localClientNum, self.fx_obj_2.curr_portal_fx);
 }
 
 /*
-	Name: function_cc36f894
+	Name: magicbox_initial_closed_fx
 	Namespace: namespace_bafc277e
 	Checksum: 0xE6A4DEF0
 	Offset: 0x750
@@ -121,7 +121,7 @@ function function_b714c89b(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_cc36f894(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function magicbox_initial_closed_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(!isdefined(self.fx_obj))
 	{
@@ -140,7 +140,7 @@ function function_cc36f894(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_ae458229
+	Name: magicbox_ambient_fx
 	Namespace: namespace_bafc277e
 	Checksum: 0x9FAC0535
 	Offset: 0x840
@@ -148,7 +148,7 @@ function function_cc36f894(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_ae458229(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function magicbox_ambient_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(!isdefined(self.fx_obj))
 	{
@@ -156,38 +156,38 @@ function function_ae458229(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		self.fx_obj.angles = self.angles;
 		self.fx_obj SetModel("tag_origin");
 	}
-	if(isdefined(self.fx_obj.var_992b4eed))
+	if(isdefined(self.fx_obj.curr_amb_fx))
 	{
-		stopfx(localClientNum, self.fx_obj.var_992b4eed);
+		stopfx(localClientNum, self.fx_obj.curr_amb_fx);
 	}
-	if(isdefined(self.fx_obj.var_9eb800bb))
+	if(isdefined(self.fx_obj.curr_amb_fx_power))
 	{
-		stopfx(localClientNum, self.fx_obj.var_9eb800bb);
+		stopfx(localClientNum, self.fx_obj.curr_amb_fx_power);
 	}
 	if(newVal == 0)
 	{
 		self.fx_obj PlayLoopSound("zmb_hellbox_amb_low");
 		playsound(0, "zmb_hellbox_leave", self.fx_obj.origin);
-		stopfx(localClientNum, self.fx_obj.var_992b4eed);
+		stopfx(localClientNum, self.fx_obj.curr_amb_fx);
 	}
 	else if(newVal == 1)
 	{
-		self.fx_obj.var_9eb800bb = PlayFXOnTag(localClientNum, level._effect["box_unpowered"], self.fx_obj, "tag_origin");
-		self.fx_obj.var_992b4eed = PlayFXOnTag(localClientNum, level._effect["box_here_ambient"], self.fx_obj, "tag_origin");
+		self.fx_obj.curr_amb_fx_power = PlayFXOnTag(localClientNum, level._effect["box_unpowered"], self.fx_obj, "tag_origin");
+		self.fx_obj.curr_amb_fx = PlayFXOnTag(localClientNum, level._effect["box_here_ambient"], self.fx_obj, "tag_origin");
 		self.fx_obj PlayLoopSound("zmb_hellbox_amb_low");
 		playsound(0, "zmb_hellbox_arrive", self.fx_obj.origin);
 	}
 	else if(newVal == 2)
 	{
-		self.fx_obj.var_9eb800bb = PlayFXOnTag(localClientNum, level._effect["box_powered"], self.fx_obj, "tag_origin");
-		self.fx_obj.var_992b4eed = PlayFXOnTag(localClientNum, level._effect["box_here_ambient"], self.fx_obj, "tag_origin");
+		self.fx_obj.curr_amb_fx_power = PlayFXOnTag(localClientNum, level._effect["box_powered"], self.fx_obj, "tag_origin");
+		self.fx_obj.curr_amb_fx = PlayFXOnTag(localClientNum, level._effect["box_here_ambient"], self.fx_obj, "tag_origin");
 		self.fx_obj PlayLoopSound("zmb_hellbox_amb_high");
 		playsound(0, "zmb_hellbox_arrive", self.fx_obj.origin);
 	}
 	else if(newVal == 3)
 	{
-		self.fx_obj.var_9eb800bb = PlayFXOnTag(localClientNum, level._effect["box_unpowered"], self.fx_obj, "tag_origin");
-		self.fx_obj.var_992b4eed = PlayFXOnTag(localClientNum, level._effect["box_gone_ambient"], self.fx_obj, "tag_origin");
+		self.fx_obj.curr_amb_fx_power = PlayFXOnTag(localClientNum, level._effect["box_unpowered"], self.fx_obj, "tag_origin");
+		self.fx_obj.curr_amb_fx = PlayFXOnTag(localClientNum, level._effect["box_gone_ambient"], self.fx_obj, "tag_origin");
 		self.fx_obj PlayLoopSound("zmb_hellbox_amb_high");
 		playsound(0, "zmb_hellbox_leave", self.fx_obj.origin);
 	}

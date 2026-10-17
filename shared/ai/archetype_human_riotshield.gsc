@@ -78,13 +78,13 @@ function private ArchetypeHumanRiotshieldBlackboardInit()
 	entity AiUtility::RegisterUtilityBlackboardAttributes();
 	self.___ArchetypeOnAnimscriptedCallback = &ArchetypeHumanRiotshieldOnAnimscriptedCallback;
 	/#
-		entity function_89398c57();
+		entity finalizetrackedblackboardattributes();
 	#/
 	blackboard::RegisterBlackBoardAttribute(self, "_move_mode", "normal", &riotshieldMoveMode);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 }

@@ -52,7 +52,7 @@ function __init__()
 		zm_powerups::powerup_set_player_specific("ww_grenade", 1);
 	}
 	/#
-		level thread function_39ac3091();
+		level thread ww_grenade_devgui();
 	#/
 }
 
@@ -96,7 +96,7 @@ function ww_grenade_powerup(item, player)
 }
 
 /*
-	Name: function_39ac3091
+	Name: ww_grenade_devgui
 	Namespace: zm_powerup_ww_grenade
 	Checksum: 0x5787EA35
 	Offset: 0x630
@@ -104,19 +104,19 @@ function ww_grenade_powerup(item, player)
 	Parameters: 0
 	Flags: None
 */
-function function_39ac3091()
+function ww_grenade_devgui()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_dcedd7b5);
+		zm_devgui::add_custom_devgui_callback(&ww_grenade_devgui_callback);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 	#/
 }
 
 /*
-	Name: function_2449723c
+	Name: detect_reentry
 	Namespace: zm_powerup_ww_grenade
 	Checksum: 0x2F4519CF
 	Offset: 0x6B8
@@ -124,7 +124,7 @@ function function_39ac3091()
 	Parameters: 0
 	Flags: None
 */
-function function_2449723c()
+function detect_reentry()
 {
 	/#
 		if(isdefined(self.var_2654b40c))
@@ -140,7 +140,7 @@ function function_2449723c()
 }
 
 /*
-	Name: function_dcedd7b5
+	Name: ww_grenade_devgui_callback
 	Namespace: zm_powerup_ww_grenade
 	Checksum: 0x534E7A40
 	Offset: 0x6F8
@@ -148,7 +148,7 @@ function function_2449723c()
 	Parameters: 1
 	Flags: None
 */
-function function_dcedd7b5(cmd)
+function ww_grenade_devgui_callback(cmd)
 {
 	/#
 		players = GetPlayers();
@@ -157,20 +157,20 @@ function function_dcedd7b5(cmd)
 		{
 			case "Dev Block strings are not supported":
 			{
-				if(level function_2449723c())
+				if(level detect_reentry())
 				{
 					return 1;
 				}
-				Array::thread_all(players, &zm_devgui::function_9589a11f, cmd, 1);
+				Array::thread_all(players, &zm_devgui::zombie_devgui_give_powerup_player, cmd, 1);
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
-				if(level function_2449723c())
+				if(level detect_reentry())
 				{
 					return 1;
 				}
-				Array::thread_all(players, &zm_devgui::function_9589a11f, GetSubStr(cmd, 5), 0);
+				Array::thread_all(players, &zm_devgui::zombie_devgui_give_powerup_player, GetSubStr(cmd, 5), 0);
 				return 1;
 			}
 		}

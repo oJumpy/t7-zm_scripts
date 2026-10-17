@@ -102,7 +102,7 @@ function main()
 	namespace_e73c08bc::include_craftables();
 	namespace_e73c08bc::init_craftables();
 	namespace_14c8b75c::init();
-	namespace_eaae7728::function_30d4f164();
+	namespace_eaae7728::init_quest();
 	namespace_7550a904::init();
 	namespace_f3e3de78::init();
 	namespace_14b4d4ab::init();
@@ -110,7 +110,7 @@ function main()
 	namespace_7a07aa2f::init();
 	namespace_c8222934::init();
 	namespace_5f2c95ae::init();
-	namespace_78528370::function_30d4f164();
+	namespace_78528370::init_quest();
 	namespace_9d2fabb6::init();
 	namespace_f7d4f63b::init();
 	namespace_48e6dffb::init();
@@ -147,9 +147,9 @@ function register_clientfields()
 	clientfield::register("toplayer", "postfx_futz_mild", 9000, 1, "counter", &function_bf8650ca, 0, 0);
 	clientfield::register("toplayer", "water_motes", 9000, 1, "int", &function_5cefaf77, 0, 0);
 	clientfield::register("toplayer", "play_bubbles", 9000, 1, "int", &function_58e931d1, 0, 0);
-	clientfield::register("toplayer", "set_world_fog", 9000, var_ddba80d7, "int", &function_346468e3, 0, 0);
+	clientfield::register("toplayer", "set_world_fog", 9000, var_ddba80d7, "int", &world_fog_set, 0, 0);
 	clientfield::register("toplayer", "speed_burst", 9000, 1, "int", &player_speed_changed, 0, 1);
-	clientfield::register("toplayer", "tp_water_sheeting", 9000, 1, "int", &function_6be6da89, 0, 0);
+	clientfield::register("toplayer", "tp_water_sheeting", 9000, 1, "int", &water_sheeting_toggle, 0, 0);
 	clientfield::register("toplayer", "wind_blur", 9000, 1, "int", &function_4a01cc4e, 0, 0);
 	clientfield::register("scriptmover", "set_heavy_web_fade_material", 9000, 1, "int", &function_e0aec577, 0, 0);
 	clientfield::register("world", "force_stream_spiders", 9001, 1, "int", &function_e0410522, 0, 0);
@@ -393,7 +393,7 @@ function function_6fb5501(localClientNum)
 		deletefx(localClientNum, self.var_b5e2500e, 1);
 		self.var_b5e2500e = undefined;
 	}
-	self notify("hash_a48959b9");
+	self notify("bubbles_done");
 }
 
 /*
@@ -407,13 +407,13 @@ function function_6fb5501(localClientNum)
 */
 function function_738868d4(localClientNum)
 {
-	self endon("hash_a48959b9");
+	self endon("bubbles_done");
 	self waittill("death");
 	self function_6fb5501(localClientNum);
 }
 
 /*
-	Name: function_346468e3
+	Name: world_fog_set
 	Namespace: namespace_ff3ab036
 	Checksum: 0x767F9287
 	Offset: 0x35D0
@@ -421,7 +421,7 @@ function function_738868d4(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_346468e3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function world_fog_set(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -501,7 +501,7 @@ function mapped_material_id(materialName)
 }
 
 /*
-	Name: function_6be6da89
+	Name: water_sheeting_toggle
 	Namespace: namespace_ff3ab036
 	Checksum: 0xAB0F059D
 	Offset: 0x3830
@@ -509,17 +509,17 @@ function mapped_material_id(materialName)
 	Parameters: 7
 	Flags: None
 */
-function function_6be6da89(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function water_sheeting_toggle(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
-		function_6c7d1149(localClientNum, 1);
+		startwatersheetingfx(localClientNum, 1);
 		playsound(localClientNum, "evt_sewer_transport_start");
 		self.var_14108ea4 = self PlayLoopSound("evt_sewer_transport_loop", 0.3);
 	}
 	else
 	{
-		function_d92493fb(localClientNum, 0);
+		stopwatersheetingfx(localClientNum, 0);
 		self StopLoopSound(self.var_14108ea4);
 	}
 }

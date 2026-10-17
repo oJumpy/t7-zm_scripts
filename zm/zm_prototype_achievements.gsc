@@ -39,7 +39,7 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	level.achievement_sound_func = &achievement_sound_func;
-	level thread function_dab290f5();
+	level thread achievement_i_said_were_closed();
 	level thread function_94bb4bfb();
 	zm_spawner::register_zombie_death_event_callback(&function_1abfde35);
 	callback::on_connect(&onPlayerConnect);
@@ -83,7 +83,7 @@ function onPlayerConnect()
 }
 
 /*
-	Name: function_dab290f5
+	Name: achievement_i_said_were_closed
 	Namespace: namespace_12b4f23c
 	Checksum: 0xECEEDBD1
 	Offset: 0x460
@@ -91,7 +91,7 @@ function onPlayerConnect()
 	Parameters: 0
 	Flags: None
 */
-function function_dab290f5()
+function achievement_i_said_were_closed()
 {
 	level endon("end_game");
 	level endon("hash_634c6ab7");

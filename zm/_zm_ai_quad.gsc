@@ -44,19 +44,19 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	function_820fd039();
-	if(!isdefined(level.var_b93acc0b) || level.var_b93acc0b)
+	init_quad_zombie_fx();
+	if(!isdefined(level.ai_quad_register_overlay_override) || level.ai_quad_register_overlay_override)
 	{
-		function_1bf67b57();
+		register_overlay();
 	}
-	AnimationStateNetwork::RegisterNotetrackHandlerFunction("quad_melee", &function_b783ed6b);
+	AnimationStateNetwork::RegisterNotetrackHandlerFunction("quad_melee", &quadnotetrackmeleefire);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("quadDeathAction", &function_ec996060);
 	level thread AAT::register_immunity("zm_aat_dead_wire", "zombie_quad", 1, 1, 1);
 	level thread AAT::register_immunity("zm_aat_turned", "zombie_quad", 1, 1, 1);
 }
 
 /*
-	Name: function_b783ed6b
+	Name: quadnotetrackmeleefire
 	Namespace: namespace_1d58b607
 	Checksum: 0xDAFB50FD
 	Offset: 0x630
@@ -64,7 +64,7 @@ function __init__()
 	Parameters: 1
 	Flags: None
 */
-function function_b783ed6b(entity)
+function quadnotetrackmeleefire(entity)
 {
 	entity melee();
 	/#
@@ -96,7 +96,7 @@ function function_ec996060(entity)
 }
 
 /*
-	Name: function_5af423f4
+	Name: activate_quad_spawners
 	Namespace: namespace_1d58b607
 	Checksum: 0xD9023778
 	Offset: 0x768
@@ -104,15 +104,15 @@ function function_ec996060(entity)
 	Parameters: 0
 	Flags: None
 */
-function function_5af423f4()
+function activate_quad_spawners()
 {
 	level.quad_spawners = GetEntArray("quad_zombie_spawner", "script_noteworthy");
 	Array::thread_all(level.quad_spawners, &spawner::add_spawn_function, &quad_prespawn);
-	zm::register_custom_ai_spawn_check("quads", &function_613fce7d, &function_da243141);
+	zm::register_custom_ai_spawn_check("quads", &quad_spawn_check, &get_quad_spawners);
 }
 
 /*
-	Name: function_1bf67b57
+	Name: register_overlay
 	Namespace: namespace_1d58b607
 	Checksum: 0x45139164
 	Offset: 0x810
@@ -120,17 +120,17 @@ function function_5af423f4()
 	Parameters: 0
 	Flags: None
 */
-function function_1bf67b57()
+function register_overlay()
 {
-	if(!isdefined(level.var_2ac737b1))
+	if(!isdefined(level.vsmgr_prio_overlay_zm_ai_quad_blur))
 	{
-		level.var_2ac737b1 = 50;
+		level.vsmgr_prio_overlay_zm_ai_quad_blur = 50;
 	}
-	visionset_mgr::register_info("overlay", "zm_ai_quad_blur", 1, level.var_2ac737b1, 1, 1);
+	visionset_mgr::register_info("overlay", "zm_ai_quad_blur", 1, level.vsmgr_prio_overlay_zm_ai_quad_blur, 1, 1);
 }
 
 /*
-	Name: function_613fce7d
+	Name: quad_spawn_check
 	Namespace: namespace_1d58b607
 	Checksum: 0xFA5FE795
 	Offset: 0x870
@@ -138,13 +138,13 @@ function function_1bf67b57()
 	Parameters: 0
 	Flags: None
 */
-function function_613fce7d()
+function quad_spawn_check()
 {
 	return isdefined(level.zm_loc_types["quad_location"]) && level.zm_loc_types["quad_location"].size > 0;
 }
 
 /*
-	Name: function_da243141
+	Name: get_quad_spawners
 	Namespace: namespace_1d58b607
 	Checksum: 0x6ADB06AC
 	Offset: 0x8B0
@@ -152,7 +152,7 @@ function function_613fce7d()
 	Parameters: 0
 	Flags: None
 */
-function function_da243141()
+function get_quad_spawners()
 {
 	return level.quad_spawners;
 }
@@ -207,7 +207,7 @@ function quad_prespawn()
 }
 
 /*
-	Name: function_820fd039
+	Name: init_quad_zombie_fx
 	Namespace: namespace_1d58b607
 	Checksum: 0xE5F56071
 	Offset: 0xB30
@@ -215,7 +215,7 @@ function quad_prespawn()
 	Parameters: 0
 	Flags: None
 */
-function function_820fd039()
+function init_quad_zombie_fx()
 {
 	level._effect["quad_explo_gas"] = "dlc5/zmhd/fx_zombie_quad_gas_nova6";
 	level._effect["quad_trail"] = "dlc5/zmhd/fx_zombie_quad_trail";

@@ -3,7 +3,7 @@
 #namespace GroundFx;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: GroundFx
 	Checksum: 0xA01B94AE
 	Offset: 0x230
@@ -11,14 +11,14 @@
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self.id = undefined;
 	self.handle = -1;
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: GroundFx
 	Checksum: 0x99EC1590
 	Offset: 0x258
@@ -26,7 +26,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -102,14 +102,14 @@ function private autoexec GroundFx()
 	classes.GroundFx[0] = spawnstruct();
 	classes.GroundFx[0].__vtable[-51025227] = &GroundFx::stop;
 	classes.GroundFx[0].__vtable[1131512199] = &GroundFx::Play;
-	classes.GroundFx[0].__vtable[1606033458] = &GroundFx::function_5fba2032;
-	classes.GroundFx[0].__vtable[-1690805083] = &GroundFx::function_9b385ca5;
+	classes.GroundFx[0].__vtable[1606033458] = &GroundFx::__destructor;
+	classes.GroundFx[0].__vtable[-1690805083] = &GroundFx::__constructor;
 }
 
 #namespace VehicleWheelFx;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: VehicleWheelFx
 	Checksum: 0xF9540FA9
 	Offset: 0x500
@@ -117,14 +117,14 @@ function private autoexec GroundFx()
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self.name = "";
 	self.tag_name = "";
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: VehicleWheelFx
 	Checksum: 0x99EC1590
 	Offset: 0x530
@@ -132,7 +132,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -150,9 +150,9 @@ function init(_name, _tag_name)
 	self.name = _name;
 	self.tag_name = _tag_name;
 	self.ground_fx = [];
-	function_9b385ca5();
+	__constructor();
 	self.ground_fx["skid"] = GroundFx;
-	function_9b385ca5();
+	__constructor();
 	self.ground_fx["tread"] = GroundFx;
 	self.ground_fx["tread"].id = "";
 	self.ground_fx["tread"].handle = -1;
@@ -254,14 +254,14 @@ function private autoexec VehicleWheelFx()
 	classes.VehicleWheelFx[0] = spawnstruct();
 	classes.VehicleWheelFx[0].__vtable[-558052070] = &VehicleWheelFx::update;
 	classes.VehicleWheelFx[0].__vtable[-1017222485] = &VehicleWheelFx::init;
-	classes.VehicleWheelFx[0].__vtable[1606033458] = &VehicleWheelFx::function_5fba2032;
-	classes.VehicleWheelFx[0].__vtable[-1690805083] = &VehicleWheelFx::function_9b385ca5;
+	classes.VehicleWheelFx[0].__vtable[1606033458] = &VehicleWheelFx::__destructor;
+	classes.VehicleWheelFx[0].__vtable[-1690805083] = &VehicleWheelFx::__constructor;
 }
 
 #namespace vehicle_camera_fx;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: vehicle_camera_fx
 	Checksum: 0xFC47A4E4
 	Offset: 0xBD8
@@ -269,7 +269,7 @@ function private autoexec VehicleWheelFx()
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self.quake_time_min = 0.5;
 	self.quake_time_max = 1;
@@ -279,7 +279,7 @@ function function_9b385ca5()
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: vehicle_camera_fx
 	Checksum: 0x99EC1590
 	Offset: 0xC38
@@ -287,7 +287,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -365,8 +365,8 @@ function private autoexec vehicle_camera_fx()
 	classes.vehicle_camera_fx[0] = spawnstruct();
 	classes.vehicle_camera_fx[0].__vtable[-558052070] = &vehicle_camera_fx::update;
 	classes.vehicle_camera_fx[0].__vtable[-1017222485] = &vehicle_camera_fx::init;
-	classes.vehicle_camera_fx[0].__vtable[1606033458] = &vehicle_camera_fx::function_5fba2032;
-	classes.vehicle_camera_fx[0].__vtable[-1690805083] = &vehicle_camera_fx::function_9b385ca5;
+	classes.vehicle_camera_fx[0].__vtable[1606033458] = &vehicle_camera_fx::__destructor;
+	classes.vehicle_camera_fx[0].__vtable[-1690805083] = &vehicle_camera_fx::__constructor;
 }
 
 /*
@@ -457,15 +457,15 @@ function play_driving_fx(localClientNum)
 		self.wheel_fx = [];
 		for(i = 0; i < wheel_names.size; i++)
 		{
-			function_9b385ca5();
+			__constructor();
 			self.wheel_fx[i] = VehicleWheelFx;
 			init(self.wheel_fx[i], wheel_names[i]);
 		}
 		self.camera_fx = [];
-		function_9b385ca5();
+		__constructor();
 		self.camera_fx["speed"] = vehicle_camera_fx;
 		init(self.camera_fx["speed"], 0.5, 1, 0.1, 0.115);
-		function_9b385ca5();
+		__constructor();
 		self.camera_fx["skid"] = vehicle_camera_fx;
 		init(self.camera_fx["skid"], 0.25, 0.35, 0.1);
 	}

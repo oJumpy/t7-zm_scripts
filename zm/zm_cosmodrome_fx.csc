@@ -217,7 +217,7 @@ function trap_play_fx(loc, trap_type)
 }
 
 /*
-	Name: function_3b3f16da
+	Name: toggle_lander_lights
 	Namespace: namespace_eb3fb2b6
 	Checksum: 0x8EFBAF42
 	Offset: 0x1ED0
@@ -225,7 +225,7 @@ function trap_play_fx(loc, trap_type)
 	Parameters: 2
 	Flags: None
 */
-function function_3b3f16da(color, localClientNum)
+function toggle_lander_lights(color, localClientNum)
 {
 	right_fx = level._effect["lander_green_right"];
 	left_fx = level._effect["lander_green_left"];
@@ -234,32 +234,32 @@ function function_3b3f16da(color, localClientNum)
 		right_fx = level._effect["lander_red_right"];
 		left_fx = level._effect["lander_red_left"];
 	}
-	var_1e2c44d5 = GetEntArray(localClientNum, "centrifuge_zip_door", "targetname");
-	var_442ebf3e = GetEntArray(localClientNum, "base_entry_zip_door", "targetname");
-	var_6a3139a7 = GetEntArray(localClientNum, "storage_zip_door", "targetname");
-	var_601fe0c8 = GetEntArray(localClientNum, "catwalk_zip_door", "targetname");
-	var_fef285a5 = ArrayCombine(var_1e2c44d5, var_442ebf3e, 0, 1);
-	var_24f5000e = ArrayCombine(var_6a3139a7, var_601fe0c8, 0, 1);
-	var_a93dfbe4 = ArrayCombine(var_fef285a5, var_24f5000e, 0, 1);
-	for(i = 0; i < var_a93dfbe4.size; i++)
+	doors1 = GetEntArray(localClientNum, "centrifuge_zip_door", "targetname");
+	doors2 = GetEntArray(localClientNum, "base_entry_zip_door", "targetname");
+	doors3 = GetEntArray(localClientNum, "storage_zip_door", "targetname");
+	doors4 = GetEntArray(localClientNum, "catwalk_zip_door", "targetname");
+	doorsa = ArrayCombine(doors1, doors2, 0, 1);
+	doorsb = ArrayCombine(doors3, doors4, 0, 1);
+	all_doors = ArrayCombine(doorsa, doorsb, 0, 1);
+	for(i = 0; i < all_doors.size; i++)
 	{
-		if(var_a93dfbe4[i].model == "p7_zm_asc_door_lander_lunar_rt")
+		if(all_doors[i].model == "p7_zm_asc_door_lander_lunar_rt")
 		{
-			if(isdefined(var_a93dfbe4[i].FX))
+			if(isdefined(all_doors[i].FX))
 			{
-				stopfx(localClientNum, var_a93dfbe4[i].FX);
+				stopfx(localClientNum, all_doors[i].FX);
 			}
-			var_a93dfbe4[i] util::waittill_dobj(localClientNum);
-			var_a93dfbe4[i].FX = PlayFXOnTag(localClientNum, right_fx, var_a93dfbe4[i], "tag_origin");
+			all_doors[i] util::waittill_dobj(localClientNum);
+			all_doors[i].FX = PlayFXOnTag(localClientNum, right_fx, all_doors[i], "tag_origin");
 			continue;
 		}
-		if(var_a93dfbe4[i].model == "p7_zm_asc_door_lander_lunar_lft")
+		if(all_doors[i].model == "p7_zm_asc_door_lander_lunar_lft")
 		{
-			if(isdefined(var_a93dfbe4[i].FX))
+			if(isdefined(all_doors[i].FX))
 			{
-				stopfx(localClientNum, var_a93dfbe4[i].FX);
+				stopfx(localClientNum, all_doors[i].FX);
 			}
-			var_a93dfbe4[i].FX = PlayFXOnTag(localClientNum, left_fx, var_a93dfbe4[i], "tag_origin");
+			all_doors[i].FX = PlayFXOnTag(localClientNum, left_fx, all_doors[i], "tag_origin");
 		}
 	}
 }

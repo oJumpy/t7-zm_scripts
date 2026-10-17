@@ -23,7 +23,7 @@
 */
 function main_start()
 {
-	level.var_42792b8b = 1;
+	level.bgb_cost_client_filled = 1;
 	var_aab32ea1 = struct::get("zone_canal_junction", "script_noteworthy");
 	var_eab52f41 = struct::get_array(var_aab32ea1.target, "targetname");
 	foreach(var_fae9adb3 in var_eab52f41)
@@ -178,7 +178,7 @@ function function_e7337b94()
 	function_2cba29a8("canal", (1031, -1726, 450), 128, 160);
 	function_2cba29a8("canal", (818, -1512, 450), 128, 160);
 	wait(1);
-	level.var_4e5a7cb5 = level.player_out_of_playable_area_monitor_callback;
+	level.prev_player_out_of_playable_area_monitor_callback = level.player_out_of_playable_area_monitor_callback;
 	level.player_out_of_playable_area_monitor_callback = &player_out_of_playable_area_monitor_callback;
 }
 
@@ -208,9 +208,9 @@ function player_out_of_playable_area_monitor_callback()
 			}
 		}
 	}
-	if(isdefined(level.var_4e5a7cb5))
+	if(isdefined(level.prev_player_out_of_playable_area_monitor_callback))
 	{
-		return self [[level.var_4e5a7cb5]]();
+		return self [[level.prev_player_out_of_playable_area_monitor_callback]]();
 	}
 	return 1;
 }

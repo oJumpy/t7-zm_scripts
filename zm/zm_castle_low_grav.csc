@@ -40,7 +40,7 @@ function register_clientfields()
 	clientfield::register("toplayer", "player_postfx", 5000, 1, "int", &function_df81c23d, 0, 0);
 	clientfield::register("toplayer", "player_screen_fx", 5000, 1, "int", &function_e6fd161a, 0, 1);
 	clientfield::register("scriptmover", "undercroft_emissives", 5000, 1, "int", &function_9a8a19ab, 0, 0);
-	clientfield::register("scriptmover", "undercroft_wall_panel_shutdown", 5000, 1, "counter", &function_a3279a5, 0, 0);
+	clientfield::register("scriptmover", "undercroft_wall_panel_shutdown", 5000, 1, "counter", &mm_katana_male_runjump_land_1f_l, 0, 0);
 	clientfield::register("scriptmover", "floor_panel_emissives_glow", 5000, 1, "int", &function_23861dfe, 0, 0);
 }
 
@@ -130,12 +130,12 @@ function function_df81c23d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal == 1)
 	{
-		function_4c5bfec4(localClientNum, 2);
+		setpbgactivebank(localClientNum, 2);
 		self thread postfx::playPostfxBundle("pstfx_115_castle_loop");
 	}
 	else
 	{
-		function_4c5bfec4(localClientNum, 1);
+		setpbgactivebank(localClientNum, 1);
 		self thread postfx::exitPostfxBundle();
 	}
 }
@@ -152,8 +152,8 @@ function function_df81c23d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 function function_9a8a19ab(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
-	self notify("hash_67a9e087");
-	self endon("hash_67a9e087");
+	self notify("fade_interrupt");
+	self endon("fade_interrupt");
 	if(newVal == 1)
 	{
 		n_start_time = GetTime();
@@ -197,7 +197,7 @@ function function_9a8a19ab(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_a3279a5
+	Name: mm_katana_male_runjump_land_1f_l
 	Namespace: namespace_8e89abe3
 	Checksum: 0x1B95A9C8
 	Offset: 0xBE8
@@ -205,11 +205,11 @@ function function_9a8a19ab(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_a3279a5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function mm_katana_male_runjump_land_1f_l(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
-	self notify("hash_67a9e087");
-	self endon("hash_67a9e087");
+	self notify("fade_interrupt");
+	self endon("fade_interrupt");
 	n_start_time = GetTime();
 	n_end_time = n_start_time + 1 * 1000;
 	b_is_updating = 1;
@@ -242,8 +242,8 @@ function function_a3279a5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 function function_23861dfe(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
-	self notify("hash_67a9e087");
-	self endon("hash_67a9e087");
+	self notify("fade_interrupt");
+	self endon("fade_interrupt");
 	if(newVal == 1)
 	{
 		n_start_time = GetTime();
@@ -287,7 +287,7 @@ function function_23861dfe(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_a81107fc
+	Name: zombie_instakill_fx_cb
 	Namespace: namespace_8e89abe3
 	Checksum: 0x8B05507F
 	Offset: 0x1008
@@ -295,7 +295,7 @@ function function_23861dfe(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_a81107fc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zombie_instakill_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(newVal))
 	{
@@ -304,12 +304,12 @@ function function_a81107fc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	if(newVal)
 	{
 		fxObj = util::spawn_model(localClientNum, "tag_origin", self.origin, self.angles);
-		fxObj thread function_10dcbf51(localClientNum, fxObj);
+		fxObj thread playesoundanddelete(localClientNum, fxObj);
 	}
 }
 
 /*
-	Name: function_10dcbf51
+	Name: playesoundanddelete
 	Namespace: namespace_8e89abe3
 	Checksum: 0x76AC8A47
 	Offset: 0x10B8
@@ -317,7 +317,7 @@ function function_a81107fc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: Private
 */
-function private function_10dcbf51(localClientNum, fxObj)
+function private playesoundanddelete(localClientNum, fxObj)
 {
 	fxObj playsound(localClientNum, "evt_ai_explode");
 	wait(1);

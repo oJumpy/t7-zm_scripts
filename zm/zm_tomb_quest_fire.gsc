@@ -261,8 +261,8 @@ function light_plinth()
 {
 	e_fx = spawn("script_model", self.origin);
 	e_fx SetModel("tag_origin");
-	var_a58a7b24 = "lgtexp_fire_charge_0" + self.script_int;
-	exploder::exploder(var_a58a7b24);
+	str_exploder_name = "lgtexp_fire_charge_0" + self.script_int;
+	exploder::exploder(str_exploder_name);
 	e_fx.angles = VectorScale((-1, 0, 0), 90);
 	e_fx playsound("zmb_squest_fire_torch_ignite");
 	e_fx PlayLoopSound("zmb_squest_fire_torch_loop", 0.6);
@@ -271,7 +271,7 @@ function light_plinth()
 	e_fx StopLoopSound(0.1);
 	e_fx playsound("zmb_squest_fire_torch_out");
 	e_fx delete();
-	exploder::kill_exploder(var_a58a7b24);
+	exploder::kill_exploder(str_exploder_name);
 }
 
 /*
@@ -378,11 +378,11 @@ function fire_sacrifice_death_clone(e_sacrifice_volume)
 		clone scene::Play("cin_zmhd_zombie_death", clone);
 	}
 	e_sacrifice_volume flag::wait_till("flame_on");
-	var_32bc7eba = level.a_elemental_staffs["staff_fire"].w_weapon;
+	w_staff_fire = level.a_elemental_staffs["staff_fire"].w_weapon;
 	a_players = GetPlayers();
 	foreach(e_player in a_players)
 	{
-		if(e_player HasWeapon(var_32bc7eba))
+		if(e_player HasWeapon(w_staff_fire))
 		{
 			level notify("vo_puzzle_good", e_player);
 		}
@@ -639,7 +639,7 @@ function fire_puzzle_torch_run()
 	level endon("fire_puzzle_2_complete");
 	self.b_correct_torch = 0;
 	max_hit_distance_sq = 4096;
-	var_32bc7eba = level.a_elemental_staffs["staff_fire"].w_weapon;
+	w_staff_fire = level.a_elemental_staffs["staff_fire"].w_weapon;
 	while(1)
 	{
 		level waittill("fire_staff_explosion", v_point);
@@ -655,7 +655,7 @@ function fire_puzzle_torch_run()
 		a_players = GetPlayers();
 		foreach(e_player in a_players)
 		{
-			if(e_player HasWeapon(var_32bc7eba))
+			if(e_player HasWeapon(w_staff_fire))
 			{
 				level notify("vo_try_puzzle_fire2", e_player);
 			}

@@ -55,15 +55,15 @@ function gasmask_overlay_handler(localClientNum, oldVal, newVal, bNewEnt, bIniti
 	}
 	if(newVal)
 	{
-		if(!isdefined(self.var_cf129735))
+		if(!isdefined(self.gasmask_audio_id))
 		{
-			self.var_cf129735 = self PlayLoopSound("evt_gasmask_loop", 0.5);
+			self.gasmask_audio_id = self PlayLoopSound("evt_gasmask_loop", 0.5);
 		}
 	}
-	else if(isdefined(self.var_cf129735))
+	else if(isdefined(self.gasmask_audio_id))
 	{
-		self StopLoopSound(self.var_cf129735, 0.5);
-		self.var_cf129735 = undefined;
+		self StopLoopSound(self.gasmask_audio_id, 0.5);
+		self.gasmask_audio_id = undefined;
 	}
 }
 

@@ -38,10 +38,10 @@
 */
 function main()
 {
-	function_16f0344e();
-	function_d0901c34();
-	function_f4a071bb();
-	function_4fdc8e70();
+	pap_setup();
+	cocoon_setup();
+	defend_setup();
+	underwater_setup();
 }
 
 /*
@@ -64,7 +64,7 @@ function init()
 }
 
 /*
-	Name: function_16f0344e
+	Name: pap_setup
 	Namespace: namespace_f7d4f63b
 	Checksum: 0x8D3E8B21
 	Offset: 0xAE8
@@ -72,7 +72,7 @@ function init()
 	Parameters: 0
 	Flags: None
 */
-function function_16f0344e()
+function pap_setup()
 {
 	level flag::init("valve1_found");
 	level flag::init("valve2_found");
@@ -84,11 +84,11 @@ function function_16f0344e()
 	level flag::init("pap_whistle");
 	level flag::init("pap_wheel");
 	level.var_12542033 = 0;
-	foreach(var_3ea1611f in struct::get_array("pap_water_control"))
+	foreach(s_valve in struct::get_array("pap_water_control"))
 	{
-		var_3ea1611f thread function_dd9ccb8(var_3ea1611f.script_int);
+		s_valve thread function_dd9ccb8(s_valve.script_int);
 	}
-	level thread function_aa37ce2d();
+	level thread pap_trigger();
 	level scene::add_scene_func("p7_fxanim_zm_island_pap_elements_gauge_bundle", &function_b6d4787d, "init");
 	level scene::add_scene_func("p7_fxanim_zm_island_pap_elements_whistle_bundle", &function_e0bc0bdc, "init");
 	level scene::add_scene_func("p7_fxanim_zm_island_pap_elements_wheel_bundle", &function_f7c8e279, "init");
@@ -123,10 +123,10 @@ function on_player_spawned()
 */
 function function_b6d4787d(a_ents)
 {
-	var_71e3d70a = a_ents["fxanim_pap_elements"];
-	var_71e3d70a HidePart("p7_zm_isl_pap_elements_gauge_jnt");
+	mdl_part = a_ents["fxanim_pap_elements"];
+	mdl_part HidePart("p7_zm_isl_pap_elements_gauge_jnt");
 	level flag::wait_till("pap_gauge");
-	var_71e3d70a ShowPart("p7_zm_isl_pap_elements_gauge_jnt");
+	mdl_part ShowPart("p7_zm_isl_pap_elements_gauge_jnt");
 	wait(1);
 	level scene::Play("p7_fxanim_zm_island_pap_elements_gauge_bundle");
 }
@@ -142,10 +142,10 @@ function function_b6d4787d(a_ents)
 */
 function function_e0bc0bdc(a_ents)
 {
-	var_71e3d70a = a_ents["fxanim_pap_elements"];
-	var_71e3d70a HidePart("p7_zm_isl_pap_elements_whistle_jnt");
+	mdl_part = a_ents["fxanim_pap_elements"];
+	mdl_part HidePart("p7_zm_isl_pap_elements_whistle_jnt");
 	level flag::wait_till("pap_whistle");
-	var_71e3d70a ShowPart("p7_zm_isl_pap_elements_whistle_jnt");
+	mdl_part ShowPart("p7_zm_isl_pap_elements_whistle_jnt");
 	wait(1);
 	level scene::Play("p7_fxanim_zm_island_pap_elements_whistle_bundle");
 }
@@ -161,16 +161,16 @@ function function_e0bc0bdc(a_ents)
 */
 function function_f7c8e279(a_ents)
 {
-	var_71e3d70a = a_ents["fxanim_pap_elements"];
-	var_71e3d70a HidePart("p7_zm_isl_pap_elements_wheel_jnt");
+	mdl_part = a_ents["fxanim_pap_elements"];
+	mdl_part HidePart("p7_zm_isl_pap_elements_wheel_jnt");
 	level flag::wait_till("pap_wheel");
-	var_71e3d70a ShowPart("p7_zm_isl_pap_elements_wheel_jnt");
+	mdl_part ShowPart("p7_zm_isl_pap_elements_wheel_jnt");
 	wait(1);
 	level scene::Play("p7_fxanim_zm_island_pap_elements_wheel_bundle");
 }
 
 /*
-	Name: function_aa37ce2d
+	Name: pap_trigger
 	Namespace: namespace_f7d4f63b
 	Checksum: 0x1333E8E
 	Offset: 0x1020
@@ -178,24 +178,24 @@ function function_f7c8e279(a_ents)
 	Parameters: 0
 	Flags: None
 */
-function function_aa37ce2d()
+function pap_trigger()
 {
-	var_b1e70b95 = GetEnt("trigger_pap_hint", "targetname");
-	var_b1e70b95 setcursorhint("HINT_NOICON");
-	var_b1e70b95 setHintString("");
-	var_a36ea22c = GetEnt("pap_gate", "targetname");
-	var_a36ea22c.s_pos = struct::get(var_a36ea22c.target);
+	t_hint = GetEnt("trigger_pap_hint", "targetname");
+	t_hint setcursorhint("HINT_NOICON");
+	t_hint setHintString("");
+	mdl_gate = GetEnt("pap_gate", "targetname");
+	mdl_gate.s_pos = struct::get(mdl_gate.target);
 	level flag::wait_till("pap_water_drained");
 	if(zm_utility::is_player_valid(level.var_16e32c2f))
 	{
 		level.var_16e32c2f notify("hash_7301e8c8");
 	}
-	var_a36ea22c moveto(var_a36ea22c.s_pos.origin, 3);
-	var_a36ea22c playsound("zmb_papquest_gate_move");
+	mdl_gate moveto(mdl_gate.s_pos.origin, 3);
+	mdl_gate playsound("zmb_papquest_gate_move");
 	level thread namespace_f333593c::function_3bf2d62a("pap_opens", 0, 1, 0);
-	var_a36ea22c waittill("movedone");
+	mdl_gate waittill("movedone");
 	level flag::set("pap_open");
-	var_b1e70b95 delete();
+	t_hint delete();
 	t_door = GetEnt("trigger_pap", "script_noteworthy");
 	t_door zm_blockers::door_opened(0);
 }
@@ -276,15 +276,15 @@ function function_dd9ccb8(n_id)
 {
 	if(n_id == 1)
 	{
-		self.trigger = namespace_8aed53c9::function_d095318(self.origin, 50, 1, &function_72a105ff);
+		self.trigger = namespace_8aed53c9::spawn_trigger_radius(self.origin, 50, 1, &function_72a105ff);
 		continue;
 	}
 	if(n_id == 2)
 	{
-		self.trigger = namespace_8aed53c9::function_d095318(self.origin, 50, 1, &function_e35907c);
+		self.trigger = namespace_8aed53c9::spawn_trigger_radius(self.origin, 50, 1, &function_e35907c);
 		continue;
 	}
-	self.trigger = namespace_8aed53c9::function_d095318(self.origin, 50, 1, &function_578e801d);
+	self.trigger = namespace_8aed53c9::spawn_trigger_radius(self.origin, 50, 1, &function_578e801d);
 	while(1)
 	{
 		self.trigger waittill("trigger", player);
@@ -460,7 +460,7 @@ function function_90913542(str_flag)
 }
 
 /*
-	Name: function_d0901c34
+	Name: cocoon_setup
 	Namespace: namespace_f7d4f63b
 	Checksum: 0x539D5C33
 	Offset: 0x1B70
@@ -468,20 +468,20 @@ function function_90913542(str_flag)
 	Parameters: 0
 	Flags: None
 */
-function function_d0901c34()
+function cocoon_setup()
 {
 	level.var_e1bb72d5 = 0;
 	level.var_69ca3c45 = 0;
-	var_1daee2f1 = GetEntArray("cocoon_bunker", "targetname");
-	foreach(var_e6d966e in var_1daee2f1)
+	a_mdl_cocoons = GetEntArray("cocoon_bunker", "targetname");
+	foreach(mdl_cocoon in a_mdl_cocoons)
 	{
-		var_e6d966e.is_open = 0;
-		var_e6d966e.clip = GetEnt(var_e6d966e.target, "targetname");
-		var_e6d966e.var_aa12511 = struct::get(var_e6d966e.clip.target);
-		var_e6d966e.clip SetCanDamage(1);
-		var_e6d966e.clip.health = 100000;
-		var_e6d966e scene::init("p7_fxanim_zm_island_cocoon_open_bundle", var_e6d966e);
-		var_e6d966e thread function_c762197b();
+		mdl_cocoon.is_open = 0;
+		mdl_cocoon.clip = GetEnt(mdl_cocoon.target, "targetname");
+		mdl_cocoon.s_zombie_spawn = struct::get(mdl_cocoon.clip.target);
+		mdl_cocoon.clip SetCanDamage(1);
+		mdl_cocoon.clip.health = 100000;
+		mdl_cocoon scene::init("p7_fxanim_zm_island_cocoon_open_bundle", mdl_cocoon);
+		mdl_cocoon thread function_c762197b();
 	}
 }
 
@@ -503,9 +503,9 @@ function function_c762197b()
 		self.clip delete();
 	}
 	self.is_open = 1;
-	self thread function_7a0ede5();
-	var_aa12511 = self.var_aa12511;
-	ai_zombie = zombie_utility::spawn_zombie(level.zombie_spawners[0], "cocoon_zombie", var_aa12511);
+	self thread cocoon_effects();
+	s_zombie_spawn = self.s_zombie_spawn;
+	ai_zombie = zombie_utility::spawn_zombie(level.zombie_spawners[0], "cocoon_zombie", s_zombie_spawn);
 	if(isdefined(ai_zombie))
 	{
 		ai_zombie.b_ignore_cleanup = 1;
@@ -518,7 +518,7 @@ function function_c762197b()
 }
 
 /*
-	Name: function_bd8082d1
+	Name: cocoon_select
 	Namespace: namespace_f7d4f63b
 	Checksum: 0xDA978203
 	Offset: 0x1E88
@@ -526,13 +526,13 @@ function function_c762197b()
 	Parameters: 0
 	Flags: None
 */
-function function_bd8082d1()
+function cocoon_select()
 {
-	var_1daee2f1 = GetEntArray("cocoon_bunker", "targetname");
+	a_mdl_cocoons = GetEntArray("cocoon_bunker", "targetname");
 	var_d43245b8 = [];
-	foreach(var_e6d966e in var_1daee2f1)
+	foreach(mdl_cocoon in a_mdl_cocoons)
 	{
-		if(!var_e6d966e.is_open)
+		if(!mdl_cocoon.is_open)
 		{
 			if(!isdefined(var_d43245b8))
 			{
@@ -542,15 +542,15 @@ function function_bd8082d1()
 			{
 				var_d43245b8 = Array(var_d43245b8);
 			}
-			var_d43245b8[var_d43245b8.size] = var_e6d966e;
+			var_d43245b8[var_d43245b8.size] = mdl_cocoon;
 		}
 	}
 	var_696dc555 = Array::random(var_d43245b8);
-	var_696dc555.var_166a0518 = 1;
+	var_696dc555.has_piece = 1;
 }
 
 /*
-	Name: function_7a0ede5
+	Name: cocoon_effects
 	Namespace: namespace_f7d4f63b
 	Checksum: 0x5270CDAF
 	Offset: 0x1FE0
@@ -558,12 +558,12 @@ function function_bd8082d1()
 	Parameters: 0
 	Flags: None
 */
-function function_7a0ede5()
+function cocoon_effects()
 {
 	self PlayLoopSound("zmb_cocoon_lp", 1);
 	playsoundatposition("evt_cocoon_explode", self.origin + VectorScale((0, 0, -1), 100));
 	self StopLoopSound();
-	if(isdefined(self.var_166a0518))
+	if(isdefined(self.has_piece))
 	{
 		self function_14c57bc9();
 	}
@@ -571,7 +571,7 @@ function function_7a0ede5()
 	if(level.var_e1bb72d5 >= 3 && !level.var_69ca3c45)
 	{
 		level.var_69ca3c45 = 1;
-		function_bd8082d1();
+		cocoon_select();
 	}
 }
 
@@ -604,11 +604,11 @@ function function_b09adc86(str_mod)
 */
 function function_14c57bc9()
 {
-	var_71e3d70a = util::spawn_model("p7_zm_isl_pap_elements_gauge", self.origin + VectorScale((0, 0, -1), 154));
-	var_71e3d70a clientfield::set("show_part", 1);
-	var_71e3d70a SetScale(1.5);
-	var_71e3d70a.trigger = namespace_8aed53c9::function_d095318(var_71e3d70a.origin, 50, 1, &function_9bd3096f);
-	var_71e3d70a thread function_1a519eae("valve1_found");
+	mdl_part = util::spawn_model("p7_zm_isl_pap_elements_gauge", self.origin + VectorScale((0, 0, -1), 154));
+	mdl_part clientfield::set("show_part", 1);
+	mdl_part SetScale(1.5);
+	mdl_part.trigger = namespace_8aed53c9::spawn_trigger_radius(mdl_part.origin, 50, 1, &function_9bd3096f);
+	mdl_part thread function_1a519eae("valve1_found");
 }
 
 /*
@@ -626,7 +626,7 @@ function private function_9bd3096f(player)
 }
 
 /*
-	Name: function_f4a071bb
+	Name: defend_setup
 	Namespace: namespace_f7d4f63b
 	Checksum: 0x6353BA5
 	Offset: 0x2208
@@ -634,16 +634,16 @@ function private function_9bd3096f(player)
 	Parameters: 0
 	Flags: None
 */
-function function_f4a071bb()
+function defend_setup()
 {
 	level flag::init("defend_over");
-	level.var_a36ea22c = GetEnt("defend_gate", "targetname");
-	level.var_935a64f = GetEnt("defend_clip", "targetname");
-	level.var_935a64f notsolid();
-	level.var_935a64f connectpaths();
-	var_a2365998 = struct::get("valvethree_part_lever");
-	s_pos = struct::get(var_a2365998.target);
-	level.var_ced49fc = util::spawn_model("p7_zm_isl_pap_elements_whistle", var_a2365998.origin, var_a2365998.angles);
+	level.mdl_gate = GetEnt("defend_gate", "targetname");
+	level.mdl_clip = GetEnt("defend_clip", "targetname");
+	level.mdl_clip notsolid();
+	level.mdl_clip connectpaths();
+	s_part = struct::get("valvethree_part_lever");
+	s_pos = struct::get(s_part.target);
+	level.var_ced49fc = util::spawn_model("p7_zm_isl_pap_elements_whistle", s_part.origin, s_part.angles);
 	level.var_ced49fc SetScale(1.5);
 	level.var_ced49fc.v_org = s_pos.origin;
 	level.var_ced49fc.v_ang = s_pos.angles;
@@ -666,7 +666,7 @@ function defend_start()
 	{
 		wait(1);
 	}
-	var_44f2dff7 = struct::get_array("defend_valve_spawnpt");
+	a_s_spawns = struct::get_array("defend_valve_spawnpt");
 	level.var_74049442 = 0;
 	switch(level.players.size)
 	{
@@ -692,12 +692,12 @@ function defend_start()
 		}
 	}
 	level flag::wait_till("penstock_debris_cleared");
-	level.var_a36ea22c.v_org = level.var_a36ea22c.origin;
-	level.var_a36ea22c.v_pos = struct::get(level.var_a36ea22c.target).origin;
-	level.var_935a64f solid();
-	level.var_935a64f disconnectpaths();
-	level.var_a36ea22c moveto(level.var_a36ea22c.v_pos, 3);
-	level.var_a36ea22c playsound("zmb_papquest_defend_gate_close");
+	level.mdl_gate.v_org = level.mdl_gate.origin;
+	level.mdl_gate.v_pos = struct::get(level.mdl_gate.target).origin;
+	level.mdl_clip solid();
+	level.mdl_clip disconnectpaths();
+	level.mdl_gate moveto(level.mdl_gate.v_pos, 3);
+	level.mdl_gate playsound("zmb_papquest_defend_gate_close");
 	exploder::exploder("fxexp_202");
 	level.disable_nuke_delay_spawning = 1;
 	level flag::clear("spawn_zombies");
@@ -705,8 +705,8 @@ function defend_start()
 	exploder::exploder("lgt_penstock_event");
 	while(level.var_74049442 < 13)
 	{
-		var_44f2dff7 = Array::randomize(var_44f2dff7);
-		for(i = 0; i < var_44f2dff7.size; i++)
+		a_s_spawns = Array::randomize(a_s_spawns);
+		for(i = 0; i < a_s_spawns.size; i++)
 		{
 			while(GetFreeActorCount() < 1)
 			{
@@ -716,10 +716,10 @@ function defend_start()
 			{
 				wait(0.05);
 			}
-			ai_zombie = zombie_utility::spawn_zombie(level.zombie_spawners[0], "defend_zombie", var_44f2dff7[i]);
+			ai_zombie = zombie_utility::spawn_zombie(level.zombie_spawners[0], "defend_zombie", a_s_spawns[i]);
 			if(isdefined(ai_zombie))
 			{
-				if(isdefined(var_44f2dff7[i].script_int))
+				if(isdefined(a_s_spawns[i].script_int))
 				{
 					ai_zombie.var_57b55f08 = 1;
 				}
@@ -781,14 +781,14 @@ function function_9fcd89f7()
 	level.var_ced49fc moveto(level.var_ced49fc.v_org, 3);
 	level.var_ced49fc RotateTo(level.var_ced49fc.v_ang, 3);
 	level.var_ced49fc waittill("movedone");
-	level.var_ced49fc.trigger = namespace_8aed53c9::function_d095318(level.var_ced49fc.origin, 50, 1, &function_9bd3096f);
+	level.var_ced49fc.trigger = namespace_8aed53c9::spawn_trigger_radius(level.var_ced49fc.origin, 50, 1, &function_9bd3096f);
 	level.var_ced49fc thread function_1a519eae("valve3_found");
 	level flag::set("defend_success");
-	level.var_a36ea22c moveto(level.var_a36ea22c.v_org, 3);
-	level.var_a36ea22c playsound("zmb_papquest_defend_gate_open");
+	level.mdl_gate moveto(level.mdl_gate.v_org, 3);
+	level.mdl_gate playsound("zmb_papquest_defend_gate_open");
 	exploder::exploder("fxexp_202");
-	level.var_a36ea22c waittill("movedone");
-	level.var_935a64f delete();
+	level.mdl_gate waittill("movedone");
+	level.mdl_clip delete();
 }
 
 /*
@@ -847,7 +847,7 @@ function function_2870b97d()
 }
 
 /*
-	Name: function_55dac330
+	Name: defend_fail
 	Namespace: namespace_f7d4f63b
 	Checksum: 0xC19922
 	Offset: 0x2CE8
@@ -855,17 +855,17 @@ function function_2870b97d()
 	Parameters: 0
 	Flags: None
 */
-function function_55dac330()
+function defend_fail()
 {
 	foreach(ai_zombie in GetAITeamArray(level.zombie_team))
 	{
 		ai_zombie ai::set_ignoreall(0);
 	}
 	IPrintLnBold("DEFEND FAILED");
-	level.var_a36ea22c MoveZ(96, 3);
-	level.var_a36ea22c playsound("zmb_papquest_defend_gate_open");
-	level.var_a36ea22c waittill("movedone");
-	level.var_935a64f MoveZ(96, 3);
+	level.mdl_gate MoveZ(96, 3);
+	level.mdl_gate playsound("zmb_papquest_defend_gate_open");
+	level.mdl_gate waittill("movedone");
+	level.mdl_clip MoveZ(96, 3);
 	level thread defend_start();
 	level flag::set("spawn_zombies");
 }
@@ -945,7 +945,7 @@ function function_83af0b87(t_water)
 }
 
 /*
-	Name: function_4fdc8e70
+	Name: underwater_setup
 	Namespace: namespace_f7d4f63b
 	Checksum: 0x33717E3C
 	Offset: 0x3020
@@ -953,15 +953,15 @@ function function_83af0b87(t_water)
 	Parameters: 0
 	Flags: None
 */
-function function_4fdc8e70()
+function underwater_setup()
 {
 	level flag::wait_till("connect_bunker_exterior_to_bunker_interior");
-	var_f89319f8 = struct::get_array("valvetwo_part_lever");
-	var_71e3d70a = util::spawn_model("p7_zm_isl_pap_elements_wheel", Array::random(var_f89319f8).origin);
-	var_71e3d70a clientfield::set("show_part", 1);
-	var_71e3d70a SetScale(1.5);
-	var_71e3d70a.trigger = namespace_8aed53c9::function_d095318(var_71e3d70a.origin, 50, 1, &function_9bd3096f);
-	var_71e3d70a thread function_1a519eae("valve2_found");
+	a_s_part = struct::get_array("valvetwo_part_lever");
+	mdl_part = util::spawn_model("p7_zm_isl_pap_elements_wheel", Array::random(a_s_part).origin);
+	mdl_part clientfield::set("show_part", 1);
+	mdl_part SetScale(1.5);
+	mdl_part.trigger = namespace_8aed53c9::spawn_trigger_radius(mdl_part.origin, 50, 1, &function_9bd3096f);
+	mdl_part thread function_1a519eae("valve2_found");
 }
 
 /*
@@ -1025,7 +1025,7 @@ function function_336744d2()
 function function_7cd896fc()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_9e3140d6);
+		zm_devgui::add_custom_devgui_callback(&function_9e3140d6);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");

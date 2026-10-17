@@ -22,7 +22,7 @@ function main()
 }
 
 /*
-	Name: function_f53f6b0a
+	Name: barbecue_fx_loop
 	Namespace: zm_tomb_quest_fire
 	Checksum: 0x7BEC3A4F
 	Offset: 0x200
@@ -30,7 +30,7 @@ function main()
 	Parameters: 1
 	Flags: None
 */
-function function_f53f6b0a(localClientNum)
+function barbecue_fx_loop(localClientNum)
 {
 	self notify("hash_b9e014c3");
 	self endon("hash_b9e014c3");
@@ -55,7 +55,7 @@ function function_63c3c25d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal)
 	{
-		self thread function_f53f6b0a(localClientNum);
+		self thread barbecue_fx_loop(localClientNum);
 		level thread function_ebebc90(self);
 	}
 	else

@@ -8,7 +8,7 @@
 #namespace namespace_eaae7728;
 
 /*
-	Name: function_30d4f164
+	Name: init_quest
 	Namespace: namespace_eaae7728
 	Checksum: 0x7410E9E2
 	Offset: 0x210
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: None
 */
-function function_30d4f164()
+function init_quest()
 {
 	clientfield::register("scriptmover", "play_underwater_plant_fx", 9000, 1, "int", &function_54254560, 0, 0);
 	clientfield::register("actor", "play_carrier_fx", 9000, 1, "int", &function_f0e89ab2, 0, 0);
@@ -38,8 +38,8 @@ function function_fcdf674f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal)
 	{
-		var_989d36e = GetWeapon("hero_mirg2000");
-		AddZombieBoxWeapon(var_989d36e, var_989d36e.worldmodel, var_989d36e.isDualWield);
+		w_wonderweapon = GetWeapon("hero_mirg2000");
+		AddZombieBoxWeapon(w_wonderweapon, w_wonderweapon.worldmodel, w_wonderweapon.isDualWield);
 	}
 }
 

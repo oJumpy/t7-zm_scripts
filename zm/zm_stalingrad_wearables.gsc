@@ -131,8 +131,8 @@ function function_2436f867()
 	self notify("hash_2436f867");
 	self endon("hash_2436f867");
 	self util::waittill_any("disconnect", "bled_out", "death");
-	self.var_bc5f242a = undefined;
-	self.var_e7d196cc = undefined;
+	self.s_wearable = undefined;
+	self.str_wearable = undefined;
 	level clientfield::set("player" + self.entity_num + "wearableItem", 0);
 }
 
@@ -161,11 +161,11 @@ function function_793f10ed(var_908867a0)
 */
 function function_8cde51de()
 {
-	var_7f5d5c6 = [];
-	Array::add(var_7f5d5c6, "dragon_shield_used");
-	Array::add(var_7f5d5c6, "dragon_gauntlet_acquired");
-	Array::add(var_7f5d5c6, "dragon_strike_acquired");
-	flag::wait_till_all(var_7f5d5c6);
+	a_str_flags = [];
+	Array::add(a_str_flags, "dragon_shield_used");
+	Array::add(a_str_flags, "dragon_gauntlet_acquired");
+	Array::add(a_str_flags, "dragon_strike_acquired");
+	flag::wait_till_all(a_str_flags);
 	level flag::set("dragon_wings_items_aquired");
 	if(!level flag::get("dragon_platforms_all_used"))
 	{
@@ -190,7 +190,7 @@ function function_1fc9779e()
 	self endon("disconnect");
 	while(1)
 	{
-		self waittill("hash_2e47bc4a");
+		self waittill("entering_hatchery");
 		switch(level.var_9d19c7e)
 		{
 			case "judicial":
@@ -256,7 +256,7 @@ function function_1a6de86e()
 */
 function function_2c1e6f00(e_player)
 {
-	if(e_player.var_e7d196cc === "dragon_wings")
+	if(e_player.str_wearable === "dragon_wings")
 	{
 		self setHintString(&"ZM_STALINGRAD_WEARABLE_EQUIPPED");
 		return 0;
@@ -287,18 +287,18 @@ function function_18dda0a0()
 		self trigger::wait_till();
 		player = self.who;
 		player clientfield::increment_to_player("interact_rumble");
-		if(isdefined(player.var_bc5f242a))
+		if(isdefined(player.s_wearable))
 		{
-			player function_caffcf07();
+			player hide_hat();
 		}
 		else
 		{
-			player.var_bc5f242a = spawnstruct();
+			player.s_wearable = spawnstruct();
 		}
-		player.var_bc5f242a.model = "c_zom_dlc3_player_wings";
-		player.var_bc5f242a.tag = "j_spine4";
-		player function_20f2df00();
-		player.var_e7d196cc = "dragon_wings";
+		player.s_wearable.model = "c_zom_dlc3_player_wings";
+		player.s_wearable.tag = "j_spine4";
+		player show_hat();
+		player.str_wearable = "dragon_wings";
 		player playsound("zmb_wearable_wing_wear");
 		zm::register_player_damage_callback(&function_9c197fbf);
 		player function_793f10ed(3);
@@ -322,8 +322,8 @@ function function_484ecd5()
 	level.var_37e960a1 = [];
 	foreach(var_c4917757 in var_e48fcb77)
 	{
-		var_cb03b137 = util::spawn_model(var_c4917757.model, var_c4917757.origin, var_c4917757.angles);
-		var_cb03b137 SetScale(0.3);
+		mdl_wings = util::spawn_model(var_c4917757.model, var_c4917757.origin, var_c4917757.angles);
+		mdl_wings SetScale(0.3);
 		if(!isdefined(level.var_37e960a1))
 		{
 			level.var_37e960a1 = [];
@@ -332,8 +332,8 @@ function function_484ecd5()
 		{
 			level.var_37e960a1 = Array(level.var_37e960a1);
 		}
-		level.var_37e960a1[level.var_37e960a1.size] = var_cb03b137;
-		var_cb03b137 Hide();
+		level.var_37e960a1[level.var_37e960a1.size] = mdl_wings;
+		mdl_wings Hide();
 		var_c4917757 thread function_7e873fe6();
 		util::wait_network_frame();
 	}
@@ -355,7 +355,7 @@ function function_7e873fe6()
 	while(1)
 	{
 		self waittill("trigger_activated", e_player);
-		if(e_player.var_e7d196cc === "dragon_wings")
+		if(e_player.str_wearable === "dragon_wings")
 		{
 			e_player playsound("zmb_wearable_wing_teleport");
 			e_player function_cc32e7df();
@@ -374,7 +374,7 @@ function function_7e873fe6()
 */
 function function_9a167439(e_player)
 {
-	if(e_player.var_e7d196cc === "dragon_wings")
+	if(e_player.str_wearable === "dragon_wings")
 	{
 		self setHintString(&"ZM_STALINGRAD_WINGS_TRANSPORT");
 		return 1;
@@ -401,7 +401,7 @@ function function_cc32e7df()
 	self DontInterpolate();
 	self SetOrigin(var_b80ee5b5[n_player_number].origin);
 	self SetPlayerAngles(var_b80ee5b5[n_player_number].angles + VectorScale((0, 1, 0), 180));
-	self notify("hash_2e47bc4a");
+	self notify("entering_hatchery");
 	level notify("hash_9a634383");
 	wait(3);
 	self zm_utility::decrement_ignoreme();
@@ -419,7 +419,7 @@ function function_cc32e7df()
 */
 function function_588ad36a()
 {
-	if(self.var_e7d196cc === "dragon_wings")
+	if(self.str_wearable === "dragon_wings")
 	{
 		Array::run_all(level.var_37e960a1, &SetInvisibleToPlayer, self);
 	}
@@ -512,7 +512,7 @@ function function_69f1fce3()
 */
 function function_449ba539(e_player)
 {
-	if(e_player.var_e7d196cc === "raz_hat")
+	if(e_player.str_wearable === "raz_hat")
 	{
 		self setHintString(&"ZM_STALINGRAD_WEARABLE_EQUIPPED");
 		return 0;
@@ -543,19 +543,19 @@ function function_ad641a9f()
 		self trigger::wait_till();
 		player = self.who;
 		player clientfield::increment_to_player("interact_rumble");
-		if(isdefined(player.var_bc5f242a))
+		if(isdefined(player.s_wearable))
 		{
-			player function_caffcf07();
+			player hide_hat();
 			player function_588ad36a();
 		}
 		else
 		{
-			player.var_bc5f242a = spawnstruct();
+			player.s_wearable = spawnstruct();
 		}
-		player.var_bc5f242a.model = "c_zom_dlc3_player_raz_facemask";
-		player.var_bc5f242a.tag = "j_head";
-		player function_20f2df00();
-		player.var_e7d196cc = "raz_hat";
+		player.s_wearable.model = "c_zom_dlc3_player_raz_facemask";
+		player.s_wearable.tag = "j_head";
+		player show_hat();
+		player.str_wearable = "raz_hat";
 		player playsound("zmb_wearable_raz_wear");
 		zm::register_player_damage_callback(&function_9c197fbf);
 		player function_793f10ed(1);
@@ -650,7 +650,7 @@ function function_14b98ab6()
 */
 function function_a6595bd6(e_player)
 {
-	if(e_player.var_e7d196cc === "sentinel_hat")
+	if(e_player.str_wearable === "sentinel_hat")
 	{
 		self setHintString(&"ZM_STALINGRAD_WEARABLE_EQUIPPED");
 		return 0;
@@ -681,20 +681,20 @@ function function_f3b06f8e()
 		self trigger::wait_till();
 		player = self.who;
 		player clientfield::increment_to_player("interact_rumble");
-		if(isdefined(player.var_bc5f242a))
+		if(isdefined(player.s_wearable))
 		{
-			player function_caffcf07();
+			player hide_hat();
 			player function_588ad36a();
 		}
 		else
 		{
-			player.var_bc5f242a = spawnstruct();
+			player.s_wearable = spawnstruct();
 		}
-		player.var_bc5f242a.model = "c_zom_dlc3_player_sentinel_drone_hat";
-		player.var_bc5f242a.tag = "j_head";
-		player function_20f2df00();
+		player.s_wearable.model = "c_zom_dlc3_player_sentinel_drone_hat";
+		player.s_wearable.tag = "j_head";
+		player show_hat();
 		player playsound("zmb_wearable_sent_wear");
-		player.var_e7d196cc = "sentinel_hat";
+		player.str_wearable = "sentinel_hat";
 		zm::register_player_damage_callback(&function_9c197fbf);
 		player function_793f10ed(2);
 		player thread function_2436f867();
@@ -702,7 +702,7 @@ function function_f3b06f8e()
 }
 
 /*
-	Name: function_caffcf07
+	Name: hide_hat
 	Namespace: namespace_23c72813
 	Checksum: 0x8B4B2C81
 	Offset: 0x2670
@@ -710,13 +710,13 @@ function function_f3b06f8e()
 	Parameters: 0
 	Flags: None
 */
-function function_caffcf07()
+function hide_hat()
 {
-	self Detach(self.var_bc5f242a.model, self.var_bc5f242a.tag);
+	self Detach(self.s_wearable.model, self.s_wearable.tag);
 }
 
 /*
-	Name: function_20f2df00
+	Name: show_hat
 	Namespace: namespace_23c72813
 	Checksum: 0xE8312DD2
 	Offset: 0x26B8
@@ -724,9 +724,9 @@ function function_caffcf07()
 	Parameters: 0
 	Flags: None
 */
-function function_20f2df00()
+function show_hat()
 {
-	self Attach(self.var_bc5f242a.model, self.var_bc5f242a.tag);
+	self Attach(self.s_wearable.model, self.s_wearable.tag);
 }
 
 /*
@@ -738,26 +738,26 @@ function function_20f2df00()
 	Parameters: 10
 	Flags: None
 */
-function function_9c197fbf(e_inflictor, e_attacker, var_b2d13ae2, iDFlags, str_meansofdeath, weapon, vPoint, vDir, sHitLoc, psOffsetTime)
+function function_9c197fbf(e_inflictor, e_attacker, i_damage, iDFlags, str_meansofdeath, weapon, vPoint, vDir, sHitLoc, psOffsetTime)
 {
-	if(isdefined(self.var_e7d196cc))
+	if(isdefined(self.str_wearable))
 	{
-		switch(self.var_e7d196cc)
+		switch(self.str_wearable)
 		{
 			case "sentinel_hat":
 			{
 				if(isdefined(e_attacker) && e_attacker.archetype === "sentinel_drone")
 				{
-					var_b2d13ae2 = var_b2d13ae2 * 0.5;
-					return Int(var_b2d13ae2);
+					i_damage = i_damage * 0.5;
+					return Int(i_damage);
 				}
 			}
 			case "raz_hat":
 			{
 				if(isdefined(e_attacker) && e_attacker.archetype === "raz")
 				{
-					var_b2d13ae2 = var_b2d13ae2 * 0.5;
-					return Int(var_b2d13ae2);
+					i_damage = i_damage * 0.5;
+					return Int(i_damage);
 				}
 			}
 			case "dragon_wings":
@@ -768,8 +768,8 @@ function function_9c197fbf(e_inflictor, e_attacker, var_b2d13ae2, iDFlags, str_m
 					{
 						case "MOD_FIRE":
 						{
-							var_b2d13ae2 = var_b2d13ae2 * 0.5;
-							return Int(var_b2d13ae2);
+							i_damage = i_damage * 0.5;
+							return Int(i_damage);
 						}
 						case "MOD_EXPLOSIVE":
 						case "MOD_GRENADE":
@@ -777,8 +777,8 @@ function function_9c197fbf(e_inflictor, e_attacker, var_b2d13ae2, iDFlags, str_m
 						case "MOD_PROJECTILE":
 						case "MOD_PROJECTILE_SPLASH":
 						{
-							var_b2d13ae2 = var_b2d13ae2 * 0.5;
-							return Int(var_b2d13ae2);
+							i_damage = i_damage * 0.5;
+							return Int(i_damage);
 						}
 					}
 				}
@@ -940,32 +940,32 @@ function function_70aa26aa()
 	while(1)
 	{
 		self waittill("hash_10fa975d");
-		var_7dda366c = self GetWeaponMuzzlePoint();
-		var_3ec0a9c2 = Array::get_all_closest(var_7dda366c, level.var_8f92a57b.var_3ec0a9c2, undefined, undefined, level.zombie_vars["dragonshield_knockdown_range"]);
+		v_view_pos = self GetWeaponMuzzlePoint();
+		var_3ec0a9c2 = Array::get_all_closest(v_view_pos, level.var_8f92a57b.var_3ec0a9c2, undefined, undefined, level.zombie_vars["dragonshield_knockdown_range"]);
 		if(!isdefined(var_3ec0a9c2))
 		{
 			break;
 		}
 		knockdown_range_squared = level.zombie_vars["dragonshield_knockdown_range"] * level.zombie_vars["dragonshield_knockdown_range"];
 		forward_view_angles = self GetWeaponForwardDir();
-		end_pos = var_7dda366c + VectorScale(forward_view_angles, level.zombie_vars["dragonshield_knockdown_range"]);
-		foreach(var_2cd7ef33 in var_3ec0a9c2)
+		end_pos = v_view_pos + VectorScale(forward_view_angles, level.zombie_vars["dragonshield_knockdown_range"]);
+		foreach(s_rune in var_3ec0a9c2)
 		{
-			var_cb78916d = var_2cd7ef33.origin;
-			var_8112eb05 = DistanceSquared(var_7dda366c, var_cb78916d);
+			var_cb78916d = s_rune.origin;
+			var_8112eb05 = DistanceSquared(v_view_pos, var_cb78916d);
 			if(var_8112eb05 > knockdown_range_squared)
 			{
 				break;
 			}
-			v_normal = VectorNormalize(var_cb78916d - var_7dda366c);
+			v_normal = VectorNormalize(var_cb78916d - v_view_pos);
 			dot = VectorDot(forward_view_angles, v_normal);
 			if(0 > dot)
 			{
 				break;
 			}
-			var_2cd7ef33.model delete();
-			ArrayRemoveValue(level.var_8f92a57b.var_3ec0a9c2, var_2cd7ef33);
-			level flag::set("drshup_" + var_2cd7ef33.script_string + "_rune_hit");
+			s_rune.model delete();
+			ArrayRemoveValue(level.var_8f92a57b.var_3ec0a9c2, s_rune);
+			level flag::set("drshup_" + s_rune.script_string + "_rune_hit");
 			playsoundatposition("zmb_dragshield_success_small", (0, 0, 0));
 		}
 	}

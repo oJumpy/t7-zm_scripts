@@ -30,27 +30,27 @@ function autoexec __init__sytem__()
 	system::register("zm_zod_smashables", &__init__, undefined, undefined);
 }
 
-#namespace namespace_1143ac18;
+#namespace csmashable;
 
 /*
-	Name: function_9b385ca5
-	Namespace: namespace_1143ac18
+	Name: __constructor
+	Namespace: csmashable
 	Checksum: 0xC1BB7744
 	Offset: 0x448
 	Size: 0x27
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
-	self.var_e9913a67 = [];
-	self.var_22f50938 = [];
-	self.var_b147f2bf = [];
+	self.m_a_callbacks = [];
+	self.m_a_b_parameters = [];
+	self.m_a_e_models = [];
 }
 
 /*
 	Name: init
-	Namespace: namespace_1143ac18
+	Namespace: csmashable
 	Checksum: 0x1CBC39F5
 	Offset: 0x478
 	Size: 0x1A3
@@ -60,9 +60,9 @@ function function_9b385ca5()
 function init(e_trigger)
 {
 	self.m_e_trigger = e_trigger;
-	self.var_874b5dbf = GetEntArray(e_trigger.target, "targetname");
-	self.var_889ff800 = GetNodeArray(e_trigger.target, "targetname");
-	foreach(node in self.var_889ff800)
+	self.m_a_clip = GetEntArray(e_trigger.target, "targetname");
+	self.m_a_nodes = GetNodeArray(e_trigger.target, "targetname");
+	foreach(node in self.m_a_nodes)
 	{
 		if(isdefined(node.script_noteworthy) && node.script_noteworthy == "air_beast_node")
 		{
@@ -70,85 +70,85 @@ function init(e_trigger)
 		}
 	}
 	function_89be164a(e_trigger);
-	function_17dbc3e9();
-	function_f559704d();
-	function_80d521ff(1);
-	function_6ea46467(1);
+	setup_fxanims();
+	parse_parameters();
+	toggle_shader(1);
+	fadeout_shader(1);
 	thread main();
 }
 
 /*
-	Name: function_32f1f123
-	Namespace: namespace_1143ac18
+	Name: set_trigger_func
+	Namespace: csmashable
 	Checksum: 0x9B0E0A50
 	Offset: 0x628
 	Size: 0x2B
 	Parameters: 2
 	Flags: None
 */
-function function_32f1f123(var_55b30dc8, arg)
+function set_trigger_func(func_trig, arg)
 {
-	self.var_8c958204 = var_55b30dc8;
-	self.var_b94c1eb = arg;
+	self.m_func_trig = func_trig;
+	self.m_arg = arg;
 }
 
 /*
-	Name: function_f559704d
-	Namespace: namespace_1143ac18
+	Name: parse_parameters
+	Namespace: csmashable
 	Checksum: 0xDF483AB
 	Offset: 0x660
 	Size: 0x1E9
 	Parameters: 0
 	Flags: Private
 */
-function private function_f559704d()
+function private parse_parameters()
 {
 	if(!isdefined(self.m_e_trigger.script_parameters))
 	{
 		return;
 	}
 	a_params = StrTok(self.m_e_trigger.script_parameters, ",");
-	foreach(var_b57e3a38 in a_params)
+	foreach(str_param in a_params)
 	{
-		self.var_22f50938[var_b57e3a38] = 1;
-		if(var_b57e3a38 == "connect_paths")
+		self.m_a_b_parameters[str_param] = 1;
+		if(str_param == "connect_paths")
 		{
-			add_callback(&namespace_783690d8::function_1e436158);
+			add_callback(&namespace_783690d8::cb_connect_paths);
 			continue;
 		}
-		if(var_b57e3a38 == "any_damage")
+		if(str_param == "any_damage")
 		{
-			foreach(e_clip in self.var_874b5dbf)
+			foreach(e_clip in self.m_a_clip)
 			{
-				thread function_4b1eb226(e_clip);
+				thread watch_all_damage(e_clip);
 			}
 			continue;
 		}
 		/#
 			/#
-				ASSERTMSG("Dev Block strings are not supported" + var_b57e3a38 + "Dev Block strings are not supported" + self.m_e_trigger.targetname + "Dev Block strings are not supported");
+				ASSERTMSG("Dev Block strings are not supported" + str_param + "Dev Block strings are not supported" + self.m_e_trigger.targetname + "Dev Block strings are not supported");
 			#/
 		#/
 	}
 }
 
 /*
-	Name: function_61ed2bc3
-	Namespace: namespace_1143ac18
+	Name: has_parameter
+	Namespace: csmashable
 	Checksum: 0xF0928BEC
 	Offset: 0x858
 	Size: 0x2B
 	Parameters: 1
 	Flags: None
 */
-function function_61ed2bc3(var_f2eb1416)
+function has_parameter(str_parameter)
 {
-	return isdefined(self.var_22f50938[var_f2eb1416]) && self.var_22f50938[var_f2eb1416];
+	return isdefined(self.m_a_b_parameters[str_parameter]) && self.m_a_b_parameters[str_parameter];
 }
 
 /*
 	Name: add_model
-	Namespace: namespace_1143ac18
+	Namespace: csmashable
 	Checksum: 0xC0BB2836
 	Offset: 0x890
 	Size: 0xDB
@@ -157,44 +157,44 @@ function function_61ed2bc3(var_f2eb1416)
 */
 function add_model(e_model)
 {
-	if(!isdefined(self.var_b147f2bf))
+	if(!isdefined(self.m_a_e_models))
 	{
-		self.var_b147f2bf = [];
+		self.m_a_e_models = [];
 	}
-	else if(!IsArray(self.var_b147f2bf))
+	else if(!IsArray(self.m_a_e_models))
 	{
-		self.var_b147f2bf = Array(self.var_b147f2bf);
+		self.m_a_e_models = Array(self.m_a_e_models);
 	}
-	self.var_b147f2bf[self.var_b147f2bf.size] = e_model;
-	if(function_61ed2bc3("any_damage"))
+	self.m_a_e_models[self.m_a_e_models.size] = e_model;
+	if(has_parameter("any_damage"))
 	{
-		thread function_4b1eb226(e_model);
+		thread watch_all_damage(e_model);
 	}
-	function_80d521ff(self.var_40a64b9d);
-	function_6ea46467(1);
+	toggle_shader(self.m_b_shader_on);
+	fadeout_shader(1);
 }
 
 /*
-	Name: function_17dbc3e9
-	Namespace: namespace_1143ac18
+	Name: setup_fxanims
+	Namespace: csmashable
 	Checksum: 0x10F788AF
 	Offset: 0x978
 	Size: 0x15B
 	Parameters: 0
 	Flags: Private
 */
-function private function_17dbc3e9()
+function private setup_fxanims()
 {
-	var_c661ffbe = struct::get(self.m_e_trigger.target, "targetname");
-	if(isdefined(var_c661ffbe) && isdefined(var_c661ffbe.scriptbundlename))
+	s_bundle_inst = struct::get(self.m_e_trigger.target, "targetname");
+	if(isdefined(s_bundle_inst) && isdefined(s_bundle_inst.scriptbundlename))
 	{
-		if(!isdefined(level.var_4c3d0fb8))
+		if(!isdefined(level.zod_smashable_scriptbundles))
 		{
-			level.var_4c3d0fb8 = [];
+			level.zod_smashable_scriptbundles = [];
 		}
-		if(!isdefined(level.var_4c3d0fb8[var_c661ffbe.scriptbundlename]))
+		if(!isdefined(level.zod_smashable_scriptbundles[s_bundle_inst.scriptbundlename]))
 		{
-			level.var_4c3d0fb8[var_c661ffbe.scriptbundlename] = var_c661ffbe.scriptbundlename;
+			level.zod_smashable_scriptbundles[s_bundle_inst.scriptbundlename] = s_bundle_inst.scriptbundlename;
 		}
 		if(function_3408f1a2())
 		{
@@ -205,13 +205,13 @@ function private function_17dbc3e9()
 			level scene::init(self.m_e_trigger.target, "targetname");
 		}
 		var_5b3a6271 = function_3408f1a2();
-		add_callback(&namespace_783690d8::function_31bb7714, var_5b3a6271, self.var_afea543d, self.var_6e27ff4);
+		add_callback(&namespace_783690d8::cb_fxanim, var_5b3a6271, self.var_afea543d, self.var_6e27ff4);
 	}
 }
 
 /*
 	Name: function_82bc26b5
-	Namespace: namespace_1143ac18
+	Namespace: csmashable
 	Checksum: 0x28B91CA8
 	Offset: 0xAE0
 	Size: 0x53
@@ -226,37 +226,37 @@ function function_82bc26b5()
 }
 
 /*
-	Name: function_80d521ff
-	Namespace: namespace_1143ac18
+	Name: toggle_shader
+	Namespace: csmashable
 	Checksum: 0x2F57BE24
 	Offset: 0xB40
 	Size: 0xA7
 	Parameters: 1
 	Flags: Private
 */
-function private function_80d521ff(var_451c9181)
+function private toggle_shader(b_shader_on)
 {
-	foreach(e_model in self.var_b147f2bf)
+	foreach(e_model in self.m_a_e_models)
 	{
-		e_model clientfield::set("bminteract", var_451c9181);
+		e_model clientfield::set("bminteract", b_shader_on);
 	}
-	self.var_40a64b9d = var_451c9181;
+	self.m_b_shader_on = b_shader_on;
 }
 
 /*
-	Name: function_6ea46467
-	Namespace: namespace_1143ac18
+	Name: fadeout_shader
+	Namespace: csmashable
 	Checksum: 0xECDA0067
 	Offset: 0xBF0
 	Size: 0xB9
 	Parameters: 1
 	Flags: Private
 */
-function private function_6ea46467(var_451c9181)
+function private fadeout_shader(b_shader_on)
 {
-	foreach(e_model in self.var_b147f2bf)
+	foreach(e_model in self.m_a_e_models)
 	{
-		if(var_451c9181)
+		if(b_shader_on)
 		{
 			e_model clientfield::set("set_fade_material", 1);
 			continue;
@@ -267,7 +267,7 @@ function private function_6ea46467(var_451c9181)
 
 /*
 	Name: function_d8055c34
-	Namespace: namespace_1143ac18
+	Namespace: csmashable
 	Checksum: 0x3F763D8E
 	Offset: 0xCB8
 	Size: 0x35
@@ -286,7 +286,7 @@ function private function_d8055c34()
 
 /*
 	Name: function_387c449e
-	Namespace: namespace_1143ac18
+	Namespace: csmashable
 	Checksum: 0x4BC00414
 	Offset: 0xCF8
 	Size: 0x2B
@@ -301,7 +301,7 @@ function private function_387c449e()
 
 /*
 	Name: main
-	Namespace: namespace_1143ac18
+	Namespace: csmashable
 	Checksum: 0x9C3FA03F
 	Offset: 0xD30
 	Size: 0x2A7
@@ -315,7 +315,7 @@ function private main()
 	{
 		who notify("hash_d8f4150d");
 	}
-	foreach(model in self.var_b147f2bf)
+	foreach(model in self.m_a_e_models)
 	{
 		if(model.targetname == "fxanim_beast_door")
 		{
@@ -334,56 +334,56 @@ function private main()
 			model playsound("zmb_bm_interaction_crate_small");
 		}
 	}
-	function_10514fab();
-	foreach(e_clip in self.var_874b5dbf)
+	execute_callbacks();
+	foreach(e_clip in self.m_a_clip)
 	{
 		e_clip delete();
 	}
-	function_80d521ff(0);
-	function_6ea46467(0);
+	toggle_shader(0);
+	fadeout_shader(0);
 	if(isdefined(self.m_e_trigger.script_flag_set))
 	{
 		level flag::set(self.m_e_trigger.script_flag_set);
 	}
-	if(isdefined(self.var_8c958204))
+	if(isdefined(self.m_func_trig))
 	{
-		[[self.var_8c958204]](self.var_b94c1eb);
+		[[self.m_func_trig]](self.m_arg);
 	}
 }
 
 /*
-	Name: function_10514fab
-	Namespace: namespace_1143ac18
+	Name: execute_callbacks
+	Namespace: csmashable
 	Checksum: 0x2A99CCBA
 	Offset: 0xFE0
 	Size: 0x17F
 	Parameters: 0
 	Flags: Private
 */
-function private function_10514fab()
+function private execute_callbacks()
 {
-	foreach(var_45e75a74 in self.var_e9913a67)
+	foreach(s_cb in self.m_a_callbacks)
 	{
-		switch(var_45e75a74.params.size)
+		switch(s_cb.params.size)
 		{
 			case 0:
 			{
-				self thread [[var_45e75a74.fn]]();
+				self thread [[s_cb.fn]]();
 				break;
 			}
 			case 1:
 			{
-				self thread [[var_45e75a74.fn]](var_45e75a74.params[0]);
+				self thread [[s_cb.fn]](s_cb.params[0]);
 				break;
 			}
 			case 2:
 			{
-				self thread [[var_45e75a74.fn]](var_45e75a74.params[0], var_45e75a74.params[1]);
+				self thread [[s_cb.fn]](s_cb.params[0], s_cb.params[1]);
 				break;
 			}
 			case 3:
 			{
-				self thread [[var_45e75a74.fn]](var_45e75a74.params[0], var_45e75a74.params[1], var_45e75a74.params[2]);
+				self thread [[s_cb.fn]](s_cb.params[0], s_cb.params[1], s_cb.params[2]);
 				break;
 			}
 		}
@@ -392,20 +392,20 @@ function private function_10514fab()
 
 /*
 	Name: add_callback
-	Namespace: namespace_1143ac18
+	Namespace: csmashable
 	Checksum: 0x9092C83D
 	Offset: 0x1168
 	Size: 0x2E9
 	Parameters: 4
 	Flags: None
 */
-function add_callback(var_8643a121, param1, param2, param3)
+function add_callback(fn_callback, param1, param2, param3)
 {
 	/#
-		Assert(isdefined(var_8643a121) && IsFunctionPtr(var_8643a121));
+		Assert(isdefined(fn_callback) && IsFunctionPtr(fn_callback));
 	#/
 	s = spawnstruct();
-	s.fn = var_8643a121;
+	s.fn = fn_callback;
 	s.params = [];
 	if(isdefined(param1))
 	{
@@ -443,32 +443,32 @@ function add_callback(var_8643a121, param1, param2, param3)
 		}
 		s.params[s.params.size] = param3;
 	}
-	if(!isdefined(self.var_e9913a67))
+	if(!isdefined(self.m_a_callbacks))
 	{
-		self.var_e9913a67 = [];
+		self.m_a_callbacks = [];
 	}
-	else if(!IsArray(self.var_e9913a67))
+	else if(!IsArray(self.m_a_callbacks))
 	{
-		self.var_e9913a67 = Array(self.var_e9913a67);
+		self.m_a_callbacks = Array(self.m_a_callbacks);
 	}
-	self.var_e9913a67[self.var_e9913a67.size] = s;
+	self.m_a_callbacks[self.m_a_callbacks.size] = s;
 }
 
 /*
-	Name: function_4b1eb226
-	Namespace: namespace_1143ac18
+	Name: watch_all_damage
+	Namespace: csmashable
 	Checksum: 0x99C7CBB2
 	Offset: 0x1460
 	Size: 0xEB
 	Parameters: 1
 	Flags: None
 */
-function function_4b1eb226(e_clip)
+function watch_all_damage(e_clip)
 {
 	e_clip SetCanDamage(1);
 	while(1)
 	{
-		e_clip waittill("damage", var_bee83e92, e_attacker, v_dir, v_pos, str_type);
+		e_clip waittill("damage", n_amt, e_attacker, v_dir, v_pos, str_type);
 		if(isdefined(e_attacker) && isPlayer(e_attacker) && (isdefined(e_attacker.beastmode) && e_attacker.beastmode) && str_type === "MOD_MELEE")
 		{
 			self.m_e_trigger notify("trigger", e_attacker);
@@ -479,7 +479,7 @@ function function_4b1eb226(e_clip)
 
 /*
 	Name: function_89be164a
-	Namespace: namespace_1143ac18
+	Namespace: csmashable
 	Checksum: 0xB649329C
 	Offset: 0x1558
 	Size: 0x7F
@@ -502,7 +502,7 @@ function function_89be164a(e_trigger)
 
 /*
 	Name: function_3408f1a2
-	Namespace: namespace_1143ac18
+	Namespace: csmashable
 	Checksum: 0x80B5AD1F
 	Offset: 0x15E0
 	Size: 0x21
@@ -519,22 +519,22 @@ function function_3408f1a2()
 }
 
 /*
-	Name: function_5fba2032
-	Namespace: namespace_1143ac18
+	Name: __destructor
+	Namespace: csmashable
 	Checksum: 0x99EC1590
 	Offset: 0x1610
 	Size: 0x3
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
 #namespace namespace_783690d8;
 
 /*
-	Name: function_1143ac18
+	Name: csmashable
 	Namespace: namespace_783690d8
 	Checksum: 0x7100D8FD
 	Offset: 0x1620
@@ -542,28 +542,28 @@ function function_5fba2032()
 	Parameters: 0
 	Flags: 6
 */
-function private autoexec function_1143ac18()
+function private autoexec csmashable()
 {
-	classes.var_1143ac18[0] = spawnstruct();
-	classes.var_1143ac18[0].__vtable[1606033458] = &namespace_1143ac18::function_5fba2032;
-	classes.var_1143ac18[0].__vtable[873001378] = &namespace_1143ac18::function_3408f1a2;
-	classes.var_1143ac18[0].__vtable[-1984031158] = &namespace_1143ac18::function_89be164a;
-	classes.var_1143ac18[0].__vtable[1260302886] = &namespace_1143ac18::function_4b1eb226;
-	classes.var_1143ac18[0].__vtable[-565835896] = &namespace_1143ac18::add_callback;
-	classes.var_1143ac18[0].__vtable[273764267] = &namespace_1143ac18::function_10514fab;
-	classes.var_1143ac18[0].__vtable[-762254342] = &namespace_1143ac18::main;
-	classes.var_1143ac18[0].__vtable[947668126] = &namespace_1143ac18::function_387c449e;
-	classes.var_1143ac18[0].__vtable[-670737356] = &namespace_1143ac18::function_d8055c34;
-	classes.var_1143ac18[0].__vtable[1856267367] = &namespace_1143ac18::function_6ea46467;
-	classes.var_1143ac18[0].__vtable[-2133515777] = &namespace_1143ac18::function_80d521ff;
-	classes.var_1143ac18[0].__vtable[-2101598539] = &namespace_1143ac18::function_82bc26b5;
-	classes.var_1143ac18[0].__vtable[400278505] = &namespace_1143ac18::function_17dbc3e9;
-	classes.var_1143ac18[0].__vtable[562466628] = &namespace_1143ac18::add_model;
-	classes.var_1143ac18[0].__vtable[1642933187] = &namespace_1143ac18::function_61ed2bc3;
-	classes.var_1143ac18[0].__vtable[-178687923] = &namespace_1143ac18::function_f559704d;
-	classes.var_1143ac18[0].__vtable[854716707] = &namespace_1143ac18::function_32f1f123;
-	classes.var_1143ac18[0].__vtable[-1017222485] = &namespace_1143ac18::init;
-	classes.var_1143ac18[0].__vtable[-1690805083] = &namespace_1143ac18::function_9b385ca5;
+	classes.csmashable[0] = spawnstruct();
+	classes.csmashable[0].__vtable[1606033458] = &csmashable::__destructor;
+	classes.csmashable[0].__vtable[873001378] = &csmashable::function_3408f1a2;
+	classes.csmashable[0].__vtable[-1984031158] = &csmashable::function_89be164a;
+	classes.csmashable[0].__vtable[1260302886] = &csmashable::watch_all_damage;
+	classes.csmashable[0].__vtable[-565835896] = &csmashable::add_callback;
+	classes.csmashable[0].__vtable[273764267] = &csmashable::execute_callbacks;
+	classes.csmashable[0].__vtable[-762254342] = &csmashable::main;
+	classes.csmashable[0].__vtable[947668126] = &csmashable::function_387c449e;
+	classes.csmashable[0].__vtable[-670737356] = &csmashable::function_d8055c34;
+	classes.csmashable[0].__vtable[1856267367] = &csmashable::fadeout_shader;
+	classes.csmashable[0].__vtable[-2133515777] = &csmashable::toggle_shader;
+	classes.csmashable[0].__vtable[-2101598539] = &csmashable::function_82bc26b5;
+	classes.csmashable[0].__vtable[400278505] = &csmashable::setup_fxanims;
+	classes.csmashable[0].__vtable[562466628] = &csmashable::add_model;
+	classes.csmashable[0].__vtable[1642933187] = &csmashable::has_parameter;
+	classes.csmashable[0].__vtable[-178687923] = &csmashable::parse_parameters;
+	classes.csmashable[0].__vtable[854716707] = &csmashable::set_trigger_func;
+	classes.csmashable[0].__vtable[-1017222485] = &csmashable::init;
+	classes.csmashable[0].__vtable[-1690805083] = &csmashable::__constructor;
 }
 
 /*
@@ -577,15 +577,15 @@ function private autoexec function_1143ac18()
 */
 function __init__()
 {
-	level thread function_9303865();
-	foreach(var_a3d1f031 in level.var_4c3d0fb8)
+	level thread init_smashables();
+	foreach(str_bundle in level.zod_smashable_scriptbundles)
 	{
-		scene::add_scene_func(var_a3d1f031, &function_b0597c09, "init");
+		scene::add_scene_func(str_bundle, &add_scriptbundle_models, "init");
 	}
 }
 
 /*
-	Name: function_98f24ad1
+	Name: smashable_from_scriptbundle_targetname
 	Namespace: namespace_783690d8
 	Checksum: 0xEE087432
 	Offset: 0x1AA0
@@ -593,20 +593,20 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-function private function_98f24ad1(str_targetname)
+function private smashable_from_scriptbundle_targetname(str_targetname)
 {
-	foreach(var_e535841d in level.var_ac1aab64)
+	foreach(o_smash in level.zod_smashables)
 	{
-		if(isdefined(var_e535841d.m_e_trigger.target) && var_e535841d.m_e_trigger.target == str_targetname)
+		if(isdefined(o_smash.m_e_trigger.target) && o_smash.m_e_trigger.target == str_targetname)
 		{
-			return var_e535841d;
+			return o_smash;
 		}
 	}
 	return undefined;
 }
 
 /*
-	Name: function_b0597c09
+	Name: add_scriptbundle_models
 	Namespace: namespace_783690d8
 	Checksum: 0xD83FC7C7
 	Offset: 0x1B68
@@ -614,24 +614,24 @@ function private function_98f24ad1(str_targetname)
 	Parameters: 1
 	Flags: Private
 */
-function private function_b0597c09(a_models)
+function private add_scriptbundle_models(a_models)
 {
-	var_e535841d = undefined;
+	o_smash = undefined;
 	foreach(e_model in a_models)
 	{
-		if(!isdefined(var_e535841d))
+		if(!isdefined(o_smash))
 		{
-			var_e535841d = function_98f24ad1(e_model._o_scene._e_root.targetname);
+			o_smash = smashable_from_scriptbundle_targetname(e_model._o_scene._e_root.targetname);
 		}
-		if(isdefined(var_e535841d))
+		if(isdefined(o_smash))
 		{
-			add_model(var_e535841d);
+			add_model(o_smash);
 		}
 	}
 }
 
 /*
-	Name: function_9303865
+	Name: init_smashables
 	Namespace: namespace_783690d8
 	Checksum: 0xE898167C
 	Offset: 0x1C58
@@ -639,12 +639,12 @@ function private function_b0597c09(a_models)
 	Parameters: 0
 	Flags: Private
 */
-function private function_9303865()
+function private init_smashables()
 {
-	level.var_ac1aab64 = [];
-	var_5b2a4fe5 = GetEntArray("beast_melee_only", "script_noteworthy");
+	level.zod_smashables = [];
+	a_smashable_triggers = GetEntArray("beast_melee_only", "script_noteworthy");
 	n_id = 0;
-	foreach(trigger in var_5b2a4fe5)
+	foreach(trigger in a_smashable_triggers)
 	{
 		str_id = "smash_unnamed_" + n_id;
 		if(isdefined(trigger.targetname))
@@ -656,7 +656,7 @@ function private function_9303865()
 			trigger.targetname = str_id;
 			n_id++;
 		}
-		if(isdefined(level.var_ac1aab64[str_id]))
+		if(isdefined(level.zod_smashables[str_id]))
 		{
 			/#
 				/#
@@ -665,31 +665,31 @@ function private function_9303865()
 			#/
 			continue;
 		}
-		function_9b385ca5();
-		var_bb87fb61 = var_1143ac18;
-		level.var_ac1aab64[str_id] = var_bb87fb61;
+		__constructor();
+		o_smashable = csmashable;
+		level.zod_smashables[str_id] = o_smashable;
 		if(IsSubStr(str_id, "portal"))
 		{
-			function_32f1f123(var_bb87fb61, &namespace_8e2647d0::function_54ec766b);
+			set_trigger_func(o_smashable, &namespace_8e2647d0::function_54ec766b);
 		}
 		if(IsSubStr(str_id, "memento"))
 		{
-			function_32f1f123(var_bb87fb61, &namespace_1f61c67f::function_c2c28545);
+			set_trigger_func(o_smashable, &namespace_1f61c67f::reveal_personal_item);
 		}
 		if(IsSubStr(str_id, "beast_kiosk"))
 		{
-			function_32f1f123(var_bb87fb61, &function_98a01ab9);
+			set_trigger_func(o_smashable, &unlock_beast_kiosk);
 		}
 		if(str_id === "unlock_quest_key")
 		{
-			function_32f1f123(var_bb87fb61, &function_1c061892);
+			set_trigger_func(o_smashable, &function_1c061892);
 		}
-		init(var_bb87fb61);
+		init(o_smashable);
 	}
 }
 
 /*
-	Name: function_98a01ab9
+	Name: unlock_beast_kiosk
 	Namespace: namespace_783690d8
 	Checksum: 0x194D5801
 	Offset: 0x1F00
@@ -697,14 +697,14 @@ function private function_9303865()
 	Parameters: 1
 	Flags: None
 */
-function function_98a01ab9(str_id)
+function unlock_beast_kiosk(str_id)
 {
-	function_14a1c32c("beast_mode_kiosk_unavailable", str_id);
-	function_14a1c32c("beast_mode_kiosk", str_id);
+	unlock_beast_trigger("beast_mode_kiosk_unavailable", str_id);
+	unlock_beast_trigger("beast_mode_kiosk", str_id);
 }
 
 /*
-	Name: function_14a1c32c
+	Name: unlock_beast_trigger
 	Namespace: namespace_783690d8
 	Checksum: 0xC71A8978
 	Offset: 0x1F58
@@ -712,14 +712,14 @@ function function_98a01ab9(str_id)
 	Parameters: 2
 	Flags: None
 */
-function function_14a1c32c(str_targetname, str_id)
+function unlock_beast_trigger(str_targetname, str_id)
 {
 	triggers = GetEntArray(str_targetname, "targetname");
 	foreach(trigger in triggers)
 	{
 		if(trigger.script_noteworthy === str_id)
 		{
-			trigger.var_5c0036b3 = 1;
+			trigger.is_unlocked = 1;
 		}
 	}
 }
@@ -735,7 +735,7 @@ function function_14a1c32c(str_targetname, str_id)
 */
 function function_1c061892(str_id)
 {
-	level.var_c913a45f = 1;
+	level.quest_key_can_be_picked_up = 1;
 }
 
 /*
@@ -747,10 +747,10 @@ function function_1c061892(str_id)
 	Parameters: 5
 	Flags: None
 */
-function add_callback(targetname, var_8643a121, param1, param2, param3)
+function add_callback(targetname, fn_callback, param1, param2, param3)
 {
-	var_bb87fb61 = level.var_ac1aab64[targetname];
-	if(!isdefined(var_bb87fb61))
+	o_smashable = level.zod_smashables[targetname];
+	if(!isdefined(o_smashable))
 	{
 		/#
 			/#
@@ -759,11 +759,11 @@ function add_callback(targetname, var_8643a121, param1, param2, param3)
 		#/
 		return;
 	}
-	add_callback(var_bb87fb61, var_8643a121, param1, param2);
+	add_callback(o_smashable, fn_callback, param1, param2);
 }
 
 /*
-	Name: function_1e436158
+	Name: cb_connect_paths
 	Namespace: namespace_783690d8
 	Checksum: 0x3E491AF4
 	Offset: 0x2110
@@ -771,12 +771,12 @@ function add_callback(targetname, var_8643a121, param1, param2, param3)
 	Parameters: 0
 	Flags: Private
 */
-function private function_1e436158()
+function private cb_connect_paths()
 {
-	self.var_874b5dbf[0] connectpaths();
-	if(isdefined(self.var_889ff800))
+	self.m_a_clip[0] connectpaths();
+	if(isdefined(self.m_a_nodes))
 	{
-		foreach(node in self.var_889ff800)
+		foreach(node in self.m_a_nodes)
 		{
 			if(isdefined(node.script_noteworthy) && node.script_noteworthy == "air_beast_node")
 			{
@@ -787,7 +787,7 @@ function private function_1e436158()
 }
 
 /*
-	Name: function_31bb7714
+	Name: cb_fxanim
 	Namespace: namespace_783690d8
 	Checksum: 0xEF2183CD
 	Offset: 0x2200
@@ -795,7 +795,7 @@ function private function_1e436158()
 	Parameters: 3
 	Flags: Private
 */
-function private function_31bb7714(var_5b3a6271, var_bc554281, var_6bf8cfb8)
+function private cb_fxanim(var_5b3a6271, var_bc554281, var_6bf8cfb8)
 {
 	str_fxanim = self.m_e_trigger.target;
 	s_fxanim = struct::get(str_fxanim, "targetname");

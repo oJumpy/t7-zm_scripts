@@ -60,10 +60,10 @@ function main()
 	Array::thread_all(GetEntArray("location_egg", "targetname"), &location_egg_vox);
 	level thread function_8d1c7be1();
 	level thread function_d43815df();
-	var_3a067a8d = struct::get_array("trap_electric", "targetname");
-	foreach(var_fdce40e2 in var_3a067a8d)
+	a_s_traps = struct::get_array("trap_electric", "targetname");
+	foreach(s_trap in a_s_traps)
 	{
-		e_trap = GetEnt(var_fdce40e2.script_noteworthy, "target");
+		e_trap = GetEnt(s_trap.script_noteworthy, "target");
 		e_trap thread function_57a1070b();
 	}
 	level thread function_71554606();
@@ -84,15 +84,15 @@ function function_d43815df()
 {
 	level endon("hash_993b920d");
 	wait(50);
-	var_64ab0444 = GetEnt("amb_0_zombie", "targetname");
-	var_64ab0444 PlayLoopSound(var_64ab0444.script_label);
+	zent = GetEnt("amb_0_zombie", "targetname");
+	zent PlayLoopSound(zent.script_label);
 	wait(35);
 	while(1)
 	{
 		Int = randomIntRange(0, 40);
 		if(Int == 10)
 		{
-			var_64ab0444 thread function_ae3642b4();
+			zent thread function_ae3642b4();
 			level notify("hash_993b920d");
 		}
 		wait(10);
@@ -241,14 +241,14 @@ function function_1da885f0()
 	while(1)
 	{
 		level waittill("hash_9b53c751", e_player);
-		var_c661f4ef = level.var_2a0600f - 1;
-		if(var_c661f4ef < 0)
+		n_variant = level.var_2a0600f - 1;
+		if(n_variant < 0)
 		{
-			var_c661f4ef = 0;
+			n_variant = 0;
 		}
 		if(isdefined(e_player))
 		{
-			e_player thread zm_audio::create_and_play_dialog("eggs", "meteors", var_c661f4ef);
+			e_player thread zm_audio::create_and_play_dialog("eggs", "meteors", n_variant);
 		}
 	}
 }
@@ -410,11 +410,11 @@ function function_8d1c7be1()
 function function_57a1070b()
 {
 	level flag::wait_till("power_on");
-	var_a58a7b24 = self.target + "_flashes";
+	str_exploder_name = self.target + "_flashes";
 	while(1)
 	{
 		self waittill("trap_done");
-		exploder::exploder(var_a58a7b24);
+		exploder::exploder(str_exploder_name);
 	}
 }
 
@@ -427,9 +427,9 @@ function function_57a1070b()
 	Parameters: 2
 	Flags: None
 */
-function function_448d83df(trap, var_cab8c90c)
+function function_448d83df(trap, b_start)
 {
-	if(!(isdefined(var_cab8c90c) && var_cab8c90c))
+	if(!(isdefined(b_start) && b_start))
 	{
 		return;
 	}
@@ -463,20 +463,20 @@ function function_e11d1d5c()
 	while(1)
 	{
 		wait(randomIntRange(60, 180));
-		var_adc6a71a = level function_57f2b10e(var_8e7ce497);
-		if(!(isdefined(var_adc6a71a) && var_adc6a71a))
+		correct_pattern = level function_57f2b10e(var_8e7ce497);
+		if(!(isdefined(correct_pattern) && correct_pattern))
 		{
 			continue;
 		}
 		wait(1);
-		var_adc6a71a = level function_57f2b10e(var_8e7ce497);
-		if(!(isdefined(var_adc6a71a) && var_adc6a71a))
+		correct_pattern = level function_57f2b10e(var_8e7ce497);
+		if(!(isdefined(correct_pattern) && correct_pattern))
 		{
 			continue;
 		}
 		wait(1);
-		var_adc6a71a = level function_57f2b10e(var_8e7ce497);
-		if(!(isdefined(var_adc6a71a) && var_adc6a71a))
+		correct_pattern = level function_57f2b10e(var_8e7ce497);
+		if(!(isdefined(correct_pattern) && correct_pattern))
 		{
 			continue;
 		}
@@ -496,9 +496,9 @@ function function_e11d1d5c()
 */
 function function_57f2b10e(var_8e7ce497)
 {
-	var_6140b6dd = level function_314be731();
-	level function_5c13c705(var_6140b6dd, var_8e7ce497);
-	success = level function_7f30e34a(var_6140b6dd, var_8e7ce497);
+	a_pattern = level function_314be731();
+	level function_5c13c705(a_pattern, var_8e7ce497);
+	success = level function_7f30e34a(a_pattern, var_8e7ce497);
 	return success;
 }
 
@@ -511,12 +511,12 @@ function function_57f2b10e(var_8e7ce497)
 	Parameters: 2
 	Flags: None
 */
-function function_5c13c705(var_6140b6dd, var_8e7ce497)
+function function_5c13c705(a_pattern, var_8e7ce497)
 {
 	for(var_918879b9 = 0; var_918879b9 < 3; var_918879b9++)
 	{
 		wait(1.5);
-		for(n_count = 0; n_count < var_6140b6dd[var_918879b9]; n_count++)
+		for(n_count = 0; n_count < a_pattern[var_918879b9]; n_count++)
 		{
 			var_8e7ce497 playsound("zmb_zhd_knocker_door");
 			wait(0.75);
@@ -533,9 +533,9 @@ function function_5c13c705(var_6140b6dd, var_8e7ce497)
 	Parameters: 2
 	Flags: None
 */
-function function_7f30e34a(var_6140b6dd, var_8e7ce497)
+function function_7f30e34a(a_pattern, var_8e7ce497)
 {
-	level thread function_47cc6622(var_6140b6dd, var_8e7ce497);
+	level thread function_47cc6622(a_pattern, var_8e7ce497);
 	str_notify = util::waittill_any_return("zhd_knocker_success", "zhd_knocker_timeout");
 	if(str_notify == "zhd_knocker_timeout")
 	{
@@ -554,14 +554,14 @@ function function_7f30e34a(var_6140b6dd, var_8e7ce497)
 	Parameters: 2
 	Flags: None
 */
-function function_47cc6622(var_6140b6dd, var_8e7ce497)
+function function_47cc6622(a_pattern, var_8e7ce497)
 {
 	level endon("hash_a0b8e4d9");
 	for(var_918879b9 = 0; var_918879b9 < 3; var_918879b9++)
 	{
 		level thread function_e497b291(3000);
 		n_count = 0;
-		while(n_count < var_6140b6dd[var_918879b9])
+		while(n_count < a_pattern[var_918879b9])
 		{
 			var_8e7ce497 waittill("damage", damage, attacker, dir, loc, str_type, model, tag, part, weapon, flags);
 			if(!isdefined(attacker) || !isPlayer(attacker))
@@ -643,9 +643,9 @@ function function_4f9527ef(n_min)
 */
 function function_314be731()
 {
-	var_6140b6dd = Array((1, 1, 5), (9, 3, 5), VectorScale((1, 1, 1), 6), (2, 4, 1), (1, 2, 1), (5, 3, 4), (3, 2, 1), (5, 1, 2), (1, 4, 3), (6, 2, 4));
-	var_6140b6dd = Array::randomize(var_6140b6dd);
-	return var_6140b6dd[0];
+	a_pattern = Array((1, 1, 5), (9, 3, 5), VectorScale((1, 1, 1), 6), (2, 4, 1), (1, 2, 1), (5, 3, 4), (3, 2, 1), (5, 1, 2), (1, 4, 3), (6, 2, 4));
+	a_pattern = Array::randomize(a_pattern);
+	return a_pattern[0];
 }
 
 /*

@@ -33,33 +33,33 @@ function init()
 	level flag::init("pressure_sustained");
 	level flag::init("passkey_confirmed");
 	level flag::init("weapons_combined");
-	level.var_1999d459 = [];
-	level.var_46651379["a"] = GetEnt("letter_a", "targetname");
-	level.var_46651379["e"] = GetEnt("letter_e", "targetname");
-	level.var_46651379["h"] = GetEnt("letter_h", "targetname");
-	level.var_46651379["i"] = GetEnt("letter_i", "targetname");
-	level.var_46651379["l"] = GetEnt("letter_l", "targetname");
-	level.var_46651379["m"] = GetEnt("letter_m", "targetname");
-	level.var_46651379["n"] = GetEnt("letter_n", "targetname");
-	level.var_46651379["r"] = GetEnt("letter_r", "targetname");
-	level.var_46651379["s"] = GetEnt("letter_s", "targetname");
-	level.var_46651379["t"] = GetEnt("letter_t", "targetname");
-	level.var_46651379["u"] = GetEnt("letter_u", "targetname");
-	level.var_46651379["y"] = GetEnt("letter_y", "targetname");
-	keys = getArrayKeys(level.var_46651379);
+	level.casimir_lights = [];
+	level.lander_letters["a"] = GetEnt("letter_a", "targetname");
+	level.lander_letters["e"] = GetEnt("letter_e", "targetname");
+	level.lander_letters["h"] = GetEnt("letter_h", "targetname");
+	level.lander_letters["i"] = GetEnt("letter_i", "targetname");
+	level.lander_letters["l"] = GetEnt("letter_l", "targetname");
+	level.lander_letters["m"] = GetEnt("letter_m", "targetname");
+	level.lander_letters["n"] = GetEnt("letter_n", "targetname");
+	level.lander_letters["r"] = GetEnt("letter_r", "targetname");
+	level.lander_letters["s"] = GetEnt("letter_s", "targetname");
+	level.lander_letters["t"] = GetEnt("letter_t", "targetname");
+	level.lander_letters["u"] = GetEnt("letter_u", "targetname");
+	level.lander_letters["y"] = GetEnt("letter_y", "targetname");
+	keys = getArrayKeys(level.lander_letters);
 	for(i = 0; i < keys.size; i++)
 	{
-		level.var_46651379[keys[i]] ghost();
+		level.lander_letters[keys[i]] ghost();
 	}
 	monitor = GetEnt("casimir_monitor", "targetname");
 	monitor SetModel("p7_zm_asc_monitor_screen_off");
-	function_2f116aad();
-	function_6b4d4b8a();
-	function_55c69e42();
-	function_38cded10();
-	function_18c28e7b();
-	function_6f6480bb();
-	level notify("hash_e09c6a09");
+	teleport_target_event();
+	reroute_power_event();
+	sync_switch_event();
+	pressure_plate_event();
+	lander_passkey_event();
+	weapon_combo_event();
+	level notify("help_found");
 	monitor = GetEnt("casimir_monitor", "targetname");
 	monitor SetModel("p7_zm_asc_monitor_screen_off");
 	monitor StopLoopSound(0.1);
@@ -67,7 +67,7 @@ function init()
 }
 
 /*
-	Name: function_bf374409
+	Name: play_easter_egg_audio
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xDA9BC137
 	Offset: 0xEF8
@@ -75,7 +75,7 @@ function init()
 	Parameters: 3
 	Flags: None
 */
-function function_bf374409(alias, sound_ent, text)
+function play_easter_egg_audio(alias, sound_ent, text)
 {
 	if(alias == undefined)
 	{
@@ -89,7 +89,7 @@ function function_bf374409(alias, sound_ent, text)
 }
 
 /*
-	Name: function_55403b86
+	Name: activate_casimir_light
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x76077CD9
 	Offset: 0xF78
@@ -97,7 +97,7 @@ function function_bf374409(alias, sound_ent, text)
 	Parameters: 1
 	Flags: None
 */
-function function_55403b86(num)
+function activate_casimir_light(num)
 {
 	spot = struct::get("casimir_light_" + num, "targetname");
 	if(isdefined(spot))
@@ -106,12 +106,12 @@ function function_55403b86(num)
 		light SetModel("tag_origin");
 		light.angles = spot.angles;
 		FX = PlayFXOnTag(level._effect["fx_light_ee_progress"], light, "tag_origin");
-		level.var_1999d459[level.var_1999d459.size] = light;
+		level.casimir_lights[level.casimir_lights.size] = light;
 	}
 }
 
 /*
-	Name: function_2f116aad
+	Name: teleport_target_event
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x20C0495
 	Offset: 0x1090
@@ -119,7 +119,7 @@ function function_55403b86(num)
 	Parameters: 0
 	Flags: None
 */
-function function_2f116aad()
+function teleport_target_event()
 {
 	var_e624516d = struct::get("teleport_target_start", "targetname");
 	var_cf61e83e = struct::get("teleport_target_spark", "targetname");
@@ -133,9 +133,9 @@ function function_2f116aad()
 	PlayFXOnTag(level._effect["generator_ee_sparks"], var_cf61e83e, "tag_origin");
 	level.teleport_target_trigger = spawn("trigger_radius", var_e624516d.origin + VectorScale((0, 0, -1), 70), 0, 125, 100);
 	/#
-		if(!isdefined(level.var_74eed1d3) || !level.var_74eed1d3)
+		if(!isdefined(level.debug_skip_teleport_event) || !level.debug_skip_teleport_event)
 		{
-			level.teleport_target thread namespace_670cb61::function_620401c0(level.teleport_target.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 2);
+			level.teleport_target thread namespace_670cb61::debug_display_at_pos(level.teleport_target.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 2);
 		}
 	#/
 	level.black_hole_bomb_loc_check_func = &bhb_teleport_loc_check;
@@ -200,7 +200,7 @@ function teleport_target(grenade, model)
 }
 
 /*
-	Name: function_6b4d4b8a
+	Name: reroute_power_event
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x89C2963C
 	Offset: 0x1630
@@ -208,7 +208,7 @@ function teleport_target(grenade, model)
 	Parameters: 0
 	Flags: None
 */
-function function_6b4d4b8a()
+function reroute_power_event()
 {
 	monitor = GetEnt("casimir_monitor", "targetname");
 	location = struct::get("casimir_monitor_struct", "targetname");
@@ -217,22 +217,22 @@ function function_6b4d4b8a()
 	monitor SetModel("p7_zm_asc_monitor_screen_on");
 	trig = spawn("trigger_radius", location.origin, 0, 32, 60);
 	/#
-		if(!isdefined(level.var_4058a336) || !level.var_4058a336)
+		if(!isdefined(level.debug_skip_reroute_event) || !level.debug_skip_reroute_event)
 		{
-			trig thread namespace_670cb61::function_620401c0(monitor.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
+			trig thread namespace_670cb61::debug_display_at_pos(monitor.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
 		}
 	#/
-	trig function_78f34b16(monitor);
+	trig wait_for_use(monitor);
 	trig delete();
 	level flag::set("rerouted_power");
 	monitor SetModel("p7_zm_asc_monitor_screen_logo");
 	monitor PlayLoopSound("zmb_ee_monitor_active", 1);
 	level thread play_egg_vox("vox_ann_egg2_success", "vox_gersh_egg2", 2);
-	level thread function_55403b86(1);
+	level thread activate_casimir_light(1);
 }
 
 /*
-	Name: function_78f34b16
+	Name: wait_for_use
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x12A32001
 	Offset: 0x1858
@@ -240,10 +240,10 @@ function function_6b4d4b8a()
 	Parameters: 1
 	Flags: None
 */
-function function_78f34b16(monitor)
+function wait_for_use(monitor)
 {
 	/#
-		if(isdefined(level.var_4058a336) && level.var_4058a336)
+		if(isdefined(level.debug_skip_reroute_event) && level.debug_skip_reroute_event)
 		{
 			return;
 		}
@@ -265,7 +265,7 @@ function function_78f34b16(monitor)
 }
 
 /*
-	Name: function_55c69e42
+	Name: sync_switch_event
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x1D34EF7C
 	Offset: 0x1940
@@ -273,16 +273,16 @@ function function_78f34b16(monitor)
 	Parameters: 0
 	Flags: None
 */
-function function_55c69e42()
+function sync_switch_event()
 {
 	switches = struct::get_array("sync_switch_start", "targetname");
-	self function_27c6e567(switches);
+	self waittill_switches_synced(switches);
 	level thread play_egg_vox("vox_ann_egg3_success", "vox_gersh_egg3", 3);
-	level thread function_55403b86(2);
+	level thread activate_casimir_light(2);
 }
 
 /*
-	Name: function_27c6e567
+	Name: waittill_switches_synced
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x2BE59079
 	Offset: 0x19D8
@@ -290,10 +290,10 @@ function function_55c69e42()
 	Parameters: 1
 	Flags: None
 */
-function function_27c6e567(switches)
+function waittill_switches_synced(switches)
 {
 	/#
-		if(isdefined(level.var_dc7eef87) && level.var_dc7eef87)
+		if(isdefined(level.debug_skip_sync_event) && level.debug_skip_sync_event)
 		{
 			return;
 		}
@@ -301,14 +301,14 @@ function function_27c6e567(switches)
 	while(!level flag::get("switches_synced"))
 	{
 		level flag::wait_till("monkey_round");
-		Array::thread_all(switches, &function_2fee275);
-		self thread function_c1215448();
+		Array::thread_all(switches, &reveal_switch);
+		self thread switch_watcher();
 		level util::waittill_either("between_round_over", "switches_synced");
 	}
 }
 
 /*
-	Name: function_2fee275
+	Name: reveal_switch
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x32C79B62
 	Offset: 0x1AA8
@@ -316,7 +316,7 @@ function function_27c6e567(switches)
 	Parameters: 0
 	Flags: None
 */
-function function_2fee275()
+function reveal_switch()
 {
 	button = spawn("script_model", self.origin);
 	button SetModel("p7_zm_asc_switch_electric_05");
@@ -329,17 +329,17 @@ function function_2fee275()
 	{
 		trig = spawn("trigger_radius", button.origin, 0, 32, 72);
 		/#
-			if(!isdefined(level.var_dc7eef87) || !level.var_dc7eef87)
+			if(!isdefined(level.debug_skip_sync_event) || !level.debug_skip_sync_event)
 			{
-				trig thread namespace_670cb61::function_620401c0(button.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
+				trig thread namespace_670cb61::debug_display_at_pos(button.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
 		#/
-		trig thread function_91a40788(self, button);
+		trig thread wait_for_sync_use(self, button);
 		level util::waittill_either("between_round_over", "switches_synced");
 		/#
-			if(!isdefined(level.var_dc7eef87) || !level.var_dc7eef87)
+			if(!isdefined(level.debug_skip_sync_event) || !level.debug_skip_sync_event)
 			{
-				trig namespace_670cb61::function_bb831d("Dev Block strings are not supported");
+				trig namespace_670cb61::debug_remove("Dev Block strings are not supported");
 			}
 		#/
 		trig delete();
@@ -350,7 +350,7 @@ function function_2fee275()
 }
 
 /*
-	Name: function_91a40788
+	Name: wait_for_sync_use
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xAC8A09A5
 	Offset: 0x1D20
@@ -358,7 +358,7 @@ function function_2fee275()
 	Parameters: 2
 	Flags: None
 */
-function function_91a40788(ss, button)
+function wait_for_sync_use(ss, button)
 {
 	level endon("between_round_over");
 	level endon("hash_589f4116");
@@ -370,7 +370,7 @@ function function_91a40788(ss, button)
 		{
 			if(who useButtonPressed())
 			{
-				level notify("hash_7dad0c40");
+				level notify("sync_button_pressed");
 				button playsound("zmb_ee_syncbutton_button");
 				ss.pressed = 1;
 				/#
@@ -387,7 +387,7 @@ function function_91a40788(ss, button)
 }
 
 /*
-	Name: function_c1215448
+	Name: switch_watcher
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x1DBD00F8
 	Offset: 0x1E60
@@ -395,17 +395,17 @@ function function_91a40788(ss, button)
 	Parameters: 0
 	Flags: None
 */
-function function_c1215448()
+function switch_watcher()
 {
 	level endon("between_round_over");
 	pressed = 0;
 	switches = struct::get_array("sync_switch_start", "targetname");
 	while(1)
 	{
-		level waittill("hash_7dad0c40");
+		level waittill("sync_button_pressed");
 		timeout = GetTime() + 500;
 		/#
-			if(isdefined(level.var_ee92e6f7) && level.var_ee92e6f7)
+			if(isdefined(level.sp_egg_testing) && level.sp_egg_testing)
 			{
 				timeout = timeout + 100000;
 			}
@@ -453,7 +453,7 @@ function function_c1215448()
 }
 
 /*
-	Name: function_38cded10
+	Name: pressure_plate_event
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x9326816A
 	Offset: 0x20D0
@@ -461,25 +461,25 @@ function function_c1215448()
 	Parameters: 0
 	Flags: None
 */
-function function_38cded10()
+function pressure_plate_event()
 {
 	area = struct::get("pressure_pad", "targetname");
 	trig = spawn("trigger_radius", area.origin, 0, 300, 100);
 	n_timer = 120;
 	/#
-		if(isdefined(level.var_4a2af85f) && level.var_4a2af85f)
+		if(isdefined(level.debug_pressure_plate_time) && level.debug_pressure_plate_time)
 		{
 			n_timer = 30;
 		}
 	#/
-	trig function_40a71984(n_timer);
+	trig area_timer(n_timer);
 	trig delete();
 	level thread play_egg_vox("vox_ann_egg4_success", "vox_gersh_egg4", 4);
-	level thread function_55403b86(3);
+	level thread activate_casimir_light(3);
 }
 
 /*
-	Name: function_40a71984
+	Name: area_timer
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x89F6BB6D
 	Offset: 0x21F8
@@ -487,54 +487,54 @@ function function_38cded10()
 	Parameters: 1
 	Flags: None
 */
-function function_40a71984(time)
+function area_timer(time)
 {
-	var_18687de = struct::get("pressure_timer", "targetname");
-	clock = spawn("script_model", var_18687de.origin);
+	clock_loc = struct::get("pressure_timer", "targetname");
+	clock = spawn("script_model", clock_loc.origin);
 	clock SetModel("p7_zm_tra_wall_clock");
-	clock.angles = var_18687de.angles;
+	clock.angles = clock_loc.angles;
 	var_b07ae42e = struct::get("clock_timer_hand", "targetname");
-	var_4e945c7c = VectorScale((0, 1, 0), 90);
-	var_43e449d4 = util::spawn_model("p7_zm_kin_clock_second_hand", var_b07ae42e.origin, var_4e945c7c);
+	timer_hand_angles_init = VectorScale((0, 1, 0), 90);
+	timer_hand = util::spawn_model("p7_zm_kin_clock_second_hand", var_b07ae42e.origin, timer_hand_angles_init);
 	/#
-		if(!isdefined(level.var_c28796c3) || !level.var_c28796c3)
+		if(!isdefined(level.debug_skip_pressure_plate) || !level.debug_skip_pressure_plate)
 		{
-			self thread namespace_670cb61::function_620401c0(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
+			self thread namespace_670cb61::debug_display_at_pos(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
 		}
-		else if(isdefined(level.var_c28796c3) && level.var_c28796c3)
+		else if(isdefined(level.debug_skip_pressure_plate) && level.debug_skip_pressure_plate)
 		{
-			self thread function_1129ebfe();
+			self thread debug_trigger_pressure_plate();
 		}
 	#/
 	step = 1;
 	while(!level flag::get("pressure_sustained"))
 	{
 		self waittill("trigger");
-		var_b8ea1afb = 0;
+		stop_timer = 0;
 		players = GetPlayers();
 		for(i = 0; i < players.size; i++)
 		{
 			if(!players[i] istouching(self))
 			{
 				wait(step);
-				var_b8ea1afb = 1;
+				stop_timer = 1;
 				/#
-					if(isdefined(level.var_c28796c3) && level.var_c28796c3)
+					if(isdefined(level.debug_skip_pressure_plate) && level.debug_skip_pressure_plate)
 					{
-						var_b8ea1afb = 0;
+						stop_timer = 0;
 					}
 				#/
 			}
 		}
-		if(var_b8ea1afb)
+		if(stop_timer)
 		{
 			continue;
 		}
 		self playsound("zmb_ee_pressure_plate_down");
 		time_remaining = time;
-		var_43e449d4 RotatePitch(-360, time);
+		timer_hand RotatePitch(-360, time);
 		/#
-			if(isdefined(level.var_c28796c3) && level.var_c28796c3)
+			if(isdefined(level.debug_skip_pressure_plate) && level.debug_skip_pressure_plate)
 			{
 				time_remaining = 0;
 			}
@@ -548,59 +548,59 @@ function function_40a71984(time)
 				{
 					wait(step);
 					time_remaining = time;
-					var_b8ea1afb = 1;
+					stop_timer = 1;
 					self playsound("zmb_ee_pressure_plate_up");
-					var_43e449d4 RotateTo(var_4e945c7c, 0.5);
-					var_43e449d4 playsound("zmb_ee_pressure_deny");
+					timer_hand RotateTo(timer_hand_angles_init, 0.5);
+					timer_hand playsound("zmb_ee_pressure_deny");
 					wait(0.5);
 					break;
 				}
 			}
-			if(var_b8ea1afb)
+			if(stop_timer)
 			{
 				break;
 			}
 			wait(step);
 			time_remaining = time_remaining - step;
-			var_43e449d4 playsound("zmb_ee_pressure_timer");
+			timer_hand playsound("zmb_ee_pressure_timer");
 		}
 		if(time_remaining <= 0)
 		{
 			level flag::set("pressure_sustained");
 			players = GetPlayers();
-			var_99867264 = undefined;
+			temp_fx = undefined;
 			if(isdefined(players[0].FX))
 			{
-				var_99867264 = players[0].FX;
+				temp_fx = players[0].FX;
 			}
-			var_43e449d4 playsound("zmb_perks_packa_ready");
+			timer_hand playsound("zmb_perks_packa_ready");
 			players[0].FX = level.zombie_powerups["nuke"].FX;
 			level thread zm_powerup_nuke::nuke_powerup(players[0], players[0].team);
 			clock StopLoopSound(1);
 			wait(1);
-			if(isdefined(var_99867264))
+			if(isdefined(temp_fx))
 			{
-				players[0].FX = var_99867264;
+				players[0].FX = temp_fx;
 			}
 			else
 			{
 				players[0].FX = undefined;
 			}
 			/#
-				if(!isdefined(level.var_c28796c3) || !level.var_c28796c3)
+				if(!isdefined(level.debug_skip_pressure_plate) || !level.debug_skip_pressure_plate)
 				{
-					self namespace_670cb61::function_bb831d("Dev Block strings are not supported");
+					self namespace_670cb61::debug_remove("Dev Block strings are not supported");
 				}
 			#/
 			clock delete();
-			var_43e449d4 delete();
+			timer_hand delete();
 			return;
 		}
 	}
 }
 
 /*
-	Name: function_1129ebfe
+	Name: debug_trigger_pressure_plate
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x235E7242
 	Offset: 0x27F0
@@ -608,7 +608,7 @@ function function_40a71984(time)
 	Parameters: 0
 	Flags: None
 */
-function function_1129ebfe()
+function debug_trigger_pressure_plate()
 {
 	/#
 		wait(1);
@@ -617,7 +617,7 @@ function function_1129ebfe()
 }
 
 /*
-	Name: function_18c28e7b
+	Name: lander_passkey_event
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x2F453967
 	Offset: 0x2818
@@ -625,36 +625,36 @@ function function_1129ebfe()
 	Parameters: 0
 	Flags: None
 */
-function function_18c28e7b()
+function lander_passkey_event()
 {
 	level flag::init("letter_acquired");
-	level.var_8093285f = [];
-	level.var_8093285f["lander_station1"]["lander_station3"] = "s";
-	level.var_8093285f["lander_station1"]["lander_station4"] = "r";
-	level.var_8093285f["lander_station1"]["lander_station5"] = "e";
-	level.var_8093285f["lander_station3"]["lander_station1"] = "y";
-	level.var_8093285f["lander_station3"]["lander_station4"] = "a";
-	level.var_8093285f["lander_station3"]["lander_station5"] = "i";
-	level.var_8093285f["lander_station4"]["lander_station1"] = "m";
-	level.var_8093285f["lander_station4"]["lander_station3"] = "h";
-	level.var_8093285f["lander_station4"]["lander_station5"] = "u";
-	level.var_8093285f["lander_station5"]["lander_station1"] = "t";
-	level.var_8093285f["lander_station5"]["lander_station3"] = "n";
-	level.var_8093285f["lander_station5"]["lander_station4"] = "l";
-	level.var_ce30083b = Array("l", "u", "n", "a");
-	level.var_4a825f7 = 0;
-	level.var_b505a146 = Array("h", "i", "t", "s", "a", "m");
-	level.var_66e412e8 = 0;
-	level.var_8f0326dd = Array("h", "y", "e", "n", "a");
-	level.var_fd63aa69 = 0;
-	level thread function_adcb2f80();
+	level.lander_key = [];
+	level.lander_key["lander_station1"]["lander_station3"] = "s";
+	level.lander_key["lander_station1"]["lander_station4"] = "r";
+	level.lander_key["lander_station1"]["lander_station5"] = "e";
+	level.lander_key["lander_station3"]["lander_station1"] = "y";
+	level.lander_key["lander_station3"]["lander_station4"] = "a";
+	level.lander_key["lander_station3"]["lander_station5"] = "i";
+	level.lander_key["lander_station4"]["lander_station1"] = "m";
+	level.lander_key["lander_station4"]["lander_station3"] = "h";
+	level.lander_key["lander_station4"]["lander_station5"] = "u";
+	level.lander_key["lander_station5"]["lander_station1"] = "t";
+	level.lander_key["lander_station5"]["lander_station3"] = "n";
+	level.lander_key["lander_station5"]["lander_station4"] = "l";
+	level.passkey = Array("l", "u", "n", "a");
+	level.passkey_progress = 0;
+	level.secret1 = Array("h", "i", "t", "s", "a", "m");
+	level.secret1_progress = 0;
+	level.secret2 = Array("h", "y", "e", "n", "a");
+	level.secret2_progress = 0;
+	level thread lander_monitor();
 	level flag::wait_till("passkey_confirmed");
 	level thread play_egg_vox("vox_ann_egg5_success", "vox_gersh_egg5", 5);
-	level thread function_55403b86(4);
+	level thread activate_casimir_light(4);
 }
 
 /*
-	Name: function_adcb2f80
+	Name: lander_monitor
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x64AE7ABF
 	Offset: 0x2B68
@@ -662,15 +662,15 @@ function function_18c28e7b()
 	Parameters: 0
 	Flags: None
 */
-function function_adcb2f80()
+function lander_monitor()
 {
 	lander = GetEnt("lander", "targetname");
 	/#
-		if(isdefined(level.var_c0e05145) && level.var_c0e05145)
+		if(isdefined(level.debug_skip_luna) && level.debug_skip_luna)
 		{
 			return;
 		}
-		lander thread function_33078896();
+		lander thread debug_passkey_event();
 	#/
 	while(!level flag::get("passkey_confirmed"))
 	{
@@ -679,24 +679,24 @@ function function_adcb2f80()
 		{
 			start = lander.depart_station;
 			dest = lander.station;
-			letter = level.var_8093285f[start][dest];
-			model = level.var_46651379[letter];
+			letter = level.lander_key[start][dest];
+			model = level.lander_letters[letter];
 			model show();
 			model playsound("zmb_spawn_powerup");
-			model thread function_ac792024();
+			model thread spin_letter();
 			model PlayLoopSound("zmb_spawn_powerup_loop", 0.5);
 			trig = spawn("trigger_radius", model.origin, 0, 200, 150);
 			/#
 				trig function_362373ab(model);
 			#/
-			trig thread function_172345ea(letter, model);
+			trig thread letter_grab(letter, model);
 			level flag::wait_till("lander_grounded");
 			if(!level flag::get("letter_acquired"))
 			{
 				function_874d06b6();
 				/#
-					lander thread function_33078896();
-					trig thread namespace_670cb61::function_bb831d("Dev Block strings are not supported");
+					lander thread debug_passkey_event();
+					trig thread namespace_670cb61::debug_remove("Dev Block strings are not supported");
 				#/
 			}
 			else
@@ -711,8 +711,8 @@ function function_adcb2f80()
 		{
 			function_874d06b6();
 			/#
-				lander thread function_33078896();
-				trig thread namespace_670cb61::function_bb831d("Dev Block strings are not supported");
+				lander thread debug_passkey_event();
+				trig thread namespace_670cb61::debug_remove("Dev Block strings are not supported");
 			#/
 		}
 	}
@@ -735,10 +735,10 @@ function function_362373ab(model)
 			v_player_angles = GetPlayers()[0] getPlayerAngles();
 			v_player_origin = GetPlayers()[0] GetOrigin();
 			var_ab7c1d7f = v_player_origin + AnglesToForward(v_player_angles) * 128;
-			model.origin = level.var_40705128.origin + VectorScale((0, 0, 1), 32);
+			model.origin = level.s_call_to_station.origin + VectorScale((0, 0, 1), 32);
 			self.origin = model.origin;
 		}
-		self thread namespace_670cb61::function_620401c0(model.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 3);
+		self thread namespace_670cb61::debug_display_at_pos(model.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 3);
 	#/
 }
 
@@ -756,13 +756,13 @@ function function_874d06b6()
 	/#
 		level notify("hash_eeefde1f");
 	#/
-	level.var_4a825f7 = 0;
-	level.var_66e412e8 = 0;
-	level.var_fd63aa69 = 0;
+	level.passkey_progress = 0;
+	level.secret1_progress = 0;
+	level.secret2_progress = 0;
 }
 
 /*
-	Name: function_33078896
+	Name: debug_passkey_event
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xBE135435
 	Offset: 0x3058
@@ -770,25 +770,25 @@ function function_874d06b6()
 	Parameters: 0
 	Flags: None
 */
-function function_33078896()
+function debug_passkey_event()
 {
 	/#
-		if(!isdefined(level.var_c0e05145) || !level.var_c0e05145)
+		if(!isdefined(level.debug_skip_luna) || !level.debug_skip_luna)
 		{
 			level endon("hash_eeefde1f");
-			var_1fc8b439 = Array("Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported");
-			for(i = 0; i < var_1fc8b439.size; i++)
+			a_str_passkey_stations = Array("Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported");
+			for(i = 0; i < a_str_passkey_stations.size; i++)
 			{
-				level.var_40705128 = struct::get(var_1fc8b439[i], "Dev Block strings are not supported");
-				level.var_40705128 thread namespace_670cb61::function_620401c0(level.var_40705128.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 3);
-				self function_e07806c9(level.var_40705128);
+				level.s_call_to_station = struct::get(a_str_passkey_stations[i], "Dev Block strings are not supported");
+				level.s_call_to_station thread namespace_670cb61::debug_display_at_pos(level.s_call_to_station.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 3);
+				self debug_waittill_lander_station(level.s_call_to_station);
 			}
 		}
 	#/
 }
 
 /*
-	Name: function_e07806c9
+	Name: debug_waittill_lander_station
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x272545F8
 	Offset: 0x3188
@@ -796,20 +796,20 @@ function function_33078896()
 	Parameters: 1
 	Flags: None
 */
-function function_e07806c9(var_43240065)
+function debug_waittill_lander_station(s_station)
 {
 	/#
-		while(self.station != var_43240065.targetname)
+		while(self.station != s_station.targetname)
 		{
 			wait(0.25);
 		}
-		var_43240065 notify("hash_9465652d");
+		s_station notify("lander_reached_station");
 		util::wait_network_frame();
 	#/
 }
 
 /*
-	Name: function_ac792024
+	Name: spin_letter
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xFA0519E2
 	Offset: 0x31E8
@@ -817,7 +817,7 @@ function function_e07806c9(var_43240065)
 	Parameters: 0
 	Flags: None
 */
-function function_ac792024()
+function spin_letter()
 {
 	level endon("lander_grounded");
 	level endon("hash_20fb11dc");
@@ -829,7 +829,7 @@ function function_ac792024()
 }
 
 /*
-	Name: function_172345ea
+	Name: letter_grab
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xF16BDC23
 	Offset: 0x3238
@@ -837,7 +837,7 @@ function function_ac792024()
 	Parameters: 2
 	Flags: None
 */
-function function_172345ea(letter, model)
+function letter_grab(letter, model)
 {
 	level endon("lander_grounded");
 	self waittill("trigger", e_player);
@@ -845,48 +845,48 @@ function function_172345ea(letter, model)
 	playsoundatposition("zmb_powerup_grabbed", model.origin);
 	model ghost();
 	/#
-		self namespace_670cb61::function_bb831d("Dev Block strings are not supported");
+		self namespace_670cb61::debug_remove("Dev Block strings are not supported");
 	#/
-	if(letter == level.var_ce30083b[level.var_4a825f7])
+	if(letter == level.passkey[level.passkey_progress])
 	{
-		level.var_4a825f7++;
-		if(level.var_4a825f7 == level.var_ce30083b.size)
+		level.passkey_progress++;
+		if(level.passkey_progress == level.passkey.size)
 		{
 			level flag::set("passkey_confirmed");
 		}
 	}
 	else
 	{
-		level.var_4a825f7 = 0;
+		level.passkey_progress = 0;
 	}
-	if(letter == level.var_b505a146[level.var_66e412e8])
+	if(letter == level.secret1[level.secret1_progress])
 	{
-		level.var_66e412e8++;
-		if(level.var_66e412e8 == level.var_b505a146.size)
+		level.secret1_progress++;
+		if(level.secret1_progress == level.secret1.size)
 		{
 			e_player playsoundtoplayer("evt_letter_pickup_secret_1", e_player);
 		}
 	}
 	else
 	{
-		level.var_66e412e8 = 0;
+		level.secret1_progress = 0;
 	}
-	if(letter == level.var_8f0326dd[level.var_fd63aa69])
+	if(letter == level.secret2[level.secret2_progress])
 	{
-		level.var_fd63aa69++;
-		if(level.var_fd63aa69 == level.var_8f0326dd.size)
+		level.secret2_progress++;
+		if(level.secret2_progress == level.secret2.size)
 		{
 			e_player playsoundtoplayer("evt_letter_pickup_secret_2", e_player);
 		}
 	}
 	else
 	{
-		level.var_fd63aa69 = 0;
+		level.secret2_progress = 0;
 	}
 }
 
 /*
-	Name: function_6f6480bb
+	Name: weapon_combo_event
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xC96906AC
 	Offset: 0x3430
@@ -894,25 +894,25 @@ function function_172345ea(letter, model)
 	Parameters: 0
 	Flags: None
 */
-function function_6f6480bb()
+function weapon_combo_event()
 {
 	level flag::init("thundergun_hit");
 	var_c45fbbb9 = struct::get("weapon_combo_spot", "targetname");
-	var_e35067d3 = spawn("script_model", var_c45fbbb9.origin);
-	var_e35067d3 SetModel("tag_origin");
-	FX = PlayFXOnTag(level._effect["gersh_spark"], var_e35067d3, "tag_origin");
-	level.var_81ac6ac4 = spawn("trigger_radius", var_c45fbbb9.origin, 0, 50, 72);
-	level.black_hole_bomb_loc_check_func = &function_184744ba;
+	focal_point = spawn("script_model", var_c45fbbb9.origin);
+	focal_point SetModel("tag_origin");
+	FX = PlayFXOnTag(level._effect["gersh_spark"], focal_point, "tag_origin");
+	level.black_hold_bomb_target_trig = spawn("trigger_radius", var_c45fbbb9.origin, 0, 50, 72);
+	level.black_hole_bomb_loc_check_func = &bhb_combo_loc_check;
 	/#
-		var_e35067d3 thread function_a0ad103c(var_c45fbbb9);
+		focal_point thread function_a0ad103c(var_c45fbbb9);
 	#/
 	level flag::wait_till("weapons_combined");
-	level.var_81ac6ac4 delete();
+	level.black_hold_bomb_target_trig delete();
 	level.black_hole_bomb_loc_check_func = undefined;
-	var_e35067d3 delete();
-	for(i = 0; i < level.var_1999d459.size; i++)
+	focal_point delete();
+	for(i = 0; i < level.casimir_lights.size; i++)
 	{
-		level.var_1999d459[i] delete();
+		level.casimir_lights[i] delete();
 	}
 }
 
@@ -953,14 +953,14 @@ function function_a0ad103c(var_c45fbbb9)
 function function_8172c64e()
 {
 	/#
-		self thread namespace_670cb61::function_620401c0(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
+		self thread namespace_670cb61::debug_display_at_pos(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
 		level flag::wait_till("Dev Block strings are not supported");
-		self thread namespace_670cb61::function_bb831d("Dev Block strings are not supported");
+		self thread namespace_670cb61::debug_remove("Dev Block strings are not supported");
 	#/
 }
 
 /*
-	Name: function_184744ba
+	Name: bhb_combo_loc_check
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xF39A4078
 	Offset: 0x3728
@@ -968,9 +968,9 @@ function function_8172c64e()
 	Parameters: 3
 	Flags: None
 */
-function function_184744ba(grenade, model, info)
+function bhb_combo_loc_check(grenade, model, info)
 {
-	if(isdefined(level.var_81ac6ac4) && grenade istouching(level.var_81ac6ac4))
+	if(isdefined(level.black_hold_bomb_target_trig) && grenade istouching(level.black_hold_bomb_target_trig))
 	{
 		grenade function_510c4845();
 	}
@@ -989,11 +989,11 @@ function function_184744ba(grenade, model, info)
 function function_510c4845()
 {
 	trig = spawn("trigger_damage", self.origin, 0, 15, 72);
-	self thread function_61f25aa1(trig);
+	self thread wait_for_combo(trig);
 }
 
 /*
-	Name: function_61f25aa1
+	Name: wait_for_combo
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xF5AD32C6
 	Offset: 0x37F0
@@ -1001,22 +1001,22 @@ function function_510c4845()
 	Parameters: 1
 	Flags: None
 */
-function function_61f25aa1(trig)
+function wait_for_combo(trig)
 {
 	self endon("death");
-	self thread function_cc6ea79(trig);
+	self thread kill_trig_on_death(trig);
 	var_c45fbbb9 = struct::get("weapon_combo_spot", "targetname");
-	var_68345fe = 0;
-	var_83e9f930 = 0;
+	ray_gun_hit = 0;
+	doll_hit = 0;
 	/#
 		if(isdefined(level.var_55336afe) && level.var_55336afe)
 		{
-			var_68345fe = 1;
-			var_83e9f930 = 1;
+			ray_gun_hit = 1;
+			doll_hit = 1;
 		}
 	#/
 	players = GetPlayers();
-	Array::thread_all(players, &function_6d87905c, self, trig, var_c45fbbb9);
+	Array::thread_all(players, &thundergun_check, self, trig, var_c45fbbb9);
 	while(1)
 	{
 		trig waittill("damage", amount, inflictor, direction, point, type, tagName, modelName, partName, weapon);
@@ -1024,16 +1024,16 @@ function function_61f25aa1(trig)
 		{
 			if(type == "MOD_PROJECTILE" && (weapon.name == "ray_gun_upgraded" || weapon.name == "raygun_mark2_upgraded"))
 			{
-				var_68345fe = 1;
+				ray_gun_hit = 1;
 			}
 			else if(weapon.name == "nesting_dolls" || weapon.name == "nesting_dolls_single")
 			{
-				var_83e9f930 = 1;
+				doll_hit = 1;
 			}
-			if(var_68345fe && var_83e9f930 && level flag::get("thundergun_hit"))
+			if(ray_gun_hit && doll_hit && level flag::get("thundergun_hit"))
 			{
 				level flag::set("weapons_combined");
-				level thread function_d0a93ec2(self, trig.origin);
+				level thread soul_release(self, trig.origin);
 				return;
 			}
 		}
@@ -1041,7 +1041,7 @@ function function_61f25aa1(trig)
 }
 
 /*
-	Name: function_6d87905c
+	Name: thundergun_check
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xB534131B
 	Offset: 0x3A88
@@ -1049,7 +1049,7 @@ function function_61f25aa1(trig)
 	Parameters: 3
 	Flags: None
 */
-function function_6d87905c(model, trig, var_c45fbbb9)
+function thundergun_check(model, trig, var_c45fbbb9)
 {
 	/#
 		if(isdefined(level.var_55336afe) && level.var_55336afe)
@@ -1063,14 +1063,14 @@ function function_6d87905c(model, trig, var_c45fbbb9)
 	while(1)
 	{
 		self waittill("weapon_fired");
-		var_ca8d49bb = self GetCurrentWeapon();
-		if(var_ca8d49bb.name == "thundergun_upgraded")
+		w_player_weapon = self GetCurrentWeapon();
+		if(w_player_weapon.name == "thundergun_upgraded")
 		{
 			if(DistanceSquared(self.origin, var_c45fbbb9.origin) < 90000)
 			{
-				var_a9399ec7 = VectorNormalize(var_c45fbbb9.origin - self GetWeaponMuzzlePoint());
-				var_8e3e37c9 = self GetWeaponForwardDir();
-				angle_diff = ACos(VectorDot(var_a9399ec7, var_8e3e37c9));
+				vector_to_spot = VectorNormalize(var_c45fbbb9.origin - self GetWeaponMuzzlePoint());
+				vector_player_facing = self GetWeaponForwardDir();
+				angle_diff = ACos(VectorDot(vector_to_spot, vector_player_facing));
 				if(angle_diff <= 20)
 				{
 					self function_30d8de55(trig);
@@ -1096,7 +1096,7 @@ function function_30d8de55(trig)
 }
 
 /*
-	Name: function_cc6ea79
+	Name: kill_trig_on_death
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x9A59AA6E
 	Offset: 0x3CB0
@@ -1104,7 +1104,7 @@ function function_30d8de55(trig)
 	Parameters: 1
 	Flags: None
 */
-function function_cc6ea79(trig)
+function kill_trig_on_death(trig)
 {
 	self waittill("death");
 	trig delete();
@@ -1120,7 +1120,7 @@ function function_cc6ea79(trig)
 }
 
 /*
-	Name: function_d0a93ec2
+	Name: soul_release
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xCA277015
 	Offset: 0x3DB8
@@ -1128,7 +1128,7 @@ function function_cc6ea79(trig)
 	Parameters: 2
 	Flags: None
 */
-function function_d0a93ec2(model, origin)
+function soul_release(model, origin)
 {
 	soul = spawn("script_model", origin);
 	soul SetModel("tag_origin");
@@ -1137,16 +1137,16 @@ function function_d0a93ec2(model, origin)
 	time = 20;
 	model waittill("death");
 	level thread play_egg_vox("vox_ann_egg6_success", "vox_gersh_egg6_success", 9);
-	level thread function_944c8cd2();
+	level thread wait_for_gersh_vox();
 	soul MoveZ(2500, time, time - 1);
 	wait(time);
 	soul delete();
 	wait(2);
-	level thread function_28a46c0d();
+	level thread samantha_is_angry();
 }
 
 /*
-	Name: function_944c8cd2
+	Name: wait_for_gersh_vox
 	Namespace: namespace_f23e8c1a
 	Checksum: 0xEEBAFA53
 	Offset: 0x3F40
@@ -1154,18 +1154,18 @@ function function_d0a93ec2(model, origin)
 	Parameters: 0
 	Flags: None
 */
-function function_944c8cd2()
+function wait_for_gersh_vox()
 {
 	wait(12.5);
 	players = GetPlayers();
 	for(i = 0; i < players.size; i++)
 	{
-		players[i] thread function_467428d0();
+		players[i] thread reward_wait();
 	}
 }
 
 /*
-	Name: function_467428d0
+	Name: reward_wait
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x10D4E2A3
 	Offset: 0x3FB8
@@ -1173,7 +1173,7 @@ function function_944c8cd2()
 	Parameters: 0
 	Flags: None
 */
-function function_467428d0()
+function reward_wait()
 {
 	while(!zombie_utility::is_player_valid(self) || (self useButtonPressed() && self zm_utility::in_revive_trigger()))
 	{
@@ -1195,13 +1195,13 @@ function function_467428d0()
 	Parameters: 3
 	Flags: None
 */
-function play_egg_vox(var_d6e54e9f, var_1bb1a809, var_2c0c1edc)
+function play_egg_vox(ann_alias, gersh_alias, plr_num)
 {
-	if(isdefined(var_d6e54e9f))
+	if(isdefined(ann_alias))
 	{
-		level namespace_9dd378ec::play_cosmo_announcer_vox(var_d6e54e9f);
+		level namespace_9dd378ec::play_cosmo_announcer_vox(ann_alias);
 	}
-	if(isdefined(var_2c0c1edc) && !isdefined(level.var_92ed253c))
+	if(isdefined(plr_num) && !isdefined(level.var_92ed253c))
 	{
 		players = GetPlayers();
 		rand = randomIntRange(0, players.size);
@@ -1209,20 +1209,20 @@ function play_egg_vox(var_d6e54e9f, var_1bb1a809, var_2c0c1edc)
 		players[rand] waittill("hash_200a4e11");
 		level.var_92ed253c = 1;
 	}
-	if(isdefined(var_1bb1a809))
+	if(isdefined(gersh_alias))
 	{
-		level namespace_9dd378ec::function_524d0ceb(var_1bb1a809);
+		level namespace_9dd378ec::play_gersh_vox(gersh_alias);
 	}
-	if(isdefined(var_2c0c1edc))
+	if(isdefined(plr_num))
 	{
 		players = GetPlayers();
 		rand = randomIntRange(0, players.size);
-		players[rand] zm_audio::create_and_play_dialog("eggs", "gersh_response", var_2c0c1edc);
+		players[rand] zm_audio::create_and_play_dialog("eggs", "gersh_response", plr_num);
 	}
 }
 
 /*
-	Name: function_28a46c0d
+	Name: samantha_is_angry
 	Namespace: namespace_f23e8c1a
 	Checksum: 0x2F0A3798
 	Offset: 0x4240
@@ -1230,7 +1230,7 @@ function play_egg_vox(var_d6e54e9f, var_1bb1a809, var_2c0c1edc)
 	Parameters: 0
 	Flags: None
 */
-function function_28a46c0d()
+function samantha_is_angry()
 {
 	playsoundatposition("zmb_samantha_earthquake", (0, 0, 0));
 	playsoundatposition("zmb_samantha_whispers", (0, 0, 0));

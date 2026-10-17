@@ -20,14 +20,14 @@
 */
 function main()
 {
-	thread function_d19cb2f8();
+	thread startzmbspawnersoundloops();
 	thread function_163d3651();
 	thread function_509ffc62();
 	level thread function_bab3ea62();
 }
 
 /*
-	Name: function_d19cb2f8
+	Name: startzmbspawnersoundloops
 	Namespace: namespace_77c14780
 	Checksum: 0x793F76CD
 	Offset: 0x290
@@ -35,7 +35,7 @@ function main()
 	Parameters: 0
 	Flags: None
 */
-function function_d19cb2f8()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("exterior_goal", "targetname");
 	if(isdefined(loopers) && loopers.size > 0)
@@ -217,17 +217,17 @@ function function_95d61fc1()
 function function_53b9afad()
 {
 	var_b6342abd = "mus_castle_underscore_gondola";
-	var_6d9d81aa = "mus_castle_underscore_gondola";
+	newmus = "mus_castle_underscore_gondola";
 	level.var_eb526c90 = spawn(0, (0, 0, 0), "script_origin");
 	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(var_b6342abd, 2);
 	while(1)
 	{
 		level waittill("hash_51d7bc7c", location);
-		var_6d9d81aa = "mus_castle_underscore_" + location;
-		if(var_6d9d81aa != var_b6342abd)
+		newmus = "mus_castle_underscore_" + location;
+		if(newmus != var_b6342abd)
 		{
-			level thread function_51d7bc7c(var_6d9d81aa);
-			var_b6342abd = var_6d9d81aa;
+			level thread function_51d7bc7c(newmus);
+			var_b6342abd = newmus;
 		}
 	}
 }
@@ -241,11 +241,11 @@ function function_53b9afad()
 	Parameters: 1
 	Flags: None
 */
-function function_51d7bc7c(var_6d9d81aa)
+function function_51d7bc7c(newmus)
 {
 	level endon("hash_51d7bc7c");
 	level.var_eb526c90 StopAllLoopSounds(2);
 	wait(1);
-	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(var_6d9d81aa, 2);
+	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(newmus, 2);
 }
 

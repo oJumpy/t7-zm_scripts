@@ -59,7 +59,7 @@ function function_622ad391()
 	level flag::init("gauntlet_quest_complete");
 	level.var_de98e3ce = struct::spawn();
 	level.var_de98e3ce.var_d54b9ade = struct::spawn();
-	level.var_de98e3ce.var_1467b926 = 1;
+	level.var_de98e3ce.gates_open = 1;
 	level.var_de98e3ce.var_179b5b71 = 0;
 	level thread function_fa149742();
 	level flag::wait_till("dragon_egg_acquired");
@@ -97,8 +97,8 @@ function function_622ad391()
 	{
 		player clientfield::set_player_uimodel("zmInventory.progress_egg", 1);
 	}
-	var_e870a8ec = struct::get("gauntlet_incubation_start", "script_noteworthy");
-	var_e870a8ec zm_unitrigger::create_unitrigger(undefined, 40, &function_cf2a342, &function_16907a63);
+	s_incubator = struct::get("gauntlet_incubation_start", "script_noteworthy");
+	s_incubator zm_unitrigger::create_unitrigger(undefined, 40, &function_cf2a342, &function_16907a63);
 }
 
 /*
@@ -117,10 +117,10 @@ function function_fa149742()
 	level scene::init("p7_fxanim_zm_stal_pavlov_boards_bundle");
 	var_200dbf9d thread function_a3a149a9();
 	level waittill("hash_698d88e1");
-	var_9c840b49 = struct::get_array("dragon_egg_pickup", "targetname");
-	foreach(var_21e43ff6 in var_9c840b49)
+	a_s_eggs = struct::get_array("dragon_egg_pickup", "targetname");
+	foreach(s_egg in a_s_eggs)
 	{
-		var_21e43ff6 zm_unitrigger::create_unitrigger(&"ZM_STALINGRAD_EGG_PICKUP", 64, &function_61ab1070, &function_cee6cb2a);
+		s_egg zm_unitrigger::create_unitrigger(&"ZM_STALINGRAD_EGG_PICKUP", 64, &function_61ab1070, &function_cee6cb2a);
 	}
 }
 
@@ -197,7 +197,7 @@ function function_cee6cb2a()
 	Parameters: 1
 	Flags: None
 */
-function function_9a76ebf9(var_a79fd3d3)
+function function_9a76ebf9(s_stub)
 {
 	var_e0c16f1a = GetEnt("pavlov_boards_egg", "targetname");
 	var_e0c16f1a delete();
@@ -207,7 +207,7 @@ function function_9a76ebf9(var_a79fd3d3)
 		player clientfield::set_player_uimodel("zmInventory.piece_egg", 1);
 		player thread zm_craftables::player_show_craftable_parts_ui("zmInventory.piece_egg", "zmInventory.widget_egg", 0);
 	}
-	zm_unitrigger::unregister_unitrigger(var_a79fd3d3);
+	zm_unitrigger::unregister_unitrigger(s_stub);
 }
 
 /*
@@ -288,7 +288,7 @@ function function_48a9eab7()
 			e_player clientfield::increment_to_player("interact_rumble");
 			level flag::set("egg_placed_in_hazard");
 			self.stub.related_parent.var_a1914ebb = 1;
-			level.var_de98e3ce.var_d54b9ade.var_62ceb838 = util::spawn_model("p7_fxanim_zm_stal_dragon_incubator_egg_mod", self.stub.related_parent.origin + VectorScale((0, 0, -1), 40));
+			level.var_de98e3ce.var_d54b9ade.mdl_egg = util::spawn_model("p7_fxanim_zm_stal_dragon_incubator_egg_mod", self.stub.related_parent.origin + VectorScale((0, 0, -1), 40));
 			level thread function_d0ba871e();
 			level clientfield::set("force_stream_dragon_egg", 0);
 		}
@@ -317,10 +317,10 @@ function function_d0ba871e()
 		player clientfield::set_player_uimodel("zmInventory.piece_egg", 0);
 	}
 	level flag::wait_till("egg_bathed_in_flame");
-	level.var_de98e3ce.var_d54b9ade.var_62ceb838 clientfield::set("dragon_egg_heat_fx", 1);
+	level.var_de98e3ce.var_d54b9ade.mdl_egg clientfield::set("dragon_egg_heat_fx", 1);
 	level waittill("start_of_round");
 	level waittill("end_of_round");
-	level.var_de98e3ce.var_d54b9ade.var_62ceb838 clientfield::set("dragon_egg_heat_fx", 0);
+	level.var_de98e3ce.var_d54b9ade.mdl_egg clientfield::set("dragon_egg_heat_fx", 0);
 	level flag::set("egg_cooled_hazard");
 }
 
@@ -333,14 +333,14 @@ function function_d0ba871e()
 	Parameters: 1
 	Flags: None
 */
-function function_2455dd71(var_a79fd3d3)
+function function_2455dd71(s_stub)
 {
-	level.var_de98e3ce.var_d54b9ade.var_62ceb838 delete();
+	level.var_de98e3ce.var_d54b9ade.mdl_egg delete();
 	foreach(player in level.activePlayers)
 	{
 		player clientfield::set_player_uimodel("zmInventory.piece_egg", 1);
 	}
-	zm_unitrigger::unregister_unitrigger(var_a79fd3d3);
+	zm_unitrigger::unregister_unitrigger(s_stub);
 }
 
 /*
@@ -601,64 +601,64 @@ function function_16907a63()
 	Parameters: 1
 	Flags: None
 */
-function function_59a929b0(var_a79fd3d3)
+function function_59a929b0(s_stub)
 {
-	var_734c1c5a = GetEnt("dragon_incubator", "targetname");
-	var_734c1c5a thread scene::Play("p7_fxanim_zm_stal_dragon_incubator_bundle");
+	mdl_incubator = GetEnt("dragon_incubator", "targetname");
+	mdl_incubator thread scene::Play("p7_fxanim_zm_stal_dragon_incubator_bundle");
 	level.var_de98e3ce.var_a6563820 = 7 + 6 * zm_utility::get_number_of_valid_players();
 	level.var_c2c83bb6 = spawnstruct();
-	level.var_de98e3ce.var_d54b9ade = var_a79fd3d3;
+	level.var_de98e3ce.var_d54b9ade = s_stub;
 	level.var_de98e3ce.var_312cd3bc = 1;
 	var_2bf0ed11 = GetEntArray("pavlov_gate_collision", "targetname");
-	var_50e0150f = GetEntArray("pavlov_gate_visual", "targetname");
+	a_e_gates = GetEntArray("pavlov_gate_visual", "targetname");
 	var_6f3f4356 = GetNodeArray("pavlovs_lockdown_stair_traverse", "targetname");
 	foreach(e_collision in var_2bf0ed11)
 	{
 		e_collision solid();
 		e_collision disconnectpaths();
 	}
-	foreach(var_a7c049ac in var_50e0150f)
+	foreach(e_gate in a_e_gates)
 	{
-		var_a7c049ac MoveZ(600, 0.25);
+		e_gate MoveZ(600, 0.25);
 	}
-	foreach(var_b0a376a4 in var_6f3f4356)
+	foreach(nd_traverse in var_6f3f4356)
 	{
-		UnlinkTraversal(var_b0a376a4);
+		UnlinkTraversal(nd_traverse);
 	}
 	var_ff1b68c0 = GetEnt("pavlovs_sewer_door", "targetname");
 	var_ff1b68c0 MoveY(-84, 1);
-	level thread namespace_48c05c81::function_2f621485();
+	level thread namespace_48c05c81::disable_pap();
 	level thread scene::Play("p7_fxanim_zm_stal_sewer_gate_down_bundle");
 	level thread namespace_48c05c81::function_e7c75cf0();
 	level flag::set("lockdown_active");
 	util::wait_network_frame();
-	level.var_de98e3ce.var_d54b9ade.var_62ceb838 = GetEnt("dragon_incubator_egg", "targetname");
-	level.var_de98e3ce.var_d54b9ade.var_62ceb838 clientfield::increment("dragon_egg_placed", 1);
+	level.var_de98e3ce.var_d54b9ade.mdl_egg = GetEnt("dragon_incubator_egg", "targetname");
+	level.var_de98e3ce.var_d54b9ade.mdl_egg clientfield::increment("dragon_egg_placed", 1);
 	level.var_c2c83bb6.var_b372c418 = struct::get_array("pavlovs_B_spawn", "targetname");
-	var_d41655e8 = struct::get_array("pavlovs_A_spawn", "targetname");
-	level.var_c2c83bb6.var_b372c418 = ArrayCombine(level.var_c2c83bb6.var_b372c418, var_d41655e8, 0, 0);
+	a_s_spawners = struct::get_array("pavlovs_A_spawn", "targetname");
+	level.var_c2c83bb6.var_b372c418 = ArrayCombine(level.var_c2c83bb6.var_b372c418, a_s_spawners, 0, 0);
 	level thread namespace_48c05c81::function_3804dbf1();
 	namespace_48c05c81::function_adf4d1d0();
 	level function_fd19472b();
 	level thread namespace_dcf9c464::function_e4acaa37("vox_soph_whelp_quest_lockdown_end_0");
-	var_734c1c5a scene::Play("p7_fxanim_zm_stal_dragon_incubator_finish_bundle");
+	mdl_incubator scene::Play("p7_fxanim_zm_stal_dragon_incubator_finish_bundle");
 	foreach(e_collision in var_2bf0ed11)
 	{
 		e_collision notsolid();
 		e_collision connectpaths();
 	}
-	foreach(var_a7c049ac in var_50e0150f)
+	foreach(e_gate in a_e_gates)
 	{
-		var_a7c049ac MoveZ(-600, 0.25);
+		e_gate MoveZ(-600, 0.25);
 	}
-	foreach(var_b0a376a4 in var_6f3f4356)
+	foreach(nd_traverse in var_6f3f4356)
 	{
-		LinkTraversal(var_b0a376a4);
+		LinkTraversal(nd_traverse);
 	}
 	var_ff1b68c0 MoveY(84, 1);
 	var_21ce8765 = GetEnt("sewer_gate", "targetname");
 	var_21ce8765 thread scene::Play("p7_fxanim_zm_stal_sewer_gate_up_bundle");
-	level namespace_48c05c81::function_2f621485(0);
+	level namespace_48c05c81::disable_pap(0);
 	wait(5);
 	level thread namespace_48c05c81::function_3804dbf1(0);
 	level flag::clear("lockdown_active");
@@ -703,7 +703,7 @@ function function_dcc4fd22()
 {
 	level endon("hash_917b3ab2");
 	self waittill("death");
-	if(isdefined(self.var_4d11bb60) && self.var_4d11bb60)
+	if(isdefined(self.b_cleaned_up) && self.b_cleaned_up)
 	{
 		return;
 	}
@@ -717,7 +717,7 @@ function function_dcc4fd22()
 	}
 	if(isdefined(level.var_de98e3ce.var_d54b9ade))
 	{
-		var_21e43ff6 = level.var_de98e3ce.var_d54b9ade;
+		s_egg = level.var_de98e3ce.var_d54b9ade;
 	}
 	else
 	{
@@ -750,16 +750,16 @@ function function_dcc4fd22()
 */
 function function_77c54581()
 {
-	var_21e43ff6 = level.var_de98e3ce.var_d54b9ade;
+	s_egg = level.var_de98e3ce.var_d54b9ade;
 	level.var_de98e3ce.var_987fcd7a = 1;
-	var_21e43ff6 zm_unitrigger::create_unitrigger(&"ZM_STALINGRAD_EGG_RETRIEVE", 40, &function_86e242);
+	s_egg zm_unitrigger::create_unitrigger(&"ZM_STALINGRAD_EGG_RETRIEVE", 40, &function_86e242);
 	level notify("hash_8c192d5a");
-	level.var_de98e3ce.var_d54b9ade.var_62ceb838 clientfield::set("dragon_egg_heat_fx", 1);
+	level.var_de98e3ce.var_d54b9ade.mdl_egg clientfield::set("dragon_egg_heat_fx", 1);
 	level waittill("start_of_round");
 	level waittill("end_of_round");
-	level.var_de98e3ce.var_d54b9ade.var_62ceb838 clientfield::set("dragon_egg_heat_fx", 0);
+	level.var_de98e3ce.var_d54b9ade.mdl_egg clientfield::set("dragon_egg_heat_fx", 0);
 	level flag::set("egg_cooled_incubator");
-	var_21e43ff6 thread function_d29c33e();
+	s_egg thread function_d29c33e();
 	level thread namespace_dcf9c464::function_e4acaa37("vox_soph_whelp_quest_incubation_complete_0");
 }
 
@@ -820,7 +820,7 @@ function function_fd19472b()
 			var_19494298[var_19494298.size] = level.var_c2c83bb6.var_b372c418[i];
 		}
 	}
-	level.var_c2c83bb6.var_4eb67098 = 0;
+	level.var_c2c83bb6.n_sentinel_count = 0;
 	level.var_c2c83bb6.var_d5abe4af = 1;
 	var_5c17f194 = level.zombie_vars["zombie_spawn_delay"];
 	level thread function_f4ceb3f8();
@@ -840,11 +840,11 @@ function function_fd19472b()
 		{
 			ai thread function_91191904();
 		}
-		if(namespace_8bc21961::function_41375d48() < level.var_c2c83bb6.var_d5abe4af && !level flag::get("basement_sentinel_wait"))
+		if(namespace_8bc21961::get_current_sentinel_count() < level.var_c2c83bb6.var_d5abe4af && !level flag::get("basement_sentinel_wait"))
 		{
 			wait(var_5c17f194);
-			var_4bf80f4b = Array::random(level.var_c2c83bb6.var_73844a4a);
-			level namespace_8bc21961::function_19d0b055(undefined, undefined, 1, var_4bf80f4b);
+			s_sentinel_spawn = Array::random(level.var_c2c83bb6.var_73844a4a);
+			level namespace_8bc21961::special_sentinel_spawn(undefined, undefined, 1, s_sentinel_spawn);
 			level thread function_f621bb41();
 		}
 		wait(var_5c17f194);
@@ -882,9 +882,9 @@ function function_f621bb41()
 	Parameters: 1
 	Flags: None
 */
-function function_1a7c9b89(var_a48df19e)
+function function_1a7c9b89(str_front)
 {
-	var_604d90e0 = GetEntArray("lockdown_lights_" + var_a48df19e, "targetname");
+	var_604d90e0 = GetEntArray("lockdown_lights_" + str_front, "targetname");
 	foreach(e_light in var_604d90e0)
 	{
 		e_light FX::Play("pavlov_lockdown_light", e_light.origin, e_light.angles, "lockdown_complete", 1);
@@ -926,8 +926,8 @@ function function_f4ceb3f8()
 */
 function function_86e242(e_player)
 {
-	var_21e43ff6 = level.var_de98e3ce.var_d54b9ade;
-	if(!isdefined(var_21e43ff6))
+	s_egg = level.var_de98e3ce.var_d54b9ade;
+	if(!isdefined(s_egg))
 	{
 		self setHintString("");
 		return 0;
@@ -961,7 +961,7 @@ function function_86e242(e_player)
 function function_d29c33e()
 {
 	self waittill("trigger_activated");
-	self.var_62ceb838 delete();
+	self.mdl_egg delete();
 	zm_unitrigger::unregister_unitrigger(self.s_unitrigger);
 	level flag::set("gauntlet_quest_complete");
 	foreach(e_player in level.activePlayers)

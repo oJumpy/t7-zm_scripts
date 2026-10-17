@@ -397,7 +397,7 @@ function cheat_enabled(VAL)
 		/#
 			return 1;
 		#/
-		if(function_bdf61114())
+		if(isprofilebuild())
 		{
 			return 1;
 		}
@@ -1680,7 +1680,7 @@ function Callback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOf
 		}
 	#/
 	self finishPlayerDamageWrapper(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, weapon, vPoint, vDir, sHitLoc, vDamageOrigin, psOffsetTime, boneIndex, vSurfaceNormal);
-	bb::function_2aa586aa(eAttacker, self, weapon, iDamage, sMeansOfDeath, sHitLoc, self.health <= 0, wasDowned);
+	bb::logdamage(eAttacker, self, weapon, iDamage, sMeansOfDeath, sHitLoc, self.health <= 0, wasDowned);
 }
 
 /*
@@ -4649,7 +4649,7 @@ function round_think(restart)
 		level thread [[level.round_spawn_func]]();
 		level notify("start_of_round");
 		RecordZombieRoundStart();
-		bb::function_2c248b75("start_of_round");
+		bb::logroundevent("start_of_round");
 		players = GetPlayers();
 		for(index = 0; index < players.size; index++)
 		{
@@ -4662,7 +4662,7 @@ function round_think(restart)
 		[[level.round_wait_func]]();
 		level.first_round = 0;
 		level notify("end_of_round");
-		bb::function_2c248b75("end_of_round");
+		bb::logroundevent("end_of_round");
 		UploadStats();
 		if(isdefined(level.round_end_custom_logic))
 		{
@@ -6070,7 +6070,7 @@ function actor_damage_override_wrapper(inflictor, attacker, damage, flags, means
 			self thread [[func_override]](willBeKilled, inflictor, attacker, damage, flags, meansOfDeath, weapon, vPoint, vDir, sHitLoc, psOffsetTime, boneIndex, surfaceType);
 		}
 	}
-	bb::function_2aa586aa(attacker, self, weapon, damage_override, meansOfDeath, sHitLoc, willBeKilled, willBeKilled);
+	bb::logdamage(attacker, self, weapon, damage_override, meansOfDeath, sHitLoc, willBeKilled, willBeKilled);
 	if(!willBeKilled || (!isdefined(self.dont_die_on_me) && self.dont_die_on_me))
 	{
 		self finishActorDamage(inflictor, attacker, damage_override, flags, meansOfDeath, weapon, vPoint, vDir, sHitLoc, vDamageOrigin, psOffsetTime, boneIndex, surfaceType, vSurfaceNormal);
@@ -6381,7 +6381,7 @@ function end_game()
 	UploadStats();
 	zm_stats::update_players_stats_at_match_end(players);
 	zm_stats::update_global_counters_on_match_end();
-	bb::function_2c248b75("end_game");
+	bb::logroundevent("end_game");
 	upload_leaderboards();
 	recordGameResult("draw");
 	globallogic::recordZMEndGameComScoreEvent("draw");

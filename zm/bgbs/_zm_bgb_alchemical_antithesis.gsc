@@ -39,7 +39,7 @@ function __init__()
 	}
 	bgb::register("zm_bgb_alchemical_antithesis", "activated", 2, undefined, undefined, &validation, &activation);
 	bgb::function_336ffc4e("zm_bgb_alchemical_antithesis");
-	bgb::function_ff4b2998("zm_bgb_alchemical_antithesis", &add_to_player_score_override, 0);
+	bgb::register_add_to_player_score_override("zm_bgb_alchemical_antithesis", &add_to_player_score_override, 0);
 }
 
 /*
@@ -53,7 +53,7 @@ function __init__()
 */
 function validation()
 {
-	return !isdefined(self bgb::function_e2bcf80c()) && self bgb::function_e2bcf80c();
+	return !isdefined(self bgb::get_active()) && self bgb::get_active();
 }
 
 /*
@@ -83,11 +83,11 @@ function activation()
 */
 function add_to_player_score_override(points, str_awarded_by, var_1ed9bd9b)
 {
-	if(!(isdefined(self.var_3244073f) && self.var_3244073f))
+	if(!(isdefined(self.bgb_active) && self.bgb_active))
 	{
 		return points;
 	}
-	var_4375ef8a = Int(points / 10);
+	n_ammo_count_to_add = Int(points / 10);
 	current_weapon = self GetCurrentWeapon();
 	if(zm_utility::is_offhand_weapon(current_weapon))
 	{
@@ -101,11 +101,11 @@ function add_to_player_score_override(points, str_awarded_by, var_1ed9bd9b)
 	{
 		return points;
 	}
-	var_b8f62d73 = self GetWeaponAmmoStock(current_weapon);
-	var_b8f62d73 = var_b8f62d73 + var_4375ef8a;
-	self SetWeaponAmmoStock(current_weapon, var_b8f62d73);
+	n_current_ammo_stock = self GetWeaponAmmoStock(current_weapon);
+	n_current_ammo_stock = n_current_ammo_stock + n_ammo_count_to_add;
+	self SetWeaponAmmoStock(current_weapon, n_current_ammo_stock);
 	self thread function_a6bf711f();
-	self zm_stats::increment_challenge_stat("GUM_GOBBLER_ALCHEMICAL_ANTITHESIS", var_4375ef8a);
+	self zm_stats::increment_challenge_stat("GUM_GOBBLER_ALCHEMICAL_ANTITHESIS", n_ammo_count_to_add);
 	return 0;
 }
 

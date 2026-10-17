@@ -52,8 +52,8 @@ function gadgets_print(STR)
 	/#
 		if(GetDvarInt("Dev Block strings are not supported"))
 		{
-			var_ce775097 = STR;
-			println(self.playerName + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_ce775097);
+			toprint = STR;
+			println(self.playerName + "Dev Block strings are not supported" + "Dev Block strings are not supported" + toprint);
 		}
 	#/
 }

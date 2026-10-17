@@ -38,7 +38,7 @@ function main()
 }
 
 /*
-	Name: function_a8255fab
+	Name: teleporter_fx_play
 	Namespace: zm_tomb_teleporter
 	Checksum: 0xD3E25CE2
 	Offset: 0x338
@@ -46,26 +46,26 @@ function main()
 	Parameters: 7
 	Flags: None
 */
-function function_a8255fab(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function teleporter_fx_play(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("disconnect");
 	if(newVal == 1)
 	{
-		if(!isdefined(self.var_1e8e073f))
+		if(!isdefined(self.fx_teleport))
 		{
-			self.var_1e8e073f = PlayFXOnTag(localClientNum, level._effect["teleport_1p"], self, "tag_origin");
-			SetFXIgnorePause(localClientNum, self.var_1e8e073f, 1);
+			self.fx_teleport = PlayFXOnTag(localClientNum, level._effect["teleport_1p"], self, "tag_origin");
+			SetFXIgnorePause(localClientNum, self.fx_teleport, 1);
 		}
 	}
-	else if(isdefined(self.var_1e8e073f))
+	else if(isdefined(self.fx_teleport))
 	{
-		stopfx(localClientNum, self.var_1e8e073f);
-		self.var_1e8e073f = undefined;
+		stopfx(localClientNum, self.fx_teleport);
+		self.fx_teleport = undefined;
 	}
 }
 
 /*
-	Name: function_ffedfe48
+	Name: teleporter_door_anim
 	Namespace: zm_tomb_teleporter
 	Checksum: 0xB8CCA17
 	Offset: 0x448
@@ -73,13 +73,13 @@ function function_a8255fab(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_ffedfe48(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function teleporter_door_anim(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	var_b162502d = !isdefined(self.var_76534568) && self.var_76534568;
-	if(!(isdefined(self.var_76534568) && self.var_76534568))
+	first_time_run = !isdefined(self.has_anim_tree) && self.has_anim_tree;
+	if(!(isdefined(self.has_anim_tree) && self.has_anim_tree))
 	{
 		self useanimtree(-1);
-		self.var_76534568 = 1;
+		self.has_anim_tree = 1;
 	}
 	if(newVal)
 	{

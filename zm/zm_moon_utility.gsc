@@ -48,7 +48,7 @@ function init_zombie_airlocks()
 	{
 		airlock_buys[i] thread airlock_buy_init();
 	}
-	level thread namespace_65fac977::hack_doors("zombie_airlock_hackable", &moon_door_opened);
+	level thread zm_hackables_doors::hack_doors("zombie_airlock_hackable", &moon_door_opened);
 	airlock_hacks = GetEntArray("zombie_airlock_hackable", "targetname");
 	for(i = 0; i < airlock_hacks.size; i++)
 	{
@@ -362,7 +362,7 @@ function airlock_buy()
 			who zm_stats::increment_challenge_stat("SURVIVALIST_BUY_DOOR");
 			self.purchaser = who;
 			who RecordMapEvent(5, GetTime(), who.origin, level.round_number, cost);
-			bb::function_91f32a58(who, self, cost, self.target, upgraded, "_door", "_purchase");
+			bb::logpurchaseevent(who, self, cost, self.target, upgraded, "_door", "_purchase");
 			who zm_stats::increment_challenge_stat("ZM_DAILY_PURCHASE_DOORS");
 		}
 		else
@@ -619,8 +619,8 @@ function zapper_light_green(light_name, key_name)
 	var_e9947991 = GetEntArray(light_name, key_name);
 	foreach(light in var_e9947991)
 	{
-		var_8d53d8ef = "zap_teleport_light_0" + light.script_int;
-		exploder::exploder(var_8d53d8ef);
+		str_light = "zap_teleport_light_0" + light.script_int;
+		exploder::exploder(str_light);
 	}
 }
 
@@ -638,8 +638,8 @@ function zapper_light_red(light_name, key_name)
 	var_e9947991 = GetEntArray(light_name, key_name);
 	foreach(light in var_e9947991)
 	{
-		var_8d53d8ef = "zap_teleport_light_0" + light.script_int;
-		exploder::stop_exploder(var_8d53d8ef);
+		str_light = "zap_teleport_light_0" + light.script_int;
+		exploder::stop_exploder(str_light);
 	}
 }
 
@@ -1169,14 +1169,14 @@ function zombie_moon_hatch()
 */
 function function_8ceda02()
 {
-	var_851890ac = GetNodeArray("hatch_node", "targetname");
-	foreach(node in var_851890ac)
+	a_nd_traversal = GetNodeArray("hatch_node", "targetname");
+	foreach(node in a_nd_traversal)
 	{
 		UnlinkTraversal(node);
 	}
 	level flag::wait_till("power_on");
 	wait(1);
-	foreach(node in var_851890ac)
+	foreach(node in a_nd_traversal)
 	{
 		LinkTraversal(node);
 	}

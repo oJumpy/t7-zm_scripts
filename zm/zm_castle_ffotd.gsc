@@ -26,7 +26,7 @@
 */
 function main_start()
 {
-	level.var_42792b8b = 1;
+	level.bgb_cost_client_filled = 1;
 }
 
 /*
@@ -75,7 +75,7 @@ function main_end()
 	level thread function_78328cd0();
 	level.no_target_override = &function_c428951;
 	level.player_score_override = &function_d6da0785;
-	level.player_intersection_tracker_override = &function_401305fb;
+	level.player_intersection_tracker_override = &castle_player_intersection_tracker_override;
 }
 
 /*
@@ -98,16 +98,16 @@ function function_965d5385()
 		}
 	}
 	var_5381c01a = struct::get_array("player_respawn_point", "targetname");
-	foreach(var_81cac751 in var_5381c01a)
+	foreach(s_respawn in var_5381c01a)
 	{
-		if(var_81cac751.script_noteworthy === "zone_gatehouse")
+		if(s_respawn.script_noteworthy === "zone_gatehouse")
 		{
-			var_e50cc92f = struct::get_array(var_81cac751.target, "targetname");
-			foreach(var_59fe7f49 in var_e50cc92f)
+			var_e50cc92f = struct::get_array(s_respawn.target, "targetname");
+			foreach(s_player_respawn in var_e50cc92f)
 			{
-				function_b1c9999(var_59fe7f49);
+				function_b1c9999(s_player_respawn);
 			}
-			var_81cac751.origin = (1504, 1536, 480);
+			s_respawn.origin = (1504, 1536, 480);
 		}
 	}
 }
@@ -121,28 +121,28 @@ function function_965d5385()
 	Parameters: 1
 	Flags: None
 */
-function function_b1c9999(var_59fe7f49)
+function function_b1c9999(s_player_respawn)
 {
-	switch(var_59fe7f49.script_noteworthy)
+	switch(s_player_respawn.script_noteworthy)
 	{
 		case "player_1":
 		{
-			var_59fe7f49.origin = (1472, 1568, 470.609);
+			s_player_respawn.origin = (1472, 1568, 470.609);
 			break;
 		}
 		case "player_2":
 		{
-			var_59fe7f49.origin = (1536, 1568, 470.609);
+			s_player_respawn.origin = (1536, 1568, 470.609);
 			break;
 		}
 		case "player_3":
 		{
-			var_59fe7f49.origin = (1472, 1504, 465.043);
+			s_player_respawn.origin = (1472, 1504, 465.043);
 			break;
 		}
 		case "player_4":
 		{
-			var_59fe7f49.origin = (1536, 1504, 465.043);
+			s_player_respawn.origin = (1536, 1504, 465.043);
 			break;
 		}
 		case default:
@@ -209,7 +209,7 @@ function function_f9f5dbb3(v_origin)
 */
 function function_c428951(ai_zombie)
 {
-	if(isdefined(self.var_c74f5ce8) && self.var_c74f5ce8)
+	if(isdefined(self.b_zombie_path_bad) && self.b_zombie_path_bad)
 	{
 		return;
 	}
@@ -309,13 +309,13 @@ function private function_dc683d01(var_b52b26b9)
 	self notify("stop_find_flesh");
 	self notify("zombie_acquire_enemy");
 	self.ignoreall = 1;
-	self.var_c74f5ce8 = 1;
+	self.b_zombie_path_bad = 1;
 	self thread check_player_available();
 	self SetGoal(var_b52b26b9);
 	self util::waittill_any_timeout(30, "goal", "reaquire_player", "death");
 	self.ai_state = "find_flesh";
 	self.ignoreall = 0;
-	self.var_c74f5ce8 = undefined;
+	self.b_zombie_path_bad = undefined;
 }
 
 /*
@@ -330,12 +330,12 @@ function private function_dc683d01(var_b52b26b9)
 function private check_player_available()
 {
 	self endon("death");
-	while(isdefined(self.var_c74f5ce8) && self.var_c74f5ce8)
+	while(isdefined(self.b_zombie_path_bad) && self.b_zombie_path_bad)
 	{
 		wait(RandomFloatRange(0.2, 0.5));
 		if(self can_zombie_see_any_player())
 		{
-			self.var_c74f5ce8 = undefined;
+			self.b_zombie_path_bad = undefined;
 			self notify("reaquire_player");
 			return;
 		}
@@ -376,13 +376,13 @@ function private can_zombie_see_any_player()
 	Parameters: 2
 	Flags: None
 */
-function function_d6da0785(var_2f7fd5db, n_points)
+function function_d6da0785(w_damage_weapon, n_points)
 {
 	if(!isdefined(n_points))
 	{
 		return 0;
 	}
-	if(var_2f7fd5db === GetWeapon("hero_gravityspikes_melee") && n_points > 20)
+	if(w_damage_weapon === GetWeapon("hero_gravityspikes_melee") && n_points > 20)
 	{
 		n_points = 20;
 	}
@@ -390,7 +390,7 @@ function function_d6da0785(var_2f7fd5db, n_points)
 }
 
 /*
-	Name: function_401305fb
+	Name: castle_player_intersection_tracker_override
 	Namespace: namespace_6b519a03
 	Checksum: 0x2E76BBF5
 	Offset: 0x1688
@@ -398,9 +398,9 @@ function function_d6da0785(var_2f7fd5db, n_points)
 	Parameters: 1
 	Flags: None
 */
-function function_401305fb(var_3c6a24bf)
+function castle_player_intersection_tracker_override(var_3c6a24bf)
 {
-	if(isdefined(self.var_122a2dda) && self.var_122a2dda || (isdefined(var_3c6a24bf.var_122a2dda) && var_3c6a24bf.var_122a2dda))
+	if(isdefined(self.is_flung) && self.is_flung || (isdefined(var_3c6a24bf.is_flung) && var_3c6a24bf.is_flung))
 	{
 		return 1;
 	}

@@ -104,28 +104,28 @@ function unitrigger_logic()
 function function_fa7da172()
 {
 	self endon("death");
-	var_82a4f07b = struct::get("keeper_end_loc");
-	var_77b9bd02 = 0;
+	s_keeper_end = struct::get("keeper_end_loc");
+	b_rumbling = 0;
 	while(isdefined(level.var_8ef26cd9) && level.var_8ef26cd9)
 	{
 		str_player_zone = self zm_zonemgr::get_player_zone();
 		if(zm_utility::is_player_valid(self) && str_player_zone === "zone_undercroft")
 		{
-			if(!isdefined(var_77b9bd02) && var_77b9bd02 && Distance2DSquared(var_82a4f07b.origin, self.origin) <= 53361)
+			if(!isdefined(b_rumbling) && b_rumbling && Distance2DSquared(s_keeper_end.origin, self.origin) <= 53361)
 			{
 				self clientfield::set_to_player("gravity_trap_rumble", 1);
-				var_77b9bd02 = 1;
+				b_rumbling = 1;
 			}
-			else if(isdefined(var_77b9bd02) && var_77b9bd02 && Distance2DSquared(var_82a4f07b.origin, self.origin) > 53361)
+			else if(isdefined(b_rumbling) && b_rumbling && Distance2DSquared(s_keeper_end.origin, self.origin) > 53361)
 			{
 				self clientfield::set_to_player("gravity_trap_rumble", 0);
-				var_77b9bd02 = 0;
+				b_rumbling = 0;
 			}
 		}
-		else if(isdefined(var_77b9bd02) && var_77b9bd02)
+		else if(isdefined(b_rumbling) && b_rumbling)
 		{
 			self clientfield::set_to_player("gravity_trap_rumble", 0);
-			var_77b9bd02 = 0;
+			b_rumbling = 0;
 		}
 		wait(0.15);
 	}
@@ -141,16 +141,16 @@ function function_fa7da172()
 	Parameters: 4
 	Flags: None
 */
-function function_8faf1d24(v_color, var_8882142e, n_scale, str_endon)
+function function_8faf1d24(v_color, str_print, n_scale, str_endon)
 {
 	/#
 		if(!isdefined(v_color))
 		{
 			v_color = VectorScale((0, 0, 1), 255);
 		}
-		if(!isdefined(var_8882142e))
+		if(!isdefined(str_print))
 		{
-			var_8882142e = "Dev Block strings are not supported";
+			str_print = "Dev Block strings are not supported";
 		}
 		if(!isdefined(n_scale))
 		{
@@ -171,7 +171,7 @@ function function_8faf1d24(v_color, var_8882142e, n_scale, str_endon)
 		origin = self.origin;
 		while(1)
 		{
-			print3d(origin, var_8882142e, v_color, n_scale);
+			print3d(origin, str_print, v_color, n_scale);
 			wait(0.1);
 		}
 	#/

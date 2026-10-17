@@ -108,18 +108,18 @@ function function_4ec66a83(localClientNum, newVal, a_s_lights)
 {
 	if(newVal)
 	{
-		foreach(var_6bc801a1 in a_s_lights)
+		foreach(s_light in a_s_lights)
 		{
-			var_6bc801a1.fx_light = playFX(localClientNum, level._effect["pavlov_lockdown_light"], var_6bc801a1.origin);
+			s_light.fx_light = playFX(localClientNum, level._effect["pavlov_lockdown_light"], s_light.origin);
 		}
 		break;
 	}
-	foreach(var_6bc801a1 in a_s_lights)
+	foreach(s_light in a_s_lights)
 	{
-		if(isdefined(var_6bc801a1.fx_light))
+		if(isdefined(s_light.fx_light))
 		{
-			stopfx(localClientNum, var_6bc801a1.fx_light);
-			var_6bc801a1.fx_light = undefined;
+			stopfx(localClientNum, s_light.fx_light);
+			s_light.fx_light = undefined;
 		}
 	}
 }
@@ -194,10 +194,10 @@ function function_ca87037d(localClientNum)
 */
 function function_c86c0cdd(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_f64bb476 = level.var_f6abb894[localClientNum];
-	var_3929e8a2 = util::spawn_model(localClientNum, "tag_origin", var_f64bb476 GetTagOrigin("tag_fx"));
-	var_e43465f2 = util::spawn_model(localClientNum, "tag_origin", self GetTagOrigin("j_spine4"), self GetTagAngles("j_spine4"));
-	var_e43465f2 thread function_1d3ab9dd(var_3929e8a2);
+	e_pod = level.var_f6abb894[localClientNum];
+	mdl_target = util::spawn_model(localClientNum, "tag_origin", e_pod GetTagOrigin("tag_fx"));
+	mdl_source = util::spawn_model(localClientNum, "tag_origin", self GetTagOrigin("j_spine4"), self GetTagAngles("j_spine4"));
+	mdl_source thread function_1d3ab9dd(mdl_target);
 }
 
 /*
@@ -209,14 +209,14 @@ function function_c86c0cdd(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_1d3ab9dd(var_3929e8a2)
+function function_1d3ab9dd(mdl_target)
 {
-	level beam::launch(self, "tag_origin", var_3929e8a2, "tag_origin", "electric_arc_zombie_to_drop_pod");
-	var_3929e8a2 playsound(0, "zmb_pod_electrocute");
+	level beam::launch(self, "tag_origin", mdl_target, "tag_origin", "electric_arc_zombie_to_drop_pod");
+	mdl_target playsound(0, "zmb_pod_electrocute");
 	wait(0.2);
 	self playsound(0, "zmb_pod_electrocute_zmb");
-	level beam::kill(self, "tag_origin", var_3929e8a2, "tag_origin", "electric_arc_zombie_to_drop_pod");
-	var_3929e8a2 delete();
+	level beam::kill(self, "tag_origin", mdl_target, "tag_origin", "electric_arc_zombie_to_drop_pod");
+	mdl_target delete();
 	self delete();
 }
 
@@ -231,30 +231,30 @@ function function_1d3ab9dd(var_3929e8a2)
 */
 function function_5e369bd2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_165d49f6 = level.var_f6abb894[localClientNum];
+	mdl_pod = level.var_f6abb894[localClientNum];
 	switch(newVal)
 	{
 		case 1:
 		{
-			var_165d49f6.var_888bfca3 = PlayFXOnTag(localClientNum, level._effect["drop_pod_hp_light_green"], var_165d49f6, "tag_health_green");
+			mdl_pod.var_888bfca3 = PlayFXOnTag(localClientNum, level._effect["drop_pod_hp_light_green"], mdl_pod, "tag_health_green");
 			break;
 		}
 		case 2:
 		{
-			if(isdefined(var_165d49f6.var_888bfca3))
+			if(isdefined(mdl_pod.var_888bfca3))
 			{
-				stopfx(localClientNum, var_165d49f6.var_888bfca3);
+				stopfx(localClientNum, mdl_pod.var_888bfca3);
 			}
-			var_165d49f6.var_888bfca3 = PlayFXOnTag(localClientNum, level._effect["drop_pod_hp_light_yellow"], var_165d49f6, "tag_health_yellow");
+			mdl_pod.var_888bfca3 = PlayFXOnTag(localClientNum, level._effect["drop_pod_hp_light_yellow"], mdl_pod, "tag_health_yellow");
 			break;
 		}
 		case 3:
 		{
-			if(isdefined(var_165d49f6.var_888bfca3))
+			if(isdefined(mdl_pod.var_888bfca3))
 			{
-				stopfx(localClientNum, var_165d49f6.var_888bfca3);
+				stopfx(localClientNum, mdl_pod.var_888bfca3);
 			}
-			var_165d49f6.var_888bfca3 = PlayFXOnTag(localClientNum, level._effect["drop_pod_hp_light_red"], var_165d49f6, "tag_health_red");
+			mdl_pod.var_888bfca3 = PlayFXOnTag(localClientNum, level._effect["drop_pod_hp_light_red"], mdl_pod, "tag_health_red");
 			break;
 		}
 		case default:

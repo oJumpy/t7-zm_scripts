@@ -19,13 +19,13 @@
 */
 function init_traps()
 {
-	level thread function_86339996();
+	level thread rocket_init();
 	level thread centrifuge_init();
-	level thread function_395fdbce();
+	level thread door_firetrap_init();
 }
 
 /*
-	Name: function_b16a68c0
+	Name: claw_attach
 	Namespace: namespace_860ef124
 	Checksum: 0x5DEFFD6B
 	Offset: 0x4D8
@@ -33,9 +33,9 @@ function init_traps()
 	Parameters: 2
 	Flags: None
 */
-function function_b16a68c0(arm, var_916d086e)
+function claw_attach(arm, claw_name)
 {
-	claws = GetEntArray(var_916d086e, "targetname");
+	claws = GetEntArray(claw_name, "targetname");
 	for(i = 0; i < claws.size; i++)
 	{
 		claws[i] LinkTo(arm);
@@ -43,7 +43,7 @@ function function_b16a68c0(arm, var_916d086e)
 }
 
 /*
-	Name: function_3b7290e2
+	Name: claw_detach
 	Namespace: namespace_860ef124
 	Checksum: 0x8C47CCED
 	Offset: 0x570
@@ -51,9 +51,9 @@ function function_b16a68c0(arm, var_916d086e)
 	Parameters: 2
 	Flags: None
 */
-function function_3b7290e2(arm, var_916d086e)
+function claw_detach(arm, claw_name)
 {
-	claws = GetEntArray(var_916d086e, "targetname");
+	claws = GetEntArray(claw_name, "targetname");
 	for(i = 0; i < claws.size; i++)
 	{
 		claws[i] Unlink();
@@ -61,7 +61,7 @@ function function_3b7290e2(arm, var_916d086e)
 }
 
 /*
-	Name: function_86339996
+	Name: rocket_init
 	Namespace: namespace_860ef124
 	Checksum: 0x620CADDF
 	Offset: 0x600
@@ -69,52 +69,52 @@ function function_3b7290e2(arm, var_916d086e)
 	Parameters: 0
 	Flags: None
 */
-function function_86339996()
+function rocket_init()
 {
 	level flag::wait_till("start_zombie_round_logic");
 	wait(1);
-	var_1c8831d1 = struct::get("claw_l_retract", "targetname");
-	var_30aae38f = struct::get("claw_r_retract", "targetname");
-	var_3d6a412c = struct::get("claw_l_extend", "targetname");
-	var_21791fa2 = struct::get("claw_r_extend", "targetname");
-	level.var_eebefbf0 = var_1c8831d1.origin;
-	level.var_c234410e = var_30aae38f.origin;
-	level.var_ab813bf9 = var_3d6a412c.origin;
-	level.var_56499fb7 = var_21791fa2.origin;
-	level.var_82af40b9 = GetEnt("claw_arm_l", "targetname");
-	level.var_36aa4be7 = GetEnt("claw_arm_r", "targetname");
+	retract_l = struct::get("claw_l_retract", "targetname");
+	retract_r = struct::get("claw_r_retract", "targetname");
+	extend_l = struct::get("claw_l_extend", "targetname");
+	extend_r = struct::get("claw_r_extend", "targetname");
+	level.claw_retract_l_pos = retract_l.origin;
+	level.claw_retract_r_pos = retract_r.origin;
+	level.claw_extend_l_pos = extend_l.origin;
+	level.claw_extend_r_pos = extend_r.origin;
+	level.gantry_l = GetEnt("claw_arm_l", "targetname");
+	level.gantry_r = GetEnt("claw_arm_r", "targetname");
 	level.claw_arm_l = GetEnt("claw_l_arm", "targetname");
-	function_b16a68c0(level.claw_arm_l, "claw_l");
+	claw_attach(level.claw_arm_l, "claw_l");
 	level.claw_arm_r = GetEnt("claw_r_arm", "targetname");
-	function_b16a68c0(level.claw_arm_r, "claw_r");
+	claw_attach(level.claw_arm_r, "claw_r");
 	level.rocket = GetEnt("zombie_rocket", "targetname");
-	var_547ac401 = GetEntArray(level.rocket.target, "targetname");
-	for(i = 0; i < var_547ac401.size; i++)
+	rocket_pieces = GetEntArray(level.rocket.target, "targetname");
+	for(i = 0; i < rocket_pieces.size; i++)
 	{
-		var_547ac401[i] SetForceNoCull();
-		var_547ac401[i] LinkTo(level.rocket);
+		rocket_pieces[i] SetForceNoCull();
+		rocket_pieces[i] LinkTo(level.rocket);
 	}
-	level.var_ee72aac2 = GetEnt("lifter_body", "targetname");
-	var_326829bb = GetEntArray(level.var_ee72aac2.target, "targetname");
-	for(i = 0; i < var_326829bb.size; i++)
+	level.rocket_lifter = GetEnt("lifter_body", "targetname");
+	lifter_pieces = GetEntArray(level.rocket_lifter.target, "targetname");
+	for(i = 0; i < lifter_pieces.size; i++)
 	{
-		var_326829bb[i] LinkTo(level.var_ee72aac2);
+		lifter_pieces[i] LinkTo(level.rocket_lifter);
 	}
-	level.var_3bc3f8d1 = GetEnt("lifter_arm", "targetname");
-	level.var_413d861 = GetEntArray("lifter_clamp", "targetname");
-	for(i = 0; i < level.var_413d861.size; i++)
+	level.rocket_lifter_arm = GetEnt("lifter_arm", "targetname");
+	level.rocket_lifter_clamps = GetEntArray("lifter_clamp", "targetname");
+	for(i = 0; i < level.rocket_lifter_clamps.size; i++)
 	{
-		level.var_413d861[i] LinkTo(level.var_3bc3f8d1);
+		level.rocket_lifter_clamps[i] LinkTo(level.rocket_lifter_arm);
 	}
-	level.rocket LinkTo(level.var_3bc3f8d1);
-	level.var_3bc3f8d1 LinkTo(level.var_ee72aac2);
+	level.rocket LinkTo(level.rocket_lifter_arm);
+	level.rocket_lifter_arm LinkTo(level.rocket_lifter);
 	level.var_be9553f1 = GetEnt("rocket_debris", "script_noteworthy");
 	level.var_be9553f1 Hide();
-	level thread function_6588791f();
+	level thread rocket_move_ready();
 }
 
 /*
-	Name: function_6588791f
+	Name: rocket_move_ready
 	Namespace: namespace_860ef124
 	Checksum: 0xFC356A73
 	Offset: 0xAD0
@@ -122,32 +122,32 @@ function function_86339996()
 	Parameters: 0
 	Flags: None
 */
-function function_6588791f()
+function rocket_move_ready()
 {
 	start_spot = struct::get("rail_start_spot", "targetname");
-	var_15ebca1f = struct::get("rail_dock_spot", "targetname");
-	level.claw_arm_r moveto(level.var_c234410e, 0.05);
-	level.claw_arm_l moveto(level.var_eebefbf0, 0.05);
-	level.var_ee72aac2 moveto(start_spot.origin, 0.05);
-	level.var_ee72aac2 waittill("movedone");
-	level.var_3bc3f8d1 Unlink();
-	level.var_3bc3f8d1 RotateTo(VectorScale((1, 0, 0), 13), 0.05);
-	level.var_3bc3f8d1 waittill("rotatedone");
-	function_b5bedb73();
+	dock_spot = struct::get("rail_dock_spot", "targetname");
+	level.claw_arm_r moveto(level.claw_retract_r_pos, 0.05);
+	level.claw_arm_l moveto(level.claw_retract_l_pos, 0.05);
+	level.rocket_lifter moveto(start_spot.origin, 0.05);
+	level.rocket_lifter waittill("movedone");
+	level.rocket_lifter_arm Unlink();
+	level.rocket_lifter_arm RotateTo(VectorScale((1, 0, 0), 13), 0.05);
+	level.rocket_lifter_arm waittill("rotatedone");
+	unlink_rocket_pieces();
 	level waittill("power_on");
 	wait(5);
-	function_3015c292();
-	level.var_3bc3f8d1 LinkTo(level.var_ee72aac2);
-	level.var_ee72aac2 moveto(var_15ebca1f.origin, 10, 3, 3);
-	level.var_ee72aac2 playsound("evt_rocket_roll");
-	level.var_ee72aac2 waittill("movedone");
-	level.var_3bc3f8d1 Unlink();
-	function_7ce1fc24();
-	function_b5bedb73();
+	link_rocket_pieces();
+	level.rocket_lifter_arm LinkTo(level.rocket_lifter);
+	level.rocket_lifter moveto(dock_spot.origin, 10, 3, 3);
+	level.rocket_lifter playsound("evt_rocket_roll");
+	level.rocket_lifter waittill("movedone");
+	level.rocket_lifter_arm Unlink();
+	rocket_move_vertical();
+	unlink_rocket_pieces();
 }
 
 /*
-	Name: function_7ce1fc24
+	Name: rocket_move_vertical
 	Namespace: namespace_860ef124
 	Checksum: 0x535BBD8
 	Offset: 0xD20
@@ -155,22 +155,22 @@ function function_6588791f()
 	Parameters: 0
 	Flags: None
 */
-function function_7ce1fc24()
+function rocket_move_vertical()
 {
-	level thread function_d1419acd();
-	level.var_3bc3f8d1 RotateTo(VectorScale((1, 0, 0), 90), 15, 3, 5);
+	level thread rocket_arm_sounds();
+	level.rocket_lifter_arm RotateTo(VectorScale((1, 0, 0), 90), 15, 3, 5);
 	wait(16);
 	level.rocket Unlink();
 	level.rocket MoveZ(-20, 3);
 	level.claw_arm_r playsound("evt_rocket_claw_arm");
-	level.claw_arm_r moveto(level.var_56499fb7, 3);
-	level.claw_arm_l moveto(level.var_ab813bf9, 3);
+	level.claw_arm_r moveto(level.claw_extend_r_pos, 3);
+	level.claw_arm_l moveto(level.claw_extend_l_pos, 3);
 	level thread namespace_9dd378ec::play_cosmo_announcer_vox("vox_ann_rocket_anim");
 	wait(3);
 }
 
 /*
-	Name: function_eee1cbd0
+	Name: move_lifter_away
 	Namespace: namespace_860ef124
 	Checksum: 0xCD16D319
 	Offset: 0xE50
@@ -178,18 +178,18 @@ function function_7ce1fc24()
 	Parameters: 0
 	Flags: None
 */
-function function_eee1cbd0()
+function move_lifter_away()
 {
 	start_spot = struct::get("rail_start_spot", "targetname");
-	level.var_3bc3f8d1 LinkTo(level.var_ee72aac2);
-	offset = level.var_3bc3f8d1.origin - level.var_ee72aac2.origin;
-	level.var_3bc3f8d1 Unlink();
-	level.var_3bc3f8d1 RotateTo((0, 0, 0), 15);
-	level.var_3bc3f8d1 moveto(start_spot.origin + offset, 15, 3, 3);
-	level.var_ee72aac2 moveto(start_spot.origin, 15, 3, 3);
+	level.rocket_lifter_arm LinkTo(level.rocket_lifter);
+	offset = level.rocket_lifter_arm.origin - level.rocket_lifter.origin;
+	level.rocket_lifter_arm Unlink();
+	level.rocket_lifter_arm RotateTo((0, 0, 0), 15);
+	level.rocket_lifter_arm moveto(start_spot.origin + offset, 15, 3, 3);
+	level.rocket_lifter moveto(start_spot.origin, 15, 3, 3);
 	wait(15);
-	function_3b7290e2(level.claw_arm_l, "claw_l");
-	function_3b7290e2(level.claw_arm_r, "claw_r");
+	claw_detach(level.claw_arm_l, "claw_l");
+	claw_detach(level.claw_arm_r, "claw_r");
 }
 
 /*
@@ -203,31 +203,31 @@ function function_eee1cbd0()
 */
 function centrifuge_init()
 {
-	var_3ad29684 = GetEnt("trigger_centrifuge_damage", "targetname");
-	var_abde0fe3 = GetEnt("rotating_trap_group1", "targetname");
-	var_3ad29684 EnableLinkTo();
-	var_3ad29684 LinkTo(var_abde0fe3);
-	var_6c0c6027 = GetEnt("rotating_trap_collision", "targetname");
+	centrifuge_trig = GetEnt("trigger_centrifuge_damage", "targetname");
+	centrifuge_trap = GetEnt("rotating_trap_group1", "targetname");
+	centrifuge_trig EnableLinkTo();
+	centrifuge_trig LinkTo(centrifuge_trap);
+	centrifuge_collision_brush = GetEnt("rotating_trap_collision", "targetname");
 	/#
 		/#
-			Assert(isdefined(var_6c0c6027.target), "Dev Block strings are not supported");
+			Assert(isdefined(centrifuge_collision_brush.target), "Dev Block strings are not supported");
 		#/
 	#/
-	var_6c0c6027 LinkTo(GetEnt(var_6c0c6027.target, "targetname"));
-	var_8aa1e590 = GetEntArray("origin_centrifuge_spinning_sound", "targetname");
-	Array::thread_all(var_8aa1e590, &function_e0b3d0ff);
+	centrifuge_collision_brush LinkTo(GetEnt(centrifuge_collision_brush.target, "targetname"));
+	tip_sound_origins = GetEntArray("origin_centrifuge_spinning_sound", "targetname");
+	Array::thread_all(tip_sound_origins, &centrifuge_spinning_edge_sounds);
 	level flag::wait_till("start_zombie_round_logic");
-	var_abde0fe3 clientfield::set("COSMO_CENTRIFUGE_LIGHTS", 1);
+	centrifuge_trap clientfield::set("COSMO_CENTRIFUGE_LIGHTS", 1);
 	wait(4);
-	var_abde0fe3 RotateYaw(720, 10, 0, 4.5);
-	var_abde0fe3 waittill("rotatedone");
-	var_abde0fe3 playsound("zmb_cent_end");
-	var_abde0fe3 clientfield::set("COSMO_CENTRIFUGE_LIGHTS", 0);
-	level thread function_6226d8bf();
+	centrifuge_trap RotateYaw(720, 10, 0, 4.5);
+	centrifuge_trap waittill("rotatedone");
+	centrifuge_trap playsound("zmb_cent_end");
+	centrifuge_trap clientfield::set("COSMO_CENTRIFUGE_LIGHTS", 0);
+	level thread centrifuge_random();
 }
 
 /*
-	Name: function_40732131
+	Name: centrifuge_activate
 	Namespace: namespace_860ef124
 	Checksum: 0xEB963764
 	Offset: 0x1220
@@ -235,7 +235,7 @@ function centrifuge_init()
 	Parameters: 0
 	Flags: None
 */
-function function_40732131()
+function centrifuge_activate()
 {
 	self._trap_duration = 30;
 	self._trap_cooldown_time = 60;
@@ -253,7 +253,7 @@ function function_40732131()
 		self._trap_movers[i] RotateYaw(360, 5, 4.5);
 	}
 	wait(2);
-	self thread function_ff0615a5();
+	self thread centrifuge_damage();
 	wait(3);
 	self PlayLoopSound("zmb_cent_mach_loop", 0.6);
 	step = 3;
@@ -295,11 +295,11 @@ function function_40732131()
 	}
 	wait(1);
 	self playsound("zmb_cent_lockdown");
-	self notify("hash_6bde7592");
+	self notify("kill_counter_end");
 }
 
 /*
-	Name: function_6226d8bf
+	Name: centrifuge_random
 	Namespace: namespace_860ef124
 	Checksum: 0xADE46C63
 	Offset: 0x1678
@@ -307,46 +307,46 @@ function function_40732131()
 	Parameters: 0
 	Flags: None
 */
-function function_6226d8bf()
+function centrifuge_random()
 {
-	var_11a40c45 = GetEnt("rotating_trap_group1", "targetname");
-	var_c0ae568c = GetEnt("trigger_centrifuge_damage", "targetname");
-	var_bd94ed95 = var_11a40c45.angles;
+	centrifuge_model = GetEnt("rotating_trap_group1", "targetname");
+	centrifuge_damage_trigger = GetEnt("trigger_centrifuge_damage", "targetname");
+	centrifuge_start_angles = centrifuge_model.angles;
 	while(1)
 	{
-		if(!isdefined(level.var_6708aa9c) || !level.var_6708aa9c)
+		if(!isdefined(level.debug_centrifuge_always_spin) || !level.debug_centrifuge_always_spin)
 		{
-			var_b281129c = RandomInt(10);
-			if(var_b281129c > 6)
+			malfunction_for_round = RandomInt(10);
+			if(malfunction_for_round > 6)
 			{
 				level waittill("between_round_over");
 			}
-			else if(var_b281129c == 1)
+			else if(malfunction_for_round == 1)
 			{
 				level waittill("between_round_over");
 				level waittill("between_round_over");
 			}
 			wait(randomIntRange(24, 90));
 		}
-		var_e14a0d12 = randomIntRange(3, 7) * 360;
+		rotation_amount = randomIntRange(3, 7) * 360;
 		wait_time = randomIntRange(4, 7);
-		level function_1e54c003(var_11a40c45);
-		var_11a40c45 clientfield::set("COSMO_CENTRIFUGE_RUMBLE", 1);
-		var_11a40c45 RotateYaw(var_e14a0d12, wait_time, 1, 2);
-		var_c0ae568c thread function_ff0615a5();
+		level centrifuge_spin_warning(centrifuge_model);
+		centrifuge_model clientfield::set("COSMO_CENTRIFUGE_RUMBLE", 1);
+		centrifuge_model RotateYaw(rotation_amount, wait_time, 1, 2);
+		centrifuge_damage_trigger thread centrifuge_damage();
 		wait(3);
-		var_11a40c45 StopLoopSound(4);
-		var_11a40c45 playsound("zmb_cent_end");
-		var_11a40c45 waittill("rotatedone");
-		var_c0ae568c notify("trap_done");
-		var_11a40c45 playsound("zmb_cent_lockdown");
-		var_11a40c45 clientfield::set("COSMO_CENTRIFUGE_LIGHTS", 0);
-		var_11a40c45 clientfield::set("COSMO_CENTRIFUGE_RUMBLE", 0);
+		centrifuge_model StopLoopSound(4);
+		centrifuge_model playsound("zmb_cent_end");
+		centrifuge_model waittill("rotatedone");
+		centrifuge_damage_trigger notify("trap_done");
+		centrifuge_model playsound("zmb_cent_lockdown");
+		centrifuge_model clientfield::set("COSMO_CENTRIFUGE_LIGHTS", 0);
+		centrifuge_model clientfield::set("COSMO_CENTRIFUGE_RUMBLE", 0);
 	}
 }
 
 /*
-	Name: function_1e54c003
+	Name: centrifuge_spin_warning
 	Namespace: namespace_860ef124
 	Checksum: 0xADE3F95C
 	Offset: 0x1938
@@ -354,20 +354,20 @@ function function_6226d8bf()
 	Parameters: 1
 	Flags: None
 */
-function function_1e54c003(var_20fc8f3f)
+function centrifuge_spin_warning(ent_centrifuge_model)
 {
-	var_20fc8f3f clientfield::set("COSMO_CENTRIFUGE_LIGHTS", 1);
-	var_20fc8f3f playsound("zmb_cent_alarm");
-	var_20fc8f3f playsound("vox_ann_centrifuge_spins_1");
+	ent_centrifuge_model clientfield::set("COSMO_CENTRIFUGE_LIGHTS", 1);
+	ent_centrifuge_model playsound("zmb_cent_alarm");
+	ent_centrifuge_model playsound("vox_ann_centrifuge_spins_1");
 	wait(1);
-	var_20fc8f3f playsound("zmb_cent_start");
+	ent_centrifuge_model playsound("zmb_cent_start");
 	wait(2);
-	var_20fc8f3f PlayLoopSound("zmb_cent_mach_loop", 0.6);
+	ent_centrifuge_model PlayLoopSound("zmb_cent_mach_loop", 0.6);
 	wait(1);
 }
 
 /*
-	Name: function_ff0615a5
+	Name: centrifuge_damage
 	Namespace: namespace_860ef124
 	Checksum: 0xDA43A2EF
 	Offset: 0x1A10
@@ -375,7 +375,7 @@ function function_1e54c003(var_20fc8f3f)
 	Parameters: 0
 	Flags: None
 */
-function function_ff0615a5()
+function centrifuge_damage()
 {
 	self endon("trap_done");
 	self._trap_type = self.script_noteworthy;
@@ -410,7 +410,7 @@ function function_ff0615a5()
 }
 
 /*
-	Name: function_e0b3d0ff
+	Name: centrifuge_spinning_edge_sounds
 	Namespace: namespace_860ef124
 	Checksum: 0x47535B22
 	Offset: 0x1C10
@@ -418,7 +418,7 @@ function function_ff0615a5()
 	Parameters: 0
 	Flags: None
 */
-function function_e0b3d0ff()
+function centrifuge_spinning_edge_sounds()
 {
 	/#
 		/#
@@ -441,7 +441,7 @@ function function_e0b3d0ff()
 }
 
 /*
-	Name: function_d1419acd
+	Name: rocket_arm_sounds
 	Namespace: namespace_860ef124
 	Checksum: 0x7AF65900
 	Offset: 0x1D20
@@ -449,15 +449,15 @@ function function_e0b3d0ff()
 	Parameters: 0
 	Flags: None
 */
-function function_d1419acd()
+function rocket_arm_sounds()
 {
-	level.var_ee72aac2 playsound("evt_rocket_set_main");
+	level.rocket_lifter playsound("evt_rocket_set_main");
 	wait(13.8);
-	level.var_ee72aac2 playsound("evt_rocket_set_impact");
+	level.rocket_lifter playsound("evt_rocket_set_impact");
 }
 
 /*
-	Name: function_395fdbce
+	Name: door_firetrap_init
 	Namespace: namespace_860ef124
 	Checksum: 0x28EDBF12
 	Offset: 0x1D78
@@ -465,30 +465,30 @@ function function_d1419acd()
 	Parameters: 0
 	Flags: None
 */
-function function_395fdbce()
+function door_firetrap_init()
 {
 	level flag::init("base_door_opened");
-	var_d8468821 = undefined;
+	door_trap = undefined;
 	traps = GetEntArray("zombie_trap", "targetname");
 	for(i = 0; i < traps.size; i++)
 	{
 		if(isdefined(traps[i].script_string) && traps[i].script_string == "f2")
 		{
-			var_d8468821 = traps[i];
-			var_d8468821 zm_traps::trap_set_string(&"ZOMBIE_NEED_POWER");
+			door_trap = traps[i];
+			door_trap zm_traps::trap_set_string(&"ZOMBIE_NEED_POWER");
 		}
 	}
 	level flag::wait_till("power_on");
 	if(!level flag::get("base_entry_2_north_path"))
 	{
-		var_d8468821 zm_traps::trap_set_string(&"ZM_COSMODROME_DOOR_CLOSED");
+		door_trap zm_traps::trap_set_string(&"ZM_COSMODROME_DOOR_CLOSED");
 	}
 	level flag::wait_till("base_entry_2_north_path");
 	level flag::set("base_door_opened");
 }
 
 /*
-	Name: function_b5bedb73
+	Name: unlink_rocket_pieces
 	Namespace: namespace_860ef124
 	Checksum: 0x9E920B2A
 	Offset: 0x1F10
@@ -496,29 +496,29 @@ function function_395fdbce()
 	Parameters: 0
 	Flags: None
 */
-function function_b5bedb73()
+function unlink_rocket_pieces()
 {
-	function_3b7290e2(level.claw_arm_l, "claw_l");
-	function_3b7290e2(level.claw_arm_r, "claw_r");
-	var_547ac401 = GetEntArray(level.rocket.target, "targetname");
-	for(i = 0; i < var_547ac401.size; i++)
+	claw_detach(level.claw_arm_l, "claw_l");
+	claw_detach(level.claw_arm_r, "claw_r");
+	rocket_pieces = GetEntArray(level.rocket.target, "targetname");
+	for(i = 0; i < rocket_pieces.size; i++)
 	{
-		var_547ac401[i] Unlink();
+		rocket_pieces[i] Unlink();
 	}
-	var_326829bb = GetEntArray(level.var_ee72aac2.target, "targetname");
-	for(i = 0; i < var_326829bb.size; i++)
+	lifter_pieces = GetEntArray(level.rocket_lifter.target, "targetname");
+	for(i = 0; i < lifter_pieces.size; i++)
 	{
-		var_326829bb[i] Unlink();
+		lifter_pieces[i] Unlink();
 	}
-	level.var_413d861 = GetEntArray("lifter_clamp", "targetname");
-	for(i = 0; i < level.var_413d861.size; i++)
+	level.rocket_lifter_clamps = GetEntArray("lifter_clamp", "targetname");
+	for(i = 0; i < level.rocket_lifter_clamps.size; i++)
 	{
-		level.var_413d861[i] Unlink();
+		level.rocket_lifter_clamps[i] Unlink();
 	}
 }
 
 /*
-	Name: function_3015c292
+	Name: link_rocket_pieces
 	Namespace: namespace_860ef124
 	Checksum: 0x44FCF602
 	Offset: 0x20B0
@@ -526,25 +526,25 @@ function function_b5bedb73()
 	Parameters: 0
 	Flags: None
 */
-function function_3015c292()
+function link_rocket_pieces()
 {
-	function_b16a68c0(level.claw_arm_l, "claw_l");
+	claw_attach(level.claw_arm_l, "claw_l");
 	level.claw_arm_r = GetEnt("claw_r_arm", "targetname");
-	function_b16a68c0(level.claw_arm_r, "claw_r");
-	var_547ac401 = GetEntArray(level.rocket.target, "targetname");
-	for(i = 0; i < var_547ac401.size; i++)
+	claw_attach(level.claw_arm_r, "claw_r");
+	rocket_pieces = GetEntArray(level.rocket.target, "targetname");
+	for(i = 0; i < rocket_pieces.size; i++)
 	{
-		var_547ac401[i] LinkTo(level.rocket);
+		rocket_pieces[i] LinkTo(level.rocket);
 	}
-	var_326829bb = GetEntArray(level.var_ee72aac2.target, "targetname");
-	for(i = 0; i < var_326829bb.size; i++)
+	lifter_pieces = GetEntArray(level.rocket_lifter.target, "targetname");
+	for(i = 0; i < lifter_pieces.size; i++)
 	{
-		var_326829bb[i] LinkTo(level.var_ee72aac2);
+		lifter_pieces[i] LinkTo(level.rocket_lifter);
 	}
-	level.var_413d861 = GetEntArray("lifter_clamp", "targetname");
-	for(i = 0; i < level.var_413d861.size; i++)
+	level.rocket_lifter_clamps = GetEntArray("lifter_clamp", "targetname");
+	for(i = 0; i < level.rocket_lifter_clamps.size; i++)
 	{
-		level.var_413d861[i] LinkTo(level.var_3bc3f8d1);
+		level.rocket_lifter_clamps[i] LinkTo(level.rocket_lifter_arm);
 	}
 }
 

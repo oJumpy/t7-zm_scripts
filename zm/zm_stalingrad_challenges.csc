@@ -67,12 +67,12 @@ function function_5d17d17c()
 	var_77797571 = struct::get_array("pr_b_spawn", "targetname");
 	foreach(var_4af818ae in var_77797571)
 	{
-		var_4af818ae.var_46f4840b = [];
+		var_4af818ae.a_mdl_bouquets = [];
 	}
 	var_977659a7 = struct::get_array("pr_c_spawn", "targetname");
 	foreach(var_238c2594 in var_977659a7)
 	{
-		var_238c2594.var_453e8445 = [];
+		var_238c2594.a_mdl_candles = [];
 		var_238c2594.var_90369c89 = [];
 	}
 }
@@ -142,9 +142,9 @@ function function_93efc4ef(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		foreach(var_4af818ae in var_77797571)
 		{
-			if(isdefined(var_4af818ae.var_46f4840b[localClientNum]))
+			if(isdefined(var_4af818ae.a_mdl_bouquets[localClientNum]))
 			{
-				var_4af818ae.var_46f4840b[localClientNum] delete();
+				var_4af818ae.a_mdl_bouquets[localClientNum] delete();
 			}
 		}
 		break;
@@ -153,15 +153,15 @@ function function_93efc4ef(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		if(var_4af818ae.script_int == self GetEntityNumber())
 		{
-			if(!isdefined(var_4af818ae.var_46f4840b[localClientNum]))
+			if(!isdefined(var_4af818ae.a_mdl_bouquets[localClientNum]))
 			{
-				var_4af818ae.var_46f4840b[localClientNum] = util::spawn_model(localClientNum, "p7_foliage_flower_bouquet_glass", var_4af818ae.origin, var_4af818ae.angles);
+				var_4af818ae.a_mdl_bouquets[localClientNum] = util::spawn_model(localClientNum, "p7_foliage_flower_bouquet_glass", var_4af818ae.origin, var_4af818ae.angles);
 			}
 			continue;
 		}
-		if(isdefined(var_4af818ae.var_46f4840b[localClientNum]))
+		if(isdefined(var_4af818ae.a_mdl_bouquets[localClientNum]))
 		{
-			var_4af818ae.var_46f4840b[localClientNum] delete();
+			var_4af818ae.a_mdl_bouquets[localClientNum] delete();
 		}
 	}
 }
@@ -182,9 +182,9 @@ function function_553225f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	{
 		foreach(var_238c2594 in var_977659a7)
 		{
-			if(isdefined(var_238c2594.var_453e8445[localClientNum]))
+			if(isdefined(var_238c2594.a_mdl_candles[localClientNum]))
 			{
-				var_238c2594.var_453e8445[localClientNum] delete();
+				var_238c2594.a_mdl_candles[localClientNum] delete();
 			}
 			if(isdefined(var_238c2594.var_90369c89[localClientNum]))
 			{
@@ -197,7 +197,7 @@ function function_553225f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	{
 		if(var_238c2594.script_int == self GetEntityNumber())
 		{
-			if(!isdefined(var_238c2594.var_453e8445[localClientNum]))
+			if(!isdefined(var_238c2594.a_mdl_candles[localClientNum]))
 			{
 				if(isdefined(self.var_d3aeebe1) && self.var_d3aeebe1)
 				{
@@ -208,13 +208,13 @@ function function_553225f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 				{
 					STR_MODEL = "p7_candle_tall";
 				}
-				var_238c2594.var_453e8445[localClientNum] = util::spawn_model(localClientNum, STR_MODEL, var_238c2594.origin, var_238c2594.angles);
+				var_238c2594.a_mdl_candles[localClientNum] = util::spawn_model(localClientNum, STR_MODEL, var_238c2594.origin, var_238c2594.angles);
 			}
 			continue;
 		}
-		if(isdefined(var_238c2594.var_453e8445[localClientNum]))
+		if(isdefined(var_238c2594.a_mdl_candles[localClientNum]))
 		{
-			var_238c2594.var_453e8445[localClientNum] delete();
+			var_238c2594.a_mdl_candles[localClientNum] delete();
 		}
 		if(isdefined(var_238c2594.var_90369c89[localClientNum]))
 		{
@@ -241,11 +241,11 @@ function function_20880e24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		{
 			if(var_238c2594.script_int == self GetEntityNumber())
 			{
-				if(isdefined(var_238c2594.var_453e8445[localClientNum]) && (!isdefined(self.var_d3aeebe1) && self.var_d3aeebe1))
+				if(isdefined(var_238c2594.a_mdl_candles[localClientNum]) && (!isdefined(self.var_d3aeebe1) && self.var_d3aeebe1))
 				{
 					self.var_d3aeebe1 = 1;
-					var_238c2594.var_453e8445[localClientNum] SetModel("p7_candle_tall_on");
-					var_238c2594.var_453e8445[localClientNum] PlayLoopSound("zmb_candle_pickup_lp");
+					var_238c2594.a_mdl_candles[localClientNum] SetModel("p7_candle_tall_on");
+					var_238c2594.a_mdl_candles[localClientNum] PlayLoopSound("zmb_candle_pickup_lp");
 					var_238c2594.var_90369c89[localClientNum] = playFX(localClientNum, level._effect["pr_c_fx"], var_238c2594.origin + (-1.25, 0, 5));
 				}
 			}

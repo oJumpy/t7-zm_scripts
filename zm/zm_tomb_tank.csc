@@ -18,13 +18,13 @@
 */
 function init()
 {
-	clientfield::register("vehicle", "tank_tread_fx", 21000, 1, "int", &function_66e53adf, 0, 0);
-	clientfield::register("vehicle", "tank_flamethrower_fx", 21000, 2, "int", &function_de8b2ce1, 0, 0);
-	clientfield::register("vehicle", "tank_cooldown_fx", 21000, 2, "int", &function_5bc757af, 0, 0);
+	clientfield::register("vehicle", "tank_tread_fx", 21000, 1, "int", &play_tread_fx, 0, 0);
+	clientfield::register("vehicle", "tank_flamethrower_fx", 21000, 2, "int", &play_flamethrower_fx, 0, 0);
+	clientfield::register("vehicle", "tank_cooldown_fx", 21000, 2, "int", &play_tank_fx, 0, 0);
 }
 
 /*
-	Name: function_66e53adf
+	Name: play_tread_fx
 	Namespace: zm_tomb_tank
 	Checksum: 0xE4D3786
 	Offset: 0x3E0
@@ -32,7 +32,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_66e53adf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function play_tread_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == oldVal)
 	{
@@ -43,19 +43,19 @@ function function_66e53adf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		/#
 			println("Dev Block strings are not supported");
 		#/
-		self thread function_b809a3fd(localClientNum);
+		self thread tread_fx_loop(localClientNum);
 	}
 	else if(newVal == 0)
 	{
 		/#
 			println("Dev Block strings are not supported");
 		#/
-		self notify("hash_51963593");
+		self notify("tread_fx_stop");
 	}
 }
 
 /*
-	Name: function_fec9fe59
+	Name: flamethrower_fx_loop
 	Namespace: zm_tomb_tank
 	Checksum: 0x78A6116C
 	Offset: 0x4B8
@@ -63,24 +63,24 @@ function function_66e53adf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_fec9fe59(localClientNum, str_tag)
+function flamethrower_fx_loop(localClientNum, str_tag)
 {
-	self endon("hash_53f5220a");
+	self endon("stop_flamethrower");
 	sndOrigin = self GetTagOrigin(str_tag);
 	sndent = spawn(0, sndOrigin, "script_origin");
 	sndent LinkTo(self, str_tag);
 	sndent playsound(0, "zmb_tank_flame_start");
 	sndent.var_9bdbad77 = sndent PlayLoopSound("zmb_tank_flame_loop", 0.6);
-	self thread function_a7df9920(sndent);
+	self thread sndstopflamethrower(sndent);
 	while(1)
 	{
-		self.var_f53cfaa3 = PlayFXOnTag(localClientNum, level._effect["mech_wpn_flamethrower"], self, str_tag);
+		self.flame_fx = PlayFXOnTag(localClientNum, level._effect["mech_wpn_flamethrower"], self, str_tag);
 		wait(0.1);
 	}
 }
 
 /*
-	Name: function_a7df9920
+	Name: sndstopflamethrower
 	Namespace: zm_tomb_tank
 	Checksum: 0x66D558C7
 	Offset: 0x608
@@ -88,9 +88,9 @@ function function_fec9fe59(localClientNum, str_tag)
 	Parameters: 1
 	Flags: None
 */
-function function_a7df9920(ent)
+function sndstopflamethrower(ent)
 {
-	self waittill("hash_53f5220a");
+	self waittill("stop_flamethrower");
 	ent playsound(0, "zmb_tank_flame_stop");
 	ent StopLoopSound(ent.var_9bdbad77, 0.25);
 	wait(1);
@@ -98,7 +98,7 @@ function function_a7df9920(ent)
 }
 
 /*
-	Name: function_de8b2ce1
+	Name: play_flamethrower_fx
 	Namespace: zm_tomb_tank
 	Checksum: 0x4D1FF73A
 	Offset: 0x698
@@ -106,12 +106,12 @@ function function_a7df9920(ent)
 	Parameters: 7
 	Flags: None
 */
-function function_de8b2ce1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function play_flamethrower_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	self notify("hash_53f5220a");
-	if(!isdefined(self.var_1be9b23))
+	self notify("stop_flamethrower");
+	if(!isdefined(self.sndflame))
 	{
-		self.var_1be9b23 = spawn(0, (0, 0, 0), "script_origin");
+		self.sndflame = spawn(0, (0, 0, 0), "script_origin");
 	}
 	if(newVal == 0)
 	{
@@ -135,11 +135,11 @@ function function_de8b2ce1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			break;
 		}
 	}
-	self thread function_fec9fe59(localClientNum, str_tag);
+	self thread flamethrower_fx_loop(localClientNum, str_tag);
 }
 
 /*
-	Name: function_a2fe7f71
+	Name: play_exhaust_fx
 	Namespace: zm_tomb_tank
 	Checksum: 0xE2AA29C5
 	Offset: 0x7B8
@@ -147,22 +147,22 @@ function function_de8b2ce1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_a2fe7f71(localClientNum, var_2bc319f0)
+function play_exhaust_fx(localClientNum, is_overheat)
 {
 	self notify("stop_exhaust_fx");
 	self endon("entityshutdown");
 	self endon("stop_exhaust_fx");
 	fx_id = level._effect["tank_exhaust"];
-	if(var_2bc319f0)
+	if(is_overheat)
 	{
 		fx_id = level._effect["tank_overheat"];
 	}
-	if(var_2bc319f0)
+	if(is_overheat)
 	{
-		self thread function_341f7b4c(self.origin);
+		self thread sndplayoverheat(self.origin);
 		continue;
 	}
-	self thread function_64744406();
+	self thread sndplayexhaust();
 	while(1)
 	{
 		PlayFXOnTag(localClientNum, fx_id, self, "tag_origin");
@@ -171,7 +171,7 @@ function function_a2fe7f71(localClientNum, var_2bc319f0)
 }
 
 /*
-	Name: function_341f7b4c
+	Name: sndplayoverheat
 	Namespace: zm_tomb_tank
 	Checksum: 0x545F15E8
 	Offset: 0x8B0
@@ -179,7 +179,7 @@ function function_a2fe7f71(localClientNum, var_2bc319f0)
 	Parameters: 1
 	Flags: None
 */
-function function_341f7b4c(origin)
+function sndplayoverheat(origin)
 {
 	audio::playloopat("zmb_bot_timeout_steam", origin);
 	self waittill("stop_exhaust_fx");
@@ -187,7 +187,7 @@ function function_341f7b4c(origin)
 }
 
 /*
-	Name: function_64744406
+	Name: sndplayexhaust
 	Namespace: zm_tomb_tank
 	Checksum: 0x71E4D048
 	Offset: 0x910
@@ -195,7 +195,7 @@ function function_341f7b4c(origin)
 	Parameters: 0
 	Flags: None
 */
-function function_64744406()
+function sndplayexhaust()
 {
 	origin1 = self GetTagOrigin("tag_exhaust_1");
 	ent1 = spawn(0, origin1, "script_origin");
@@ -211,7 +211,7 @@ function function_64744406()
 }
 
 /*
-	Name: function_5bc757af
+	Name: play_tank_fx
 	Namespace: zm_tomb_tank
 	Checksum: 0x3F97DB39
 	Offset: 0xA98
@@ -219,44 +219,44 @@ function function_64744406()
 	Parameters: 7
 	Flags: None
 */
-function function_5bc757af(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function play_tank_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self notify("stop_exhaust_fx");
-	if(isdefined(self.var_d168dad5))
+	if(isdefined(self.light_fx1))
 	{
-		stopfx(localClientNum, self.var_d168dad5);
-		self.var_d168dad5 = undefined;
+		stopfx(localClientNum, self.light_fx1);
+		self.light_fx1 = undefined;
 	}
-	if(isdefined(self.var_f76b553e))
+	if(isdefined(self.light_fx2))
 	{
-		stopfx(localClientNum, self.var_f76b553e);
-		self.var_f76b553e = undefined;
+		stopfx(localClientNum, self.light_fx2);
+		self.light_fx2 = undefined;
 	}
 	switch(newVal)
 	{
 		case 1:
 		{
-			self thread function_a2fe7f71(localClientNum, 1);
-			self.var_d168dad5 = PlayFXOnTag(localClientNum, level._effect["tank_light_red"], self, "tag_light_left");
-			self.var_f76b553e = PlayFXOnTag(localClientNum, level._effect["tank_light_red"], self, "tag_light_right");
+			self thread play_exhaust_fx(localClientNum, 1);
+			self.light_fx1 = PlayFXOnTag(localClientNum, level._effect["tank_light_red"], self, "tag_light_left");
+			self.light_fx2 = PlayFXOnTag(localClientNum, level._effect["tank_light_red"], self, "tag_light_right");
 			break;
 		}
 		case 2:
 		{
-			self.var_d168dad5 = PlayFXOnTag(localClientNum, level._effect["tank_light_grn"], self, "tag_light_left");
-			self.var_f76b553e = PlayFXOnTag(localClientNum, level._effect["tank_light_grn"], self, "tag_light_right");
+			self.light_fx1 = PlayFXOnTag(localClientNum, level._effect["tank_light_grn"], self, "tag_light_left");
+			self.light_fx2 = PlayFXOnTag(localClientNum, level._effect["tank_light_grn"], self, "tag_light_right");
 			break;
 		}
 		case 0:
 		{
-			self thread function_a2fe7f71(localClientNum, 0);
+			self thread play_exhaust_fx(localClientNum, 0);
 			break;
 		}
 	}
 }
 
 /*
-	Name: function_b809a3fd
+	Name: tread_fx_loop
 	Namespace: zm_tomb_tank
 	Checksum: 0x9B0ED436
 	Offset: 0xCA8
@@ -264,20 +264,20 @@ function function_5bc757af(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_b809a3fd(localClientNum)
+function tread_fx_loop(localClientNum)
 {
-	self endon("hash_51963593");
-	self thread function_85886bc2();
+	self endon("tread_fx_stop");
+	self thread sndplaymud();
 	while(1)
 	{
-		self.var_f39aab64 = PlayFXOnTag(localClientNum, level._effect["tank_treads"], self, "tag_wheel_back_left");
-		self.var_50198d5b = PlayFXOnTag(localClientNum, level._effect["tank_treads"], self, "tag_wheel_back_right");
+		self.tread_fx_left = PlayFXOnTag(localClientNum, level._effect["tank_treads"], self, "tag_wheel_back_left");
+		self.tread_fx_right = PlayFXOnTag(localClientNum, level._effect["tank_treads"], self, "tag_wheel_back_right");
 		wait(0.5);
 	}
 }
 
 /*
-	Name: function_85886bc2
+	Name: sndplaymud
 	Namespace: zm_tomb_tank
 	Checksum: 0xD6EA0071
 	Offset: 0xD60
@@ -285,7 +285,7 @@ function function_b809a3fd(localClientNum)
 	Parameters: 0
 	Flags: None
 */
-function function_85886bc2()
+function sndplaymud()
 {
 	origin3 = self GetTagOrigin("tag_wheel_back_left");
 	ent3 = spawn(0, origin3, "script_origin");
@@ -295,7 +295,7 @@ function function_85886bc2()
 	ent4 LinkTo(self, "tag_wheel_back_right");
 	ent3 PlayLoopSound("zmb_tank_mud_tread", 1);
 	ent4 PlayLoopSound("zmb_tank_mud_tread", 1);
-	self waittill("hash_51963593");
+	self waittill("tread_fx_stop");
 	ent3 delete();
 	ent4 delete();
 }

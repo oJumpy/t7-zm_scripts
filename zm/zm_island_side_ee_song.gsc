@@ -133,13 +133,13 @@ function function_4b02c768()
 		{
 			continue;
 		}
-		e_origin function_f86c981f();
+		e_origin activate_bear();
 	}
 	zm_unitrigger::unregister_unitrigger(e_origin.s_unitrigger);
 }
 
 /*
-	Name: function_f86c981f
+	Name: activate_bear
 	Namespace: namespace_716ba43f
 	Checksum: 0x63374814
 	Offset: 0x7A8
@@ -147,7 +147,7 @@ function function_4b02c768()
 	Parameters: 0
 	Flags: None
 */
-function function_f86c981f()
+function activate_bear()
 {
 	if(!(isdefined(self.b_activated) && self.b_activated))
 	{
@@ -171,7 +171,7 @@ function function_f86c981f()
 function function_88ab6cf8()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_aed87222);
+		zm_devgui::add_custom_devgui_callback(&function_aed87222);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -194,17 +194,17 @@ function function_aed87222(cmd)
 		{
 			case "Dev Block strings are not supported":
 			{
-				level.var_c911c0a2[0] function_f86c981f();
+				level.var_c911c0a2[0] activate_bear();
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
-				level.var_c911c0a2[1] function_f86c981f();
+				level.var_c911c0a2[1] activate_bear();
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
-				level.var_c911c0a2[2] function_f86c981f();
+				level.var_c911c0a2[2] activate_bear();
 				return 1;
 			}
 		}
@@ -282,11 +282,11 @@ function function_76bcb530()
 		var_f918ed35 waittill("trigger_activated");
 		playsoundatposition("zmb_pod_play", var_f918ed35.origin);
 		level.var_eeab4a07 = 1;
-		var_d1146a02 = function_c5359566();
+		a_n_pattern = function_c5359566();
 		match = 1;
-		for(i = 0; i < var_d1146a02.size; i++)
+		for(i = 0; i < a_n_pattern.size; i++)
 		{
-			if(var_d1146a02[i] != var_be2a0077[i])
+			if(a_n_pattern[i] != var_be2a0077[i])
 			{
 				match = 0;
 				break;
@@ -425,9 +425,9 @@ function function_88572b8()
 	var_5c996589 = Array(0, 1, 2, 3, 4, 3, 4);
 	var_f59c3cb2 = GetEntArray("plantMusicPods", "targetname");
 	var_f59c3cb2 = Array::sort_by_script_int(var_f59c3cb2, 1);
-	var_60000174 = 3;
+	n_repetitions = 3;
 	n_waittime = 0.55;
-	while(var_60000174 > 0)
+	while(n_repetitions > 0)
 	{
 		for(i = 0; i < var_1d1c464d.size; i++)
 		{
@@ -435,7 +435,7 @@ function function_88572b8()
 			wait(n_waittime);
 			n_waittime = n_waittime - 0.01;
 		}
-		var_60000174--;
+		n_repetitions--;
 	}
 	for(i = 0; i < var_5c996589.size; i++)
 	{

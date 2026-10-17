@@ -42,12 +42,12 @@ function function_8c8b6484(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	if(newVal)
 	{
 		waittillframeend;
-		var_f9e79b00 = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, 1, 3, 0);
+		n_test = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, 1, 3, 0);
 	}
 	else
 	{
 		waittillframeend;
-		var_f9e79b00 = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, 0, 3, 0);
+		n_test = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, 0, 3, 0);
 	}
 }
 

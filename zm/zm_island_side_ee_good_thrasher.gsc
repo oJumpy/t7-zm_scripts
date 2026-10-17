@@ -59,24 +59,24 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	level.var_564761a3 = spawnstruct();
-	level.var_564761a3.var_69299ec6 = GetEnt("mdl_side_ee_gt_vine", "targetname");
-	level.var_564761a3.var_978adea0 = GetEntArray("mdl_good_thrasher_vines", "targetname");
+	level.var_564761a3.mdl_vine_clip = GetEnt("mdl_side_ee_gt_vine", "targetname");
+	level.var_564761a3.a_mdl_vines = GetEntArray("mdl_good_thrasher_vines", "targetname");
 	level.var_564761a3.var_11c98268 = struct::get("s_side_ee_gt_spore_pos", "targetname");
 	level.var_564761a3.var_ff07b157 = GetEnt("mdl_side_ee_gt_sporeplant", "targetname");
-	level.var_564761a3.var_ff07b157.var_7117876c = level.var_564761a3.var_ff07b157.origin;
+	level.var_564761a3.var_ff07b157.v_on_pos = level.var_564761a3.var_ff07b157.origin;
 	level.var_564761a3.var_ff07b157.v_off_pos = level.var_564761a3.var_ff07b157.origin - VectorScale((0, 0, 1), 50);
 	level.var_564761a3.var_ff07b157.var_baeb5712 = 1;
 	level.var_564761a3.var_ff07b157 SetScale(0.1);
 	v_pos = level.var_564761a3.var_ff07b157.origin + (-16, -48, 0);
 	level.var_564761a3.var_480b39a3 = util::spawn_model("tag_origin", v_pos, level.var_564761a3.var_ff07b157.angles);
 	callback::on_spawned(&on_player_spawned);
-	callback::on_connect(&function_8feafce2);
-	var_d1cfa380 = GetMinBitCountForNum(7);
-	var_a15256dd = GetMinBitCountForNum(3);
+	callback::on_connect(&on_player_connected);
+	n_spore_cloud_bits = GetMinBitCountForNum(7);
+	n_spore_trail_bits = GetMinBitCountForNum(3);
 	clientfield::register("scriptmover", "side_ee_gt_spore_glow_fx", 9000, 1, "int");
-	clientfield::register("scriptmover", "side_ee_gt_spore_cloud_fx", 9000, var_d1cfa380, "int");
+	clientfield::register("scriptmover", "side_ee_gt_spore_cloud_fx", 9000, n_spore_cloud_bits, "int");
 	clientfield::register("actor", "side_ee_gt_spore_trail_enemy_fx", 9000, 1, "int");
-	clientfield::register("allplayers", "side_ee_gt_spore_trail_player_fx", 9000, var_a15256dd, "int");
+	clientfield::register("allplayers", "side_ee_gt_spore_trail_player_fx", 9000, n_spore_trail_bits, "int");
 	clientfield::register("actor", "good_thrasher_fx", 9000, 1, "int");
 }
 
@@ -116,7 +116,7 @@ function on_player_spawned()
 }
 
 /*
-	Name: function_8feafce2
+	Name: on_player_connected
 	Namespace: namespace_f777c489
 	Checksum: 0x99EC1590
 	Offset: 0xC58
@@ -124,7 +124,7 @@ function on_player_spawned()
 	Parameters: 0
 	Flags: None
 */
-function function_8feafce2()
+function on_player_connected()
 {
 }
 
@@ -174,7 +174,7 @@ function function_ad9a2050()
 		var_c047302 delete();
 		var_895c0fb2 delete();
 		exploder::exploder("ex_goodthrasher");
-		level.var_564761a3.var_69299ec6 thread function_f3ed4502();
+		level.var_564761a3.mdl_vine_clip thread function_f3ed4502();
 	}
 }
 
@@ -194,7 +194,7 @@ function function_f3ed4502()
 	level.var_564761a3.var_480b39a3 clientfield::set("spore_grows", 3);
 	while(!(isdefined(var_f7ecb00a) && var_f7ecb00a))
 	{
-		self waittill("damage", n_damage, e_attacker, var_a3382de1, v_point, str_means_of_death, var_c4fe462, var_e64d69f9, var_c04aef90, w_weapon);
+		self waittill("damage", n_damage, e_attacker, v_vector, v_point, str_means_of_death, str_string_1, str_string_2, str_string_3, w_weapon);
 		self.health = 10000;
 		if(w_weapon.name === "hero_mirg2000_upgraded")
 		{
@@ -218,11 +218,11 @@ function function_302fe6aa()
 	self Hide();
 	self SetCanDamage(0);
 	self notsolid();
-	foreach(var_4165e349 in level.var_564761a3.var_978adea0)
+	foreach(mdl_vine in level.var_564761a3.a_mdl_vines)
 	{
-		if(isdefined(var_4165e349))
+		if(isdefined(mdl_vine))
 		{
-			var_4165e349 delete();
+			mdl_vine delete();
 		}
 	}
 	wait(1);
@@ -294,9 +294,9 @@ function function_c8310977()
 	self endon("hash_101ca32e");
 	self endon("death");
 	self notify("hash_1fb62748");
-	if(self.origin !== self.var_7117876c)
+	if(self.origin !== self.v_on_pos)
 	{
-		self moveto(self.var_7117876c, 1);
+		self moveto(self.v_on_pos, 1);
 		self waittill("movedone");
 	}
 	level.var_564761a3.var_480b39a3 clientfield::set("spore_grows", 3);
@@ -306,7 +306,7 @@ function function_c8310977()
 	while(1)
 	{
 		var_1811ea40.health = 10000;
-		var_1811ea40 waittill("damage", n_damage, e_attacker, var_a3382de1, v_point, str_means_of_death, var_c4fe462, var_e64d69f9, var_c04aef90, w_weapon);
+		var_1811ea40 waittill("damage", n_damage, e_attacker, v_vector, v_point, str_means_of_death, str_string_1, str_string_2, str_string_3, w_weapon);
 		if(zm_utility::is_player_valid(e_attacker))
 		{
 			var_1811ea40 SetCanDamage(0);
@@ -330,8 +330,8 @@ function function_ecaf0cc6()
 	self endon("hash_593bd276");
 	self endon("hash_101ca32e");
 	self endon("death");
-	var_b38b99d1 = 0;
-	while(!(isdefined(var_b38b99d1) && var_b38b99d1))
+	b_exploded = 0;
+	while(!(isdefined(b_exploded) && b_exploded))
 	{
 		foreach(player in level.activePlayers)
 		{
@@ -339,7 +339,7 @@ function function_ecaf0cc6()
 			if(n_dist <= 6000)
 			{
 				level thread function_4724011d("exploded");
-				var_b38b99d1 = 1;
+				b_exploded = 1;
 			}
 		}
 		wait(0.5);
@@ -361,7 +361,7 @@ function function_19f54a6f()
 	self endon("hash_101ca32e");
 	self notify("hash_593bd276");
 	self SetCanDamage(0);
-	self thread function_4c6beece(4, 1);
+	self thread spore_cloud(4, 1);
 	level.var_564761a3.var_480b39a3 clientfield::set("spore_grows", 0);
 	level thread function_4724011d("dormant");
 }
@@ -404,7 +404,7 @@ function function_784ed421()
 }
 
 /*
-	Name: function_4c6beece
+	Name: spore_cloud
 	Namespace: namespace_f777c489
 	Checksum: 0xF48B5FD4
 	Offset: 0x16F8
@@ -412,7 +412,7 @@ function function_784ed421()
 	Parameters: 3
 	Flags: None
 */
-function function_4c6beece(var_f9f788a6, var_8963ba33, e_attacker)
+function spore_cloud(var_f9f788a6, b_hero_weapon, e_attacker)
 {
 	if(var_f9f788a6 == 1)
 	{
@@ -435,21 +435,21 @@ function function_4c6beece(var_f9f788a6, var_8963ba33, e_attacker)
 		self.var_66bbb0c0 = 76;
 	}
 	s_org = level.var_564761a3.var_11c98268;
-	self thread function_63a5615b(var_8963ba33, s_org, var_f9f788a6);
+	self thread function_63a5615b(b_hero_weapon, s_org, var_f9f788a6);
 	playsoundatposition("zmb_spore_eject", self.origin);
 	var_88c0f006 = self function_cc07e4ad(self.var_66bbb0c0, s_org);
 	while(self.var_d7bb540a > 0 && (!isdefined(level.var_564761a3.var_1cd02afb) || !isalive(level.var_564761a3.var_1cd02afb)))
 	{
 		self.var_d7bb540a = self.var_d7bb540a - 1;
-		var_961d572f = var_88c0f006 Array::get_touching(GetAITeamArray("axis"));
+		a_e_enemies = var_88c0f006 Array::get_touching(GetAITeamArray("axis"));
 		a_e_players = var_88c0f006 Array::get_touching(level.players);
-		Array::thread_all(var_961d572f, &function_c6cec92d, 1, var_8963ba33, e_attacker);
-		Array::thread_all(a_e_players, &function_c6cec92d, 1, var_8963ba33, undefined);
+		Array::thread_all(a_e_enemies, &function_c6cec92d, 1, b_hero_weapon, e_attacker);
+		Array::thread_all(a_e_players, &function_c6cec92d, 1, b_hero_weapon, undefined);
 		wait(1);
 	}
 	self clientfield::set("side_ee_gt_spore_cloud_fx", 0);
 	var_88c0f006 delete();
-	self notify("hash_91dd564f");
+	self notify("cloud_done");
 }
 
 /*
@@ -461,9 +461,9 @@ function function_4c6beece(var_f9f788a6, var_8963ba33, e_attacker)
 	Parameters: 3
 	Flags: None
 */
-function function_63a5615b(var_8963ba33, s_org, var_f9f788a6)
+function function_63a5615b(b_hero_weapon, s_org, var_f9f788a6)
 {
-	if(var_8963ba33)
+	if(b_hero_weapon)
 	{
 		if(var_f9f788a6 == 1)
 		{
@@ -518,7 +518,7 @@ function function_cc07e4ad(var_66bbb0c0, s_org)
 	Parameters: 3
 	Flags: None
 */
-function function_c6cec92d(var_2cfe5148, var_8963ba33, e_attacker)
+function function_c6cec92d(is_enemy, b_hero_weapon, e_attacker)
 {
 	self endon("death");
 	self endon("disconnect");
@@ -526,7 +526,7 @@ function function_c6cec92d(var_2cfe5148, var_8963ba33, e_attacker)
 	{
 		self.var_d07c64b6 = 0;
 	}
-	if(var_2cfe5148)
+	if(is_enemy)
 	{
 		if(isdefined(self.targetname) && self.targetname == "zombie")
 		{
@@ -561,7 +561,7 @@ function function_c6cec92d(var_2cfe5148, var_8963ba33, e_attacker)
 				}
 			}
 		}
-		else if(isdefined(self.var_3940f450) && self.var_3940f450)
+		else if(isdefined(self.b_is_spider) && self.b_is_spider)
 		{
 			if(!self.var_d07c64b6)
 			{
@@ -570,7 +570,7 @@ function function_c6cec92d(var_2cfe5148, var_8963ba33, e_attacker)
 				{
 					e_attacker notify("hash_2e126bd2");
 				}
-				if(var_8963ba33)
+				if(b_hero_weapon)
 				{
 					RadiusDamage(self.origin, 128, 1000, 1000);
 				}
@@ -580,11 +580,11 @@ function function_c6cec92d(var_2cfe5148, var_8963ba33, e_attacker)
 				}
 			}
 		}
-		else if(isdefined(self.var_61f7b3a0) && self.var_61f7b3a0 && (!isdefined(self.var_60cb45e5) && self.var_60cb45e5))
+		else if(isdefined(self.b_is_thrasher) && self.b_is_thrasher && (!isdefined(self.var_60cb45e5) && self.var_60cb45e5))
 		{
 			if(!self.var_d07c64b6)
 			{
-				if(var_8963ba33)
+				if(b_hero_weapon)
 				{
 					self.var_d07c64b6 = 1;
 					self DoDamage(self.health / 2, self.origin);
@@ -602,13 +602,13 @@ function function_c6cec92d(var_2cfe5148, var_8963ba33, e_attacker)
 		{
 			self thread function_703ef5e8();
 		}
-		if(var_8963ba33)
+		if(b_hero_weapon)
 		{
 			self clientfield::set("side_ee_gt_spore_trail_player_fx", 1);
 			self thread function_365b46bb();
 			wait(30);
 		}
-		else if(self.var_df4182b1)
+		else if(self.has_gasmask)
 		{
 			self notify("hash_b56a74a8");
 			wait(5);
@@ -939,7 +939,7 @@ function function_909c515f()
 		return;
 	}
 	self zm_utility::decrement_is_drinking();
-	var_d82ff565 = self GetWeaponsListPrimaries();
+	a_primaries = self GetWeaponsListPrimaries();
 	self TakeWeapon(weapon);
 	if(self.IS_DRINKING > 0)
 	{
@@ -949,9 +949,9 @@ function function_909c515f()
 	{
 		self SwitchToWeapon(self.original_weapon);
 	}
-	else if(isdefined(var_d82ff565) && var_d82ff565.size > 0)
+	else if(isdefined(a_primaries) && a_primaries.size > 0)
 	{
-		self SwitchToWeapon(var_d82ff565[0]);
+		self SwitchToWeapon(a_primaries[0]);
 	}
 	else if(self HasWeapon(level.laststandpistol))
 	{
@@ -975,7 +975,7 @@ function function_909c515f()
 function function_a0e0b4c2()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_9eaf14a2);
+		zm_devgui::add_custom_devgui_callback(&function_9eaf14a2);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 	#/
@@ -1002,7 +1002,7 @@ function function_9eaf14a2(cmd)
 			}
 			case "Dev Block strings are not supported":
 			{
-				level.var_564761a3.var_69299ec6 thread function_302fe6aa();
+				level.var_564761a3.mdl_vine_clip thread function_302fe6aa();
 				return 1;
 			}
 		}

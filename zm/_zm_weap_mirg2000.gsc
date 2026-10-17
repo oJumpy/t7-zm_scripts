@@ -53,12 +53,12 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	level.var_5e75629a = GetWeapon("hero_mirg2000");
-	level.var_a367ea52 = GetWeapon("hero_mirg2000_1");
-	level.var_7d656fe9 = GetWeapon("hero_mirg2000_2");
-	level.var_a4052592 = GetWeapon("hero_mirg2000_upgraded");
-	level.var_5c210a9a = GetWeapon("hero_mirg2000_upgraded_1");
-	level.var_361e9031 = GetWeapon("hero_mirg2000_upgraded_2");
+	level.w_mirg2000 = GetWeapon("hero_mirg2000");
+	level.w_mirg2000_1 = GetWeapon("hero_mirg2000_1");
+	level.w_mirg2000_2 = GetWeapon("hero_mirg2000_2");
+	level.w_mirg2000_up = GetWeapon("hero_mirg2000_upgraded");
+	level.w_mirg2000_up_1 = GetWeapon("hero_mirg2000_upgraded_1");
+	level.w_mirg2000_up_2 = GetWeapon("hero_mirg2000_upgraded_2");
 	clientfield::register("scriptmover", "plant_killer", 9000, GetMinBitCountForNum(4), "int");
 	clientfield::register("vehicle", "mirg2000_spider_death_fx", 9000, 2, "int");
 	clientfield::register("actor", "mirg2000_enemy_impact_fx", 9000, 2, "int");
@@ -92,7 +92,7 @@ function __main__()
 */
 function function_182a023()
 {
-	self thread function_56c8d7bb();
+	self thread faction_mission_assign_travel();
 	self thread function_3940d816();
 	self thread watch_weapon_change();
 	self thread function_9e09b719();
@@ -121,7 +121,7 @@ function is_wonder_weapon(weapon, str_type)
 	{
 		case "any":
 		{
-			if(weapon == level.var_5e75629a || weapon == level.var_a367ea52 || weapon == level.var_7d656fe9 || weapon == level.var_a4052592 || weapon == level.var_5c210a9a || weapon == level.var_361e9031)
+			if(weapon == level.w_mirg2000 || weapon == level.w_mirg2000_1 || weapon == level.w_mirg2000_2 || weapon == level.w_mirg2000_up || weapon == level.w_mirg2000_up_1 || weapon == level.w_mirg2000_up_2)
 			{
 				return 1;
 			}
@@ -129,7 +129,7 @@ function is_wonder_weapon(weapon, str_type)
 		}
 		case "default":
 		{
-			if(weapon == level.var_5e75629a || weapon == level.var_a367ea52 || weapon == level.var_7d656fe9)
+			if(weapon == level.w_mirg2000 || weapon == level.w_mirg2000_1 || weapon == level.w_mirg2000_2)
 			{
 				return 1;
 			}
@@ -137,7 +137,7 @@ function is_wonder_weapon(weapon, str_type)
 		}
 		case "default_charged_shot":
 		{
-			if(weapon == level.var_a367ea52 || weapon == level.var_7d656fe9)
+			if(weapon == level.w_mirg2000_1 || weapon == level.w_mirg2000_2)
 			{
 				return 1;
 			}
@@ -145,7 +145,7 @@ function is_wonder_weapon(weapon, str_type)
 		}
 		case "upgraded":
 		{
-			if(weapon == level.var_a4052592 || weapon == level.var_5c210a9a || weapon == level.var_361e9031)
+			if(weapon == level.w_mirg2000_up || weapon == level.w_mirg2000_up_1 || weapon == level.w_mirg2000_up_2)
 			{
 				return 1;
 			}
@@ -153,7 +153,7 @@ function is_wonder_weapon(weapon, str_type)
 		}
 		case "upgraded_charged_shot":
 		{
-			if(weapon == level.var_5c210a9a || weapon == level.var_361e9031)
+			if(weapon == level.w_mirg2000_up_1 || weapon == level.w_mirg2000_up_2)
 			{
 				return 1;
 			}
@@ -161,7 +161,7 @@ function is_wonder_weapon(weapon, str_type)
 		}
 		case default:
 		{
-			if(weapon == level.var_5e75629a || weapon == level.var_a367ea52 || weapon == level.var_7d656fe9 || weapon == level.var_a4052592 || weapon == level.var_5c210a9a || weapon == level.var_361e9031)
+			if(weapon == level.w_mirg2000 || weapon == level.w_mirg2000_1 || weapon == level.w_mirg2000_2 || weapon == level.w_mirg2000_up || weapon == level.w_mirg2000_up_1 || weapon == level.w_mirg2000_up_2)
 			{
 				return 1;
 			}
@@ -186,7 +186,7 @@ function function_a1fce678(var_2b568a63)
 	{
 		var_2b568a63 = 0;
 	}
-	if(self HasWeapon(level.var_a4052592))
+	if(self HasWeapon(level.w_mirg2000_up))
 	{
 		if(var_2b568a63)
 		{
@@ -259,7 +259,7 @@ function function_8734b840(v_start, v_end, n_range_sq, var_a8ed33a)
 */
 function function_794992bd(player, v_pos)
 {
-	if(player HasWeapon(level.var_a4052592))
+	if(player HasWeapon(level.w_mirg2000_up))
 	{
 		n_damage = 7000;
 		var_a9fb62c6 = 2;
@@ -421,7 +421,7 @@ function function_9e09b719()
 }
 
 /*
-	Name: function_56c8d7bb
+	Name: faction_mission_assign_travel
 	Namespace: namespace_7cee2b44
 	Checksum: 0xC87EC92C
 	Offset: 0x1388
@@ -429,7 +429,7 @@ function function_9e09b719()
 	Parameters: 0
 	Flags: None
 */
-function function_56c8d7bb()
+function faction_mission_assign_travel()
 {
 	self endon("disconnect");
 	while(1)
@@ -541,9 +541,9 @@ function function_1e4094ac(v_position, var_d24bfa82)
 	v_pos = GetClosestPointOnNavMesh(v_position, 80);
 	if(isdefined(v_pos))
 	{
-		var_31678178 = util::spawn_model("tag_origin", v_pos);
-		var_31678178 endon("death");
-		if(self HasWeapon(level.var_a4052592))
+		e_plant = util::spawn_model("tag_origin", v_pos);
+		e_plant endon("death");
+		if(self HasWeapon(level.w_mirg2000_up))
 		{
 			var_a00b8053 = var_d24bfa82 + 1;
 		}
@@ -551,13 +551,13 @@ function function_1e4094ac(v_position, var_d24bfa82)
 		{
 			var_a00b8053 = var_d24bfa82 - 1;
 		}
-		var_31678178 clientfield::set("plant_killer", var_a00b8053);
-		var_31678178 thread function_3604c7ec(self);
-		self thread function_d3b8fbb0(v_pos, var_31678178);
-		var_31678178 waittill("hash_2b1c6c7");
-		var_31678178 clientfield::set("plant_killer", 0);
+		e_plant clientfield::set("plant_killer", var_a00b8053);
+		e_plant thread function_3604c7ec(self);
+		self thread function_d3b8fbb0(v_pos, e_plant);
+		e_plant waittill("withered");
+		e_plant clientfield::set("plant_killer", 0);
 		wait(0.1);
-		var_31678178 delete();
+		e_plant delete();
 	}
 }
 
@@ -574,8 +574,8 @@ function function_3604c7ec(player)
 {
 	self endon("death");
 	player endon("disconnect");
-	var_1bcd223d = player GetCurrentWeapon();
-	if(is_wonder_weapon(var_1bcd223d, "upgraded"))
+	w_current_weapon = player GetCurrentWeapon();
+	if(is_wonder_weapon(w_current_weapon, "upgraded"))
 	{
 		n_timeout = player.chargeShotLevel * 5;
 	}
@@ -584,7 +584,7 @@ function function_3604c7ec(player)
 		n_timeout = player.chargeShotLevel * 3;
 	}
 	wait(n_timeout);
-	self notify("hash_2b1c6c7");
+	self notify("withered");
 }
 
 /*
@@ -596,19 +596,19 @@ function function_3604c7ec(player)
 	Parameters: 2
 	Flags: None
 */
-function function_d3b8fbb0(v_pos, var_31678178)
+function function_d3b8fbb0(v_pos, e_plant)
 {
 	self endon("disconnect");
-	var_31678178 endon("hash_2b1c6c7");
+	e_plant endon("withered");
 	n_kills = 0;
 	n_range_sq = self function_a1fce678(1);
-	var_1bcd223d = self GetCurrentWeapon();
-	if(is_wonder_weapon(var_1bcd223d, "upgraded"))
+	w_current_weapon = self GetCurrentWeapon();
+	if(is_wonder_weapon(w_current_weapon, "upgraded"))
 	{
-		var_31678178.n_kills = 9;
+		e_plant.n_kills = 9;
 		continue;
 	}
-	var_31678178.n_kills = 6;
+	e_plant.n_kills = 6;
 	while(1)
 	{
 		a_ai_zombies = GetAITeamArray(level.zombie_team);
@@ -620,11 +620,11 @@ function function_d3b8fbb0(v_pos, var_31678178)
 				{
 					self thread function_79504f13(ai_zombie, v_pos);
 					n_kills++;
-					if(n_kills >= var_31678178.n_kills)
+					if(n_kills >= e_plant.n_kills)
 					{
-						var_31678178 notify("hash_2b1c6c7");
+						e_plant notify("withered");
 					}
-					if(!isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0 && (!isdefined(ai_zombie.var_3940f450) && ai_zombie.var_3940f450))
+					if(!isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher && (!isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider))
 					{
 						wait(0.5);
 					}
@@ -647,7 +647,7 @@ function function_d3b8fbb0(v_pos, var_31678178)
 function function_b6ac59ff(v_pos, n_range_sq)
 {
 	self endon("death");
-	self.var_988ea0d8 = 1;
+	self.is_slowed = 1;
 	self.var_317d58a6 = self.zombie_move_speed;
 	self zombie_utility::set_zombie_run_cycle("walk");
 	while(function_8734b840(self.origin, v_pos, n_range_sq))
@@ -655,7 +655,7 @@ function function_b6ac59ff(v_pos, n_range_sq)
 		wait(0.5);
 	}
 	self zombie_utility::set_zombie_run_cycle(self.var_317d58a6);
-	self.var_988ea0d8 = 0;
+	self.is_slowed = 0;
 }
 
 /*
@@ -674,15 +674,15 @@ function function_4a06c777(v_position, player)
 		return;
 	}
 	n_range_sq = player function_a1fce678();
-	foreach(var_f58ff028 in level.var_1abc7758)
+	foreach(mdl_spore in level.var_1abc7758)
 	{
-		if(!isdefined(var_f58ff028.var_eec2cd7b))
+		if(!isdefined(mdl_spore.var_eec2cd7b))
 		{
 			continue;
 		}
-		if(function_8734b840(var_f58ff028.origin, v_position, n_range_sq))
+		if(function_8734b840(mdl_spore.origin, v_position, n_range_sq))
 		{
-			var_f58ff028.var_eec2cd7b DoDamage(1, v_position, player, player);
+			mdl_spore.var_eec2cd7b DoDamage(1, v_position, player, player);
 		}
 	}
 }
@@ -699,20 +699,20 @@ function function_4a06c777(v_position, player)
 function function_508749d7(v_position, player)
 {
 	player endon("disconnect");
-	if(!isdefined(level.var_ac51aa3c))
+	if(!isdefined(level.a_s_planting_spots))
 	{
 		return;
 	}
 	n_range_sq = player function_a1fce678();
-	foreach(var_a87feedd in level.var_ac51aa3c)
+	foreach(s_planting_spot in level.a_s_planting_spots)
 	{
-		if(!(isdefined(var_a87feedd.var_75c7a97e) && var_a87feedd.var_75c7a97e))
+		if(!(isdefined(s_planting_spot.b_seed_planted) && s_planting_spot.b_seed_planted))
 		{
 			continue;
 		}
-		if(function_8734b840(var_a87feedd.origin, v_position, n_range_sq))
+		if(function_8734b840(s_planting_spot.origin, v_position, n_range_sq))
 		{
-			var_a87feedd notify("hash_8dfde2c8");
+			s_planting_spot notify("hash_8dfde2c8");
 			player notify("hash_e7c74581");
 		}
 	}
@@ -761,7 +761,7 @@ function function_4a1cb794(player)
 {
 	self endon("death");
 	player endon("disconnect");
-	if(player HasWeapon(level.var_a4052592))
+	if(player HasWeapon(level.w_mirg2000_up))
 	{
 		var_6d5757ae = 1;
 	}
@@ -846,13 +846,13 @@ function function_79504f13(ai_zombie, v_pos)
 {
 	self endon("disconnect");
 	ai_zombie endon("death");
-	if(self HasWeapon(level.var_a4052592))
+	if(self HasWeapon(level.w_mirg2000_up))
 	{
-		e_grenade = MagicBullet(level.var_a4052592, v_pos, ai_zombie GetCentroid());
+		e_grenade = MagicBullet(level.w_mirg2000_up, v_pos, ai_zombie GetCentroid());
 	}
 	else
 	{
-		e_grenade = MagicBullet(level.var_5e75629a, v_pos, ai_zombie GetCentroid());
+		e_grenade = MagicBullet(level.w_mirg2000, v_pos, ai_zombie GetCentroid());
 	}
 	if(isdefined(e_grenade))
 	{
@@ -928,11 +928,11 @@ function function_e0d7bd91(v_position)
 			if(function_8734b840(ai_zombie.origin, v_position, n_range_sq) && var_bd236d05 < 1)
 			{
 				self thread function_d150c3fe(ai_zombie);
-				if(!(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0))
+				if(!(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher))
 				{
 					var_bd236d05++;
 				}
-				if(!isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0 && (!isdefined(ai_zombie.var_3940f450) && ai_zombie.var_3940f450))
+				if(!isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher && (!isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider))
 				{
 					wait(1);
 				}
@@ -954,7 +954,7 @@ function function_d150c3fe(ai_zombie)
 {
 	self endon("disconnect");
 	ai_zombie endon("death");
-	if(isdefined(ai_zombie.var_61f7b3a0) && ai_zombie.var_61f7b3a0)
+	if(isdefined(ai_zombie.b_is_thrasher) && ai_zombie.b_is_thrasher)
 	{
 		if(!(isdefined(ai_zombie.var_365c1d50) && ai_zombie.var_365c1d50))
 		{
@@ -1004,7 +1004,7 @@ function function_d150c3fe(ai_zombie)
 		ai_zombie ai::set_ignoreall(1);
 		ai_zombie.var_3f6ea790 = 1;
 		ai_zombie notify("hash_87952665");
-		if(!isdefined(ai_zombie.var_3940f450) && ai_zombie.var_3940f450 && (!isdefined(ai_zombie.var_2f846873) && ai_zombie.var_2f846873))
+		if(!isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider && (!isdefined(ai_zombie.var_2f846873) && ai_zombie.var_2f846873))
 		{
 			if(zm_utility::is_player_valid(self))
 			{
@@ -1026,9 +1026,9 @@ function function_d150c3fe(ai_zombie)
 			}
 			self thread function_3bc42e24(ai_zombie);
 		}
-		if(isdefined(ai_zombie.var_3940f450) && ai_zombie.var_3940f450)
+		if(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider)
 		{
-			if(self HasWeapon(level.var_a4052592))
+			if(self HasWeapon(level.w_mirg2000_up))
 			{
 				ai_zombie clientfield::set("mirg2000_spider_death_fx", 2);
 			}
@@ -1037,7 +1037,7 @@ function function_d150c3fe(ai_zombie)
 				ai_zombie clientfield::set("mirg2000_spider_death_fx", 1);
 			}
 		}
-		if(!(isdefined(ai_zombie.var_3940f450) && ai_zombie.var_3940f450))
+		if(!(isdefined(ai_zombie.b_is_spider) && ai_zombie.b_is_spider))
 		{
 			level thread zm_spawner::zombie_death_points(ai_zombie.origin, "MOD_EXPLOSIVE", "head", self, ai_zombie);
 		}
@@ -1061,11 +1061,11 @@ function function_3bc42e24(var_8b84dc1b)
 	var_5074f697 = var_8b84dc1b GetCentroid();
 	n_range_sq = self function_a1fce678();
 	ArrayRemoveValue(a_ai_zombies, var_8b84dc1b);
-	foreach(var_fd970238 in a_ai_zombies)
+	foreach(ai_alt_zombie in a_ai_zombies)
 	{
-		if(isalive(var_fd970238) && (!isdefined(var_fd970238.var_3f6ea790) && var_fd970238.var_3f6ea790) && function_8734b840(var_fd970238.origin, var_5074f697, n_range_sq))
+		if(isalive(ai_alt_zombie) && (!isdefined(ai_alt_zombie.var_3f6ea790) && ai_alt_zombie.var_3f6ea790) && function_8734b840(ai_alt_zombie.origin, var_5074f697, n_range_sq))
 		{
-			var_fd970238 function_794992bd(self, var_5074f697);
+			ai_alt_zombie function_794992bd(self, var_5074f697);
 			util::wait_network_frame();
 		}
 	}
@@ -1080,19 +1080,19 @@ function function_3bc42e24(var_8b84dc1b)
 	Parameters: 1
 	Flags: None
 */
-function function_b7e68127(var_7364b0dd)
+function function_b7e68127(b_is_crawler)
 {
 	self endon("death");
 	if(!isdefined(level.var_d290a02b))
 	{
 		level.var_d290a02b = 0;
 	}
-	if(!isdefined(level.var_7a9b882a))
+	if(!isdefined(level.s_player_air_pos))
 	{
-		level.var_7a9b882a = 0;
+		level.s_player_air_pos = 0;
 	}
 	self.marked_for_death = 1;
-	if(var_7364b0dd)
+	if(b_is_crawler)
 	{
 		level.var_d290a02b++;
 		if(level.var_d290a02b > 2)
@@ -1106,14 +1106,14 @@ function function_b7e68127(var_7364b0dd)
 	}
 	else
 	{
-		level.var_7a9b882a++;
-		if(level.var_7a9b882a > 5)
+		level.s_player_air_pos++;
+		if(level.s_player_air_pos > 5)
 		{
-			level.var_7a9b882a = 1;
+			level.s_player_air_pos = 1;
 		}
 		if(isalive(self) && !self IsRagdoll())
 		{
-			self scene::Play("p7_fxanim_zm_island_mirg_trap_" + level.var_7a9b882a + "_bundle", self);
+			self scene::Play("p7_fxanim_zm_island_mirg_trap_" + level.s_player_air_pos + "_bundle", self);
 		}
 	}
 }

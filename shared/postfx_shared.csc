@@ -71,12 +71,12 @@ function init_postfx_bundles()
 	self.forceStopPostfxBundle = 0;
 	self.exitPostfxBundle = 0;
 	/#
-		self thread function_6743421b();
+		self thread postfxbundledebuglisten();
 	#/
 }
 
 /*
-	Name: function_6743421b
+	Name: postfxbundledebuglisten
 	Namespace: postfx
 	Checksum: 0x8D0A5480
 	Offset: 0x350
@@ -84,7 +84,7 @@ function init_postfx_bundles()
 	Parameters: 0
 	Flags: None
 */
-function function_6743421b()
+function postfxbundledebuglisten()
 {
 	/#
 		self endon("entityshutdown");
@@ -99,14 +99,14 @@ function function_6743421b()
 				self thread playPostfxBundle(playBundleName);
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
-			var_7802baf4 = GetDvarString("Dev Block strings are not supported");
-			if(var_7802baf4 != "Dev Block strings are not supported")
+			stopbundlename = GetDvarString("Dev Block strings are not supported");
+			if(stopbundlename != "Dev Block strings are not supported")
 			{
 				self thread StopPostfxBundle();
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
-			var_7802baf4 = GetDvarString("Dev Block strings are not supported");
-			if(var_7802baf4 != "Dev Block strings are not supported")
+			stopbundlename = GetDvarString("Dev Block strings are not supported");
+			if(stopbundlename != "Dev Block strings are not supported")
 			{
 				self thread exitPostfxBundle();
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");

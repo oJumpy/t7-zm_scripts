@@ -58,13 +58,13 @@ function event()
 {
 	self endon("disconnect");
 	self endon("hash_994d5e9e");
-	self waittill("zm_bgb_unbearable", var_c3763c58);
+	self waittill("zm_bgb_unbearable", e_chest);
 	self bgb::do_one_shot_use(1);
-	var_c3763c58 thread function_7a5dc39b(self);
+	e_chest thread respin_chest_thread(self);
 }
 
 /*
-	Name: function_7a5dc39b
+	Name: respin_chest_thread
 	Namespace: zm_bgb_unbearable
 	Checksum: 0xCA6CD13
 	Offset: 0x388
@@ -72,7 +72,7 @@ function event()
 	Parameters: 1
 	Flags: None
 */
-function function_7a5dc39b(player)
+function respin_chest_thread(player)
 {
 	self.zbarrier notify("randomization_done");
 	self.zbarrier function_a612a2b3();

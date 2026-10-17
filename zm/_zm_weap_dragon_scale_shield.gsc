@@ -26,11 +26,11 @@
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\craftables\_zm_craft_shield;
 
-#namespace namespace_8215525;
+#namespace dragon_scale_shield;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x88D4C809
 	Offset: 0x958
 	Size: 0x3B
@@ -44,7 +44,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xDED349F0
 	Offset: 0x9A0
 	Size: 0x49B
@@ -90,7 +90,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xFF136AA5
 	Offset: 0xE48
 	Size: 0x17B
@@ -117,7 +117,7 @@ function __main__()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xD74ED34A
 	Offset: 0xFD0
 	Size: 0x1B
@@ -131,7 +131,7 @@ function on_player_connect()
 
 /*
 	Name: watchFirstUse
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x2BDD36E6
 	Offset: 0xFF8
 	Size: 0xAB
@@ -158,7 +158,7 @@ function watchFirstUse()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x5F865FD2
 	Offset: 0x10B0
 	Size: 0x7B
@@ -176,7 +176,7 @@ function on_player_spawned()
 
 /*
 	Name: function_98962bde
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xF9520209
 	Offset: 0x1138
 	Size: 0x9F
@@ -201,7 +201,7 @@ function function_98962bde()
 
 /*
 	Name: player_watch_ammo_change
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xE1F05A13
 	Offset: 0x11E0
 	Size: 0xC7
@@ -228,7 +228,7 @@ function player_watch_ammo_change()
 
 /*
 	Name: player_watch_max_ammo
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x7819E21A
 	Offset: 0x12B0
 	Size: 0x67
@@ -252,7 +252,7 @@ function player_watch_max_ammo()
 
 /*
 	Name: check_weapon_ammo
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x7A1738AE
 	Offset: 0x1320
 	Size: 0x63
@@ -271,7 +271,7 @@ function check_weapon_ammo(weapon)
 
 /*
 	Name: should_shield_absorb_damage
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x3F026E8B
 	Offset: 0x1390
 	Size: 0x149
@@ -296,7 +296,7 @@ function should_shield_absorb_damage(eInflictor, eAttacker, iDamage, iDFlags, sM
 
 /*
 	Name: function_247d568b
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x8B78A4DF
 	Offset: 0x14E8
 	Size: 0x7B
@@ -321,7 +321,7 @@ function function_247d568b(iDamage, bHeld, fromCode, smod)
 
 /*
 	Name: riotshield_damage_absorb_callback
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x4798668F
 	Offset: 0x1570
 	Size: 0x23
@@ -334,7 +334,7 @@ function riotshield_damage_absorb_callback(eAttacker, iDamage, sHitLoc, sMeansOf
 
 /*
 	Name: function_71d88f26
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x4C466E01
 	Offset: 0x15A0
 	Size: 0xE3
@@ -360,7 +360,7 @@ function function_71d88f26(weapon)
 
 /*
 	Name: function_f894ad3e
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x9794B1E0
 	Offset: 0x1690
 	Size: 0x157
@@ -390,7 +390,7 @@ function function_f894ad3e()
 
 /*
 	Name: function_c9b3ba45
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x92627D0
 	Offset: 0x17F0
 	Size: 0x53
@@ -408,7 +408,7 @@ function function_c9b3ba45(e_attacker)
 
 /*
 	Name: function_3f5e8a65
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x2970F0F7
 	Offset: 0x1850
 	Size: 0x4B
@@ -428,7 +428,7 @@ function function_3f5e8a65()
 
 /*
 	Name: function_d7451ef9
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x454D0BC0
 	Offset: 0x18A8
 	Size: 0xA5
@@ -452,7 +452,7 @@ function function_d7451ef9(w_weapon)
 
 /*
 	Name: function_8b8bd269
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xD64C0CFB
 	Offset: 0x1958
 	Size: 0x237
@@ -498,7 +498,7 @@ function function_8b8bd269(n_clientfield)
 
 /*
 	Name: function_459dacdd
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xC56DC6D3
 	Offset: 0x1B98
 	Size: 0x975
@@ -623,7 +623,7 @@ function function_459dacdd()
 
 /*
 	Name: function_8e9a1613
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x3B641B81
 	Offset: 0x2518
 	Size: 0x8B
@@ -647,7 +647,7 @@ function function_8e9a1613(msg, color)
 
 /*
 	Name: function_64bd9bf5
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xFECE0A27
 	Offset: 0x25B0
 	Size: 0x18F
@@ -695,7 +695,7 @@ function function_64bd9bf5(player, fling_vec, index)
 
 /*
 	Name: zombie_knockdown
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x1434C65
 	Offset: 0x2748
 	Size: 0x1FF
@@ -748,7 +748,7 @@ function zombie_knockdown(player, gib)
 
 /*
 	Name: function_2d1a5562
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xDDF66692
 	Offset: 0x2950
 	Size: 0x23B
@@ -811,7 +811,7 @@ function function_2d1a5562()
 
 /*
 	Name: function_c25e3d4b
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x70E869A4
 	Offset: 0x2B98
 	Size: 0x87
@@ -834,7 +834,7 @@ function function_c25e3d4b(player, gib)
 
 /*
 	Name: function_21b74baa
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x9A1EA5BB
 	Offset: 0x2C28
 	Size: 0x93
@@ -852,7 +852,7 @@ function function_21b74baa(note)
 
 /*
 	Name: function_41f7c503
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x327520DD
 	Offset: 0x2CC8
 	Size: 0xD3
@@ -879,7 +879,7 @@ function function_41f7c503(player, fling, gib, KNOCKDOWN)
 
 /*
 	Name: function_a3a9c2dc
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xD4AC19C9
 	Offset: 0x2DA8
 	Size: 0xCB
@@ -891,7 +891,7 @@ function function_a3a9c2dc()
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_6f901616);
+		zm_devgui::add_custom_devgui_callback(&function_6f901616);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -904,7 +904,7 @@ function function_a3a9c2dc()
 
 /*
 	Name: function_6f901616
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0xFE4FB03F
 	Offset: 0x2E80
 	Size: 0x147
@@ -948,32 +948,32 @@ function function_6f901616(cmd)
 }
 
 /*
-	Name: function_2449723c
-	Namespace: namespace_8215525
+	Name: detect_reentry
+	Namespace: dragon_scale_shield
 	Checksum: 0x4C8619CA
 	Offset: 0x2FD0
 	Size: 0x37
 	Parameters: 0
 	Flags: None
 */
-function function_2449723c()
+function detect_reentry()
 {
 	/#
-		if(isdefined(self.var_9dc82bca))
+		if(isdefined(self.devgui_preserve_time))
 		{
-			if(self.var_9dc82bca == GetTime())
+			if(self.devgui_preserve_time == GetTime())
 			{
 				return 1;
 			}
 		}
-		self.var_9dc82bca = GetTime();
+		self.devgui_preserve_time = GetTime();
 		return 0;
 	#/
 }
 
 /*
 	Name: function_f685a6db
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x20DE0634
 	Offset: 0x3010
 	Size: 0x153
@@ -983,7 +983,7 @@ function function_2449723c()
 function function_f685a6db()
 {
 	/#
-		if(self function_2449723c())
+		if(self detect_reentry())
 		{
 			return;
 		}
@@ -1017,7 +1017,7 @@ function function_f685a6db()
 
 /*
 	Name: function_eeac5a22
-	Namespace: namespace_8215525
+	Namespace: dragon_scale_shield
 	Checksum: 0x637E728C
 	Offset: 0x3170
 	Size: 0xE5
@@ -1027,7 +1027,7 @@ function function_f685a6db()
 function function_eeac5a22()
 {
 	/#
-		if(self function_2449723c())
+		if(self detect_reentry())
 		{
 			return;
 		}

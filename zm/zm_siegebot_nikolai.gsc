@@ -362,14 +362,14 @@ function jump_to(target)
 	}
 	if(IsVec(target))
 	{
-		self.jump.var_e8ce546f = target;
+		self.jump.jump_target = target;
 	}
 	else if(isdefined(target.origin) && IsVec(target.origin))
 	{
-		self.jump.var_e8ce546f = target.origin;
+		self.jump.jump_target = target.origin;
 	}
-	distSqr = Distance2DSquared(self.origin, self.jump.var_e8ce546f);
-	if(isdefined(self.jump.var_e8ce546f) && 600 * 600 < distSqr && distSqr < 1800 * 1800)
+	distSqr = Distance2DSquared(self.origin, self.jump.jump_target);
+	if(isdefined(self.jump.jump_target) && 600 * 600 < distSqr && distSqr < 1800 * 1800)
 	{
 		self vehicle_ai::set_state("jump");
 		return 1;
@@ -414,7 +414,7 @@ function initJumpStruct()
 */
 function state_jump_enter(params)
 {
-	goal = self.jump.var_e8ce546f;
+	goal = self.jump.jump_target;
 	trace = PhysicsTrace(goal + VectorScale((0, 0, 1), 500), goal - VectorScale((0, 0, 1), 10000), VectorScale((-1, -1, -1), 10), VectorScale((1, 1, 1), 10), self, 2);
 	if(trace["fraction"] < 1)
 	{
@@ -471,10 +471,10 @@ function state_jump_update(params)
 	initVelocityForward = FORWARD * params.scaleForward * mapfloat(500, 2000, 0.8, 1, totalDistance);
 	velocity = initVelocityUp + initVelocityForward;
 	self ASMRequestSubstate("inair@jump");
-	self.jump.var_865af05c = "engine_startup";
+	self.jump.debug_state = "engine_startup";
 	self util::waittill_notify_or_timeout("start_engine", 0.5);
 	self vehicle::impact_fx(self.settings.startupfx1);
-	self.jump.var_865af05c = "leave_ground";
+	self.jump.debug_state = "leave_ground";
 	self util::waittill_notify_or_timeout("start_engine", 1);
 	self vehicle::impact_fx(self.settings.takeofffx1);
 	params.landingState = "land@jump";
@@ -1111,34 +1111,34 @@ function show_hit_marker()
 	Parameters: 2
 	Flags: None
 */
-function function_efdfbbf7(var_9d838914, var_e7f2a029)
+function function_efdfbbf7(b_expose, n_location)
 {
-	if(var_e7f2a029 == 2)
+	if(n_location == 2)
 	{
-		var_e6a3fdd7 = "tag_heat_vent_02_d0_col";
+		str_collision = "tag_heat_vent_02_d0_col";
 		str_partname = "ai_zm_dlc3_russian_mech_heat_vent_l";
-		var_7ae256a = 1;
+		str_anim_group = 1;
 		str_clientfield = "nikolai_weakpoint_l_fx";
 	}
 	else
 	{
-		var_e6a3fdd7 = "tag_heat_vent_01_d0_col";
+		str_collision = "tag_heat_vent_01_d0_col";
 		str_partname = "ai_zm_dlc3_russian_mech_heat_vent_r";
-		var_7ae256a = 2;
+		str_anim_group = 2;
 		str_clientfield = "nikolai_weakpoint_r_fx";
 	}
-	if(var_9d838914)
+	if(b_expose)
 	{
-		self ShowPart(var_e6a3fdd7);
+		self ShowPart(str_collision);
 		self SetAnim(str_partname);
-		self vehicle::toggle_ambient_anim_group(var_7ae256a, 1);
+		self vehicle::toggle_ambient_anim_group(str_anim_group, 1);
 		self clientfield::set(str_clientfield, 1);
 	}
 	else
 	{
-		self HidePart(var_e6a3fdd7);
+		self HidePart(str_collision);
 		self ClearAnim(str_partname, 0.1);
-		self vehicle::toggle_ambient_anim_group(var_7ae256a, 0);
+		self vehicle::toggle_ambient_anim_group(str_anim_group, 0);
 		self clientfield::set(str_clientfield, 0);
 	}
 }
@@ -1221,12 +1221,12 @@ function function_a3258c2a(var_f8b7c9a1)
 	{
 		self SetLookAtEnt(self.enemy);
 		self vehicle_ai::SetTurretTarget(self.enemy, 0);
-		var_4842b473 = AnglesToForward((0, RandomInt(100) * var_a3f49a09, 0)) * 100;
-		var_8a7bdf21 = self.enemy GetVelocity() * -0.3;
-		var_1c83c677 = self.enemy.origin + var_4842b473 + var_8a7bdf21;
-		self vehicle_ai::SetTurretTarget(var_1c83c677, 1);
+		angleoffset = AnglesToForward((0, RandomInt(100) * var_a3f49a09, 0)) * 100;
+		velocityoffset = self.enemy GetVelocity() * -0.3;
+		targetposition = self.enemy.origin + angleoffset + velocityoffset;
+		self vehicle_ai::SetTurretTarget(targetposition, 1);
 		wait(var_82d8b276);
-		self FireWeapon(1, undefined, var_4842b473 + var_8a7bdf21, self);
+		self FireWeapon(1, undefined, angleoffset + velocityoffset, self);
 	}
 	self notify("fire_stop");
 	self clientfield::set("nikolai_gatling_tell", 0);
@@ -1250,7 +1250,7 @@ function function_a3258c2a(var_f8b7c9a1)
 	Parameters: 1
 	Flags: None
 */
-function function_59fe8c9c(var_1c83c677)
+function function_59fe8c9c(targetposition)
 {
 	if(!isalive(self))
 	{
@@ -1262,7 +1262,7 @@ function function_59fe8c9c(var_1c83c677)
 	self SetTurretTargetRelativeAngles((0, 0, 0), 0);
 	self SetTurretTargetRelativeAngles((0, 0, 0), 1);
 	self SetTurretTargetRelativeAngles((0, 0, 0), 2);
-	self face_target(var_1c83c677, 30);
+	self face_target(targetposition, 30);
 	self notify("hash_c72aec1e");
 	if(self.var_65850094[1] > 0)
 	{
@@ -1280,8 +1280,8 @@ function function_59fe8c9c(var_1c83c677)
 		{
 			self util::waittill_notify_or_timeout("fire_raps", 0.5);
 		}
-		var_3e32f05a = undefined;
-		while(!isdefined(var_3e32f05a))
+		ai_raps = undefined;
+		while(!isdefined(ai_raps))
 		{
 			if(level flag::get("world_is_paused"))
 			{
@@ -1290,22 +1290,22 @@ function function_59fe8c9c(var_1c83c677)
 			spawnTag = self GetTagOrigin("tag_flash");
 			tagAngles = self GetTagAngles("tag_flash");
 			var_5d7a8c53 = anglesToUp(tagAngles);
-			var_3e32f05a = SpawnVehicle("spawner_zm_dlc3_vehicle_raps_nikolai", spawnTag, self.angles);
-			if(!isdefined(var_3e32f05a))
+			ai_raps = SpawnVehicle("spawner_zm_dlc3_vehicle_raps_nikolai", spawnTag, self.angles);
+			if(!isdefined(ai_raps))
 			{
 				wait(0.1);
 			}
 		}
-		var_3e32f05a.exclude_cleanup_adding_to_total = 1;
-		var_3e32f05a.b_ignore_cleanup = 1;
-		var_3e32f05a.no_eye_glow = 1;
+		ai_raps.exclude_cleanup_adding_to_total = 1;
+		ai_raps.b_ignore_cleanup = 1;
+		ai_raps.no_eye_glow = 1;
 		PlayFXOnTag("dlc3/stalingrad/fx_mech_wpn_raps_launcher_muz", self, "tag_flash");
-		var_3e32f05a Hide();
-		var_3e32f05a.takedamage = 0;
+		ai_raps Hide();
+		ai_raps.takedamage = 0;
 		wait(0.05);
-		var_3e32f05a.origin = spawnTag + var_5d7a8c53 * 40;
+		ai_raps.origin = spawnTag + var_5d7a8c53 * 40;
 		wait(0.05);
-		var_3e32f05a show();
+		ai_raps show();
 		wait(0.05);
 		if(!isdefined(level.var_c3c3ffc5))
 		{
@@ -1315,15 +1315,15 @@ function function_59fe8c9c(var_1c83c677)
 		{
 			level.var_c3c3ffc5 = Array(level.var_c3c3ffc5);
 		}
-		level.var_c3c3ffc5[level.var_c3c3ffc5.size] = var_3e32f05a;
+		level.var_c3c3ffc5[level.var_c3c3ffc5.size] = ai_raps;
 		level.var_6d27427c++;
-		var_3e32f05a namespace_48c05c81::function_d48ad6b4();
-		var_3e32f05a thread function_6deb3e8d();
-		var_3e32f05a.takedamage = 1;
-		var_3e32f05a thread function_3b145bbb();
+		ai_raps namespace_48c05c81::function_d48ad6b4();
+		ai_raps thread function_6deb3e8d();
+		ai_raps.takedamage = 1;
+		ai_raps thread function_3b145bbb();
 		offset = AnglesToForward((0, i * var_a3f49a09, 0));
 		launchForce = var_5d7a8c53 * 300 + offset * 40;
-		var_3e32f05a thread function_853d3b2b(var_1c83c677 + offset * 60, launchForce);
+		ai_raps thread function_853d3b2b(targetposition + offset * 60, launchForce);
 		wait(0.1);
 	}
 	if(self.var_65850094[1] > 0)
@@ -1361,12 +1361,12 @@ function function_853d3b2b(var_ff72f147, launchForce)
 	self clientfield::set("play_raps_trail_fx", 1);
 	self vehicle_ai::set_state("scripted");
 	self vehicle::toggle_sounds(0);
-	var_87f1eda4 = GetTime();
+	launchstart = GetTime();
 	self LaunchVehicle(launchForce);
 	wait(0.5);
-	self function_10215c6f(var_ff72f147);
+	self applyballistictarget(var_ff72f147);
 	self show();
-	while(!isdefined(GetClosestPointOnNavMesh(self.origin, 200)) && vehicle_ai::TimeSince(var_87f1eda4) < 4)
+	while(!isdefined(GetClosestPointOnNavMesh(self.origin, 200)) && vehicle_ai::TimeSince(launchstart) < 4)
 	{
 		wait(0.1);
 	}
@@ -1460,24 +1460,24 @@ function pin_spike_to_ground(spike, targetOrigin)
 	{
 		wait(0.05);
 	}
-	var_5f13f183 = 1;
+	fallspeed = 1;
 	maxPitch = 10;
 	while(Distance2DSquared(spike.origin, startOrigin) < max(targetDist * targetDist, 150 * 150))
 	{
 		pitch = AngleClamp180(spike.angles[0]);
 		if(pitch < maxPitch)
 		{
-			pitch = pitch + min(var_5f13f183, maxPitch - pitch);
+			pitch = pitch + min(fallspeed, maxPitch - pitch);
 			spike.angles = (pitch, spike.angles[1], spike.angles[2]);
 		}
 		wait(0.05);
 	}
-	var_5f13f183 = 16;
+	fallspeed = 16;
 	maxPitch = 76;
 	while(spike.angles[0] < maxPitch)
 	{
 		pitch = AngleClamp180(spike.angles[0]);
-		pitch = pitch + var_5f13f183;
+		pitch = pitch + fallspeed;
 		if(pitch > maxPitch)
 		{
 			pitch = RandomFloatRange(maxPitch, min(pitch, 90));

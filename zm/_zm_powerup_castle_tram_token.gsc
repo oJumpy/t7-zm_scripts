@@ -202,11 +202,11 @@ function show_infotext_for_duration(str_infotext, n_duration)
 	Parameters: 3
 	Flags: Private
 */
-function private function_1cb39173(var_1d640f59, str_widget_clientuimodel, var_18bfcc38)
+function private function_1cb39173(var_1d640f59, str_widget_clientuimodel, b_acquired)
 {
 	level notify("hash_28a4818d");
 	self endon("disconnect");
-	if(var_18bfcc38)
+	if(b_acquired)
 	{
 		if(isdefined(var_1d640f59))
 		{
@@ -285,7 +285,7 @@ function function_6dd86f90()
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_9293606a);
+		zm_devgui::add_custom_devgui_callback(&function_9293606a);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 	#/

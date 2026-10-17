@@ -74,13 +74,13 @@ function function_4b3d145d(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 	{
 		if(isdefined(self._padded) && self._padded)
 		{
-			var_6f51be76 = ArrayGetClosest(self.origin, level.cushion_sound_triggers);
-			if(self istouching(var_6f51be76))
+			e_cushion = ArrayGetClosest(self.origin, level.cushion_sound_triggers);
+			if(self istouching(e_cushion))
 			{
 				return 0;
 			}
-			var_f5f4e9cc = ArrayGetClosest(self.origin, GetEntArray("trig_jump_pad", "targetname"));
-			if(self istouching(var_f5f4e9cc))
+			e_pad = ArrayGetClosest(self.origin, GetEntArray("trig_jump_pad", "targetname"));
+			if(self istouching(e_pad))
 			{
 				return 0;
 			}

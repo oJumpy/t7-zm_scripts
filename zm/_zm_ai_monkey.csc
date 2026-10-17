@@ -45,7 +45,7 @@ function __init__()
 */
 function private function_70fb871f(localClientNum)
 {
-	self function_ec8b2835(1);
+	self suppressragdollselfcollision(1);
 }
 
 /*
@@ -66,7 +66,7 @@ function function_2e74dabc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		{
 			return;
 		}
-		var_f9e79b00 = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, 1, 3, 0);
+		n_test = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, 1, 3, 0);
 		self._eyeArray[localClientNum] = PlayFXOnTag(localClientNum, level._effect["monkey_eye_glow"], self, "j_eyeball_le");
 	}
 	else
@@ -76,7 +76,7 @@ function function_2e74dabc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		{
 			return;
 		}
-		var_f9e79b00 = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, 0, 3, 0);
+		n_test = self MapShaderConstant(localClientNum, 0, "scriptVector2", 0, 0, 3, 0);
 		if(isdefined(self._eyeArray))
 		{
 			if(isdefined(self._eyeArray[localClientNum]))

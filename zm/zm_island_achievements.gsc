@@ -17,11 +17,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_e5adcfd5;
+#namespace island_achievements;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_e5adcfd5
+	Namespace: island_achievements
 	Checksum: 0xC885A439
 	Offset: 0x358
 	Size: 0x33
@@ -35,7 +35,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_e5adcfd5
+	Namespace: island_achievements
 	Checksum: 0xA8BB2575
 	Offset: 0x398
 	Size: 0x23
@@ -49,7 +49,7 @@ function __init__()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_e5adcfd5
+	Namespace: island_achievements
 	Checksum: 0xBA0ADD96
 	Offset: 0x3C8
 	Size: 0xAB
@@ -61,7 +61,7 @@ function on_player_connect()
 	self thread function_5efc5a29();
 	self thread function_47538b42();
 	self thread function_cdd905fd();
-	self thread function_4a12afed();
+	self thread destroy_webs();
 	self thread function_d6e0957d();
 	self thread function_ed8c7d0f();
 	self thread function_53f54d29();
@@ -69,7 +69,7 @@ function on_player_connect()
 
 /*
 	Name: function_5efc5a29
-	Namespace: namespace_e5adcfd5
+	Namespace: island_achievements
 	Checksum: 0x6E4C08CE
 	Offset: 0x480
 	Size: 0x43
@@ -86,7 +86,7 @@ function function_5efc5a29()
 
 /*
 	Name: function_47538b42
-	Namespace: namespace_e5adcfd5
+	Namespace: island_achievements
 	Checksum: 0x1A6422B7
 	Offset: 0x4D0
 	Size: 0x43
@@ -103,7 +103,7 @@ function function_47538b42()
 
 /*
 	Name: function_cdd905fd
-	Namespace: namespace_e5adcfd5
+	Namespace: island_achievements
 	Checksum: 0xAF1E6E6A
 	Offset: 0x520
 	Size: 0x43
@@ -120,7 +120,7 @@ function function_cdd905fd()
 
 /*
 	Name: function_ed8c7d0f
-	Namespace: namespace_e5adcfd5
+	Namespace: island_achievements
 	Checksum: 0x942E9146
 	Offset: 0x570
 	Size: 0x43
@@ -137,7 +137,7 @@ function function_ed8c7d0f()
 
 /*
 	Name: function_53f54d29
-	Namespace: namespace_e5adcfd5
+	Namespace: island_achievements
 	Checksum: 0xE2D75702
 	Offset: 0x5C0
 	Size: 0xDF
@@ -148,18 +148,18 @@ function function_53f54d29()
 {
 	level endon("end_game");
 	self endon("disconnect");
-	var_ab216c38 = 0;
-	while(!var_ab216c38)
+	b_done = 0;
+	while(!b_done)
 	{
 		var_8379db89 = 0;
-		while(!self laststand::player_is_in_laststand() && self IsPlayerUnderwater() && zombie_utility::is_player_valid(self) && !var_ab216c38)
+		while(!self laststand::player_is_in_laststand() && self IsPlayerUnderwater() && zombie_utility::is_player_valid(self) && !b_done)
 		{
 			wait(1);
 			var_8379db89++;
 			if(var_8379db89 >= 60)
 			{
 				self GiveAchievement("ZM_ISLAND_STAY_UNDERWATER");
-				var_ab216c38 = 1;
+				b_done = 1;
 			}
 		}
 		wait(0.1);
@@ -167,15 +167,15 @@ function function_53f54d29()
 }
 
 /*
-	Name: function_4a12afed
-	Namespace: namespace_e5adcfd5
+	Name: destroy_webs
+	Namespace: island_achievements
 	Checksum: 0xF5FCD452
 	Offset: 0x6A8
 	Size: 0x43
 	Parameters: 0
 	Flags: None
 */
-function function_4a12afed()
+function destroy_webs()
 {
 	level endon("end_game");
 	self endon("disconnect");
@@ -185,7 +185,7 @@ function function_4a12afed()
 
 /*
 	Name: function_d6e0957d
-	Namespace: namespace_e5adcfd5
+	Namespace: island_achievements
 	Checksum: 0xB7460FAB
 	Offset: 0x6F8
 	Size: 0x43

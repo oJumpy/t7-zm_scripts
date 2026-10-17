@@ -34,53 +34,53 @@ function function_ca1a937()
 {
 	level flag::wait_till("all_players_spawned");
 	level flag::wait_till("zones_initialized");
-	var_1fb56ce6 = GetEntArray("map_city", "targetname");
-	foreach(var_4d3ce43f in var_1fb56ce6)
+	a_e_city_maps = GetEntArray("map_city", "targetname");
+	foreach(e_city_map in a_e_city_maps)
 	{
-		switch(var_4d3ce43f.script_string)
+		switch(e_city_map.script_string)
 		{
 			case "canal":
 			{
-				var_4d3ce43f ShowPart("tag_ur_here_canal");
-				var_4d3ce43f HidePart("tag_ur_here_foot");
-				var_4d3ce43f HidePart("tag_ur_here_junction");
-				var_4d3ce43f HidePart("tag_ur_here_water");
+				e_city_map ShowPart("tag_ur_here_canal");
+				e_city_map HidePart("tag_ur_here_foot");
+				e_city_map HidePart("tag_ur_here_junction");
+				e_city_map HidePart("tag_ur_here_water");
 				break;
 			}
 			case "footlight":
 			{
-				var_4d3ce43f HidePart("tag_ur_here_canal");
-				var_4d3ce43f ShowPart("tag_ur_here_foot");
-				var_4d3ce43f HidePart("tag_ur_here_junction");
-				var_4d3ce43f HidePart("tag_ur_here_water");
+				e_city_map HidePart("tag_ur_here_canal");
+				e_city_map ShowPart("tag_ur_here_foot");
+				e_city_map HidePart("tag_ur_here_junction");
+				e_city_map HidePart("tag_ur_here_water");
 				break;
 			}
 			case "junction":
 			{
-				var_4d3ce43f HidePart("tag_ur_here_canal");
-				var_4d3ce43f HidePart("tag_ur_here_foot");
-				var_4d3ce43f ShowPart("tag_ur_here_junction");
-				var_4d3ce43f HidePart("tag_ur_here_water");
+				e_city_map HidePart("tag_ur_here_canal");
+				e_city_map HidePart("tag_ur_here_foot");
+				e_city_map ShowPart("tag_ur_here_junction");
+				e_city_map HidePart("tag_ur_here_water");
 				break;
 			}
 			case "waterfront":
 			{
-				var_4d3ce43f HidePart("tag_ur_here_canal");
-				var_4d3ce43f HidePart("tag_ur_here_foot");
-				var_4d3ce43f HidePart("tag_ur_here_junction");
-				var_4d3ce43f ShowPart("tag_ur_here_water");
+				e_city_map HidePart("tag_ur_here_canal");
+				e_city_map HidePart("tag_ur_here_foot");
+				e_city_map HidePart("tag_ur_here_junction");
+				e_city_map ShowPart("tag_ur_here_water");
 				break;
 			}
 		}
-		var_4d3ce43f ShowPart("tag_memento_badge");
-		var_4d3ce43f ShowPart("tag_memento_belt");
-		var_4d3ce43f ShowPart("tag_memento_pen");
-		var_4d3ce43f ShowPart("tag_memento_wig");
-		var_4d3ce43f HidePart("tag_ritual_canal");
-		var_4d3ce43f HidePart("tag_ritual_foot");
-		var_4d3ce43f HidePart("tag_ritual_junction");
-		var_4d3ce43f HidePart("tag_ritual_water");
-		var_4d3ce43f thread function_87325d74();
+		e_city_map ShowPart("tag_memento_badge");
+		e_city_map ShowPart("tag_memento_belt");
+		e_city_map ShowPart("tag_memento_pen");
+		e_city_map ShowPart("tag_memento_wig");
+		e_city_map HidePart("tag_ritual_canal");
+		e_city_map HidePart("tag_ritual_foot");
+		e_city_map HidePart("tag_ritual_junction");
+		e_city_map HidePart("tag_ritual_water");
+		e_city_map thread function_87325d74();
 	}
 }
 

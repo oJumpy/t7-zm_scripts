@@ -156,7 +156,7 @@ function main_quest_init()
 		staff.prev_ammo_stock = staff.w_weapon.startammo;
 		staff.upgrade.downgrade = staff;
 	}
-	level.var_2b2f83e5 = GetWeapon("staff_revive");
+	level.w_staff_revive = GetWeapon("staff_revive");
 	level.staffs_charged = 0;
 	Array::thread_all(level.zombie_spawners, &spawner::add_spawn_function, &zombie_spawn_func);
 	level thread watch_for_staff_upgrades();
@@ -457,7 +457,7 @@ function door_watch_open_sesame()
 	Parameters: 2
 	Flags: None
 */
-function run_gramophone_door(str_vinyl_record, var_ac769486)
+function run_gramophone_door(str_vinyl_record, mdl_door_clip)
 {
 	level flag::init(self.targetname + "_opened");
 	level flag::init("crypt_opened");
@@ -506,8 +506,8 @@ function run_gramophone_door(str_vinyl_record, var_ac769486)
 				level clientfield::set("crypt_open_exploder", 1);
 				self MoveZ(-260, 10, 1, 1);
 				self waittill("movedone");
-				var_ac769486 connectpaths();
-				var_ac769486 delete();
+				mdl_door_clip connectpaths();
+				mdl_door_clip delete();
 				self delete();
 				t_door zm_tomb_utility::set_unitrigger_hint_string(&"ZM_TOMB_PUGR");
 				if(isdefined(level.b_open_all_gramophone_doors) && level.b_open_all_gramophone_doors)
@@ -1519,7 +1519,7 @@ function zombie_killed_override(eInflictor, attacker, iDamage, sMeansOfDeath, sW
 		return;
 	}
 	n_max_dist_sq = 9000000;
-	if(isPlayer(attacker) || sWeapon == level.var_653c9585)
+	if(isPlayer(attacker) || sWeapon == level.w_one_inch_punch)
 	{
 		if(!level flag::get("fire_puzzle_1_complete"))
 		{

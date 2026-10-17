@@ -224,36 +224,36 @@ function function_48cfc7df(spot)
 {
 	self endon("death");
 	self.var_2be9fa75 = 1;
-	if(isdefined(self.var_b35375be))
+	if(isdefined(self.mdl_anchor))
 	{
-		self.var_b35375be delete();
+		self.mdl_anchor delete();
 	}
-	self.var_b35375be = util::spawn_model("tag_origin", self.origin, self.angles);
+	self.mdl_anchor = util::spawn_model("tag_origin", self.origin, self.angles);
 	self ghost();
 	if(!isdefined(spot.angles))
 	{
 		spot.angles = (0, 0, 0);
 	}
-	self thread function_1585c6d();
-	self.var_b35375be moveto(spot.origin, 0.05);
-	self.var_b35375be RotateTo(spot.angles, 0.05);
-	self.var_b35375be waittill("movedone");
+	self thread anchor_delete_watcher();
+	self.mdl_anchor moveto(spot.origin, 0.05);
+	self.mdl_anchor RotateTo(spot.angles, 0.05);
+	self.mdl_anchor waittill("movedone");
 	wait(0.05);
-	if(!isdefined(self) || !isdefined(self.var_b35375be))
+	if(!isdefined(self) || !isdefined(self.mdl_anchor))
 	{
 		return;
 	}
 	self.create_eyes = 1;
 	self show();
-	if(isdefined(self.var_b35375be))
+	if(isdefined(self.mdl_anchor))
 	{
 		if(isdefined(spot.scriptbundlename))
 		{
-			self.var_b35375be scene::Play(spot.scriptbundlename, self);
+			self.mdl_anchor scene::Play(spot.scriptbundlename, self);
 		}
 		else
 		{
-			self.var_b35375be scene::Play("cin_zm_dlc1_zombie_undercroft_spawn_1", self);
+			self.mdl_anchor scene::Play("cin_zm_dlc1_zombie_undercroft_spawn_1", self);
 		}
 	}
 	self.var_2be9fa75 = 0;
@@ -274,14 +274,14 @@ function function_27a6dd5f()
 {
 	self endon("death");
 	util::wait_network_frame();
-	if(isdefined(self.var_b35375be))
+	if(isdefined(self.mdl_anchor))
 	{
-		self.var_b35375be delete();
+		self.mdl_anchor delete();
 	}
 }
 
 /*
-	Name: function_1585c6d
+	Name: anchor_delete_watcher
 	Namespace: namespace_63d46525
 	Checksum: 0xA6CB66B5
 	Offset: 0x1A40
@@ -289,15 +289,15 @@ function function_27a6dd5f()
 	Parameters: 0
 	Flags: None
 */
-function function_1585c6d()
+function anchor_delete_watcher()
 {
 	self waittill("death");
-	if(isdefined(self.var_b35375be))
+	if(isdefined(self.mdl_anchor))
 	{
 		wait(0.05);
-		if(isdefined(self.var_b35375be))
+		if(isdefined(self.mdl_anchor))
 		{
-			self.var_b35375be delete();
+			self.mdl_anchor delete();
 		}
 	}
 }

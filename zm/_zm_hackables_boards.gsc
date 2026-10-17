@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_score;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_b1d3fbb7;
+#namespace zm_hackables_boards;
 
 /*
 	Name: hack_boards
-	Namespace: namespace_b1d3fbb7
+	Namespace: zm_hackables_boards
 	Checksum: 0x4FB0F4FE
 	Offset: 0x190
 	Size: 0x295
@@ -59,7 +59,7 @@ function hack_boards()
 
 /*
 	Name: board_hack
-	Namespace: namespace_b1d3fbb7
+	Namespace: zm_hackables_boards
 	Checksum: 0x1E06E7DD
 	Offset: 0x430
 	Size: 0x363
@@ -138,7 +138,7 @@ function board_hack(hacker)
 
 /*
 	Name: board_qualifier
-	Namespace: namespace_b1d3fbb7
+	Namespace: zm_hackables_boards
 	Checksum: 0xDE0C4AF9
 	Offset: 0x7A0
 	Size: 0x65

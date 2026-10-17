@@ -18,7 +18,7 @@
 */
 function main()
 {
-	level thread function_d19cb2f8();
+	level thread startzmbspawnersoundloops();
 }
 
 /*
@@ -79,17 +79,17 @@ function function_60a32834()
 function function_d667714e()
 {
 	level.var_b6342abd = "mus_prototype_underscore_default";
-	level.var_6d9d81aa = "mus_prototype_underscore_default";
+	level.newmus = "mus_prototype_underscore_default";
 	level.var_eb526c90 = spawn(0, (0, 0, 0), "script_origin");
 	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(level.var_b6342abd, 2);
 	while(1)
 	{
 		level waittill("hash_51d7bc7c", location);
-		level.var_6d9d81aa = "mus_prototype_underscore_" + location;
-		if(level.var_6d9d81aa != level.var_b6342abd)
+		level.newmus = "mus_prototype_underscore_" + location;
+		if(level.newmus != level.var_b6342abd)
 		{
-			level thread function_b234849(level.var_6d9d81aa);
-			level.var_b6342abd = level.var_6d9d81aa;
+			level thread function_b234849(level.newmus);
+			level.var_b6342abd = level.newmus;
 		}
 	}
 }
@@ -103,16 +103,16 @@ function function_d667714e()
 	Parameters: 1
 	Flags: None
 */
-function function_b234849(var_6d9d81aa)
+function function_b234849(newmus)
 {
 	level endon("hash_51d7bc7c");
 	level.var_eb526c90 StopAllLoopSounds(2);
 	wait(1);
-	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(var_6d9d81aa, 2);
+	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(newmus, 2);
 }
 
 /*
-	Name: function_d19cb2f8
+	Name: startzmbspawnersoundloops
 	Namespace: zm_prototype_amb
 	Checksum: 0xEAE27673
 	Offset: 0x470
@@ -120,7 +120,7 @@ function function_b234849(var_6d9d81aa)
 	Parameters: 0
 	Flags: None
 */
-function function_d19cb2f8()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("exterior_goal", "targetname");
 	if(isdefined(loopers) && loopers.size > 0)

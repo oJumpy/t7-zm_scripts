@@ -354,7 +354,7 @@ function door_buy()
 		who thread [[level._door_open_rumble_func]]();
 	}
 	who RecordMapEvent(5, GetTime(), who.origin, level.round_number, cost);
-	bb::function_91f32a58(who, self, cost, self.target, upgraded, "_door", "_purchase");
+	bb::logpurchaseevent(who, self, cost, self.target, upgraded, "_door", "_purchase");
 	who zm_stats::increment_challenge_stat("ZM_DAILY_PURCHASE_DOORS");
 	return 1;
 }

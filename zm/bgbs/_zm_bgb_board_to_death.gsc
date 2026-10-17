@@ -82,9 +82,9 @@ function function_3c61f2df()
 	self endon("hash_994d5e9e");
 	while(1)
 	{
-		self waittill("boarding_window", var_c62a5d83);
+		self waittill("boarding_window", s_window);
 		self bgb::do_one_shot_use();
-		self thread function_64ea6cea(var_c62a5d83);
+		self thread function_64ea6cea(s_window);
 	}
 }
 
@@ -97,11 +97,11 @@ function function_3c61f2df()
 	Parameters: 1
 	Flags: None
 */
-function function_64ea6cea(var_c62a5d83)
+function function_64ea6cea(s_window)
 {
 	wait(0.3);
 	a_ai = GetAITeamArray(level.zombie_team);
-	a_closest = ArraySortClosest(a_ai, var_c62a5d83.origin, a_ai.size, 0, 180);
+	a_closest = ArraySortClosest(a_ai, s_window.origin, a_ai.size, 0, 180);
 	for(i = 0; i < a_closest.size; i++)
 	{
 		if(a_closest[i].archetype === "zombie" && isalive(a_closest[i]))

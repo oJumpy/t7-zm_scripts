@@ -52,7 +52,7 @@ function __init__()
 	clientfield::register("toplayer", "hallucinate_bloody_walls", 9000, 1, "int");
 	clientfield::register("toplayer", "hallucinate_spooky_sounds", 9000, 1, "int");
 	callback::on_spawned(&on_player_spawned);
-	callback::on_connect(&function_8feafce2);
+	callback::on_connect(&on_player_connected);
 	level.var_40e8eaa5 = [];
 	level.var_40e8eaa5["bloody_walls"] = GetEnt("vol_hallucinate_bloody_walls", "targetname");
 	level.var_40e8eaa5["corpses"] = GetEnt("vol_hallucinate_corpses", "targetname");
@@ -75,7 +75,7 @@ function main()
 }
 
 /*
-	Name: function_8feafce2
+	Name: on_player_connected
 	Namespace: namespace_c63a0940
 	Checksum: 0x8E40123B
 	Offset: 0x630
@@ -83,7 +83,7 @@ function main()
 	Parameters: 0
 	Flags: None
 */
-function function_8feafce2()
+function on_player_connected()
 {
 	self flag::init("hallucination_spookysounds_on");
 	self flag::init("hallucination_bloodywalls_on");
@@ -295,7 +295,7 @@ function function_f0aa6b80(b_on)
 function function_c6d55b0d()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_4c6daca1);
+		zm_devgui::add_custom_devgui_callback(&function_4c6daca1);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -357,17 +357,17 @@ function function_4c6daca1(cmd)
 	Parameters: 1
 	Flags: None
 */
-function function_ef6cd11(var_7156fcfa)
+function function_ef6cd11(n_exposures)
 {
 	/#
 		foreach(player in level.activePlayers)
 		{
-			player.var_5f5af9f0 = var_7156fcfa;
-			if(var_7156fcfa > 5)
+			player.var_5f5af9f0 = n_exposures;
+			if(n_exposures > 5)
 			{
 				player thread function_51d3efd();
 			}
-			if(var_7156fcfa > 15)
+			if(n_exposures > 15)
 			{
 				player thread function_5d6bcf98();
 			}

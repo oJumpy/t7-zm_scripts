@@ -169,10 +169,10 @@ function function_9d4a523c(var_24ee4867)
 	Parameters: 2
 	Flags: None
 */
-function function_4173be8d(var_d484b386, var_15872fa7)
+function function_4173be8d(var_d484b386, str_docked)
 {
 	exploder::stop_exploder("lgt_" + var_d484b386 + "_down");
-	while(level flag::get("tram_moving") || level flag::get(var_15872fa7))
+	while(level flag::get("tram_moving") || level flag::get(str_docked))
 	{
 		exploder::exploder("lgt_" + var_d484b386 + "_up");
 		wait(0.6);
@@ -245,8 +245,8 @@ function function_427ee40c()
 		level flag::set("player_tram_docked");
 		level flag::clear("tram_moving");
 		wait(0.5);
-		var_f2c2f39 = 1;
-		function_1d6e73d0(e_who, s_spawn_pos, var_f2c2f39);
+		b_special = 1;
+		function_1d6e73d0(e_who, s_spawn_pos, b_special);
 		while(isdefined(function_9d4a523c("player_tram_car_interior")) && function_9d4a523c("player_tram_car_interior"))
 		{
 			wait(0.1);
@@ -362,37 +362,37 @@ function function_3584e778(a_ents)
 */
 function function_7b56c646()
 {
-	var_b86004b6 = GetEntArray("tram_clip", "targetname");
+	e_tram_clip = GetEntArray("tram_clip", "targetname");
 	var_5cbc86c9 = GetEntArray("tram_gates", "targetname");
-	foreach(var_a7c049ac in var_5cbc86c9)
+	foreach(e_gate in var_5cbc86c9)
 	{
-		var_a7c049ac.start_pos = var_a7c049ac.origin;
-		var_a6052bbf = struct::get(var_a7c049ac.target, "targetname");
-		var_a7c049ac.open_pos = var_a6052bbf.origin;
+		e_gate.start_pos = e_gate.origin;
+		s_link = struct::get(e_gate.target, "targetname");
+		e_gate.open_pos = s_link.origin;
 	}
 	while(1)
 	{
 		level flag::wait_till("tram_docked");
-		foreach(e_clip in var_b86004b6)
+		foreach(e_clip in e_tram_clip)
 		{
 			e_clip notsolid();
 			e_clip connectpaths();
 		}
-		foreach(var_a7c049ac in var_5cbc86c9)
+		foreach(e_gate in var_5cbc86c9)
 		{
-			var_a7c049ac moveto(var_a7c049ac.open_pos, 1.5);
-			var_a7c049ac playsound("evt_tram_station_gate");
+			e_gate moveto(e_gate.open_pos, 1.5);
+			e_gate playsound("evt_tram_station_gate");
 		}
 		level flag::wait_till_clear("tram_docked");
-		foreach(e_clip in var_b86004b6)
+		foreach(e_clip in e_tram_clip)
 		{
 			e_clip solid();
 			e_clip disconnectpaths();
 		}
-		foreach(var_a7c049ac in var_5cbc86c9)
+		foreach(e_gate in var_5cbc86c9)
 		{
-			var_a7c049ac moveto(var_a7c049ac.start_pos, 0.5);
-			var_a7c049ac playsound("evt_tram_station_gate");
+			e_gate moveto(e_gate.start_pos, 0.5);
+			e_gate playsound("evt_tram_station_gate");
 		}
 	}
 }
@@ -408,13 +408,13 @@ function function_7b56c646()
 */
 function function_3fb91800()
 {
-	var_b86004b6 = GetEntArray("player_tram_clip", "targetname");
+	e_tram_clip = GetEntArray("player_tram_clip", "targetname");
 	var_5cbc86c9 = GetEntArray("player_tram_gates", "targetname");
-	foreach(var_a7c049ac in var_5cbc86c9)
+	foreach(e_gate in var_5cbc86c9)
 	{
-		var_a7c049ac.start_pos = var_a7c049ac.origin;
-		var_a6052bbf = struct::get(var_a7c049ac.target, "targetname");
-		var_a7c049ac.open_pos = var_a6052bbf.origin;
+		e_gate.start_pos = e_gate.origin;
+		s_link = struct::get(e_gate.target, "targetname");
+		e_gate.open_pos = s_link.origin;
 	}
 	while(isdefined(level.var_f31afb37) && level.var_f31afb37)
 	{
@@ -423,26 +423,26 @@ function function_3fb91800()
 	while(1)
 	{
 		level flag::wait_till("player_tram_docked");
-		foreach(e_clip in var_b86004b6)
+		foreach(e_clip in e_tram_clip)
 		{
 			e_clip notsolid();
 			e_clip connectpaths();
 		}
-		foreach(var_a7c049ac in var_5cbc86c9)
+		foreach(e_gate in var_5cbc86c9)
 		{
-			var_a7c049ac moveto(var_a7c049ac.open_pos, 1.5);
-			var_a7c049ac playsound("evt_tram_station_gate");
+			e_gate moveto(e_gate.open_pos, 1.5);
+			e_gate playsound("evt_tram_station_gate");
 		}
 		level flag::wait_till_clear("player_tram_docked");
-		foreach(e_clip in var_b86004b6)
+		foreach(e_clip in e_tram_clip)
 		{
 			e_clip solid();
 			e_clip disconnectpaths();
 		}
-		foreach(var_a7c049ac in var_5cbc86c9)
+		foreach(e_gate in var_5cbc86c9)
 		{
-			var_a7c049ac moveto(var_a7c049ac.start_pos, 0.5);
-			var_a7c049ac playsound("evt_tram_station_gate");
+			e_gate moveto(e_gate.start_pos, 0.5);
+			e_gate playsound("evt_tram_station_gate");
 		}
 	}
 }
@@ -456,56 +456,56 @@ function function_3fb91800()
 	Parameters: 3
 	Flags: None
 */
-function function_1d6e73d0(e_player, s_spawn_pos, var_f2c2f39)
+function function_1d6e73d0(e_player, s_spawn_pos, b_special)
 {
-	var_8643fc8a = RandomInt(100);
-	var_d54b1ec = [];
+	n_randy = RandomInt(100);
+	a_bonus_types = [];
 	/#
 		if(GetDvarInt("Dev Block strings are not supported") == 1)
 		{
-			var_8643fc8a = 20;
+			n_randy = 20;
 		}
 		else if(GetDvarInt("Dev Block strings are not supported") == 2)
 		{
-			var_8643fc8a = 5;
+			n_randy = 5;
 		}
 	#/
-	if(var_8643fc8a == 1 && level.round_number >= 5)
+	if(n_randy == 1 && level.round_number >= 5)
 	{
 		var_929a8e9b = 1;
 	}
-	else if(var_8643fc8a <= 20 && level.round_number >= 5)
+	else if(n_randy <= 20 && level.round_number >= 5)
 	{
-		Array::add(var_d54b1ec, "bonus_points_team");
-		Array::add(var_d54b1ec, "fire_sale");
+		Array::add(a_bonus_types, "bonus_points_team");
+		Array::add(a_bonus_types, "fire_sale");
 	}
 	else
 	{
-		Array::add(var_d54b1ec, "double_points");
-		Array::add(var_d54b1ec, "insta_kill");
-		Array::add(var_d54b1ec, "full_ammo");
+		Array::add(a_bonus_types, "double_points");
+		Array::add(a_bonus_types, "insta_kill");
+		Array::add(a_bonus_types, "full_ammo");
 		if(level.round_number >= 5)
 		{
-			Array::add(var_d54b1ec, "nuke");
+			Array::add(a_bonus_types, "nuke");
 		}
 		if(isdefined(e_player.hasRiotShield) && e_player.hasRiotShield && e_player getammocount(e_player.weaponRiotshield) !== e_player.weaponRiotshield.maxAmmo)
 		{
-			Array::add(var_d54b1ec, "shield_charge");
+			Array::add(a_bonus_types, "shield_charge");
 		}
 	}
 	var_a11baa62 = Array("fire_sale", "double_points", "insta_kill", "full_ammo", "nuke");
-	if(isdefined(var_f2c2f39) && var_f2c2f39)
+	if(isdefined(b_special) && b_special)
 	{
-		var_8b961b44 = function_b29057c7(e_player);
-		var_bd4efc7d = s_spawn_pos function_b21df67c(e_player, var_8b961b44);
+		w_to_spawn = function_b29057c7(e_player);
+		var_bd4efc7d = s_spawn_pos function_b21df67c(e_player, w_to_spawn);
 	}
 	else if(isdefined(var_929a8e9b) && var_929a8e9b)
 	{
-		var_8b961b44 = GetWeapon("ray_gun");
+		w_to_spawn = GetWeapon("ray_gun");
 		var_2fd9a02f = zm_pap_util::get_triggers();
-		if(zm_magicbox::treasure_chest_CanPlayerReceiveWeapon(e_player, var_8b961b44, var_2fd9a02f))
+		if(zm_magicbox::treasure_chest_CanPlayerReceiveWeapon(e_player, w_to_spawn, var_2fd9a02f))
 		{
-			var_bd4efc7d = s_spawn_pos function_b21df67c(e_player, var_8b961b44);
+			var_bd4efc7d = s_spawn_pos function_b21df67c(e_player, w_to_spawn);
 		}
 		else
 		{
@@ -516,11 +516,11 @@ function function_1d6e73d0(e_player, s_spawn_pos, var_f2c2f39)
 	}
 	else
 	{
-		str_type = Array::random(var_d54b1ec);
+		str_type = Array::random(a_bonus_types);
 		var_bd4efc7d = zm_powerups::specific_powerup_drop(str_type, s_spawn_pos.origin);
 		var_bd4efc7d thread function_bb44b161(str_type, var_a11baa62);
 	}
-	if(var_8643fc8a >= 97)
+	if(n_randy >= 97)
 	{
 		var_f1c9d472 = struct::get("tram_enemy_spawn_pos", "targetname");
 		var_88af999e = zombie_utility::spawn_zombie(level.zombie_spawners[0], "tram_car_zombie", var_f1c9d472);
@@ -541,7 +541,7 @@ function function_1d6e73d0(e_player, s_spawn_pos, var_f2c2f39)
 function function_bb44b161(str_powerup, var_a11baa62)
 {
 	self endon("powerup_grabbed");
-	var_ee91d5b = self.model;
+	mdl_final = self.model;
 	for(i = 0; i < 3; i++)
 	{
 		for(j = 0; j < var_a11baa62.size; j++)
@@ -551,7 +551,7 @@ function function_bb44b161(str_powerup, var_a11baa62)
 			wait(0.12);
 		}
 	}
-	self SetModel(var_ee91d5b);
+	self SetModel(mdl_final);
 }
 
 /*
@@ -582,20 +582,20 @@ function function_b29057c7(player)
 	Parameters: 2
 	Flags: None
 */
-function function_b21df67c(e_player, var_8b961b44)
+function function_b21df67c(e_player, w_to_spawn)
 {
 	v_spawnpt = self.origin + (0, 0, 40);
 	v_spawnang = (0, 0, 0);
 	v_angles = e_player getPlayerAngles();
 	v_angles = (0, v_angles[1], 0) + VectorScale((0, 1, 0), 90) + v_spawnang;
-	mdl_weapon = zm_utility::spawn_buildkit_weapon_model(e_player, var_8b961b44, undefined, v_spawnpt, v_angles);
+	mdl_weapon = zm_utility::spawn_buildkit_weapon_model(e_player, w_to_spawn, undefined, v_spawnpt, v_angles);
 	mdl_weapon.angles = v_angles;
 	mdl_weapon thread timer_til_despawn(v_spawnpt);
 	mdl_weapon endon("powerup_timedout");
-	mdl_weapon.trigger = function_a40fee2f(v_spawnpt, 100);
-	mdl_weapon.trigger.var_d2af076 = var_8b961b44;
-	mdl_weapon.trigger.prompt_and_visibility_func = &function_3674f451;
-	mdl_weapon thread function_cc0d2cc9(var_8b961b44);
+	mdl_weapon.trigger = spawn_unitrigger(v_spawnpt, 100);
+	mdl_weapon.trigger.wpn = w_to_spawn;
+	mdl_weapon.trigger.prompt_and_visibility_func = &weapon_trigger_update_prompt;
+	mdl_weapon thread function_cc0d2cc9(w_to_spawn);
 	return mdl_weapon;
 }
 
@@ -608,11 +608,11 @@ function function_b21df67c(e_player, var_8b961b44)
 	Parameters: 1
 	Flags: None
 */
-function function_cc0d2cc9(var_8b961b44)
+function function_cc0d2cc9(w_to_spawn)
 {
 	self.trigger waittill("trigger", e_who);
 	self notify("powerup_grabbed");
-	e_who zm_weapons::weapon_give(var_8b961b44, 0, 0);
+	e_who zm_weapons::weapon_give(w_to_spawn, 0, 0);
 	if(isdefined(self.trigger))
 	{
 		zm_unitrigger::unregister_unitrigger(self.trigger);
@@ -661,7 +661,7 @@ function timer_til_despawn(v_float, n_dist)
 }
 
 /*
-	Name: function_3674f451
+	Name: weapon_trigger_update_prompt
 	Namespace: namespace_30db0d4
 	Checksum: 0xBD1E59AD
 	Offset: 0x2F48
@@ -669,9 +669,9 @@ function timer_til_despawn(v_float, n_dist)
 	Parameters: 1
 	Flags: None
 */
-function function_3674f451(player)
+function weapon_trigger_update_prompt(player)
 {
-	self setcursorhint("HINT_WEAPON", self.stub.var_d2af076);
+	self setcursorhint("HINT_WEAPON", self.stub.wpn);
 	self setHintString(&"ZOMBIE_TRADE_WEAPON_FILL");
 	return 1;
 }
@@ -688,7 +688,7 @@ function function_3674f451(player)
 function function_97f09efd()
 {
 	e_lever = struct::get("tram_call_lever_2", "targetname");
-	t_use = function_a40fee2f(e_lever.origin, 60);
+	t_use = spawn_unitrigger(e_lever.origin, 60);
 	t_use.hint_string = &"ZM_CASTLE_TRAM_REQUIRES_TOKEN";
 	t_use.var_5be78056 = 0;
 	level thread function_8f0015e0();
@@ -704,7 +704,7 @@ function function_97f09efd()
 			level.var_f0adc88a ShowPart("j_fuse_main");
 			e_who PlayRumbleOnEntity("zm_castle_interact_rumble");
 			playsoundatposition("vox_maxis_gondola_pa_called_0", (400, 675, 40));
-			var_8643fc8a = RandomInt(100);
+			n_randy = RandomInt(100);
 			if(isdefined(e_who.var_a1ba5103) && e_who.var_a1ba5103 && e_who.var_66e0478a >= 5)
 			{
 				level notify("hash_95a2806", e_who);
@@ -805,7 +805,7 @@ function function_19b8e1e4(str_message, param1)
 }
 
 /*
-	Name: function_a40fee2f
+	Name: spawn_unitrigger
 	Namespace: namespace_30db0d4
 	Checksum: 0xB015D737
 	Offset: 0x3698
@@ -813,7 +813,7 @@ function function_19b8e1e4(str_message, param1)
 	Parameters: 2
 	Flags: None
 */
-function function_a40fee2f(origin, radius)
+function spawn_unitrigger(origin, radius)
 {
 	trigger_stub = spawnstruct();
 	trigger_stub.origin = origin;
@@ -887,7 +887,7 @@ function function_5ea427bf(player)
 function unitrigger_think()
 {
 	self endon("kill_trigger");
-	self.stub thread function_c1947ff7();
+	self.stub thread unitrigger_refresh_message();
 	while(1)
 	{
 		self waittill("trigger", var_4161ad80);
@@ -896,7 +896,7 @@ function unitrigger_think()
 }
 
 /*
-	Name: function_c1947ff7
+	Name: unitrigger_refresh_message
 	Namespace: namespace_30db0d4
 	Checksum: 0xF7F2E08A
 	Offset: 0x3A68
@@ -904,7 +904,7 @@ function unitrigger_think()
 	Parameters: 0
 	Flags: None
 */
-function function_c1947ff7()
+function unitrigger_refresh_message()
 {
 	self zm_unitrigger::run_visibility_function_for_all_triggers();
 }
@@ -977,7 +977,7 @@ function function_57f998e3()
 	/#
 		level waittill("start_zombie_round_logic");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_72d0fbe3);
+		zm_devgui::add_custom_devgui_callback(&function_72d0fbe3);
 	#/
 }
 

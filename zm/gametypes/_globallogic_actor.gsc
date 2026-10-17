@@ -24,7 +24,7 @@
 function Callback_ActorSpawned(spawner)
 {
 	self thread spawner::run_spawn_functions();
-	bb::function_a96d8fec(self, spawner);
+	bb::logaispawn(self, spawner);
 }
 
 /*

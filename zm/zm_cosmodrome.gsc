@@ -123,7 +123,7 @@ function main()
 	zm::init_fx();
 	level.zombiemode = 1;
 	level._zmbVoxLevelSpecific = &init_level_specific_audio;
-	level._round_start_func = &function_a4a54181;
+	level._round_start_func = &round_start_delayed;
 	level.giveCustomCharacters = &giveCustomCharacters;
 	initCharacterStartIndex();
 	level.random_pandora_box_start = 0;
@@ -139,7 +139,7 @@ function main()
 	level.laststandpistol = level.default_laststandpistol;
 	level.start_weapon = level.default_laststandpistol;
 	level thread zm::last_stand_pistol_rank_init();
-	level.var_9aaae7ae = &function_869d6f66;
+	level.zm_bgb_anywhere_but_here_validation_override = &anywhere_but_here_validation_override;
 	level.var_35efa94c = &function_f97e7fed;
 	init_sounds();
 	level thread setupMusic();
@@ -151,7 +151,7 @@ function main()
 	level.player_out_of_playable_area_monitor_callback = &zombie_cosmodrome_player_out_of_playable_area_monitor_callback;
 	level thread namespace_b73b7f62::init();
 	level.monkey_round_start = &function_2c076a5e;
-	level.var_724fe496 = &function_980a894b;
+	level.monkey_round_stop = &function_980a894b;
 	level.pay_turret_cost = 1000;
 	level.lander_cost = 250;
 	level.custom_ai_type = [];
@@ -163,7 +163,7 @@ function main()
 	{
 		level.custom_ai_type = Array(level.custom_ai_type);
 	}
-	level.custom_ai_type[level.custom_ai_type.size] = &namespace_8fb880d9::function_4c8046f8;
+	level.custom_ai_type[level.custom_ai_type.size] = &zm_ai_monkey::monkey_zombie_init;
 	level.monkey_prespawn = &namespace_b73b7f62::monkey_cosmodrome_prespawn;
 	level.max_perks = 5;
 	level.max_solo_lives = 3;
@@ -187,12 +187,12 @@ function main()
 	level thread zm::post_main();
 	/#
 		execdevgui("Dev Block strings are not supported");
-		level.custom_devgui = &function_161eeb8e;
+		level.custom_devgui = &cosmodrome_devgui;
 		setup_devgui();
 	#/
 	level thread function_e509f24d();
 	level thread spawn_kill_brushes();
-	level thread function_9503fe88();
+	level thread hack_vending_clips();
 	level thread zm_perks::spare_change();
 	scene::add_scene_func("cin_zmhd_sizzle_cosmodrome_cam", &function_facd0d5e, "play");
 	scene::add_scene_func("cin_zmhd_sizzle_cosmodrome_cam2", &function_829f6f98, "play");
@@ -211,11 +211,11 @@ function main()
 function function_facd0d5e(a_ents)
 {
 	level thread scene::Play("cin_zmhd_sizzle_cosmodrome_cam2");
-	foreach(var_6cae1ad0 in a_ents)
+	foreach(mdl_ent in a_ents)
 	{
-		if(IsSubStr(var_6cae1ad0.model, "zombie") || IsSubStr(var_6cae1ad0.model, "cosmon"))
+		if(IsSubStr(mdl_ent.model, "zombie") || IsSubStr(mdl_ent.model, "cosmon"))
 		{
-			var_6cae1ad0 clientfield::set("zombie_has_eyes", 1);
+			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
 }
@@ -231,11 +231,11 @@ function function_facd0d5e(a_ents)
 */
 function function_829f6f98(a_ents)
 {
-	foreach(var_6cae1ad0 in a_ents)
+	foreach(mdl_ent in a_ents)
 	{
-		if(IsSubStr(var_6cae1ad0.model, "zombie") || IsSubStr(var_6cae1ad0.model, "cosmon"))
+		if(IsSubStr(mdl_ent.model, "zombie") || IsSubStr(mdl_ent.model, "cosmon"))
 		{
-			var_6cae1ad0 clientfield::set("zombie_has_eyes", 1);
+			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
 }
@@ -281,7 +281,7 @@ function init_clientfields()
 }
 
 /*
-	Name: function_a4a54181
+	Name: round_start_delayed
 	Namespace: namespace_670cb61
 	Checksum: 0x94CFBB68
 	Offset: 0x2698
@@ -289,15 +289,15 @@ function init_clientfields()
 	Parameters: 0
 	Flags: None
 */
-function function_a4a54181()
+function round_start_delayed()
 {
-	level notify("hash_fd9adc1e");
+	level notify("cue_music");
 	level flag::wait_till("lander_intro_done");
 	zm::round_start();
 }
 
 /*
-	Name: function_869d6f66
+	Name: anywhere_but_here_validation_override
 	Namespace: namespace_670cb61
 	Checksum: 0xC0E382DC
 	Offset: 0x26E0
@@ -305,7 +305,7 @@ function function_a4a54181()
 	Parameters: 0
 	Flags: None
 */
-function function_869d6f66()
+function anywhere_but_here_validation_override()
 {
 	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
 	{
@@ -382,26 +382,26 @@ function zombie_cosmodrome_player_out_of_playable_area_monitor_callback()
 */
 function centrifuge_jumpup_fix()
 {
-	var_157ff899 = GetEnt("centrifuge_jumpup", "targetname");
-	if(!isdefined(var_157ff899))
+	jumpblocker = GetEnt("centrifuge_jumpup", "targetname");
+	if(!isdefined(jumpblocker))
 	{
 		return;
 	}
-	jump_pos = var_157ff899.origin;
-	var_b9bd08ae = 0;
+	jump_pos = jumpblocker.origin;
+	centrifuge_occupied = 0;
 	while(1)
 	{
-		if(level.zones["centrifuge_zone"].is_occupied && var_b9bd08ae == 0)
+		if(level.zones["centrifuge_zone"].is_occupied && centrifuge_occupied == 0)
 		{
-			var_157ff899 MoveX(jump_pos[0] + 64, 0.1);
-			var_157ff899 disconnectpaths();
-			var_b9bd08ae = 1;
+			jumpblocker MoveX(jump_pos[0] + 64, 0.1);
+			jumpblocker disconnectpaths();
+			centrifuge_occupied = 1;
 		}
-		else if(!level.zones["centrifuge_zone"].is_occupied && var_b9bd08ae == 1)
+		else if(!level.zones["centrifuge_zone"].is_occupied && centrifuge_occupied == 1)
 		{
-			var_157ff899 moveto(jump_pos, 0.1);
-			var_157ff899 connectpaths();
-			var_b9bd08ae = 0;
+			jumpblocker moveto(jump_pos, 0.1);
+			jumpblocker connectpaths();
+			centrifuge_occupied = 0;
 		}
 		wait(1);
 	}
@@ -418,26 +418,26 @@ function centrifuge_jumpup_fix()
 */
 function centrifuge_jumpdown_fix()
 {
-	var_157ff899 = GetEnt("centrifuge_jumpdown", "targetname");
-	if(!isdefined(var_157ff899))
+	jumpblocker = GetEnt("centrifuge_jumpdown", "targetname");
+	if(!isdefined(jumpblocker))
 	{
 		return;
 	}
-	jump_pos = var_157ff899.origin;
-	var_ac214666 = 1;
+	jump_pos = jumpblocker.origin;
+	centrifuge2_occupied = 1;
 	while(1)
 	{
-		if(level.zones["centrifuge_zone2"].is_occupied && var_ac214666 == 0)
+		if(level.zones["centrifuge_zone2"].is_occupied && centrifuge2_occupied == 0)
 		{
-			var_157ff899 MoveX(jump_pos[0] + 64, 0.1);
-			var_157ff899 disconnectpaths();
-			var_ac214666 = 1;
+			jumpblocker MoveX(jump_pos[0] + 64, 0.1);
+			jumpblocker disconnectpaths();
+			centrifuge2_occupied = 1;
 		}
-		else if(!level.zones["centrifuge_zone2"].is_occupied && var_ac214666 == 1)
+		else if(!level.zones["centrifuge_zone2"].is_occupied && centrifuge2_occupied == 1)
 		{
-			var_157ff899 moveto(jump_pos, 0.1);
-			var_157ff899 connectpaths();
-			var_ac214666 = 0;
+			jumpblocker moveto(jump_pos, 0.1);
+			jumpblocker connectpaths();
+			centrifuge2_occupied = 0;
 		}
 		wait(1);
 	}
@@ -473,7 +473,7 @@ function custom_add_vox()
 }
 
 /*
-	Name: function_7eea24df
+	Name: magic_box_override
 	Namespace: namespace_670cb61
 	Checksum: 0x8204D5DB
 	Offset: 0x2BB0
@@ -481,7 +481,7 @@ function custom_add_vox()
 	Parameters: 0
 	Flags: None
 */
-function function_7eea24df()
+function magic_box_override()
 {
 	level flag::wait_till("all_players_connected");
 	players = GetPlayers();
@@ -586,30 +586,30 @@ function function_54da140a()
 		{
 			var_343b1937 = a_s_spots[i].script_int;
 		}
-		var_c15b2128 = [];
-		foreach(var_a0bd4da1 in level.zombie_spawners)
+		a_sp_zombies = [];
+		foreach(sp_zombie in level.zombie_spawners)
 		{
-			if(var_a0bd4da1.script_int == var_343b1937)
+			if(sp_zombie.script_int == var_343b1937)
 			{
-				if(!isdefined(var_c15b2128))
+				if(!isdefined(a_sp_zombies))
 				{
-					var_c15b2128 = [];
+					a_sp_zombies = [];
 				}
-				else if(!IsArray(var_c15b2128))
+				else if(!IsArray(a_sp_zombies))
 				{
-					var_c15b2128 = Array(var_c15b2128);
+					a_sp_zombies = Array(a_sp_zombies);
 				}
-				var_c15b2128[var_c15b2128.size] = var_a0bd4da1;
+				a_sp_zombies[a_sp_zombies.size] = sp_zombie;
 			}
 		}
-		if(var_c15b2128.size)
+		if(a_sp_zombies.size)
 		{
-			var_a0bd4da1 = Array::random(var_c15b2128);
-			return var_a0bd4da1;
+			sp_zombie = Array::random(a_sp_zombies);
+			return sp_zombie;
 		}
 	}
 	/#
-		Assert(isdefined(var_a0bd4da1), "Dev Block strings are not supported" + var_343b1937);
+		Assert(isdefined(sp_zombie), "Dev Block strings are not supported" + var_343b1937);
 	#/
 }
 
@@ -643,12 +643,12 @@ function electric_switch()
 */
 function wait_for_power()
 {
-	var_cf413835 = struct::get("power_switch", "targetname");
+	s_power_switch = struct::get("power_switch", "targetname");
 	level flag::wait_till("power_on");
-	playsoundatposition("zmb_switch_flip_start", var_cf413835.origin);
-	var_cf413835 scene::Play("p7_fxanim_zmhd_power_switch_bundle");
+	playsoundatposition("zmb_switch_flip_start", s_power_switch.origin);
+	s_power_switch scene::Play("p7_fxanim_zmhd_power_switch_bundle");
 	playFX(level._effect["switch_sparks"], struct::get("elec_switch_fx", "targetname").origin);
-	playsoundatposition("zmb_switch_flip", var_cf413835.origin);
+	playsoundatposition("zmb_switch_flip", s_power_switch.origin);
 	level thread namespace_9dd378ec::power_clangs();
 	level thread namespace_9dd378ec::play_cosmo_announcer_vox("vox_ann_power_switch");
 	level flag::set("lander_power");
@@ -692,7 +692,7 @@ function custom_pandora_show_func(anchor, anchorTarget, pieces)
 }
 
 /*
-	Name: function_49998a6e
+	Name: custom_pandora_fx_func
 	Namespace: namespace_670cb61
 	Checksum: 0x52082EEA
 	Offset: 0x3770
@@ -700,7 +700,7 @@ function custom_pandora_show_func(anchor, anchorTarget, pieces)
 	Parameters: 0
 	Flags: None
 */
-function function_49998a6e()
+function custom_pandora_fx_func()
 {
 	start_chest = GetEnt("start_chest", "script_noteworthy");
 	anchor = GetEnt(start_chest.target, "targetname");
@@ -725,12 +725,12 @@ function centrifuge_init()
 	centrifuge = GetEnt("centrifuge", "targetname");
 	if(isdefined(centrifuge))
 	{
-		centrifuge function_c6807eeb();
+		centrifuge centrifuge_rotate();
 	}
 }
 
 /*
-	Name: function_a97cb654
+	Name: link_centrifuge_pieces
 	Namespace: namespace_670cb61
 	Checksum: 0x3CF1089
 	Offset: 0x3920
@@ -738,7 +738,7 @@ function centrifuge_init()
 	Parameters: 0
 	Flags: None
 */
-function function_a97cb654()
+function link_centrifuge_pieces()
 {
 	pieces = GetEntArray(self.target, "targetname");
 	if(isdefined(pieces))
@@ -748,11 +748,11 @@ function function_a97cb654()
 			pieces[i] LinkTo(self);
 		}
 	}
-	self thread function_c6807eeb();
+	self thread centrifuge_rotate();
 }
 
 /*
-	Name: function_c6807eeb
+	Name: centrifuge_rotate
 	Namespace: namespace_670cb61
 	Checksum: 0x5FDA2F15
 	Offset: 0x39C8
@@ -760,7 +760,7 @@ function function_a97cb654()
 	Parameters: 0
 	Flags: None
 */
-function function_c6807eeb()
+function centrifuge_rotate()
 {
 	while(1)
 	{
@@ -955,24 +955,24 @@ function cosmodrome_offhand_weapon_overrride()
 	Parameters: 1
 	Flags: None
 */
-function offhand_weapon_give_override(var_1bcd223d)
+function offhand_weapon_give_override(w_current_weapon)
 {
 	self endon("death");
-	if(zm_utility::is_tactical_grenade(var_1bcd223d) && isdefined(self zm_utility::get_player_tactical_grenade()) && !self zm_utility::is_player_tactical_grenade(var_1bcd223d))
+	if(zm_utility::is_tactical_grenade(w_current_weapon) && isdefined(self zm_utility::get_player_tactical_grenade()) && !self zm_utility::is_player_tactical_grenade(w_current_weapon))
 	{
 		self SetWeaponAmmoClip(self zm_utility::get_player_tactical_grenade(), 0);
 		self TakeWeapon(self zm_utility::get_player_tactical_grenade());
 	}
-	if(var_1bcd223d.name == "black_hole_bomb")
+	if(w_current_weapon.name == "black_hole_bomb")
 	{
 		self namespace_d6b63386::player_give_black_hole_bomb();
-		self zm_weapons::play_weapon_vo(var_1bcd223d);
+		self zm_weapons::play_weapon_vo(w_current_weapon);
 		return 1;
 	}
-	if(var_1bcd223d.name == "nesting_dolls")
+	if(w_current_weapon.name == "nesting_dolls")
 	{
 		self namespace_d2920ea5::player_give_nesting_dolls();
-		self zm_weapons::play_weapon_vo(var_1bcd223d);
+		self zm_weapons::play_weapon_vo(w_current_weapon);
 		return 1;
 	}
 	return 0;
@@ -1024,7 +1024,7 @@ function setupMusic()
 }
 
 /*
-	Name: function_9503fe88
+	Name: hack_vending_clips
 	Namespace: namespace_670cb61
 	Checksum: 0xB0AA645D
 	Offset: 0x44A8
@@ -1032,7 +1032,7 @@ function setupMusic()
 	Parameters: 0
 	Flags: None
 */
-function function_9503fe88()
+function hack_vending_clips()
 {
 	perk_machines = GetEntArray("zombie_vending", "targetname");
 	var_4b718fa4 = GetEnt("new_revive_clip", "targetname");
@@ -1050,7 +1050,7 @@ function function_9503fe88()
 }
 
 /*
-	Name: function_161eeb8e
+	Name: cosmodrome_devgui
 	Namespace: namespace_670cb61
 	Checksum: 0x95711123
 	Offset: 0x45E8
@@ -1058,51 +1058,51 @@ function function_9503fe88()
 	Parameters: 1
 	Flags: None
 */
-function function_161eeb8e(cmd)
+function cosmodrome_devgui(cmd)
 {
 	/#
-		level.var_6708aa9c = 0;
+		level.debug_centrifuge_always_spin = 0;
 		cmd_strings = StrTok(cmd, "Dev Block strings are not supported");
 		switch(cmd_strings[0])
 		{
 			case "Dev Block strings are not supported":
 			{
-				function_797b2641();
+				devgui_skipto_monkey_round();
 				break;
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_f0357d95();
+				devgui_give_black_hole_bomb();
 				break;
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_d360e7c6();
+				devgui_give_dolls();
 				break;
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_d9e82452();
+				devgui_launch_rocket();
 				break;
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_b8df7e30(1);
+				devgui_centrifuge_always_on(1);
 				break;
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_b8df7e30(0);
+				devgui_centrifuge_always_on(0);
 				break;
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_83393018(0);
+				devgui_lander_cooldown(0);
 				break;
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_83393018(1);
+				devgui_lander_cooldown(1);
 				break;
 			}
 			case "Dev Block strings are not supported":
@@ -1111,27 +1111,27 @@ function function_161eeb8e(cmd)
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_c0e05145();
+				debug_skip_luna();
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_c28796c3();
+				debug_skip_pressure_plate();
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_f567fa2e();
+				debug_skip_sync();
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_502e7927();
+				debug_skip_reroute();
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_a53ed1da();
+				debug_skip_teleport();
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_8a5ca1ef();
+				devgui_kassimir_mechanism_egg_debug();
 				break;
 			}
 			case default:
@@ -1154,7 +1154,7 @@ function function_161eeb8e(cmd)
 function setup_devgui()
 {
 	/#
-		level.var_6708aa9c = 0;
+		level.debug_centrifuge_always_spin = 0;
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -1219,7 +1219,7 @@ function function_58ab8a92()
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_797b2641();
+				devgui_skipto_monkey_round();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
@@ -1261,92 +1261,92 @@ function function_58ab8a92()
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_f0357d95();
+				devgui_give_black_hole_bomb();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_d360e7c6();
+				devgui_give_dolls();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_d9e82452();
+				devgui_launch_rocket();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_b8df7e30(1);
+				devgui_centrifuge_always_on(1);
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_b8df7e30(0);
+				devgui_centrifuge_always_on(0);
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_83393018(0);
+				devgui_lander_cooldown(0);
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_83393018(1);
+				devgui_lander_cooldown(1);
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
-				level.var_ee92e6f7 = 1;
+				level.sp_egg_testing = 1;
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
 				function_55336afe();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
-				level.var_ee92e6f7 = 1;
+				level.sp_egg_testing = 1;
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_c0e05145();
+				debug_skip_luna();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
-				level.var_ee92e6f7 = 1;
+				level.sp_egg_testing = 1;
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_c28796c3();
+				debug_skip_pressure_plate();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
-				level.var_ee92e6f7 = 1;
+				level.sp_egg_testing = 1;
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_f567fa2e();
+				debug_skip_sync();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
-				level.var_ee92e6f7 = 1;
+				level.sp_egg_testing = 1;
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_502e7927();
+				debug_skip_reroute();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
-				level.var_ee92e6f7 = 1;
+				level.sp_egg_testing = 1;
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_a53ed1da();
+				debug_skip_teleport();
 			}
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
-				level.var_ee92e6f7 = 1;
+				level.sp_egg_testing = 1;
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 				IPrintLnBold("Dev Block strings are not supported");
-				function_8a5ca1ef();
+				devgui_kassimir_mechanism_egg_debug();
 			}
 			wait(0.5);
 		}
@@ -1354,7 +1354,7 @@ function function_58ab8a92()
 }
 
 /*
-	Name: function_797b2641
+	Name: devgui_skipto_monkey_round
 	Namespace: namespace_670cb61
 	Checksum: 0xFC2E3B31
 	Offset: 0x56C0
@@ -1362,7 +1362,7 @@ function function_58ab8a92()
 	Parameters: 0
 	Flags: None
 */
-function function_797b2641()
+function devgui_skipto_monkey_round()
 {
 	/#
 		if(!level flag::get("Dev Block strings are not supported"))
@@ -1381,15 +1381,15 @@ function function_797b2641()
 		}
 		else
 		{
-			var_2921da00 = Array("Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported");
+			a_str_cosmo_perks = Array("Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported");
 			e_player = GetPlayers()[0];
-			var_18253ec9 = randomIntRange(0, var_2921da00.size - 1);
-			while(e_player hasPerk(var_2921da00[var_18253ec9]))
+			n_perk_index = randomIntRange(0, a_str_cosmo_perks.size - 1);
+			while(e_player hasPerk(a_str_cosmo_perks[n_perk_index]))
 			{
-				var_18253ec9 = randomIntRange(0, var_2921da00.size - 1);
+				n_perk_index = randomIntRange(0, a_str_cosmo_perks.size - 1);
 				util::wait_network_frame();
 			}
-			zm_devgui::zombie_devgui_give_perk(var_2921da00[var_18253ec9]);
+			zm_devgui::zombie_devgui_give_perk(a_str_cosmo_perks[n_perk_index]);
 		}
 		if(!level flag::get("Dev Block strings are not supported"))
 		{
@@ -1400,10 +1400,10 @@ function function_797b2641()
 		}
 		level flag::wait_till("Dev Block strings are not supported");
 		wait(0.05);
-		var_307510ba = level.round_number + 1;
-		iprintln("Dev Block strings are not supported" + var_307510ba);
-		level.next_monkey_round = var_307510ba;
-		zm_devgui::zombie_devgui_goto_round(var_307510ba);
+		n_next_round = level.round_number + 1;
+		iprintln("Dev Block strings are not supported" + n_next_round);
+		level.next_monkey_round = n_next_round;
+		zm_devgui::zombie_devgui_goto_round(n_next_round);
 	#/
 }
 
@@ -1419,21 +1419,21 @@ function function_797b2641()
 function function_9d5d7bb3(choose)
 {
 	/#
-		vending_triggers = namespace_8fb880d9::function_5b9c3e11();
+		vending_triggers = zm_ai_monkey::get_monkey_vending_triggers();
 		target_trigger = vending_triggers[0];
 		player = GetPlayers()[0];
 		closest_dist_sq = DistanceSquared(player.origin, target_trigger.origin);
-		foreach(var_807754d1 in vending_triggers)
+		foreach(vending_trigger in vending_triggers)
 		{
-			if(var_807754d1 == target_trigger)
+			if(vending_trigger == target_trigger)
 			{
 				continue;
 			}
-			dist_sq = DistanceSquared(player.origin, var_807754d1.origin);
+			dist_sq = DistanceSquared(player.origin, vending_trigger.origin);
 			if(dist_sq < closest_dist_sq)
 			{
 				closest_dist_sq = dist_sq;
-				target_trigger = var_807754d1;
+				target_trigger = vending_trigger;
 			}
 		}
 		if(!isdefined(level.var_93621cb))
@@ -1445,42 +1445,42 @@ function function_9d5d7bb3(choose)
 			perk_attack_anim = undefined;
 			if(choose == 0)
 			{
-				if(isdefined(level.var_99568ae3[target_trigger.script_noteworthy]))
+				if(isdefined(level.monkey_perk_attack_anims[target_trigger.script_noteworthy]))
 				{
-					perk_attack_anim = level.var_99568ae3[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
+					perk_attack_anim = level.monkey_perk_attack_anims[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
 				}
 			}
 			else if(choose == 1)
 			{
-				if(isdefined(level.var_99568ae3[target_trigger.script_noteworthy]))
+				if(isdefined(level.monkey_perk_attack_anims[target_trigger.script_noteworthy]))
 				{
-					perk_attack_anim = level.var_99568ae3[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
+					perk_attack_anim = level.monkey_perk_attack_anims[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
 				}
 			}
 			else if(choose == 2)
 			{
-				if(isdefined(level.var_99568ae3[target_trigger.script_noteworthy]))
+				if(isdefined(level.monkey_perk_attack_anims[target_trigger.script_noteworthy]))
 				{
-					perk_attack_anim = level.var_99568ae3[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
+					perk_attack_anim = level.monkey_perk_attack_anims[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
 				}
 			}
 			else if(choose == 3)
 			{
-				if(isdefined(level.var_99568ae3[target_trigger.script_noteworthy]))
+				if(isdefined(level.monkey_perk_attack_anims[target_trigger.script_noteworthy]))
 				{
-					perk_attack_anim = level.var_99568ae3[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
+					perk_attack_anim = level.monkey_perk_attack_anims[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
 				}
 			}
 			else if(choose == 4)
 			{
-				if(isdefined(level.var_99568ae3[target_trigger.script_noteworthy]))
+				if(isdefined(level.monkey_perk_attack_anims[target_trigger.script_noteworthy]))
 				{
-					perk_attack_anim = level.var_99568ae3[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
+					perk_attack_anim = level.monkey_perk_attack_anims[target_trigger.script_noteworthy]["Dev Block strings are not supported"];
 				}
 			}
 			if(!isdefined(perk_attack_anim))
 			{
-				perk_attack_anim = level.var_99568ae3[choose];
+				perk_attack_anim = level.monkey_perk_attack_anims[choose];
 			}
 			attack_spots = struct::get_array(target_trigger.machine.target, "Dev Block strings are not supported");
 			spot = undefined;
@@ -1573,7 +1573,7 @@ function function_5b312f()
 }
 
 /*
-	Name: function_f0357d95
+	Name: devgui_give_black_hole_bomb
 	Namespace: namespace_670cb61
 	Checksum: 0x675F7C1A
 	Offset: 0x60B0
@@ -1581,7 +1581,7 @@ function function_5b312f()
 	Parameters: 0
 	Flags: None
 */
-function function_f0357d95()
+function devgui_give_black_hole_bomb()
 {
 	/#
 		players = GetPlayers();
@@ -1593,7 +1593,7 @@ function function_f0357d95()
 }
 
 /*
-	Name: function_d360e7c6
+	Name: devgui_give_dolls
 	Namespace: namespace_670cb61
 	Checksum: 0x314C3727
 	Offset: 0x6128
@@ -1601,7 +1601,7 @@ function function_f0357d95()
 	Parameters: 0
 	Flags: None
 */
-function function_d360e7c6()
+function devgui_give_dolls()
 {
 	/#
 		players = GetPlayers();
@@ -1613,7 +1613,7 @@ function function_d360e7c6()
 }
 
 /*
-	Name: function_d9e82452
+	Name: devgui_launch_rocket
 	Namespace: namespace_670cb61
 	Checksum: 0x6013858D
 	Offset: 0x61A0
@@ -1621,7 +1621,7 @@ function function_d360e7c6()
 	Parameters: 0
 	Flags: None
 */
-function function_d9e82452()
+function devgui_launch_rocket()
 {
 	/#
 		level flag::wait_till("Dev Block strings are not supported");
@@ -1631,12 +1631,12 @@ function function_d9e82452()
 		IPrintLnBold("Dev Block strings are not supported");
 		wait(5);
 		level flag::set("Dev Block strings are not supported");
-		level thread namespace_caf9f66::function_c680451d();
+		level thread namespace_caf9f66::pack_a_punch_open_door();
 	#/
 }
 
 /*
-	Name: function_b8df7e30
+	Name: devgui_centrifuge_always_on
 	Namespace: namespace_670cb61
 	Checksum: 0xF16E330B
 	Offset: 0x6250
@@ -1644,15 +1644,15 @@ function function_d9e82452()
 	Parameters: 1
 	Flags: None
 */
-function function_b8df7e30(var_416e7c7f)
+function devgui_centrifuge_always_on(b_always)
 {
 	/#
-		level.var_6708aa9c = var_416e7c7f;
+		level.debug_centrifuge_always_spin = b_always;
 	#/
 }
 
 /*
-	Name: function_83393018
+	Name: devgui_lander_cooldown
 	Namespace: namespace_670cb61
 	Checksum: 0xD71278A8
 	Offset: 0x6278
@@ -1660,15 +1660,15 @@ function function_b8df7e30(var_416e7c7f)
 	Parameters: 1
 	Flags: None
 */
-function function_83393018(var_a48bee9b)
+function devgui_lander_cooldown(b_cooldown)
 {
 	/#
-		level.var_a1879e28 = var_a48bee9b;
+		level.debug_lander_can_cooldown = b_cooldown;
 	#/
 }
 
 /*
-	Name: function_8a5ca1ef
+	Name: devgui_kassimir_mechanism_egg_debug
 	Namespace: namespace_670cb61
 	Checksum: 0xB4ADAC6E
 	Offset: 0x62A0
@@ -1676,20 +1676,20 @@ function function_83393018(var_a48bee9b)
 	Parameters: 0
 	Flags: None
 */
-function function_8a5ca1ef()
+function devgui_kassimir_mechanism_egg_debug()
 {
 	/#
-		if(!isdefined(level.var_ee92e6f7))
+		if(!isdefined(level.sp_egg_testing))
 		{
-			level.var_ee92e6f7 = 1;
-			level.var_4a2af85f = 1;
-			function_83393018(0);
+			level.sp_egg_testing = 1;
+			level.debug_pressure_plate_time = 1;
+			devgui_lander_cooldown(0);
 		}
 	#/
 }
 
 /*
-	Name: function_a53ed1da
+	Name: debug_skip_teleport
 	Namespace: namespace_670cb61
 	Checksum: 0x8BEED1CF
 	Offset: 0x62F0
@@ -1697,7 +1697,7 @@ function function_8a5ca1ef()
 	Parameters: 0
 	Flags: None
 */
-function function_a53ed1da()
+function debug_skip_teleport()
 {
 	/#
 		level thread namespace_f23e8c1a::teleport_target(level.teleport_target, level.teleport_target);
@@ -1707,7 +1707,7 @@ function function_a53ed1da()
 }
 
 /*
-	Name: function_502e7927
+	Name: debug_skip_reroute
 	Namespace: namespace_670cb61
 	Checksum: 0x6F2DC450
 	Offset: 0x6358
@@ -1715,17 +1715,17 @@ function function_a53ed1da()
 	Parameters: 0
 	Flags: None
 */
-function function_502e7927()
+function debug_skip_reroute()
 {
 	/#
-		level.var_4058a336 = 1;
+		level.debug_skip_reroute_event = 1;
 		level flag::set("Dev Block strings are not supported");
 		util::wait_network_frame();
 	#/
 }
 
 /*
-	Name: function_f567fa2e
+	Name: debug_skip_sync
 	Namespace: namespace_670cb61
 	Checksum: 0x7D024F0B
 	Offset: 0x63A8
@@ -1733,16 +1733,16 @@ function function_502e7927()
 	Parameters: 0
 	Flags: None
 */
-function function_f567fa2e()
+function debug_skip_sync()
 {
 	/#
-		level.var_dc7eef87 = 1;
+		level.debug_skip_sync_event = 1;
 		util::wait_network_frame();
 	#/
 }
 
 /*
-	Name: function_c28796c3
+	Name: debug_skip_pressure_plate
 	Namespace: namespace_670cb61
 	Checksum: 0x4645F6AA
 	Offset: 0x63D8
@@ -1750,16 +1750,16 @@ function function_f567fa2e()
 	Parameters: 0
 	Flags: None
 */
-function function_c28796c3()
+function debug_skip_pressure_plate()
 {
 	/#
-		level.var_c28796c3 = 1;
+		level.debug_skip_pressure_plate = 1;
 		util::wait_network_frame();
 	#/
 }
 
 /*
-	Name: function_c0e05145
+	Name: debug_skip_luna
 	Namespace: namespace_670cb61
 	Checksum: 0xBB0BC511
 	Offset: 0x6408
@@ -1767,10 +1767,10 @@ function function_c28796c3()
 	Parameters: 0
 	Flags: None
 */
-function function_c0e05145()
+function debug_skip_luna()
 {
 	/#
-		level.var_c0e05145 = 1;
+		level.debug_skip_luna = 1;
 		level flag::set("Dev Block strings are not supported");
 		util::wait_network_frame();
 	#/
@@ -1794,7 +1794,7 @@ function function_55336afe()
 }
 
 /*
-	Name: function_620401c0
+	Name: debug_display_at_pos
 	Namespace: namespace_670cb61
 	Checksum: 0x12CA6904
 	Offset: 0x6488
@@ -1802,7 +1802,7 @@ function function_55336afe()
 	Parameters: 4
 	Flags: None
 */
-function function_620401c0(v_org, str_msg, str_ender, n_scale)
+function debug_display_at_pos(v_org, str_msg, str_ender, n_scale)
 {
 	/#
 		if(!isdefined(n_scale))
@@ -1810,18 +1810,18 @@ function function_620401c0(v_org, str_msg, str_ender, n_scale)
 			n_scale = 1;
 		}
 		self endon(str_ender);
-		self thread function_9a889da5(str_msg, str_ender);
-		var_ded2b0d1 = v_org - VectorScale((0, 0, 1), 16);
+		self thread debug_display_end_msg(str_msg, str_ender);
+		v_display_org = v_org - VectorScale((0, 0, 1), 16);
 		while(1)
 		{
-			print3d(var_ded2b0d1, "Dev Block strings are not supported", VectorScale((0, 1, 0), 255), 1, n_scale, 1);
+			print3d(v_display_org, "Dev Block strings are not supported", VectorScale((0, 1, 0), 255), 1, n_scale, 1);
 			wait(0.1);
 		}
 	#/
 }
 
 /*
-	Name: function_9a889da5
+	Name: debug_display_end_msg
 	Namespace: namespace_670cb61
 	Checksum: 0x9F701AB5
 	Offset: 0x6560
@@ -1829,7 +1829,7 @@ function function_620401c0(v_org, str_msg, str_ender, n_scale)
 	Parameters: 2
 	Flags: None
 */
-function function_9a889da5(str_msg, str_ender)
+function debug_display_end_msg(str_msg, str_ender)
 {
 	/#
 		self waittill(str_ender);
@@ -1838,7 +1838,7 @@ function function_9a889da5(str_msg, str_ender)
 }
 
 /*
-	Name: function_bb831d
+	Name: debug_remove
 	Namespace: namespace_670cb61
 	Checksum: 0x2986CF87
 	Offset: 0x65A8
@@ -1846,7 +1846,7 @@ function function_9a889da5(str_msg, str_ender)
 	Parameters: 1
 	Flags: None
 */
-function function_bb831d(str_ender)
+function debug_remove(str_ender)
 {
 	/#
 		self notify(str_ender);

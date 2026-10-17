@@ -36,12 +36,12 @@ function init_no_mans_land()
 	level flag::init("start_supersprint");
 	level flag::init("between_rounds");
 	level flag::init("teleported_to_nml");
-	var_cd70fc20 = GetEntArray("nml_area1_spawners", "targetname");
-	var_3f786b5b = GetEntArray("nml_area2_spawners", "targetname");
-	Array::thread_all(var_cd70fc20, &spawner::add_spawn_function, &zm_spawner::zombie_spawn_init);
-	Array::thread_all(var_cd70fc20, &spawner::add_spawn_function, &zombie_utility::round_spawn_failsafe);
-	Array::thread_all(var_3f786b5b, &spawner::add_spawn_function, &zm_spawner::zombie_spawn_init);
-	Array::thread_all(var_3f786b5b, &spawner::add_spawn_function, &zombie_utility::round_spawn_failsafe);
+	a_chaser_spawners1 = GetEntArray("nml_area1_spawners", "targetname");
+	a_chaser_spawners2 = GetEntArray("nml_area2_spawners", "targetname");
+	Array::thread_all(a_chaser_spawners1, &spawner::add_spawn_function, &zm_spawner::zombie_spawn_init);
+	Array::thread_all(a_chaser_spawners1, &spawner::add_spawn_function, &zombie_utility::round_spawn_failsafe);
+	Array::thread_all(a_chaser_spawners2, &spawner::add_spawn_function, &zm_spawner::zombie_spawn_init);
+	Array::thread_all(a_chaser_spawners2, &spawner::add_spawn_function, &zombie_utility::round_spawn_failsafe);
 	level.on_the_moon = 0;
 	level.ever_been_on_the_moon = 0;
 	level.initial_spawn = 1;
@@ -644,10 +644,10 @@ function spawn_a_zombie(max_zombies, var_c194e88d, wait_delay, ignoregravity)
 	{
 		return undefined;
 	}
-	var_71aee853 = GetEntArray("nml_zone_spawner", "targetname");
-	e_spawner = Array::random(var_71aee853);
-	var_50f2968b = struct::get_array(var_c194e88d, "targetname");
-	s_spawn_loc = Array::random(var_50f2968b);
+	a_e_spawner = GetEntArray("nml_zone_spawner", "targetname");
+	e_spawner = Array::random(a_e_spawner);
+	a_s_spawn_loc = struct::get_array(var_c194e88d, "targetname");
+	s_spawn_loc = Array::random(a_s_spawn_loc);
 	ai = zombie_utility::spawn_zombie(e_spawner, var_c194e88d, s_spawn_loc);
 	if(isdefined(ai))
 	{
@@ -883,7 +883,7 @@ function perk_machines_hide(cola, jug, moving)
 				hackable = level.speed_cola_ents[1].hackable;
 			}
 		}
-		namespace_6d813654::register_pooled_hackable_struct(hackable, &namespace_75cc53cb::perk_hack, &namespace_75cc53cb::perk_hack_qualifier);
+		namespace_6d813654::register_pooled_hackable_struct(hackable, &zm_hackables_perks::perk_hack, &zm_hackables_perks::perk_hack_qualifier);
 	}
 }
 

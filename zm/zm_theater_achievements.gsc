@@ -75,13 +75,13 @@ function achievement_sound_func(achievement_name_lower)
 */
 function onPlayerConnect()
 {
-	self thread function_f2597520();
+	self thread achievement_ive_seen_some_things();
 	self thread function_24b05d89();
 	self thread function_6c831509();
 }
 
 /*
-	Name: function_f2597520
+	Name: achievement_ive_seen_some_things
 	Namespace: namespace_3c11443
 	Checksum: 0xB1DD48B2
 	Offset: 0x400
@@ -89,7 +89,7 @@ function onPlayerConnect()
 	Parameters: 0
 	Flags: None
 */
-function function_f2597520()
+function achievement_ive_seen_some_things()
 {
 	level endon("end_game");
 	self endon("disconnect");
@@ -101,10 +101,10 @@ function function_f2597520()
 	level flag::wait_till("power_on");
 	while(self.var_3ac4b03d.size > 0)
 	{
-		self waittill("player_teleported", var_b32c7926);
-		if(isdefined(var_b32c7926) && IsInt(var_b32c7926) && IsInArray(self.var_3ac4b03d, var_b32c7926))
+		self waittill("player_teleported", n_loc);
+		if(isdefined(n_loc) && IsInt(n_loc) && IsInArray(self.var_3ac4b03d, n_loc))
 		{
-			ArrayRemoveValue(self.var_3ac4b03d, var_b32c7926);
+			ArrayRemoveValue(self.var_3ac4b03d, n_loc);
 		}
 		wait(0.05);
 	}

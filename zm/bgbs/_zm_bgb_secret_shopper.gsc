@@ -96,8 +96,8 @@ function function_127dc5ca(player)
 	player endon("hash_994d5e9e");
 	while(1)
 	{
-		player waittill("hash_10c37787");
-		if(player.var_31f417c !== self)
+		player waittill("bgb_activation_request");
+		if(player.useholdent !== self)
 		{
 			continue;
 		}

@@ -348,9 +348,9 @@ function tank_setup()
 	self.e_roof = GetEnt("vol_on_tank_watch", "targetname");
 	self.e_roof EnableLinkTo();
 	self.e_roof LinkTo(self);
-	self.var_4da798ac = spawn("trigger_box", (-8192, -3955.5, 144), 0, 96, 41.5, 52.5);
-	self.var_4da798ac EnableLinkTo();
-	self.var_4da798ac LinkTo(self);
+	self.e_roof_extra = spawn("trigger_box", (-8192, -3955.5, 144), 0, 96, 41.5, 52.5);
+	self.e_roof_extra EnableLinkTo();
+	self.e_roof_extra LinkTo(self);
 	self.t_use = GetEnt("trig_use_tank", "targetname");
 	self.t_use EnableLinkTo();
 	self.t_use LinkTo(self);
@@ -366,15 +366,15 @@ function tank_setup()
 	self.t_kill = spawn("trigger_box", (-8192, -4300, 36), 0, 200, 150, 80);
 	self.t_kill EnableLinkTo();
 	self.t_kill LinkTo(self);
-	self.var_e444d47d[0] = spawn("trigger_box", (-8280, -3960, 112), 0, 64, 60, 96);
-	self.var_e444d47d[0].angles = VectorScale((0, 1, 0), 90);
-	self.var_e444d47d[0] EnableLinkTo();
-	self.var_e444d47d[0] LinkTo(self);
-	self.var_e444d47d[1] = spawn("trigger_box", (-8104, -3960, 112), 0, 64, 60, 96);
-	self.var_e444d47d[1].angles = VectorScale((0, 1, 0), 90);
-	self.var_e444d47d[1] EnableLinkTo();
-	self.var_e444d47d[1] LinkTo(self);
-	self.var_8f5473ed = GetWeapon("zombie_markiv_flamethrower");
+	self.t_rear_tread[0] = spawn("trigger_box", (-8280, -3960, 112), 0, 64, 60, 96);
+	self.t_rear_tread[0].angles = VectorScale((0, 1, 0), 90);
+	self.t_rear_tread[0] EnableLinkTo();
+	self.t_rear_tread[0] LinkTo(self);
+	self.t_rear_tread[1] = spawn("trigger_box", (-8104, -3960, 112), 0, 64, 60, 96);
+	self.t_rear_tread[1].angles = VectorScale((0, 1, 0), 90);
+	self.t_rear_tread[1] EnableLinkTo();
+	self.t_rear_tread[1] LinkTo(self);
+	self.w_flamethrower = GetWeapon("zombie_markiv_flamethrower");
 	m_tank_path_blocker = GetEnt("tank_path_blocker", "targetname");
 	m_tank_path_blocker delete();
 	a_tank_jump_down_spots = struct::get_array("tank_jump_down_spots", "script_noteworthy");
@@ -413,14 +413,14 @@ function function_c9714eb4()
 	level flag::wait_till("start_zombie_round_logic");
 	do
 	{
-		for(var_6b1535d6 = 0; var_6b1535d6 < self.a_tank_tags.size; var_6b1535d6++)
+		for(tag_index = 0; tag_index < self.a_tank_tags.size; tag_index++)
 		{
-			tag_origin = self GetTagOrigin(self.a_tank_tags[var_6b1535d6].str_tag);
+			tag_origin = self GetTagOrigin(self.a_tank_tags[tag_index].str_tag);
 			queryResult = PositionQuery_Source_Navigation(tag_origin, 0, 32, 128, 4);
 			if(queryResult.data.size)
 			{
 				result = queryResult.data[0];
-				self.a_tank_tags[var_6b1535d6].var_a6e72e82 = result.origin;
+				self.a_tank_tags[tag_index].var_a6e72e82 = result.origin;
 			}
 		}
 		self flag::wait_till("tank_moving");
@@ -444,14 +444,14 @@ function function_617c74cb()
 	level flag::wait_till("start_zombie_round_logic");
 	do
 	{
-		for(var_6b1535d6 = 0; var_6b1535d6 < self.a_mechz_tags.size; var_6b1535d6++)
+		for(tag_index = 0; tag_index < self.a_mechz_tags.size; tag_index++)
 		{
-			tag_origin = self GetTagOrigin(self.a_mechz_tags[var_6b1535d6].str_tag);
+			tag_origin = self GetTagOrigin(self.a_mechz_tags[tag_index].str_tag);
 			queryResult = PositionQuery_Source_Navigation(tag_origin, 0, 32, 128, 4);
 			if(queryResult.data.size)
 			{
 				result = queryResult.data[0];
-				self.a_mechz_tags[var_6b1535d6].var_a6e72e82 = result.origin;
+				self.a_mechz_tags[tag_index].var_a6e72e82 = result.origin;
 			}
 		}
 		self flag::wait_till("tank_moving");
@@ -471,11 +471,11 @@ function function_617c74cb()
 */
 function function_1db98f69(tag_name)
 {
-	foreach(var_98bcac1 in self.a_tank_tags)
+	foreach(tag_struct in self.a_tank_tags)
 	{
-		if(var_98bcac1.str_tag == tag_name)
+		if(tag_struct.str_tag == tag_name)
 		{
-			return var_98bcac1.var_a6e72e82;
+			return tag_struct.var_a6e72e82;
 		}
 	}
 	return undefined;
@@ -492,11 +492,11 @@ function function_1db98f69(tag_name)
 */
 function function_21d81b2c(tag_name)
 {
-	foreach(var_98bcac1 in self.a_mechz_tags)
+	foreach(tag_struct in self.a_mechz_tags)
 	{
-		if(var_98bcac1.str_tag == tag_name)
+		if(tag_struct.str_tag == tag_name)
 		{
-			return var_98bcac1.var_a6e72e82;
+			return tag_struct.var_a6e72e82;
 		}
 	}
 	return undefined;
@@ -651,9 +651,9 @@ function players_on_tank_update()
 					e_player thread tank_rumble_update();
 					e_player thread tank_rides_around_map_achievement_watcher();
 					e_player thread tank_force_crouch_from_prone_after_on_tank();
-					foreach(trig in self.var_e444d47d)
+					foreach(trig in self.t_rear_tread)
 					{
-						e_player thread function_de2a4a6e(trig);
+						e_player thread tank_push_player_off_edge(trig);
 					}
 					e_player AllowCrouch(1);
 					e_player AllowProne(0);
@@ -695,7 +695,7 @@ function tank_force_crouch_from_prone_after_on_tank()
 }
 
 /*
-	Name: function_de2a4a6e
+	Name: tank_push_player_off_edge
 	Namespace: zm_tomb_tank
 	Checksum: 0x3B4FDC7B
 	Offset: 0x2B58
@@ -703,7 +703,7 @@ function tank_force_crouch_from_prone_after_on_tank()
 	Parameters: 1
 	Flags: None
 */
-function function_de2a4a6e(trig)
+function tank_push_player_off_edge(trig)
 {
 	self endon("player_jumped_off_tank");
 	while(self.b_already_on_tank)
@@ -756,7 +756,7 @@ function tank_rides_around_map_achievement_watcher()
 */
 function entity_on_tank()
 {
-	if(!self IsOnGround() && (self istouching(level.vh_tank.e_roof) || self istouching(level.vh_tank.var_4da798ac)))
+	if(!self IsOnGround() && (self istouching(level.vh_tank.e_roof) || self istouching(level.vh_tank.e_roof_extra)))
 	{
 		return 1;
 	}
@@ -1092,7 +1092,7 @@ function tank_kill_players()
 	while(1)
 	{
 		self.t_kill waittill("trigger", player);
-		if(!isdefined(player.b_already_on_tank) && player.b_already_on_tank && (!isdefined(player.var_d0cd73ec) && player.var_d0cd73ec))
+		if(!isdefined(player.b_already_on_tank) && player.b_already_on_tank && (!isdefined(player.b_tank_ran_me_over) && player.b_tank_ran_me_over))
 		{
 			player thread tank_ran_me_over();
 			wait(0.05);
@@ -1121,7 +1121,7 @@ function tank_ran_me_over()
 		self DoDamage(5, self.origin);
 		return;
 	}
-	self.var_d0cd73ec = 1;
+	self.b_tank_ran_me_over = 1;
 	self DisableInvulnerability();
 	self DoDamage(self.health + 1000, self.origin);
 	a_nodes = GetNodesInRadiusSorted(self.origin, 256, 0, 72, "path", 15);
@@ -1146,11 +1146,11 @@ function tank_ran_me_over()
 			e_linker wait_to_unlink(self);
 			node.b_player_downed_here = undefined;
 			e_linker delete();
-			self.var_d0cd73ec = undefined;
+			self.b_tank_ran_me_over = undefined;
 			return;
 		}
 	}
-	self.var_d0cd73ec = undefined;
+	self.b_tank_ran_me_over = undefined;
 }
 
 /*
@@ -1297,41 +1297,41 @@ function tank_tag_array_setup()
 	a_tank_tags[0].disabled_at_bunker = 1;
 	a_tank_tags[0].disabled_at_church = 1;
 	a_tank_tags[0].side = "left";
-	a_tank_tags[0].var_bd6a9142 = "_markiv_leftfront";
+	a_tank_tags[0].anim_base = "_markiv_leftfront";
 	a_tank_tags[1] = spawnstruct();
 	a_tank_tags[1].str_tag = "window_left_2_jmp_jnt";
 	a_tank_tags[1].disabled_at_bunker = 1;
 	a_tank_tags[1].disabled_at_church = 1;
 	a_tank_tags[1].side = "left";
-	a_tank_tags[1].var_bd6a9142 = "_markiv_leftmid";
+	a_tank_tags[1].anim_base = "_markiv_leftmid";
 	a_tank_tags[2] = spawnstruct();
 	a_tank_tags[2].str_tag = "window_left_3_jmp_jnt";
 	a_tank_tags[2].disabled_at_bunker = 1;
 	a_tank_tags[2].disabled_at_church = 1;
 	a_tank_tags[2].side = "left";
-	a_tank_tags[2].var_bd6a9142 = "_markiv_leftrear";
+	a_tank_tags[2].anim_base = "_markiv_leftrear";
 	a_tank_tags[3] = spawnstruct();
 	a_tank_tags[3].str_tag = "window_right_front_jmp_jnt";
 	a_tank_tags[3].side = "front";
-	a_tank_tags[3].var_bd6a9142 = "_markiv_front";
+	a_tank_tags[3].anim_base = "_markiv_front";
 	a_tank_tags[4] = spawnstruct();
 	a_tank_tags[4].str_tag = "window_right_1_jmp_jnt";
 	a_tank_tags[4].side = "right";
-	a_tank_tags[4].var_bd6a9142 = "_markiv_rightfront";
+	a_tank_tags[4].anim_base = "_markiv_rightfront";
 	a_tank_tags[5] = spawnstruct();
 	a_tank_tags[5].str_tag = "window_right_2_jmp_jnt";
 	a_tank_tags[5].disabled_at_church = 1;
 	a_tank_tags[5].side = "right";
-	a_tank_tags[5].var_bd6a9142 = "_markiv_rightmid";
+	a_tank_tags[5].anim_base = "_markiv_rightmid";
 	a_tank_tags[6] = spawnstruct();
 	a_tank_tags[6].str_tag = "window_right_3_jmp_jnt";
 	a_tank_tags[6].disabled_at_church = 1;
 	a_tank_tags[6].side = "right";
-	a_tank_tags[6].var_bd6a9142 = "_markiv_rightrear";
+	a_tank_tags[6].anim_base = "_markiv_rightrear";
 	a_tank_tags[7] = spawnstruct();
 	a_tank_tags[7].str_tag = "window_left_rear_jmp_jnt";
 	a_tank_tags[7].side = "rear";
-	a_tank_tags[7].var_bd6a9142 = "_markiv_rear";
+	a_tank_tags[7].anim_base = "_markiv_rear";
 	return a_tank_tags;
 }
 
@@ -1607,7 +1607,7 @@ function choose_tag_and_chase()
 	if(isdefined(s_tag))
 	{
 		self.str_tank_tag = s_tag.str_tag;
-		self.var_69140779 = s_tag.var_bd6a9142;
+		self.var_69140779 = s_tag.anim_base;
 		self.tank_tag = s_tag;
 		self.tank_state = "tag_chase";
 	}
@@ -1632,7 +1632,7 @@ function choose_tag_and_jump_down()
 	if(isdefined(s_tag))
 	{
 		self.str_tank_tag = s_tag.str_tag;
-		self.var_69140779 = s_tag.var_bd6a9142;
+		self.var_69140779 = s_tag.anim_base;
 		self.tank_tag = struct::get(s_tag.str_tag + "_down_start", "targetname");
 		self.tank_state = "exit_tank";
 		self zombie_utility::set_zombie_run_cycle("walk");
@@ -1661,11 +1661,11 @@ function climb_tag()
 	self.tank_state = "climbing";
 	self.b_on_tank = 1;
 	str_tag = self.str_tank_tag;
-	var_b788969e = self.var_69140779;
+	str_anim_base = self.var_69140779;
 	self LinkTo(level.vh_tank, str_tag);
 	v_tag_origin = level.vh_tank GetTagOrigin(str_tag);
 	v_tag_angles = level.vh_tank GetTagAngles(str_tag);
-	str_anim_alias = "_jump_up" + var_b788969e;
+	str_anim_alias = "_jump_up" + str_anim_base;
 	if(level.vh_tank flag::get("tank_moving") && str_tag == "window_left_rear_jmp_jnt")
 	{
 		str_anim_alias = "_jump_up_onto_markiv_rear";
@@ -1712,12 +1712,12 @@ function jump_down_tag()
 	self endon("death");
 	self.tank_state = "jumping_down";
 	str_tag = self.str_tank_tag;
-	var_b788969e = self.var_69140779;
+	str_anim_base = self.var_69140779;
 	self LinkTo(level.vh_tank, str_tag);
 	v_tag_origin = level.vh_tank GetTagOrigin(str_tag);
 	v_tag_angles = level.vh_tank GetTagAngles(str_tag);
 	self setgoalpos(v_tag_origin);
-	str_anim_alias = "_jump_down" + var_b788969e;
+	str_anim_alias = "_jump_down" + str_anim_base;
 	if(self.missingLegs)
 	{
 		str_anim_alias = "_crawl" + str_anim_alias;
@@ -2353,12 +2353,12 @@ function flamethrower_damage_zombies(n_flamethrower_id, str_tag)
 				}
 				if(str_tag == "tag_flash")
 				{
-					ai_zombie zm_tomb_utility::do_damage_network_safe(self, ai_zombie.health, self.var_8f5473ed, "MOD_BURNED");
+					ai_zombie zm_tomb_utility::do_damage_network_safe(self, ai_zombie.health, self.w_flamethrower, "MOD_BURNED");
 					ai_zombie thread zm_tomb_utility::zombie_gib_guts();
 				}
 				else
 				{
-					ai_zombie thread namespace_ecdcc148::flame_damage_fx(self.var_8f5473ed, self);
+					ai_zombie thread namespace_ecdcc148::flame_damage_fx(self.w_flamethrower, self);
 				}
 				wait(0.05);
 			}

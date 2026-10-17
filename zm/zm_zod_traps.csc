@@ -38,12 +38,12 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "trap_chain_state", 1, 2, "int", &function_470e01bb, 0, 0);
-	clientfield::register("scriptmover", "trap_chain_location", 1, 2, "int", &function_4903bbf5, 0, 0);
+	clientfield::register("scriptmover", "trap_chain_state", 1, 2, "int", &update_chain_anims, 0, 0);
+	clientfield::register("scriptmover", "trap_chain_location", 1, 2, "int", &location_func, 0, 0);
 }
 
 /*
-	Name: function_470e01bb
+	Name: update_chain_anims
 	Namespace: namespace_d8d03071
 	Checksum: 0xF418AB20
 	Offset: 0x608
@@ -51,25 +51,25 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_470e01bb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function update_chain_anims(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_4951672f = [];
-	var_4951672f[0] = "theater";
-	var_4951672f[1] = "slums";
-	var_4951672f[2] = "canals";
-	var_4951672f[3] = "pap";
-	var_6f7d4e5a = self clientfield::get("trap_chain_location");
-	var_d42f02cf = var_4951672f[var_6f7d4e5a];
-	var_2ff7b73d = GetEntArray(localClientNum, "fxanim_chain_trap", "targetname");
-	var_2ff7b73d = Array::filter(var_2ff7b73d, 0, &function_1bfbfa4c, var_d42f02cf);
-	if(var_2ff7b73d.size > 0)
+	a_str_areaname = [];
+	a_str_areaname[0] = "theater";
+	a_str_areaname[1] = "slums";
+	a_str_areaname[2] = "canals";
+	a_str_areaname[3] = "pap";
+	int_location = self clientfield::get("trap_chain_location");
+	str_areaname = a_str_areaname[int_location];
+	a_mdl_chain_active = GetEntArray(localClientNum, "fxanim_chain_trap", "targetname");
+	a_mdl_chain_active = Array::filter(a_mdl_chain_active, 0, &filter_areaname, str_areaname);
+	if(a_mdl_chain_active.size > 0)
 	{
-		Array::thread_all(var_2ff7b73d, &function_53aebe0a, localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName);
+		Array::thread_all(a_mdl_chain_active, &update_active_chain_anims, localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName);
 	}
 }
 
 /*
-	Name: function_4903bbf5
+	Name: location_func
 	Namespace: namespace_d8d03071
 	Checksum: 0x87806552
 	Offset: 0x790
@@ -77,12 +77,12 @@ function function_470e01bb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_4903bbf5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function location_func(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 }
 
 /*
-	Name: function_1bfbfa4c
+	Name: filter_areaname
 	Namespace: namespace_d8d03071
 	Checksum: 0x131B17F7
 	Offset: 0x7D8
@@ -90,9 +90,9 @@ function function_4903bbf5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_1bfbfa4c(e_entity, var_d42f02cf)
+function filter_areaname(e_entity, str_areaname)
 {
-	if(e_entity.script_noteworthy !== var_d42f02cf)
+	if(e_entity.script_noteworthy !== str_areaname)
 	{
 		return 0;
 	}
@@ -100,7 +100,7 @@ function function_1bfbfa4c(e_entity, var_d42f02cf)
 }
 
 /*
-	Name: function_53aebe0a
+	Name: update_active_chain_anims
 	Namespace: namespace_d8d03071
 	Checksum: 0x632CE833
 	Offset: 0x818
@@ -108,46 +108,46 @@ function function_1bfbfa4c(e_entity, var_d42f02cf)
 	Parameters: 7
 	Flags: None
 */
-function function_53aebe0a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function update_active_chain_anims(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self notify("hash_53aebe0a");
-	self endon("hash_53aebe0a");
-	var_9f9d6054 = self;
-	var_9f9d6054 util::waittill_dobj(localClientNum);
+	self notify("update_active_chain_anims");
+	self endon("update_active_chain_anims");
+	mdl_chains_active = self;
+	mdl_chains_active util::waittill_dobj(localClientNum);
 	switch(newVal)
 	{
 		case 0:
 		{
-			self thread function_406fdb8("p7_fxanim_zm_zod_chain_trap_symbol_off_bundle", self);
+			self thread scene_play("p7_fxanim_zm_zod_chain_trap_symbol_off_bundle", self);
 			break;
 		}
 		case 1:
 		{
-			var_9f9d6054 show();
+			mdl_chains_active show();
 			scene::stop("p7_fxanim_zm_zod_chain_trap_symbol_off_bundle");
-			self thread function_406fdb8("p7_fxanim_zm_zod_chain_trap_symbol_on_bundle", self);
+			self thread scene_play("p7_fxanim_zm_zod_chain_trap_symbol_on_bundle", self);
 			break;
 		}
 		case 2:
 		{
 			self scene::stop();
-			var_9f9d6054 thread function_a89bd6f9();
+			mdl_chains_active thread function_a89bd6f9();
 			break;
 		}
 		case 3:
 		{
-			while(isdefined(self.var_d8823dfd))
+			while(isdefined(self.trap_active))
 			{
 				wait(0.01);
 			}
-			self thread function_406fdb8("p7_fxanim_zm_zod_chain_trap_symbol_off_bundle", self);
+			self thread scene_play("p7_fxanim_zm_zod_chain_trap_symbol_off_bundle", self);
 			break;
 		}
 	}
 }
 
 /*
-	Name: function_406fdb8
+	Name: scene_play
 	Namespace: namespace_d8d03071
 	Checksum: 0xD7013C9D
 	Offset: 0x9B0
@@ -155,12 +155,12 @@ function function_53aebe0a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_406fdb8(scene, var_165d49f6)
+function scene_play(scene, mdl_pod)
 {
-	self notify("hash_406fdb8");
-	self endon("hash_406fdb8");
+	self notify("scene_play");
+	self endon("scene_play");
 	self scene::stop();
-	self function_6221b6b9(scene, var_165d49f6);
+	self function_6221b6b9(scene, mdl_pod);
 	self scene::stop();
 }
 
@@ -173,10 +173,10 @@ function function_406fdb8(scene, var_165d49f6)
 	Parameters: 2
 	Flags: None
 */
-function function_6221b6b9(scene, var_165d49f6)
+function function_6221b6b9(scene, mdl_pod)
 {
 	level endon("demo_jump");
-	self scene::Play(scene, var_165d49f6);
+	self scene::Play(scene, mdl_pod);
 }
 
 /*
@@ -190,7 +190,7 @@ function function_6221b6b9(scene, var_165d49f6)
 */
 function function_a89bd6f9()
 {
-	self.var_d8823dfd = 1;
+	self.trap_active = 1;
 	self StopAllLoopSounds();
 	self playsound(0, "evt_chaintrap_start");
 	self PlayLoopSound("evt_chaintrap_loop", 0.5);
@@ -207,7 +207,7 @@ function function_a89bd6f9()
 	self thread scene::Play("p7_fxanim_zm_zod_chain_trap_symbol_off_bundle", self);
 	self StopAllLoopSounds(0.5);
 	self PlayLoopSound("evt_chaintrap_idle");
-	self.var_d8823dfd = undefined;
+	self.trap_active = undefined;
 }
 
 /*

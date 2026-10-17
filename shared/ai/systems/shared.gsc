@@ -21,7 +21,7 @@
 */
 function autoexec main()
 {
-	function_9b385ca5();
+	__constructor();
 	level.ai_weapon_throttle = Throttle;
 	Initialize(level.ai_weapon_throttle, 1);
 }

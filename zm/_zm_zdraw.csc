@@ -40,7 +40,7 @@ function __init__()
 {
 	/#
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
-		level.var_9cf5ce57 = spawnstruct();
+		level.zdraw = spawnstruct();
 		function_3e630288();
 		function_aa8545fe();
 		function_404ac348();
@@ -75,31 +75,31 @@ function __main__()
 function function_3e630288()
 {
 	/#
-		level.var_9cf5ce57.colors = [];
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (1, 0, 0);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (0, 1, 0);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (0, 0, 1);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (1, 1, 0);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (1, 0.5, 0);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (0, 1, 1);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (1, 0, 1);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (0, 0, 0);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (1, 1, 1);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.75);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.1);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.2);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.3);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.4);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.5);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.6);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.7);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.8);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.9);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (0.4392157, 0.5019608, 0.5647059);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (1, 0.7529412, 0.7960784);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 0), 0.5019608);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (0.5450981, 0.2705882, 0.07450981);
-		level.var_9cf5ce57.colors["Dev Block strings are not supported"] = (1, 1, 1);
+		level.zdraw.colors = [];
+		level.zdraw.colors["Dev Block strings are not supported"] = (1, 0, 0);
+		level.zdraw.colors["Dev Block strings are not supported"] = (0, 1, 0);
+		level.zdraw.colors["Dev Block strings are not supported"] = (0, 0, 1);
+		level.zdraw.colors["Dev Block strings are not supported"] = (1, 1, 0);
+		level.zdraw.colors["Dev Block strings are not supported"] = (1, 0.5, 0);
+		level.zdraw.colors["Dev Block strings are not supported"] = (0, 1, 1);
+		level.zdraw.colors["Dev Block strings are not supported"] = (1, 0, 1);
+		level.zdraw.colors["Dev Block strings are not supported"] = (0, 0, 0);
+		level.zdraw.colors["Dev Block strings are not supported"] = (1, 1, 1);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.75);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.1);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.2);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.3);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.4);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.5);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.6);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.7);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.8);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 1), 0.9);
+		level.zdraw.colors["Dev Block strings are not supported"] = (0.4392157, 0.5019608, 0.5647059);
+		level.zdraw.colors["Dev Block strings are not supported"] = (1, 0.7529412, 0.7960784);
+		level.zdraw.colors["Dev Block strings are not supported"] = VectorScale((1, 1, 0), 0.5019608);
+		level.zdraw.colors["Dev Block strings are not supported"] = (0.5450981, 0.2705882, 0.07450981);
+		level.zdraw.colors["Dev Block strings are not supported"] = (1, 1, 1);
 	#/
 }
 
@@ -115,18 +115,18 @@ function function_3e630288()
 function function_aa8545fe()
 {
 	/#
-		level.var_9cf5ce57.commands = [];
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_5ef6cf9b;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_eae4114a;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_f2f3c18e;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_8f04ad79;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_a13efe1c;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_b3b92edc;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_8c2ca616;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_3145e33f;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_f36ec3d2;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_7bdd3089;
-		level.var_9cf5ce57.commands["Dev Block strings are not supported"] = &function_be7cf134;
+		level.zdraw.commands = [];
+		level.zdraw.commands["Dev Block strings are not supported"] = &zdraw_color;
+		level.zdraw.commands["Dev Block strings are not supported"] = &zdraw_alpha;
+		level.zdraw.commands["Dev Block strings are not supported"] = &zdraw_duration;
+		level.zdraw.commands["Dev Block strings are not supported"] = &function_8f04ad79;
+		level.zdraw.commands["Dev Block strings are not supported"] = &zdraw_scale;
+		level.zdraw.commands["Dev Block strings are not supported"] = &function_b3b92edc;
+		level.zdraw.commands["Dev Block strings are not supported"] = &function_8c2ca616;
+		level.zdraw.commands["Dev Block strings are not supported"] = &zdraw_text;
+		level.zdraw.commands["Dev Block strings are not supported"] = &function_f36ec3d2;
+		level.zdraw.commands["Dev Block strings are not supported"] = &function_7bdd3089;
+		level.zdraw.commands["Dev Block strings are not supported"] = &zdraw_line;
 	#/
 }
 
@@ -142,15 +142,15 @@ function function_aa8545fe()
 function function_404ac348()
 {
 	/#
-		level.var_9cf5ce57.color = level.var_9cf5ce57.colors["Dev Block strings are not supported"];
-		level.var_9cf5ce57.alpha = 1;
-		level.var_9cf5ce57.scale = 1;
-		level.var_9cf5ce57.duration = Int(1 * 62.5);
-		level.var_9cf5ce57.radius = 8;
-		level.var_9cf5ce57.sides = 10;
-		level.var_9cf5ce57.var_5f3c7817 = (0, 0, 0);
-		level.var_9cf5ce57.var_922ae5d = 0;
-		level.var_9cf5ce57.var_c1953771 = "Dev Block strings are not supported";
+		level.zdraw.color = level.zdraw.colors["Dev Block strings are not supported"];
+		level.zdraw.alpha = 1;
+		level.zdraw.scale = 1;
+		level.zdraw.duration = Int(1 * 62.5);
+		level.zdraw.radius = 8;
+		level.zdraw.sides = 10;
+		level.zdraw.var_5f3c7817 = (0, 0, 0);
+		level.zdraw.var_922ae5d = 0;
+		level.zdraw.var_c1953771 = "Dev Block strings are not supported";
 	#/
 }
 
@@ -175,7 +175,7 @@ function function_41fec76e()
 			{
 				function_404ac348();
 				params = StrTok(cmd, "Dev Block strings are not supported");
-				function_4282fd75(params, 0, 1);
+				zdraw_command(params, 0, 1);
 				SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
 			wait(0.5);
@@ -184,7 +184,7 @@ function function_41fec76e()
 }
 
 /*
-	Name: function_4282fd75
+	Name: zdraw_command
 	Namespace: zm_zdraw
 	Checksum: 0xE3D442E7
 	Offset: 0xA18
@@ -192,26 +192,26 @@ function function_41fec76e()
 	Parameters: 3
 	Flags: None
 */
-function function_4282fd75(var_859cfb21, var_c0438d98, var_37cd5424)
+function zdraw_command(var_859cfb21, startat, toplevel)
 {
 	/#
-		if(!isdefined(var_37cd5424))
+		if(!isdefined(toplevel))
 		{
-			var_37cd5424 = 0;
+			toplevel = 0;
 		}
-		while(isdefined(var_859cfb21[var_c0438d98]))
+		while(isdefined(var_859cfb21[startat]))
 		{
-			if(isdefined(level.var_9cf5ce57.commands[var_859cfb21[var_c0438d98]]))
+			if(isdefined(level.zdraw.commands[var_859cfb21[startat]]))
 			{
-				var_c0438d98 = [[level.var_9cf5ce57.commands[var_859cfb21[var_c0438d98]]]](var_859cfb21, var_c0438d98 + 1);
+				startat = [[level.zdraw.commands[var_859cfb21[startat]]]](var_859cfb21, startat + 1);
 			}
-			else if(isdefined(var_37cd5424) && var_37cd5424)
+			else if(isdefined(toplevel) && toplevel)
 			{
-				function_c69caf7e("Dev Block strings are not supported" + var_859cfb21[var_c0438d98]);
+				function_c69caf7e("Dev Block strings are not supported" + var_859cfb21[startat]);
 			}
-			return var_c0438d98;
+			return startat;
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
@@ -224,36 +224,36 @@ function function_4282fd75(var_859cfb21, var_c0438d98, var_37cd5424)
 	Parameters: 2
 	Flags: None
 */
-function function_7bdd3089(var_859cfb21, var_c0438d98)
+function function_7bdd3089(var_859cfb21, startat)
 {
 	/#
-		while(isdefined(var_859cfb21[var_c0438d98]))
+		while(isdefined(var_859cfb21[startat]))
 		{
-			if(function_c0fb9425(var_859cfb21[var_c0438d98]))
+			if(function_c0fb9425(var_859cfb21[startat]))
 			{
-				var_b78d9698 = function_36371547(var_859cfb21, var_c0438d98);
-				if(var_b78d9698 > var_c0438d98)
+				var_b78d9698 = zdraw_vector(var_859cfb21, startat);
+				if(var_b78d9698 > startat)
 				{
-					var_c0438d98 = var_b78d9698;
-					center = level.var_9cf5ce57.var_5f3c7817;
-					sphere(center, level.var_9cf5ce57.radius, level.var_9cf5ce57.color, level.var_9cf5ce57.alpha, 1, level.var_9cf5ce57.sides, level.var_9cf5ce57.duration);
-					level.var_9cf5ce57.var_5f3c7817 = (0, 0, 0);
+					startat = var_b78d9698;
+					center = level.zdraw.var_5f3c7817;
+					sphere(center, level.zdraw.radius, level.zdraw.color, level.zdraw.alpha, 1, level.zdraw.sides, level.zdraw.duration);
+					level.zdraw.var_5f3c7817 = (0, 0, 0);
 				}
 			}
 			else
 			{
-				var_b78d9698 = function_4282fd75(var_859cfb21, var_c0438d98);
-				if(var_b78d9698 > var_c0438d98)
+				var_b78d9698 = zdraw_command(var_859cfb21, startat);
+				if(var_b78d9698 > startat)
 				{
-					var_c0438d98 = var_b78d9698;
+					startat = var_b78d9698;
 				}
 				else
 				{
-					return var_c0438d98;
+					return startat;
 				}
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
@@ -266,41 +266,41 @@ function function_7bdd3089(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_f36ec3d2(var_859cfb21, var_c0438d98)
+function function_f36ec3d2(var_859cfb21, startat)
 {
 	/#
-		while(isdefined(var_859cfb21[var_c0438d98]))
+		while(isdefined(var_859cfb21[startat]))
 		{
-			if(function_c0fb9425(var_859cfb21[var_c0438d98]))
+			if(function_c0fb9425(var_859cfb21[startat]))
 			{
-				var_b78d9698 = function_36371547(var_859cfb21, var_c0438d98);
-				if(var_b78d9698 > var_c0438d98)
+				var_b78d9698 = zdraw_vector(var_859cfb21, startat);
+				if(var_b78d9698 > startat)
 				{
-					var_c0438d98 = var_b78d9698;
-					center = level.var_9cf5ce57.var_5f3c7817;
-					debugstar(center, level.var_9cf5ce57.duration, level.var_9cf5ce57.color);
-					level.var_9cf5ce57.var_5f3c7817 = (0, 0, 0);
+					startat = var_b78d9698;
+					center = level.zdraw.var_5f3c7817;
+					debugstar(center, level.zdraw.duration, level.zdraw.color);
+					level.zdraw.var_5f3c7817 = (0, 0, 0);
 				}
 			}
 			else
 			{
-				var_b78d9698 = function_4282fd75(var_859cfb21, var_c0438d98);
-				if(var_b78d9698 > var_c0438d98)
+				var_b78d9698 = zdraw_command(var_859cfb21, startat);
+				if(var_b78d9698 > startat)
 				{
-					var_c0438d98 = var_b78d9698;
+					startat = var_b78d9698;
 				}
 				else
 				{
-					return var_c0438d98;
+					return startat;
 				}
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
 /*
-	Name: function_be7cf134
+	Name: zdraw_line
 	Namespace: zm_zdraw
 	Checksum: 0xD7519BA1
 	Offset: 0xDC8
@@ -308,46 +308,46 @@ function function_f36ec3d2(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_be7cf134(var_859cfb21, var_c0438d98)
+function zdraw_line(var_859cfb21, startat)
 {
 	/#
-		level.var_9cf5ce57.LineStart = undefined;
-		while(isdefined(var_859cfb21[var_c0438d98]))
+		level.zdraw.LineStart = undefined;
+		while(isdefined(var_859cfb21[startat]))
 		{
-			if(function_c0fb9425(var_859cfb21[var_c0438d98]))
+			if(function_c0fb9425(var_859cfb21[startat]))
 			{
-				var_b78d9698 = function_36371547(var_859cfb21, var_c0438d98);
-				if(var_b78d9698 > var_c0438d98)
+				var_b78d9698 = zdraw_vector(var_859cfb21, startat);
+				if(var_b78d9698 > startat)
 				{
-					var_c0438d98 = var_b78d9698;
-					LineEnd = level.var_9cf5ce57.var_5f3c7817;
-					if(isdefined(level.var_9cf5ce57.LineStart))
+					startat = var_b78d9698;
+					LineEnd = level.zdraw.var_5f3c7817;
+					if(isdefined(level.zdraw.LineStart))
 					{
-						line(level.var_9cf5ce57.LineStart, LineEnd, level.var_9cf5ce57.color, level.var_9cf5ce57.alpha, 1, level.var_9cf5ce57.duration);
+						line(level.zdraw.LineStart, LineEnd, level.zdraw.color, level.zdraw.alpha, 1, level.zdraw.duration);
 					}
-					level.var_9cf5ce57.LineStart = LineEnd;
-					level.var_9cf5ce57.var_5f3c7817 = (0, 0, 0);
+					level.zdraw.LineStart = LineEnd;
+					level.zdraw.var_5f3c7817 = (0, 0, 0);
 				}
 			}
 			else
 			{
-				var_b78d9698 = function_4282fd75(var_859cfb21, var_c0438d98);
-				if(var_b78d9698 > var_c0438d98)
+				var_b78d9698 = zdraw_command(var_859cfb21, startat);
+				if(var_b78d9698 > startat)
 				{
-					var_c0438d98 = var_b78d9698;
+					startat = var_b78d9698;
 				}
 				else
 				{
-					return var_c0438d98;
+					return startat;
 				}
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
 /*
-	Name: function_3145e33f
+	Name: zdraw_text
 	Namespace: zm_zdraw
 	Checksum: 0x3F83E1B0
 	Offset: 0xF70
@@ -355,52 +355,52 @@ function function_be7cf134(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_3145e33f(var_859cfb21, var_c0438d98)
+function zdraw_text(var_859cfb21, startat)
 {
 	/#
-		level.var_9cf5ce57.text = "Dev Block strings are not supported";
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		level.zdraw.text = "Dev Block strings are not supported";
+		if(isdefined(var_859cfb21[startat]))
 		{
-			var_b78d9698 = function_ce50bae5(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
+			var_b78d9698 = function_ce50bae5(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
 			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.text = level.var_9cf5ce57.var_c1953771;
-				level.var_9cf5ce57.var_c1953771 = "Dev Block strings are not supported";
+				startat = var_b78d9698;
+				level.zdraw.text = level.zdraw.var_c1953771;
+				level.zdraw.var_c1953771 = "Dev Block strings are not supported";
 			}
 		}
-		while(isdefined(var_859cfb21[var_c0438d98]))
+		while(isdefined(var_859cfb21[startat]))
 		{
-			if(function_c0fb9425(var_859cfb21[var_c0438d98]))
+			if(function_c0fb9425(var_859cfb21[startat]))
 			{
-				var_b78d9698 = function_36371547(var_859cfb21, var_c0438d98);
-				if(var_b78d9698 > var_c0438d98)
+				var_b78d9698 = zdraw_vector(var_859cfb21, startat);
+				if(var_b78d9698 > startat)
 				{
-					var_c0438d98 = var_b78d9698;
-					center = level.var_9cf5ce57.var_5f3c7817;
-					print3d(center, level.var_9cf5ce57.text, level.var_9cf5ce57.color, level.var_9cf5ce57.alpha, level.var_9cf5ce57.scale, level.var_9cf5ce57.duration);
-					level.var_9cf5ce57.var_5f3c7817 = (0, 0, 0);
+					startat = var_b78d9698;
+					center = level.zdraw.var_5f3c7817;
+					print3d(center, level.zdraw.text, level.zdraw.color, level.zdraw.alpha, level.zdraw.scale, level.zdraw.duration);
+					level.zdraw.var_5f3c7817 = (0, 0, 0);
 				}
 			}
 			else
 			{
-				var_b78d9698 = function_4282fd75(var_859cfb21, var_c0438d98);
-				if(var_b78d9698 > var_c0438d98)
+				var_b78d9698 = zdraw_command(var_859cfb21, startat);
+				if(var_b78d9698 > startat)
 				{
-					var_c0438d98 = var_b78d9698;
+					startat = var_b78d9698;
 				}
 				else
 				{
-					return var_c0438d98;
+					return startat;
 				}
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
 /*
-	Name: function_5ef6cf9b
+	Name: zdraw_color
 	Namespace: zm_zdraw
 	Checksum: 0x28301E68
 	Offset: 0x1180
@@ -408,42 +408,42 @@ function function_3145e33f(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_5ef6cf9b(var_859cfb21, var_c0438d98)
+function zdraw_color(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			if(function_c0fb9425(var_859cfb21[var_c0438d98]))
+			if(function_c0fb9425(var_859cfb21[startat]))
 			{
-				var_b78d9698 = function_36371547(var_859cfb21, var_c0438d98);
-				if(var_b78d9698 > var_c0438d98)
+				var_b78d9698 = zdraw_vector(var_859cfb21, startat);
+				if(var_b78d9698 > startat)
 				{
-					var_c0438d98 = var_b78d9698;
-					level.var_9cf5ce57.color = level.var_9cf5ce57.var_5f3c7817;
-					level.var_9cf5ce57.var_5f3c7817 = (0, 0, 0);
+					startat = var_b78d9698;
+					level.zdraw.color = level.zdraw.var_5f3c7817;
+					level.zdraw.var_5f3c7817 = (0, 0, 0);
 				}
 				else
 				{
-					level.var_9cf5ce57.color = (1, 1, 1);
+					level.zdraw.color = (1, 1, 1);
 				}
 			}
-			else if(isdefined(level.var_9cf5ce57.colors[var_859cfb21[var_c0438d98]]))
+			else if(isdefined(level.zdraw.colors[var_859cfb21[startat]]))
 			{
-				level.var_9cf5ce57.color = level.var_9cf5ce57.colors[var_859cfb21[var_c0438d98]];
+				level.zdraw.color = level.zdraw.colors[var_859cfb21[startat]];
 			}
 			else
 			{
-				level.var_9cf5ce57.color = (1, 1, 1);
-				function_c69caf7e("Dev Block strings are not supported" + var_859cfb21[var_c0438d98]);
+				level.zdraw.color = (1, 1, 1);
+				function_c69caf7e("Dev Block strings are not supported" + var_859cfb21[startat]);
 			}
-			var_c0438d98 = var_c0438d98 + 1;
+			startat = startat + 1;
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
 /*
-	Name: function_eae4114a
+	Name: zdraw_alpha
 	Namespace: zm_zdraw
 	Checksum: 0x22D4065C
 	Offset: 0x1308
@@ -451,29 +451,29 @@ function function_5ef6cf9b(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_eae4114a(var_859cfb21, var_c0438d98)
+function zdraw_alpha(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			var_b78d9698 = function_33acda19(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
+			var_b78d9698 = zdraw_number(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
 			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.alpha = level.var_9cf5ce57.var_922ae5d;
-				level.var_9cf5ce57.var_922ae5d = 0;
+				startat = var_b78d9698;
+				level.zdraw.alpha = level.zdraw.var_922ae5d;
+				level.zdraw.var_922ae5d = 0;
 			}
 			else
 			{
-				level.var_9cf5ce57.alpha = 1;
+				level.zdraw.alpha = 1;
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
 /*
-	Name: function_a13efe1c
+	Name: zdraw_scale
 	Namespace: zm_zdraw
 	Checksum: 0x51378D73
 	Offset: 0x13D0
@@ -481,29 +481,29 @@ function function_eae4114a(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_a13efe1c(var_859cfb21, var_c0438d98)
+function zdraw_scale(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			var_b78d9698 = function_33acda19(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
+			var_b78d9698 = zdraw_number(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
 			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.scale = level.var_9cf5ce57.var_922ae5d;
-				level.var_9cf5ce57.var_922ae5d = 0;
+				startat = var_b78d9698;
+				level.zdraw.scale = level.zdraw.var_922ae5d;
+				level.zdraw.var_922ae5d = 0;
 			}
 			else
 			{
-				level.var_9cf5ce57.scale = 1;
+				level.zdraw.scale = 1;
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
 /*
-	Name: function_f2f3c18e
+	Name: zdraw_duration
 	Namespace: zm_zdraw
 	Checksum: 0xAECAD868
 	Offset: 0x1498
@@ -511,24 +511,24 @@ function function_a13efe1c(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_f2f3c18e(var_859cfb21, var_c0438d98)
+function zdraw_duration(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			var_b78d9698 = function_33acda19(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
+			var_b78d9698 = zdraw_number(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
 			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.duration = Int(level.var_9cf5ce57.var_922ae5d);
-				level.var_9cf5ce57.var_922ae5d = 0;
+				startat = var_b78d9698;
+				level.zdraw.duration = Int(level.zdraw.var_922ae5d);
+				level.zdraw.var_922ae5d = 0;
 			}
 			else
 			{
-				level.var_9cf5ce57.duration = Int(1 * 62.5);
+				level.zdraw.duration = Int(1 * 62.5);
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
@@ -541,24 +541,24 @@ function function_f2f3c18e(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_8f04ad79(var_859cfb21, var_c0438d98)
+function function_8f04ad79(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			var_b78d9698 = function_33acda19(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
+			var_b78d9698 = zdraw_number(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
 			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.duration = Int(62.5 * level.var_9cf5ce57.var_922ae5d);
-				level.var_9cf5ce57.var_922ae5d = 0;
+				startat = var_b78d9698;
+				level.zdraw.duration = Int(62.5 * level.zdraw.var_922ae5d);
+				level.zdraw.var_922ae5d = 0;
 			}
 			else
 			{
-				level.var_9cf5ce57.duration = Int(1 * 62.5);
+				level.zdraw.duration = Int(1 * 62.5);
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
@@ -571,24 +571,24 @@ function function_8f04ad79(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_b3b92edc(var_859cfb21, var_c0438d98)
+function function_b3b92edc(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			var_b78d9698 = function_33acda19(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
+			var_b78d9698 = zdraw_number(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
 			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.radius = level.var_9cf5ce57.var_922ae5d;
-				level.var_9cf5ce57.var_922ae5d = 0;
+				startat = var_b78d9698;
+				level.zdraw.radius = level.zdraw.var_922ae5d;
+				level.zdraw.var_922ae5d = 0;
 			}
 			else
 			{
-				level.var_9cf5ce57.radius = 8;
+				level.zdraw.radius = 8;
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
@@ -601,24 +601,24 @@ function function_b3b92edc(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_8c2ca616(var_859cfb21, var_c0438d98)
+function function_8c2ca616(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			var_b78d9698 = function_33acda19(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
+			var_b78d9698 = zdraw_number(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
 			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.sides = Int(level.var_9cf5ce57.var_922ae5d);
-				level.var_9cf5ce57.var_922ae5d = 0;
+				startat = var_b78d9698;
+				level.zdraw.sides = Int(level.zdraw.var_922ae5d);
+				level.zdraw.var_922ae5d = 0;
 			}
 			else
 			{
-				level.var_9cf5ce57.sides = 10;
+				level.zdraw.sides = 10;
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
@@ -643,7 +643,7 @@ function function_c0fb9425(Param)
 }
 
 /*
-	Name: function_36371547
+	Name: zdraw_vector
 	Namespace: zm_zdraw
 	Checksum: 0xB60484EA
 	Offset: 0x18C0
@@ -651,54 +651,54 @@ function function_c0fb9425(Param)
 	Parameters: 2
 	Flags: None
 */
-function function_36371547(var_859cfb21, var_c0438d98)
+function zdraw_vector(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			var_b78d9698 = function_33acda19(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
+			var_b78d9698 = zdraw_number(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
 			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.var_5f3c7817 = (level.var_9cf5ce57.var_922ae5d, level.var_9cf5ce57.var_5f3c7817[1], level.var_9cf5ce57.var_5f3c7817[2]);
-				level.var_9cf5ce57.var_922ae5d = 0;
+				startat = var_b78d9698;
+				level.zdraw.var_5f3c7817 = (level.zdraw.var_922ae5d, level.zdraw.var_5f3c7817[1], level.zdraw.var_5f3c7817[2]);
+				level.zdraw.var_922ae5d = 0;
 			}
 			else
 			{
 				function_c69caf7e("Dev Block strings are not supported");
-				return var_c0438d98;
+				return startat;
 			}
-			var_b78d9698 = function_33acda19(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
+			var_b78d9698 = zdraw_number(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
 			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.var_5f3c7817 = (level.var_9cf5ce57.var_5f3c7817[0], level.var_9cf5ce57.var_922ae5d, level.var_9cf5ce57.var_5f3c7817[2]);
-				level.var_9cf5ce57.var_922ae5d = 0;
-			}
-			else
-			{
-				function_c69caf7e("Dev Block strings are not supported");
-				return var_c0438d98;
-			}
-			var_b78d9698 = function_33acda19(var_859cfb21, var_c0438d98);
-			if(var_b78d9698 > var_c0438d98)
-			{
-				var_c0438d98 = var_b78d9698;
-				level.var_9cf5ce57.var_5f3c7817 = (level.var_9cf5ce57.var_5f3c7817[0], level.var_9cf5ce57.var_5f3c7817[1], level.var_9cf5ce57.var_922ae5d);
-				level.var_9cf5ce57.var_922ae5d = 0;
+				startat = var_b78d9698;
+				level.zdraw.var_5f3c7817 = (level.zdraw.var_5f3c7817[0], level.zdraw.var_922ae5d, level.zdraw.var_5f3c7817[2]);
+				level.zdraw.var_922ae5d = 0;
 			}
 			else
 			{
 				function_c69caf7e("Dev Block strings are not supported");
-				return var_c0438d98;
+				return startat;
+			}
+			var_b78d9698 = zdraw_number(var_859cfb21, startat);
+			if(var_b78d9698 > startat)
+			{
+				startat = var_b78d9698;
+				level.zdraw.var_5f3c7817 = (level.zdraw.var_5f3c7817[0], level.zdraw.var_5f3c7817[1], level.zdraw.var_922ae5d);
+				level.zdraw.var_922ae5d = 0;
+			}
+			else
+			{
+				function_c69caf7e("Dev Block strings are not supported");
+				return startat;
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
 /*
-	Name: function_33acda19
+	Name: zdraw_number
 	Namespace: zm_zdraw
 	Checksum: 0x24066F26
 	Offset: 0x1B28
@@ -706,18 +706,18 @@ function function_36371547(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_33acda19(var_859cfb21, var_c0438d98)
+function zdraw_number(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			if(function_c0fb9425(var_859cfb21[var_c0438d98]))
+			if(function_c0fb9425(var_859cfb21[startat]))
 			{
-				level.var_9cf5ce57.var_922ae5d = float(var_859cfb21[var_c0438d98]);
-				var_c0438d98 = var_c0438d98 + 1;
+				level.zdraw.var_922ae5d = float(var_859cfb21[startat]);
+				startat = startat + 1;
 			}
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 
@@ -730,15 +730,15 @@ function function_33acda19(var_859cfb21, var_c0438d98)
 	Parameters: 2
 	Flags: None
 */
-function function_ce50bae5(var_859cfb21, var_c0438d98)
+function function_ce50bae5(var_859cfb21, startat)
 {
 	/#
-		if(isdefined(var_859cfb21[var_c0438d98]))
+		if(isdefined(var_859cfb21[startat]))
 		{
-			level.var_9cf5ce57.var_c1953771 = var_859cfb21[var_c0438d98];
-			var_c0438d98 = var_c0438d98 + 1;
+			level.zdraw.var_c1953771 = var_859cfb21[startat];
+			startat = startat + 1;
 		}
-		return var_c0438d98;
+		return startat;
 	#/
 }
 

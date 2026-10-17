@@ -41,7 +41,7 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	zm_powerups::register_powerup("bonus_points_team", &function_b6e2445);
+	zm_powerups::register_powerup("bonus_points_team", &grab_bonus_points_team);
 	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
 	{
 		zm_powerups::add_zombie_powerup("bonus_points_team", "zombie_z_money_icon", &"ZOMBIE_POWERUP_BONUS_POINTS", &zm_powerups::func_should_never_drop, 0, 0, 0);
@@ -49,7 +49,7 @@ function __init__()
 }
 
 /*
-	Name: function_b6e2445
+	Name: grab_bonus_points_team
 	Namespace: namespace_50ac7dd1
 	Checksum: 0x5EDE4947
 	Offset: 0x3D8
@@ -57,7 +57,7 @@ function __init__()
 	Parameters: 1
 	Flags: None
 */
-function function_b6e2445(player)
+function grab_bonus_points_team(player)
 {
 	level thread bonus_points_team_powerup(self);
 	player thread zm_powerups::powerup_vo("bonus_points_team");

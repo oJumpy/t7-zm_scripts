@@ -152,15 +152,15 @@ function auto_turret_think()
 		player zm_score::minus_to_player_score(cost);
 		self.turret.activated_by_player = player;
 		self thread auto_turret_activate();
-		var_736ddf4 = spawn("script_origin", self.origin);
+		loop_org = spawn("script_origin", self.origin);
 		playsoundatposition("zmb_cha_ching", self.origin);
 		playsoundatposition("zmb_turret_startup", self.origin);
-		var_736ddf4 PlayLoopSound("zmb_turret_loop");
+		loop_org PlayLoopSound("zmb_turret_loop");
 		self TriggerEnable(0);
 		self waittill("turret_deactivated");
-		var_736ddf4 StopLoopSound();
+		loop_org StopLoopSound();
 		playsoundatposition("zmb_turret_down", self.audio_origin);
-		var_736ddf4 delete();
+		loop_org delete();
 		self TriggerEnable(1);
 	}
 }

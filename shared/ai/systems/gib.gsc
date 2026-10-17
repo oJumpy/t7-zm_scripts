@@ -146,7 +146,7 @@ function autoexec main()
 	level.scriptbundles["gibcharacterdef"] = processedBundles;
 	if(!isdefined(level.gib_throttle))
 	{
-		function_9b385ca5();
+		__constructor();
 		level.gib_throttle = Throttle;
 		Initialize(level.gib_throttle, 2);
 	}

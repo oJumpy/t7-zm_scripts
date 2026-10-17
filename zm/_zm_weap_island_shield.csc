@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_b2c57c5e;
+#namespace island_shield;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_b2c57c5e
+	Namespace: island_shield
 	Checksum: 0xF2A669B9
 	Offset: 0x150
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_b2c57c5e
+	Namespace: island_shield
 	Checksum: 0x99EC1590
 	Offset: 0x190
 	Size: 0x3

@@ -38,11 +38,11 @@ function autoexec __init__sytem__()
 */
 function __main__()
 {
-	level thread function_cc211d40();
+	level thread init_bridges();
 }
 
 /*
-	Name: function_cc211d40
+	Name: init_bridges
 	Namespace: namespace_f76f5b63
 	Checksum: 0xEE322FE9
 	Offset: 0x390
@@ -50,23 +50,23 @@ function __main__()
 	Parameters: 0
 	Flags: None
 */
-function function_cc211d40()
+function init_bridges()
 {
-	if(!isdefined(level.var_701d7eb))
+	if(!isdefined(level.beast_mode_targets))
 	{
-		level.var_701d7eb = [];
+		level.beast_mode_targets = [];
 	}
-	if(!isdefined(level.var_c70d218))
+	if(!isdefined(level.a_o_bridge))
 	{
-		level.var_c70d218 = [];
-		function_69d1a149("slums", 1);
-		function_69d1a149("canal", 2);
-		function_69d1a149("theater", 3);
+		level.a_o_bridge = [];
+		init_bridge("slums", 1);
+		init_bridge("canal", 2);
+		init_bridge("theater", 3);
 	}
 }
 
 /*
-	Name: function_69d1a149
+	Name: init_bridge
 	Namespace: namespace_f76f5b63
 	Checksum: 0x645BB9C5
 	Offset: 0x430
@@ -74,68 +74,68 @@ function function_cc211d40()
 	Parameters: 2
 	Flags: None
 */
-function function_69d1a149(var_d42f02cf, n_index)
+function init_bridge(str_areaname, n_index)
 {
-	function_9b385ca5();
-	level.var_c70d218[n_index] = var_1f041243;
-	function_69d1a149(level.var_c70d218[n_index]);
+	__constructor();
+	level.a_o_bridge[n_index] = cbridge;
+	init_bridge(level.a_o_bridge[n_index]);
 }
 
-#namespace namespace_1f041243;
+#namespace cbridge;
 
 /*
-	Name: function_69d1a149
-	Namespace: namespace_1f041243
+	Name: init_bridge
+	Namespace: cbridge
 	Checksum: 0x5FFBAC61
 	Offset: 0x488
 	Size: 0x3C3
 	Parameters: 1
 	Flags: None
 */
-function function_69d1a149(var_d42f02cf)
+function init_bridge(str_areaname)
 {
-	self.var_8ba3e653 = var_d42f02cf;
-	var_5fd95ddf = 0;
-	var_5db129b = 0.1;
-	door_name = var_d42f02cf + "_bridge_door";
-	var_e8ecea33 = GetEntArray(door_name, "script_noteworthy");
-	self.var_1c98028c = GetEntArray("bridge_blocker", "targetname");
-	var_a2660e03 = GetEntArray("bridge_clip_blocker", "targetname");
-	var_ed804e7f = GetEntArray("bridge_walkway", "targetname");
-	var_bb00a9de = GetEntArray("bridge_pull_trigger", "targetname");
-	var_60dfdb84 = GetEntArray("bridge_pull_target", "targetname");
-	self.var_1c98028c = Array::filter(self.var_1c98028c, 0, &function_1bfbfa4c, var_d42f02cf);
-	var_a2660e03 = Array::filter(var_a2660e03, 0, &function_1bfbfa4c, var_d42f02cf);
-	self.var_17d1cc44 = var_a2660e03[0];
-	var_ed804e7f = Array::filter(var_ed804e7f, 0, &function_1bfbfa4c, var_d42f02cf);
-	self.var_746f1e93 = var_ed804e7f[0];
-	var_60dfdb84 = Array::filter(var_60dfdb84, 0, &function_1bfbfa4c, var_d42f02cf);
-	self.var_c7107160 = var_60dfdb84[0];
-	self.var_7a01aaae = 0;
-	self.var_746f1e93 SetInvisibleToAll();
-	foreach(var_4c225fa1 in self.var_1c98028c)
+	self.m_str_areaname = str_areaname;
+	m_n_state = 0;
+	m_n_pause_between_steps = 0.1;
+	door_name = str_areaname + "_bridge_door";
+	m_door_array = GetEntArray(door_name, "script_noteworthy");
+	self.m_a_e_blockers = GetEntArray("bridge_blocker", "targetname");
+	a_e_clip_blockers = GetEntArray("bridge_clip_blocker", "targetname");
+	a_e_walkway = GetEntArray("bridge_walkway", "targetname");
+	a_t_pull_trigger = GetEntArray("bridge_pull_trigger", "targetname");
+	a_e_pull_target = GetEntArray("bridge_pull_target", "targetname");
+	self.m_a_e_blockers = Array::filter(self.m_a_e_blockers, 0, &filter_areaname, str_areaname);
+	a_e_clip_blockers = Array::filter(a_e_clip_blockers, 0, &filter_areaname, str_areaname);
+	self.m_e_clip_blocker = a_e_clip_blockers[0];
+	a_e_walkway = Array::filter(a_e_walkway, 0, &filter_areaname, str_areaname);
+	self.m_e_walkway = a_e_walkway[0];
+	a_e_pull_target = Array::filter(a_e_pull_target, 0, &filter_areaname, str_areaname);
+	self.m_e_pull_target = a_e_pull_target[0];
+	self.m_b_discovered = 0;
+	self.m_e_walkway SetInvisibleToAll();
+	foreach(e_blocker in self.m_a_e_blockers)
 	{
-		var_4c225fa1 useanimtree(-1);
+		e_blocker useanimtree(-1);
 	}
-	self.var_746f1e93 useanimtree(-1);
-	self.var_c7107160 SetGrapplableType(3);
-	Array::add(level.var_701d7eb, self.var_c7107160, 0);
-	self.var_c7107160 clientfield::set("bminteract", 3);
-	self thread bridge_connect(var_e8ecea33[0], var_e8ecea33[1]);
+	self.m_e_walkway useanimtree(-1);
+	self.m_e_pull_target SetGrapplableType(3);
+	Array::add(level.beast_mode_targets, self.m_e_pull_target, 0);
+	self.m_e_pull_target clientfield::set("bminteract", 3);
+	self thread bridge_connect(m_door_array[0], m_door_array[1]);
 }
 
 /*
-	Name: function_1bfbfa4c
-	Namespace: namespace_1f041243
+	Name: filter_areaname
+	Namespace: cbridge
 	Checksum: 0x5A78BAE8
 	Offset: 0x858
 	Size: 0x47
 	Parameters: 2
 	Flags: None
 */
-function function_1bfbfa4c(e_entity, var_d42f02cf)
+function filter_areaname(e_entity, str_areaname)
 {
-	if(!isdefined(e_entity.script_string) || e_entity.script_string != var_d42f02cf)
+	if(!isdefined(e_entity.script_string) || e_entity.script_string != str_areaname)
 	{
 		return 0;
 	}
@@ -144,97 +144,97 @@ function function_1bfbfa4c(e_entity, var_d42f02cf)
 
 /*
 	Name: bridge_connect
-	Namespace: namespace_1f041243
+	Namespace: cbridge
 	Checksum: 0xCEED0C4D
 	Offset: 0x8A8
 	Size: 0x1CB
 	Parameters: 2
 	Flags: None
 */
-function bridge_connect(var_f68bad2e, var_d08932c5)
+function bridge_connect(t_trigger_a, t_trigger_b)
 {
-	util::waittill_any_ents_two(var_f68bad2e, "trigger", var_d08932c5, "trigger");
-	foreach(var_4c225fa1 in self.var_1c98028c)
+	util::waittill_any_ents_two(t_trigger_a, "trigger", t_trigger_b, "trigger");
+	foreach(e_blocker in self.m_a_e_blockers)
 	{
-		var_4c225fa1 SetAnim(%p7_fxanim_zm_zod_gate_scissor_short_open_anim);
+		e_blocker SetAnim(%p7_fxanim_zm_zod_gate_scissor_short_open_anim);
 	}
-	self.var_746f1e93 SetAnim(%p7_fxanim_zm_zod_beast_bridge_open_anim);
-	self.var_746f1e93 SetVisibleToAll();
-	self.var_c7107160 SetInvisibleToAll();
-	self.var_c7107160 clientfield::set("bminteract", 0);
-	self.var_c7107160 SetGrapplableType(0);
-	level.var_701d7eb = Array::exclude(level.var_701d7eb, self.var_c7107160);
+	self.m_e_walkway SetAnim(%p7_fxanim_zm_zod_beast_bridge_open_anim);
+	self.m_e_walkway SetVisibleToAll();
+	self.m_e_pull_target SetInvisibleToAll();
+	self.m_e_pull_target clientfield::set("bminteract", 0);
+	self.m_e_pull_target SetGrapplableType(0);
+	level.beast_mode_targets = Array::exclude(level.beast_mode_targets, self.m_e_pull_target);
 	wait(1);
-	self.var_17d1cc44 function_64c24459();
-	self.var_17d1cc44 connectpaths();
-	function_35b36f55();
+	self.m_e_clip_blocker move_blocker();
+	self.m_e_clip_blocker connectpaths();
+	unlock_zones();
 }
 
 /*
-	Name: function_35b36f55
-	Namespace: namespace_1f041243
+	Name: unlock_zones
+	Namespace: cbridge
 	Checksum: 0xB3E1E759
 	Offset: 0xA80
 	Size: 0xAB
 	Parameters: 0
 	Flags: None
 */
-function function_35b36f55()
+function unlock_zones()
 {
-	var_c7c6602e = self.var_8ba3e653 + "_district_zone_high";
-	if(!zm_zonemgr::zone_is_enabled(var_c7c6602e))
+	str_zonename = self.m_str_areaname + "_district_zone_high";
+	if(!zm_zonemgr::zone_is_enabled(str_zonename))
 	{
-		zm_zonemgr::zone_init(var_c7c6602e);
-		zm_zonemgr::enable_zone(var_c7c6602e);
+		zm_zonemgr::zone_init(str_zonename);
+		zm_zonemgr::enable_zone(str_zonename);
 	}
-	zm_zonemgr::add_adjacent_zone(self.var_8ba3e653 + "_district_zone_B", var_c7c6602e, "enter_" + self.var_8ba3e653 + "_district_high_from_B");
+	zm_zonemgr::add_adjacent_zone(self.m_str_areaname + "_district_zone_B", str_zonename, "enter_" + self.m_str_areaname + "_district_high_from_B");
 }
 
 /*
-	Name: function_64c24459
-	Namespace: namespace_1f041243
+	Name: move_blocker
+	Namespace: cbridge
 	Checksum: 0xE2E1D080
 	Offset: 0xB38
 	Size: 0x43
 	Parameters: 0
 	Flags: None
 */
-function function_64c24459()
+function move_blocker()
 {
 	self moveto(self.origin - VectorScale((0, 0, 1), 10000), 0.05);
 	wait(0.05);
 }
 
 /*
-	Name: function_9b385ca5
-	Namespace: namespace_1f041243
+	Name: __constructor
+	Namespace: cbridge
 	Checksum: 0x99EC1590
 	Offset: 0xB88
 	Size: 0x3
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 }
 
 /*
-	Name: function_5fba2032
-	Namespace: namespace_1f041243
+	Name: __destructor
+	Namespace: cbridge
 	Checksum: 0x99EC1590
 	Offset: 0xB98
 	Size: 0x3
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
 #namespace namespace_f76f5b63;
 
 /*
-	Name: function_1f041243
+	Name: cbridge
 	Namespace: namespace_f76f5b63
 	Checksum: 0xEC7B2580
 	Offset: 0xBA8
@@ -242,15 +242,15 @@ function function_5fba2032()
 	Parameters: 0
 	Flags: 6
 */
-function private autoexec function_1f041243()
+function private autoexec cbridge()
 {
-	classes.var_1f041243[0] = spawnstruct();
-	classes.var_1f041243[0].__vtable[1606033458] = &namespace_1f041243::function_5fba2032;
-	classes.var_1f041243[0].__vtable[-1690805083] = &namespace_1f041243::function_9b385ca5;
-	classes.var_1f041243[0].__vtable[1690453081] = &namespace_1f041243::function_64c24459;
-	classes.var_1f041243[0].__vtable[900951893] = &namespace_1f041243::function_35b36f55;
-	classes.var_1f041243[0].__vtable[644748357] = &namespace_1f041243::bridge_connect;
-	classes.var_1f041243[0].__vtable[469498444] = &namespace_1f041243::function_1bfbfa4c;
-	classes.var_1f041243[0].__vtable[1775345993] = &namespace_1f041243::function_69d1a149;
+	classes.cbridge[0] = spawnstruct();
+	classes.cbridge[0].__vtable[1606033458] = &cbridge::__destructor;
+	classes.cbridge[0].__vtable[-1690805083] = &cbridge::__constructor;
+	classes.cbridge[0].__vtable[1690453081] = &cbridge::move_blocker;
+	classes.cbridge[0].__vtable[900951893] = &cbridge::unlock_zones;
+	classes.cbridge[0].__vtable[644748357] = &cbridge::bridge_connect;
+	classes.cbridge[0].__vtable[469498444] = &cbridge::filter_areaname;
+	classes.cbridge[0].__vtable[1775345993] = &cbridge::init_bridge;
 }
 

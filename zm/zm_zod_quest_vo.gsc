@@ -23,7 +23,7 @@ function opening_vo()
 }
 
 /*
-	Name: function_3e539ffc
+	Name: see_map_trigger
 	Namespace: namespace_6294c69f
 	Checksum: 0x99EC1590
 	Offset: 0x1C0
@@ -31,7 +31,7 @@ function opening_vo()
 	Parameters: 0
 	Flags: None
 */
-function function_3e539ffc()
+function see_map_trigger()
 {
 }
 
@@ -120,8 +120,8 @@ function vo_play_four_part_conversation(convo)
 		n_max_reply_dist = 1500;
 		e_player1 = undefined;
 		e_player2 = undefined;
-		var_d1c0f9 = undefined;
-		var_bede2506 = undefined;
+		e_player3 = undefined;
+		e_player4 = undefined;
 		foreach(player in players)
 		{
 			if(isdefined(player))
@@ -140,18 +140,18 @@ function vo_play_four_part_conversation(convo)
 					}
 					case "Billy":
 					{
-						var_d1c0f9 = player;
+						e_player3 = player;
 						break;
 					}
 					case "Finn":
 					{
-						var_bede2506 = player;
+						e_player4 = player;
 						break;
 					}
 				}
 			}
 		}
-		if(!isdefined(e_player1) || !isdefined(e_player2) || !isdefined(var_d1c0f9) || !isdefined(var_bede2506))
+		if(!isdefined(e_player1) || !isdefined(e_player2) || !isdefined(e_player3) || !isdefined(e_player4))
 		{
 			return;
 			break;
@@ -182,7 +182,7 @@ function vo_play_four_part_conversation(convo)
 			}
 			if(IsSubStr(convo[i], "plr_0"))
 			{
-				speaking_player = var_bede2506;
+				speaking_player = e_player4;
 			}
 			else if(IsSubStr(convo[i], "plr_1"))
 			{
@@ -190,7 +190,7 @@ function vo_play_four_part_conversation(convo)
 			}
 			else if(IsSubStr(convo[i], "plr_2"))
 			{
-				speaking_player = var_d1c0f9;
+				speaking_player = e_player3;
 			}
 			else if(IsSubStr(convo[i], "plr_3"))
 			{

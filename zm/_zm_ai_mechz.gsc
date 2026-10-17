@@ -64,7 +64,7 @@ function __init__()
 	level.var_e12ec39f = 500;
 	level.MECHZ_POWERCAP_HEALTH = level.var_e12ec39f;
 	level.var_3f1bf221 = 250;
-	level.var_2cbc5b59 = level.var_3f1bf221;
+	level.mechz_armor_health = level.var_3f1bf221;
 	level.mechz_health_increase = 100;
 	level.var_1a5bb9d8 = 100;
 	level.var_a1943286 = 15;
@@ -73,7 +73,7 @@ function __init__()
 	level.mechz_round_count = 0;
 	level.mechz_spawners = GetEntArray("zombie_mechz_spawner", "script_noteworthy");
 	level.mechz_locations = struct::get_array("mechz_location", "script_noteworthy");
-	spawner::add_archetype_spawn_function("mechz", &function_3d5df242);
+	spawner::add_archetype_spawn_function("mechz", &mechz_setup);
 	zm::register_player_damage_callback(&function_ed70c868);
 	level.mechz_flamethrower_ai_callback = &function_1add8026;
 	level thread AAT::register_immunity("zm_aat_blast_furnace", "mechz", 0, 1, 1);
@@ -214,7 +214,7 @@ function function_48cabef5()
 }
 
 /*
-	Name: function_3d5df242
+	Name: mechz_setup
 	Namespace: namespace_ef567265
 	Checksum: 0x6C26F914
 	Offset: 0xD70
@@ -222,17 +222,17 @@ function function_48cabef5()
 	Parameters: 0
 	Flags: Private
 */
-function private function_3d5df242()
+function private mechz_setup()
 {
 	self.b_ignore_cleanup = 1;
 	self.is_mechz = 1;
-	self.var_7884b12d = self.health;
+	self.n_start_health = self.health;
 	self.team = level.zombie_team;
 	self.zombie_lift_override = &function_817c85eb;
 	self.thundergun_fling_func = &function_9bac2f00;
-	self.thundergun_knockdown_func = &function_19b9b682;
+	self.thundergun_knockdown_func = &mechz_thundergun_knockdown;
 	self.var_23340a5d = &function_9bac2f00;
-	self.var_e1dbd63 = &function_19b9b682;
+	self.var_e1dbd63 = &mechz_thundergun_knockdown;
 	self.var_48cabef5 = &function_48cabef5;
 	level thread zm_spawner::zombie_death_event(self);
 }
@@ -293,7 +293,7 @@ function function_9bac2f00(e_player, gib)
 }
 
 /*
-	Name: function_19b9b682
+	Name: mechz_thundergun_knockdown
 	Namespace: namespace_ef567265
 	Checksum: 0xC3560C9D
 	Offset: 0xFB0
@@ -301,7 +301,7 @@ function function_9bac2f00(e_player, gib)
 	Parameters: 2
 	Flags: None
 */
-function function_19b9b682(e_player, gib)
+function mechz_thundergun_knockdown(e_player, gib)
 {
 	self endon("death");
 	self function_b8e0ce15(e_player);
@@ -363,31 +363,31 @@ function spawn_mechz(s_location, flyin)
 				ai thread function_75a79bb5();
 			#/
 			ai.actor_damage_func = &MechzServerUtils::mechzDamageCallback;
-			ai.damage_scoring_function = &function_b03abc02;
-			ai.mechz_melee_knockdown_function = &function_55483494;
+			ai.damage_scoring_function = &mechz_damage_scoring;
+			ai.mechz_melee_knockdown_function = &mechz_melee_knockdown;
 			ai.health = level.mechz_health;
 			ai.faceplate_health = level.MECHZ_FACEPLATE_HEALTH;
 			ai.powercap_cover_health = level.MECHZ_POWERCAP_COVER_HEALTH;
 			ai.powercap_health = level.MECHZ_POWERCAP_HEALTH;
-			ai.left_knee_armor_health = level.var_2cbc5b59;
-			ai.right_knee_armor_health = level.var_2cbc5b59;
-			ai.left_shoulder_armor_health = level.var_2cbc5b59;
-			ai.right_shoulder_armor_health = level.var_2cbc5b59;
+			ai.left_knee_armor_health = level.mechz_armor_health;
+			ai.right_knee_armor_health = level.mechz_armor_health;
+			ai.left_shoulder_armor_health = level.mechz_armor_health;
+			ai.right_shoulder_armor_health = level.mechz_armor_health;
 			ai.heroweapon_kill_power = 10;
 			e_player = zm_utility::get_closest_player(s_location.origin);
 			v_dir = e_player.origin - s_location.origin;
 			v_dir = VectorNormalize(v_dir);
 			v_angles = VectorToAngles(v_dir);
 			var_89f898ad = zm_utility::flat_angle(v_angles);
-			var_6ea4ef96 = s_location;
-			queryResult = PositionQuery_Source_Navigation(var_6ea4ef96.origin, 0, 32, 20, 4);
+			s_spawn_location = s_location;
+			queryResult = PositionQuery_Source_Navigation(s_spawn_location.origin, 0, 32, 20, 4);
 			if(queryResult.data.size)
 			{
 				v_ground_position = Array::random(queryResult.data).origin;
 			}
 			if(!isdefined(v_ground_position))
 			{
-				trace = bullettrace(var_6ea4ef96.origin, var_6ea4ef96.origin + VectorScale((0, 0, -1), 256), 0, s_location);
+				trace = bullettrace(s_spawn_location.origin, s_spawn_location.origin + VectorScale((0, 0, -1), 256), 0, s_location);
 				v_ground_position = trace["position"];
 			}
 			var_1750e965 = v_ground_position;
@@ -447,7 +447,7 @@ function function_d07fd448()
 	Parameters: 1
 	Flags: None
 */
-function function_c441eaba(var_678a2319)
+function function_c441eaba(landing_pos)
 {
 	self endon("death");
 	var_b54110bd = 2304;
@@ -457,7 +457,7 @@ function function_c441eaba(var_678a2319)
 	a_zombies = GetAIArchetypeArray("zombie");
 	foreach(e_zombie in a_zombies)
 	{
-		dist_sq = DistanceSquared(e_zombie.origin, var_678a2319);
+		dist_sq = DistanceSquared(e_zombie.origin, landing_pos);
 		if(dist_sq <= var_b54110bd)
 		{
 			e_zombie kill();
@@ -466,10 +466,10 @@ function function_c441eaba(var_678a2319)
 	a_players = GetPlayers();
 	foreach(player in a_players)
 	{
-		dist_sq = DistanceSquared(player.origin, var_678a2319);
+		dist_sq = DistanceSquared(player.origin, landing_pos);
 		if(dist_sq <= var_b54110bd)
 		{
-			player DoDamage(100, var_678a2319, self, self);
+			player DoDamage(100, landing_pos, self, self);
 		}
 		scale = var_44615973 - dist_sq / var_44615973;
 		if(scale <= 0 || scale >= 1)
@@ -477,7 +477,7 @@ function function_c441eaba(var_678a2319)
 			return;
 		}
 		earthquake_scale = scale * 0.15;
-		Earthquake(earthquake_scale, 0.1, var_678a2319, 1500);
+		Earthquake(earthquake_scale, 0.1, landing_pos, 1500);
 		if(scale >= 0.66)
 		{
 			player PlayRumbleOnEntity("shotgun_fire");
@@ -505,7 +505,7 @@ function function_c441eaba(var_678a2319)
 	Parameters: 1
 	Flags: None
 */
-function function_bbdc1f34(var_678a2319)
+function function_bbdc1f34(landing_pos)
 {
 	self endon("death");
 	self endon("hash_f93797a6");
@@ -516,7 +516,7 @@ function function_bbdc1f34(var_678a2319)
 		a_players = GetPlayers();
 		foreach(player in a_players)
 		{
-			dist_sq = DistanceSquared(player.origin, var_678a2319);
+			dist_sq = DistanceSquared(player.origin, landing_pos);
 			if(dist_sq <= var_f0dad551)
 			{
 				if(!isdefined(player.is_burning) && player.is_burning && zombie_utility::is_player_valid(player, 0))
@@ -528,7 +528,7 @@ function function_bbdc1f34(var_678a2319)
 		a_zombies = namespace_57695b4d::function_d41418b8();
 		foreach(e_zombie in a_zombies)
 		{
-			dist_sq = DistanceSquared(e_zombie.origin, var_678a2319);
+			dist_sq = DistanceSquared(e_zombie.origin, landing_pos);
 			if(dist_sq <= var_f0dad551 && self.var_e05d0be2 !== 1)
 			{
 				self function_3efae612(e_zombie);
@@ -735,7 +735,7 @@ function function_949a3fdf()
 }
 
 /*
-	Name: function_b03abc02
+	Name: mechz_damage_scoring
 	Namespace: namespace_ef567265
 	Checksum: 0x98528F4A
 	Offset: 0x2500
@@ -743,7 +743,7 @@ function function_949a3fdf()
 	Parameters: 12
 	Flags: None
 */
-function function_b03abc02(inflictor, attacker, damage, dFlags, mod, weapon, point, dir, hitLoc, offsetTime, boneIndex, modelIndex)
+function mechz_damage_scoring(inflictor, attacker, damage, dFlags, mod, weapon, point, dir, hitLoc, offsetTime, boneIndex, modelIndex)
 {
 	if(isdefined(attacker) && isPlayer(attacker))
 	{
@@ -816,7 +816,7 @@ function function_3efae612(zombie)
 }
 
 /*
-	Name: function_55483494
+	Name: mechz_melee_knockdown
 	Namespace: namespace_ef567265
 	Checksum: 0xB02E189
 	Offset: 0x28C8
@@ -824,7 +824,7 @@ function function_3efae612(zombie)
 	Parameters: 0
 	Flags: None
 */
-function function_55483494()
+function mechz_melee_knockdown()
 {
 	a_zombies = GetAIArchetypeArray("zombie");
 	foreach(zombie in a_zombies)
@@ -927,7 +927,7 @@ function private function_fbad70fd()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
-		zm_devgui::function_4acecab5(&function_94a24a91);
+		zm_devgui::add_custom_devgui_callback(&function_94a24a91);
 	#/
 }
 
@@ -944,8 +944,8 @@ function private function_94a24a91(cmd)
 {
 	/#
 		players = GetPlayers();
-		var_6aad1b23 = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
-		mechz = ArrayGetClosest(GetPlayers()[0].origin, var_6aad1b23);
+		mechzs = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
+		mechz = ArrayGetClosest(GetPlayers()[0].origin, mechzs);
 		switch(cmd)
 		{
 			case "Dev Block strings are not supported":

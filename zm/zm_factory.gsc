@@ -205,8 +205,8 @@ function main()
 	trigs = GetEntArray("trig_ee", "targetname");
 	Array::thread_all(trigs, &extra_events);
 	level.use_powerup_volumes = 1;
-	level.var_9aaae7ae = &function_869d6f66;
-	level thread function_6d012317();
+	level.zm_bgb_anywhere_but_here_validation_override = &anywhere_but_here_validation_override;
+	level thread ciphers();
 	level thread flytrap();
 	level thread function_5d386c43();
 	/#
@@ -287,8 +287,8 @@ function cinematic()
 	level.players[0] setClientUIVisibilityFlag("hud_visible", 0);
 	SetDvar("debug_show_viewpos", "0");
 	wait(3);
-	var_a720d14f = struct::get("tag_align_switch_box");
-	var_a720d14f scene::Play("cin_der_01_intro_3rd_sh010");
+	s_tag_align = struct::get("tag_align_switch_box");
+	s_tag_align scene::Play("cin_der_01_intro_3rd_sh010");
 }
 
 /*
@@ -1165,7 +1165,7 @@ function magic_box_init()
 }
 
 /*
-	Name: function_f82121a3
+	Name: power_on_listener
 	Namespace: zm_factory
 	Checksum: 0x5E92EF42
 	Offset: 0x5038
@@ -1173,7 +1173,7 @@ function magic_box_init()
 	Parameters: 1
 	Flags: None
 */
-function function_f82121a3(trig)
+function power_on_listener(trig)
 {
 	/#
 		trig endon("trigger");
@@ -1207,7 +1207,7 @@ function power_electric_switch()
 	User = undefined;
 	if(cheat != 1)
 	{
-		level thread function_f82121a3(trig);
+		level thread power_on_listener(trig);
 		trig waittill("trigger", User);
 	}
 	level thread scene::Play("power_switch", "targetname");
@@ -2017,11 +2017,11 @@ function isAnyoneTalking()
 function sndRadioSetup()
 {
 	level thread zm_audio::sndRadioSetup("vox_maxis_maxis_radio", undefined, (582, -2167, 286), (629, -1257, 259), (-594, -1359, 108), (-159, 437, 18), (1219, 136, 90));
-	level thread function_de1db1bb("vox_maxis_player_radio", (966, 805, 124), (-1197, -1466, 215), (-94, -2324, 175));
+	level thread sndspecialradiosetup("vox_maxis_player_radio", (966, 805, 124), (-1197, -1466, 215), (-94, -2324, 175));
 }
 
 /*
-	Name: function_de1db1bb
+	Name: sndspecialradiosetup
 	Namespace: zm_factory
 	Checksum: 0xC621AF7B
 	Offset: 0x7340
@@ -2029,7 +2029,7 @@ function sndRadioSetup()
 	Parameters: 4
 	Flags: None
 */
-function function_de1db1bb(alias_prefix, origin1, origin2, origin3)
+function sndspecialradiosetup(alias_prefix, origin1, origin2, origin3)
 {
 	radio = spawnstruct();
 	radio.counter = 1;
@@ -2113,16 +2113,16 @@ function sndRadioWait(origin, radio, num)
 	{
 		alias = "vox_take_player_radio3b";
 	}
-	var_48a5e056 = num;
-	var_aae31f82 = alias;
-	var_c3d43d75 = zm_spawner::get_number_variants(var_aae31f82);
-	if(var_c3d43d75 > 0)
+	radionum = num;
+	radioalias = alias;
+	radiolinecount = zm_spawner::get_number_variants(radioalias);
+	if(radiolinecount > 0)
 	{
 		radio.isplaying = 1;
-		for(i = 0; i < var_c3d43d75; i++)
+		for(i = 0; i < radiolinecount; i++)
 		{
-			temp_ent playsound(var_aae31f82 + "_" + i);
-			playbackTime = soundgetplaybacktime(var_aae31f82 + "_" + i);
+			temp_ent playsound(radioalias + "_" + i);
+			playbackTime = soundgetplaybacktime(radioalias + "_" + i);
 			if(!isdefined(playbackTime))
 			{
 				playbackTime = 1;
@@ -2557,7 +2557,7 @@ function fx_overrides()
 }
 
 /*
-	Name: function_6d012317
+	Name: ciphers
 	Namespace: zm_factory
 	Checksum: 0x1DF7305A
 	Offset: 0x8890
@@ -2565,10 +2565,10 @@ function fx_overrides()
 	Parameters: 0
 	Flags: None
 */
-function function_6d012317()
+function ciphers()
 {
-	var_3d01fc2c = GetEnt("cipher_brick_main", "script_noteworthy");
-	var_3d01fc2c thread function_b730f44e();
+	mdl_brick = GetEnt("cipher_brick_main", "script_noteworthy");
+	mdl_brick thread function_b730f44e();
 }
 
 /*
@@ -2584,16 +2584,16 @@ function function_b730f44e()
 {
 	self create_unitrigger();
 	self waittill("trigger_activated");
-	var_74772b0f = GetEntArray("cipher_bricks", "targetname");
-	foreach(var_3d01fc2c in var_74772b0f)
+	a_mdl_bricks = GetEntArray("cipher_bricks", "targetname");
+	foreach(mdl_brick in a_mdl_bricks)
 	{
-		var_3d01fc2c MoveZ(375, 2);
+		mdl_brick MoveZ(375, 2);
 	}
 	zm_unitrigger::unregister_unitrigger(self.s_unitrigger);
 	wait(2);
-	foreach(var_3d01fc2c in var_74772b0f)
+	foreach(mdl_brick in a_mdl_bricks)
 	{
-		var_3d01fc2c delete();
+		mdl_brick delete();
 	}
 }
 
@@ -2670,11 +2670,11 @@ function function_5d386c43()
 	level clientfield::set("console_start", 1);
 	level flag::wait_till_all(Array("console_one_completed", "console_two_completed", "console_three_completed"));
 	exploder::exploder("teleporter_controller_main_light");
-	var_d3486562 = struct::get("snowpile_console");
-	var_d3486562 create_unitrigger();
-	var_d3486562 waittill("trigger_activated");
-	playsoundatposition("zmb_snowmelt_button_press", var_d3486562.origin);
-	zm_unitrigger::unregister_unitrigger(var_d3486562.s_unitrigger);
+	s_console = struct::get("snowpile_console");
+	s_console create_unitrigger();
+	s_console waittill("trigger_activated");
+	playsoundatposition("zmb_snowmelt_button_press", s_console.origin);
+	zm_unitrigger::unregister_unitrigger(s_console.s_unitrigger);
 	level util::clientNotify("sndSB");
 	level thread function_428d50ed();
 	exploder::exploder("fx_expl_robothead_laser");
@@ -2682,8 +2682,8 @@ function function_5d386c43()
 	scene::Play("p7_fxanim_zm_factory_snowbank_bundle");
 	wait(0.5);
 	exploder::stop_exploder("fx_expl_robothead_laser");
-	var_935a64f = GetEnt("snowbank_clip", "targetname");
-	var_935a64f delete();
+	mdl_clip = GetEnt("snowbank_clip", "targetname");
+	mdl_clip delete();
 }
 
 /*
@@ -2749,23 +2749,23 @@ function function_7cb67075()
 	Parameters: 1
 	Flags: None
 */
-function function_ffa4d8ca(var_7d7ca0ea)
+function function_ffa4d8ca(t_teleporter)
 {
-	if(!isdefined(var_7d7ca0ea.var_634166a2))
+	if(!isdefined(t_teleporter.a_w_bombs))
 	{
-		var_7d7ca0ea.var_634166a2 = [];
+		t_teleporter.a_w_bombs = [];
 	}
-	if(!isdefined(var_7d7ca0ea.var_634166a2))
+	if(!isdefined(t_teleporter.a_w_bombs))
 	{
-		var_7d7ca0ea.var_634166a2 = [];
+		t_teleporter.a_w_bombs = [];
 	}
-	else if(!IsArray(var_7d7ca0ea.var_634166a2))
+	else if(!IsArray(t_teleporter.a_w_bombs))
 	{
-		var_7d7ca0ea.var_634166a2 = Array(var_7d7ca0ea.var_634166a2);
+		t_teleporter.a_w_bombs = Array(t_teleporter.a_w_bombs);
 	}
-	var_7d7ca0ea.var_634166a2[var_7d7ca0ea.var_634166a2.size] = self;
+	t_teleporter.a_w_bombs[t_teleporter.a_w_bombs.size] = self;
 	self waittill("death");
-	var_7d7ca0ea.var_634166a2 = Array::remove_dead(var_7d7ca0ea.var_634166a2);
+	t_teleporter.a_w_bombs = Array::remove_dead(t_teleporter.a_w_bombs);
 }
 
 /*
@@ -2780,7 +2780,7 @@ function function_ffa4d8ca(var_7d7ca0ea)
 function function_c7b37638()
 {
 	var_3c2393cb = GetEnt(self.targetname, "script_noteworthy");
-	if(isdefined(var_3c2393cb.var_634166a2) && var_3c2393cb.var_634166a2.size)
+	if(isdefined(var_3c2393cb.a_w_bombs) && var_3c2393cb.a_w_bombs.size)
 	{
 		switch(var_3c2393cb.script_noteworthy)
 		{
@@ -2999,15 +2999,15 @@ function function_8fbb6760(str_perk)
 */
 function function_d8362620()
 {
-	var_3c100ea1 = struct::get("flytrap_prize", "targetname");
-	var_6e1b8eeb = util::spawn_model("wpn_t7_hero_annihilator_world", var_3c100ea1.origin, var_3c100ea1.angles);
-	var_6e1b8eeb thread function_45814329(var_3c100ea1);
+	s_prize = struct::get("flytrap_prize", "targetname");
+	mdl_prize = util::spawn_model("wpn_t7_hero_annihilator_world", s_prize.origin, s_prize.angles);
+	mdl_prize thread rotate_prize(s_prize);
 	level thread function_86e1c543();
 	level flag::clear("flytrap");
 }
 
 /*
-	Name: function_45814329
+	Name: rotate_prize
 	Namespace: zm_factory
 	Checksum: 0x57DDCC88
 	Offset: 0x9A48
@@ -3015,7 +3015,7 @@ function function_d8362620()
 	Parameters: 1
 	Flags: None
 */
-function function_45814329(var_3c100ea1)
+function rotate_prize(s_prize)
 {
 	self endon("death");
 	while(1)
@@ -3036,10 +3036,10 @@ function function_45814329(var_3c100ea1)
 */
 function function_86e1c543()
 {
-	var_957c9ba0 = GetWeapon("hero_annihilator");
+	w_annihilator = GetWeapon("hero_annihilator");
 	while(1)
 	{
-		var_65af5e9c = trigger::wait_till("flytrap_prize");
+		t_flytrap = trigger::wait_till("flytrap_prize");
 		if(!(isdefined(level.var_1cbe7756) && level.var_1cbe7756))
 		{
 			foreach(player in level.players)
@@ -3050,10 +3050,10 @@ function function_86e1c543()
 			}
 			level.var_1cbe7756 = 1;
 		}
-		player = var_65af5e9c.who;
-		if(!player HasWeapon(var_957c9ba0))
+		player = t_flytrap.who;
+		if(!player HasWeapon(w_annihilator))
 		{
-			player function_5d3bb3fe(var_957c9ba0);
+			player function_5d3bb3fe(w_annihilator);
 		}
 	}
 }
@@ -3067,12 +3067,12 @@ function function_86e1c543()
 	Parameters: 1
 	Flags: None
 */
-function function_5d3bb3fe(var_957c9ba0)
+function function_5d3bb3fe(w_annihilator)
 {
 	w_previous = self GetCurrentWeapon();
-	self zm_weapons::weapon_give(var_957c9ba0);
+	self zm_weapons::weapon_give(w_annihilator);
 	self GadgetPowerSet(0, 99);
-	self SwitchToWeapon(var_957c9ba0);
+	self SwitchToWeapon(w_annihilator);
 	self waittill("weapon_change_complete");
 	self SetLowReady(1);
 	self SwitchToWeapon(w_previous);
@@ -3082,7 +3082,7 @@ function function_5d3bb3fe(var_957c9ba0)
 }
 
 /*
-	Name: function_869d6f66
+	Name: anywhere_but_here_validation_override
 	Namespace: zm_factory
 	Checksum: 0x452F720A
 	Offset: 0x9D70
@@ -3090,7 +3090,7 @@ function function_5d3bb3fe(var_957c9ba0)
 	Parameters: 0
 	Flags: None
 */
-function function_869d6f66()
+function anywhere_but_here_validation_override()
 {
 	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
 	{
@@ -3154,10 +3154,10 @@ function function_35372e3f(n_value)
 function function_7c3a679c(n_value)
 {
 	/#
-		var_957c9ba0 = GetWeapon("Dev Block strings are not supported");
+		w_annihilator = GetWeapon("Dev Block strings are not supported");
 		foreach(player in level.activePlayers)
 		{
-			player function_5d3bb3fe(var_957c9ba0);
+			player function_5d3bb3fe(w_annihilator);
 		}
 	#/
 }
@@ -3176,7 +3176,7 @@ function function_1196e483(n_value)
 	/#
 		foreach(player in level.players)
 		{
-			player ability_player::function_10f3334();
+			player ability_player::abilities_devgui_power_fill();
 		}
 	#/
 }
@@ -3248,8 +3248,8 @@ function function_dafe334()
 		level flag::set("Dev Block strings are not supported");
 		level flag::set("Dev Block strings are not supported");
 		wait(0.2);
-		var_d3486562 = struct::get("Dev Block strings are not supported");
-		var_d3486562 notify("trigger_activated");
+		s_console = struct::get("Dev Block strings are not supported");
+		s_console notify("trigger_activated");
 	#/
 }
 

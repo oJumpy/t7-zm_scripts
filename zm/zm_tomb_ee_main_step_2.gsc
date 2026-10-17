@@ -94,9 +94,9 @@ function exit_stage(success)
 		util::wait_network_frame();
 		util::wait_network_frame();
 	}
-	foreach(var_5ec0aa73 in level.a_elemental_staffs)
+	foreach(w_staff in level.a_elemental_staffs)
 	{
-		e_upgraded_staff = zm_tomb_craftables::get_staff_info_from_weapon_name(var_5ec0aa73.w_weapon, 0);
+		e_upgraded_staff = zm_tomb_craftables::get_staff_info_from_weapon_name(w_staff.w_weapon, 0);
 		e_upgraded_staff.ee_in_use = undefined;
 	}
 	level notify("hash_4c5352e3");
@@ -206,8 +206,8 @@ function robot_head_trigger_think()
 {
 	self endon("kill_trigger");
 	str_weap_staff = "staff_" + self.script_noteworthy;
-	var_5ec0aa73 = level.a_elemental_staffs[str_weap_staff].w_weapon;
-	e_upgraded_staff = zm_tomb_craftables::get_staff_info_from_weapon_name(var_5ec0aa73, 0);
+	w_staff = level.a_elemental_staffs[str_weap_staff].w_weapon;
+	e_upgraded_staff = zm_tomb_craftables::get_staff_info_from_weapon_name(w_staff, 0);
 	while(1)
 	{
 		self waittill("trigger", player);
@@ -221,7 +221,7 @@ function robot_head_trigger_think()
 			{
 				level flag::set("ee_all_staffs_placed");
 			}
-			var_5ec0aa73 thread place_staff(self.stub.m_plinth);
+			w_staff thread place_staff(self.stub.m_plinth);
 		}
 	}
 }

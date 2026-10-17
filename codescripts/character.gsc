@@ -43,7 +43,7 @@ function attachFromArray(a)
 }
 
 /*
-	Name: function_b9c80ba2
+	Name: newcharacter
 	Namespace: character
 	Checksum: 0xA087E372
 	Offset: 0x198
@@ -51,7 +51,7 @@ function attachFromArray(a)
 	Parameters: 0
 	Flags: None
 */
-function function_b9c80ba2()
+function newcharacter()
 {
 	self DetachAll();
 	oldGunHand = self.anim_gunHand;

@@ -74,7 +74,7 @@ function setup_devgui()
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 		execdevgui("Dev Block strings are not supported");
-		zm_devgui::function_4acecab5(&zombie_devgui_tomb);
+		zm_devgui::add_custom_devgui_callback(&zombie_devgui_tomb);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
@@ -245,8 +245,8 @@ function watch_for_upgraded_staffs()
 				foreach(player in a_players)
 				{
 					has_upgraded_staff = 0;
-					var_8ea4a872 = player GetWeaponsList();
-					foreach(w_weapon in var_8ea4a872)
+					a_w_weapons = player GetWeaponsList();
+					foreach(w_weapon in a_w_weapons)
 					{
 						if(is_weapon_upgraded_staff(w_weapon))
 						{
@@ -312,10 +312,10 @@ function function_d88b52e6()
 			if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported" || GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported" || GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported" || GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported" || GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported" || GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 			{
 				level flag::set("Dev Block strings are not supported");
-				var_5e72b36d = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
-				if(isdefined(var_5e72b36d))
+				mdl_floor = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
+				if(isdefined(mdl_floor))
 				{
-					var_5e72b36d delete();
+					mdl_floor delete();
 				}
 				t_hole = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
 				if(isdefined(t_hole))
@@ -689,7 +689,7 @@ function player_slow_movement_speed_monitor()
 			if(self istouching(area))
 			{
 				self clientfield::set_to_player("sndMudSlow", 1);
-				self function_4651aaf7(0);
+				self allowslide(0);
 				is_player_slowed = 1;
 				self.is_player_slowed = 1;
 				if(!isdefined(self.played_mud_vo) && self.played_mud_vo && (!isdefined(self.dontspeak) && self.dontspeak))
@@ -713,7 +713,7 @@ function player_slow_movement_speed_monitor()
 		{
 			self clientfield::set_to_player("sndMudSlow", 0);
 			self notify("mud_slowdown_cleared");
-			self function_4651aaf7(1);
+			self allowslide(1);
 			n_new_move_scale = 1;
 		}
 		if(self.n_move_scale != n_new_move_scale)
@@ -1219,7 +1219,7 @@ function function_38af9e8e()
 	self endon("disconnect");
 	while(1)
 	{
-		ammo = self getammocount(level.var_2b2f83e5);
+		ammo = self getammocount(level.w_staff_revive);
 		self clientfield::set_player_uimodel("hudItems.dpadLeftAmmo", ammo);
 		wait(0.05);
 	}
@@ -1494,7 +1494,7 @@ function set_unitrigger_hint_string(str_message)
 	Parameters: 5
 	Flags: None
 */
-function tomb_spawn_trigger_radius(origin, radius, use_trigger, var_3fe858d9, var_2d6ca912)
+function tomb_spawn_trigger_radius(origin, radius, use_trigger, var_3fe858d9, func_visibility)
 {
 	if(!isdefined(use_trigger))
 	{
@@ -1517,9 +1517,9 @@ function tomb_spawn_trigger_radius(origin, radius, use_trigger, var_3fe858d9, va
 		trigger_stub.func_update_msg = var_3fe858d9;
 		zm_unitrigger::unitrigger_force_per_player_triggers(trigger_stub, 1);
 	}
-	if(isdefined(var_2d6ca912))
+	if(isdefined(func_visibility))
 	{
-		trigger_stub.prompt_and_visibility_func = var_2d6ca912;
+		trigger_stub.prompt_and_visibility_func = func_visibility;
 	}
 	zm_unitrigger::register_unitrigger(trigger_stub, &tomb_unitrigger_think);
 	return trigger_stub;
@@ -2824,9 +2824,9 @@ function update_staff_accessories(n_element_index)
 			{
 				staff_info = staff_info.upgrade;
 			}
-			if(isdefined(staff_info.var_8f5a8751))
+			if(isdefined(staff_info.w_melee))
 			{
-				weapon_to_keep = staff_info.var_8f5a8751;
+				weapon_to_keep = staff_info.w_melee;
 				self.use_staff_melee = 1;
 			}
 		}
@@ -2839,7 +2839,7 @@ function update_staff_accessories(n_element_index)
 			melee_changed = 1;
 		}
 	}
-	has_revive = self HasWeapon(level.var_2b2f83e5);
+	has_revive = self HasWeapon(level.w_staff_revive);
 	has_upgraded_staff = 0;
 	a_weapons = self GetWeaponsListPrimaries();
 	staff_info = zm_tomb_craftables::get_staff_info_from_element_index(n_element_index);
@@ -2853,18 +2853,18 @@ function update_staff_accessories(n_element_index)
 	if(has_revive && !has_upgraded_staff)
 	{
 		self SetActionSlot(3, "altmode");
-		self TakeWeapon(level.var_2b2f83e5);
+		self TakeWeapon(level.w_staff_revive);
 	}
 	else if(!has_revive && has_upgraded_staff)
 	{
-		self SetActionSlot(3, "weapon", level.var_2b2f83e5);
-		self GiveWeapon(level.var_2b2f83e5);
+		self SetActionSlot(3, "weapon", level.w_staff_revive);
+		self GiveWeapon(level.w_staff_revive);
 		if(isdefined(staff_info))
 		{
 			if(isdefined(staff_info.upgrade.revive_ammo_stock))
 			{
-				self SetWeaponAmmoStock(level.var_2b2f83e5, staff_info.upgrade.revive_ammo_stock);
-				self SetWeaponAmmoClip(level.var_2b2f83e5, staff_info.upgrade.revive_ammo_clip);
+				self SetWeaponAmmoStock(level.w_staff_revive, staff_info.upgrade.revive_ammo_stock);
+				self SetWeaponAmmoClip(level.w_staff_revive, staff_info.upgrade.revive_ammo_clip);
 			}
 		}
 	}

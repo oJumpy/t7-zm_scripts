@@ -63,33 +63,33 @@ function __init__()
 	clientfield::register("actor", "zombie_slice_r", 1, 2, "counter");
 	clientfield::register("actor", "zombie_slice_l", 1, 2, "counter");
 	level._effect["glaive_blood_spurt"] = "impacts/fx_flesh_hit_knife_lg_zmb";
-	level.var_8e4d3487 = 240;
-	level.var_f1ed42ce = level.var_8e4d3487 * level.var_8e4d3487;
-	level.var_906ed1e7 = 100;
-	level.var_db3c626e = level.var_906ed1e7 * level.var_906ed1e7;
-	level.var_69d41b2c = 120;
-	level.var_b1a6353f = level.var_69d41b2c * level.var_69d41b2c;
+	level.glaive_excalibur_aoe_range = 240;
+	level.glaive_excalibur_aoe_range_sq = level.glaive_excalibur_aoe_range * level.glaive_excalibur_aoe_range;
+	level.glaive_excalibur_cone_range = 100;
+	level.glaive_excalibur_cone_range_sq = level.glaive_excalibur_cone_range * level.glaive_excalibur_cone_range;
+	level.glaive_chop_cone_range = 120;
+	level.glaive_chop_cone_range_sq = level.glaive_chop_cone_range * level.glaive_chop_cone_range;
 	level.var_3e0110d = 160;
 	level.var_42894cb8 = level.var_3e0110d * level.var_3e0110d;
-	callback::on_connect(&function_5d561ab0);
+	callback::on_connect(&watch_sword_equipped);
 	for(i = 0; i < 4; i++)
 	{
-		zombie_utility::add_zombie_gib_weapon_callback("glaive_apothicon" + "_" + i, &function_906dfe04, &function_9e3debe7);
-		zombie_utility::add_zombie_gib_weapon_callback("glaive_keeper" + "_" + i, &function_906dfe04, &function_9e3debe7);
+		zombie_utility::add_zombie_gib_weapon_callback("glaive_apothicon" + "_" + i, &gib_check, &gib_head_check);
+		zombie_utility::add_zombie_gib_weapon_callback("glaive_keeper" + "_" + i, &gib_check, &gib_head_check);
 		zm_hero_weapon::register_hero_weapon("glaive_apothicon" + "_" + i);
 		zm_hero_weapon::register_hero_weapon("glaive_keeper" + "_" + i);
-		zm_hero_weapon::register_hero_recharge_event(GetWeapon("glaive_apothicon" + "_" + i), &function_4a948f8a);
-		zm_hero_weapon::register_hero_recharge_event(GetWeapon("glaive_keeper" + "_" + i), &function_4a948f8a);
+		zm_hero_weapon::register_hero_recharge_event(GetWeapon("glaive_apothicon" + "_" + i), &sword_power_update);
+		zm_hero_weapon::register_hero_recharge_event(GetWeapon("glaive_keeper" + "_" + i), &sword_power_update);
 	}
-	level.var_44a72fa6 = Array("left_arm_upper", "left_arm_lower", "left_hand", "right_arm_upper", "right_arm_lower", "right_hand");
+	level.glaive_damage_locations = Array("left_arm_upper", "left_arm_lower", "left_hand", "right_arm_upper", "right_arm_lower", "right_hand");
 	level thread function_e97f78f0();
-	function_9b385ca5();
-	level.var_b31b9421 = Throttle;
-	Initialize(level.var_b31b9421, 6);
+	__constructor();
+	level.ai_glaive_throttle = Throttle;
+	Initialize(level.ai_glaive_throttle, 6);
 }
 
 /*
-	Name: function_c3226e09
+	Name: get_correct_sword_for_player_character_at_level
 	Namespace: namespace_2318f091
 	Checksum: 0x5C4CC332
 	Offset: 0xB70
@@ -97,20 +97,20 @@ function __init__()
 	Parameters: 1
 	Flags: None
 */
-function function_c3226e09(var_a38bb577)
+function get_correct_sword_for_player_character_at_level(n_upgrade_level)
 {
-	var_e4be281f = undefined;
-	if(var_a38bb577 == 1)
+	str_wpnname = undefined;
+	if(n_upgrade_level == 1)
 	{
-		var_e4be281f = "glaive_apothicon";
+		str_wpnname = "glaive_apothicon";
 	}
 	else
 	{
-		var_e4be281f = "glaive_keeper";
+		str_wpnname = "glaive_keeper";
 	}
-	var_e4be281f = var_e4be281f + "_" + self.characterindex;
-	var_d2af076 = GetWeapon(var_e4be281f);
-	return var_d2af076;
+	str_wpnname = str_wpnname + "_" + self.characterindex;
+	wpn = GetWeapon(str_wpnname);
+	return wpn;
 }
 
 /*
@@ -127,8 +127,8 @@ function function_3f820ba7(var_9fd9c680)
 	self endon("hash_b29853d8");
 	while(isdefined(self))
 	{
-		self waittill("weapon_change", var_7146ec21, var_46a99b76);
-		if(var_7146ec21 != level.weaponNone && var_7146ec21 != var_9fd9c680)
+		self waittill("weapon_change", wpn_cur, wpn_prev);
+		if(wpn_cur != level.weaponNone && wpn_cur != var_9fd9c680)
 		{
 			self.usingsword = 0;
 			if(self.autokill_glaive_active)
@@ -137,7 +137,7 @@ function function_3f820ba7(var_9fd9c680)
 				self thread function_762ff0b6(var_9fd9c680);
 				self waittill("hash_8a993396");
 			}
-			self function_24587ddb();
+			self disabled_sword();
 			self notify("hash_b29853d8");
 			return;
 		}
@@ -153,16 +153,16 @@ function function_3f820ba7(var_9fd9c680)
 	Parameters: 1
 	Flags: None
 */
-function function_762ff0b6(var_46a99b76)
+function function_762ff0b6(wpn_prev)
 {
 	self endon("hash_8a993396");
-	var_fbfaeadb = GetTime();
+	oldtime = GetTime();
 	while(isdefined(self) && (isdefined(self.autokill_glaive_active) && self.autokill_glaive_active))
 	{
 		rate = 1.667;
-		if(isdefined(var_46a99b76.gadget_power_usage_rate))
+		if(isdefined(wpn_prev.gadget_power_usage_rate))
 		{
-			rate = var_46a99b76.gadget_power_usage_rate;
+			rate = wpn_prev.gadget_power_usage_rate;
 		}
 		self.sword_power = self.sword_power - 0.0005 * rate;
 		self GadgetPowerSet(0, self.sword_power * 100);
@@ -193,17 +193,17 @@ function function_50cf29d(evt)
 	Parameters: 4
 	Flags: None
 */
-function function_5c998ffc(var_52baa43a, var_c93fc6c, var_7146ec21, var_46a99b76)
+function function_5c998ffc(wpn_excalibur, wpn_autokill, wpn_cur, wpn_prev)
 {
-	if(self.var_86a785ad && !self.usingsword)
+	if(self.sword_allowed && !self.usingsword)
 	{
-		if(var_7146ec21 == var_c93fc6c)
+		if(wpn_cur == wpn_autokill)
 		{
-			self.current_sword = var_c93fc6c;
+			self.current_sword = wpn_autokill;
 			self.var_2ef815cf = 0;
 			self disableOffhandWeapons();
 			self notify("hash_f0078f48");
-			self thread function_3f820ba7(var_7146ec21);
+			self thread function_3f820ba7(wpn_cur);
 			if(!(isdefined(self.usingsword) && self.usingsword))
 			{
 				self GadgetPowerSet(0, 100);
@@ -215,23 +215,23 @@ function function_5c998ffc(var_52baa43a, var_c93fc6c, var_7146ec21, var_46a99b76
 			self thread function_50cf29d("lv2start");
 			self.usingsword = 1;
 			self.autokill_glaive_active = 0;
-			slot = self GadgetGetSlot(var_c93fc6c);
-			self thread function_a15f6f64(slot);
-			self thread function_d0a73497(var_7146ec21, 1);
-			self thread function_1fb44d05(var_c93fc6c);
+			slot = self GadgetGetSlot(wpn_autokill);
+			self thread sword_power_hud(slot);
+			self thread arc_attack_think(wpn_cur, 1);
+			self thread autokill_think(wpn_autokill);
 			self waittill("hash_b29853d8");
 			self EnableOffhandWeapons();
-			self function_8fa8a0c8(1);
+			self allowmeleepowerleft(1);
 			self.usingsword = 0;
-			self function_24587ddb();
+			self disabled_sword();
 		}
-		else if(var_7146ec21 == var_52baa43a)
+		else if(wpn_cur == wpn_excalibur)
 		{
-			self.current_sword = var_52baa43a;
+			self.current_sword = wpn_excalibur;
 			self.var_2ef815cf = 1;
 			self disableOffhandWeapons();
 			self notify("hash_f0078f48");
-			self thread function_3f820ba7(var_7146ec21);
+			self thread function_3f820ba7(wpn_cur);
 			if(!(isdefined(self.usingsword) && self.usingsword))
 			{
 				self GadgetPowerSet(0, 100);
@@ -243,21 +243,21 @@ function function_5c998ffc(var_52baa43a, var_c93fc6c, var_7146ec21, var_46a99b76
 			self thread function_50cf29d("lv1start");
 			self.usingsword = 1;
 			self.autokill_glaive_active = 0;
-			slot = self GadgetGetSlot(var_52baa43a);
-			self thread function_a15f6f64(slot);
-			self thread function_d0a73497(var_52baa43a, 0);
-			self thread function_1de29b67(var_52baa43a);
+			slot = self GadgetGetSlot(wpn_excalibur);
+			self thread sword_power_hud(slot);
+			self thread arc_attack_think(wpn_excalibur, 0);
+			self thread excalibur_think(wpn_excalibur);
 			self waittill("hash_b29853d8");
 			self EnableOffhandWeapons();
-			self function_8fa8a0c8(1);
+			self allowmeleepowerleft(1);
 			self.usingsword = 0;
-			self function_24587ddb();
+			self disabled_sword();
 		}
 	}
 }
 
 /*
-	Name: function_5d561ab0
+	Name: watch_sword_equipped
 	Namespace: namespace_2318f091
 	Checksum: 0xD89FBDF
 	Offset: 0x1238
@@ -265,22 +265,22 @@ function function_5c998ffc(var_52baa43a, var_c93fc6c, var_7146ec21, var_46a99b76
 	Parameters: 0
 	Flags: Private
 */
-function private function_5d561ab0()
+function private watch_sword_equipped()
 {
 	self endon("disconnect");
-	var_52baa43a = self function_c3226e09(1);
-	var_c93fc6c = self function_c3226e09(2);
-	self.var_86a785ad = 1;
+	wpn_excalibur = self get_correct_sword_for_player_character_at_level(1);
+	wpn_autokill = self get_correct_sword_for_player_character_at_level(2);
+	self.sword_allowed = 1;
 	self.usingsword = 0;
 	while(1)
 	{
-		self waittill("weapon_change", var_7146ec21, var_46a99b76);
-		self function_5c998ffc(var_52baa43a, var_c93fc6c, var_7146ec21, var_46a99b76);
+		self waittill("weapon_change", wpn_cur, wpn_prev);
+		self function_5c998ffc(wpn_excalibur, wpn_autokill, wpn_cur, wpn_prev);
 	}
 }
 
 /*
-	Name: function_906dfe04
+	Name: gib_check
 	Namespace: namespace_2318f091
 	Checksum: 0xBFBC337B
 	Offset: 0x1308
@@ -288,19 +288,19 @@ function private function_5d561ab0()
 	Parameters: 1
 	Flags: Private
 */
-function private function_906dfe04(damage_percent)
+function private gib_check(damage_percent)
 {
-	self.var_5f40519e = "none";
+	self.override_damagelocation = "none";
 	if(damage_percent > 99.8)
 	{
-		self.var_5f40519e = "neck";
+		self.override_damagelocation = "neck";
 		return 1;
 	}
 	return 0;
 }
 
 /*
-	Name: function_9e3debe7
+	Name: gib_head_check
 	Namespace: namespace_2318f091
 	Checksum: 0x437463AF
 	Offset: 0x1358
@@ -308,9 +308,9 @@ function private function_906dfe04(damage_percent)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e3debe7(DAMAGE_LOCATION)
+function private gib_head_check(DAMAGE_LOCATION)
 {
-	if(self.var_5f40519e === "neck")
+	if(self.override_damagelocation === "neck")
 	{
 		return 1;
 	}
@@ -334,7 +334,7 @@ function private function_9e3debe7(DAMAGE_LOCATION)
 }
 
 /*
-	Name: function_1de29b67
+	Name: excalibur_think
 	Namespace: namespace_2318f091
 	Checksum: 0x584DF384
 	Offset: 0x13E0
@@ -342,7 +342,7 @@ function private function_9e3debe7(DAMAGE_LOCATION)
 	Parameters: 1
 	Flags: Private
 */
-function private function_1de29b67(var_52baa43a)
+function private excalibur_think(wpn_excalibur)
 {
 	self endon("hash_b29853d8");
 	self endon("disconnect");
@@ -350,16 +350,16 @@ function private function_1de29b67(var_52baa43a)
 	while(1)
 	{
 		self waittill("weapon_melee_power_left", weapon);
-		if(weapon == var_52baa43a)
+		if(weapon == wpn_excalibur)
 		{
 			self clientfield::increment("slam_fx");
-			self thread function_da195a32(var_52baa43a);
+			self thread do_excalibur(wpn_excalibur);
 		}
 	}
 }
 
 /*
-	Name: function_da195a32
+	Name: do_excalibur
 	Namespace: namespace_2318f091
 	Checksum: 0x725BDACF
 	Offset: 0x1480
@@ -367,7 +367,7 @@ function private function_1de29b67(var_52baa43a)
 	Parameters: 1
 	Flags: Private
 */
-function private function_da195a32(var_52baa43a)
+function private do_excalibur(wpn_excalibur)
 {
 	view_pos = self GetWeaponMuzzlePoint();
 	forward_view_angles = self GetWeaponForwardDir();
@@ -380,19 +380,19 @@ function private function_da195a32(var_52baa43a)
 		}
 		test_origin = ai GetCentroid();
 		dist_sq = DistanceSquared(view_pos, test_origin);
-		if(dist_sq < level.var_f1ed42ce)
+		if(dist_sq < level.glaive_excalibur_aoe_range_sq)
 		{
 			if(isdefined(ai.var_a3b60c68))
 			{
-				self thread [[ai.var_a3b60c68]](ai, var_52baa43a);
+				self thread [[ai.var_a3b60c68]](ai, wpn_excalibur);
 			}
 			else
 			{
-				self thread function_20654ca0(ai, var_52baa43a);
+				self thread electrocute_actor(ai, wpn_excalibur);
 			}
 			continue;
 		}
-		if(dist_sq > level.var_db3c626e)
+		if(dist_sq > level.glaive_excalibur_cone_range_sq)
 		{
 			continue;
 		}
@@ -408,15 +408,15 @@ function private function_da195a32(var_52baa43a)
 		}
 		if(isdefined(ai.var_a3b60c68))
 		{
-			self thread [[ai.var_a3b60c68]](ai, var_52baa43a);
+			self thread [[ai.var_a3b60c68]](ai, wpn_excalibur);
 			continue;
 		}
-		self thread function_20654ca0(ai, var_52baa43a);
+		self thread electrocute_actor(ai, wpn_excalibur);
 	}
 }
 
 /*
-	Name: function_20654ca0
+	Name: electrocute_actor
 	Namespace: namespace_2318f091
 	Checksum: 0xC02AAF17
 	Offset: 0x1750
@@ -424,7 +424,7 @@ function private function_da195a32(var_52baa43a)
 	Parameters: 2
 	Flags: None
 */
-function function_20654ca0(ai, var_52baa43a)
+function electrocute_actor(ai, wpn_excalibur)
 {
 	self endon("disconnect");
 	if(!isdefined(ai) || !isalive(ai))
@@ -438,7 +438,7 @@ function function_20654ca0(ai, var_52baa43a)
 	ai notify("bhtn_action_notify", "electrocute");
 	function_72ca5a88();
 	ai.tesla_death = 0;
-	ai thread function_fe8a580e(ai.origin, ai.origin, self);
+	ai thread arc_damage_init(ai.origin, ai.origin, self);
 	ai thread tesla_death(self);
 }
 
@@ -471,14 +471,14 @@ function function_72ca5a88()
 function tesla_death(player)
 {
 	self endon("death");
-	self thread function_862aadab(1);
+	self thread zombie_explodes_on_swipe(1);
 	wait(2);
 	player thread zm_audio::create_and_play_dialog("kill", "sword_slam");
 	self DoDamage(self.health + 1, self.origin);
 }
 
 /*
-	Name: function_fe8a580e
+	Name: arc_damage_init
 	Namespace: namespace_2318f091
 	Checksum: 0xA990EBBD
 	Offset: 0x1930
@@ -486,7 +486,7 @@ function tesla_death(player)
 	Parameters: 3
 	Flags: None
 */
-function function_fe8a580e(HIT_LOCATION, hit_origin, player)
+function arc_damage_init(HIT_LOCATION, hit_origin, player)
 {
 	player endon("disconnect");
 	if(isdefined(self.zombie_tesla_hit) && self.zombie_tesla_hit)
@@ -522,21 +522,21 @@ function chop_actor(ai, upgraded, leftswing, weapon)
 		{
 			ai.ignoreMelee = 1;
 		}
-		WaitInQueue(level.var_b31b9421);
+		WaitInQueue(level.ai_glaive_throttle);
 		ai DoDamage(9317, self.origin, self, self, "none", "MOD_UNKNOWN", 0, weapon);
 	}
 	else if(3594 >= ai.health)
 	{
 		ai.ignoreMelee = 1;
 	}
-	WaitInQueue(level.var_b31b9421);
+	WaitInQueue(level.ai_glaive_throttle);
 	ai DoDamage(3594, self.origin, self, self, "none", "MOD_UNKNOWN", 0, weapon);
-	ai function_996725b9(leftswing, upgraded);
+	ai blood_death_fx(leftswing, upgraded);
 	util::wait_network_frame();
 }
 
 /*
-	Name: function_862aadab
+	Name: zombie_explodes_on_swipe
 	Namespace: namespace_2318f091
 	Checksum: 0x38E1D52D
 	Offset: 0x1B60
@@ -544,7 +544,7 @@ function chop_actor(ai, upgraded, leftswing, weapon)
 	Parameters: 1
 	Flags: None
 */
-function function_862aadab(random_gibs)
+function zombie_explodes_on_swipe(random_gibs)
 {
 	if(isdefined(self) && IsActor(self))
 	{
@@ -568,7 +568,7 @@ function function_862aadab(random_gibs)
 }
 
 /*
-	Name: function_996725b9
+	Name: blood_death_fx
 	Namespace: namespace_2318f091
 	Checksum: 0xF706AECF
 	Offset: 0x1C98
@@ -576,13 +576,13 @@ function function_862aadab(random_gibs)
 	Parameters: 2
 	Flags: Private
 */
-function private function_996725b9(var_d98455ab, var_26ba0d4c)
+function private blood_death_fx(var_d98455ab, n_upgraded)
 {
 	if(self.archetype == "zombie")
 	{
 		if(var_d98455ab)
 		{
-			if(isdefined(var_26ba0d4c) && var_26ba0d4c)
+			if(isdefined(n_upgraded) && n_upgraded)
 			{
 				self clientfield::increment("zombie_slice_l", 2);
 			}
@@ -591,7 +591,7 @@ function private function_996725b9(var_d98455ab, var_26ba0d4c)
 				self clientfield::increment("zombie_slice_l", 1);
 			}
 		}
-		else if(isdefined(var_26ba0d4c) && var_26ba0d4c)
+		else if(isdefined(n_upgraded) && n_upgraded)
 		{
 			self clientfield::increment("zombie_slice_r", 2);
 		}
@@ -636,7 +636,7 @@ function chop_zombies(first_time, var_10ee11e, leftswing, weapon)
 		}
 		test_origin = ai GetCentroid();
 		dist_sq = DistanceSquared(view_pos, test_origin);
-		dist_to_check = level.var_b1a6353f;
+		dist_to_check = level.glaive_chop_cone_range_sq;
 		if(var_10ee11e)
 		{
 			dist_to_check = level.var_42894cb8;
@@ -666,7 +666,7 @@ function chop_zombies(first_time, var_10ee11e, leftswing, weapon)
 }
 
 /*
-	Name: function_4a6a1b77
+	Name: swordarc_swipe
 	Namespace: namespace_2318f091
 	Checksum: 0x5B4299FB
 	Offset: 0x20A8
@@ -674,7 +674,7 @@ function chop_zombies(first_time, var_10ee11e, leftswing, weapon)
 	Parameters: 2
 	Flags: None
 */
-function function_4a6a1b77(player, var_10ee11e)
+function swordarc_swipe(player, var_10ee11e)
 {
 	if(var_10ee11e)
 	{
@@ -692,7 +692,7 @@ function function_4a6a1b77(player, var_10ee11e)
 }
 
 /*
-	Name: function_d0a73497
+	Name: arc_attack_think
 	Namespace: namespace_2318f091
 	Checksum: 0x245A67A7
 	Offset: 0x2188
@@ -700,7 +700,7 @@ function function_4a6a1b77(player, var_10ee11e)
 	Parameters: 2
 	Flags: Private
 */
-function private function_d0a73497(weapon, var_10ee11e)
+function private arc_attack_think(weapon, var_10ee11e)
 {
 	self endon("hash_b29853d8");
 	self endon("disconnect");
@@ -708,12 +708,12 @@ function private function_d0a73497(weapon, var_10ee11e)
 	while(1)
 	{
 		self util::waittill_any("weapon_melee_power", "weapon_melee");
-		weapon thread function_4a6a1b77(self, var_10ee11e);
+		weapon thread swordarc_swipe(self, var_10ee11e);
 	}
 }
 
 /*
-	Name: function_1fb44d05
+	Name: autokill_think
 	Namespace: namespace_2318f091
 	Checksum: 0x224C3688
 	Offset: 0x2218
@@ -721,7 +721,7 @@ function private function_d0a73497(weapon, var_10ee11e)
 	Parameters: 1
 	Flags: Private
 */
-function private function_1fb44d05(var_c93fc6c)
+function private autokill_think(wpn_autokill)
 {
 	self endon("hash_b29853d8");
 	self endon("disconnect");
@@ -729,9 +729,9 @@ function private function_1fb44d05(var_c93fc6c)
 	while(1)
 	{
 		self waittill("weapon_melee_power_left", weapon);
-		if(weapon == var_c93fc6c && self.autokill_glaive_active == 0)
+		if(weapon == wpn_autokill && self.autokill_glaive_active == 0)
 		{
-			self thread function_946ce935(var_c93fc6c);
+			self thread send_autokill_sword(wpn_autokill);
 		}
 	}
 }
@@ -766,13 +766,13 @@ function function_86ee93a8()
 	Parameters: 1
 	Flags: Private
 */
-function private function_729af361(var_1c7a4c9a)
+function private function_729af361(vh_glaive)
 {
 	self endon("disconnect");
 	self endon("hash_b29853d8");
 	self endon("weapon_change");
-	var_1c7a4c9a endon("returned_to_owner");
-	var_1c7a4c9a endon("disconnect");
+	vh_glaive endon("returned_to_owner");
+	vh_glaive endon("disconnect");
 	self thread function_86ee93a8();
 	self.var_c0d25105._glaive_must_return_to_owner = 0;
 	while(isdefined(self) && self throwbuttonpressed())
@@ -791,7 +791,7 @@ function private function_729af361(var_1c7a4c9a)
 }
 
 /*
-	Name: function_946ce935
+	Name: send_autokill_sword
 	Namespace: namespace_2318f091
 	Checksum: 0x777D00D4
 	Offset: 0x2410
@@ -799,29 +799,29 @@ function private function_729af361(var_1c7a4c9a)
 	Parameters: 1
 	Flags: Private
 */
-function private function_946ce935(var_c93fc6c)
+function private send_autokill_sword(wpn_autokill)
 {
-	var_37d6ca9f = GetSpawnerArray("glaive_spawner", "script_noteworthy");
-	var_8e77ef3f = var_37d6ca9f[0];
-	var_8e77ef3f.count = 1;
-	var_1c7a4c9a = var_8e77ef3f SpawnFromSpawner("player_glaive_" + self.characterindex, 1);
-	self.var_c0d25105 = var_1c7a4c9a;
-	if(isdefined(var_1c7a4c9a))
+	a_sp_glaive = GetSpawnerArray("glaive_spawner", "script_noteworthy");
+	sp_glaive = a_sp_glaive[0];
+	sp_glaive.count = 1;
+	vh_glaive = sp_glaive SpawnFromSpawner("player_glaive_" + self.characterindex, 1);
+	self.var_c0d25105 = vh_glaive;
+	if(isdefined(vh_glaive))
 	{
-		var_1c7a4c9a vehicle::lights_on();
+		vh_glaive vehicle::lights_on();
 		self clientfield::increment_to_player("throw_fx");
-		var_1c7a4c9a.origin = self.origin + 80 * AnglesToForward(self.angles) + VectorScale((0, 0, 1), 50);
-		var_1c7a4c9a.angles = self getPlayerAngles();
-		var_1c7a4c9a.owner = self;
-		var_1c7a4c9a.weapon = var_c93fc6c;
-		var_1c7a4c9a._glaive_settings_lifetime = math::clamp(self.sword_power * 100, 10, 60);
+		vh_glaive.origin = self.origin + 80 * AnglesToForward(self.angles) + VectorScale((0, 0, 1), 50);
+		vh_glaive.angles = self getPlayerAngles();
+		vh_glaive.owner = self;
+		vh_glaive.weapon = wpn_autokill;
+		vh_glaive._glaive_settings_lifetime = math::clamp(self.sword_power * 100, 10, 60);
 		self.autokill_glaive_active = 1;
-		self function_8fa8a0c8(0);
+		self allowmeleepowerleft(0);
 		self thread function_50cf29d("lv2launch");
-		self thread function_729af361(var_1c7a4c9a);
-		var_1c7a4c9a util::waittill_any("returned_to_owner", "disconnect");
+		self thread function_729af361(vh_glaive);
+		vh_glaive util::waittill_any("returned_to_owner", "disconnect");
 		self thread function_50cf29d("lv2recover");
-		self function_8fa8a0c8(1);
+		self allowmeleepowerleft(1);
 		self.autokill_glaive_active = 0;
 		self notify("hash_8a993396");
 		self.var_c0d25105 = undefined;
@@ -830,7 +830,7 @@ function private function_946ce935(var_c93fc6c)
 			util::wait_network_frame();
 			self playsound("wpn_sword2_return");
 		}
-		var_1c7a4c9a delete();
+		vh_glaive delete();
 	}
 }
 
@@ -849,17 +849,17 @@ function function_e97f78f0()
 	{
 		foreach(player in GetPlayers())
 		{
-			if(isdefined(player.sword_power) && !player.var_86a785ad)
+			if(isdefined(player.sword_power) && !player.sword_allowed)
 			{
 				player.sword_power = player GadgetPowerGet(0) / 100;
 				player clientfield::set_player_uimodel("zmhud.swordEnergy", player.sword_power);
 				if(player.sword_power >= 1)
 				{
-					player.var_86a785ad = 1;
+					player.sword_allowed = 1;
 					if(isdefined(player.current_sword) && (!isdefined(player.usingsword) && player.usingsword) && (!isdefined(player.autokill_glaive_active) && player.autokill_glaive_active))
 					{
 						player GiveWeapon(player.current_sword);
-						player.var_86a785ad = 1;
+						player.sword_allowed = 1;
 						player GadgetPowerSet(0, 100);
 						player clientfield::set_player_uimodel("zmhud.swordEnergy", 1);
 						if(isdefined(player.var_2ef815cf) && player.var_2ef815cf)
@@ -881,7 +881,7 @@ function function_e97f78f0()
 }
 
 /*
-	Name: function_24587ddb
+	Name: disabled_sword
 	Namespace: namespace_2318f091
 	Checksum: 0x332E9F18
 	Offset: 0x29C0
@@ -889,23 +889,23 @@ function function_e97f78f0()
 	Parameters: 0
 	Flags: None
 */
-function function_24587ddb()
+function disabled_sword()
 {
 	if(isdefined(self.usingsword) && self.usingsword)
 	{
 		return;
 	}
-	var_52baa43a = self function_c3226e09(1);
-	var_c93fc6c = self function_c3226e09(2);
+	wpn_excalibur = self get_correct_sword_for_player_character_at_level(1);
+	wpn_autokill = self get_correct_sword_for_player_character_at_level(2);
 	/#
 		if(isdefined(self.swordpreserve) && self.swordpreserve)
 		{
-			self.var_86a785ad = 1;
+			self.sword_allowed = 1;
 			return;
 		}
 	#/
-	self.var_86a785ad = 0;
-	if(self HasWeapon(var_c93fc6c))
+	self.sword_allowed = 0;
+	if(self HasWeapon(wpn_autokill))
 	{
 		self clientfield::set_player_uimodel("zmhud.swordState", 1);
 		if(0)
@@ -915,7 +915,7 @@ function function_24587ddb()
 			self.sword_power = 0;
 		}
 	}
-	else if(self HasWeapon(var_52baa43a))
+	else if(self HasWeapon(wpn_excalibur))
 	{
 		self clientfield::set_player_uimodel("zmhud.swordState", 5);
 		if(0)
@@ -928,7 +928,7 @@ function function_24587ddb()
 }
 
 /*
-	Name: function_a15f6f64
+	Name: sword_power_hud
 	Namespace: namespace_2318f091
 	Checksum: 0x249BE0D
 	Offset: 0x2B80
@@ -936,7 +936,7 @@ function function_24587ddb()
 	Parameters: 1
 	Flags: None
 */
-function function_a15f6f64(slot)
+function sword_power_hud(slot)
 {
 	self endon("disconnect");
 	self endon("hash_b29853d8");
@@ -987,12 +987,12 @@ function function_a15f6f64(slot)
 	{
 		wait(0.05);
 	}
-	self function_24587ddb();
+	self disabled_sword();
 	self notify("hash_b29853d8");
 }
 
 /*
-	Name: function_4a948f8a
+	Name: sword_power_update
 	Namespace: namespace_2318f091
 	Checksum: 0x443C20E2
 	Offset: 0x2E50
@@ -1000,7 +1000,7 @@ function function_a15f6f64(slot)
 	Parameters: 2
 	Flags: None
 */
-function function_4a948f8a(player, enemy)
+function sword_power_update(player, enemy)
 {
 	if(player laststand::player_is_in_laststand())
 	{
@@ -1036,7 +1036,7 @@ function function_4a948f8a(player, enemy)
 function function_7855de72(player)
 {
 	/#
-		player ability_player::function_10f3334();
+		player ability_player::abilities_devgui_power_fill();
 	#/
 }
 

@@ -493,7 +493,7 @@ function private _UpdatePhalanxThread(phalanx)
 }
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: RobotPhalanx
 	Checksum: 0x739FBA53
 	Offset: 0x1780
@@ -501,7 +501,7 @@ function private _UpdatePhalanxThread(phalanx)
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self.tier1Robots_ = [];
 	self.tier2Robots_ = [];
@@ -513,7 +513,7 @@ function function_9b385ca5()
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: RobotPhalanx
 	Checksum: 0x99EC1590
 	Offset: 0x17E0
@@ -521,7 +521,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -728,8 +728,8 @@ function private autoexec RobotPhalanx()
 	classes.RobotPhalanx[0].__vtable[1167879746] = &HaltAdvance;
 	classes.RobotPhalanx[0].__vtable[-2118610224] = &HaltFire;
 	classes.RobotPhalanx[0].__vtable[972280915] = &_UpdatePhalanx;
-	classes.RobotPhalanx[0].__vtable[1606033458] = &function_5fba2032;
-	classes.RobotPhalanx[0].__vtable[-1690805083] = &function_9b385ca5;
+	classes.RobotPhalanx[0].__vtable[1606033458] = &__destructor;
+	classes.RobotPhalanx[0].__vtable[-1690805083] = &__constructor;
 	classes.RobotPhalanx[0].__vtable[-381269537] = &_UpdatePhalanxThread;
 	classes.RobotPhalanx[0].__vtable[-362582783] = &_RotateVec;
 	classes.RobotPhalanx[0].__vtable[1581873510] = &_ResumeFireRobots;

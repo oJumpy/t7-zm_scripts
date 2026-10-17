@@ -88,7 +88,7 @@ function validation()
 function activation()
 {
 	level.var_dfd95560 = 1;
-	function_8824774d(level.round_number + 1);
+	goto_round(level.round_number + 1);
 	foreach(player in level.players)
 	{
 		if(zm_utility::is_player_valid(player))
@@ -100,7 +100,7 @@ function activation()
 }
 
 /*
-	Name: function_b10a9b0c
+	Name: can_kill
 	Namespace: namespace_98efd7b6
 	Checksum: 0x5ADE134F
 	Offset: 0x448
@@ -108,7 +108,7 @@ function activation()
 	Parameters: 1
 	Flags: None
 */
-function function_b10a9b0c(zombie)
+function can_kill(zombie)
 {
 	if(!isdefined(zombie))
 	{
@@ -122,7 +122,7 @@ function function_b10a9b0c(zombie)
 }
 
 /*
-	Name: function_8824774d
+	Name: goto_round
 	Namespace: namespace_98efd7b6
 	Checksum: 0x4ADBD36B
 	Offset: 0x4D8
@@ -130,7 +130,7 @@ function function_b10a9b0c(zombie)
 	Parameters: 1
 	Flags: None
 */
-function function_8824774d(target_round)
+function goto_round(target_round)
 {
 	if(target_round < 1)
 	{
@@ -155,7 +155,7 @@ function function_8824774d(target_round)
 		e_last = undefined;
 		foreach(zombie in zombies)
 		{
-			if(function_b10a9b0c(zombie))
+			if(can_kill(zombie))
 			{
 				e_last = zombie;
 			}
@@ -171,7 +171,7 @@ function function_8824774d(target_round)
 	{
 		foreach(zombie in zombies)
 		{
-			if(!function_b10a9b0c(zombie))
+			if(!can_kill(zombie))
 			{
 				continue;
 			}

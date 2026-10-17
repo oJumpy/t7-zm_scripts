@@ -8,7 +8,7 @@
 #namespace namespace_78528370;
 
 /*
-	Name: function_30d4f164
+	Name: init_quest
 	Namespace: namespace_78528370
 	Checksum: 0xF0FB6C74
 	Offset: 0x3B0
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: None
 */
-function function_30d4f164()
+function init_quest()
 {
 	clientfield::register("vehicle", "plane_hit_by_aa_gun", 9000, 1, "int", &function_3b831537, 0, 0);
 	clientfield::register("scriptmover", "zipline_lightning_fx", 9000, 1, "int", &function_bd9975bc, 0, 0);

@@ -88,15 +88,15 @@ function main()
 	thread util::waitforclient(0);
 	level._power_on = 0;
 	level thread theatre_ZPO_listener();
-	level thread function_6ac83719();
+	level thread init_fog_vol_to_visionset();
 	level thread theater_light_model_swap_init();
-	level thread function_d87a7dcc();
-	level thread function_d19cb2f8();
+	level thread watch_for_power();
+	level thread startzmbspawnersoundloops();
 	namespace_16a77fe2::main_end();
 }
 
 /*
-	Name: function_6ac83719
+	Name: init_fog_vol_to_visionset
 	Namespace: namespace_aed37ba8
 	Checksum: 0x248FCAE
 	Offset: 0xB80
@@ -104,7 +104,7 @@ function main()
 	Parameters: 0
 	Flags: None
 */
-function function_6ac83719()
+function init_fog_vol_to_visionset()
 {
 	visionset_mgr::init_fog_vol_to_visionset_monitor("zm_theater", 0);
 	visionset_mgr::fog_vol_to_visionset_set_suffix("");
@@ -116,7 +116,7 @@ function function_6ac83719()
 }
 
 /*
-	Name: function_d87a7dcc
+	Name: watch_for_power
 	Namespace: namespace_aed37ba8
 	Checksum: 0x5CC94BDC
 	Offset: 0xC60
@@ -124,19 +124,19 @@ function function_6ac83719()
 	Parameters: 0
 	Flags: None
 */
-function function_d87a7dcc()
+function watch_for_power()
 {
 	if(isdefined(level.createFX_enabled) && level.createFX_enabled)
 	{
 		return;
 	}
-	var_bd7ba30 = 0;
+	looped_once = 0;
 	while(1)
 	{
 		if(!level clientfield::get("zombie_power_on"))
 		{
 			level.power_on = 0;
-			if(var_bd7ba30)
+			if(looped_once)
 			{
 				level notify("power_controlled_light");
 			}
@@ -144,7 +144,7 @@ function function_d87a7dcc()
 		}
 		level notify("power_controlled_light");
 		level util::waittill_any("pwo", "ZPOff");
-		var_bd7ba30 = 1;
+		looped_once = 1;
 	}
 }
 
@@ -463,7 +463,7 @@ function register_clientfields()
 }
 
 /*
-	Name: function_ce6ee03b
+	Name: theater_open_curtains
 	Namespace: namespace_aed37ba8
 	Checksum: 0xA483AD33
 	Offset: 0x1828
@@ -471,7 +471,7 @@ function register_clientfields()
 	Parameters: 7
 	Flags: None
 */
-function function_ce6ee03b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function theater_open_curtains(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 }
 
@@ -489,7 +489,7 @@ function function_17e9c62f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_d19cb2f8
+	Name: startzmbspawnersoundloops
 	Namespace: namespace_aed37ba8
 	Checksum: 0x84187B56
 	Offset: 0x18B8
@@ -497,7 +497,7 @@ function function_17e9c62f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 0
 	Flags: None
 */
-function function_d19cb2f8()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("exterior_goal", "targetname");
 	if(isdefined(loopers) && loopers.size > 0)

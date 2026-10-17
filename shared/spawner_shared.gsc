@@ -2639,9 +2639,9 @@ function spawn(b_force, str_targetname, v_origin, v_angles, bIgnoreSpawningLimit
 		infinitespawn = 1;
 	}
 	/#
-		if(isdefined(level.var_2daf1c0e) && IsArray(level.var_2daf1c0e))
+		if(isdefined(level.archetype_spawners) && IsArray(level.archetype_spawners))
 		{
-			var_fa016757 = undefined;
+			archetype_spawner = undefined;
 			if(self.team == "Dev Block strings are not supported")
 			{
 				archetype = GetDvarString("Dev Block strings are not supported");
@@ -2649,7 +2649,7 @@ function spawn(b_force, str_targetname, v_origin, v_angles, bIgnoreSpawningLimit
 				{
 					archetype = GetDvarString("Dev Block strings are not supported");
 				}
-				var_fa016757 = level.var_2daf1c0e[archetype];
+				archetype_spawner = level.archetype_spawners[archetype];
 			}
 			else if(self.team == "Dev Block strings are not supported")
 			{
@@ -2658,34 +2658,34 @@ function spawn(b_force, str_targetname, v_origin, v_angles, bIgnoreSpawningLimit
 				{
 					archetype = GetDvarString("Dev Block strings are not supported");
 				}
-				var_fa016757 = level.var_2daf1c0e[archetype];
+				archetype_spawner = level.archetype_spawners[archetype];
 			}
-			if(IsSpawner(var_fa016757))
+			if(IsSpawner(archetype_spawner))
 			{
-				while(isdefined(var_fa016757.lastspawntime) && var_fa016757.lastspawntime >= GetTime())
+				while(isdefined(archetype_spawner.lastspawntime) && archetype_spawner.lastspawntime >= GetTime())
 				{
 					wait(0.05);
 				}
-				originalOrigin = var_fa016757.origin;
-				originalAngles = var_fa016757.angles;
-				originalTarget = var_fa016757.target;
-				var_2bd6b94a = var_fa016757.targetname;
-				var_fa016757.target = self.target;
-				var_fa016757.targetname = self.targetname;
-				var_fa016757.script_noteworthy = self.script_noteworthy;
-				var_fa016757.script_string = self.script_string;
-				var_fa016757.origin = self.origin;
-				var_fa016757.angles = self.angles;
-				e_spawned = var_fa016757 SpawnFromSpawner(str_targetname, force_spawn, makeroom, infinitespawn);
-				var_fa016757.target = originalTarget;
-				var_fa016757.targetname = var_2bd6b94a;
-				var_fa016757.origin = originalOrigin;
-				var_fa016757.angles = originalAngles;
-				if(isdefined(var_fa016757.SPAWNFLAGS) && var_fa016757.SPAWNFLAGS & 64 == 64)
+				originalOrigin = archetype_spawner.origin;
+				originalAngles = archetype_spawner.angles;
+				originalTarget = archetype_spawner.target;
+				originaltargetname = archetype_spawner.targetname;
+				archetype_spawner.target = self.target;
+				archetype_spawner.targetname = self.targetname;
+				archetype_spawner.script_noteworthy = self.script_noteworthy;
+				archetype_spawner.script_string = self.script_string;
+				archetype_spawner.origin = self.origin;
+				archetype_spawner.angles = self.angles;
+				e_spawned = archetype_spawner SpawnFromSpawner(str_targetname, force_spawn, makeroom, infinitespawn);
+				archetype_spawner.target = originalTarget;
+				archetype_spawner.targetname = originaltargetname;
+				archetype_spawner.origin = originalOrigin;
+				archetype_spawner.angles = originalAngles;
+				if(isdefined(archetype_spawner.SPAWNFLAGS) && archetype_spawner.SPAWNFLAGS & 64 == 64)
 				{
-					var_fa016757.count++;
+					archetype_spawner.count++;
 				}
-				var_fa016757.lastspawntime = GetTime();
+				archetype_spawner.lastspawntime = GetTime();
 			}
 		}
 	#/
@@ -2722,9 +2722,9 @@ function spawn(b_force, str_targetname, v_origin, v_angles, bIgnoreSpawningLimit
 	{
 		if(isdefined(level.run_custom_function_on_ai))
 		{
-			if(isdefined(var_fa016757))
+			if(isdefined(archetype_spawner))
 			{
-				e_spawned thread [[level.run_custom_function_on_ai]](var_fa016757, str_targetname, force_spawn);
+				e_spawned thread [[level.run_custom_function_on_ai]](archetype_spawner, str_targetname, force_spawn);
 			}
 			else
 			{
@@ -3456,7 +3456,7 @@ function getScoreInfoXP(type)
 }
 
 /*
-	Name: function_63a40f84
+	Name: init_npcdeathtracking
 	Namespace: spawner
 	Checksum: 0x54B03394
 	Offset: 0x8000
@@ -3464,25 +3464,25 @@ function getScoreInfoXP(type)
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_63a40f84()
+function autoexec init_npcdeathtracking()
 {
 	/#
-		level.var_d4b93527 = [];
-		level.var_50c49a7f = "Dev Block strings are not supported";
-		callback::add_callback("hash_8c38c12e", &function_1fe733b8);
-		callback::add_callback("hash_acb66515", &function_fbf3ae73);
-		callback::add_callback("hash_7b543e98", &function_fa4961d4);
-		callback::add_callback("hash_9bd1e27f", &function_2984c1c9);
+		level.a_npcdeaths = [];
+		level.str_killsoutput = "Dev Block strings are not supported";
+		callback::add_callback("hash_8c38c12e", &track_npc_deaths);
+		callback::add_callback("hash_acb66515", &track_vehicle_deaths);
+		callback::add_callback("hash_7b543e98", &show_actor_damage);
+		callback::add_callback("hash_9bd1e27f", &show_vehicle_damage);
 		SetDvar("Dev Block strings are not supported", 0);
 		SetDvar("Dev Block strings are not supported", 0);
 		SetDvar("Dev Block strings are not supported", 0);
 		SetDvar("Dev Block strings are not supported", 0);
-		level thread function_6ec0d40f();
+		level thread listenfornpcdeaths();
 	#/
 }
 
 /*
-	Name: function_fbf3ae73
+	Name: track_vehicle_deaths
 	Namespace: spawner
 	Checksum: 0x1771125F
 	Offset: 0x8148
@@ -3490,32 +3490,32 @@ function autoexec function_63a40f84()
 	Parameters: 1
 	Flags: None
 */
-function function_fbf3ae73(params)
+function track_vehicle_deaths(params)
 {
 	/#
-		var_6ac43d03 = 0;
+		b_killed_by_player = 0;
 		if(isdefined(params) && isPlayer(params.eAttacker))
 		{
-			var_6ac43d03 = 1;
+			b_killed_by_player = 1;
 			if(GetDvarInt("Dev Block strings are not supported"))
 			{
-				var_f695f102 = getScoreInfoXP("Dev Block strings are not supported" + self.scoreType);
-				var_4df005d0 = self.origin;
-				var_31fea095 = 50;
+				n_xp_value = getScoreInfoXP("Dev Block strings are not supported" + self.scoreType);
+				v_death_position = self.origin;
+				n_print_height = 50;
 				if(isdefined(self.height))
 				{
-					var_31fea095 = self.height;
+					n_print_height = self.height;
 				}
-				var_4df005d0 = var_4df005d0 + (0, 0, var_31fea095);
-				function_8ba6ca57(var_f695f102, var_4df005d0);
+				v_death_position = v_death_position + (0, 0, n_print_height);
+				show_xp_popup_for_enemy(n_xp_value, v_death_position);
 			}
 		}
-		function_2795d1ea(var_6ac43d03);
+		adddeadnpctolist(b_killed_by_player);
 	#/
 }
 
 /*
-	Name: function_1fe733b8
+	Name: track_npc_deaths
 	Namespace: spawner
 	Checksum: 0x2E4C830B
 	Offset: 0x8288
@@ -3523,32 +3523,32 @@ function function_fbf3ae73(params)
 	Parameters: 1
 	Flags: None
 */
-function function_1fe733b8(params)
+function track_npc_deaths(params)
 {
 	/#
-		var_6ac43d03 = 0;
+		b_killed_by_player = 0;
 		if(isPlayer(params.eAttacker))
 		{
-			var_6ac43d03 = 1;
+			b_killed_by_player = 1;
 			if(GetDvarInt("Dev Block strings are not supported"))
 			{
-				var_f695f102 = getScoreInfoXP("Dev Block strings are not supported" + self.scoreType);
-				var_4df005d0 = self.origin;
-				var_31fea095 = 72;
+				n_xp_value = getScoreInfoXP("Dev Block strings are not supported" + self.scoreType);
+				v_death_position = self.origin;
+				n_print_height = 72;
 				if(isdefined(self.goalHeight))
 				{
-					var_31fea095 = self.goalHeight - 12;
+					n_print_height = self.goalHeight - 12;
 				}
-				var_4df005d0 = var_4df005d0 + (0, 0, var_31fea095);
-				function_8ba6ca57(var_f695f102, var_4df005d0);
+				v_death_position = v_death_position + (0, 0, n_print_height);
+				show_xp_popup_for_enemy(n_xp_value, v_death_position);
 			}
 		}
-		function_2795d1ea(var_6ac43d03);
+		adddeadnpctolist(b_killed_by_player);
 	#/
 }
 
 /*
-	Name: function_fa4961d4
+	Name: show_actor_damage
 	Namespace: spawner
 	Checksum: 0x8F68F498
 	Offset: 0x83B8
@@ -3556,11 +3556,11 @@ function function_1fe733b8(params)
 	Parameters: 1
 	Flags: None
 */
-function function_fa4961d4(params)
+function show_actor_damage(params)
 {
 	/#
-		var_6255a1d2 = (0, 0, 0);
-		var_1f95466d = params.iDamage;
+		v_print_pos = (0, 0, 0);
+		n_damage_value = params.iDamage;
 		if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 		{
 			if(isdefined(self GetTagOrigin("Dev Block strings are not supported")))
@@ -3571,13 +3571,13 @@ function function_fa4961d4(params)
 			{
 				v_position = self GetOrigin() + VectorScale((0, 0, 1), 78);
 			}
-			level thread function_440d13a9(var_1f95466d, v_position, "Dev Block strings are not supported", "Dev Block strings are not supported", (0.96, 0.12, 0.12), 1, 0.6);
+			level thread show_number_popup(n_damage_value, v_position, "Dev Block strings are not supported", "Dev Block strings are not supported", (0.96, 0.12, 0.12), 1, 0.6);
 		}
 	#/
 }
 
 /*
-	Name: function_2984c1c9
+	Name: show_vehicle_damage
 	Namespace: spawner
 	Checksum: 0xDDC7639F
 	Offset: 0x8500
@@ -3585,27 +3585,27 @@ function function_fa4961d4(params)
 	Parameters: 1
 	Flags: None
 */
-function function_2984c1c9(params)
+function show_vehicle_damage(params)
 {
 	/#
-		var_6255a1d2 = (0, 0, 0);
-		var_1f95466d = params.iDamage;
+		v_print_pos = (0, 0, 0);
+		n_damage_value = params.iDamage;
 		if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 		{
-			var_6255a1d2 = self.origin;
-			var_31fea095 = 50;
+			v_print_pos = self.origin;
+			n_print_height = 50;
 			if(isdefined(self.height))
 			{
-				var_31fea095 = self.height;
+				n_print_height = self.height;
 			}
-			var_6255a1d2 = var_6255a1d2 + (0, 0, var_31fea095);
-			level thread function_440d13a9(var_1f95466d, var_6255a1d2, "Dev Block strings are not supported", "Dev Block strings are not supported", (0.96, 0.12, 0.12), 1, 0.6);
+			v_print_pos = v_print_pos + (0, 0, n_print_height);
+			level thread show_number_popup(n_damage_value, v_print_pos, "Dev Block strings are not supported", "Dev Block strings are not supported", (0.96, 0.12, 0.12), 1, 0.6);
 		}
 	#/
 }
 
 /*
-	Name: function_8ba6ca57
+	Name: show_xp_popup_for_enemy
 	Namespace: spawner
 	Checksum: 0xBA0335D1
 	Offset: 0x8608
@@ -3613,15 +3613,15 @@ function function_2984c1c9(params)
 	Parameters: 2
 	Flags: None
 */
-function function_8ba6ca57(var_f695f102, v_position)
+function show_xp_popup_for_enemy(n_xp_value, v_position)
 {
 	/#
-		level thread function_440d13a9(var_f695f102, v_position, "Dev Block strings are not supported", "Dev Block strings are not supported", (0.83, 0.18, 0.76), 1, 0.7);
+		level thread show_number_popup(n_xp_value, v_position, "Dev Block strings are not supported", "Dev Block strings are not supported", (0.83, 0.18, 0.76), 1, 0.7);
 	#/
 }
 
 /*
-	Name: function_440d13a9
+	Name: show_number_popup
 	Namespace: spawner
 	Checksum: 0x57F4FE92
 	Offset: 0x8680
@@ -3629,28 +3629,28 @@ function function_8ba6ca57(var_f695f102, v_position)
 	Parameters: 7
 	Flags: None
 */
-function function_440d13a9(n_value, v_pos, var_4b5575e9, var_1e91eabe, color, n_alpha, n_size)
+function show_number_popup(n_value, v_pos, string_prefix, string_suffix, color, n_alpha, n_size)
 {
 	/#
-		var_6182c14d = 0;
-		var_7578a666 = n_alpha;
-		var_2ea9cc6d = v_pos;
-		while(var_6182c14d < 40)
+		n_current_tick = 0;
+		n_current_alpha = n_alpha;
+		v_print_position = v_pos;
+		while(n_current_tick < 40)
 		{
-			var_2ea9cc6d = var_2ea9cc6d + (0, 0, 1.125);
-			print3d(var_2ea9cc6d, var_4b5575e9 + n_value + var_1e91eabe, color, var_7578a666, n_size, 1);
-			if(var_6182c14d >= 20)
+			v_print_position = v_print_position + (0, 0, 1.125);
+			print3d(v_print_position, string_prefix + n_value + string_suffix, color, n_current_alpha, n_size, 1);
+			if(n_current_tick >= 20)
 			{
-				var_7578a666 = var_7578a666 - 1 / 20;
+				n_current_alpha = n_current_alpha - 1 / 20;
 			}
 			wait(0.05);
-			var_6182c14d++;
+			n_current_tick++;
 		}
 	#/
 }
 
 /*
-	Name: function_5671da7d
+	Name: get_xp_value_for_enemy
 	Namespace: spawner
 	Checksum: 0x64225C33
 	Offset: 0x8798
@@ -3658,13 +3658,13 @@ function function_440d13a9(n_value, v_pos, var_4b5575e9, var_1e91eabe, color, n_
 	Parameters: 1
 	Flags: None
 */
-function function_5671da7d(e_enemy)
+function get_xp_value_for_enemy(e_enemy)
 {
 	/#
-		var_f695f102 = getScoreInfoXP("Dev Block strings are not supported" + e_enemy.scoreType);
-		if(isdefined(var_f695f102))
+		n_xp_value = getScoreInfoXP("Dev Block strings are not supported" + e_enemy.scoreType);
+		if(isdefined(n_xp_value))
 		{
-			return var_f695f102;
+			return n_xp_value;
 		}
 		else
 		{
@@ -3674,7 +3674,7 @@ function function_5671da7d(e_enemy)
 }
 
 /*
-	Name: function_2795d1ea
+	Name: adddeadnpctolist
 	Namespace: spawner
 	Checksum: 0x331D1F5F
 	Offset: 0x8800
@@ -3682,7 +3682,7 @@ function function_5671da7d(e_enemy)
 	Parameters: 1
 	Flags: None
 */
-function function_2795d1ea(var_6ac43d03)
+function adddeadnpctolist(b_killed_by_player)
 {
 	/#
 		if(!isdefined(self))
@@ -3691,44 +3691,44 @@ function function_2795d1ea(var_6ac43d03)
 		}
 		if(self.team == "Dev Block strings are not supported" || self.team == "Dev Block strings are not supported")
 		{
-			var_b28093b = 0;
-			for(i = 0; i < level.var_d4b93527.size; i++)
+			bentryexists = 0;
+			for(i = 0; i < level.a_npcdeaths.size; i++)
 			{
-				if(level.var_d4b93527[i].var_af46d184 == self.scoreType)
+				if(level.a_npcdeaths[i].strscoretype == self.scoreType)
 				{
-					level.var_d4b93527[i].var_c964043b = level.var_d4b93527[i].var_c964043b + 1;
-					if(var_6ac43d03)
+					level.a_npcdeaths[i].icount = level.a_npcdeaths[i].icount + 1;
+					if(b_killed_by_player)
 					{
-						level.var_d4b93527[i].var_50b2a78e = level.var_d4b93527[i].var_50b2a78e + 1;
-						if(isdefined(level.var_d4b93527[i].var_1f8e7452))
+						level.a_npcdeaths[i].ikilledbyplayercount = level.a_npcdeaths[i].ikilledbyplayercount + 1;
+						if(isdefined(level.a_npcdeaths[i].ixpvaluesum))
 						{
-							level.var_d4b93527[i].var_1f8e7452 = level.var_d4b93527[i].var_1f8e7452 + function_5671da7d(self);
+							level.a_npcdeaths[i].ixpvaluesum = level.a_npcdeaths[i].ixpvaluesum + get_xp_value_for_enemy(self);
 						}
 					}
-					var_b28093b = 1;
+					bentryexists = 1;
 				}
 			}
-			if(!var_b28093b)
+			if(!bentryexists)
 			{
-				var_698fd26a = spawnstruct();
-				var_698fd26a.var_af46d184 = self.scoreType;
-				var_698fd26a.var_c964043b = 1;
-				var_698fd26a.var_50b2a78e = 0;
-				var_698fd26a.var_1f8e7452 = 0;
-				if(var_6ac43d03)
+				s_npcdeath = spawnstruct();
+				s_npcdeath.strscoretype = self.scoreType;
+				s_npcdeath.icount = 1;
+				s_npcdeath.ikilledbyplayercount = 0;
+				s_npcdeath.ixpvaluesum = 0;
+				if(b_killed_by_player)
 				{
-					var_698fd26a.var_50b2a78e = 1;
-					var_698fd26a.var_1f8e7452 = function_5671da7d(self);
+					s_npcdeath.ikilledbyplayercount = 1;
+					s_npcdeath.ixpvaluesum = get_xp_value_for_enemy(self);
 				}
-				var_7181db51 = level.var_d4b93527.size;
-				level.var_d4b93527[var_7181db51] = var_698fd26a;
+				itypesofnpcskilled = level.a_npcdeaths.size;
+				level.a_npcdeaths[itypesofnpcskilled] = s_npcdeath;
 			}
 		}
 	#/
 }
 
 /*
-	Name: function_6ec0d40f
+	Name: listenfornpcdeaths
 	Namespace: spawner
 	Checksum: 0xA62C4046
 	Offset: 0x8A68
@@ -3736,46 +3736,46 @@ function function_2795d1ea(var_6ac43d03)
 	Parameters: 0
 	Flags: None
 */
-function function_6ec0d40f()
+function listenfornpcdeaths()
 {
 	/#
 		while(1)
 		{
-			function_d8312e();
+			checkfordeathtrackingreset();
 			if(GetDvarInt("Dev Block strings are not supported") == 1)
 			{
-				if(!isdefined(level.var_4436cad5))
+				if(!isdefined(level.npc_death_tracking_hud_text))
 				{
-					level.var_4436cad5 = NewHudElem();
-					level.var_4436cad5.alignX = "Dev Block strings are not supported";
-					level.var_4436cad5.x = 50;
-					level.var_4436cad5.y = 60;
-					level.var_4436cad5.fontscale = 1.5;
-					level.var_4436cad5.color = (1, 1, 1);
+					level.npc_death_tracking_hud_text = NewHudElem();
+					level.npc_death_tracking_hud_text.alignX = "Dev Block strings are not supported";
+					level.npc_death_tracking_hud_text.x = 50;
+					level.npc_death_tracking_hud_text.y = 60;
+					level.npc_death_tracking_hud_text.fontscale = 1.5;
+					level.npc_death_tracking_hud_text.color = (1, 1, 1);
 					IPrintLnBold("Dev Block strings are not supported");
 				}
 				else
 				{
-					level.var_87874699 = "Dev Block strings are not supported" + GetAITeamArray("Dev Block strings are not supported").size + "Dev Block strings are not supported" + GetAITeamArray("Dev Block strings are not supported").size + "Dev Block strings are not supported";
-					level.var_87874699 = level.var_87874699 + "Dev Block strings are not supported";
-					if(level.var_d4b93527.size == 0)
+					level.s_killsoutput = "Dev Block strings are not supported" + GetAITeamArray("Dev Block strings are not supported").size + "Dev Block strings are not supported" + GetAITeamArray("Dev Block strings are not supported").size + "Dev Block strings are not supported";
+					level.s_killsoutput = level.s_killsoutput + "Dev Block strings are not supported";
+					if(level.a_npcdeaths.size == 0)
 					{
-						level.var_87874699 = level.var_87874699 + "Dev Block strings are not supported";
+						level.s_killsoutput = level.s_killsoutput + "Dev Block strings are not supported";
 						break;
 					}
-					foreach(var_2b2af279 in level.var_d4b93527)
+					foreach(deadnpctypecount in level.a_npcdeaths)
 					{
-						level.var_87874699 = level.var_87874699 + var_2b2af279.var_af46d184 + "Dev Block strings are not supported" + var_2b2af279.var_c964043b + "Dev Block strings are not supported" + var_2b2af279.var_50b2a78e + "Dev Block strings are not supported";
+						level.s_killsoutput = level.s_killsoutput + deadnpctypecount.strscoretype + "Dev Block strings are not supported" + deadnpctypecount.icount + "Dev Block strings are not supported" + deadnpctypecount.ikilledbyplayercount + "Dev Block strings are not supported";
 					}
 					if(GetDvarInt("Dev Block strings are not supported") == 1)
 					{
-						level.var_4436cad5 setText(level.var_87874699);
+						level.npc_death_tracking_hud_text setText(level.s_killsoutput);
 					}
 				}
 			}
-			else if(isdefined(level.var_4436cad5))
+			else if(isdefined(level.npc_death_tracking_hud_text))
 			{
-				level.var_4436cad5 destroy();
+				level.npc_death_tracking_hud_text destroy();
 				IPrintLnBold("Dev Block strings are not supported");
 			}
 			wait(0.25);
@@ -3784,7 +3784,7 @@ function function_6ec0d40f()
 }
 
 /*
-	Name: function_d8312e
+	Name: checkfordeathtrackingreset
 	Namespace: spawner
 	Checksum: 0x6E212213
 	Offset: 0x8D58
@@ -3792,12 +3792,12 @@ function function_6ec0d40f()
 	Parameters: 0
 	Flags: None
 */
-function function_d8312e()
+function checkfordeathtrackingreset()
 {
 	/#
 		if(GetDvarInt("Dev Block strings are not supported") == 1)
 		{
-			level.var_d4b93527 = [];
+			level.a_npcdeaths = [];
 			iprintln("Dev Block strings are not supported");
 			SetDvar("Dev Block strings are not supported", 0);
 		}

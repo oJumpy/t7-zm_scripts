@@ -261,19 +261,19 @@ function footprint_zombie_killed(attacker)
 */
 function reward_packed_weapon(player, s_stat)
 {
-	if(!isdefined(s_stat.var_e564b69e))
+	if(!isdefined(s_stat.w_reward))
 	{
 		a_weapons = Array("smg_capacity", "smg_mp40_1940", "ar_accurate");
 		var_7e5dd894 = GetWeapon(Array::random(a_weapons));
-		s_stat.var_e564b69e = zm_weapons::get_upgrade_weapon(var_7e5dd894);
+		s_stat.w_reward = zm_weapons::get_upgrade_weapon(var_7e5dd894);
 	}
 	m_weapon = spawn("script_model", self.origin);
 	m_weapon.angles = self.angles + VectorScale((0, 1, 0), 180);
 	m_weapon playsound("zmb_spawn_powerup");
 	m_weapon PlayLoopSound("zmb_spawn_powerup_loop", 0.5);
-	STR_MODEL = GetWeaponModel(s_stat.var_e564b69e);
-	options = player zm_weapons::get_pack_a_punch_weapon_options(s_stat.var_e564b69e);
-	m_weapon UseWeaponModel(s_stat.var_e564b69e, STR_MODEL, options);
+	STR_MODEL = GetWeaponModel(s_stat.w_reward);
+	options = player zm_weapons::get_pack_a_punch_weapon_options(s_stat.w_reward);
+	m_weapon UseWeaponModel(s_stat.w_reward, STR_MODEL, options);
 	util::wait_network_frame();
 	if(!namespace_a528e918::reward_rise_and_grab(m_weapon, 50, 2, 2, 10))
 	{
@@ -283,14 +283,14 @@ function reward_packed_weapon(player, s_stat)
 	Primaries = player GetWeaponsListPrimaries();
 	if(isdefined(Primaries) && Primaries.size >= weapon_limit)
 	{
-		player zm_weapons::weapon_give(s_stat.var_e564b69e);
+		player zm_weapons::weapon_give(s_stat.w_reward);
 	}
 	else
 	{
-		player zm_weapons::give_build_kit_weapon(s_stat.var_e564b69e);
-		player GiveStartAmmo(s_stat.var_e564b69e);
+		player zm_weapons::give_build_kit_weapon(s_stat.w_reward);
+		player GiveStartAmmo(s_stat.w_reward);
 	}
-	player SwitchToWeapon(s_stat.var_e564b69e);
+	player SwitchToWeapon(s_stat.w_reward);
 	m_weapon StopLoopSound(0.1);
 	player playsound("zmb_powerup_grabbed");
 	m_weapon delete();
@@ -519,7 +519,7 @@ function reward_beacon(player, s_stat)
 {
 	m_reward = spawn("script_model", self.origin);
 	m_reward.angles = self.angles + VectorScale((0, 1, 0), 180);
-	STR_MODEL = GetWeaponModel(level.var_25ef5fab);
+	STR_MODEL = GetWeaponModel(level.w_beacon);
 	m_reward SetModel(STR_MODEL);
 	m_reward playsound("zmb_spawn_powerup");
 	m_reward PlayLoopSound("zmb_spawn_powerup_loop", 0.5);
@@ -528,11 +528,11 @@ function reward_beacon(player, s_stat)
 	{
 		return 0;
 	}
-	player zm_weapons::weapon_give(level.var_25ef5fab);
-	if(isdefined(level.zombie_include_weapons[level.var_25ef5fab]) & !level.zombie_include_weapons[level.var_25ef5fab])
+	player zm_weapons::weapon_give(level.w_beacon);
+	if(isdefined(level.zombie_include_weapons[level.w_beacon]) & !level.zombie_include_weapons[level.w_beacon])
 	{
-		level.zombie_include_weapons[level.var_25ef5fab] = 1;
-		level.zombie_weapons[level.var_25ef5fab].is_in_box = 1;
+		level.zombie_include_weapons[level.w_beacon] = 1;
+		level.zombie_weapons[level.w_beacon].is_in_box = 1;
 	}
 	m_reward StopLoopSound(0.1);
 	player playsound("zmb_powerup_grabbed");

@@ -36,9 +36,9 @@ function autoexec __init__sytem__()
 function init()
 {
 	level.weaponNone = GetWeapon("none");
-	level.var_29323b70 = GetWeapon("robotech_launcher");
-	level.var_672ab258 = GetWeapon("robotech_launcher_upgraded");
-	function_436486f7();
+	level.weaponidgun = GetWeapon("robotech_launcher");
+	level.weaponidgunupgraded = GetWeapon("robotech_launcher_upgraded");
+	construct_idgun_weapon_array();
 	callback::on_spawned(&function_50ee0a95);
 }
 
@@ -56,7 +56,7 @@ function function_50ee0a95(localClientNum)
 }
 
 /*
-	Name: function_e1efbc50
+	Name: add_idgun
 	Namespace: idgun
 	Checksum: 0xA6F9628D
 	Offset: 0x338
@@ -64,9 +64,9 @@ function function_50ee0a95(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_e1efbc50(var_9727e47e)
+function add_idgun(w_idgun)
 {
-	if(var_9727e47e != level.weaponNone)
+	if(w_idgun != level.weaponNone)
 	{
 		if(!isdefined(level.idgun_weapons))
 		{
@@ -76,12 +76,12 @@ function function_e1efbc50(var_9727e47e)
 		{
 			level.idgun_weapons = Array(level.idgun_weapons);
 		}
-		level.idgun_weapons[level.idgun_weapons.size] = var_9727e47e;
+		level.idgun_weapons[level.idgun_weapons.size] = w_idgun;
 	}
 }
 
 /*
-	Name: function_436486f7
+	Name: construct_idgun_weapon_array
 	Namespace: idgun
 	Checksum: 0x52357579
 	Offset: 0x3D0
@@ -89,17 +89,17 @@ function function_e1efbc50(var_9727e47e)
 	Parameters: 0
 	Flags: None
 */
-function function_436486f7()
+function construct_idgun_weapon_array()
 {
 	level.idgun_weapons = [];
-	function_e1efbc50(GetWeapon("idgun_0"));
-	function_e1efbc50(GetWeapon("idgun_1"));
-	function_e1efbc50(GetWeapon("idgun_2"));
-	function_e1efbc50(GetWeapon("idgun_3"));
-	function_e1efbc50(GetWeapon("idgun_upgraded_0"));
-	function_e1efbc50(GetWeapon("idgun_upgraded_1"));
-	function_e1efbc50(GetWeapon("idgun_upgraded_2"));
-	function_e1efbc50(GetWeapon("idgun_upgraded_3"));
+	add_idgun(GetWeapon("idgun_0"));
+	add_idgun(GetWeapon("idgun_1"));
+	add_idgun(GetWeapon("idgun_2"));
+	add_idgun(GetWeapon("idgun_3"));
+	add_idgun(GetWeapon("idgun_upgraded_0"));
+	add_idgun(GetWeapon("idgun_upgraded_1"));
+	add_idgun(GetWeapon("idgun_upgraded_2"));
+	add_idgun(GetWeapon("idgun_upgraded_3"));
 }
 
 /*

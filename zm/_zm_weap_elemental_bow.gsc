@@ -35,7 +35,7 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	level.var_be94cdb = GetWeapon("elemental_bow");
+	level.w_bow_base = GetWeapon("elemental_bow");
 	level.var_1a828a16 = GetWeapon("elemental_bow4");
 	clientfield::register("toplayer", "elemental_bow" + "_ambient_bow_fx", 5000, 1, "int");
 	clientfield::register("missile", "elemental_bow" + "_arrow_impact_fx", 5000, 1, "int");
@@ -43,7 +43,7 @@ function __init__()
 	callback::on_connect(&function_c45ac6ae);
 	SetDvar("bg_chargeShotUseOneAmmoForMultipleBullets", 0);
 	SetDvar("bg_zm_dlc1_chargeShotMultipleBulletsForFullCharge", 2);
-	function_9b385ca5();
+	__constructor();
 	level.var_d6de2706 = Throttle;
 	Initialize(level.var_d6de2706, 6);
 }
@@ -175,11 +175,11 @@ function function_7fba300(e_player, var_289e02fc)
 function function_982419bb(var_6ab83514)
 {
 	self endon("death");
-	var_e1041201 = GetWeapon(var_6ab83514);
+	w_bow = GetWeapon(var_6ab83514);
 	while(1)
 	{
-		self waittill("weapon_change", var_9f85aad5, var_6de65145);
-		if(var_9f85aad5 === var_e1041201)
+		self waittill("weapon_change", wpn_new, var_6de65145);
+		if(wpn_new === w_bow)
 		{
 			if(!(isdefined(self.var_8b65be8c) && self.var_8b65be8c))
 			{
@@ -205,7 +205,7 @@ function function_982419bb(var_6ab83514)
 			self util::waittill_any_timeout(1, "weapon_change_complete", "death");
 			self clientfield::set_to_player(var_6ab83514 + "_ambient_bow_fx", 1);
 		}
-		else if(var_6de65145 === var_e1041201)
+		else if(var_6de65145 === w_bow)
 		{
 			self clientfield::set_to_player(var_6ab83514 + "_ambient_bow_fx", 0);
 			self StopRumble("bow_draw_loop");
@@ -491,23 +491,23 @@ function function_b78fcfc7(e_player, var_48369d98, v_position)
 		}
 		if(var_48369d98 == "elemental_bow")
 		{
-			var_26680fd5 = function_dc4f8831(0.15, 0.03);
+			n_damage_percent = function_dc4f8831(0.15, 0.03);
 		}
 		else if(var_48369d98 == "elemental_bow4")
 		{
-			var_26680fd5 = function_dc4f8831(0.25, 0.12);
+			n_damage_percent = function_dc4f8831(0.25, 0.12);
 		}
 		else if(!IsSubStr(var_48369d98, "4"))
 		{
-			var_26680fd5 = 0.1;
+			n_damage_percent = 0.1;
 		}
 		else
 		{
-			var_26680fd5 = 0.35;
+			n_damage_percent = 0.35;
 		}
-		var_40955aed = var_3bb42832 * var_26680fd5 / 0.2;
+		var_40955aed = var_3bb42832 * n_damage_percent / 0.2;
 		var_40955aed = var_40955aed * var_c36342f3;
-		self DoDamage(var_40955aed, self.origin, e_player, e_player, undefined, "MOD_PROJECTILE_SPLASH", 0, level.var_be94cdb);
+		self DoDamage(var_40955aed, self.origin, e_player, e_player, undefined, "MOD_PROJECTILE_SPLASH", 0, level.w_bow_base);
 	}
 }
 
@@ -524,19 +524,19 @@ function function_dc4f8831(var_eaae98a2, var_c01c8d5c)
 {
 	if(level.mechz_health < level.var_c1f907b2)
 	{
-		var_26680fd5 = var_eaae98a2;
+		n_damage_percent = var_eaae98a2;
 	}
 	else if(level.mechz_health > level.var_42fd61f0)
 	{
-		var_26680fd5 = var_c01c8d5c;
+		n_damage_percent = var_c01c8d5c;
 	}
 	else
 	{
 		var_d82dde4a = level.mechz_health - level.var_c1f907b2;
 		var_caabb734 = var_d82dde4a / level.var_42ee1b54;
-		var_26680fd5 = var_eaae98a2 - var_eaae98a2 - var_c01c8d5c * var_caabb734;
+		n_damage_percent = var_eaae98a2 - var_eaae98a2 - var_c01c8d5c * var_caabb734;
 	}
-	return var_26680fd5;
+	return n_damage_percent;
 }
 
 /*
@@ -640,13 +640,13 @@ function function_d1e69389(var_63f884ec)
 	Parameters: 5
 	Flags: None
 */
-function function_866906f(v_hit_origin, str_weapon_name, var_3fee16b8, var_a5018155, var_83c68ee2)
+function function_866906f(v_hit_origin, str_weapon_name, e_arrow, var_a5018155, var_83c68ee2)
 {
 	if(!isdefined(var_83c68ee2))
 	{
 		var_83c68ee2 = undefined;
 	}
-	var_980aeb4e = AnglesToForward(var_3fee16b8.angles);
+	var_980aeb4e = AnglesToForward(e_arrow.angles);
 	if(var_980aeb4e[2] != -1)
 	{
 		var_3e878400 = VectorNormalize(var_980aeb4e * -1);
@@ -661,7 +661,7 @@ function function_866906f(v_hit_origin, str_weapon_name, var_3fee16b8, var_a5018
 	var_2679aa6b = function_1796e73(str_weapon_name);
 	if(!IsPointOnNavMesh(var_c6f6381a["position"]))
 	{
-		var_3fee16b8 clientfield::set(var_2679aa6b + "_arrow_impact_fx", 1);
+		e_arrow clientfield::set(var_2679aa6b + "_arrow_impact_fx", 1);
 		return undefined;
 	}
 	else if(var_58c16abb > 72)
@@ -678,7 +678,7 @@ function function_866906f(v_hit_origin, str_weapon_name, var_3fee16b8, var_a5018
 	}
 	else
 	{
-		var_3fee16b8 clientfield::set(var_2679aa6b + "_arrow_impact_fx", 1);
+		e_arrow clientfield::set(var_2679aa6b + "_arrow_impact_fx", 1);
 		return var_c6f6381a["position"];
 	}
 }
@@ -712,7 +712,7 @@ function function_1796e73(str_weapon_name)
 	var_48369d98 = str_weapon_name;
 	if(IsSubStr(var_48369d98, "ricochet"))
 	{
-		var_ae485cc2 = function_4d1b4da2(var_48369d98, "_ricochet");
+		var_ae485cc2 = strtok2(var_48369d98, "_ricochet");
 		var_48369d98 = var_ae485cc2[0];
 	}
 	if(IsSubStr(var_48369d98, "2"))

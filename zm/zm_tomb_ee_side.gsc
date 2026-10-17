@@ -86,14 +86,14 @@ function quadrotor_medallions()
 	v_spawnpt = s_mg_spawn.origin;
 	v_spawnang = s_mg_spawn.angles;
 	player = GetPlayers()[0];
-	var_67f03e82 = GetWeapon("lmg_mg08_upgraded");
-	options = player zm_weapons::get_pack_a_punch_weapon_options(var_67f03e82);
-	var_c91432f = zm_utility::spawn_weapon_model(var_67f03e82, undefined, v_spawnpt, v_spawnang, options);
+	w_mg08_upgraded = GetWeapon("lmg_mg08_upgraded");
+	options = player zm_weapons::get_pack_a_punch_weapon_options(w_mg08_upgraded);
+	var_c91432f = zm_utility::spawn_weapon_model(w_mg08_upgraded, undefined, v_spawnpt, v_spawnang, options);
 	PlayFXOnTag(level._effect["special_glow"], var_c91432f, "tag_origin");
 	t_weapon_swap = zm_tomb_utility::tomb_spawn_trigger_radius(v_spawnpt, 100, 1);
 	t_weapon_swap.require_look_at = 1;
 	t_weapon_swap.cursor_hint = "HINT_WEAPON";
-	t_weapon_swap.cursor_hint_weapon = var_67f03e82;
+	t_weapon_swap.cursor_hint_weapon = w_mg08_upgraded;
 	for(b_retrieved = 0; !b_retrieved;  = 0)
 	{
 		t_weapon_swap waittill("trigger", e_player);
@@ -141,9 +141,9 @@ function quadrotor_medallions_vo()
 */
 function swap_mg(e_player)
 {
-	var_1bcd223d = e_player GetCurrentWeapon();
+	w_current_weapon = e_player GetCurrentWeapon();
 	var_4caca97d = GetWeapon("lmg_mg08_upgraded");
-	if(zombie_utility::is_player_valid(e_player) && !e_player.IS_DRINKING && !e_player bgb::is_enabled("zm_bgb_disorderly_combat") && !zm_utility::is_placeable_mine(var_1bcd223d) && !zm_equipment::is_equipment(var_1bcd223d) && "none" != var_1bcd223d.name && !e_player zm_equipment::hacker_active() && (!isdefined(level.revive_tool) || (isdefined(level.revive_tool) && level.revive_tool != var_1bcd223d)))
+	if(zombie_utility::is_player_valid(e_player) && !e_player.IS_DRINKING && !e_player bgb::is_enabled("zm_bgb_disorderly_combat") && !zm_utility::is_placeable_mine(w_current_weapon) && !zm_equipment::is_equipment(w_current_weapon) && "none" != w_current_weapon.name && !e_player zm_equipment::hacker_active() && (!isdefined(level.revive_tool) || (isdefined(level.revive_tool) && level.revive_tool != w_current_weapon)))
 	{
 		if(e_player HasWeapon(var_4caca97d))
 		{
@@ -154,7 +154,7 @@ function swap_mg(e_player)
 			a_weapons = e_player GetWeaponsListPrimaries();
 			if(isdefined(a_weapons) && a_weapons.size >= zm_utility::get_player_weapon_limit(e_player))
 			{
-				e_player TakeWeapon(var_1bcd223d);
+				e_player TakeWeapon(w_current_weapon);
 			}
 			e_player GiveWeapon(var_4caca97d, e_player zm_weapons::get_pack_a_punch_weapon_options(var_4caca97d), 0);
 			e_player GiveStartAmmo(var_4caca97d);
@@ -272,12 +272,12 @@ function wagon_fire_trigger_watch()
 {
 	self notify("watch_reset");
 	self endon("watch_reset");
-	var_83560def = level.a_elemental_staffs["staff_water"].w_weapon;
+	w_staff_water = level.a_elemental_staffs["staff_water"].w_weapon;
 	var_2499bc6a = level.a_elemental_staffs_upgraded["staff_water_upgraded"].w_weapon;
 	while(1)
 	{
 		self waittill("damage", damage, attacker, direction, point, type, tagName, modelName, partName, weapon);
-		if(isPlayer(attacker) && (weapon == var_83560def || weapon == var_2499bc6a))
+		if(isPlayer(attacker) && (weapon == w_staff_water || weapon == var_2499bc6a))
 		{
 			level.n_wagon_fires_out++;
 			if(!level flag::get("ee_wagon_timer_start"))
@@ -466,13 +466,13 @@ function bunker_trigger_thread()
 		else if(player.sq_one_inch_punch_stage == 6 && (isdefined(player.beacon_ready) && player.beacon_ready))
 		{
 			player clientfield::set_to_player("ee_beacon_reward", 0);
-			var_25ef5fab = GetWeapon("beacon");
-			player zm_weapons::weapon_give(var_25ef5fab);
+			w_beacon = GetWeapon("beacon");
+			player zm_weapons::weapon_give(w_beacon);
 			player thread zm_tomb_vo::richtofenrespondvoplay("get_beacon");
-			if(isdefined(level.zombie_include_weapons[var_25ef5fab]) && !level.zombie_include_weapons[var_25ef5fab])
+			if(isdefined(level.zombie_include_weapons[w_beacon]) && !level.zombie_include_weapons[w_beacon])
 			{
-				level.zombie_include_weapons[var_25ef5fab] = 1;
-				level.zombie_weapons[var_25ef5fab].is_in_box = 1;
+				level.zombie_include_weapons[w_beacon] = 1;
+				level.zombie_weapons[w_beacon].is_in_box = 1;
 			}
 			player playsound("zmb_squest_oiptablet_get_reward");
 			player.sq_one_inch_punch_stage++;

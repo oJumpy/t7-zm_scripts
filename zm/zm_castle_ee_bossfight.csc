@@ -194,7 +194,7 @@ function function_842bfcca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal == 1)
 	{
-		var_79974a0f = 0;
+		n_shader = 0;
 		if(isdefined(self.sndId))
 		{
 			self StopLoopSound(self.sndId, 1);
@@ -203,13 +203,13 @@ function function_842bfcca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		var_79974a0f = 1;
+		n_shader = 1;
 		if(!isdefined(self.sndId))
 		{
 			self.sndId = self PlayLoopSound("zmb_keeper_downed_lp", 1);
 		}
 	}
-	self MapShaderConstant(localClientNum, 0, "scriptVector3", 0, var_79974a0f, 0, 0);
+	self MapShaderConstant(localClientNum, 0, "scriptVector3", 0, n_shader, 0, 0);
 }
 
 /*
@@ -228,10 +228,10 @@ function function_c5c4e352(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	if(newVal)
 	{
 		localPlayers = level.localPlayers;
-		var_f7130542 = "zmb_zombie_spawn";
+		snd_spawn = "zmb_zombie_spawn";
 		var_7bc37da8 = level._effect["boss_rise_burst"];
 		var_ee65ea53 = level._effect["boss_rise_billow"];
-		playsound(0, var_f7130542, self.origin);
+		playsound(0, snd_spawn, self.origin);
 		for(i = 0; i < localPlayers.size; i++)
 		{
 			self thread function_200d4bd2(i, var_ee65ea53, var_7bc37da8);

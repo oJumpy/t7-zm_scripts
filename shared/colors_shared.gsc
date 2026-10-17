@@ -247,13 +247,13 @@ function try_to_draw_line_to_node()
 		{
 			return;
 		}
-		recordLine(self.origin + VectorScale((0, 0, 1), 25), self.node.origin, function_310be1cc(self.script_forceColor), "Dev Block strings are not supported", self);
-		line(self.origin + VectorScale((0, 0, 1), 25), self.node.origin, function_310be1cc(self.script_forceColor));
+		recordLine(self.origin + VectorScale((0, 0, 1), 25), self.node.origin, _get_debug_color(self.script_forceColor), "Dev Block strings are not supported", self);
+		line(self.origin + VectorScale((0, 0, 1), 25), self.node.origin, _get_debug_color(self.script_forceColor));
 	#/
 }
 
 /*
-	Name: function_310be1cc
+	Name: _get_debug_color
 	Namespace: colors
 	Checksum: 0xAE842A2A
 	Offset: 0x1008
@@ -261,7 +261,7 @@ function try_to_draw_line_to_node()
 	Parameters: 1
 	Flags: None
 */
-function function_310be1cc(str_color)
+function _get_debug_color(str_color)
 {
 	/#
 		switch(str_color)
@@ -344,7 +344,7 @@ function debug_colornodes()
 			color = (1, 1, 1);
 			if(isdefined(ai.script_forceColor))
 			{
-				color = function_310be1cc(ai.script_forceColor);
+				color = _get_debug_color(ai.script_forceColor);
 			}
 			recordEntText(ai.currentColorCode, ai, color, "Dev Block strings are not supported");
 			print3d(ai.origin + VectorScale((0, 0, 1), 25), ai.currentColorCode, color, 1, 0.7);
@@ -374,21 +374,21 @@ function draw_colorNodes(Array, team)
 		keys = getArrayKeys(Array[team]);
 		for(i = 0; i < keys.size; i++)
 		{
-			color = function_310be1cc(GetSubStr(keys[i], 0, 1));
+			color = _get_debug_color(GetSubStr(keys[i], 0, 1));
 			if(isdefined(level.colorNodes_debug_array[team][keys[i]]))
 			{
-				var_c015bc60 = level.colorNodes_debug_array[team][keys[i]];
-				for(p = 0; p < var_c015bc60.size; p++)
+				a_team_nodes = level.colorNodes_debug_array[team][keys[i]];
+				for(p = 0; p < a_team_nodes.size; p++)
 				{
-					print3d(var_c015bc60[p].origin, "Dev Block strings are not supported" + keys[i], color, 1, 0.7);
-					if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported" && isdefined(var_c015bc60[p].script_color_allies_old))
+					print3d(a_team_nodes[p].origin, "Dev Block strings are not supported" + keys[i], color, 1, 0.7);
+					if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported" && isdefined(a_team_nodes[p].script_color_allies_old))
 					{
-						if(isdefined(var_c015bc60[p].color_user) && isalive(var_c015bc60[p].color_user) && isdefined(var_c015bc60[p].color_user.script_forceColor))
+						if(isdefined(a_team_nodes[p].color_user) && isalive(a_team_nodes[p].color_user) && isdefined(a_team_nodes[p].color_user.script_forceColor))
 						{
-							print3d(var_c015bc60[p].origin + VectorScale((0, 0, -1), 5), "Dev Block strings are not supported" + var_c015bc60[p].script_color_allies_old, function_310be1cc(var_c015bc60[p].color_user.script_forceColor), 0.5, 0.4);
+							print3d(a_team_nodes[p].origin + VectorScale((0, 0, -1), 5), "Dev Block strings are not supported" + a_team_nodes[p].script_color_allies_old, _get_debug_color(a_team_nodes[p].color_user.script_forceColor), 0.5, 0.4);
 							continue;
 						}
-						print3d(var_c015bc60[p].origin + VectorScale((0, 0, -1), 5), "Dev Block strings are not supported" + var_c015bc60[p].script_color_allies_old, color, 0.5, 0.4);
+						print3d(a_team_nodes[p].origin + VectorScale((0, 0, -1), 5), "Dev Block strings are not supported" + a_team_nodes[p].script_color_allies_old, color, 0.5, 0.4);
 					}
 				}
 			}

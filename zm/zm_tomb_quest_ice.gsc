@@ -235,11 +235,11 @@ function process_gem_shooting()
 	ice_gem = GetEnt("ice_chamber_gem", "targetname");
 	ice_gem.value = -1;
 	ice_gem SetCanDamage(1);
-	var_83560def = level.a_elemental_staffs["staff_water"].w_weapon;
+	w_staff_water = level.a_elemental_staffs["staff_water"].w_weapon;
 	while(1)
 	{
 		self waittill("damage", damage, attacker, direction_vec, point, mod, tagName, modelName, partName, weapon);
-		if(weapon.name == var_83560def)
+		if(weapon.name == w_staff_water)
 		{
 			change_ice_gem_value();
 		}

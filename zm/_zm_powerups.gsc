@@ -767,7 +767,7 @@ function powerup_drop(drop_point)
 	}
 	powerup powerup_setup();
 	print_powerup_drop(powerup.powerup_name, debug);
-	bb::function_9e0ebd5(powerup, undefined, "_dropped");
+	bb::logpowerupevent(powerup, undefined, "_dropped");
 	powerup thread powerup_timeout();
 	powerup thread powerup_wobble();
 	powerup thread powerup_grab();
@@ -1155,7 +1155,7 @@ function powerup_grab(powerup_team)
 					}
 				}
 				demo::bookmark("zm_player_powerup_grabbed", GetTime(), player);
-				bb::function_9e0ebd5(self, player, "_grabbed");
+				bb::logpowerupevent(self, player, "_grabbed");
 				if(isdefined(self.hash_id))
 				{
 					player RecordMapEvent(23, GetTime(), grabber.origin, level.round_number, self.hash_id);
@@ -1477,7 +1477,7 @@ function powerup_timeout()
 		wait(0.1);
 	}
 	self notify("powerup_timedout");
-	bb::function_9e0ebd5(self, undefined, "_timedout");
+	bb::logpowerupevent(self, undefined, "_timedout");
 	self powerup_delete();
 }
 

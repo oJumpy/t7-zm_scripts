@@ -64,8 +64,8 @@ function function_9865d978(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_41da9a24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_9ee18415 = struct::get_array("power_switch_1_fx", "targetname");
-	foreach(s_fx in var_9ee18415)
+	a_s_fx = struct::get_array("power_switch_1_fx", "targetname");
+	foreach(s_fx in a_s_fx)
 	{
 		if(isdefined(s_fx.a_fx_id))
 		{
@@ -80,7 +80,7 @@ function function_41da9a24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		var_92ee343f = GetEnt(localClientNum, "power_wires_lab_a", "targetname");
 		var_92ee343f thread function_5ae9f178(localClientNum, 0);
-		foreach(s_fx in var_9ee18415)
+		foreach(s_fx in a_s_fx)
 		{
 			if(!isdefined(s_fx.a_fx_id))
 			{
@@ -92,7 +92,7 @@ function function_41da9a24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	var_92ee343f = GetEnt(localClientNum, "power_wires_lab_a", "targetname");
 	var_92ee343f thread function_5ae9f178(localClientNum, 1);
-	foreach(s_fx in var_9ee18415)
+	foreach(s_fx in a_s_fx)
 	{
 		if(!isdefined(s_fx.a_fx_id))
 		{
@@ -113,8 +113,8 @@ function function_41da9a24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_11d41051(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_9ee18415 = struct::get_array("power_switch_2_fx", "targetname");
-	foreach(s_fx in var_9ee18415)
+	a_s_fx = struct::get_array("power_switch_2_fx", "targetname");
+	foreach(s_fx in a_s_fx)
 	{
 		if(isdefined(s_fx.a_fx_id))
 		{
@@ -129,7 +129,7 @@ function function_11d41051(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		var_92ee343f = GetEnt(localClientNum, "power_wires_lab_b", "targetname");
 		var_92ee343f thread function_5ae9f178(localClientNum, 0);
-		foreach(s_fx in var_9ee18415)
+		foreach(s_fx in a_s_fx)
 		{
 			if(!isdefined(s_fx.a_fx_id))
 			{
@@ -141,7 +141,7 @@ function function_11d41051(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	var_92ee343f = GetEnt(localClientNum, "power_wires_lab_b", "targetname");
 	var_92ee343f thread function_5ae9f178(localClientNum, 1);
-	foreach(s_fx in var_9ee18415)
+	foreach(s_fx in a_s_fx)
 	{
 		if(!isdefined(s_fx.a_fx_id))
 		{
@@ -167,8 +167,8 @@ function function_5ae9f178(localClientNum, b_on)
 		b_on = 1;
 	}
 	self endon("entityshutdown");
-	self notify("hash_67a9e087");
-	self endon("hash_67a9e087");
+	self notify("fade_interrupt");
+	self endon("fade_interrupt");
 	n_start_time = GetTime();
 	n_end_time = n_start_time + 2 * 1000;
 	b_is_updating = 1;
@@ -255,8 +255,8 @@ function function_a88bde9b(localClientNum, b_on)
 		b_on = 1;
 	}
 	self endon("entityshutdown");
-	self notify("hash_67a9e087");
-	self endon("hash_67a9e087");
+	self notify("fade_interrupt");
+	self endon("fade_interrupt");
 	n_start_time = GetTime();
 	n_end_time = n_start_time + 2 * 1000;
 	b_is_updating = 1;

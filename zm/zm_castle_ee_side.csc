@@ -37,7 +37,7 @@ function __init__()
 	level._effect["exploding_death"] = "dlc1/zmb_weapon/fx_ee_plunger_teleport_impact";
 	clientfield::register("world", "clocktower_flash", 5000, 1, "counter", &function_c7500953, 0, 0);
 	clientfield::register("world", "sndUEB", 5000, 1, "int", &function_b5d300ce, 0, 0);
-	clientfield::register("actor", "plunger_exploding_ai", 5000, 1, "int", &function_b3f0d569, 0, 0);
+	clientfield::register("actor", "plunger_exploding_ai", 5000, 1, "int", &callback_exploding_death_fx, 0, 0);
 	clientfield::register("toplayer", "plunger_charged_strike", 5000, 1, "counter", &function_e43cd8, 0, 0);
 }
 
@@ -52,8 +52,8 @@ function __init__()
 */
 function function_c7500953(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	var_1f1c6e96 = struct::get("ee_clocktower_lightning_rod", "targetname");
-	playFX(localClientNum, level._effect["clocktower_flash"], var_1f1c6e96.origin);
+	s_rod = struct::get("ee_clocktower_lightning_rod", "targetname");
+	playFX(localClientNum, level._effect["clocktower_flash"], s_rod.origin);
 }
 
 /*
@@ -80,7 +80,7 @@ function function_b5d300ce(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b3f0d569
+	Name: callback_exploding_death_fx
 	Namespace: namespace_61c0be00
 	Checksum: 0xF12D3C0E
 	Offset: 0x648
@@ -88,7 +88,7 @@ function function_b5d300ce(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b3f0d569(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function callback_exploding_death_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

@@ -42,7 +42,7 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_self_medication", "event", &event, undefined, undefined, &validation);
-	bgb::function_2b341a2e("zm_bgb_self_medication", &actor_death_override);
+	bgb::register_actor_death_override("zm_bgb_self_medication", &actor_death_override);
 	bgb::register_lost_perk_override("zm_bgb_self_medication", &lost_perk_override, 0);
 }
 
@@ -123,7 +123,7 @@ function actor_death_override(e_attacker)
 {
 	if(e_attacker laststand::player_is_in_laststand() && (!isdefined(e_attacker.var_df0decf1) && e_attacker.var_df0decf1))
 	{
-		e_attacker thread bgb::function_7d63d2eb();
+		e_attacker thread bgb::bgb_revive_watcher();
 		e_attacker notify("hash_935cc366");
 	}
 }

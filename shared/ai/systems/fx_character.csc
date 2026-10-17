@@ -15,36 +15,36 @@
 */
 function autoexec main()
 {
-	var_1dd1d142 = struct::get_script_bundles("fxcharacterdef");
-	var_a15f98 = [];
-	foreach(var_86d68913 in var_1dd1d142)
+	fxbundles = struct::get_script_bundles("fxcharacterdef");
+	processedfxbundles = [];
+	foreach(fxbundle in fxbundles)
 	{
-		var_cab8fa31 = spawnstruct();
-		var_cab8fa31.var_d26cd73 = var_86d68913.var_d26cd73;
-		var_cab8fa31.FX = [];
-		var_cab8fa31.name = var_e07d138e;
-		for(index = 1; index <= var_86d68913.var_d26cd73; index++)
+		processedfxbundle = spawnstruct();
+		processedfxbundle.effectcount = fxbundle.effectcount;
+		processedfxbundle.FX = [];
+		processedfxbundle.name = fxbundlename;
+		for(index = 1; index <= fxbundle.effectcount; index++)
 		{
-			FX = GetStructField(var_86d68913, "effect" + index + "_fx");
+			FX = GetStructField(fxbundle, "effect" + index + "_fx");
 			if(isdefined(FX))
 			{
-				var_d2fb73a4 = spawnstruct();
-				var_d2fb73a4.attachTag = GetStructField(var_86d68913, "effect" + index + "_attachtag");
-				var_d2fb73a4.FX = GetStructField(var_86d68913, "effect" + index + "_fx");
-				var_d2fb73a4.var_9f61ef70 = FxClientUtils::function_f15cfa19(GetStructField(var_86d68913, "effect" + index + "_stopongib"));
-				var_d2fb73a4.var_db4d454d = GetStructField(var_86d68913, "effect" + index + "_stoponpiecedestroyed");
-				var_cab8fa31.FX[var_cab8fa31.FX.size] = var_d2fb73a4;
+				fxstruct = spawnstruct();
+				fxstruct.attachTag = GetStructField(fxbundle, "effect" + index + "_attachtag");
+				fxstruct.FX = GetStructField(fxbundle, "effect" + index + "_fx");
+				fxstruct.stopongib = FxClientUtils::_gibpartnametogibflag(GetStructField(fxbundle, "effect" + index + "_stopongib"));
+				fxstruct.stoponpiecedestroyed = GetStructField(fxbundle, "effect" + index + "_stoponpiecedestroyed");
+				processedfxbundle.FX[processedfxbundle.FX.size] = fxstruct;
 			}
 		}
-		var_a15f98[var_e07d138e] = var_cab8fa31;
+		processedfxbundles[fxbundlename] = processedfxbundle;
 	}
-	level.scriptbundles["fxcharacterdef"] = var_a15f98;
+	level.scriptbundles["fxcharacterdef"] = processedfxbundles;
 }
 
 #namespace FxClientUtils;
 
 /*
-	Name: function_d0275787
+	Name: _configentity
 	Namespace: FxClientUtils
 	Checksum: 0xD069E952
 	Offset: 0x448
@@ -52,25 +52,25 @@ function autoexec main()
 	Parameters: 2
 	Flags: Private
 */
-function private function_d0275787(localClientNum, entity)
+function private _configentity(localClientNum, entity)
 {
-	if(!isdefined(entity.var_30cd35b))
+	if(!isdefined(entity._fxcharacter))
 	{
-		entity.var_30cd35b = [];
-		var_50dc7ab0 = Array(8, 16, 32, 128, 256);
-		foreach(gibFlag in var_50dc7ab0)
+		entity._fxcharacter = [];
+		handledgibs = Array(8, 16, 32, 128, 256);
+		foreach(gibFlag in handledgibs)
 		{
 			GibClientUtils::AddGibCallback(localClientNum, entity, gibFlag, &_GibHandler);
 		}
 		for(index = 1; index <= 20; index++)
 		{
-			namespace_6eef25d9::AddDestructPieceCallback(localClientNum, entity, index, &function_303292de);
+			destructclientutils::AddDestructPieceCallback(localClientNum, entity, index, &_destructhandler);
 		}
 	}
 }
 
 /*
-	Name: function_303292de
+	Name: _destructhandler
 	Namespace: FxClientUtils
 	Checksum: 0xEDC6AABF
 	Offset: 0x5A8
@@ -78,21 +78,21 @@ function private function_d0275787(localClientNum, entity)
 	Parameters: 3
 	Flags: Private
 */
-function private function_303292de(localClientNum, entity, pieceNumber)
+function private _destructhandler(localClientNum, entity, pieceNumber)
 {
-	if(!isdefined(entity.var_30cd35b))
+	if(!isdefined(entity._fxcharacter))
 	{
 		return;
 	}
-	foreach(var_629f930f in entity.var_30cd35b)
+	foreach(fxbundleinst in entity._fxcharacter)
 	{
-		var_86d68913 = struct::get_script_bundle("fxcharacterdef", var_e07d138e);
-		for(index = 0; index < var_86d68913.FX.size; index++)
+		fxbundle = struct::get_script_bundle("fxcharacterdef", fxbundlename);
+		for(index = 0; index < fxbundle.FX.size; index++)
 		{
-			if(isdefined(var_629f930f[index]) && var_86d68913.FX[index].var_db4d454d === pieceNumber)
+			if(isdefined(fxbundleinst[index]) && fxbundle.FX[index].stoponpiecedestroyed === pieceNumber)
 			{
-				stopfx(localClientNum, var_629f930f[index]);
-				var_629f930f[index] = undefined;
+				stopfx(localClientNum, fxbundleinst[index]);
+				fxbundleinst[index] = undefined;
 			}
 		}
 	}
@@ -109,26 +109,26 @@ function private function_303292de(localClientNum, entity, pieceNumber)
 */
 function private _GibHandler(localClientNum, entity, gibFlag)
 {
-	if(!isdefined(entity.var_30cd35b))
+	if(!isdefined(entity._fxcharacter))
 	{
 		return;
 	}
-	foreach(var_629f930f in entity.var_30cd35b)
+	foreach(fxbundleinst in entity._fxcharacter)
 	{
-		var_86d68913 = struct::get_script_bundle("fxcharacterdef", var_e07d138e);
-		for(index = 0; index < var_86d68913.FX.size; index++)
+		fxbundle = struct::get_script_bundle("fxcharacterdef", fxbundlename);
+		for(index = 0; index < fxbundle.FX.size; index++)
 		{
-			if(isdefined(var_629f930f[index]) && var_86d68913.FX[index].var_9f61ef70 === gibFlag)
+			if(isdefined(fxbundleinst[index]) && fxbundle.FX[index].stopongib === gibFlag)
 			{
-				stopfx(localClientNum, var_629f930f[index]);
-				var_629f930f[index] = undefined;
+				stopfx(localClientNum, fxbundleinst[index]);
+				fxbundleinst[index] = undefined;
 			}
 		}
 	}
 }
 
 /*
-	Name: function_f15cfa19
+	Name: _gibpartnametogibflag
 	Namespace: FxClientUtils
 	Checksum: 0xB67E2208
 	Offset: 0x888
@@ -136,11 +136,11 @@ function private _GibHandler(localClientNum, entity, gibFlag)
 	Parameters: 1
 	Flags: Private
 */
-function private function_f15cfa19(var_533c9637)
+function private _gibpartnametogibflag(gibpartname)
 {
-	if(isdefined(var_533c9637))
+	if(isdefined(gibpartname))
 	{
-		switch(var_533c9637)
+		switch(gibpartname)
 		{
 			case "head":
 			{
@@ -167,7 +167,7 @@ function private function_f15cfa19(var_533c9637)
 }
 
 /*
-	Name: function_7fb33d1b
+	Name: _isgibbed
 	Namespace: FxClientUtils
 	Checksum: 0x9C83D894
 	Offset: 0x900
@@ -175,17 +175,17 @@ function private function_f15cfa19(var_533c9637)
 	Parameters: 3
 	Flags: Private
 */
-function private function_7fb33d1b(localClientNum, entity, var_97122fe6)
+function private _isgibbed(localClientNum, entity, stopongibflag)
 {
-	if(!isdefined(var_97122fe6))
+	if(!isdefined(stopongibflag))
 	{
 		return 0;
 	}
-	return GibClientUtils::IsGibbed(localClientNum, entity, var_97122fe6);
+	return GibClientUtils::IsGibbed(localClientNum, entity, stopongibflag);
 }
 
 /*
-	Name: function_c624bdb3
+	Name: _ispiecedestructed
 	Namespace: FxClientUtils
 	Checksum: 0x4227EFD6
 	Offset: 0x958
@@ -193,17 +193,17 @@ function private function_7fb33d1b(localClientNum, entity, var_97122fe6)
 	Parameters: 3
 	Flags: Private
 */
-function private function_c624bdb3(localClientNum, entity, var_db4d454d)
+function private _ispiecedestructed(localClientNum, entity, stoponpiecedestroyed)
 {
-	if(!isdefined(var_db4d454d))
+	if(!isdefined(stoponpiecedestroyed))
 	{
 		return 0;
 	}
-	return namespace_6eef25d9::function_3955bc40(localClientNum, entity, var_db4d454d);
+	return destructclientutils::ispiecedestructed(localClientNum, entity, stoponpiecedestroyed);
 }
 
 /*
-	Name: function_870694b5
+	Name: _shouldplayfx
 	Namespace: FxClientUtils
 	Checksum: 0x53BF3B0A
 	Offset: 0x9B0
@@ -211,13 +211,13 @@ function private function_c624bdb3(localClientNum, entity, var_db4d454d)
 	Parameters: 3
 	Flags: Private
 */
-function private function_870694b5(localClientNum, entity, var_d2fb73a4)
+function private _shouldplayfx(localClientNum, entity, fxstruct)
 {
-	if(function_7fb33d1b(localClientNum, entity, var_d2fb73a4.var_9f61ef70))
+	if(_isgibbed(localClientNum, entity, fxstruct.stopongib))
 	{
 		return 0;
 	}
-	if(function_c624bdb3(localClientNum, entity, var_d2fb73a4.var_db4d454d))
+	if(_ispiecedestructed(localClientNum, entity, fxstruct.stoponpiecedestroyed))
 	{
 		return 0;
 	}
@@ -239,26 +239,26 @@ function PlayFxBundle(localClientNum, entity, fxScriptBundle)
 	{
 		return;
 	}
-	function_d0275787(localClientNum, entity);
-	var_86d68913 = struct::get_script_bundle("fxcharacterdef", fxScriptBundle);
-	if(isdefined(entity.var_30cd35b[var_86d68913.name]))
+	_configentity(localClientNum, entity);
+	fxbundle = struct::get_script_bundle("fxcharacterdef", fxScriptBundle);
+	if(isdefined(entity._fxcharacter[fxbundle.name]))
 	{
 		return;
 	}
-	if(isdefined(var_86d68913))
+	if(isdefined(fxbundle))
 	{
-		var_18065b7f = [];
-		for(index = 0; index < var_86d68913.FX.size; index++)
+		playingfx = [];
+		for(index = 0; index < fxbundle.FX.size; index++)
 		{
-			var_d2fb73a4 = var_86d68913.FX[index];
-			if(function_870694b5(localClientNum, entity, var_d2fb73a4))
+			fxstruct = fxbundle.FX[index];
+			if(_shouldplayfx(localClientNum, entity, fxstruct))
 			{
-				var_18065b7f[index] = GibClientUtils::_PlayGibFX(localClientNum, entity, var_d2fb73a4.FX, var_d2fb73a4.attachTag);
+				playingfx[index] = GibClientUtils::_PlayGibFX(localClientNum, entity, fxstruct.FX, fxstruct.attachTag);
 			}
 		}
-		if(var_18065b7f.size > 0)
+		if(playingfx.size > 0)
 		{
-			entity.var_30cd35b[var_86d68913.name] = var_18065b7f;
+			entity._fxcharacter[fxbundle.name] = playingfx;
 		}
 	}
 }
@@ -274,20 +274,20 @@ function PlayFxBundle(localClientNum, entity, fxScriptBundle)
 */
 function StopAllFXBundles(localClientNum, entity)
 {
-	function_d0275787(localClientNum, entity);
-	var_2bcdc031 = [];
-	foreach(var_86d68913 in entity.var_30cd35b)
+	_configentity(localClientNum, entity);
+	fxbundlenames = [];
+	foreach(fxbundle in entity._fxcharacter)
 	{
-		var_2bcdc031[var_2bcdc031.size] = var_e07d138e;
+		fxbundlenames[fxbundlenames.size] = fxbundlename;
 	}
-	foreach(var_e07d138e in var_2bcdc031)
+	foreach(fxbundlename in fxbundlenames)
 	{
-		function_fd87a5b(localClientNum, entity, var_e07d138e);
+		stopfxbundle(localClientNum, entity, fxbundlename);
 	}
 }
 
 /*
-	Name: function_fd87a5b
+	Name: stopfxbundle
 	Namespace: FxClientUtils
 	Checksum: 0xB0508C91
 	Offset: 0xD28
@@ -295,24 +295,24 @@ function StopAllFXBundles(localClientNum, entity)
 	Parameters: 3
 	Flags: None
 */
-function function_fd87a5b(localClientNum, entity, fxScriptBundle)
+function stopfxbundle(localClientNum, entity, fxScriptBundle)
 {
 	if(!isdefined(fxScriptBundle))
 	{
 		return;
 	}
-	function_d0275787(localClientNum, entity);
-	var_86d68913 = struct::get_script_bundle("fxcharacterdef", fxScriptBundle);
-	if(isdefined(entity.var_30cd35b[var_86d68913.name]))
+	_configentity(localClientNum, entity);
+	fxbundle = struct::get_script_bundle("fxcharacterdef", fxScriptBundle);
+	if(isdefined(entity._fxcharacter[fxbundle.name]))
 	{
-		foreach(FX in entity.var_30cd35b[var_86d68913.name])
+		foreach(FX in entity._fxcharacter[fxbundle.name])
 		{
 			if(isdefined(FX))
 			{
 				stopfx(localClientNum, FX);
 			}
 		}
-		entity.var_30cd35b[var_86d68913.name] = undefined;
+		entity._fxcharacter[fxbundle.name] = undefined;
 	}
 }
 

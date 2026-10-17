@@ -64,7 +64,7 @@ function private function_b13c2f15()
 }
 
 /*
-	Name: function_b8eb33c5
+	Name: freeze_ai
 	Namespace: namespace_105bda17
 	Checksum: 0x12DC37BE
 	Offset: 0x330
@@ -72,7 +72,7 @@ function private function_b13c2f15()
 	Parameters: 1
 	Flags: Private
 */
-function private function_b8eb33c5(ai)
+function private freeze_ai(ai)
 {
 	ai notify("hash_4e7f43fc");
 	ai thread function_b13c2f15();
@@ -84,7 +84,7 @@ function private function_b8eb33c5(ai)
 }
 
 /*
-	Name: function_31a2964e
+	Name: unfreeze_ai
 	Namespace: namespace_105bda17
 	Checksum: 0x4053149D
 	Offset: 0x3E8
@@ -92,7 +92,7 @@ function private function_b8eb33c5(ai)
 	Parameters: 1
 	Flags: Private
 */
-function private function_31a2964e(ai)
+function private unfreeze_ai(ai)
 {
 	ai notify("hash_4e7f43fc");
 	ai SetEntityPaused(0);
@@ -136,7 +136,7 @@ function private function_723d94f5(allai, trace, degree)
 	{
 		if(isalive(ai))
 		{
-			function_31a2964e(ai);
+			unfreeze_ai(ai);
 		}
 	}
 }
@@ -204,27 +204,27 @@ function function_deeb696f()
 			}
 			if(isalive(ai) && !ai IsPaused() && ai.team == level.zombie_team && !ai ishidden() && (!isdefined(ai.bgbIgnoreFearInHeadlights) && ai.bgbIgnoreFearInHeadlights))
 			{
-				function_b8eb33c5(ai);
+				freeze_ai(ai);
 			}
 		}
-		var_e4760c66 = [];
-		var_e37fbbbd = [];
+		farai = [];
+		closeai = [];
 		foreach(ai in allai)
 		{
 			if(isdefined(ai.aat_turned) && ai.aat_turned && ai IsPaused())
 			{
-				function_31a2964e(ai);
+				unfreeze_ai(ai);
 				continue;
 			}
 			if(Distance2DSquared(ai.origin, self.origin) >= var_bd6badee)
 			{
-				var_e4760c66[var_e4760c66.size] = ai;
+				farai[farai.size] = ai;
 				continue;
 			}
-			var_e37fbbbd[var_e37fbbbd.size] = ai;
+			closeai[closeai.size] = ai;
 		}
-		function_723d94f5(var_e4760c66, 1);
-		function_723d94f5(var_e37fbbbd, 0, 75);
+		function_723d94f5(farai, 1);
+		function_723d94f5(closeai, 0, 75);
 		wait(0.05);
 	}
 }
@@ -249,7 +249,7 @@ function function_2715245a()
 	allai = GetAIArray();
 	foreach(ai in allai)
 	{
-		function_31a2964e(ai);
+		unfreeze_ai(ai);
 	}
 }
 

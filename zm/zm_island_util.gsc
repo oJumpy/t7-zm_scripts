@@ -25,7 +25,7 @@
 #namespace namespace_8aed53c9;
 
 /*
-	Name: function_d095318
+	Name: spawn_trigger_radius
 	Namespace: namespace_8aed53c9
 	Checksum: 0xEDFDAB31
 	Offset: 0x3D0
@@ -33,17 +33,17 @@
 	Parameters: 4
 	Flags: None
 */
-function function_d095318(origin, radius, use_trigger, func_per_player_msg)
+function spawn_trigger_radius(origin, radius, use_trigger, func_per_player_msg)
 {
 	if(!isdefined(use_trigger))
 	{
 		use_trigger = 0;
 	}
-	return function_a40fee2f(origin, undefined, radius, use_trigger, func_per_player_msg);
+	return spawn_unitrigger(origin, undefined, radius, use_trigger, func_per_player_msg);
 }
 
 /*
-	Name: function_a40fee2f
+	Name: spawn_unitrigger
 	Namespace: namespace_8aed53c9
 	Checksum: 0xB27FE2A0
 	Offset: 0x438
@@ -51,7 +51,7 @@ function function_d095318(origin, radius, use_trigger, func_per_player_msg)
 	Parameters: 5
 	Flags: Private
 */
-function private function_a40fee2f(origin, angles, var_3b9cee11, use_trigger, func_per_player_msg)
+function private spawn_unitrigger(origin, angles, radius_or_dims, use_trigger, func_per_player_msg)
 {
 	if(!isdefined(use_trigger))
 	{
@@ -60,11 +60,11 @@ function private function_a40fee2f(origin, angles, var_3b9cee11, use_trigger, fu
 	trigger_stub = spawnstruct();
 	trigger_stub.origin = origin;
 	str_type = "unitrigger_radius";
-	if(IsVec(var_3b9cee11))
+	if(IsVec(radius_or_dims))
 	{
-		trigger_stub.script_length = var_3b9cee11[0];
-		trigger_stub.script_width = var_3b9cee11[1];
-		trigger_stub.script_height = var_3b9cee11[2];
+		trigger_stub.script_length = radius_or_dims[0];
+		trigger_stub.script_width = radius_or_dims[1];
+		trigger_stub.script_height = radius_or_dims[2];
 		str_type = "unitrigger_box";
 		if(!isdefined(angles))
 		{
@@ -74,7 +74,7 @@ function private function_a40fee2f(origin, angles, var_3b9cee11, use_trigger, fu
 	}
 	else
 	{
-		trigger_stub.radius = var_3b9cee11;
+		trigger_stub.radius = radius_or_dims;
 	}
 	if(use_trigger)
 	{
@@ -87,7 +87,7 @@ function private function_a40fee2f(origin, angles, var_3b9cee11, use_trigger, fu
 	}
 	if(isdefined(func_per_player_msg))
 	{
-		trigger_stub.var_af0b9c6c = func_per_player_msg;
+		trigger_stub.func_unitrigger_message = func_per_player_msg;
 		zm_unitrigger::unitrigger_force_per_player_triggers(trigger_stub, 1);
 	}
 	trigger_stub.prompt_and_visibility_func = &function_5ea427bf;
@@ -107,21 +107,21 @@ function private function_a40fee2f(origin, angles, var_3b9cee11, use_trigger, fu
 function function_5ea427bf(player)
 {
 	b_visible = 1;
-	if(isdefined(player.beastmode) && player.beastmode && (!isdefined(self.var_8842df9d) && self.var_8842df9d))
+	if(isdefined(player.beastmode) && player.beastmode && (!isdefined(self.allow_beastmode) && self.allow_beastmode))
 	{
 		b_visible = 0;
 	}
-	else if(isdefined(self.stub.var_98775f3))
+	else if(isdefined(self.stub.func_unitrigger_visible))
 	{
-		b_visible = self [[self.stub.var_98775f3]](player);
+		b_visible = self [[self.stub.func_unitrigger_visible]](player);
 	}
 	str_msg = &"";
 	param1 = undefined;
 	if(b_visible)
 	{
-		if(isdefined(self.stub.var_af0b9c6c))
+		if(isdefined(self.stub.func_unitrigger_message))
 		{
-			str_msg = self [[self.stub.var_af0b9c6c]](player);
+			str_msg = self [[self.stub.func_unitrigger_message]](player);
 		}
 		else
 		{
@@ -152,7 +152,7 @@ function function_5ea427bf(player)
 function private unitrigger_think()
 {
 	self endon("kill_trigger");
-	self.stub thread function_c1947ff7();
+	self.stub thread unitrigger_refresh_message();
 	while(1)
 	{
 		self waittill("trigger", player);
@@ -161,7 +161,7 @@ function private unitrigger_think()
 }
 
 /*
-	Name: function_c1947ff7
+	Name: unitrigger_refresh_message
 	Namespace: namespace_8aed53c9
 	Checksum: 0x68689137
 	Offset: 0x818
@@ -169,7 +169,7 @@ function private unitrigger_think()
 	Parameters: 0
 	Flags: None
 */
-function function_c1947ff7()
+function unitrigger_refresh_message()
 {
 	self zm_unitrigger::run_visibility_function_for_all_triggers();
 }
@@ -300,7 +300,7 @@ function function_4aedb20b()
 	Parameters: 4
 	Flags: None
 */
-function function_925aa63a(var_fedda046, n_delay, n_value, b_delete)
+function function_925aa63a(a_e_elements, n_delay, n_value, b_delete)
 {
 	if(!isdefined(n_delay))
 	{
@@ -310,20 +310,20 @@ function function_925aa63a(var_fedda046, n_delay, n_value, b_delete)
 	{
 		b_delete = 1;
 	}
-	foreach(var_1c7231df in var_fedda046)
+	foreach(e_element in a_e_elements)
 	{
-		if(isdefined(var_1c7231df))
+		if(isdefined(e_element))
 		{
-			var_1c7231df clientfield::set("do_fade_material", n_value);
+			e_element clientfield::set("do_fade_material", n_value);
 			wait(n_delay);
 		}
 	}
 	wait(1);
 	if(isdefined(b_delete) && b_delete)
 	{
-		foreach(var_1c7231df in var_fedda046)
+		foreach(e_element in a_e_elements)
 		{
-			var_1c7231df delete();
+			e_element delete();
 		}
 	}
 }
@@ -433,7 +433,7 @@ function function_4bf4ac40(v_loc)
 }
 
 /*
-	Name: function_8c6350db
+	Name: any_player_looking_at
 	Namespace: namespace_8aed53c9
 	Checksum: 0x2C12842F
 	Offset: 0x11A8
@@ -441,7 +441,7 @@ function function_4bf4ac40(v_loc)
 	Parameters: 4
 	Flags: None
 */
-function function_8c6350db(v_org, n_dot, b_do_trace, e_ignore)
+function any_player_looking_at(v_org, n_dot, b_do_trace, e_ignore)
 {
 	foreach(player in level.players)
 	{
@@ -462,9 +462,9 @@ function function_8c6350db(v_org, n_dot, b_do_trace, e_ignore)
 	Parameters: 1
 	Flags: None
 */
-function swap_weapon(var_9f85aad5)
+function swap_weapon(wpn_new)
 {
-	var_913ae498 = self GetCurrentWeapon();
+	wpn_current = self GetCurrentWeapon();
 	if(!zm_utility::is_player_valid(self))
 	{
 		return;
@@ -473,27 +473,27 @@ function swap_weapon(var_9f85aad5)
 	{
 		return;
 	}
-	if(zm_utility::is_placeable_mine(var_913ae498) || zm_equipment::is_equipment(var_913ae498) || var_913ae498 == level.weaponNone)
+	if(zm_utility::is_placeable_mine(wpn_current) || zm_equipment::is_equipment(wpn_current) || wpn_current == level.weaponNone)
 	{
 		return;
 	}
-	if(!self zm_weapons::has_weapon_or_upgrade(var_9f85aad5))
+	if(!self zm_weapons::has_weapon_or_upgrade(wpn_new))
 	{
-		if(var_9f85aad5.type === "melee")
+		if(wpn_new.type === "melee")
 		{
-			self function_3420bc2f(var_9f85aad5);
+			self function_3420bc2f(wpn_new);
 		}
-		else if(var_9f85aad5.type === "grenade")
+		else if(wpn_new.type === "grenade")
 		{
-			self zm_weapons::weapon_give(var_9f85aad5);
+			self zm_weapons::weapon_give(wpn_new);
 		}
 		else
 		{
-			self take_old_weapon_and_give_new(var_913ae498, var_9f85aad5);
+			self take_old_weapon_and_give_new(wpn_current, wpn_new);
 		}
 		break;
 	}
-	var_c259e5ce = self zm_weapons::get_player_weapon_with_same_base(var_9f85aad5);
+	var_c259e5ce = self zm_weapons::get_player_weapon_with_same_base(wpn_new);
 	var_6c6831af = self GetWeaponsList(1);
 	foreach(weapon in var_6c6831af)
 	{
@@ -532,7 +532,7 @@ function take_old_weapon_and_give_new(current_weapon, weapon)
 	Parameters: 1
 	Flags: None
 */
-function function_3420bc2f(var_9f85aad5)
+function function_3420bc2f(wpn_new)
 {
 	var_c5716cdc = self GetWeaponsList(1);
 	foreach(weapon in var_c5716cdc)
@@ -549,7 +549,7 @@ function function_3420bc2f(var_9f85aad5)
 	}
 	else
 	{
-		var_7b9ca68 = self zm_weapons::give_build_kit_weapon(var_9f85aad5);
+		var_7b9ca68 = self zm_weapons::give_build_kit_weapon(wpn_new);
 	}
 }
 
@@ -562,16 +562,16 @@ function function_3420bc2f(var_9f85aad5)
 	Parameters: 4
 	Flags: None
 */
-function function_8faf1d24(v_color, var_8882142e, n_scale, str_endon)
+function function_8faf1d24(v_color, str_print, n_scale, str_endon)
 {
 	/#
 		if(!isdefined(v_color))
 		{
 			v_color = VectorScale((0, 0, 1), 255);
 		}
-		if(!isdefined(var_8882142e))
+		if(!isdefined(str_print))
 		{
-			var_8882142e = "Dev Block strings are not supported";
+			str_print = "Dev Block strings are not supported";
 		}
 		if(!isdefined(n_scale))
 		{
@@ -592,7 +592,7 @@ function function_8faf1d24(v_color, var_8882142e, n_scale, str_endon)
 		origin = self.origin;
 		while(1)
 		{
-			print3d(origin, var_8882142e, v_color, n_scale);
+			print3d(origin, str_print, v_color, n_scale);
 			wait(0.1);
 		}
 	#/

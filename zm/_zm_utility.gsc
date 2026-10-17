@@ -7579,7 +7579,7 @@ function function_62f3bbf4(counter_name)
 	Parameters: 3
 	Flags: Private
 */
-function private function_8eb96012(IsHost, var_95597467, var_88b8e8ec)
+function private function_8eb96012(IsHost, var_95597467, issolo)
 {
 	path = spawnstruct();
 	if(IsHost)
@@ -7596,7 +7596,7 @@ function private function_8eb96012(IsHost, var_95597467, var_88b8e8ec)
 	{
 	}
 	path.var_95597467 = "UNUSED";
-	if(var_88b8e8ec)
+	if(issolo)
 	{
 	}
 	else
@@ -7615,9 +7615,9 @@ function private function_8eb96012(IsHost, var_95597467, var_88b8e8ec)
 	Parameters: 2
 	Flags: Private
 */
-function private function_9878c818(var_fabefe22, statName)
+function private function_9878c818(statpath, statName)
 {
-	return self GetDStat("dashboardingTrackingHistory", "gameSizeHistory", var_fabefe22.var_c0cf8114, "consumablesHistory", var_fabefe22.var_95597467, "periodHistory", var_fabefe22.var_b1135a10, statName);
+	return self GetDStat("dashboardingTrackingHistory", "gameSizeHistory", statpath.var_c0cf8114, "consumablesHistory", statpath.var_95597467, "periodHistory", statpath.var_b1135a10, statName);
 }
 
 /*
@@ -7629,9 +7629,9 @@ function private function_9878c818(var_fabefe22, statName)
 	Parameters: 3
 	Flags: Private
 */
-function private function_96c1b925(var_fabefe22, statName, value)
+function private function_96c1b925(statpath, statName, value)
 {
-	self AddDStat("dashboardingTrackingHistory", "gameSizeHistory", var_fabefe22.var_c0cf8114, "consumablesHistory", var_fabefe22.var_95597467, "periodHistory", var_fabefe22.var_b1135a10, statName, value);
+	self AddDStat("dashboardingTrackingHistory", "gameSizeHistory", statpath.var_c0cf8114, "consumablesHistory", statpath.var_95597467, "periodHistory", statpath.var_b1135a10, statName, value);
 	self AddDStat("dashboardingTrackingHistory", "statsSinceLastComscoreEvent", statName, value);
 }
 
@@ -7673,8 +7673,8 @@ function zm_dash_stats_game_start()
 	}
 	level flag::wait_till("all_players_connected");
 	self SetDStat("dashboardingTrackingHistory", "trackedFirstGame", 1);
-	var_fabefe22 = function_8eb96012(self IsHost(), 0, is_solo_ranked_game());
-	self function_96c1b925(var_fabefe22, "started", 1);
+	statpath = function_8eb96012(self IsHost(), 0, is_solo_ranked_game());
+	self function_96c1b925(statpath, "started", 1);
 	self SetDStat("dashboardingTrackingHistory", "lastGameWasHosted", self IsHost());
 	self SetDStat("dashboardingTrackingHistory", "lastGameUsedConsumable", 0);
 	self SetDStat("dashboardingTrackingHistory", "lastGameWasCoop", !is_solo_ranked_game());
@@ -7699,8 +7699,8 @@ function zm_dash_stats_game_end()
 	var_822c3017 = self GetDStat("dashboardingTrackingHistory", "lastGameWasHosted");
 	var_f4d48599 = self GetDStat("dashboardingTrackingHistory", "lastGameUsedConsumable");
 	var_44d1dba9 = self GetDStat("dashboardingTrackingHistory", "lastGameWasCoop");
-	var_fabefe22 = function_8eb96012(var_822c3017, var_f4d48599, !var_44d1dba9);
-	self function_96c1b925(var_fabefe22, "completed", 1);
+	statpath = function_8eb96012(var_822c3017, var_f4d48599, !var_44d1dba9);
+	self function_96c1b925(statpath, "completed", 1);
 	self function_e33a692a(4);
 }
 

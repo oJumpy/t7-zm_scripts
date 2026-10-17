@@ -128,12 +128,12 @@ function function_78933fc2()
 {
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
-		zm_devgui::function_4acecab5(&function_46924c5);
+		zm_devgui::add_custom_devgui_callback(&clone_devgui_callback);
 	#/
 }
 
 /*
-	Name: function_46924c5
+	Name: clone_devgui_callback
 	Namespace: namespace_bd8be9f1
 	Checksum: 0x52E3CFD0
 	Offset: 0x510
@@ -141,7 +141,7 @@ function function_78933fc2()
 	Parameters: 1
 	Flags: None
 */
-function function_46924c5(cmd)
+function clone_devgui_callback(cmd)
 {
 	/#
 		switch(cmd)

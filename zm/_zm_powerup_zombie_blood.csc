@@ -35,8 +35,8 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	callback::on_localclient_connect(&function_a0b86d2c);
-	RegisterClientField("allplayers", "player_zombie_blood_fx", 21000, 1, "int", &function_2d30244a, 0, 1);
+	callback::on_localclient_connect(&init_filter_zombie_blood);
+	RegisterClientField("allplayers", "player_zombie_blood_fx", 21000, 1, "int", &toggle_player_zombie_blood_fx, 0, 1);
 	level._effect["zombie_blood"] = "dlc5/tomb/fx_pwr_up_blood";
 	level._effect["zombie_blood_1st"] = "dlc5/tomb/fx_pwr_up_blood_overlay";
 	zm_powerups::include_zombie_powerup("zombie_blood");
@@ -46,7 +46,7 @@ function __init__()
 }
 
 /*
-	Name: function_a0b86d2c
+	Name: init_filter_zombie_blood
 	Namespace: namespace_43a18dd5
 	Checksum: 0x5958323F
 	Offset: 0x468
@@ -54,7 +54,7 @@ function __init__()
 	Parameters: 1
 	Flags: None
 */
-function function_a0b86d2c(localClientNum)
+function init_filter_zombie_blood(localClientNum)
 {
 	player = GetLocalPlayer(localClientNum);
 	filter::init_filter_indices();
@@ -62,7 +62,7 @@ function function_a0b86d2c(localClientNum)
 }
 
 /*
-	Name: function_2d30244a
+	Name: toggle_player_zombie_blood_fx
 	Namespace: namespace_43a18dd5
 	Checksum: 0x78770197
 	Offset: 0x4D8
@@ -70,7 +70,7 @@ function function_a0b86d2c(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_2d30244a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function toggle_player_zombie_blood_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(IsSpectating(localClientNum, 0) || IsDemoPlaying())
 	{
@@ -80,20 +80,20 @@ function function_2d30244a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		if(self isLocalPlayer() && self getlocalclientnumber() == localClientNum)
 		{
-			if(!isdefined(self.var_c5eb485f))
+			if(!isdefined(self.zombie_blood_fx))
 			{
-				self.var_c5eb485f = PlayViewmodelFX(localClientNum, level._effect["zombie_blood_1st"], "tag_camera");
+				self.zombie_blood_fx = PlayViewmodelFX(localClientNum, level._effect["zombie_blood_1st"], "tag_camera");
 				playsound(localClientNum, "zmb_zombieblood_start", (0, 0, 0));
 				audio::playloopat("zmb_zombieblood_loop", (0, 0, 0));
 			}
 		}
 	}
-	else if(isdefined(self.var_c5eb485f))
+	else if(isdefined(self.zombie_blood_fx))
 	{
-		stopfx(localClientNum, self.var_c5eb485f);
+		stopfx(localClientNum, self.zombie_blood_fx);
 		playsound(localClientNum, "zmb_zombieblood_stop", (0, 0, 0));
 		audio::stoploopat("zmb_zombieblood_loop", (0, 0, 0));
-		self.var_c5eb485f = undefined;
+		self.zombie_blood_fx = undefined;
 	}
 }
 

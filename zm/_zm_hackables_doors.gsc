@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_blockers;
 #using scripts\zm\_zm_equip_hacker;
 
-#namespace namespace_65fac977;
+#namespace zm_hackables_doors;
 
 /*
 	Name: door_struct_debug
-	Namespace: namespace_65fac977
+	Namespace: zm_hackables_doors
 	Checksum: 0xEA963748
 	Offset: 0x148
 	Size: 0x129
@@ -41,7 +41,7 @@ function door_struct_debug()
 
 /*
 	Name: hack_doors
-	Namespace: namespace_65fac977
+	Namespace: zm_hackables_doors
 	Checksum: 0x2F1921BD
 	Offset: 0x280
 	Size: 0x205
@@ -80,7 +80,7 @@ function hack_doors(targetname, door_activate_func)
 
 /*
 	Name: hide_door_buy_when_hacker_active
-	Namespace: namespace_65fac977
+	Namespace: zm_hackables_doors
 	Checksum: 0x89EA7117
 	Offset: 0x490
 	Size: 0x43
@@ -97,7 +97,7 @@ function hide_door_buy_when_hacker_active(door_struct)
 
 /*
 	Name: watch_door_for_open
-	Namespace: namespace_65fac977
+	Namespace: zm_hackables_doors
 	Checksum: 0x4D13B7EF
 	Offset: 0x4E0
 	Size: 0x43
@@ -113,7 +113,7 @@ function watch_door_for_open(door_struct)
 
 /*
 	Name: door_hack
-	Namespace: namespace_65fac977
+	Namespace: zm_hackables_doors
 	Checksum: 0x29CE261A
 	Offset: 0x530
 	Size: 0x77
@@ -131,7 +131,7 @@ function door_hack(hacker)
 
 /*
 	Name: remove_all_door_hackables_that_target_door
-	Namespace: namespace_65fac977
+	Namespace: zm_hackables_doors
 	Checksum: 0x660D7AD6
 	Offset: 0x5B0
 	Size: 0xED

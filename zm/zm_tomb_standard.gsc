@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_magicbox;
 #using scripts\zm\gametypes\_zm_gametype;
 
-#namespace namespace_a026fc99;
+#namespace zm_tomb_standard;
 
 /*
 	Name: Precache
-	Namespace: namespace_a026fc99
+	Namespace: zm_tomb_standard
 	Checksum: 0x99EC1590
 	Offset: 0x1B8
 	Size: 0x3
@@ -24,7 +24,7 @@ function Precache()
 
 /*
 	Name: main
-	Namespace: namespace_a026fc99
+	Namespace: zm_tomb_standard
 	Checksum: 0xC5F36992
 	Offset: 0x1C8
 	Size: 0x53
@@ -40,7 +40,7 @@ function main()
 
 /*
 	Name: zm_treasure_chest_init
-	Namespace: namespace_a026fc99
+	Namespace: zm_tomb_standard
 	Checksum: 0x6B5EF0A4
 	Offset: 0x228
 	Size: 0xC3

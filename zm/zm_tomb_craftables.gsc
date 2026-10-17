@@ -1226,8 +1226,8 @@ function onfullycrafted_quadrotor(player)
 */
 function function_52fbdde1(player)
 {
-	var_703e6a13 = GetWeapon("equip_dieseldrone");
-	if(player HasWeapon(var_703e6a13))
+	w_drone = GetWeapon("equip_dieseldrone");
+	if(player HasWeapon(w_drone))
 	{
 		self.hint_string = &"ZOMBIE_BUILD_PIECE_HAVE_ONE";
 		return 0;
@@ -1235,7 +1235,7 @@ function function_52fbdde1(player)
 	players = GetPlayers();
 	for(i = 0; i < players.size; i++)
 	{
-		if(players[i] HasWeapon(var_703e6a13))
+		if(players[i] HasWeapon(w_drone))
 		{
 			self.hint_string = &"DLC5_QUADROTOR_UNAVAILABLE";
 			return 0;
@@ -1467,14 +1467,14 @@ function quadrotor_control_thread()
 	self endon("new_placeable_mine");
 	while(1)
 	{
-		var_703e6a13 = GetWeapon("equip_dieseldrone");
-		if(self ActionSlotFourButtonPressed() && self HasWeapon(var_703e6a13))
+		w_drone = GetWeapon("equip_dieseldrone");
+		if(self ActionSlotFourButtonPressed() && self HasWeapon(w_drone))
 		{
 			self util::waittill_any_timeout(1, "weapon_change_complete");
 			self playsound("veh_qrdrone_takeoff");
 			self zm_weapons::switch_back_primary_weapon();
 			self util::waittill_any_timeout(1, "weapon_change_complete");
-			self zm_weapons::weapon_take(var_703e6a13);
+			self zm_weapons::weapon_take(w_drone);
 			self SetActionSlot(4, "");
 			str_vehicle = "heli_quadrotor_zm";
 			if(level flag::get("ee_maxis_drone_retrieved"))
@@ -1731,15 +1731,15 @@ function quadrotor_set_unavailable()
 	Parameters: 1
 	Flags: None
 */
-function function_e8aad972(var_7ee6d8e6)
+function function_e8aad972(e_player_owner)
 {
 	self endon("death");
 	level endon("drone_available");
 	while(1)
 	{
-		var_7ee6d8e6 util::waittill_any("teleport_finished", "gr_eject_sequence_complete");
+		e_player_owner util::waittill_any("teleport_finished", "gr_eject_sequence_complete");
 		self clientfield::increment("teleport_arrival_departure_fx");
-		self.origin = var_7ee6d8e6.origin + VectorScale((0, 0, 1), 100);
+		self.origin = e_player_owner.origin + VectorScale((0, 0, 1), 100);
 		self clientfield::increment("teleport_arrival_departure_fx");
 	}
 }
@@ -1795,10 +1795,10 @@ function pickupfrommover()
 */
 function setup_quadrotor_purchase(player)
 {
-	var_703e6a13 = GetWeapon("equip_dieseldrone");
+	w_drone = GetWeapon("equip_dieseldrone");
 	if(self.stub.equipname == "equip_dieseldrone")
 	{
-		if(players_has_weapon(var_703e6a13))
+		if(players_has_weapon(w_drone))
 		{
 			return 1;
 		}
@@ -1808,16 +1808,16 @@ function setup_quadrotor_purchase(player)
 			return 1;
 		}
 		quadrotor_set_unavailable();
-		player zm_weapons::weapon_give(var_703e6a13);
-		player SetWeaponAmmoClip(var_703e6a13, 1);
+		player zm_weapons::weapon_give(w_drone);
+		player SetWeaponAmmoClip(w_drone, 1);
 		player playsoundtoplayer("zmb_buildable_pickup_complete", player);
 		if(isdefined(self.stub.craftableStub.use_actionslot))
 		{
-			player SetActionSlot(self.stub.craftableStub.use_actionslot, "weapon", var_703e6a13);
+			player SetActionSlot(self.stub.craftableStub.use_actionslot, "weapon", w_drone);
 		}
 		else
 		{
-			player SetActionSlot(4, "weapon", var_703e6a13);
+			player SetActionSlot(4, "weapon", w_drone);
 		}
 		player clientfield::set_player_uimodel("hudItems.showDpadRight_Drone", 1);
 		player notify("equip_dieseldrone_zm_given");
@@ -1871,8 +1871,8 @@ function tomb_custom_craftable_validation(player)
 		level.quadrotor_status.pickup_trig = self.stub;
 		if(level.quadrotor_status.crafted)
 		{
-			var_703e6a13 = GetWeapon("equip_dieseldrone");
-			return !players_has_weapon(var_703e6a13) && !level flag::get("quadrotor_cooling_down");
+			w_drone = GetWeapon("equip_dieseldrone");
+			return !players_has_weapon(w_drone) && !level flag::get("quadrotor_cooling_down");
 		}
 	}
 	if(!IsSubStr(self.stub.weaponName.name, "staff"))
@@ -1983,19 +1983,19 @@ function function_fcebb932(str_equipname)
 	Parameters: 1
 	Flags: None
 */
-function is_unclaimed_staff_weapon(var_382bb75)
+function is_unclaimed_staff_weapon(w_check)
 {
-	if(!zm_equipment::is_limited(var_382bb75))
+	if(!zm_equipment::is_limited(w_check))
 	{
 		return 1;
 		break;
 	}
-	s_elemental_staff = get_staff_info_from_weapon_name(var_382bb75, 0);
+	s_elemental_staff = get_staff_info_from_weapon_name(w_check, 0);
 	str_weapon_check = s_elemental_staff.weapname;
 	players = GetPlayers();
 	foreach(player in players)
 	{
-		if(isdefined(player) && player.sessionstate == "playing" && player zm_weapons::has_weapon_or_upgrade(var_382bb75))
+		if(isdefined(player) && player.sessionstate == "playing" && player zm_weapons::has_weapon_or_upgrade(w_check))
 		{
 			return 0;
 		}
@@ -2130,10 +2130,10 @@ function track_staff_weapon_respawn(player)
 				has_weapon = 1;
 				n_melee_element = s_upgraded_staff.enum;
 			}
-			if(player HasWeapon(level.var_2b2f83e5))
+			if(player HasWeapon(level.w_staff_revive))
 			{
-				s_upgraded_staff.revive_ammo_stock = player GetWeaponAmmoStock(level.var_2b2f83e5);
-				s_upgraded_staff.revive_ammo_clip = player GetWeaponAmmoClip(level.var_2b2f83e5);
+				s_upgraded_staff.revive_ammo_stock = player GetWeaponAmmoStock(level.w_staff_revive);
+				s_upgraded_staff.revive_ammo_clip = player GetWeaponAmmoClip(level.w_staff_revive);
 			}
 			if(has_weapon && (!isdefined(player.one_inch_punch_flag_has_been_init) && player.one_inch_punch_flag_has_been_init) && n_melee_element != 0 && !player hasPerk("specialty_widowswine"))
 			{
@@ -2198,9 +2198,9 @@ function track_staff_weapon_respawn(player)
 	Parameters: 2
 	Flags: None
 */
-function set_player_staff(var_5ec0aa73, e_player)
+function set_player_staff(w_staff, e_player)
 {
-	s_staff = get_staff_info_from_weapon_name(var_5ec0aa73);
+	s_staff = get_staff_info_from_weapon_name(w_staff);
 	s_staff.e_owner = e_player;
 	n_player = e_player GetEntityNumber() + 1;
 	e_player.staff_enum = s_staff.enum;
@@ -2240,9 +2240,9 @@ function clear_player_staff_by_player_number(var_d95a0cf3)
 	Parameters: 2
 	Flags: None
 */
-function clear_player_staff(var_382bb75, e_owner)
+function clear_player_staff(w_check, e_owner)
 {
-	s_staff = get_staff_info_from_weapon_name(var_382bb75);
+	s_staff = get_staff_info_from_weapon_name(w_check);
 	if(isdefined(e_owner) && isdefined(s_staff.e_owner) && e_owner != s_staff.e_owner)
 	{
 		return;

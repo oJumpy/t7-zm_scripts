@@ -53,13 +53,13 @@ function init()
 	level thread function_daa052ec("zip_line", "flag_zipline_in_use", "ex_power_zipline");
 	level thread function_daa052ec("sewer_interior", "flag_sewer_on_cooldown_interior", "ex_power_pipe_int");
 	level thread function_daa052ec("sewer_exterior", "flag_sewer_on_cooldown_exterior", "ex_power_pipe");
-	Array::thread_all(struct::get_array("transport_zip_line", "targetname"), &function_a40fee2f);
-	Array::thread_all(struct::get_array("transport_sewer_interior", "targetname"), &function_a40fee2f);
-	Array::thread_all(struct::get_array("transport_sewer_exterior", "targetname"), &function_a40fee2f);
+	Array::thread_all(struct::get_array("transport_zip_line", "targetname"), &spawn_unitrigger);
+	Array::thread_all(struct::get_array("transport_sewer_interior", "targetname"), &spawn_unitrigger);
+	Array::thread_all(struct::get_array("transport_sewer_exterior", "targetname"), &spawn_unitrigger);
 }
 
 /*
-	Name: function_a40fee2f
+	Name: spawn_unitrigger
 	Namespace: namespace_34c58dc
 	Checksum: 0xB14BC943
 	Offset: 0xC68
@@ -67,7 +67,7 @@ function init()
 	Parameters: 0
 	Flags: None
 */
-function function_a40fee2f()
+function spawn_unitrigger()
 {
 	unitrigger_stub = spawnstruct();
 	unitrigger_stub.origin = self.origin;
@@ -88,7 +88,7 @@ function function_a40fee2f()
 		unitrigger_stub.script_noteworthy = self.script_noteworthy;
 		unitrigger_stub.hint_parm1 = 500;
 		unitrigger_stub.prompt_and_visibility_func = &function_da8a0706;
-		zm_unitrigger::register_static_unitrigger(unitrigger_stub, &function_32c54c4);
+		zm_unitrigger::register_static_unitrigger(unitrigger_stub, &sewer_think);
 	}
 }
 
@@ -126,10 +126,10 @@ function function_daa052ec(str_location, str_flag, str_exploder)
 	Parameters: 1
 	Flags: None
 */
-function function_14c7a7e(var_7d3faaf0)
+function function_14c7a7e(str_transport)
 {
-	var_fae0d733 = struct::get_array("transport_" + var_7d3faaf0, "targetname");
-	foreach(s_loc in var_fae0d733)
+	a_s_loc = struct::get_array("transport_" + str_transport, "targetname");
+	foreach(s_loc in a_s_loc)
 	{
 		s_loc.var_1cdf0f7a = util::spawn_model("p7_zm_isl_control_panel_cage_off", s_loc.origin, s_loc.angles);
 	}
@@ -144,14 +144,14 @@ function function_14c7a7e(var_7d3faaf0)
 	Parameters: 2
 	Flags: None
 */
-function function_b708e2f9(var_7d3faaf0, var_7afe5e99)
+function function_b708e2f9(str_transport, var_7afe5e99)
 {
 	if(!isdefined(var_7afe5e99))
 	{
 		var_7afe5e99 = 1;
 	}
-	var_fae0d733 = struct::get_array("transport_" + var_7d3faaf0, "targetname");
-	foreach(s_loc in var_fae0d733)
+	a_s_loc = struct::get_array("transport_" + str_transport, "targetname");
+	foreach(s_loc in a_s_loc)
 	{
 		if(var_7afe5e99)
 		{
@@ -217,7 +217,7 @@ function function_7fdc1c82(e_who, var_ff0e60dd)
 		level flag::set("connect_cliffside_to_jungle_lab_upper");
 	}
 	e_who thread function_8fda04e6(var_ff0e60dd, 0);
-	e_who thread function_e5dfd798(var_ff0e60dd, 0);
+	e_who thread player_rail_sequence_init(var_ff0e60dd, 0);
 	e_who waittill("hash_329f91e1");
 	wait(3);
 	level flag::clear("flag_zipline_in_use");
@@ -256,7 +256,7 @@ function function_1388fe2d(player)
 }
 
 /*
-	Name: function_32c54c4
+	Name: sewer_think
 	Namespace: namespace_34c58dc
 	Checksum: 0x49BDFCDD
 	Offset: 0x14B8
@@ -264,7 +264,7 @@ function function_1388fe2d(player)
 	Parameters: 0
 	Flags: None
 */
-function function_32c54c4()
+function sewer_think()
 {
 	var_f7516332 = self.stub.e_parent;
 	while(1)
@@ -291,13 +291,13 @@ function function_32c54c4()
 			else
 			{
 				e_who zm_score::minus_to_player_score(n_cost);
-				self thread function_51885f3b(e_who, var_f7516332);
+				self thread sewer_run(e_who, var_f7516332);
 				level thread function_60b7284f(self.stub.e_parent.script_noteworthy);
 			}
 		}
 		else if(!level flag::get("flag_sewer_in_use_" + self.script_noteworthy))
 		{
-			self thread function_51885f3b(e_who, var_f7516332);
+			self thread sewer_run(e_who, var_f7516332);
 		}
 	}
 }
@@ -332,7 +332,7 @@ function function_60b7284f(str_location)
 }
 
 /*
-	Name: function_51885f3b
+	Name: sewer_run
 	Namespace: namespace_34c58dc
 	Checksum: 0x327B4216
 	Offset: 0x17B0
@@ -340,7 +340,7 @@ function function_60b7284f(str_location)
 	Parameters: 2
 	Flags: None
 */
-function function_51885f3b(e_who, var_f7516332)
+function sewer_run(e_who, var_f7516332)
 {
 	level flag::set("flag_sewer_in_use_" + var_f7516332.script_noteworthy);
 	if(!level flag::get("connect_meteor_site_to_operating_rooms"))
@@ -357,13 +357,13 @@ function function_51885f3b(e_who, var_f7516332)
 	}
 	e_who zm_utility::create_streamer_hint(var_5d0d54e9.origin, var_5d0d54e9.angles, 1);
 	e_who thread function_8fda04e6(var_f7516332, 1);
-	e_who thread function_e5dfd798(var_f7516332, 1);
+	e_who thread player_rail_sequence_init(var_f7516332, 1);
 	e_who thread namespace_f3e3de78::function_a7a30925();
 	level util::delay(3, undefined, &flag::clear, "flag_sewer_in_use_" + var_f7516332.script_noteworthy);
 }
 
 /*
-	Name: function_e5dfd798
+	Name: player_rail_sequence_init
 	Namespace: namespace_34c58dc
 	Checksum: 0x31ED2612
 	Offset: 0x1968
@@ -371,7 +371,7 @@ function function_51885f3b(e_who, var_f7516332)
 	Parameters: 2
 	Flags: None
 */
-function function_e5dfd798(s_start, var_b4b1932b)
+function player_rail_sequence_init(s_start, var_b4b1932b)
 {
 	var_47ee7db6 = GetEnt(s_start.target, "targetname");
 	nd_path_start = GetVehicleNode(var_47ee7db6.target, "targetname");
@@ -404,11 +404,11 @@ function function_e5dfd798(s_start, var_b4b1932b)
 		self thread animation::Play("pb_zipline_loop_island");
 	}
 	self.var_53539670 vehicle::get_on_path(nd_path_start);
-	self thread function_79c98cb(var_b4b1932b);
+	self thread player_rail_sequence(var_b4b1932b);
 }
 
 /*
-	Name: function_79c98cb
+	Name: player_rail_sequence
 	Namespace: namespace_34c58dc
 	Checksum: 0x5506C0CB
 	Offset: 0x1C58
@@ -416,13 +416,13 @@ function function_e5dfd798(s_start, var_b4b1932b)
 	Parameters: 1
 	Flags: None
 */
-function function_79c98cb(var_b4b1932b)
+function player_rail_sequence(var_b4b1932b)
 {
 	self endon("disconnect");
-	self endon("hash_f9ee8f48");
+	self endon("switch_rail");
 	if(var_b4b1932b)
 	{
-		self.var_53539670 thread function_13629b3a();
+		self.var_53539670 thread play_current_fx();
 		self clientfield::set_to_player("tp_water_sheeting", 1);
 		level thread namespace_f333593c::function_3bf2d62a("sewer", 1, 1, 1);
 		self.var_7a36438e = 1;
@@ -442,7 +442,7 @@ function function_79c98cb(var_b4b1932b)
 	}
 	self ShowViewModel();
 	self.var_53539670 vehicle::go_path();
-	self.var_53539670 notify("hash_a93c476");
+	self.var_53539670 notify("rail_over");
 	if(!var_b4b1932b)
 	{
 		self StopLoopSound(0.4);
@@ -497,7 +497,7 @@ function function_f027bda7()
 }
 
 /*
-	Name: function_13629b3a
+	Name: play_current_fx
 	Namespace: namespace_34c58dc
 	Checksum: 0x50591279
 	Offset: 0x2020
@@ -505,10 +505,10 @@ function function_f027bda7()
 	Parameters: 0
 	Flags: None
 */
-function function_13629b3a()
+function play_current_fx()
 {
 	self clientfield::set("sewer_current_fx", 1);
-	self waittill("hash_a93c476");
+	self waittill("rail_over");
 	self clientfield::set("sewer_current_fx", 0);
 }
 

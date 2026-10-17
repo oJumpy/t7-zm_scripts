@@ -212,13 +212,13 @@ function function_6454df1b()
 	Parameters: 1
 	Flags: None
 */
-function function_7305cc9b(var_34ef544f)
+function function_7305cc9b(t_streamer)
 {
 	self endon("disconnect");
 	var_f657052b = GetEnt("generator_teleporter", "targetname");
 	var_5021a61d = get_teleporter_target_positions(var_f657052b, "generator_teleporter");
 	self zm_utility::create_streamer_hint(var_5021a61d[0].origin, var_5021a61d[0].angles, 1);
-	while(self istouching(var_34ef544f))
+	while(self istouching(t_streamer))
 	{
 		wait(0.05);
 	}
@@ -473,18 +473,18 @@ function function_2f6b6897()
 	{
 		case "nml_teleporter":
 		{
-			var_a58a7b24 = "fxexp_500";
+			str_exploder_name = "fxexp_500";
 			break;
 		}
 		case "generator_teleporter":
 		{
-			var_a58a7b24 = "fxexp_501";
+			str_exploder_name = "fxexp_501";
 			break;
 		}
 	}
-	exploder::exploder(var_a58a7b24);
+	exploder::exploder(str_exploder_name);
 	self waittill("stop_exploder");
-	exploder::stop_exploder(var_a58a7b24);
+	exploder::stop_exploder(str_exploder_name);
 }
 
 /*
@@ -700,7 +700,7 @@ function teleporter_to_nml_gate_move(open_it)
 	time = level.teleporter_gate_move_time;
 	Accel = time / 6;
 	ent = level.teleporter_to_nml_gate_ent;
-	var_c36da20d = level.var_8243881a;
+	e_gate_clip = level.var_8243881a;
 	ent2 = level.teleporter_to_nml_gate2_ent;
 	ent playsound("amb_teleporter_gate_start");
 	ent PlayLoopSound("amb_teleporter_gate_loop", 0.5);

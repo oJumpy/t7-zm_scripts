@@ -34,16 +34,16 @@
 function autoexec init()
 {
 	SetDvar("scr_zm_use_code_enemy_selection", 0);
-	level.closest_player_override = &namespace_1d57720d::function_3ff94b60;
+	level.closest_player_override = &namespace_1d57720d::remaster_closest_player;
 	level thread namespace_1d57720d::update_closest_player();
 	level.move_valid_poi_to_navmesh = 1;
 	level.pathdist_type = 2;
-	spawner::add_archetype_spawn_function("zombie", &function_87ff545e);
-	level.last_valid_position_override = &function_b271c3e6;
+	spawner::add_archetype_spawn_function("zombie", &asylum_zombie_spawned);
+	level.last_valid_position_override = &asylum_last_valid_position;
 }
 
 /*
-	Name: function_87ff545e
+	Name: asylum_zombie_spawned
 	Namespace: namespace_e1bd9dd
 	Checksum: 0xE71E7E3B
 	Offset: 0x460
@@ -51,13 +51,13 @@ function autoexec init()
 	Parameters: 0
 	Flags: Private
 */
-function private function_87ff545e()
+function private asylum_zombie_spawned()
 {
 	self PushActors(0);
 }
 
 /*
-	Name: function_b271c3e6
+	Name: asylum_last_valid_position
 	Namespace: namespace_e1bd9dd
 	Checksum: 0x48308429
 	Offset: 0x488
@@ -65,14 +65,14 @@ function private function_87ff545e()
 	Parameters: 0
 	Flags: Private
 */
-function private function_b271c3e6()
+function private asylum_last_valid_position()
 {
 	bad_pos = (-307, -55, 226);
-	var_c49c5ad0 = (-307, -60, 226);
+	adjusted_pos = (-307, -60, 226);
 	var_1dd2d452 = Distance2DSquared(self.origin, bad_pos);
 	if(var_1dd2d452 < 64)
 	{
-		self.last_valid_position = var_c49c5ad0;
+		self.last_valid_position = adjusted_pos;
 		return 1;
 	}
 	return 0;

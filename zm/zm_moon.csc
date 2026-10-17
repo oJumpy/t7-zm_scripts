@@ -88,7 +88,7 @@ function main()
 	zm_moon_fx::main();
 	level.override_board_repair_sound = "evt_vent_slat_repair";
 	level.override_board_teardown_sound = "evt_vent_slat_remove";
-	level.wallbuy_callback_hack_override = &function_36f98292;
+	level.wallbuy_callback_hack_override = &rotate_hacked_wallbuy;
 	level thread zm_moon_amb::main();
 	register_clientfields();
 	zm_moon_sq::init_clientfields();
@@ -103,8 +103,8 @@ function main()
 	level thread zm_moon_sq::rocket_test();
 	level thread hide_destroyed_earth();
 	level thread receiving_bay_doors_init();
-	level thread function_d87a7dcc();
-	level thread function_6ac83719();
+	level thread watch_for_power();
+	level thread init_fog_vol_to_visionset();
 	level thread function_73cc64f1(0);
 	SetDvar("dlc5_get_client_weapon_from_entitystate", 1);
 	level thread zm_moon_ffotd::main_end();
@@ -187,7 +187,7 @@ function lock_model(model)
 }
 
 /*
-	Name: function_e750888f
+	Name: unlock_model
 	Namespace: zm_moon
 	Checksum: 0x3369B572
 	Offset: 0x1EC8
@@ -195,7 +195,7 @@ function lock_model(model)
 	Parameters: 1
 	Flags: None
 */
-function function_e750888f(model)
+function unlock_model(model)
 {
 	if(isdefined(model))
 	{
@@ -272,10 +272,10 @@ function register_clientfields()
 	clientfield::register("world", "show_earth", 21000, 1, "counter", &show_earth, 0, 0);
 	clientfield::register("world", "show_destroyed_earth", 21000, 1, "counter", &show_destroyed_earth, 0, 0);
 	clientfield::register("world", "hide_earth", 21000, 1, "counter", &hide_earth, 0, 0);
-	var_6225e4bb = function_1556496c("gamedata/tables/zm/zm_astro_names.csv");
+	var_6225e4bb = tablelookuprowcount("gamedata/tables/zm/zm_astro_names.csv");
 	if(isdefined(var_6225e4bb) && var_6225e4bb > 0)
 	{
-		clientfield::register("actor", "astro_name_index", 21000, GetMinBitCountForNum(var_6225e4bb + 1), "int", &function_ff7d3b7, 0, 0);
+		clientfield::register("actor", "astro_name_index", 21000, GetMinBitCountForNum(var_6225e4bb + 1), "int", &set_astro_name, 0, 0);
 	}
 	clientfield::register("scriptmover", "zombie_has_eyes", 21000, 1, "int", &zm::zombie_eyes_clientfield_cb, 0, 0);
 	clientfield::register("clientuimodel", "hudItems.showDpadDown_HackTool", 21000, 1, "int", undefined, 0, 0);
@@ -297,7 +297,7 @@ function register_clientfields()
 function function_20c21740()
 {
 	clientfield::register("world", "BIO", 21000, 1, "int", &zm_moon_digger::function_a0cf54a0, 0, 0);
-	clientfield::register("world", "DH", 21000, 1, "int", &zm_moon_digger::function_245b13ce, 0, 0);
+	clientfield::register("world", "DH", 21000, 1, "int", &zm_moon_digger::digger_visibility, 0, 0);
 	clientfield::register("world", "TCA", 21000, 1, "int", &zm_moon_digger::function_774edb15, 0, 0);
 	clientfield::register("world", "HCA", 21000, 1, "int", &zm_moon_digger::function_774edb15, 0, 0);
 	clientfield::register("world", "BCA", 21000, 1, "int", &zm_moon_digger::function_774edb15, 0, 0);
@@ -498,13 +498,13 @@ function function_c00b8efb(clientNum)
 		return;
 	}
 	var_e3a2cc12 = GetEntArray(clientNum, "jump_pads", "targetname");
-	foreach(var_f5f4e9cc in var_e3a2cc12)
+	foreach(e_pad in var_e3a2cc12)
 	{
-		if(isdefined(var_f5f4e9cc.script_noteworthy))
+		if(isdefined(e_pad.script_noteworthy))
 		{
-			var_f5f4e9cc util::waittill_dobj(clientNum);
-			var_f5f4e9cc useanimtree(-1);
-			var_f5f4e9cc AnimScripted("jump_pad", var_f5f4e9cc.origin, var_f5f4e9cc.angles, "p7_fxanim_zmhd_moon_jump_pad_lrg_anim");
+			e_pad util::waittill_dobj(clientNum);
+			e_pad useanimtree(-1);
+			e_pad AnimScripted("jump_pad", e_pad.origin, e_pad.angles, "p7_fxanim_zmhd_moon_jump_pad_lrg_anim");
 		}
 	}
 }
@@ -521,12 +521,12 @@ function function_c00b8efb(clientNum)
 function function_1cd5e7c6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	var_e3a2cc12 = GetEntArray(localClientNum, "jump_pads", "targetname");
-	foreach(var_f5f4e9cc in var_e3a2cc12)
+	foreach(e_pad in var_e3a2cc12)
 	{
-		if(var_f5f4e9cc.script_int == newVal)
+		if(e_pad.script_int == newVal)
 		{
-			var_f5f4e9cc util::waittill_dobj(localClientNum);
-			PlayFXOnTag(localClientNum, level._effect["jump_pad_jump"], var_f5f4e9cc, "tag_origin");
+			e_pad util::waittill_dobj(localClientNum);
+			PlayFXOnTag(localClientNum, level._effect["jump_pad_jump"], e_pad, "tag_origin");
 		}
 	}
 }
@@ -828,7 +828,7 @@ function do_hide_destroyed_earth()
 }
 
 /*
-	Name: function_d87a7dcc
+	Name: watch_for_power
 	Namespace: zm_moon
 	Checksum: 0x62ED1FD7
 	Offset: 0x3EE0
@@ -836,14 +836,14 @@ function do_hide_destroyed_earth()
 	Parameters: 0
 	Flags: None
 */
-function function_d87a7dcc()
+function watch_for_power()
 {
-	var_bd7ba30 = 0;
+	looped_once = 0;
 	while(1)
 	{
 		if(!level clientfield::get("zombie_power_on"))
 		{
-			if(var_bd7ba30)
+			if(looped_once)
 			{
 				level notify("power_controlled_light");
 			}
@@ -851,7 +851,7 @@ function function_d87a7dcc()
 		}
 		level notify("power_controlled_light");
 		level util::waittill_any("pwo", "ZPOff");
-		var_bd7ba30 = 1;
+		looped_once = 1;
 	}
 }
 
@@ -910,7 +910,7 @@ function moon_nml_transition(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 	else
 	{
 		visionset_mgr::fog_vol_to_visionset_set_suffix("");
-		level notify("hash_d2b77ba2");
+		level notify("entered_moon");
 		SetUkkoScriptIndex(localClientNum, 1, 1);
 	}
 }
@@ -926,11 +926,11 @@ function moon_nml_transition(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 */
 function function_fbf77a74(localClientNum)
 {
-	self endon("hash_d2b77ba2");
+	self endon("entered_moon");
 	while(1)
 	{
-		var_f4570d42 = RandomInt(5);
-		switch(var_f4570d42)
+		n_scenario = RandomInt(5);
+		switch(n_scenario)
 		{
 			case 0:
 			{
@@ -1076,7 +1076,7 @@ function function_fbf77a74(localClientNum)
 }
 
 /*
-	Name: function_36f98292
+	Name: rotate_hacked_wallbuy
 	Namespace: zm_moon
 	Checksum: 0xFF0302A0
 	Offset: 0x4B10
@@ -1084,13 +1084,13 @@ function function_fbf77a74(localClientNum)
 	Parameters: 0
 	Flags: None
 */
-function function_36f98292()
+function rotate_hacked_wallbuy()
 {
 	self RotateRoll(180, 0.5);
 }
 
 /*
-	Name: function_ff7d3b7
+	Name: set_astro_name
 	Namespace: zm_moon
 	Checksum: 0x1EB83D6E
 	Offset: 0x4B40
@@ -1098,14 +1098,14 @@ function function_36f98292()
 	Parameters: 7
 	Flags: None
 */
-function function_ff7d3b7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function set_astro_name(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	var_28a1ce70 = tableLookup("gamedata/tables/zm/zm_astro_names.csv", 0, newVal - 1, 1);
-	self SetDrawName(var_28a1ce70);
+	astro_name = tableLookup("gamedata/tables/zm/zm_astro_names.csv", 0, newVal - 1, 1);
+	self SetDrawName(astro_name);
 }
 
 /*
-	Name: function_6ac83719
+	Name: init_fog_vol_to_visionset
 	Namespace: zm_moon
 	Checksum: 0x49BEEBD
 	Offset: 0x4BD8
@@ -1113,7 +1113,7 @@ function function_ff7d3b7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	Parameters: 0
 	Flags: None
 */
-function function_6ac83719()
+function init_fog_vol_to_visionset()
 {
 	visionset_mgr::init_fog_vol_to_visionset_monitor("zombie_moonHanger18", 2);
 	visionset_mgr::fog_vol_to_visionset_set_suffix("_off");

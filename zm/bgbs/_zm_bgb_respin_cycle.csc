@@ -38,12 +38,12 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_respin_cycle", "activated");
-	clientfield::register("zbarrier", "zm_bgb_respin_cycle", 1, 1, "counter", &function_74ecbbd7, 0, 0);
+	clientfield::register("zbarrier", "zm_bgb_respin_cycle", 1, 1, "counter", &zm_bgb_respin_cycle_cb, 0, 0);
 	level._effect["zm_bgb_respin_cycle"] = "zombie/fx_bgb_respin_cycle_box_flash_zmb";
 }
 
 /*
-	Name: function_74ecbbd7
+	Name: zm_bgb_respin_cycle_cb
 	Namespace: namespace_ddb9c921
 	Checksum: 0xB7059D5C
 	Offset: 0x290
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_74ecbbd7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zm_bgb_respin_cycle_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	playFX(localClientNum, level._effect["zm_bgb_respin_cycle"], self.origin, AnglesToForward(self.angles), anglesToUp(self.angles));
 }

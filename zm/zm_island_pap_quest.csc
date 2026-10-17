@@ -85,21 +85,21 @@ function function_470f1fd2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_cc69986f(var_55fa7b94, var_e1344a83, n_time)
+function function_cc69986f(n_curr, var_e1344a83, n_time)
 {
-	n_end = var_55fa7b94 - var_e1344a83;
-	var_c1c93aba = 187.5;
-	n_delta = var_e1344a83 / var_c1c93aba;
-	var_c0b3756a = var_55fa7b94;
+	n_end = n_curr - var_e1344a83;
+	n_increments = 187.5;
+	n_delta = var_e1344a83 / n_increments;
+	var_c0b3756a = n_curr;
 	while(var_c0b3756a >= n_end)
 	{
 		var_c0b3756a = var_c0b3756a - n_delta;
-		function_f0a92694("bunker_pap_room_water", var_c0b3756a);
+		setwavewaterheight("bunker_pap_room_water", var_c0b3756a);
 		wait(0.016);
 	}
 	if(var_c0b3756a < n_end)
 	{
-		function_f0a92694("bunker_pap_room_water", n_end);
+		setwavewaterheight("bunker_pap_room_water", n_end);
 	}
 }
 

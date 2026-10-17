@@ -48,7 +48,7 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	level.var_16e90d5f = GetWeapon("elemental_bow_storm");
+	level.w_bow_storm = GetWeapon("elemental_bow_storm");
 	level.var_5d4538da = GetWeapon("elemental_bow_storm4");
 	clientfield::register("toplayer", "elemental_bow_storm" + "_ambient_bow_fx", 5000, 1, "int");
 	clientfield::register("missile", "elemental_bow_storm" + "_arrow_impact_fx", 5000, 1, "int");
@@ -150,7 +150,7 @@ function function_578bf1ca(v_hit_pos, var_31d6c509, var_337b3336, var_94d13bd0)
 	if(!(isdefined(var_94d13bd0) && var_94d13bd0))
 	{
 		var_337b3336 = util::spawn_model("tag_origin", v_hit_pos);
-		var_337b3336.var_1dcdd471 = 1;
+		var_337b3336.b_in_use = 1;
 		var_337b3336.var_ff541a23 = 1;
 	}
 	if(!isdefined(var_337b3336.var_5d0ae7cb))
@@ -180,7 +180,7 @@ function function_578bf1ca(v_hit_pos, var_31d6c509, var_337b3336, var_94d13bd0)
 	{
 		var_337b3336 clientfield::set("elem_storm_zap_ambient", 1);
 	}
-	while(var_337b3336.n_lifetime > 0 && (isdefined(var_337b3336.var_1dcdd471) && var_337b3336.var_1dcdd471))
+	while(var_337b3336.n_lifetime > 0 && (isdefined(var_337b3336.b_in_use) && var_337b3336.b_in_use))
 	{
 		if(var_337b3336.n_lifetime < var_98ecdcff)
 		{
@@ -306,8 +306,8 @@ function function_2d3e3c1b(e_player, var_337b3336, var_6e7a59eb, var_94d13bd0)
 	var_6e7a59eb.origin = var_9b78d768;
 	var_27dc1e70 = var_9b78d768;
 	var_75332e4 = self GetCentroid();
-	var_21c86fc5 = VectorNormalize(var_75332e4 - var_27dc1e70);
-	var_ad60dac2 = VectorToAngles(var_21c86fc5);
+	v_bolt = VectorNormalize(var_75332e4 - var_27dc1e70);
+	var_ad60dac2 = VectorToAngles(v_bolt);
 	var_ad60dac2 = (var_ad60dac2[0], var_ad60dac2[1], RandomInt(360));
 	var_6e7a59eb.angles = var_ad60dac2;
 	var_6e7a59eb LinkTo(var_337b3336);
@@ -347,7 +347,7 @@ function function_2d3e3c1b(e_player, var_337b3336, var_6e7a59eb, var_94d13bd0)
 		}
 		if(var_79be6e3b > n_damage && !var_dfc0ef57)
 		{
-			self DoDamage(n_damage, self.origin, e_player, e_player, undefined, str_damage_mod, 0, level.var_16e90d5f);
+			self DoDamage(n_damage, self.origin, e_player, e_player, undefined, str_damage_mod, 0, level.w_bow_storm);
 			if(var_94d13bd0)
 			{
 				var_b50659f2 = 1;
@@ -432,8 +432,8 @@ function function_b6e08804(e_player, var_94d13bd0)
 	else
 	{
 	}
-	var_2f7fd5db = level.var_16e90d5f;
-	self DoDamage(n_damage, self.origin, e_player, e_player, undefined, str_damage_mod, 0, var_2f7fd5db);
+	w_damage_weapon = level.w_bow_storm;
+	self DoDamage(n_damage, self.origin, e_player, e_player, undefined, str_damage_mod, 0, w_damage_weapon);
 	self.var_789ebfb2 = 0;
 	self SetPlayerCollision(1);
 }
@@ -600,7 +600,7 @@ function function_35612a9e(v_hit_pos)
 		for(i = 0; i < 1; i++)
 		{
 			self.var_3b7b1ee[i] = util::spawn_model("tag_origin", (0, 0, 0), VectorScale((-1, 0, 0), 90));
-			self.var_3b7b1ee[i].var_1dcdd471 = 0;
+			self.var_3b7b1ee[i].b_in_use = 0;
 			util::wait_network_frame();
 		}
 	}
@@ -609,7 +609,7 @@ function function_35612a9e(v_hit_pos)
 		var_34137522 = self function_3f099cfa();
 		if(isdefined(var_34137522))
 		{
-			var_34137522.var_1dcdd471 = 1;
+			var_34137522.b_in_use = 1;
 			var_34137522.script_int = GetTime();
 			var_34137522.var_d8bee13b = 0;
 			v_ground_pos = util::ground_position(v_hit_pos, 1000, VectorScale((0, 0, 1), 16)[2]);
@@ -626,10 +626,10 @@ function function_35612a9e(v_hit_pos)
 			var_34137522 thread function_2f036bd6();
 			var_34137522 thread function_50d5f4ab(self);
 			var_34137522 thread function_8a0ca69(self);
-			var_bc5cda7b = var_34137522 util::waittill_any_timeout(7.8, "elem_storm_whirlwind_force_off");
+			str_return = var_34137522 util::waittill_any_timeout(7.8, "elem_storm_whirlwind_force_off");
 			var_34137522 clientfield::set("elem_storm_fx", 0);
 			var_34137522 notify("hash_6c60cfc8");
-			var_34137522.var_1dcdd471 = 0;
+			var_34137522.b_in_use = 0;
 		}
 	}
 }
@@ -661,7 +661,7 @@ function function_3f099cfa()
 {
 	for(i = 0; i < self.var_3b7b1ee.size; i++)
 	{
-		if(!(isdefined(self.var_3b7b1ee[i].var_1dcdd471) && self.var_3b7b1ee[i].var_1dcdd471))
+		if(!(isdefined(self.var_3b7b1ee[i].b_in_use) && self.var_3b7b1ee[i].b_in_use))
 		{
 			return self.var_3b7b1ee[i];
 		}
@@ -799,7 +799,7 @@ function function_c9b501b8(var_34137522)
 	self endon("bled_out");
 	self.var_a70814ea = 1;
 	self clientfield::set_to_player("elem_storm_whirlwind_rumble", 1);
-	while(DistanceSquared(self.origin, var_34137522.origin) < 16384 && (isdefined(var_34137522.var_1dcdd471) && var_34137522.var_1dcdd471))
+	while(DistanceSquared(self.origin, var_34137522.origin) < 16384 && (isdefined(var_34137522.b_in_use) && var_34137522.b_in_use))
 	{
 		wait(0.05);
 	}
@@ -816,9 +816,9 @@ function function_c9b501b8(var_34137522)
 	Parameters: 3
 	Flags: None
 */
-function function_88b53a11(var_80242169, v_hit_origin, var_3fee16b8)
+function function_88b53a11(var_80242169, v_hit_origin, e_arrow)
 {
-	var_bba6e664 = AnglesToForward(var_3fee16b8.angles);
+	var_bba6e664 = AnglesToForward(e_arrow.angles);
 	var_3e878400 = VectorNormalize(var_bba6e664 * -1);
 	var_75181c09 = v_hit_origin + var_3e878400 * var_80242169;
 	return var_75181c09;

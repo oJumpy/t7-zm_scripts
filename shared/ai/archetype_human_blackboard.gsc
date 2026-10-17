@@ -24,35 +24,35 @@ function RegisterActorBlackBoardAttributes()
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	RegisterBlackBoardAttribute(self, "_human_locomotion_movement_type", undefined, &BB_GetLocomotionMovementType);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	RegisterBlackBoardAttribute(self, "_human_cover_flankability", undefined, &BB_GetCoverFlankability);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	RegisterBlackBoardAttribute(self, "_arrival_type", undefined, &BB_GetArrivalType);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 	RegisterBlackBoardAttribute(self, "_human_locomotion_variation", undefined, undefined);
 	if(IsActor(self))
 	{
 		/#
-			self function_d0db9f97("Dev Block strings are not supported");
+			self trackblackboardattribute("Dev Block strings are not supported");
 		#/
 	}
 }

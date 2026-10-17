@@ -266,15 +266,15 @@ function function_30910faa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_b1ffcb5c(localClientNum, var_46ab6018, newVal)
+function function_b1ffcb5c(localClientNum, n_light, newVal)
 {
 	if(!isdefined(self.var_b3ab5e19))
 	{
 		self.var_b3ab5e19 = [];
 	}
-	if(isdefined(self.var_b3ab5e19[var_46ab6018]))
+	if(isdefined(self.var_b3ab5e19[n_light]))
 	{
-		stopfx(localClientNum, self.var_b3ab5e19[var_46ab6018]);
+		stopfx(localClientNum, self.var_b3ab5e19[n_light]);
 	}
 	if(newVal == 0)
 	{
@@ -288,10 +288,10 @@ function function_b1ffcb5c(localClientNum, var_46ab6018, newVal)
 	{
 		str_fx = "dlc3/stalingrad/fx_glow_green_dragonstrike";
 	}
-	var_9bcca82d = var_46ab6018 + 1;
-	str_tag = "tag_dragon_network_console_terminal_light_green_0" + var_9bcca82d;
+	n_tag_index = n_light + 1;
+	str_tag = "tag_dragon_network_console_terminal_light_green_0" + n_tag_index;
 	v_position = self GetTagOrigin(str_tag) + (1.25, -1.25, -0.25);
-	self.var_b3ab5e19[var_46ab6018] = playFX(localClientNum, str_fx, v_position);
+	self.var_b3ab5e19[n_light] = playFX(localClientNum, str_fx, v_position);
 }
 
 /*

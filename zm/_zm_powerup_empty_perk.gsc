@@ -44,20 +44,20 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	zm_powerups::register_powerup("empty_perk", &function_59e7b1f8);
+	zm_powerups::register_powerup("empty_perk", &grab_empty_perk);
 	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
 	{
 		zm_powerups::add_zombie_powerup("empty_perk", "zombie_pickup_perk_bottle", &"", &zm_powerups::func_should_never_drop, 1, 0, 0);
 		zm_powerups::powerup_set_statless_powerup("empty_perk");
 	}
-	level.get_player_perk_purchase_limit = &function_c396add0;
+	level.get_player_perk_purchase_limit = &perk_purchase_limit_override;
 	/#
 		thread function_ac499d74();
 	#/
 }
 
 /*
-	Name: function_59e7b1f8
+	Name: grab_empty_perk
 	Namespace: namespace_ac1a876c
 	Checksum: 0xE59EC9FA
 	Offset: 0x430
@@ -65,7 +65,7 @@ function __init__()
 	Parameters: 1
 	Flags: None
 */
-function function_59e7b1f8(player)
+function grab_empty_perk(player)
 {
 	player thread function_ba8751f2();
 }
@@ -92,7 +92,7 @@ function function_ba8751f2()
 }
 
 /*
-	Name: function_c396add0
+	Name: perk_purchase_limit_override
 	Namespace: namespace_ac1a876c
 	Checksum: 0x7648FC35
 	Offset: 0x4A8
@@ -100,7 +100,7 @@ function function_ba8751f2()
 	Parameters: 0
 	Flags: None
 */
-function function_c396add0()
+function perk_purchase_limit_override()
 {
 	if(!isdefined(self.player_perk_purchase_limit))
 	{
@@ -123,7 +123,7 @@ function function_ac499d74()
 	/#
 		level flagsys::wait_till("Dev Block strings are not supported");
 		wait(1);
-		zm_devgui::function_4acecab5(&function_5d69c3e);
+		zm_devgui::add_custom_devgui_callback(&function_5d69c3e);
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 	#/

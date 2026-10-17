@@ -45,7 +45,7 @@ function __init__()
 	register_clientfields();
 	zm_placeable_mine::add_mine_type("controllable_spider", &"");
 	callback::on_spawned(&function_b2a01f79);
-	level.var_99f2368e = GetWeapon("controllable_spider");
+	level.w_controllable_spider = GetWeapon("controllable_spider");
 	level flag::init("controllable_spider_equipped");
 	/#
 		function_be10e0f1();
@@ -79,10 +79,10 @@ function register_clientfields()
 */
 function function_468b927()
 {
-	if(!self HasWeapon(level.var_99f2368e))
+	if(!self HasWeapon(level.w_controllable_spider))
 	{
-		self thread zm_placeable_mine::setup_for_player(level.var_99f2368e, "hudItems.showDpadRight_Spider");
-		self giveMaxAmmo(level.var_99f2368e);
+		self thread zm_placeable_mine::setup_for_player(level.w_controllable_spider, "hudItems.showDpadRight_Spider");
+		self giveMaxAmmo(level.w_controllable_spider);
 		level thread function_160ff11f();
 	}
 }
@@ -124,7 +124,7 @@ function function_b2a01f79()
 	while(1)
 	{
 		self waittill("weapon_change", w_current, w_previous);
-		if(w_current === level.var_99f2368e)
+		if(w_current === level.w_controllable_spider)
 		{
 			if(!IsPointOnNavMesh(self.origin) || (isdefined(self.var_b0329be9) && self.var_b0329be9) || !self IsOnGround())
 			{
@@ -138,13 +138,13 @@ function function_b2a01f79()
 			}
 			else
 			{
-				n_ammo = self getammocount(level.var_99f2368e);
+				n_ammo = self getammocount(level.w_controllable_spider);
 				if(n_ammo <= 0)
 				{
 					continue;
 				}
 				n_ammo--;
-				self SetWeaponAmmoClip(level.var_99f2368e, n_ammo);
+				self SetWeaponAmmoClip(level.w_controllable_spider, n_ammo);
 				self thread function_40296c9b(w_previous);
 				self waittill("hash_6181e737");
 			}
@@ -164,9 +164,9 @@ function function_b2a01f79()
 function function_40296c9b(w_previous)
 {
 	self notify("hash_a1fe358c");
-	var_cbe49ee = util::spawn_model("p7_zm_isl_cocoon_standing", self.origin, self.angles);
-	var_cbe49ee clientfield::set("player_cocooned_fx", 1);
-	self.var_cbe49ee = var_cbe49ee;
+	e_cocoon = util::spawn_model("p7_zm_isl_cocoon_standing", self.origin, self.angles);
+	e_cocoon clientfield::set("player_cocooned_fx", 1);
+	self.e_cocoon = e_cocoon;
 	e_spawner = GetEnt("friendly_spider_spawner", "targetname");
 	ai = zombie_utility::spawn_zombie(e_spawner);
 	ai.origin = self.origin;
@@ -179,7 +179,7 @@ function function_40296c9b(w_previous)
 	ai usevehicle(self, 0);
 	self FreezeControls(1);
 	self LUI::screen_fade_out(0.25);
-	self.var_59bd3c5a = ai;
+	self.e_spider = ai;
 	self.old_origin = self.origin;
 	self.old_angles = self.angles;
 	self LUI::screen_fade_in(0.25);
@@ -207,7 +207,7 @@ function function_5ce6002e(e_player, w_previous)
 {
 	e_player endon("disconnect");
 	self waittill("death");
-	var_cbe49ee = e_player.var_cbe49ee;
+	e_cocoon = e_player.e_cocoon;
 	e_player FreezeControls(1);
 	e_player.ignoreme = 1;
 	wait(1);
@@ -215,11 +215,11 @@ function function_5ce6002e(e_player, w_previous)
 	self notify("stop_last_valid_position");
 	self notify("exit_vehicle");
 	e_player clientfield::set("player_cocooned_fx", 1);
-	var_cbe49ee Hide();
+	e_cocoon Hide();
 	e_player LUI::screen_fade_in(0.25);
 	e_player thread function_5a1c08d0();
 	var_f1c825f6 = GetClosestPointOnNavMesh(e_player.old_origin, 1000, 15);
-	e_player.var_59bd3c5a = undefined;
+	e_player.e_spider = undefined;
 	e_player FreezeControls(0);
 	e_player Unlink();
 	e_player show();
@@ -255,9 +255,9 @@ function function_5ce6002e(e_player, w_previous)
 */
 function function_5a1c08d0()
 {
-	var_cbe49ee = self.var_cbe49ee;
+	e_cocoon = self.e_cocoon;
 	wait(1);
-	var_cbe49ee delete();
+	e_cocoon delete();
 }
 
 /*
@@ -309,16 +309,16 @@ function function_cb196021()
 */
 function function_a21f0b74()
 {
-	self.var_59bd3c5a endon("death");
+	self.e_spider endon("death");
 	self endon("disconnect");
 	while(1)
 	{
 		if(self util::use_button_held())
 		{
-			self.var_59bd3c5a SetTeam("axis");
-			self.var_59bd3c5a.takedamage = 1;
-			self.var_59bd3c5a.owner = undefined;
-			self.var_59bd3c5a DoDamage(self.var_59bd3c5a.health + 1000, self.var_59bd3c5a.origin);
+			self.e_spider SetTeam("axis");
+			self.e_spider.takedamage = 1;
+			self.e_spider.owner = undefined;
+			self.e_spider DoDamage(self.e_spider.health + 1000, self.e_spider.origin);
 			return;
 		}
 		wait(0.05);
@@ -338,11 +338,11 @@ function function_e889b7()
 {
 	self endon("disconnect");
 	level waittill("between_round_over");
-	n_ammo = self getammocount(level.var_99f2368e);
+	n_ammo = self getammocount(level.w_controllable_spider);
 	if(n_ammo <= 0)
 	{
 		n_ammo++;
-		self SetWeaponAmmoClip(level.var_99f2368e, n_ammo);
+		self SetWeaponAmmoClip(level.w_controllable_spider, n_ammo);
 	}
 }
 
@@ -367,9 +367,9 @@ function function_84313596(zone_name)
 		players = GetPlayers();
 		for(j = 0; j < players.size; j++)
 		{
-			if(isdefined(players[j].var_59bd3c5a))
+			if(isdefined(players[j].e_spider))
 			{
-				if(players[j].var_59bd3c5a istouching(zone.Volumes[i]) && !players[j].var_59bd3c5a.sessionstate === "spectator")
+				if(players[j].e_spider istouching(zone.Volumes[i]) && !players[j].e_spider.sessionstate === "spectator")
 				{
 					return 1;
 				}
@@ -398,9 +398,9 @@ function closest_player_targets_override()
 	a_targets = GetPlayers();
 	for(i = 0; i < a_targets.size; i++)
 	{
-		if(isdefined(a_targets[i].var_59bd3c5a))
+		if(isdefined(a_targets[i].e_spider))
 		{
-			a_targets[i] = a_targets[i].var_59bd3c5a;
+			a_targets[i] = a_targets[i].e_spider;
 		}
 	}
 	return a_targets;
@@ -418,7 +418,7 @@ function closest_player_targets_override()
 function function_be10e0f1()
 {
 	/#
-		zm_devgui::function_4acecab5(&function_11949f35);
+		zm_devgui::add_custom_devgui_callback(&function_11949f35);
 		AddDebugCommand("Dev Block strings are not supported");
 	#/
 }

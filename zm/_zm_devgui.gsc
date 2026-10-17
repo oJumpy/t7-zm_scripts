@@ -70,12 +70,12 @@ function __init__()
 		thread zombie_weapon_devgui_think();
 		thread function_315fab2d();
 		thread devgui_zombie_healthbar();
-		thread function_47239612();
+		thread devgui_test_chart_think();
 		if(GetDvarString("Dev Block strings are not supported") == "Dev Block strings are not supported")
 		{
 			SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 		}
-		level thread dev::function_8ed979e4(0);
+		level thread dev::body_customization_devgui(0);
 		thread testscriptruntimeerror();
 		callback::on_connect(&player_on_connect);
 	#/
@@ -94,8 +94,8 @@ function __main__()
 {
 	/#
 		level thread zombie_devgui_player_commands();
-		level thread function_e7616d2f();
-		level thread function_40dde582();
+		level thread zombie_devgui_validation_commands();
+		level thread zombie_draw_traversals();
 		level thread function_1d21f4f();
 	#/
 }
@@ -131,13 +131,13 @@ function player_on_connect()
 		wait(1);
 		if(isdefined(self))
 		{
-			function_d6624f9e(self);
+			zombie_devgui_player_menu(self);
 		}
 	#/
 }
 
 /*
-	Name: function_a9df7ce0
+	Name: zombie_devgui_player_menu_clear
 	Namespace: zm_devgui
 	Checksum: 0x15A4F6B3
 	Offset: 0x6F0
@@ -145,16 +145,16 @@ function player_on_connect()
 	Parameters: 1
 	Flags: None
 */
-function function_a9df7ce0(playerName)
+function zombie_devgui_player_menu_clear(playerName)
 {
 	/#
-		var_dc719734 = "Dev Block strings are not supported" + playerName + "Dev Block strings are not supported";
-		AddDebugCommand(var_dc719734);
+		rootclear = "Dev Block strings are not supported" + playerName + "Dev Block strings are not supported";
+		AddDebugCommand(rootclear);
 	#/
 }
 
 /*
-	Name: function_d6624f9e
+	Name: zombie_devgui_player_menu
 	Namespace: zm_devgui
 	Checksum: 0xEABBCDC6
 	Offset: 0x748
@@ -162,10 +162,10 @@ function function_a9df7ce0(playerName)
 	Parameters: 1
 	Flags: None
 */
-function function_d6624f9e(player)
+function zombie_devgui_player_menu(player)
 {
 	/#
-		function_a9df7ce0(player.name);
+		zombie_devgui_player_menu_clear(player.name);
 		ip1 = player GetEntityNumber() + 1;
 		AddDebugCommand("Dev Block strings are not supported" + player.name + "Dev Block strings are not supported" + ip1 + "Dev Block strings are not supported" + ip1 + "Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported" + player.name + "Dev Block strings are not supported" + ip1 + "Dev Block strings are not supported" + ip1 + "Dev Block strings are not supported");
@@ -183,12 +183,12 @@ function function_d6624f9e(player)
 		{
 			level thread [[level.var_e26adf8d]](player, ip1);
 		}
-		self thread function_503d8fb1(player);
+		self thread zombie_devgui_player_menu_clear_on_disconnect(player);
 	#/
 }
 
 /*
-	Name: function_503d8fb1
+	Name: zombie_devgui_player_menu_clear_on_disconnect
 	Namespace: zm_devgui
 	Checksum: 0x854843D
 	Offset: 0xBA8
@@ -196,17 +196,17 @@ function function_d6624f9e(player)
 	Parameters: 1
 	Flags: None
 */
-function function_503d8fb1(player)
+function zombie_devgui_player_menu_clear_on_disconnect(player)
 {
 	/#
 		playerName = player.name;
 		player waittill("disconnect");
-		function_a9df7ce0(playerName);
+		zombie_devgui_player_menu_clear(playerName);
 	#/
 }
 
 /*
-	Name: function_e7616d2f
+	Name: zombie_devgui_validation_commands
 	Namespace: zm_devgui
 	Checksum: 0x17ECA99D
 	Offset: 0xC08
@@ -214,7 +214,7 @@ function function_503d8fb1(player)
 	Parameters: 0
 	Flags: None
 */
-function function_e7616d2f()
+function zombie_devgui_validation_commands()
 {
 	/#
 		SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -230,25 +230,25 @@ function function_e7616d2f()
 				{
 					case "Dev Block strings are not supported":
 					{
-						function_5735dbec();
+						zombie_spawner_validation();
 						break;
 					}
 					case "Dev Block strings are not supported":
 					{
-						if(!isdefined(level.var_c0d235a5))
+						if(!isdefined(level.toggle_zone_adjacencies_validation))
 						{
-							level.var_c0d235a5 = 1;
+							level.toggle_zone_adjacencies_validation = 1;
 						}
 						else
 						{
-							level.var_c0d235a5 = !level.var_c0d235a5;
+							level.toggle_zone_adjacencies_validation = !level.toggle_zone_adjacencies_validation;
 						}
-						thread function_d02d5c2a();
+						thread zone_adjacencies_validation();
 						break;
 					}
 					case "Dev Block strings are not supported":
 					{
-						thread function_db177d();
+						thread zombie_pathing_validation();
 					}
 					case default:
 					{
@@ -263,7 +263,7 @@ function function_e7616d2f()
 }
 
 /*
-	Name: function_5735dbec
+	Name: zombie_spawner_validation
 	Namespace: zm_devgui
 	Checksum: 0x8833465F
 	Offset: 0xD90
@@ -271,13 +271,13 @@ function function_e7616d2f()
 	Parameters: 0
 	Flags: None
 */
-function function_5735dbec()
+function zombie_spawner_validation()
 {
 	/#
-		level.var_e9d63ac6 = 0;
-		if(!isdefined(level.var_3d3b24de))
+		level.validation_errors_count = 0;
+		if(!isdefined(level.toggle_spawner_validation))
 		{
-			level.var_3d3b24de = 1;
+			level.toggle_spawner_validation = 1;
 			zombie_devgui_open_sesame();
 			spawner = level.zombie_spawners[0];
 			enemy = undefined;
@@ -287,8 +287,8 @@ function function_5735dbec()
 				{
 					if(!isdefined(zone.a_loc_types["Dev Block strings are not supported"]) || zone.a_loc_types["Dev Block strings are not supported"].size <= 0)
 					{
-						level.var_e9d63ac6++;
-						thread function_3f7cbd96(spawn_point.origin, spawn_point.zone_name);
+						level.validation_errors_count++;
+						thread drawvalidation(spawn_point.origin, spawn_point.zone_name);
 						println("Dev Block strings are not supported" + spawn_point.zone_name);
 						IPrintLnBold("Dev Block strings are not supported" + spawn_point.zone_name);
 						break;
@@ -298,37 +298,37 @@ function function_5735dbec()
 						enemy = zombie_utility::spawn_zombie(spawner, spawner.targetname, spawn_point);
 					}
 					node = undefined;
-					var_dcd2015e = spawn_point.origin;
+					spawn_point_origin = spawn_point.origin;
 					if(isdefined(spawn_point.script_string) && spawn_point.script_string != "Dev Block strings are not supported")
 					{
-						var_dcd2015e = enemy function_6d0f4f30(spawn_point, var_dcd2015e);
+						spawn_point_origin = enemy validate_to_board(spawn_point, spawn_point_origin);
 					}
-					var_c856782f = GetClosestPointOnNavMesh(var_dcd2015e, 40, 30);
-					if(!isdefined(var_c856782f))
+					new_spawn_point_origin = GetClosestPointOnNavMesh(spawn_point_origin, 40, 30);
+					if(!isdefined(new_spawn_point_origin))
 					{
-						var_c856782f = GetClosestPointOnNavMesh(var_dcd2015e, 100, 30);
-						if(!isdefined(var_c856782f))
+						new_spawn_point_origin = GetClosestPointOnNavMesh(spawn_point_origin, 100, 30);
+						if(!isdefined(new_spawn_point_origin))
 						{
-							level.var_e9d63ac6++;
-							thread function_3f7cbd96(var_dcd2015e);
+							level.validation_errors_count++;
+							thread drawvalidation(spawn_point_origin);
 						}
 					}
-					var_86c3615c = enemy function_df1875b4(zone, var_c856782f, spawn_point);
+					ispath = enemy validate_to_wait_point(zone, new_spawn_point_origin, spawn_point);
 				}
 			}
-			println("Dev Block strings are not supported" + level.var_e9d63ac6);
-			IPrintLnBold("Dev Block strings are not supported" + level.var_e9d63ac6);
-			level.var_e9d63ac6 = undefined;
+			println("Dev Block strings are not supported" + level.validation_errors_count);
+			IPrintLnBold("Dev Block strings are not supported" + level.validation_errors_count);
+			level.validation_errors_count = undefined;
 		}
 		else
 		{
-			level.var_3d3b24de = !level.var_3d3b24de;
+			level.toggle_spawner_validation = !level.toggle_spawner_validation;
 		}
 	#/
 }
 
 /*
-	Name: function_6d0f4f30
+	Name: validate_to_board
 	Namespace: zm_devgui
 	Checksum: 0x5F62E36B
 	Offset: 0x1190
@@ -336,7 +336,7 @@ function function_5735dbec()
 	Parameters: 2
 	Flags: None
 */
-function function_6d0f4f30(spawn_point, var_cac5c76f)
+function validate_to_board(spawn_point, spawn_point_origin_backup)
 {
 	/#
 		for(j = 0; j < level.exterior_goals.size; j++)
@@ -349,25 +349,25 @@ function function_6d0f4f30(spawn_point, var_cac5c76f)
 		}
 		if(isdefined(node))
 		{
-			var_86c3615c = self CanPath(spawn_point.origin, node.origin);
-			if(!var_86c3615c)
+			ispath = self CanPath(spawn_point.origin, node.origin);
+			if(!ispath)
 			{
-				level.var_e9d63ac6++;
-				thread function_3f7cbd96(var_cac5c76f, undefined, undefined, node.origin);
-				println("Dev Block strings are not supported" + var_cac5c76f + "Dev Block strings are not supported" + spawn_point.targetname);
-				IPrintLnBold("Dev Block strings are not supported" + var_cac5c76f + "Dev Block strings are not supported" + spawn_point.targetname);
+				level.validation_errors_count++;
+				thread drawvalidation(spawn_point_origin_backup, undefined, undefined, node.origin);
+				println("Dev Block strings are not supported" + spawn_point_origin_backup + "Dev Block strings are not supported" + spawn_point.targetname);
+				IPrintLnBold("Dev Block strings are not supported" + spawn_point_origin_backup + "Dev Block strings are not supported" + spawn_point.targetname);
 			}
 			nodeForward = AnglesToForward(node.angles);
 			nodeForward = VectorNormalize(nodeForward);
-			var_dcd2015e = node.origin + nodeForward * 100;
-			return var_dcd2015e;
+			spawn_point_origin = node.origin + nodeForward * 100;
+			return spawn_point_origin;
 		}
-		return var_cac5c76f;
+		return spawn_point_origin_backup;
 	#/
 }
 
 /*
-	Name: function_df1875b4
+	Name: validate_to_wait_point
 	Namespace: zm_devgui
 	Checksum: 0xAA60C80D
 	Offset: 0x13A8
@@ -375,33 +375,33 @@ function function_6d0f4f30(spawn_point, var_cac5c76f)
 	Parameters: 3
 	Flags: None
 */
-function function_df1875b4(zone, var_c856782f, spawn_point)
+function validate_to_wait_point(zone, new_spawn_point_origin, spawn_point)
 {
 	/#
 		foreach(loc in zone.a_loc_types["Dev Block strings are not supported"])
 		{
 			if(isdefined(loc))
 			{
-				var_1d39909 = loc.origin;
-				if(isdefined(var_1d39909))
+				wait_point = loc.origin;
+				if(isdefined(wait_point))
 				{
-					var_335d214 = GetClosestPointOnNavMesh(var_1d39909, 40, 30);
-					if(!isdefined(var_335d214))
+					new_wait_point = GetClosestPointOnNavMesh(wait_point, 40, 30);
+					if(!isdefined(new_wait_point))
 					{
-						var_335d214 = GetClosestPointOnNavMesh(var_1d39909, 100, 30);
+						new_wait_point = GetClosestPointOnNavMesh(wait_point, 100, 30);
 					}
-					if(isdefined(var_c856782f) && isdefined(var_335d214))
+					if(isdefined(new_spawn_point_origin) && isdefined(new_wait_point))
 					{
-						var_86c3615c = self CanPath(var_c856782f, var_335d214);
-						if(var_86c3615c)
+						ispath = self CanPath(new_spawn_point_origin, new_wait_point);
+						if(ispath)
 						{
 							return 1;
 							continue;
 						}
-						level.var_e9d63ac6++;
-						thread function_3f7cbd96(var_c856782f, undefined, var_335d214);
-						println("Dev Block strings are not supported" + var_c856782f + "Dev Block strings are not supported" + spawn_point.targetname);
-						IPrintLnBold("Dev Block strings are not supported" + var_c856782f + "Dev Block strings are not supported" + spawn_point.targetname);
+						level.validation_errors_count++;
+						thread drawvalidation(new_spawn_point_origin, undefined, new_wait_point);
+						println("Dev Block strings are not supported" + new_spawn_point_origin + "Dev Block strings are not supported" + spawn_point.targetname);
+						IPrintLnBold("Dev Block strings are not supported" + new_spawn_point_origin + "Dev Block strings are not supported" + spawn_point.targetname);
 						return 0;
 					}
 				}
@@ -412,7 +412,7 @@ function function_df1875b4(zone, var_c856782f, spawn_point)
 }
 
 /*
-	Name: function_3f7cbd96
+	Name: drawvalidation
 	Namespace: zm_devgui
 	Checksum: 0x7678F58
 	Offset: 0x15D0
@@ -420,24 +420,24 @@ function function_df1875b4(zone, var_c856782f, spawn_point)
 	Parameters: 4
 	Flags: None
 */
-function function_3f7cbd96(origin, zone_name, var_c9c9e21f, var_3cf0ecd5)
+function drawvalidation(origin, zone_name, nav_mesh_wait_point, boards_point)
 {
 	/#
 		if(!isdefined(zone_name))
 		{
 			zone_name = undefined;
 		}
-		if(!isdefined(var_c9c9e21f))
+		if(!isdefined(nav_mesh_wait_point))
 		{
-			var_c9c9e21f = undefined;
+			nav_mesh_wait_point = undefined;
 		}
-		if(!isdefined(var_3cf0ecd5))
+		if(!isdefined(boards_point))
 		{
-			var_3cf0ecd5 = undefined;
+			boards_point = undefined;
 		}
 		while(1)
 		{
-			if(isdefined(level.var_3d3b24de) && level.var_3d3b24de)
+			if(isdefined(level.toggle_spawner_validation) && level.toggle_spawner_validation)
 			{
 				if(!isdefined(origin))
 				{
@@ -448,21 +448,21 @@ function function_3f7cbd96(origin, zone_name, var_c9c9e21f, var_3cf0ecd5)
 					circle(origin, 32, (1, 0, 0));
 					print3d(origin, "Dev Block strings are not supported" + zone_name, (1, 1, 1), 1, 0.5);
 				}
-				else if(isdefined(var_c9c9e21f))
+				else if(isdefined(nav_mesh_wait_point))
 				{
 					circle(origin, 32, (0, 0, 1));
 					print3d(origin, "Dev Block strings are not supported" + origin, (1, 1, 1), 1, 0.5);
-					line(origin, var_c9c9e21f, (1, 0, 0));
-					circle(var_c9c9e21f, 32, (1, 0, 0));
-					print3d(var_c9c9e21f, "Dev Block strings are not supported" + var_c9c9e21f, (1, 1, 1), 1, 0.5);
+					line(origin, nav_mesh_wait_point, (1, 0, 0));
+					circle(nav_mesh_wait_point, 32, (1, 0, 0));
+					print3d(nav_mesh_wait_point, "Dev Block strings are not supported" + nav_mesh_wait_point, (1, 1, 1), 1, 0.5);
 				}
-				else if(isdefined(var_3cf0ecd5))
+				else if(isdefined(boards_point))
 				{
 					circle(origin, 32, (0, 0, 1));
 					print3d(origin, "Dev Block strings are not supported" + origin, (1, 1, 1), 1, 0.5);
-					line(origin, var_3cf0ecd5, (1, 0, 0));
-					circle(var_3cf0ecd5, 32, (1, 0, 0));
-					print3d(var_3cf0ecd5, "Dev Block strings are not supported" + var_3cf0ecd5, (1, 1, 1), 1, 0.5);
+					line(origin, boards_point, (1, 0, 0));
+					circle(boards_point, 32, (1, 0, 0));
+					print3d(boards_point, "Dev Block strings are not supported" + boards_point, (1, 1, 1), 1, 0.5);
 				}
 				else
 				{
@@ -476,7 +476,7 @@ function function_3f7cbd96(origin, zone_name, var_c9c9e21f, var_3cf0ecd5)
 }
 
 /*
-	Name: function_d02d5c2a
+	Name: zone_adjacencies_validation
 	Namespace: zm_devgui
 	Checksum: 0x5020E431
 	Offset: 0x18E8
@@ -484,13 +484,13 @@ function function_3f7cbd96(origin, zone_name, var_c9c9e21f, var_3cf0ecd5)
 	Parameters: 0
 	Flags: None
 */
-function function_d02d5c2a()
+function zone_adjacencies_validation()
 {
 	/#
 		zombie_devgui_open_sesame();
 		while(1)
 		{
-			if(isdefined(level.var_c0d235a5) && level.var_c0d235a5)
+			if(isdefined(level.toggle_zone_adjacencies_validation) && level.toggle_zone_adjacencies_validation)
 			{
 				if(!isdefined(GetPlayers()[0].zone_name))
 				{
@@ -504,7 +504,7 @@ function function_d02d5c2a()
 				{
 					if(key === str_zone)
 					{
-						function_83c0e2b(level.zones[key], 2, key);
+						draw_zone_adjacencies_validation(level.zones[key], 2, key);
 						continue;
 					}
 					if(isdefined(level.zones[str_zone].adjacent_zones[key]))
@@ -512,15 +512,15 @@ function function_d02d5c2a()
 						if(level.zones[str_zone].adjacent_zones[key].is_connected)
 						{
 							offset = offset + 10;
-							function_83c0e2b(level.zones[key], 1, key, level.zones[str_zone], offset);
+							draw_zone_adjacencies_validation(level.zones[key], 1, key, level.zones[str_zone], offset);
 						}
 						else
 						{
-							function_83c0e2b(level.zones[key], 0, key);
+							draw_zone_adjacencies_validation(level.zones[key], 0, key);
 						}
 						continue;
 					}
-					function_83c0e2b(level.zones[key], 0, key);
+					draw_zone_adjacencies_validation(level.zones[key], 0, key);
 				}
 			}
 			wait(0.05);
@@ -529,7 +529,7 @@ function function_d02d5c2a()
 }
 
 /*
-	Name: function_83c0e2b
+	Name: draw_zone_adjacencies_validation
 	Namespace: zm_devgui
 	Checksum: 0x3101DF27
 	Offset: 0x1B50
@@ -537,7 +537,7 @@ function function_d02d5c2a()
 	Parameters: 5
 	Flags: None
 */
-function function_83c0e2b(zone, status, name, current_zone, offset)
+function draw_zone_adjacencies_validation(zone, status, name, current_zone, offset)
 {
 	/#
 		if(!isdefined(current_zone))
@@ -572,7 +572,7 @@ function function_83c0e2b(zone, status, name, current_zone, offset)
 }
 
 /*
-	Name: function_db177d
+	Name: zombie_pathing_validation
 	Namespace: zm_devgui
 	Checksum: 0xCAC8D0E0
 	Offset: 0x1DA0
@@ -580,23 +580,23 @@ function function_83c0e2b(zone, status, name, current_zone, offset)
 	Parameters: 0
 	Flags: None
 */
-function function_db177d()
+function zombie_pathing_validation()
 {
 	/#
 		if(!isdefined(level.zombie_spawners[0]))
 		{
 			return;
 		}
-		if(!isdefined(level.var_db177d))
+		if(!isdefined(level.zombie_pathing_validation))
 		{
-			level.var_db177d = 1;
+			level.zombie_pathing_validation = 1;
 		}
 		zombie_devgui_open_sesame();
 		SetDvar("Dev Block strings are not supported", 0);
 		zombie_devgui_goto_round(20);
 		wait(2);
 		spawner = level.zombie_spawners[0];
-		var_7539800c = (808, -1856, 544);
+		slums_station = (808, -1856, 544);
 		enemy = zombie_utility::spawn_zombie(spawner, spawner.targetname);
 		wait(1);
 		while(isdefined(enemy) && enemy.completed_emerging_into_playable_area !== 1)
@@ -605,7 +605,7 @@ function function_db177d()
 		}
 		if(isdefined(enemy))
 		{
-			enemy ForceTeleport(var_7539800c);
+			enemy ForceTeleport(slums_station);
 			enemy.b_ignore_cleanup = 1;
 		}
 	#/
@@ -1343,7 +1343,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 1)
 					{
-						players[0] thread function_e14e8c13(1000);
+						players[0] thread zombie_devgui_give_xp(1000);
 					}
 					break;
 				}
@@ -1352,7 +1352,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 2)
 					{
-						players[1] thread function_e14e8c13(1000);
+						players[1] thread zombie_devgui_give_xp(1000);
 					}
 					break;
 				}
@@ -1361,7 +1361,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 3)
 					{
-						players[2] thread function_e14e8c13(1000);
+						players[2] thread zombie_devgui_give_xp(1000);
 					}
 					break;
 				}
@@ -1370,7 +1370,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 4)
 					{
-						players[3] thread function_e14e8c13(1000);
+						players[3] thread zombie_devgui_give_xp(1000);
 					}
 					break;
 				}
@@ -1379,7 +1379,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 1)
 					{
-						players[0] thread function_e14e8c13(10000);
+						players[0] thread zombie_devgui_give_xp(10000);
 					}
 					break;
 				}
@@ -1388,7 +1388,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 2)
 					{
-						players[1] thread function_e14e8c13(10000);
+						players[1] thread zombie_devgui_give_xp(10000);
 					}
 					break;
 				}
@@ -1397,7 +1397,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 3)
 					{
-						players[2] thread function_e14e8c13(10000);
+						players[2] thread zombie_devgui_give_xp(10000);
 					}
 					break;
 				}
@@ -1406,7 +1406,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 4)
 					{
-						players[3] thread function_e14e8c13(10000);
+						players[3] thread zombie_devgui_give_xp(10000);
 					}
 					break;
 				}
@@ -1453,7 +1453,7 @@ function zombie_devgui_think()
 				}
 				case "Dev Block strings are not supported":
 				{
-					Array::thread_all(GetPlayers(), &function_6b00a5a8);
+					Array::thread_all(GetPlayers(), &zombie_devgui_low_health);
 					break;
 				}
 				case "Dev Block strings are not supported":
@@ -1461,7 +1461,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 1)
 					{
-						players[0] thread function_6b00a5a8();
+						players[0] thread zombie_devgui_low_health();
 					}
 					break;
 				}
@@ -1470,7 +1470,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 2)
 					{
-						players[1] thread function_6b00a5a8();
+						players[1] thread zombie_devgui_low_health();
 					}
 					break;
 				}
@@ -1479,7 +1479,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 3)
 					{
-						players[2] thread function_6b00a5a8();
+						players[2] thread zombie_devgui_low_health();
 					}
 					break;
 				}
@@ -1488,7 +1488,7 @@ function zombie_devgui_think()
 					players = GetPlayers();
 					if(players.size >= 4)
 					{
-						players[3] thread function_6b00a5a8();
+						players[3] thread zombie_devgui_low_health();
 					}
 					break;
 				}
@@ -1731,7 +1731,7 @@ function zombie_devgui_think()
 				}
 				case "Dev Block strings are not supported":
 				{
-					function_54b2ecf8(cmd);
+					zombie_devgui_take_perks(cmd);
 					break;
 				}
 				case "Dev Block strings are not supported":
@@ -1879,12 +1879,12 @@ function zombie_devgui_think()
 				}
 				case "Dev Block strings are not supported":
 				{
-					Array::thread_all(GetPlayers(), &function_ad4b0372, GetWeapon("Dev Block strings are not supported"));
+					Array::thread_all(GetPlayers(), &zombie_devgui_give_placeable_mine, GetWeapon("Dev Block strings are not supported"));
 					break;
 				}
 				case "Dev Block strings are not supported":
 				{
-					Array::thread_all(GetPlayers(), &function_ad4b0372, GetWeapon("Dev Block strings are not supported"));
+					Array::thread_all(GetPlayers(), &zombie_devgui_give_placeable_mine, GetWeapon("Dev Block strings are not supported"));
 					break;
 				}
 				case "Dev Block strings are not supported":
@@ -1904,12 +1904,12 @@ function zombie_devgui_think()
 				}
 				case "Dev Block strings are not supported":
 				{
-					Array::thread_all(GetPlayers(), &function_64c58d19);
+					Array::thread_all(GetPlayers(), &zombie_devgui_give_bhb);
 					break;
 				}
 				case "Dev Block strings are not supported":
 				{
-					Array::thread_all(GetPlayers(), &function_1e20cc53);
+					Array::thread_all(GetPlayers(), &zombie_devgui_give_qed);
 					break;
 				}
 				case "Dev Block strings are not supported":
@@ -1964,7 +1964,7 @@ function zombie_devgui_think()
 				}
 				case "Dev Block strings are not supported":
 				{
-					function_d8064278();
+					zombie_devgui_repack_current_weapon();
 					break;
 				}
 				case "Dev Block strings are not supported":
@@ -2109,7 +2109,7 @@ function zombie_devgui_think()
 				}
 				case "Dev Block strings are not supported":
 				{
-					level thread rat::function_1601ebff(0, 0);
+					level thread rat::derriesezombiespawnnavmeshtest(0, 0);
 					break;
 				}
 				case "Dev Block strings are not supported":
@@ -2124,7 +2124,7 @@ function zombie_devgui_think()
 				}
 				case "Dev Block strings are not supported":
 				{
-					function_b7778ea5();
+					devgui_make_crawler();
 					break;
 				}
 				case "Dev Block strings are not supported":
@@ -2134,12 +2134,12 @@ function zombie_devgui_think()
 				}
 				case "Dev Block strings are not supported":
 				{
-					function_df684f6();
+					devgui_toggle_show_exterior_goals();
 					break;
 				}
 				case "Dev Block strings are not supported":
 				{
-					function_46ba1b5d();
+					zombie_devgui_draw_traversals();
 					break;
 				}
 				case "Dev Block strings are not supported":
@@ -2154,7 +2154,7 @@ function zombie_devgui_think()
 				}
 				case "Dev Block strings are not supported":
 				{
-					function_39e3e21e();
+					zombie_devgui_keyline_always();
 					break;
 				}
 				case "Dev Block strings are not supported":
@@ -2206,7 +2206,7 @@ function zombie_devgui_think()
 }
 
 /*
-	Name: function_4acecab5
+	Name: add_custom_devgui_callback
 	Namespace: zm_devgui
 	Checksum: 0x8076BAF9
 	Offset: 0x5730
@@ -2214,14 +2214,14 @@ function zombie_devgui_think()
 	Parameters: 1
 	Flags: None
 */
-function function_4acecab5(callback)
+function add_custom_devgui_callback(callback)
 {
 	/#
 		if(isdefined(level.custom_devgui))
 		{
 			if(!IsArray(level.custom_devgui))
 			{
-				var_4f9fbf81 = level.custom_devgui;
+				cdgui = level.custom_devgui;
 				level.custom_devgui = [];
 				if(!isdefined(level.custom_devgui))
 				{
@@ -2231,7 +2231,7 @@ function function_4acecab5(callback)
 				{
 					level.custom_devgui = Array(level.custom_devgui);
 				}
-				level.custom_devgui[level.custom_devgui.size] = var_4f9fbf81;
+				level.custom_devgui[level.custom_devgui.size] = cdgui;
 			}
 		}
 		else
@@ -2297,7 +2297,7 @@ function devgui_toggle_show_spawn_locations()
 }
 
 /*
-	Name: function_df684f6
+	Name: devgui_toggle_show_exterior_goals
 	Namespace: zm_devgui
 	Checksum: 0xB4EE3E52
 	Offset: 0x5978
@@ -2305,16 +2305,16 @@ function devgui_toggle_show_spawn_locations()
 	Parameters: 0
 	Flags: None
 */
-function function_df684f6()
+function devgui_toggle_show_exterior_goals()
 {
 	/#
-		if(!isdefined(level.var_2e8ab4b9))
+		if(!isdefined(level.toggle_show_exterior_goals))
 		{
-			level.var_2e8ab4b9 = 1;
+			level.toggle_show_exterior_goals = 1;
 		}
 		else
 		{
-			level.var_2e8ab4b9 = !level.var_2e8ab4b9;
+			level.toggle_show_exterior_goals = !level.toggle_show_exterior_goals;
 		}
 	#/
 }
@@ -2355,7 +2355,7 @@ function devgui_zombie_spawn()
 }
 
 /*
-	Name: function_b7778ea5
+	Name: devgui_make_crawler
 	Namespace: zm_devgui
 	Checksum: 0x5B569DE
 	Offset: 0x5BC0
@@ -2363,7 +2363,7 @@ function devgui_zombie_spawn()
 	Parameters: 0
 	Flags: None
 */
-function function_b7778ea5()
+function devgui_make_crawler()
 {
 	/#
 		zombies = zombie_utility::get_round_enemy_array();
@@ -2653,7 +2653,7 @@ function zombie_devgui_take_money()
 }
 
 /*
-	Name: function_e14e8c13
+	Name: zombie_devgui_give_xp
 	Namespace: zm_devgui
 	Checksum: 0x1E3E20C3
 	Offset: 0x6858
@@ -2661,7 +2661,7 @@ function zombie_devgui_take_money()
 	Parameters: 1
 	Flags: None
 */
-function function_e14e8c13(amount)
+function zombie_devgui_give_xp(amount)
 {
 	/#
 		/#
@@ -2797,31 +2797,31 @@ function function_4619dfa7()
 		FORWARD = AnglesToForward(Chest.zbarrier.angles);
 		right = AnglesToRight(Chest.zbarrier.angles);
 		var_d9191ee9 = VectorToAngles(right);
-		var_f2857d87 = origin - 48 * right;
+		plorigin = origin - 48 * right;
 		switch(entnum)
 		{
 			case 0:
 			{
-				var_f2857d87 = var_f2857d87 + 16 * right;
+				plorigin = plorigin + 16 * right;
 				break;
 			}
 			case 1:
 			{
-				var_f2857d87 = var_f2857d87 + 16 * FORWARD;
+				plorigin = plorigin + 16 * FORWARD;
 				break;
 			}
 			case 2:
 			{
-				var_f2857d87 = var_f2857d87 - 16 * right;
+				plorigin = plorigin - 16 * right;
 				break;
 			}
 			case 3:
 			{
-				var_f2857d87 = var_f2857d87 - 16 * FORWARD;
+				plorigin = plorigin - 16 * FORWARD;
 				break;
 			}
 		}
-		self SetOrigin(var_f2857d87);
+		self SetOrigin(plorigin);
 		self SetPlayerAngles(var_d9191ee9);
 	#/
 }
@@ -2962,7 +2962,7 @@ function zombie_devgui_equipment_give(equipment)
 }
 
 /*
-	Name: function_ad4b0372
+	Name: zombie_devgui_give_placeable_mine
 	Namespace: zm_devgui
 	Checksum: 0x5E236D4E
 	Offset: 0x7310
@@ -2970,7 +2970,7 @@ function zombie_devgui_equipment_give(equipment)
 	Parameters: 1
 	Flags: None
 */
-function function_ad4b0372(weapon)
+function zombie_devgui_give_placeable_mine(weapon)
 {
 	/#
 		self endon("disconnect");
@@ -3158,7 +3158,7 @@ function zombie_devgui_give_monkey()
 }
 
 /*
-	Name: function_64c58d19
+	Name: zombie_devgui_give_bhb
 	Namespace: zm_devgui
 	Checksum: 0x3FE4DFD1
 	Offset: 0x78B8
@@ -3166,7 +3166,7 @@ function zombie_devgui_give_monkey()
 	Parameters: 0
 	Flags: None
 */
-function function_64c58d19()
+function zombie_devgui_give_bhb()
 {
 	/#
 		self endon("disconnect");
@@ -3191,7 +3191,7 @@ function function_64c58d19()
 			self [[level.zombiemode_devgui_black_hole_bomb_give]]();
 			while(1)
 			{
-				self giveMaxAmmo(level.var_453e74a0);
+				self giveMaxAmmo(level.w_black_hole_bomb);
 				wait(1);
 			}
 		}
@@ -3199,7 +3199,7 @@ function function_64c58d19()
 }
 
 /*
-	Name: function_1e20cc53
+	Name: zombie_devgui_give_qed
 	Namespace: zm_devgui
 	Checksum: 0x44978D04
 	Offset: 0x79E8
@@ -3207,7 +3207,7 @@ function function_64c58d19()
 	Parameters: 0
 	Flags: None
 */
-function function_1e20cc53()
+function zombie_devgui_give_qed()
 {
 	/#
 		self endon("disconnect");
@@ -3232,7 +3232,7 @@ function function_1e20cc53()
 			self [[level.zombiemode_devgui_quantum_bomb_give]]();
 			while(1)
 			{
-				self giveMaxAmmo(level.var_17bac01d);
+				self giveMaxAmmo(level.w_quantum_bomb);
 				wait(1);
 			}
 		}
@@ -3273,7 +3273,7 @@ function zombie_devgui_give_dolls()
 			self [[level.zombiemode_devgui_nesting_dolls_give]]();
 			while(1)
 			{
-				self giveMaxAmmo(level.var_21ae0b78);
+				self giveMaxAmmo(level.w_nesting_dolls);
 				wait(1);
 			}
 		}
@@ -3424,12 +3424,12 @@ function zombie_devgui_toggle_ignore()
 		/#
 			Assert(isalive(self));
 		#/
-		if(!isdefined(self.var_b67d35de))
+		if(!isdefined(self.devgui_ignoreme))
 		{
-			self.var_b67d35de = 0;
+			self.devgui_ignoreme = 0;
 		}
-		self.var_b67d35de = !self.var_b67d35de;
-		if(self.var_b67d35de)
+		self.devgui_ignoreme = !self.devgui_ignoreme;
+		if(self.devgui_ignoreme)
 		{
 			self zm_utility::increment_ignoreme();
 		}
@@ -3516,7 +3516,7 @@ function zombie_devgui_give_health()
 }
 
 /*
-	Name: function_6b00a5a8
+	Name: zombie_devgui_low_health
 	Namespace: zm_devgui
 	Checksum: 0xD5BF64C4
 	Offset: 0x84C8
@@ -3524,7 +3524,7 @@ function zombie_devgui_give_health()
 	Parameters: 0
 	Flags: None
 */
-function function_6b00a5a8()
+function zombie_devgui_low_health()
 {
 	/#
 		/#
@@ -3585,7 +3585,7 @@ function zombie_devgui_give_perk(perk)
 }
 
 /*
-	Name: function_54b2ecf8
+	Name: zombie_devgui_take_perks
 	Namespace: zm_devgui
 	Checksum: 0xD64D3F60
 	Offset: 0x8730
@@ -3593,7 +3593,7 @@ function zombie_devgui_give_perk(perk)
 	Parameters: 1
 	Flags: None
 */
-function function_54b2ecf8(cmd)
+function zombie_devgui_take_perks(cmd)
 {
 	/#
 		vending_triggers = GetEntArray("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -3804,7 +3804,7 @@ function zombie_devgui_give_powerup(powerup_name, now, origin)
 }
 
 /*
-	Name: function_9589a11f
+	Name: zombie_devgui_give_powerup_player
 	Namespace: zm_devgui
 	Checksum: 0x309F0D12
 	Offset: 0x8CD8
@@ -3812,7 +3812,7 @@ function zombie_devgui_give_powerup(powerup_name, now, origin)
 	Parameters: 2
 	Flags: None
 */
-function function_9589a11f(powerup_name, now)
+function zombie_devgui_give_powerup_player(powerup_name, now)
 {
 	/#
 		player = self;
@@ -4041,7 +4041,7 @@ function zombie_devgui_pack_current_weapon()
 }
 
 /*
-	Name: function_d8064278
+	Name: zombie_devgui_repack_current_weapon
 	Namespace: zm_devgui
 	Checksum: 0x7F17B085
 	Offset: 0x94A0
@@ -4049,7 +4049,7 @@ function zombie_devgui_pack_current_weapon()
 	Parameters: 0
 	Flags: None
 */
-function function_d8064278()
+function zombie_devgui_repack_current_weapon()
 {
 	/#
 		players = GetPlayers();
@@ -4135,8 +4135,8 @@ function function_3ec0de8d(itemIndex, XP)
 function function_949d6013(weapon)
 {
 	/#
-		var_1121268 = [];
-		table = popups::function_d661ce6();
+		gunlevels = [];
+		table = popups::devgui_notif_getgunleveltablename();
 		weapon_name = weapon.rootweapon.name;
 		for(i = 0; i < 15; i++)
 		{
@@ -4145,9 +4145,9 @@ function function_949d6013(weapon)
 			{
 				break;
 			}
-			var_1121268[i] = Int(var_d4b6b0ab);
+			gunlevels[i] = Int(var_d4b6b0ab);
 		}
-		return var_1121268;
+		return gunlevels;
 	#/
 }
 
@@ -4164,13 +4164,13 @@ function function_718c64af(weapon, var_2e8a2b5e)
 {
 	/#
 		XP = 0;
-		var_1121268 = function_949d6013(weapon);
-		if(var_1121268.size)
+		gunlevels = function_949d6013(weapon);
+		if(gunlevels.size)
 		{
-			XP = var_1121268[var_1121268.size - 1];
-			if(var_2e8a2b5e < var_1121268.size)
+			XP = gunlevels[gunlevels.size - 1];
+			if(var_2e8a2b5e < gunlevels.size)
 			{
-				XP = var_1121268[var_2e8a2b5e];
+				XP = gunlevels[var_2e8a2b5e];
 			}
 		}
 		return XP;
@@ -4190,10 +4190,10 @@ function function_e9906f08(weapon)
 {
 	/#
 		XP = 0;
-		var_1121268 = function_949d6013(weapon);
-		if(var_1121268.size)
+		gunlevels = function_949d6013(weapon);
+		if(gunlevels.size)
 		{
-			XP = var_1121268[var_1121268.size - 1];
+			XP = gunlevels[gunlevels.size - 1];
 		}
 		return XP;
 	#/
@@ -4220,7 +4220,7 @@ function function_2306f73c()
 			{
 				weapon = player GetCurrentWeapon();
 				itemIndex = GetBaseWeaponItemIndex(weapon);
-				var_2e8a2b5e = player function_bc8e235e(itemIndex);
+				var_2e8a2b5e = player getcurrentgunrank(itemIndex);
 				XP = function_718c64af(weapon, var_2e8a2b5e);
 				player function_3ec0de8d(itemIndex, XP);
 			}
@@ -4249,7 +4249,7 @@ function function_5da1c3cd()
 			{
 				weapon = player GetCurrentWeapon();
 				itemIndex = GetBaseWeaponItemIndex(weapon);
-				var_2e8a2b5e = player function_bc8e235e(itemIndex);
+				var_2e8a2b5e = player getcurrentgunrank(itemIndex);
 				XP = function_718c64af(weapon, var_2e8a2b5e);
 				player function_3ec0de8d(itemIndex, XP - 50);
 			}
@@ -4933,7 +4933,7 @@ function devgui_debug_hud()
 }
 
 /*
-	Name: function_47239612
+	Name: devgui_test_chart_think
 	Namespace: zm_devgui
 	Checksum: 0x515572A3
 	Offset: 0xB4E0
@@ -4941,20 +4941,20 @@ function devgui_debug_hud()
 	Parameters: 0
 	Flags: None
 */
-function function_47239612()
+function devgui_test_chart_think()
 {
 	/#
 		wait(0.05);
-		var_bcd2016c = GetDvarInt("Dev Block strings are not supported");
+		old_val = GetDvarInt("Dev Block strings are not supported");
 		for(;;)
 		{
 			VAL = GetDvarInt("Dev Block strings are not supported");
-			if(var_bcd2016c != VAL)
+			if(old_val != VAL)
 			{
-				if(isdefined(level.var_315b8892))
+				if(isdefined(level.test_chart_model))
 				{
-					level.var_315b8892 delete();
-					level.var_315b8892 = undefined;
+					level.test_chart_model delete();
+					level.test_chart_model = undefined;
 				}
 				if(VAL)
 				{
@@ -4963,19 +4963,19 @@ function function_47239612()
 					direction_vec = AnglesToForward((0, direction[1], 0));
 					scale = 120;
 					direction_vec = (direction_vec[0] * scale, direction_vec[1] * scale, direction_vec[2] * scale);
-					level.var_315b8892 = spawn("Dev Block strings are not supported", player GetEye() + direction_vec);
-					level.var_315b8892 SetModel("Dev Block strings are not supported");
-					level.var_315b8892.angles = (0, direction[1], 0) + VectorScale((0, 1, 0), 90);
+					level.test_chart_model = spawn("Dev Block strings are not supported", player GetEye() + direction_vec);
+					level.test_chart_model SetModel("Dev Block strings are not supported");
+					level.test_chart_model.angles = (0, direction[1], 0) + VectorScale((0, 1, 0), 90);
 				}
 			}
-			var_bcd2016c = VAL;
+			old_val = VAL;
 			wait(0.05);
 		}
 	#/
 }
 
 /*
-	Name: function_46ba1b5d
+	Name: zombie_devgui_draw_traversals
 	Namespace: zm_devgui
 	Checksum: 0xC735CB95
 	Offset: 0xB6F8
@@ -4983,22 +4983,22 @@ function function_47239612()
 	Parameters: 0
 	Flags: None
 */
-function function_46ba1b5d()
+function zombie_devgui_draw_traversals()
 {
 	/#
-		if(!isdefined(level.var_31f0c728))
+		if(!isdefined(level.toggle_draw_traversals))
 		{
-			level.var_31f0c728 = 1;
+			level.toggle_draw_traversals = 1;
 		}
 		else
 		{
-			level.var_31f0c728 = !level.var_31f0c728;
+			level.toggle_draw_traversals = !level.toggle_draw_traversals;
 		}
 	#/
 }
 
 /*
-	Name: function_39e3e21e
+	Name: zombie_devgui_keyline_always
 	Namespace: zm_devgui
 	Checksum: 0x6C9B94D7
 	Offset: 0xB738
@@ -5006,7 +5006,7 @@ function function_46ba1b5d()
 	Parameters: 0
 	Flags: None
 */
-function function_39e3e21e()
+function zombie_devgui_keyline_always()
 {
 	/#
 		if(!isdefined(level.toggle_keyline_always))
@@ -5044,7 +5044,7 @@ function function_13d8ea87()
 }
 
 /*
-	Name: function_67e88f63
+	Name: wait_for_zombie
 	Namespace: zm_devgui
 	Checksum: 0x528DC1D1
 	Offset: 0xB7B8
@@ -5052,7 +5052,7 @@ function function_13d8ea87()
 	Parameters: 1
 	Flags: None
 */
-function function_67e88f63(crawler)
+function wait_for_zombie(crawler)
 {
 	/#
 		nodes = GetAllNodes();
@@ -5079,20 +5079,20 @@ function function_67e88f63(crawler)
 							{
 								table = istring(zombie.debug_traversal_ast);
 							}
-							var_b0b2ea39 = zombie ASTSearch(table);
-							if(!isdefined(var_b0b2ea39["Dev Block strings are not supported"]))
+							anim_results = zombie ASTSearch(table);
+							if(!isdefined(anim_results["Dev Block strings are not supported"]))
 							{
 								if(isdefined(crawler) && crawler)
 								{
-									node.var_ec2b8c0c = 1;
+									node.bad_crawler_traverse = 1;
 								}
 								else
 								{
-									node.var_4fb8ab7f = 1;
+									node.bad_traverse = 1;
 								}
 								continue;
 							}
-							if(var_b0b2ea39["Dev Block strings are not supported"] == "Dev Block strings are not supported")
+							if(anim_results["Dev Block strings are not supported"] == "Dev Block strings are not supported")
 							{
 								teleport = 1;
 							}
@@ -5107,7 +5107,7 @@ function function_67e88f63(crawler)
 }
 
 /*
-	Name: function_40dde582
+	Name: zombie_draw_traversals
 	Namespace: zm_devgui
 	Checksum: 0xD1714B48
 	Offset: 0xBAA0
@@ -5115,30 +5115,30 @@ function function_67e88f63(crawler)
 	Parameters: 0
 	Flags: None
 */
-function function_40dde582()
+function zombie_draw_traversals()
 {
 	/#
-		level thread function_67e88f63();
-		level thread function_67e88f63(1);
+		level thread wait_for_zombie();
+		level thread wait_for_zombie(1);
 		nodes = GetAllNodes();
 		while(1)
 		{
-			if(isdefined(level.var_31f0c728) && level.var_31f0c728)
+			if(isdefined(level.toggle_draw_traversals) && level.toggle_draw_traversals)
 			{
 				foreach(node in nodes)
 				{
 					if(isdefined(node.animscript))
 					{
-						var_d0c24eab = (0, 0.8, 0.6);
-						var_db44513d = (1, 1, 1);
-						if(isdefined(node.var_4fb8ab7f) && node.var_4fb8ab7f)
+						txt_color = (0, 0.8, 0.6);
+						circle_color = (1, 1, 1);
+						if(isdefined(node.bad_traverse) && node.bad_traverse)
 						{
-							var_d0c24eab = (1, 0, 0);
-							var_db44513d = (1, 0, 0);
+							txt_color = (1, 0, 0);
+							circle_color = (1, 0, 0);
 						}
-						circle(node.origin, 16, var_db44513d);
-						print3d(node.origin, node.animscript, var_d0c24eab, 1, 0.5);
-						if(isdefined(node.var_ec2b8c0c) && node.var_ec2b8c0c)
+						circle(node.origin, 16, circle_color);
+						print3d(node.origin, node.animscript, txt_color, 1, 0.5);
+						if(isdefined(node.bad_crawler_traverse) && node.bad_crawler_traverse)
 						{
 							print3d(node.origin + VectorScale((0, 0, -1), 12), "Dev Block strings are not supported", (1, 0, 0), 1, 0.5);
 						}
@@ -5172,9 +5172,9 @@ function function_364ed1b9()
 			}
 		}
 		var_d1e1ebcf = getArrayKeys(var_242e809d);
-		var_bbd3b866 = Array::sort_by_value(var_d1e1ebcf, 1);
+		sortednames = Array::sort_by_value(var_d1e1ebcf, 1);
 		println("Dev Block strings are not supported");
-		foreach(name in var_bbd3b866)
+		foreach(name in sortednames)
 		{
 			println("Dev Block strings are not supported" + name);
 		}
@@ -5209,16 +5209,16 @@ function function_1d21f4f()
 				}
 				zombie_count = zombie_utility::get_current_zombie_count();
 				zombie_left = level.zombie_total;
-				var_e392f9a3 = 0;
+				zombie_runners = 0;
 				var_8cbe658b = zombie_utility::get_zombie_array();
 				foreach(ai_zombie in var_8cbe658b)
 				{
 					if(ai_zombie.zombie_move_speed == "Dev Block strings are not supported")
 					{
-						var_e392f9a3++;
+						zombie_runners++;
 					}
 				}
-				level.var_ff15f442 setText("Dev Block strings are not supported" + zombie_count + "Dev Block strings are not supported" + zombie_left + "Dev Block strings are not supported" + var_e392f9a3);
+				level.var_ff15f442 setText("Dev Block strings are not supported" + zombie_count + "Dev Block strings are not supported" + zombie_left + "Dev Block strings are not supported" + zombie_runners);
 			}
 			else if(isdefined(level.var_ff15f442))
 			{
@@ -5353,11 +5353,11 @@ function function_1acc8e35()
 		SetDvar("Dev Block strings are not supported", timescale);
 		while(level.round_number < var_9857308b)
 		{
-			foreach(var_b16efbf2 in var_da0f3f6)
+			foreach(round_info in var_da0f3f6)
 			{
-				if(level.round_number < var_b16efbf2[0])
+				if(level.round_number < round_info[0])
 				{
-					wait(var_b16efbf2[1]);
+					wait(round_info[1]);
 					break;
 				}
 			}

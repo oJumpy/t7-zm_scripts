@@ -661,22 +661,22 @@ function CodeCallback_ChallengeComplete(rewardXP, maxVal, row, tableNumber, chal
 	/#
 		if(GetDvarInt("Dev Block strings are not supported", 0) != 0)
 		{
-			var_9177f6a4 = challengeString + "Dev Block strings are not supported";
-			var_c7a31427 = Int(TableLookupColumnForRow(tableName, row + 1, 1));
-			var_fea026e8 = "Dev Block strings are not supported" + challengeTier;
+			challengedescstring = challengeString + "Dev Block strings are not supported";
+			challengetiernext = Int(TableLookupColumnForRow(tableName, row + 1, 1));
+			tiertext = "Dev Block strings are not supported" + challengeTier;
 			statsTableName = "Dev Block strings are not supported";
-			var_49ea66ba = tableLookup(statsTableName, 0, itemIndex, 3);
+			herostring = tableLookup(statsTableName, 0, itemIndex, 3);
 			if(GetDvarInt("Dev Block strings are not supported") == 1)
 			{
-				IPrintLnBold(MakeLocalizedString(challengeString) + "Dev Block strings are not supported" + maxVal + "Dev Block strings are not supported" + MakeLocalizedString(var_49ea66ba));
+				IPrintLnBold(MakeLocalizedString(challengeString) + "Dev Block strings are not supported" + maxVal + "Dev Block strings are not supported" + MakeLocalizedString(herostring));
 			}
 			else if(GetDvarInt("Dev Block strings are not supported") == 2)
 			{
-				self IPrintLnBold(MakeLocalizedString(challengeString) + "Dev Block strings are not supported" + maxVal + "Dev Block strings are not supported" + MakeLocalizedString(var_49ea66ba));
+				self IPrintLnBold(MakeLocalizedString(challengeString) + "Dev Block strings are not supported" + maxVal + "Dev Block strings are not supported" + MakeLocalizedString(herostring));
 			}
 			else if(GetDvarInt("Dev Block strings are not supported") == 3)
 			{
-				iprintln(MakeLocalizedString(challengeString) + "Dev Block strings are not supported" + maxVal + "Dev Block strings are not supported" + MakeLocalizedString(var_49ea66ba));
+				iprintln(MakeLocalizedString(challengeString) + "Dev Block strings are not supported" + maxVal + "Dev Block strings are not supported" + MakeLocalizedString(herostring));
 			}
 		}
 	#/

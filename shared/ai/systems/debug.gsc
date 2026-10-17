@@ -51,7 +51,7 @@ function debugDvars()
 		{
 			if(GetDvarInt("Dev Block strings are not supported", 0))
 			{
-				function_8bef747();
+				delete_all_ai_corpses();
 			}
 			wait(0.05);
 		}
@@ -492,7 +492,7 @@ function indent(depth)
 }
 
 /*
-	Name: function_7da65dd6
+	Name: debugdrawweightedpoints
 	Namespace: as_debug
 	Checksum: 0xB7386487
 	Offset: 0x1180
@@ -500,16 +500,16 @@ function indent(depth)
 	Parameters: 3
 	Flags: None
 */
-function function_7da65dd6(entity, points, weights)
+function debugdrawweightedpoints(entity, points, weights)
 {
 	/#
-		var_ea788292 = 0;
+		lowestvalue = 0;
 		highestValue = 0;
 		for(index = 0; index < points.size; index++)
 		{
-			if(weights[index] < var_ea788292)
+			if(weights[index] < lowestvalue)
 			{
-				var_ea788292 = weights[index];
+				lowestvalue = weights[index];
 			}
 			if(weights[index] > highestValue)
 			{
@@ -518,13 +518,13 @@ function function_7da65dd6(entity, points, weights)
 		}
 		for(index = 0; index < points.size; index++)
 		{
-			function_700f290f(entity, points[index], weights[index], var_ea788292, highestValue);
+			debugdrawweightedpoint(entity, points[index], weights[index], lowestvalue, highestValue);
 		}
 	#/
 }
 
 /*
-	Name: function_700f290f
+	Name: debugdrawweightedpoint
 	Namespace: as_debug
 	Checksum: 0xCA208AE4
 	Offset: 0x1290
@@ -532,31 +532,31 @@ function function_7da65dd6(entity, points, weights)
 	Parameters: 5
 	Flags: None
 */
-function function_700f290f(entity, point, weight, var_ea788292, highestValue)
+function debugdrawweightedpoint(entity, point, weight, lowestvalue, highestValue)
 {
 	/#
-		var_1318fcc4 = highestValue - var_ea788292;
-		var_7f57ff27 = var_1318fcc4 / 2;
-		var_596aac88 = var_ea788292 + var_1318fcc4 / 2;
-		if(var_7f57ff27 == 0)
+		deltavalue = highestValue - lowestvalue;
+		halfdeltavalue = deltavalue / 2;
+		midvalue = lowestvalue + deltavalue / 2;
+		if(halfdeltavalue == 0)
 		{
-			var_7f57ff27 = 1;
+			halfdeltavalue = 1;
 		}
-		if(weight <= var_596aac88)
+		if(weight <= midvalue)
 		{
-			var_862f5d6b = 1 - Abs(weight - var_ea788292 / var_7f57ff27);
-			RecordCircle(point, 2, (var_862f5d6b, 0, 0), "Dev Block strings are not supported", entity);
+			redcolor = 1 - Abs(weight - lowestvalue / halfdeltavalue);
+			RecordCircle(point, 2, (redcolor, 0, 0), "Dev Block strings are not supported", entity);
 		}
 		else
 		{
-			var_dcf0d28b = 1 - Abs(highestValue - weight / var_7f57ff27);
-			RecordCircle(point, 2, (0, var_dcf0d28b, 0), "Dev Block strings are not supported", entity);
+			greencolor = 1 - Abs(highestValue - weight / halfdeltavalue);
+			RecordCircle(point, 2, (0, greencolor, 0), "Dev Block strings are not supported", entity);
 		}
 	#/
 }
 
 /*
-	Name: function_8bef747
+	Name: delete_all_ai_corpses
 	Namespace: as_debug
 	Checksum: 0x99621017
 	Offset: 0x1410
@@ -564,14 +564,14 @@ function function_700f290f(entity, point, weight, var_ea788292, highestValue)
 	Parameters: 0
 	Flags: None
 */
-function function_8bef747()
+function delete_all_ai_corpses()
 {
 	/#
 		SetDvar("Dev Block strings are not supported", 0);
 		corpses = GetCorpseArray();
 		foreach(corpse in corpses)
 		{
-			if(function_329c21f4(corpse))
+			if(isactorcorpse(corpse))
 			{
 				corpse delete();
 			}

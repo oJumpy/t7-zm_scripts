@@ -38,7 +38,7 @@ function __init__()
 }
 
 /*
-	Name: function_13b0d3c3
+	Name: cpower_print
 	Namespace: ability_power
 	Checksum: 0x8576C243
 	Offset: 0x2F8
@@ -46,11 +46,11 @@ function __init__()
 	Parameters: 2
 	Flags: None
 */
-function function_13b0d3c3(slot, STR)
+function cpower_print(slot, STR)
 {
 	/#
 		color = "Dev Block strings are not supported";
-		var_ce775097 = color + "Dev Block strings are not supported" + STR;
+		toprint = color + "Dev Block strings are not supported" + STR;
 		weaponName = "Dev Block strings are not supported";
 		if(isdefined(self._gadgets_player[slot]))
 		{
@@ -58,11 +58,11 @@ function function_13b0d3c3(slot, STR)
 		}
 		if(GetDvarInt("Dev Block strings are not supported") > 0)
 		{
-			self IPrintLnBold(var_ce775097);
+			self IPrintLnBold(toprint);
 		}
 		else
 		{
-			println(self.playerName + "Dev Block strings are not supported" + weaponName + "Dev Block strings are not supported" + var_ce775097);
+			println(self.playerName + "Dev Block strings are not supported" + weaponName + "Dev Block strings are not supported" + toprint);
 		}
 	#/
 }
@@ -253,7 +253,7 @@ function power_gain_event(slot, eAttacker, VAL, source)
 	{
 		powerLeft = self GadgetPowerChange(slot, powerToAdd);
 		/#
-			self function_13b0d3c3(slot, "Dev Block strings are not supported" + powerToAdd + "Dev Block strings are not supported" + source + "Dev Block strings are not supported" + powerLeft);
+			self cpower_print(slot, "Dev Block strings are not supported" + powerToAdd + "Dev Block strings are not supported" + source + "Dev Block strings are not supported" + powerLeft);
 		#/
 	}
 }
@@ -312,7 +312,7 @@ function power_loss_event(slot, eAttacker, VAL, source)
 	{
 		powerLeft = self GadgetPowerChange(slot, powerToRemove);
 		/#
-			self function_13b0d3c3(slot, "Dev Block strings are not supported" + powerToRemove + "Dev Block strings are not supported" + source + "Dev Block strings are not supported" + powerLeft);
+			self cpower_print(slot, "Dev Block strings are not supported" + powerToRemove + "Dev Block strings are not supported" + source + "Dev Block strings are not supported" + powerLeft);
 		#/
 	}
 }

@@ -44,7 +44,7 @@ function __init__()
 	level._effect["teleport_aoe"] = "zombie/fx_bgb_anywhere_but_here_teleport_aoe_zmb";
 	level._effect["teleport_aoe_kill"] = "zombie/fx_bgb_anywhere_but_here_teleport_aoe_kill_zmb";
 	bgb::register("zm_bgb_anywhere_but_here", "activated", 2, undefined, undefined, &validation, &activation);
-	bgb::function_4cda71bf("zm_bgb_anywhere_but_here", 1);
+	bgb::register_invulnerable_during_activation("zm_bgb_anywhere_but_here", 1);
 }
 
 /*
@@ -62,17 +62,17 @@ function activation()
 	playsoundatposition("zmb_bgb_abh_teleport_out", self.origin);
 	if(isdefined(level.var_2c12d9a6))
 	{
-		var_68140f76 = self [[level.var_2c12d9a6]]();
+		s_respawn_point = self [[level.var_2c12d9a6]]();
 	}
 	else
 	{
-		var_68140f76 = self function_728dfe3();
+		s_respawn_point = self function_728dfe3();
 	}
-	self function_2cb3d5c8();
+	self cleargroundent();
 	self SetVelocity((0, 0, 0));
-	self SetOrigin(var_68140f76.origin);
+	self SetOrigin(s_respawn_point.origin);
 	self FreezeControls(1);
-	var_3c5e6535 = self.origin + VectorScale((0, 0, 1), 60);
+	v_return_pos = self.origin + VectorScale((0, 0, 1), 60);
 	a_ai = GetAITeamArray(level.zombie_team);
 	a_closest = [];
 	ai_closest = undefined;
@@ -81,8 +81,8 @@ function activation()
 		a_closest = ArraySortClosest(a_ai, self.origin);
 		foreach(ai in a_closest)
 		{
-			var_9518d12f = ai SightConeTrace(var_3c5e6535, self);
-			if(var_9518d12f > 0.2)
+			n_trace_val = ai SightConeTrace(v_return_pos, self);
+			if(n_trace_val > 0.2)
 			{
 				ai_closest = ai;
 				break;
@@ -90,7 +90,7 @@ function activation()
 		}
 		if(isdefined(ai_closest))
 		{
-			self SetPlayerAngles(VectorToAngles(ai_closest GetCentroid() - var_3c5e6535));
+			self SetPlayerAngles(VectorToAngles(ai_closest GetCentroid() - v_return_pos));
 		}
 	}
 	self playsound("zmb_bgb_abh_teleport_in");
@@ -103,8 +103,8 @@ function activation()
 	playFX(level._effect["teleport_splash"], self.origin);
 	playFX(level._effect["teleport_aoe"], self.origin);
 	a_ai = GetAIArray();
-	var_aca0d7c7 = ArraySortClosest(a_ai, self.origin, a_ai.size, 0, 200);
-	foreach(ai in var_aca0d7c7)
+	a_aoe_ai = ArraySortClosest(a_ai, self.origin, a_ai.size, 0, 200);
+	foreach(ai in a_aoe_ai)
 	{
 		if(IsActor(ai))
 		{
@@ -139,9 +139,9 @@ function activation()
 */
 function validation()
 {
-	if(isdefined(level.var_9aaae7ae))
+	if(isdefined(level.zm_bgb_anywhere_but_here_validation_override))
 	{
-		return [[level.var_9aaae7ae]]();
+		return [[level.zm_bgb_anywhere_but_here_validation_override]]();
 	}
 	return 1;
 }
@@ -166,41 +166,41 @@ function function_728dfe3()
 	{
 		var_c30975d2 = level.zones[var_a6abcc5d];
 	}
-	var_97786609 = struct::get_array("player_respawn_point", "targetname");
-	var_bbf77908 = [];
-	foreach(var_68140f76 in var_97786609)
+	a_s_respawn_points = struct::get_array("player_respawn_point", "targetname");
+	a_s_valid_respawn_points = [];
+	foreach(s_respawn_point in a_s_respawn_points)
 	{
-		if(zm_utility::is_point_inside_enabled_zone(var_68140f76.origin, var_c30975d2))
+		if(zm_utility::is_point_inside_enabled_zone(s_respawn_point.origin, var_c30975d2))
 		{
-			if(!isdefined(var_bbf77908))
+			if(!isdefined(a_s_valid_respawn_points))
 			{
-				var_bbf77908 = [];
+				a_s_valid_respawn_points = [];
 			}
-			else if(!IsArray(var_bbf77908))
+			else if(!IsArray(a_s_valid_respawn_points))
 			{
-				var_bbf77908 = Array(var_bbf77908);
+				a_s_valid_respawn_points = Array(a_s_valid_respawn_points);
 			}
-			var_bbf77908[var_bbf77908.size] = var_68140f76;
+			a_s_valid_respawn_points[a_s_valid_respawn_points.size] = s_respawn_point;
 		}
 	}
 	if(isdefined(level.var_2d4e3645))
 	{
-		var_bbf77908 = [[level.var_2d4e3645]](var_bbf77908);
+		a_s_valid_respawn_points = [[level.var_2d4e3645]](a_s_valid_respawn_points);
 	}
-	var_59fe7f49 = undefined;
-	if(var_bbf77908.size > 0)
+	s_player_respawn = undefined;
+	if(a_s_valid_respawn_points.size > 0)
 	{
-		var_90551969 = Array::random(var_bbf77908);
+		var_90551969 = Array::random(a_s_valid_respawn_points);
 		var_46b9bbf8 = struct::get_array(var_90551969.target, "targetname");
 		foreach(var_dbd59eb2 in var_46b9bbf8)
 		{
 			n_script_int = self GetEntityNumber() + 1;
 			if(var_dbd59eb2.script_int === n_script_int)
 			{
-				var_59fe7f49 = var_dbd59eb2;
+				s_player_respawn = var_dbd59eb2;
 			}
 		}
 	}
-	return var_59fe7f49;
+	return s_player_respawn;
 }
 

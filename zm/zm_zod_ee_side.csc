@@ -97,8 +97,8 @@ function function_a5b33f7(localClientNum)
 {
 	scene::add_scene_func("zm_zod_lil_arnie_dance", &function_75ad5595, "play");
 	level scene::Play("zm_zod_lil_arnie_dance");
-	var_150c4640 = struct::get("lil_arnie_stage_center");
-	playFX(localClientNum, level._effect["octobomb_explode"], var_150c4640.origin);
+	s_center = struct::get("lil_arnie_stage_center");
+	playFX(localClientNum, level._effect["octobomb_explode"], s_center.origin);
 }
 
 /*
@@ -110,14 +110,14 @@ function function_a5b33f7(localClientNum)
 	Parameters: 1
 	Flags: Private
 */
-function private function_75ad5595(var_ff840495)
+function private function_75ad5595(a_mdl_props)
 {
-	var_ff840495["arnie_tie_mdl"] SetScale(0.13);
-	var_ff840495["arnie_hat_mdl"] SetScale(0.18);
-	var_ff840495["arnie_cane_mdl"] SetScale(0.08);
-	foreach(var_fba08aba in var_ff840495)
+	a_mdl_props["arnie_tie_mdl"] SetScale(0.13);
+	a_mdl_props["arnie_hat_mdl"] SetScale(0.18);
+	a_mdl_props["arnie_cane_mdl"] SetScale(0.08);
+	foreach(mdl_prop in a_mdl_props)
 	{
-		playFX(0, level._effect["portal_3p"], var_fba08aba.origin);
+		playFX(0, level._effect["portal_3p"], mdl_prop.origin);
 	}
 }
 

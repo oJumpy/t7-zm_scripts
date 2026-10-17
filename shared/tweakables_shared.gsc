@@ -61,9 +61,9 @@ function __init__()
 	registerTweakable("killstreak", "allowrcbomb", "scr_hardpoint_allowrcbomb", 1);
 	registerTweakable("killstreak", "allowauto_turret", "scr_hardpoint_allowauto_turret", 1);
 	/#
-		var_63c594d2 = 1;
+		debug_refresh = 1;
 	#/
-	level thread updateUITweakables(var_63c594d2);
+	level thread updateUITweakables(debug_refresh);
 }
 
 /*
@@ -600,7 +600,7 @@ function setClientTweakable(category, name)
 	Parameters: 1
 	Flags: None
 */
-function updateUITweakables(var_63c594d2)
+function updateUITweakables(debug_refresh)
 {
 	do
 	{
@@ -617,7 +617,7 @@ function updateUITweakables(var_63c594d2)
 		}
 		wait(RandomFloatRange(0.9, 1.1));
 	}
-	while(!isdefined(var_63c594d2));
+	while(!isdefined(debug_refresh));
 }
 
 /*

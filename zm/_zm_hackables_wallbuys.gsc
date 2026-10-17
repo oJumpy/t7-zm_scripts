@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_equip_hacker;
 
-#namespace namespace_359e846b;
+#namespace zm_hackables_wallbuys;
 
 /*
 	Name: hack_wallbuys
-	Namespace: namespace_359e846b
+	Namespace: zm_hackables_wallbuys
 	Checksum: 0xDA2B6FAF
 	Offset: 0x180
 	Size: 0x223
@@ -52,7 +52,7 @@ function hack_wallbuys()
 
 /*
 	Name: wallbuy_hack
-	Namespace: namespace_359e846b
+	Namespace: zm_hackables_wallbuys
 	Checksum: 0x961C1C94
 	Offset: 0x3B0
 	Size: 0x8B

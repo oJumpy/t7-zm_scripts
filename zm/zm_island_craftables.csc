@@ -46,10 +46,10 @@ function include_craftables()
 */
 function register_clientfields()
 {
-	var_a0199abd = 1;
-	RegisterClientField("world", "gasmask" + "_" + "part_visor", 9000, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
-	RegisterClientField("world", "gasmask" + "_" + "part_filter", 9000, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
-	RegisterClientField("world", "gasmask" + "_" + "part_strap", 9000, var_a0199abd, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
+	shared_bits = 1;
+	RegisterClientField("world", "gasmask" + "_" + "part_visor", 9000, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
+	RegisterClientField("world", "gasmask" + "_" + "part_filter", 9000, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
+	RegisterClientField("world", "gasmask" + "_" + "part_strap", 9000, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
 	clientfield::register("toplayer", "ZMUI_GRAVITYSPIKE_PART_PICKUP", 9000, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);
 	clientfield::register("toplayer", "ZMUI_GRAVITYSPIKE_CRAFTED", 9000, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);
 }

@@ -18,12 +18,12 @@
 */
 function main()
 {
-	level thread function_236ee1ee();
-	level thread function_ddc1ee89();
+	level thread alarm_a_timer();
+	level thread alarm_b_timer();
 	level thread spawn_fx_loopers();
 	level thread play_minigun_loop();
 	level thread function_be596677();
-	level thread function_d19cb2f8();
+	level thread startzmbspawnersoundloops();
 	level thread function_c9207335();
 }
 
@@ -77,7 +77,7 @@ function play_minigun_loop()
 }
 
 /*
-	Name: function_236ee1ee
+	Name: alarm_a_timer
 	Namespace: namespace_9dd378ec
 	Checksum: 0xD624FA65
 	Offset: 0x768
@@ -85,17 +85,17 @@ function play_minigun_loop()
 	Parameters: 0
 	Flags: None
 */
-function function_236ee1ee()
+function alarm_a_timer()
 {
 	level waittill("power_on");
 	wait(2.5);
-	level thread function_d2ed7980();
+	level thread alarm_a();
 	wait(21);
-	level notify("hash_78527d76");
+	level notify("alarm_a_off");
 }
 
 /*
-	Name: function_ddc1ee89
+	Name: alarm_b_timer
 	Namespace: namespace_9dd378ec
 	Checksum: 0xB3CE7329
 	Offset: 0x7B0
@@ -103,15 +103,15 @@ function function_236ee1ee()
 	Parameters: 0
 	Flags: None
 */
-function function_ddc1ee89()
+function alarm_b_timer()
 {
 	level waittill("power_on");
 	wait(8.5);
-	level thread function_44f4e8bb();
+	level thread alarm_b();
 }
 
 /*
-	Name: function_90cfe8c5
+	Name: play_alarm_a
 	Namespace: namespace_9dd378ec
 	Checksum: 0x5339836D
 	Offset: 0x7E8
@@ -119,9 +119,9 @@ function function_ddc1ee89()
 	Parameters: 0
 	Flags: None
 */
-function function_90cfe8c5()
+function play_alarm_a()
 {
-	level endon("hash_78527d76");
+	level endon("alarm_a_off");
 	while(1)
 	{
 		playsound(0, "evt_alarm_a", self.origin);
@@ -130,7 +130,7 @@ function function_90cfe8c5()
 }
 
 /*
-	Name: function_b6d2632e
+	Name: play_alarm_b
 	Namespace: namespace_9dd378ec
 	Checksum: 0x86B13FFF
 	Offset: 0x838
@@ -138,20 +138,20 @@ function function_90cfe8c5()
 	Parameters: 0
 	Flags: None
 */
-function function_b6d2632e()
+function play_alarm_b()
 {
-	var_11935664 = spawn(0, self.origin, "script.origin");
-	var_11935664.var_1875fe27 = var_11935664 PlayLoopSound("evt_alarm_b_loop", 0.8);
+	alarm_bell = spawn(0, self.origin, "script.origin");
+	alarm_bell.n_snd_id = alarm_bell PlayLoopSound("evt_alarm_b_loop", 0.8);
 	wait(8.8);
 	playsound(0, "evt_alarm_b_end", self.origin);
 	wait(0.1);
-	var_11935664 StopLoopSound(var_11935664.var_1875fe27, 0.6);
+	alarm_bell StopLoopSound(alarm_bell.n_snd_id, 0.6);
 	wait(3);
-	var_11935664 delete();
+	alarm_bell delete();
 }
 
 /*
-	Name: function_d2ed7980
+	Name: alarm_a
 	Namespace: namespace_9dd378ec
 	Checksum: 0xA32D8B73
 	Offset: 0x928
@@ -159,13 +159,13 @@ function function_b6d2632e()
 	Parameters: 0
 	Flags: None
 */
-function function_d2ed7980()
+function alarm_a()
 {
-	Array::thread_all(struct::get_array("amb_warning_siren", "targetname"), &function_90cfe8c5);
+	Array::thread_all(struct::get_array("amb_warning_siren", "targetname"), &play_alarm_a);
 }
 
 /*
-	Name: function_44f4e8bb
+	Name: alarm_b
 	Namespace: namespace_9dd378ec
 	Checksum: 0x66645AD2
 	Offset: 0x978
@@ -173,13 +173,13 @@ function function_d2ed7980()
 	Parameters: 0
 	Flags: None
 */
-function function_44f4e8bb()
+function alarm_b()
 {
-	Array::thread_all(struct::get_array("amb_warning_bell", "targetname"), &function_b6d2632e);
+	Array::thread_all(struct::get_array("amb_warning_bell", "targetname"), &play_alarm_b);
 }
 
 /*
-	Name: function_7179c1c9
+	Name: play_pa_vox
 	Namespace: namespace_9dd378ec
 	Checksum: 0x7C7CA3C0
 	Offset: 0x9C8
@@ -187,14 +187,14 @@ function function_44f4e8bb()
 	Parameters: 0
 	Flags: None
 */
-function function_7179c1c9()
+function play_pa_vox()
 {
 	wait(2);
 	playsound(0, "amb_vox_rus_PA", self.origin);
 }
 
 /*
-	Name: function_84e46cfe
+	Name: samantha_is_angry_earthquake_and_rumbles
 	Namespace: namespace_9dd378ec
 	Checksum: 0xD47EEF
 	Offset: 0xA00
@@ -202,14 +202,14 @@ function function_7179c1c9()
 	Parameters: 1
 	Flags: None
 */
-function function_84e46cfe(localClientNum)
+function samantha_is_angry_earthquake_and_rumbles(localClientNum)
 {
 	player = GetLocalPlayers()[localClientNum];
 	audio::snd_set_snapshot("zmb_samantha_scream");
 	player Earthquake(0.4, 10, player.origin, 150);
 	visionset_mgr::fog_vol_to_visionset_set_suffix("_nopower");
 	visionset_mgr::fog_vol_to_visionset_set_info(0, "zombie_cosmodrome", 2.5);
-	player thread function_7c49fd5a();
+	player thread do_that_sam_rumble();
 	wait(6);
 	audio::snd_set_snapshot("default");
 	visionset_mgr::fog_vol_to_visionset_set_suffix("_poweron");
@@ -217,7 +217,7 @@ function function_84e46cfe(localClientNum)
 }
 
 /*
-	Name: function_7c49fd5a
+	Name: do_that_sam_rumble
 	Namespace: namespace_9dd378ec
 	Checksum: 0x6C6E64EE
 	Offset: 0xB40
@@ -225,7 +225,7 @@ function function_84e46cfe(localClientNum)
 	Parameters: 0
 	Flags: None
 */
-function function_7c49fd5a()
+function do_that_sam_rumble()
 {
 	self endon("disconnect");
 	for(count = 0; count <= 4 && isdefined(self);  = 0)
@@ -293,17 +293,17 @@ function function_60a32834()
 function function_d667714e()
 {
 	level.var_b6342abd = "mus_cosmo_underscore_default";
-	level.var_6d9d81aa = "mus_cosmo_underscore_default";
+	level.newmus = "mus_cosmo_underscore_default";
 	level.var_eb526c90 = spawn(0, (0, 0, 0), "script_origin");
 	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(level.var_b6342abd, 2);
 	while(1)
 	{
 		level waittill("hash_51d7bc7c", location);
-		level.var_6d9d81aa = "mus_cosmo_underscore_" + location;
-		if(level.var_6d9d81aa != level.var_b6342abd)
+		level.newmus = "mus_cosmo_underscore_" + location;
+		if(level.newmus != level.var_b6342abd)
 		{
-			level thread function_b234849(level.var_6d9d81aa);
-			level.var_b6342abd = level.var_6d9d81aa;
+			level thread function_b234849(level.newmus);
+			level.var_b6342abd = level.newmus;
 		}
 	}
 }
@@ -317,12 +317,12 @@ function function_d667714e()
 	Parameters: 1
 	Flags: None
 */
-function function_b234849(var_6d9d81aa)
+function function_b234849(newmus)
 {
 	level endon("hash_51d7bc7c");
 	level.var_eb526c90 StopAllLoopSounds(2);
 	wait(1);
-	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(var_6d9d81aa, 2);
+	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(newmus, 2);
 }
 
 /*
@@ -339,10 +339,10 @@ function function_be596677()
 	wait(2);
 	level.var_41176517 = struct::get_array("amb_computer", "targetname");
 	level waittill("power_on");
-	level.var_39f6798 = struct::get("amb_power_up", "targetname");
-	if(isdefined(level.var_39f6798))
+	level.power_struct = struct::get("amb_power_up", "targetname");
+	if(isdefined(level.power_struct))
 	{
-		playsound(0, level.var_39f6798.script_sound, level.var_39f6798.origin);
+		playsound(0, level.power_struct.script_sound, level.power_struct.origin);
 	}
 	wait(4);
 	if(isdefined(level.var_41176517))
@@ -354,15 +354,15 @@ function function_be596677()
 		}
 	}
 	level notify("hash_562bd5c4");
-	level thread function_729f3d20();
-	if(isdefined(level.var_39f6798))
+	level thread play_hum();
+	if(isdefined(level.power_struct))
 	{
-		audio::playloopat("evt_power_loop", level.var_39f6798.origin);
+		audio::playloopat("evt_power_loop", level.power_struct.origin);
 	}
 }
 
 /*
-	Name: function_729f3d20
+	Name: play_hum
 	Namespace: namespace_9dd378ec
 	Checksum: 0xF3E15566
 	Offset: 0x1008
@@ -370,7 +370,7 @@ function function_be596677()
 	Parameters: 0
 	Flags: None
 */
-function function_729f3d20()
+function play_hum()
 {
 	level.var_9a2181e2 = struct::get_array("amb_power_surge", "targetname");
 	for(i = 0; i < level.var_9a2181e2.size; i++)
@@ -380,7 +380,7 @@ function function_729f3d20()
 }
 
 /*
-	Name: function_d19cb2f8
+	Name: startzmbspawnersoundloops
 	Namespace: namespace_9dd378ec
 	Checksum: 0x2D3AC81F
 	Offset: 0x10A8
@@ -388,7 +388,7 @@ function function_729f3d20()
 	Parameters: 0
 	Flags: None
 */
-function function_d19cb2f8()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("exterior_goal", "targetname");
 	if(isdefined(loopers) && loopers.size > 0)

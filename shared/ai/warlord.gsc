@@ -100,7 +100,7 @@ function private ArchetypeWarlordBlackboardInit()
 	self AiUtility::RegisterUtilityBlackboardAttributes();
 	self.___ArchetypeOnAnimscriptedCallback = &ArchetypeWarlordOnAnimscriptedCallback;
 	/#
-		self function_89398c57();
+		self finalizetrackedblackboardattributes();
 	#/
 }
 
@@ -130,7 +130,7 @@ function private ArchetypeWarlordOnAnimscriptedCallback(entity)
 */
 function private shouldHuntEnemyPlayer(entity)
 {
-	if(isdefined(entity.enemy) && isdefined(entity.var_ce767dbd) && GetTime() < entity.var_ce767dbd)
+	if(isdefined(entity.enemy) && isdefined(entity.huntenemytime) && GetTime() < entity.huntenemytime)
 	{
 		return 1;
 	}
@@ -149,20 +149,20 @@ function private shouldHuntEnemyPlayer(entity)
 function private _warlordHuntEnemy(entity)
 {
 	/#
-		namespace_e585b400::function_3f561bff(entity, 3, 1);
+		warlorddebughelpers::trystate(entity, 3, 1);
 	#/
 	if(Distance2DSquared(entity.origin, self lastKnownPos(self.enemy)) <= 250 * 250)
 	{
 		return 0;
 	}
-	if(isdefined(entity.var_c9cd0861) && GetTime() < entity.var_c9cd0861)
+	if(isdefined(entity.huntupdatenexttime) && GetTime() < entity.huntupdatenexttime)
 	{
 		return 0;
 	}
-	if(entity.var_b654f978)
+	if(entity.isangryattack)
 	{
 		/#
-			namespace_e585b400::function_3d68d6d1(3, (1, 0, 1), "Dev Block strings are not supported");
+			warlorddebughelpers::printstate(3, (1, 0, 1), "Dev Block strings are not supported");
 		#/
 		return 0;
 	}
@@ -193,17 +193,17 @@ function private _warlordHuntEnemy(entity)
 		if(isdefined(closestPoint))
 		{
 			/#
-				namespace_e585b400::function_4160d34d(entity, 3, 1);
+				warlorddebughelpers::setcurrentstate(entity, 3, 1);
 			#/
 			entity UsePosition(closestPoint);
-			entity.var_c9cd0861 = GetTime() + randomIntRange(500, 1500);
+			entity.huntupdatenexttime = GetTime() + randomIntRange(500, 1500);
 			return 1;
 		}
 	}
 	/#
-		namespace_e585b400::function_c2db5ca5(entity, 3);
+		warlorddebughelpers::setstatefailed(entity, 3);
 	#/
-	entity.var_ce767dbd = undefined;
+	entity.huntenemytime = undefined;
 	return 0;
 }
 
@@ -223,31 +223,31 @@ function chooseBetterPositionService(entity)
 		return 0;
 	}
 	shouldRepath = 0;
-	var_cb05c034 = 0;
+	istrackingenemylastpos = 0;
 	searchOrigin = undefined;
-	var_976ace1e = entity function_553f87a();
-	if(!var_976ace1e)
+	bapproachinggoal = entity function_553f87a();
+	if(!bapproachinggoal)
 	{
 		WarlordServerUtils::ClearPreferedPoint(entity);
 		/#
-			namespace_e585b400::function_4160d34d(entity, 6);
+			warlorddebughelpers::setcurrentstate(entity, 6);
 		#/
 		if(isdefined(entity.goalent) || entity.goalRadius < 72)
 		{
-			var_e972a672 = GetClosestPointOnNavMesh(self.goalpos, 200);
-			if(!isdefined(var_e972a672))
+			goalposonmesh = GetClosestPointOnNavMesh(self.goalpos, 200);
+			if(!isdefined(goalposonmesh))
 			{
-				var_e972a672 = self.goalpos;
+				goalposonmesh = self.goalpos;
 			}
-			entity UsePosition(var_e972a672);
+			entity UsePosition(goalposonmesh);
 			return 1;
 		}
 	}
-	if(var_976ace1e && shouldHuntEnemyPlayer(entity))
+	if(bapproachinggoal && shouldHuntEnemyPlayer(entity))
 	{
 		return _warlordHuntEnemy(entity);
 	}
-	else if(var_976ace1e && WarlordServerUtils::UpdatePreferedPoint(entity))
+	else if(bapproachinggoal && WarlordServerUtils::UpdatePreferedPoint(entity))
 	{
 		return 1;
 	}
@@ -257,7 +257,7 @@ function chooseBetterPositionService(entity)
 	}
 	else
 	{
-		entity namespace_e585b400::function_3d68d6d1(undefined, (1, 0, 0), "Dev Block strings are not supported");
+		entity warlorddebughelpers::printstate(undefined, (1, 0, 0), "Dev Block strings are not supported");
 		searchOrigin = entity.goalpos;
 	}
 	/#
@@ -270,16 +270,16 @@ function chooseBetterPositionService(entity)
 	{
 		return 0;
 	}
-	if(!var_976ace1e || !isdefined(entity.var_26ca18bb) || GetTime() > entity.var_26ca18bb)
+	if(!bapproachinggoal || !isdefined(entity.nextfindbetterpositiontime) || GetTime() > entity.nextfindbetterpositiontime)
 	{
 		shouldRepath = 1;
 	}
 	if(isdefined(entity.enemy) && !entity SeeRecently(entity.enemy, 2) && isdefined(entity.lastEnemySightPos))
 	{
 		/#
-			entity namespace_e585b400::function_3d68d6d1(undefined, (1, 1, 1), "Dev Block strings are not supported");
+			entity warlorddebughelpers::printstate(undefined, (1, 1, 1), "Dev Block strings are not supported");
 		#/
-		var_cb05c034 = 1;
+		istrackingenemylastpos = 1;
 		if(isdefined(entity.pathGoalPos))
 		{
 			distanceToGoalSqr = DistanceSquared(searchOrigin, entity.pathGoalPos);
@@ -295,9 +295,9 @@ function chooseBetterPositionService(entity)
 	}
 	if(!shouldRepath)
 	{
-		if(isdefined(entity.var_ecf7b5b1))
+		if(isdefined(entity.hascrouchingenemy))
 		{
-			entity.var_ecf7b5b1 = undefined;
+			entity.hascrouchingenemy = undefined;
 			shouldRepath = 1;
 		}
 	}
@@ -306,83 +306,83 @@ function chooseBetterPositionService(entity)
 		queryResult = PositionQuery_Source_Navigation(searchOrigin, 0, entity.engageMaxDist, 45, 72, entity, 72);
 		PositionQuery_Filter_InClaimedLocation(queryResult, entity);
 		PositionQuery_Filter_DistanceToGoal(queryResult, entity);
-		if(isdefined(entity.enemy) && var_cb05c034 && (isdefined(entity.var_568222a9) && entity.var_568222a9))
+		if(isdefined(entity.enemy) && istrackingenemylastpos && (isdefined(entity.warlordaggressivemode) && entity.warlordaggressivemode))
 		{
 			PositionQuery_Filter_Sight(queryResult, self lastKnownPos(self.enemy), self GetEye() - self.origin, self, 20);
 		}
-		var_e84d15a1 = [];
-		var_6d0cf0d = [];
-		var_20e1d4f5 = 0;
-		var_8259f71c = 0;
-		var_1d39aec2 = 0;
-		var_c713e0ba = 36;
+		preferedpoints = [];
+		randompoints = [];
+		bpointsavailable = 0;
+		bpointsingoal = 0;
+		bpointsvisible = 0;
+		closepointdistance = 36;
 		foreach(point in queryResult.data)
 		{
 			if(point.inclaimedlocation)
 			{
 				continue;
 			}
-			var_20e1d4f5++;
+			bpointsavailable++;
 			if(point.distToGoal > 0)
 			{
 				continue;
 			}
-			var_8259f71c++;
+			bpointsingoal++;
 			if(isdefined(point.visibility) && !point.visibility)
 			{
 				continue;
 			}
-			var_1d39aec2++;
-			if(point.distToOrigin2D < var_c713e0ba)
+			bpointsvisible++;
+			if(point.distToOrigin2D < closepointdistance)
 			{
 				continue;
 			}
-			var_6d0cf0d[var_6d0cf0d.size] = point.origin;
+			randompoints[randompoints.size] = point.origin;
 		}
-		if(!(isdefined(entity.enemy) && var_cb05c034 && (isdefined(entity.var_568222a9) && entity.var_568222a9)))
+		if(!(isdefined(entity.enemy) && istrackingenemylastpos && (isdefined(entity.warlordaggressivemode) && entity.warlordaggressivemode)))
 		{
-			var_e84d15a1 = WarlordServerUtils::GetPreferedValidPoints(entity);
+			preferedpoints = WarlordServerUtils::GetPreferedValidPoints(entity);
 		}
-		if(var_6d0cf0d.size == 0 && var_e84d15a1.size == 0)
+		if(randompoints.size == 0 && preferedpoints.size == 0)
 		{
-			if(var_20e1d4f5 == 0)
+			if(bpointsavailable == 0)
 			{
 				return 0;
 				break;
 			}
-			if(var_8259f71c == 0)
+			if(bpointsingoal == 0)
 			{
-				var_fe3237cf = entity.goalpos + VectorNormalize(searchOrigin - entity.goalpos) * entity.goalRadius;
-				queryResult = PositionQuery_Source_Navigation(var_fe3237cf, 0, entity.engageMaxDist, 45, 72, entity, 108);
+				searchoriginongoalradius = entity.goalpos + VectorNormalize(searchOrigin - entity.goalpos) * entity.goalRadius;
+				queryResult = PositionQuery_Source_Navigation(searchoriginongoalradius, 0, entity.engageMaxDist, 45, 72, entity, 108);
 				PositionQuery_Filter_InClaimedLocation(queryResult, entity);
 				PositionQuery_Filter_DistanceToGoal(queryResult, entity);
-				var_20e1d4f5 = 0;
-				var_8259f71c = 0;
-				var_1d39aec2 = 0;
+				bpointsavailable = 0;
+				bpointsingoal = 0;
+				bpointsvisible = 0;
 				foreach(point in queryResult.data)
 				{
 					if(point.inclaimedlocation)
 					{
 						continue;
 					}
-					var_20e1d4f5++;
+					bpointsavailable++;
 					if(point.distToGoal > 0)
 					{
 						continue;
 					}
-					var_8259f71c++;
+					bpointsingoal++;
 					if(isdefined(point.visibility) && !point.visibility)
 					{
 						continue;
 					}
-					var_1d39aec2++;
-					if(point.distToOrigin2D < var_c713e0ba)
+					bpointsvisible++;
+					if(point.distToOrigin2D < closepointdistance)
 					{
 						continue;
 					}
-					var_6d0cf0d[var_6d0cf0d.size] = point.origin;
+					randompoints[randompoints.size] = point.origin;
 				}
-				if(var_6d0cf0d.size == 0)
+				if(randompoints.size == 0)
 				{
 					foreach(point in queryResult.data)
 					{
@@ -394,11 +394,11 @@ function chooseBetterPositionService(entity)
 						{
 							continue;
 						}
-						if(var_1d39aec2 > 0 && isdefined(point.visibility) && !point.visibility)
+						if(bpointsvisible > 0 && isdefined(point.visibility) && !point.visibility)
 						{
 							continue;
 						}
-						var_6d0cf0d[var_6d0cf0d.size] = point.origin;
+						randompoints[randompoints.size] = point.origin;
 					}
 				}
 				break;
@@ -413,29 +413,29 @@ function chooseBetterPositionService(entity)
 				{
 					continue;
 				}
-				if(var_1d39aec2 > 0 && isdefined(point.visibility) && !point.visibility)
+				if(bpointsvisible > 0 && isdefined(point.visibility) && !point.visibility)
 				{
 					continue;
 				}
-				var_6d0cf0d[var_6d0cf0d.size] = point.origin;
+				randompoints[randompoints.size] = point.origin;
 			}
-			if(var_6d0cf0d.size == 0)
+			if(randompoints.size == 0)
 			{
-				if(!var_976ace1e)
+				if(!bapproachinggoal)
 				{
-					if(!isdefined(var_6d0cf0d))
+					if(!isdefined(randompoints))
 					{
-						var_6d0cf0d = [];
+						randompoints = [];
 					}
-					else if(!IsArray(var_6d0cf0d))
+					else if(!IsArray(randompoints))
 					{
-						var_6d0cf0d = Array(var_6d0cf0d);
+						randompoints = Array(randompoints);
 					}
-					var_6d0cf0d[var_6d0cf0d.size] = entity.goalpos;
+					randompoints[randompoints.size] = entity.goalpos;
 				}
 				else
 				{
-					namespace_e585b400::function_c2db5ca5(entity, 5);
+					warlorddebughelpers::setstatefailed(entity, 5);
 					return 0;
 				}
 				/#
@@ -443,78 +443,78 @@ function chooseBetterPositionService(entity)
 			}
 		}
 		goalweight = -10000;
-		var_c3fc0358 = entity.engageminfalloffdist * entity.engageminfalloffdist;
-		var_4b54d64a = entity.engageMinDist * entity.engageMinDist;
-		var_c9068104 = entity.engageMaxDist * entity.engageMaxDist;
-		var_a3945c26 = entity.engagemaxfalloffdist * entity.engagemaxfalloffdist;
+		engageminfalloffdistsqrd = entity.engageminfalloffdist * entity.engageminfalloffdist;
+		engagemindistsqrd = entity.engageMinDist * entity.engageMinDist;
+		engagemaxdistsqrd = entity.engageMaxDist * entity.engageMaxDist;
+		engagemaxfalloffdistsqrd = entity.engagemaxfalloffdist * entity.engagemaxfalloffdist;
 		if(isdefined(entity.enemy) && IsSentient(entity.enemy))
 		{
 			enemyForward = VectorNormalize(AnglesToForward(entity.enemy.angles));
 		}
-		for(index = 0; index < var_6d0cf0d.size; index++)
+		for(index = 0; index < randompoints.size; index++)
 		{
-			var_ec0332d3 = Distance2DSquared(var_6d0cf0d[index], searchOrigin);
-			var_6c2b207a = 1;
-			if(isdefined(var_cb05c034) || (isdefined(entity.var_568222a9) && entity.var_568222a9))
+			distancesqrdtoenemy = Distance2DSquared(randompoints[index], searchOrigin);
+			bweightsign = 1;
+			if(isdefined(istrackingenemylastpos) || (isdefined(entity.warlordaggressivemode) && entity.warlordaggressivemode))
 			{
-				var_6c2b207a = -1;
+				bweightsign = -1;
 			}
-			var_1fe6d199 = 0;
-			if(var_ec0332d3 < var_c3fc0358)
+			pointweight = 0;
+			if(distancesqrdtoenemy < engageminfalloffdistsqrd)
 			{
-				var_1fe6d199 = -1 * var_6c2b207a;
+				pointweight = -1 * bweightsign;
 			}
-			else if(var_ec0332d3 < var_4b54d64a)
+			else if(distancesqrdtoenemy < engagemindistsqrd)
 			{
-				var_1fe6d199 = -0.5 * var_6c2b207a;
+				pointweight = -0.5 * bweightsign;
 			}
-			else if(var_ec0332d3 > var_a3945c26)
+			else if(distancesqrdtoenemy > engagemaxfalloffdistsqrd)
 			{
-				var_1fe6d199 = 1 * var_6c2b207a;
+				pointweight = 1 * bweightsign;
 			}
-			else if(var_ec0332d3 > var_c9068104)
+			else if(distancesqrdtoenemy > engagemaxdistsqrd)
 			{
-				var_1fe6d199 = 1 * var_6c2b207a;
+				pointweight = 1 * bweightsign;
 			}
 			if(isdefined(enemyForward))
 			{
-				var_f8b1c22d = ACos(math::clamp(VectorDot(VectorNormalize(var_1fe6d199 - entity.enemy.origin), enemyForward), -1, 1));
-				if(var_f8b1c22d > 80)
+				anglefromforward = ACos(math::clamp(VectorDot(VectorNormalize(pointweight - entity.enemy.origin), enemyForward), -1, 1));
+				if(anglefromforward > 80)
 				{
-					var_1fe6d199 = var_1fe6d199 + -0.5;
+					pointweight = pointweight + -0.5;
 				}
 			}
-			var_1fe6d199 = var_1fe6d199 + RandomFloatRange(-0.25, 0.25);
-			if(goalweight < var_1fe6d199)
+			pointweight = pointweight + RandomFloatRange(-0.25, 0.25);
+			if(goalweight < pointweight)
 			{
-				goalweight = var_1fe6d199;
-				goalPosition = var_6d0cf0d[index];
+				goalweight = pointweight;
+				goalPosition = randompoints[index];
 			}
 			/#
 				if(GetDvarInt("Dev Block strings are not supported") > 0 && isdefined(GetEntByNum(GetDvarInt("Dev Block strings are not supported"))) && entity == GetEntByNum(GetDvarInt("Dev Block strings are not supported")))
 				{
-					as_debug::function_700f290f(entity, var_6d0cf0d[index], var_1fe6d199, -1.25, 1.75);
+					as_debug::debugdrawweightedpoint(entity, randompoints[index], pointweight, -1.25, 1.75);
 				}
 			#/
 		}
-		var_cfb305f0 = goalweight;
-		foreach(point in var_e84d15a1)
+		normalpointsmaxgoalweight = goalweight;
+		foreach(point in preferedpoints)
 		{
-			if(point === entity.var_541cb3cf)
+			if(point === entity.previous_prefered_point)
 			{
 				continue;
 			}
-			var_1fe6d199 = RandomFloatRange(var_cfb305f0 - 0.25, var_cfb305f0 + 0.5);
-			if(goalweight < var_1fe6d199)
+			pointweight = RandomFloatRange(normalpointsmaxgoalweight - 0.25, normalpointsmaxgoalweight + 0.5);
+			if(goalweight < pointweight)
 			{
-				goalweight = var_1fe6d199;
+				goalweight = pointweight;
 				goalPosition = point.origin;
-				var_34862dbe = point;
+				preferedpoint = point;
 			}
 			/#
 				if(GetDvarInt("Dev Block strings are not supported") > 0 && isdefined(GetEntByNum(GetDvarInt("Dev Block strings are not supported"))) && entity == GetEntByNum(GetDvarInt("Dev Block strings are not supported")))
 				{
-					as_debug::function_700f290f(entity, point.origin, var_1fe6d199, -1.25, 1.75);
+					as_debug::debugdrawweightedpoint(entity, point.origin, pointweight, -1.25, 1.75);
 				}
 			#/
 		}
@@ -523,18 +523,18 @@ function chooseBetterPositionService(entity)
 			if(entity FindPath(entity.origin, goalPosition, 1, 0))
 			{
 				entity UsePosition(goalPosition);
-				entity.var_26ca18bb = GetTime() + entity.coverSearchInterval;
-				if(isdefined(var_34862dbe))
+				entity.nextfindbetterpositiontime = GetTime() + entity.coverSearchInterval;
+				if(isdefined(preferedpoint))
 				{
 					/#
-						namespace_e585b400::function_4160d34d(entity, 4);
+						warlorddebughelpers::setcurrentstate(entity, 4);
 					#/
-					WarlordServerUtils::SetPreferedPoint(entity, var_34862dbe);
+					WarlordServerUtils::SetPreferedPoint(entity, preferedpoint);
 				}
 				/#
-					if(!isdefined(var_34862dbe))
+					if(!isdefined(preferedpoint))
 					{
-						namespace_e585b400::function_4160d34d(entity, 5);
+						warlorddebughelpers::setcurrentstate(entity, 5);
 					}
 				#/
 				return 1;
@@ -646,7 +646,7 @@ function warlordShouldNormalMelee(behaviorTreeEntity)
 */
 function canTakePainCondition(behaviorTreeEntity)
 {
-	return GetTime() >= behaviorTreeEntity.var_2ac908f2;
+	return GetTime() >= behaviorTreeEntity.nextexposedpain;
 }
 
 /*
@@ -742,7 +742,7 @@ function deathAction(behaviorTreeEntity, asmStateName)
 */
 function exposedPainActionStart(behaviorTreeEntity)
 {
-	behaviorTreeEntity.var_2ac908f2 = GetTime() + randomIntRange(500, 2500);
+	behaviorTreeEntity.nextexposedpain = GetTime() + randomIntRange(500, 2500);
 	AiUtility::keepClaimNode(behaviorTreeEntity);
 }
 
@@ -757,23 +757,23 @@ function exposedPainActionStart(behaviorTreeEntity)
 */
 function shouldBeAngryCondition(behaviorTreeEntity)
 {
-	if(isdefined(behaviorTreeEntity.var_1fe9366e) && GetTime() < behaviorTreeEntity.var_1fe9366e)
+	if(isdefined(behaviorTreeEntity.nextangrytime) && GetTime() < behaviorTreeEntity.nextangrytime)
 	{
 		return 0;
 	}
-	if(!isdefined(behaviorTreeEntity.var_84bdb4be) || behaviorTreeEntity.var_84bdb4be.size == 0)
+	if(!isdefined(behaviorTreeEntity.knownattackers) || behaviorTreeEntity.knownattackers.size == 0)
 	{
 		return 0;
 	}
-	else if(behaviorTreeEntity.var_84bdb4be.size == 1 && isdefined(behaviorTreeEntity.enemy) && behaviorTreeEntity.var_84bdb4be[0].attacker == behaviorTreeEntity.enemy)
+	else if(behaviorTreeEntity.knownattackers.size == 1 && isdefined(behaviorTreeEntity.enemy) && behaviorTreeEntity.knownattackers[0].attacker == behaviorTreeEntity.enemy)
 	{
 		return 0;
 	}
-	if(isdefined(behaviorTreeEntity.var_9366282a) && behaviorTreeEntity.var_9366282a > WarlordServerUtils::GetScaledForPlayers(200, 1.5, 2, 2.5))
+	if(isdefined(behaviorTreeEntity.accumilateddamage) && behaviorTreeEntity.accumilateddamage > WarlordServerUtils::GetScaledForPlayers(200, 1.5, 2, 2.5))
 	{
 		return 1;
 	}
-	return behaviorTreeEntity.var_b654f978;
+	return behaviorTreeEntity.isangryattack;
 }
 
 /*
@@ -788,27 +788,27 @@ function shouldBeAngryCondition(behaviorTreeEntity)
 function WarlordAngryAttack(entity)
 {
 	/#
-		namespace_e585b400::function_3d68d6d1(1, (0, 1, 0), "Dev Block strings are not supported");
+		warlorddebughelpers::printstate(1, (0, 1, 0), "Dev Block strings are not supported");
 	#/
-	entity.var_b654f978 = 1;
-	entity.var_b3ecf9da = 1;
-	entity.var_9366282a = 0;
-	entity.var_1fe9366e = GetTime() + 13000;
+	entity.isangryattack = 1;
+	entity.forcefire = 1;
+	entity.accumilateddamage = 0;
+	entity.nextangrytime = GetTime() + 13000;
 	WarlordServerUtils::UpdateAttackersList(entity);
 	attackersArray = [];
-	for(i = 0; i < entity.var_84bdb4be.size; i++)
+	for(i = 0; i < entity.knownattackers.size; i++)
 	{
-		for(j = i + 1; j < entity.var_84bdb4be.size; j++)
+		for(j = i + 1; j < entity.knownattackers.size; j++)
 		{
-			if(entity.var_84bdb4be[i].threat < entity.var_84bdb4be[j].threat)
+			if(entity.knownattackers[i].threat < entity.knownattackers[j].threat)
 			{
-				tmp = entity.var_84bdb4be[j].threat;
-				entity.var_84bdb4be[j].threat = entity.var_84bdb4be[i].threat;
-				entity.var_84bdb4be[i].threat = tmp;
+				tmp = entity.knownattackers[j].threat;
+				entity.knownattackers[j].threat = entity.knownattackers[i].threat;
+				entity.knownattackers[i].threat = tmp;
 			}
 		}
 	}
-	foreach(data in entity.var_84bdb4be)
+	foreach(data in entity.knownattackers)
 	{
 		if(!isdefined(attackersArray))
 		{
@@ -837,7 +837,7 @@ function WarlordAngryAttack_ShootThemAll(entity, attackersArray)
 {
 	entity endon("disconnect");
 	entity endon("death");
-	entity notify("hash_b160390f");
+	entity notify("angry_attack");
 	shoottime = GetDvarFloat("warlordangryattack", 3);
 	foreach(attacker in attackersArray)
 	{
@@ -847,10 +847,10 @@ function WarlordAngryAttack_ShootThemAll(entity, attackersArray)
 		}
 	}
 	/#
-		namespace_e585b400::function_3d68d6d1(1, (0, 0, 1), "Dev Block strings are not supported");
+		warlorddebughelpers::printstate(1, (0, 0, 1), "Dev Block strings are not supported");
 	#/
-	entity.var_b3ecf9da = 0;
-	entity.var_b654f978 = 0;
+	entity.forcefire = 0;
+	entity.isangryattack = 0;
 }
 
 #namespace WarlordServerUtils;
@@ -887,7 +887,7 @@ function GetAlivePlayersCount(entity)
 */
 function SetWarlordAggressiveMode(entity, b_aggressive_mode)
 {
-	entity.var_568222a9 = b_aggressive_mode;
+	entity.warlordaggressivemode = b_aggressive_mode;
 	if(isdefined(b_aggressive_mode) && b_aggressive_mode)
 	{
 		foreach(player in level.players)
@@ -936,15 +936,15 @@ function AddPreferedPoint(entity, position, min_duration, max_duration, name)
 	point.min_duration = min_duration;
 	point.max_duration = max_duration;
 	point.name = name;
-	if(!isdefined(entity.var_a3fbe34e))
+	if(!isdefined(entity.prefered_points))
 	{
-		entity.var_a3fbe34e = [];
+		entity.prefered_points = [];
 	}
-	else if(!IsArray(entity.var_a3fbe34e))
+	else if(!IsArray(entity.prefered_points))
 	{
-		entity.var_a3fbe34e = Array(entity.var_a3fbe34e);
+		entity.prefered_points = Array(entity.prefered_points);
 	}
-	entity.var_a3fbe34e[entity.var_a3fbe34e.size] = point;
+	entity.prefered_points[entity.prefered_points.size] = point;
 }
 
 /*
@@ -958,29 +958,29 @@ function AddPreferedPoint(entity, position, min_duration, max_duration, name)
 */
 function DeletePreferedPoint(entity, name)
 {
-	if(isdefined(entity.var_a3fbe34e))
+	if(isdefined(entity.prefered_points))
 	{
-		var_18648ef7 = [];
-		foreach(point in entity.var_a3fbe34e)
+		points_to_remove = [];
+		foreach(point in entity.prefered_points)
 		{
 			if(point.name === name)
 			{
-				if(!isdefined(var_18648ef7))
+				if(!isdefined(points_to_remove))
 				{
-					var_18648ef7 = [];
+					points_to_remove = [];
 				}
-				else if(!IsArray(var_18648ef7))
+				else if(!IsArray(points_to_remove))
 				{
-					var_18648ef7 = Array(var_18648ef7);
+					points_to_remove = Array(points_to_remove);
 				}
-				var_18648ef7[var_18648ef7.size] = point;
+				points_to_remove[points_to_remove.size] = point;
 			}
 		}
-		if(var_18648ef7.size > 0)
+		if(points_to_remove.size > 0)
 		{
-			foreach(point in var_18648ef7)
+			foreach(point in points_to_remove)
 			{
-				ArrayRemoveValue(entity.var_a3fbe34e, point);
+				ArrayRemoveValue(entity.prefered_points, point);
 			}
 			return 1;
 		}
@@ -1000,7 +1000,7 @@ function DeletePreferedPoint(entity, name)
 function ClearAllPreferedPoints(entity)
 {
 	ClearPreferedPoint(entity);
-	entity.var_a3fbe34e = [];
+	entity.prefered_points = [];
 }
 
 /*
@@ -1014,25 +1014,25 @@ function ClearAllPreferedPoints(entity)
 */
 function ClearPreferedPointsOutsideGoal(entity)
 {
-	var_18648ef7 = [];
-	foreach(point in entity.var_a3fbe34e)
+	points_to_remove = [];
+	foreach(point in entity.prefered_points)
 	{
 		if(!entity IsPosAtGoal(point.origin))
 		{
-			if(!isdefined(var_18648ef7))
+			if(!isdefined(points_to_remove))
 			{
-				var_18648ef7 = [];
+				points_to_remove = [];
 			}
-			else if(!IsArray(var_18648ef7))
+			else if(!IsArray(points_to_remove))
 			{
-				var_18648ef7 = Array(var_18648ef7);
+				points_to_remove = Array(points_to_remove);
 			}
-			var_18648ef7[var_18648ef7.size] = point;
+			points_to_remove[points_to_remove.size] = point;
 		}
 	}
-	foreach(point in var_18648ef7)
+	foreach(point in points_to_remove)
 	{
-		ArrayRemoveValue(entity.var_a3fbe34e, point);
+		ArrayRemoveValue(entity.prefered_points, point);
 	}
 }
 
@@ -1047,8 +1047,8 @@ function ClearPreferedPointsOutsideGoal(entity)
 */
 function private SetPreferedPoint(entity, point)
 {
-	entity.var_541cb3cf = entity.var_4a9d2541;
-	entity.var_4a9d2541 = point;
+	entity.previous_prefered_point = entity.current_prefered_point;
+	entity.current_prefered_point = point;
 }
 
 /*
@@ -1063,11 +1063,11 @@ function private SetPreferedPoint(entity, point)
 function private ClearPreferedPoint(entity)
 {
 	/#
-		namespace_e585b400::function_4160d34d(entity, undefined);
+		warlorddebughelpers::setcurrentstate(entity, undefined);
 	#/
-	entity.var_7e5dd3e4 = undefined;
-	entity.var_a2230d1b = undefined;
-	entity.var_4a9d2541 = undefined;
+	entity.current_prefered_point_start_time = undefined;
+	entity.current_prefered_point_expiration = undefined;
+	entity.current_prefered_point = undefined;
 }
 
 /*
@@ -1081,7 +1081,7 @@ function private ClearPreferedPoint(entity)
 */
 function private AtPreferedPoint(entity)
 {
-	if(isdefined(entity.var_4a9d2541) && (DistanceSquared(entity.var_4a9d2541.origin, entity.origin) < 36 * 36 && Abs(self.var_4a9d2541.origin[2] - entity.origin[2]) < 45))
+	if(isdefined(entity.current_prefered_point) && (DistanceSquared(entity.current_prefered_point.origin, entity.origin) < 36 * 36 && Abs(self.current_prefered_point.origin[2] - entity.origin[2]) < 45))
 	{
 		return 1;
 	}
@@ -1099,7 +1099,7 @@ function private AtPreferedPoint(entity)
 */
 function private ReachingPreferedPoint(entity)
 {
-	if(!isdefined(entity.var_4a9d2541))
+	if(!isdefined(entity.current_prefered_point))
 	{
 		return 0;
 	}
@@ -1107,7 +1107,7 @@ function private ReachingPreferedPoint(entity)
 	{
 		return 1;
 	}
-	if(isdefined(entity.pathGoalPos) && entity.pathGoalPos == entity.var_4a9d2541.origin)
+	if(isdefined(entity.pathGoalPos) && entity.pathGoalPos == entity.current_prefered_point.origin)
 	{
 		return 1;
 	}
@@ -1125,30 +1125,30 @@ function private ReachingPreferedPoint(entity)
 */
 function private UpdatePreferedPoint(entity)
 {
-	if(isdefined(entity.var_4a9d2541))
+	if(isdefined(entity.current_prefered_point))
 	{
 		if(AtPreferedPoint(entity))
 		{
-			if(isdefined(entity.var_a2230d1b))
+			if(isdefined(entity.current_prefered_point_expiration))
 			{
-				if(GetTime() > entity.var_a2230d1b)
+				if(GetTime() > entity.current_prefered_point_expiration)
 				{
 					ClearPreferedPoint(entity);
 					return 0;
 				}
 				return 1;
 			}
-			else if(isdefined(entity.var_4a9d2541.min_duration))
+			else if(isdefined(entity.current_prefered_point.min_duration))
 			{
-				entity.var_7e5dd3e4 = GetTime();
-				if(!isdefined(entity.var_4a9d2541.max_duration) || entity.var_4a9d2541.max_duration == entity.var_4a9d2541.min_duration)
+				entity.current_prefered_point_start_time = GetTime();
+				if(!isdefined(entity.current_prefered_point.max_duration) || entity.current_prefered_point.max_duration == entity.current_prefered_point.min_duration)
 				{
-					entity.var_a2230d1b = GetTime() + entity.var_4a9d2541.min_duration;
+					entity.current_prefered_point_expiration = GetTime() + entity.current_prefered_point.min_duration;
 				}
 				else
 				{
-					duration = randomIntRange(entity.var_4a9d2541.min_duration, entity.var_4a9d2541.max_duration);
-					entity.var_a2230d1b = GetTime() + duration;
+					duration = randomIntRange(entity.current_prefered_point.min_duration, entity.current_prefered_point.max_duration);
+					entity.current_prefered_point_expiration = GetTime() + duration;
 				}
 				return 1;
 			}
@@ -1161,7 +1161,7 @@ function private UpdatePreferedPoint(entity)
 		}
 		else if(!ReachingPreferedPoint(entity))
 		{
-			entity UsePosition(entity.var_4a9d2541.origin);
+			entity UsePosition(entity.current_prefered_point.origin);
 		}
 		return 1;
 	}
@@ -1179,10 +1179,10 @@ function private UpdatePreferedPoint(entity)
 */
 function private GetPreferedValidPoints(entity)
 {
-	var_3a993b10 = [];
-	if(isdefined(entity.var_a3fbe34e))
+	validpoints = [];
+	if(isdefined(entity.prefered_points))
 	{
-		foreach(point in entity.var_a3fbe34e)
+		foreach(point in entity.prefered_points)
 		{
 			if(!entity IsPosAtGoal(point.origin))
 			{
@@ -1194,25 +1194,25 @@ function private GetPreferedValidPoints(entity)
 			{
 				continue;
 			}
-			if(isdefined(entity.enemy) && (isdefined(entity.var_568222a9) && entity.var_568222a9))
+			if(isdefined(entity.enemy) && (isdefined(entity.warlordaggressivemode) && entity.warlordaggressivemode))
 			{
 				if(!BulletTracePassed(entity GetEye(), entity.enemy.origin + VectorScale((0, 0, 1), 50), 0, entity, entity.enemy))
 				{
 					continue;
 				}
 			}
-			if(!isdefined(var_3a993b10))
+			if(!isdefined(validpoints))
 			{
-				var_3a993b10 = [];
+				validpoints = [];
 			}
-			else if(!IsArray(var_3a993b10))
+			else if(!IsArray(validpoints))
 			{
-				var_3a993b10 = Array(var_3a993b10);
+				validpoints = Array(validpoints);
 			}
-			var_3a993b10[var_3a993b10.size] = point;
+			validpoints[validpoints.size] = point;
 		}
 	}
-	return var_3a993b10;
+	return validpoints;
 }
 
 /*
@@ -1302,8 +1302,8 @@ function warlordCanTacticalJuke(entity)
 {
 	if(entity HasPath())
 	{
-		var_26383879 = AiUtility::BB_GetLocomotionFaceEnemyQuadrant();
-		if(var_26383879 == "locomotion_face_enemy_front" || var_26383879 == "locomotion_face_enemy_back")
+		locomotiondirection = AiUtility::BB_GetLocomotionFaceEnemyQuadrant();
+		if(locomotiondirection == "locomotion_face_enemy_front" || locomotiondirection == "locomotion_face_enemy_back")
 		{
 			jukeDirection = AiUtility::calculateJukeDirection(entity, 50, 145);
 			if(jukeDirection != "forward")
@@ -1354,15 +1354,15 @@ function IsEnemyTooLowToAttack(enemy)
 */
 function HaveTooLowToAttackEnemy(entity)
 {
-	if(!isdefined(entity.var_db9be359))
+	if(!isdefined(entity.lasttimetohavecrouchingenemy))
 	{
 		return 0;
 	}
-	if(GetTime() - entity.var_db9be359 <= 4000)
+	if(GetTime() - entity.lasttimetohavecrouchingenemy <= 4000)
 	{
 		return 1;
 	}
-	entity.var_db9be359 = undefined;
+	entity.lasttimetohavecrouchingenemy = undefined;
 	return 0;
 }
 
@@ -1381,8 +1381,8 @@ function SetEnemyTooLowToAttack(entity)
 	{
 		return;
 	}
-	entity.var_db9be359 = GetTime();
-	entity.var_ecf7b5b1 = 1;
+	entity.lasttimetohavecrouchingenemy = GetTime();
+	entity.hascrouchingenemy = 1;
 }
 
 /*
@@ -1401,35 +1401,35 @@ function ComputeAttackerThreat(entity, attackerInfo)
 		return 0;
 	}
 	threat = 1;
-	var_600fee07 = isPlayer(attackerInfo.attacker);
-	if(var_600fee07)
+	isattackerplayer = isPlayer(attackerInfo.attacker);
+	if(isattackerplayer)
 	{
 		threat = threat * 10;
 	}
-	var_bfbf28f9 = Distance2DSquared(entity.origin, attackerInfo.attacker.origin);
-	var_1742c12e = 0;
-	if(var_600fee07)
+	distancefromattackersqr = Distance2DSquared(entity.origin, attackerInfo.attacker.origin);
+	normalizeddistancefromattacker = 0;
+	if(isattackerplayer)
 	{
-		if(var_bfbf28f9 <= 100 * 100)
+		if(distancefromattackersqr <= 100 * 100)
 		{
 			threat = threat * 1000;
 		}
 		else
 		{
-			var_1742c12e = var_bfbf28f9 / entity.engagemaxfalloffdist * entity.engagemaxfalloffdist;
-			if(var_1742c12e > 1)
+			normalizeddistancefromattacker = distancefromattackersqr / entity.engagemaxfalloffdist * entity.engagemaxfalloffdist;
+			if(normalizeddistancefromattacker > 1)
 			{
-				var_1742c12e = 1;
+				normalizeddistancefromattacker = 1;
 			}
-			var_1742c12e = 1 - var_1742c12e;
+			normalizeddistancefromattacker = 1 - normalizeddistancefromattacker;
 		}
 	}
-	var_e864ad90 = attackerInfo.damage / 1000;
-	if(var_e864ad90 > 1)
+	normalizeddamagefromattacker = attackerInfo.damage / 1000;
+	if(normalizeddamagefromattacker > 1)
 	{
-		var_e864ad90 = 1;
+		normalizeddamagefromattacker = 1;
 	}
-	threat = threat * var_1742c12e * 0.65 + var_e864ad90 * 0.35 * 100;
+	threat = threat * normalizeddistancefromattacker * 0.65 + normalizeddamagefromattacker * 0.35 * 100;
 	return threat;
 }
 
@@ -1448,19 +1448,19 @@ function ShouldSwitchToNewThreat(entity, attacker, threat)
 	{
 		return 0;
 	}
-	if(!isdefined(entity.var_f8d4f481))
+	if(!isdefined(entity.currentdangerousattacker))
 	{
 		return 1;
 	}
-	if(entity.var_f8d4f481.health <= 0)
+	if(entity.currentdangerousattacker.health <= 0)
 	{
 		return 1;
 	}
-	if(entity.var_f8d4f481 == attacker)
+	if(entity.currentdangerousattacker == attacker)
 	{
 		return 0;
 	}
-	if(GetTime() - entity.var_8af76ae5 < 1)
+	if(GetTime() - entity.lastdangerousattackertime < 1)
 	{
 		return 0;
 	}
@@ -1478,69 +1478,69 @@ function ShouldSwitchToNewThreat(entity, attacker, threat)
 */
 function UpdateAttackersList(entity, newAttacker, damage)
 {
-	if(!isdefined(entity.var_84bdb4be))
+	if(!isdefined(entity.knownattackers))
 	{
-		entity.var_84bdb4be = [];
+		entity.knownattackers = [];
 	}
-	var_1cc53b35 = 0;
-	var_a75ea562 = 0;
-	for(i = 0; i < entity.var_84bdb4be.size; i++)
+	maxthreat = 0;
+	threatcount = 0;
+	for(i = 0; i < entity.knownattackers.size; i++)
 	{
-		attacker = entity.var_84bdb4be[i].attacker;
-		if(!isdefined(attacker) || !IsEntity(attacker) || attacker.health <= 0 || GetTime() - entity.var_84bdb4be[i].var_b50a7522 > 5000)
+		attacker = entity.knownattackers[i].attacker;
+		if(!isdefined(attacker) || !IsEntity(attacker) || attacker.health <= 0 || GetTime() - entity.knownattackers[i].lastattacktime > 5000)
 		{
-			ArrayRemoveIndex(entity.var_84bdb4be, i);
+			ArrayRemoveIndex(entity.knownattackers, i);
 			i--;
 			continue;
 		}
-		entity.var_84bdb4be[i].threat = ComputeAttackerThreat(entity, entity.var_84bdb4be[i]);
-		if(entity.var_84bdb4be[i].threat > var_1cc53b35)
+		entity.knownattackers[i].threat = ComputeAttackerThreat(entity, entity.knownattackers[i]);
+		if(entity.knownattackers[i].threat > maxthreat)
 		{
-			var_1cc53b35 = entity.var_84bdb4be[i].threat;
-			var_64e4a88a = entity.var_84bdb4be[i];
+			maxthreat = entity.knownattackers[i].threat;
+			dangerousattackerinfo = entity.knownattackers[i];
 		}
 	}
 	if(isdefined(newAttacker))
 	{
-		for(i = 0; i < entity.var_84bdb4be.size; i++)
+		for(i = 0; i < entity.knownattackers.size; i++)
 		{
-			if(entity.var_84bdb4be[i].attacker == newAttacker)
+			if(entity.knownattackers[i].attacker == newAttacker)
 			{
-				var_5b90059d = entity.var_84bdb4be[i];
-				var_5b90059d.var_b50a7522 = GetTime();
-				var_5b90059d.damage = var_5b90059d.damage + damage;
+				attackdata = entity.knownattackers[i];
+				attackdata.lastattacktime = GetTime();
+				attackdata.damage = attackdata.damage + damage;
 				break;
 			}
 		}
-		if(!isdefined(var_5b90059d))
+		if(!isdefined(attackdata))
 		{
-			var_5b90059d = spawnstruct();
-			var_5b90059d.attacker = newAttacker;
-			var_5b90059d.var_b50a7522 = GetTime();
-			var_5b90059d.damage = damage;
-			var_5b90059d.threat = 0;
-			if(!isdefined(entity.var_84bdb4be))
+			attackdata = spawnstruct();
+			attackdata.attacker = newAttacker;
+			attackdata.lastattacktime = GetTime();
+			attackdata.damage = damage;
+			attackdata.threat = 0;
+			if(!isdefined(entity.knownattackers))
 			{
-				entity.var_84bdb4be = [];
+				entity.knownattackers = [];
 			}
-			else if(!IsArray(entity.var_84bdb4be))
+			else if(!IsArray(entity.knownattackers))
 			{
-				entity.var_84bdb4be = Array(entity.var_84bdb4be);
+				entity.knownattackers = Array(entity.knownattackers);
 			}
-			entity.var_84bdb4be[entity.var_84bdb4be.size] = var_5b90059d;
+			entity.knownattackers[entity.knownattackers.size] = attackdata;
 		}
-		var_5b90059d.threat = ComputeAttackerThreat(entity, var_5b90059d);
-		if(var_5b90059d.threat > var_1cc53b35)
+		attackdata.threat = ComputeAttackerThreat(entity, attackdata);
+		if(attackdata.threat > maxthreat)
 		{
-			var_1cc53b35 = var_5b90059d.threat;
-			var_64e4a88a = var_5b90059d;
+			maxthreat = attackdata.threat;
+			dangerousattackerinfo = attackdata;
 		}
 	}
-	if(isdefined(var_64e4a88a) && var_1cc53b35 > 0)
+	if(isdefined(dangerousattackerinfo) && maxthreat > 0)
 	{
-		if(ShouldSwitchToNewThreat(entity, var_64e4a88a.attacker, var_1cc53b35))
+		if(ShouldSwitchToNewThreat(entity, dangerousattackerinfo.attacker, maxthreat))
 		{
-			thread WarlordDangerousEnemyAttack(entity, var_64e4a88a.attacker, var_1cc53b35);
+			thread WarlordDangerousEnemyAttack(entity, dangerousattackerinfo.attacker, maxthreat);
 		}
 	}
 	CheckifWeShouldMove(entity);
@@ -1557,48 +1557,48 @@ function UpdateAttackersList(entity, newAttacker, damage)
 */
 function CheckifWeShouldMove(entity)
 {
-	if(!isdefined(entity.var_84bdb4be) || entity.var_84bdb4be.size <= 1)
+	if(!isdefined(entity.knownattackers) || entity.knownattackers.size <= 1)
 	{
 		return;
 	}
-	var_a8e832eb = 0;
+	isstandstill = 0;
 	if(AtPreferedPoint(entity))
 	{
-		if(!isdefined(entity.var_7e5dd3e4) || GetTime() - entity.var_7e5dd3e4 < 1)
+		if(!isdefined(entity.current_prefered_point_start_time) || GetTime() - entity.current_prefered_point_start_time < 1)
 		{
 			return;
 		}
-		var_a8e832eb = 1;
+		isstandstill = 1;
 	}
-	if(!var_a8e832eb)
+	if(!isstandstill)
 	{
 		if(isdefined(entity.pathGoalPos))
 		{
 			if(Distance2DSquared(entity.pathGoalPos, entity.origin) < 36 * 36 && Abs(entity.pathGoalPos[2] - entity.origin[2]) < 45)
 			{
-				var_a8e832eb = 1;
+				isstandstill = 1;
 			}
 		}
 	}
-	if(var_a8e832eb)
+	if(isstandstill)
 	{
 		if(HaveTooLowToAttackEnemy(entity))
 		{
-			var_a94cf21a = 1;
+			dangerousattackerscount = 1;
 			break;
 		}
-		var_a94cf21a = 0;
-		foreach(attackerInfo in entity.var_84bdb4be)
+		dangerousattackerscount = 0;
+		foreach(attackerInfo in entity.knownattackers)
 		{
 			if(attackerInfo.damage > 200)
 			{
-				var_a94cf21a++;
+				dangerousattackerscount++;
 			}
 		}
-		if(var_a94cf21a > 1)
+		if(dangerousattackerscount > 1)
 		{
 			ClearPreferedPoint(entity);
-			entity.var_26ca18bb = 0;
+			entity.nextfindbetterpositiontime = 0;
 		}
 	}
 }
@@ -1617,20 +1617,20 @@ function WarlordDangerousEnemyAttack(entity, attacker, threat)
 	entity endon("disconnect");
 	entity endon("death");
 	attacker endon("death");
-	entity endon("hash_b160390f");
-	entity notify("hash_beb03d5e");
-	entity endon("hash_beb03d5e");
-	entity.var_8af76ae5 = GetTime();
-	entity.var_f8d4f481 = attacker;
-	entity.var_3968f41e = threat;
+	entity endon("angry_attack");
+	entity notify("dangerous_attack");
+	entity endon("dangerous_attack");
+	entity.lastdangerousattackertime = GetTime();
+	entity.currentdangerousattacker = attacker;
+	entity.currentmaxthreat = threat;
 	/#
-		namespace_e585b400::function_3d68d6d1(0, (0, 1, 0), "Dev Block strings are not supported");
+		warlorddebughelpers::printstate(0, (0, 1, 0), "Dev Block strings are not supported");
 	#/
 	shoottime = GetDvarFloat("warlordangryattack", 3);
 	entity ai::shoot_at_target("normal", attacker, undefined, shoottime, undefined, 1);
-	entity.var_f8d4f481 = undefined;
+	entity.currentdangerousattacker = undefined;
 	/#
-		namespace_e585b400::function_3d68d6d1(0, (0, 0, 1), "Dev Block strings are not supported");
+		warlorddebughelpers::printstate(0, (0, 0, 1), "Dev Block strings are not supported");
 	#/
 }
 
@@ -1655,11 +1655,11 @@ function warlordDamageOverride(eInflictor, eAttacker, iDamage, iDFlags, sMeansOf
 		iDamage = Int(iDamage * 0.25);
 	}
 	UpdateAttackersList(entity, eAttacker, iDamage);
-	if(entity.health <= entity.var_538edf9c)
+	if(entity.health <= entity.damageheavystatehealth)
 	{
 		clientfield::set("warlord_damage_state", 2);
 	}
-	else if(entity.health <= entity.var_3f5986f)
+	else if(entity.health <= entity.damagestatehealth)
 	{
 		clientfield::set("warlord_damage_state", 1);
 	}
@@ -1673,16 +1673,16 @@ function warlordDamageOverride(eInflictor, eAttacker, iDamage, iDFlags, sMeansOf
 	}
 	if(GetTime() - entity.lastDamageTime > 1500)
 	{
-		entity.var_9366282a = iDamage;
+		entity.accumilateddamage = iDamage;
 	}
 	else
 	{
-		entity.var_9366282a = entity.var_9366282a + iDamage;
+		entity.accumilateddamage = entity.accumilateddamage + iDamage;
 	}
-	var_9dcbd3e = GetDvarInt("warlordhuntdamage", 350);
-	if(entity.var_9366282a > GetScaledForPlayers(var_9dcbd3e, 1.5, 2, 2.5))
+	warlord_hunt_max_accumilated_damage_var = GetDvarInt("warlordhuntdamage", 350);
+	if(entity.accumilateddamage > GetScaledForPlayers(warlord_hunt_max_accumilated_damage_var, 1.5, 2, 2.5))
 	{
-		self.var_ce767dbd = GetTime() + 15000;
+		self.huntenemytime = GetTime() + 15000;
 	}
 	entity.lastDamageTime = GetTime();
 	return iDamage;
@@ -1700,18 +1700,18 @@ function warlordDamageOverride(eInflictor, eAttacker, iDamage, iDFlags, sMeansOf
 function warlordSpawnSetup()
 {
 	entity = self;
-	entity.var_568222a9 = 0;
-	entity.var_b654f978 = 0;
-	entity.var_2ac908f2 = 0;
-	entity.var_8af76ae5 = 0;
-	entity.var_3968f41e = 0;
+	entity.warlordaggressivemode = 0;
+	entity.isangryattack = 0;
+	entity.nextexposedpain = 0;
+	entity.lastdangerousattackertime = 0;
+	entity.currentmaxthreat = 0;
 	entity.ignorerunAndgundist = 1;
 	entity.combatmode = "no_cover";
 	AiUtility::AddAIOverrideDamageCallback(entity, &warlordDamageOverride);
 	entity.health = Int(GetScaledForPlayers(entity.health, 2, 2.5, 3));
 	entity.fullHealth = entity.health;
-	entity.var_3f5986f = Int(entity.fullHealth * 0.5);
-	entity.var_538edf9c = Int(entity.fullHealth * 0.25);
+	entity.damagestatehealth = Int(entity.fullHealth * 0.5);
+	entity.damageheavystatehealth = Int(entity.fullHealth * 0.25);
 	entity warlord_projectile_watcher();
 	clientfield::set("warlord_damage_state", 0);
 	clientfield::set("warlord_lights_state", 1);
@@ -1784,7 +1784,7 @@ function remove_repulsor()
 function repulsor_fx()
 {
 	self endon("death");
-	self endon("hash_85c65e4");
+	self endon("killing_repulsor");
 	while(1)
 	{
 		self util::waittill_any("projectile_applyattractor", "play_meleefx");
@@ -1792,7 +1792,7 @@ function repulsor_fx()
 		PlayFXOnTag("vehicle/fx_quadtank_airburst_ground", self, "tag_origin");
 		self playsound("wpn_trophy_alert");
 		self thread remove_repulsor();
-		self notify("hash_85c65e4");
+		self notify("killing_repulsor");
 	}
 }
 
@@ -1815,18 +1815,18 @@ function trigger_player_shock_fx()
 	self clientfield::set_to_player("player_shock_fx", self._player_shock_fx_quadtank_melee);
 }
 
-#namespace namespace_e585b400;
+#namespace warlorddebughelpers;
 
 /*
-	Name: function_3d68d6d1
-	Namespace: namespace_e585b400
+	Name: printstate
+	Namespace: warlorddebughelpers
 	Checksum: 0x90CAF4EC
 	Offset: 0x5260
 	Size: 0x273
 	Parameters: 3
 	Flags: None
 */
-function function_3d68d6d1(State, color, string)
+function printstate(State, color, string)
 {
 	/#
 		if(GetDvarInt("Dev Block strings are not supported") > 0)
@@ -1837,9 +1837,9 @@ function function_3d68d6d1(State, color, string)
 			}
 			if(!isdefined(State))
 			{
-				if(!isdefined(self) || !isdefined(self.var_dd97082a) || self.var_dd97082a != string)
+				if(!isdefined(self) || !isdefined(self.lastmessage) || self.lastmessage != string)
 				{
-					self.var_dd97082a = string;
+					self.lastmessage = string;
 					PrintTopRightln(string + GetTime(), color, -1);
 				}
 				return;
@@ -1877,47 +1877,47 @@ function function_3d68d6d1(State, color, string)
 }
 
 /*
-	Name: function_3f561bff
-	Namespace: namespace_e585b400
+	Name: trystate
+	Namespace: warlorddebughelpers
 	Checksum: 0x656E1237
 	Offset: 0x54E0
 	Size: 0x93
 	Parameters: 3
 	Flags: None
 */
-function function_3f561bff(entity, State, var_db3a489f)
+function trystate(entity, State, bchecknew)
 {
 	/#
 		if(GetDvarInt("Dev Block strings are not supported") > 0)
 		{
-			if(!(isdefined(var_db3a489f) && function_ee4f0cdc(entity, State)))
+			if(!(isdefined(bchecknew) && isnewstate(entity, State)))
 			{
 				color = (1, 1, 1);
-				entity function_3d68d6d1(State, color);
+				entity printstate(State, color);
 			}
 		}
 	#/
 }
 
 /*
-	Name: function_4160d34d
-	Namespace: namespace_e585b400
+	Name: setcurrentstate
+	Namespace: warlorddebughelpers
 	Checksum: 0x51C59591
 	Offset: 0x5580
 	Size: 0x117
 	Parameters: 3
 	Flags: None
 */
-function function_4160d34d(entity, State, var_4b0cc01e)
+function setcurrentstate(entity, State, bcanupdate)
 {
-	if(!isdefined(var_4b0cc01e))
+	if(!isdefined(bcanupdate))
 	{
-		var_4b0cc01e = 0;
+		bcanupdate = 0;
 	}
 	/#
 		if(GetDvarInt("Dev Block strings are not supported") > 0)
 		{
-			if(!isdefined(var_4b0cc01e) || function_ee4f0cdc(entity, State))
+			if(!isdefined(bcanupdate) || isnewstate(entity, State))
 			{
 				color = (0, 1, 0);
 			}
@@ -1928,49 +1928,49 @@ function function_4160d34d(entity, State, var_4b0cc01e)
 			if(!isdefined(State))
 			{
 				color = (0, 0, 1);
-				entity function_3d68d6d1(entity.currentState, color, "Dev Block strings are not supported");
+				entity printstate(entity.currentState, color, "Dev Block strings are not supported");
 			}
-			entity function_3d68d6d1(State, color);
+			entity printstate(State, color);
 		}
 	#/
 	entity.currentState = State;
 }
 
 /*
-	Name: function_c2db5ca5
-	Namespace: namespace_e585b400
+	Name: setstatefailed
+	Namespace: warlorddebughelpers
 	Checksum: 0x5896E1E2
 	Offset: 0x56A0
 	Size: 0x6B
 	Parameters: 2
 	Flags: None
 */
-function function_c2db5ca5(entity, State)
+function setstatefailed(entity, State)
 {
 	/#
 		if(GetDvarInt("Dev Block strings are not supported") > 0)
 		{
 			color = (1, 1, 0);
-			entity function_3d68d6d1(State, color);
+			entity printstate(State, color);
 		}
 	#/
 }
 
 /*
-	Name: function_ee4f0cdc
-	Namespace: namespace_e585b400
+	Name: isnewstate
+	Namespace: warlorddebughelpers
 	Checksum: 0xDB5AA654
 	Offset: 0x5718
 	Size: 0x7D
 	Parameters: 2
 	Flags: None
 */
-function function_ee4f0cdc(entity, State)
+function isnewstate(entity, State)
 {
-	var_42b6f508 = 0;
+	bnewstate = 0;
 	if(!isdefined(entity.currentState))
 	{
-		var_42b6f508 = 1;
+		bnewstate = 1;
 	}
 	else if(!isdefined(State))
 	{
@@ -1978,8 +1978,8 @@ function function_ee4f0cdc(entity, State)
 	}
 	else if(entity.currentState != State)
 	{
-		var_42b6f508 = 1;
+		bnewstate = 1;
 	}
-	return var_42b6f508;
+	return bnewstate;
 }
 

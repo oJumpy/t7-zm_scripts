@@ -5,11 +5,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_19e79ea1;
+#namespace stalingrad_dragon_strike;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0xC244C572
 	Offset: 0x230
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x58C0319B
 	Offset: 0x270
 	Size: 0x123
@@ -40,7 +40,7 @@ function __init__()
 
 /*
 	Name: function_5f0e6212
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x3CA1EDA7
 	Offset: 0x3A0
 	Size: 0xEB
@@ -49,23 +49,23 @@ function __init__()
 */
 function function_5f0e6212(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	if(isdefined(self.var_fbe6c07a))
+	if(isdefined(self.fx_light_1))
 	{
-		stopfx(localClientNum, self.var_fbe6c07a);
+		stopfx(localClientNum, self.fx_light_1);
 	}
 	if(newVal == 2)
 	{
-		self.var_fbe6c07a = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_red_dragonstrike", self, "tag_nixie_red_" + "0");
+		self.fx_light_1 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_red_dragonstrike", self, "tag_nixie_red_" + "0");
 	}
 	else
 	{
-		self.var_fbe6c07a = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_green_dragonstrike", self, "tag_nixie_green_" + "0");
+		self.fx_light_1 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_green_dragonstrike", self, "tag_nixie_green_" + "0");
 	}
 }
 
 /*
 	Name: function_390be7a9
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x5C8654A
 	Offset: 0x498
 	Size: 0xEB
@@ -74,23 +74,23 @@ function function_5f0e6212(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_390be7a9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	if(isdefined(self.var_d5e44611))
+	if(isdefined(self.fx_light_2))
 	{
-		stopfx(localClientNum, self.var_d5e44611);
+		stopfx(localClientNum, self.fx_light_2);
 	}
 	if(newVal == 2)
 	{
-		self.var_d5e44611 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_red_dragonstrike", self, "tag_nixie_red_" + "1");
+		self.fx_light_2 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_red_dragonstrike", self, "tag_nixie_red_" + "1");
 	}
 	else
 	{
-		self.var_d5e44611 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_green_dragonstrike", self, "tag_nixie_green_" + "1");
+		self.fx_light_2 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_green_dragonstrike", self, "tag_nixie_green_" + "1");
 	}
 }
 
 /*
 	Name: function_13096d40
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x582AAE33
 	Offset: 0x590
 	Size: 0xEB
@@ -99,23 +99,23 @@ function function_390be7a9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_13096d40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	if(isdefined(self.var_afe1cba8))
+	if(isdefined(self.fx_light_3))
 	{
-		stopfx(localClientNum, self.var_afe1cba8);
+		stopfx(localClientNum, self.fx_light_3);
 	}
 	if(newVal == 2)
 	{
-		self.var_afe1cba8 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_red_dragonstrike", self, "tag_nixie_red_" + "2");
+		self.fx_light_3 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_red_dragonstrike", self, "tag_nixie_red_" + "2");
 	}
 	else
 	{
-		self.var_afe1cba8 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_green_dragonstrike", self, "tag_nixie_green_" + "2");
+		self.fx_light_3 = PlayFXOnTag(localClientNum, "dlc3/stalingrad/fx_glow_green_dragonstrike", self, "tag_nixie_green_" + "2");
 	}
 }
 
 /*
 	Name: function_1d1ac61f
-	Namespace: namespace_19e79ea1
+	Namespace: stalingrad_dragon_strike
 	Checksum: 0x1B5C4922
 	Offset: 0x688
 	Size: 0xEB

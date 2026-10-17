@@ -45,8 +45,8 @@ function __init__()
 	callback::on_spawned(&onPlayerSpawned);
 	zm_spawner::register_zombie_damage_callback(&staff_fire_zombie_damage_response);
 	zm_spawner::register_zombie_death_event_callback(&staff_fire_death_event);
-	level.var_32bc7eba = GetWeapon("staff_fire");
-	level.var_a7e44c35 = GetWeapon("staff_fire_upgraded");
+	level.w_staff_fire = GetWeapon("staff_fire");
+	level.w_staff_fire_upgraded = GetWeapon("staff_fire_upgraded");
 }
 
 /*
@@ -271,7 +271,7 @@ function fire_additional_shots(w_weapon)
 	for(i = 1; i <= n_shots; i++)
 	{
 		wait(0.35);
-		if(isdefined(self) && self GetCurrentWeapon() == level.var_a7e44c35)
+		if(isdefined(self) && self GetCurrentWeapon() == level.w_staff_fire_upgraded)
 		{
 			v_player_angles = VectorToAngles(self GetWeaponForwardDir());
 			n_player_pitch = v_player_angles[0];
@@ -712,21 +712,21 @@ function function_50814f21(is_on_fire)
 		if(!isdefined(self.old_model))
 		{
 			self.old_model = self.model;
-			self.var_f08c601 = self.head;
-			self.var_7cff9f25 = self.hatModel;
+			self.old_head = self.head;
+			self.old_hatmodel = self.hatModel;
 		}
 		self SetModel(self.old_model + "_fire");
-		if(isdefined(self.var_f08c601) && (!isdefined(self.head_gibbed) && self.head_gibbed))
+		if(isdefined(self.old_head) && (!isdefined(self.head_gibbed) && self.head_gibbed))
 		{
 			self Detach(self.head);
-			self Attach(self.var_f08c601 + "_fire");
-			self.head = self.var_f08c601 + "_fire";
+			self Attach(self.old_head + "_fire");
+			self.head = self.old_head + "_fire";
 		}
-		if(isdefined(self.var_7cff9f25) && (!isdefined(self.hat_gibbed) && self.hat_gibbed))
+		if(isdefined(self.old_hatmodel) && (!isdefined(self.hat_gibbed) && self.hat_gibbed))
 		{
 			self Detach(self.hatModel);
-			self Attach(self.var_7cff9f25 + "_fire");
-			self.hatModel = self.var_7cff9f25 + "_fire";
+			self Attach(self.old_hatmodel + "_fire");
+			self.hatModel = self.old_hatmodel + "_fire";
 		}
 	}
 	else if(!is_on_fire && isdefined(self.old_model))
@@ -734,17 +734,17 @@ function function_50814f21(is_on_fire)
 		self.no_gib = undefined;
 		self SetModel(self.old_model);
 		self.old_model = undefined;
-		if(isdefined(self.var_f08c601) && (!isdefined(self.head_gibbed) && self.head_gibbed))
+		if(isdefined(self.old_head) && (!isdefined(self.head_gibbed) && self.head_gibbed))
 		{
 			self Detach(self.head);
-			self Attach(self.var_f08c601);
-			self.var_f08c601 = undefined;
+			self Attach(self.old_head);
+			self.old_head = undefined;
 		}
-		if(isdefined(self.var_7cff9f25) && (!isdefined(self.hat_gibbed) && self.hat_gibbed))
+		if(isdefined(self.old_hatmodel) && (!isdefined(self.hat_gibbed) && self.hat_gibbed))
 		{
 			self Detach(self.hatModel);
-			self Attach(self.var_7cff9f25);
-			self.var_7cff9f25 = undefined;
+			self Attach(self.old_hatmodel);
+			self.old_hatmodel = undefined;
 		}
 	}
 }

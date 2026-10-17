@@ -12,7 +12,7 @@
 #namespace cTeamGather;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: cTeamGather
 	Checksum: 0x582A1C21
 	Offset: 0x590
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self.e_gameobject = undefined;
 	self.n_font_scale = 2;
@@ -34,7 +34,7 @@ function function_9b385ca5()
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: cTeamGather
 	Checksum: 0x99EC1590
 	Offset: 0x610
@@ -42,7 +42,7 @@ function function_9b385ca5()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -857,8 +857,8 @@ function private autoexec cTeamGather()
 	classes.cTeamGather[0].__vtable[1811269083] = &cTeamGather::teamgather_success;
 	classes.cTeamGather[0].__vtable[-1768666429] = &cTeamGather::create_teamgather_event;
 	classes.cTeamGather[0].__vtable[853843291] = &cTeamGather::CleanUp;
-	classes.cTeamGather[0].__vtable[1606033458] = &cTeamGather::function_5fba2032;
-	classes.cTeamGather[0].__vtable[-1690805083] = &cTeamGather::function_9b385ca5;
+	classes.cTeamGather[0].__vtable[1606033458] = &cTeamGather::__destructor;
+	classes.cTeamGather[0].__vtable[-1690805083] = &cTeamGather::__constructor;
 }
 
 /*
@@ -879,7 +879,7 @@ function setup_teamgather(v_interact_pos, v_interact_angles, e_interact_entity)
 	v_trace = bullettrace(v_start, v_end, 0, undefined);
 	v_floor_pos = v_trace["position"];
 	v_gather_pos = (v_gather_pos[0], v_gather_pos[1], v_floor_pos[2] + 10);
-	function_9b385ca5();
+	__constructor();
 	c_teamgather = cTeamGather;
 	success = create_teamgather_event(c_teamgather, v_interact_pos, v_interact_angles, v_gather_pos);
 	if(success)
@@ -895,7 +895,7 @@ function setup_teamgather(v_interact_pos, v_interact_angles, e_interact_entity)
 }
 
 /*
-	Name: function_a8111e80
+	Name: mike_debug_line
 	Namespace: teamgather
 	Checksum: 0xE9E65ECD
 	Offset: 0x2E00
@@ -903,10 +903,10 @@ function setup_teamgather(v_interact_pos, v_interact_angles, e_interact_entity)
 	Parameters: 2
 	Flags: None
 */
-function function_a8111e80(v1, v2)
+function mike_debug_line(v1, v2)
 {
-	level notify("hash_62ab67ff");
-	self endon("hash_62ab67ff");
+	level notify("hello mike");
+	self endon("hello mike");
 	while(1)
 	{
 		/#

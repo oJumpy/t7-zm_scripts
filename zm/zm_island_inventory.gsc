@@ -70,7 +70,7 @@ function main()
 function function_1a9a4375()
 {
 	self endon("disconnect");
-	self.var_df4182b1 = 0;
+	self.has_gasmask = 0;
 	self.var_4d1c77e5 = 0;
 	while(1)
 	{
@@ -81,7 +81,7 @@ function function_1a9a4375()
 		var_ba18d83c = 10;
 		self thread zm_craftables::player_show_craftable_parts_ui(undefined, "zmInventory.gaskmask_gasmask_active", 0);
 		self clientfield::set_to_player("gaskmask_gasmask_progress", var_ba18d83c);
-		while(isdefined(self.var_df4182b1) && self.var_df4182b1 && var_ba18d83c > 0)
+		while(isdefined(self.has_gasmask) && self.has_gasmask && var_ba18d83c > 0)
 		{
 			self waittill("hash_b56a74a8");
 			self playsoundtoplayer("zmb_gasmask_use", self);
@@ -176,6 +176,6 @@ function function_8801a9c5()
 	self endon("disconnect");
 	self util::waittill_any("death", "player_lost_gasmask");
 	self playsoundtoplayer("zmb_gasmask_break", self);
-	self.var_df4182b1 = 0;
+	self.has_gasmask = 0;
 }
 

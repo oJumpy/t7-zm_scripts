@@ -60,7 +60,7 @@ function event()
 {
 	self endon("disconnect");
 	self endon("hash_994d5e9e");
-	var_63a08f52 = 0;
+	limit_count = 0;
 	self thread bgb::set_timer(2, 2);
 	for(;;)
 	{
@@ -71,10 +71,10 @@ function event()
 		}
 		self thread result();
 		self playsound("zmb_bgb_powerup_burnedout");
-		var_63a08f52++;
-		self thread bgb::set_timer(2 - var_63a08f52, 2);
+		limit_count++;
+		self thread bgb::set_timer(2 - limit_count, 2);
 		self bgb::do_one_shot_use();
-		if(2 <= var_63a08f52)
+		if(2 <= limit_count)
 		{
 			return;
 		}
@@ -101,7 +101,7 @@ function result()
 		return;
 	}
 	dist_sq = 720 * 720;
-	var_c8f67e5c = [];
+	zombies_burned_out = [];
 	for(i = 0; i < zombies.size; i++)
 	{
 		if(isdefined(zombies[i].ignore_nuke) && zombies[i].ignore_nuke)
@@ -125,20 +125,20 @@ function result()
 		{
 			zombies[i] clientfield::increment("zm_bgb_burned_out" + "_fire_torso" + "_actor");
 		}
-		var_c8f67e5c[var_c8f67e5c.size] = zombies[i];
+		zombies_burned_out[zombies_burned_out.size] = zombies[i];
 	}
-	for(i = 0; i < var_c8f67e5c.size; i++)
+	for(i = 0; i < zombies_burned_out.size; i++)
 	{
 		util::wait_network_frame();
-		if(!isdefined(var_c8f67e5c[i]))
+		if(!isdefined(zombies_burned_out[i]))
 		{
 			continue;
 		}
-		if(zm_utility::is_magic_bullet_shield_enabled(var_c8f67e5c[i]))
+		if(zm_utility::is_magic_bullet_shield_enabled(zombies_burned_out[i]))
 		{
 			continue;
 		}
-		var_c8f67e5c[i] DoDamage(var_c8f67e5c[i].health + 666, var_c8f67e5c[i].origin);
+		zombies_burned_out[i] DoDamage(zombies_burned_out[i].health + 666, zombies_burned_out[i].origin);
 		self zm_stats::increment_challenge_stat("GUM_GOBBLER_BURNED_OUT");
 	}
 }

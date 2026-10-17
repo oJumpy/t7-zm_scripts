@@ -41,7 +41,7 @@ function __init__()
 #namespace SQUAD;
 
 /*
-	Name: function_9b385ca5
+	Name: __constructor
 	Namespace: SQUAD
 	Checksum: 0x4FA8A6EA
 	Offset: 0x248
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 0
 	Flags: None
 */
-function function_9b385ca5()
+function __constructor()
 {
 	self.squadLeader = 0;
 	self.squadMembers = [];
@@ -190,7 +190,7 @@ function think()
 }
 
 /*
-	Name: function_5fba2032
+	Name: __destructor
 	Namespace: SQUAD
 	Checksum: 0x99EC1590
 	Offset: 0x510
@@ -198,7 +198,7 @@ function think()
 	Parameters: 0
 	Flags: None
 */
-function function_5fba2032()
+function __destructor()
 {
 }
 
@@ -216,7 +216,7 @@ function function_5fba2032()
 function private autoexec SQUAD()
 {
 	classes.SQUAD[0] = spawnstruct();
-	classes.SQUAD[0].__vtable[1606033458] = &SQUAD::function_5fba2032;
+	classes.SQUAD[0].__vtable[1606033458] = &SQUAD::__destructor;
 	classes.SQUAD[0].__vtable[1077602763] = &SQUAD::think;
 	classes.SQUAD[0].__vtable[-956678077] = &SQUAD::RemoveAIFromSqaud;
 	classes.SQUAD[0].__vtable[2131588255] = &SQUAD::AddAIToSquad;
@@ -224,7 +224,7 @@ function private autoexec SQUAD()
 	classes.SQUAD[0].__vtable[-667235832] = &SQUAD::GetLeader;
 	classes.SQUAD[0].__vtable[-407785572] = &SQUAD::getSquadBreadCrumb;
 	classes.SQUAD[0].__vtable[-997895106] = &SQUAD::addSquadBreadCrumbs;
-	classes.SQUAD[0].__vtable[-1690805083] = &SQUAD::function_9b385ca5;
+	classes.SQUAD[0].__vtable[-1690805083] = &SQUAD::__constructor;
 }
 
 /*
@@ -238,7 +238,7 @@ function private autoexec SQUAD()
 */
 function private CreateSquad(squadName)
 {
-	function_9b385ca5();
+	__constructor();
 	level._squads[squadName] = SQUAD;
 	return level._squads[squadName];
 }

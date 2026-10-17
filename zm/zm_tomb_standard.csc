@@ -3,11 +3,11 @@
 #using scripts\shared\flag_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_a026fc99;
+#namespace zm_tomb_standard;
 
 /*
 	Name: Precache
-	Namespace: namespace_a026fc99
+	Namespace: zm_tomb_standard
 	Checksum: 0x99EC1590
 	Offset: 0xF0
 	Size: 0x3
@@ -20,7 +20,7 @@ function Precache()
 
 /*
 	Name: main
-	Namespace: namespace_a026fc99
+	Namespace: zm_tomb_standard
 	Checksum: 0x99EC1590
 	Offset: 0x100
 	Size: 0x3

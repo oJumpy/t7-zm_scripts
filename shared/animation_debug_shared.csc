@@ -20,11 +20,11 @@ function autoexec __init__()
 		SetDvar("Dev Block strings are not supported", 0);
 		while(1)
 		{
-			var_77a83846 = GetDvarInt("Dev Block strings are not supported", 0) || GetDvarInt("Dev Block strings are not supported", 0);
-			level flagsys::set_val("Dev Block strings are not supported", var_77a83846);
-			if(!var_77a83846)
+			anim_debug = GetDvarInt("Dev Block strings are not supported", 0) || GetDvarInt("Dev Block strings are not supported", 0);
+			level flagsys::set_val("Dev Block strings are not supported", anim_debug);
+			if(!anim_debug)
 			{
-				level notify("hash_bcf33e7b");
+				level notify("kill_anim_debug");
 			}
 			wait(0.05);
 		}
@@ -45,12 +45,12 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag, n_
 	/#
 		self endon("death");
 		self endon("scriptedanim");
-		self notify("hash_b8a0309f");
-		self endon("hash_b8a0309f");
+		self notify("_anim_info_render_thread_");
+		self endon("_anim_info_render_thread_");
 		while(1)
 		{
 			level flagsys::wait_till("Dev Block strings are not supported");
-			function_b8bf0754();
+			_init_frame();
 			str_extra_info = "Dev Block strings are not supported";
 			color = (0, 1, 1);
 			if(flagsys::get("Dev Block strings are not supported"))
@@ -88,21 +88,21 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag, n_
 			{
 				str_name = self.targetname;
 			}
-			print3d(self.origin, self GetEntNum() + function_6596e38() + "Dev Block strings are not supported" + str_name, color, 0.8, 0.3);
+			print3d(self.origin, self GetEntNum() + get_ent_type() + "Dev Block strings are not supported" + str_name, color, 0.8, 0.3);
 			print3d(self.origin - VectorScale((0, 0, 1), 5), "Dev Block strings are not supported" + animation, color, 0.8, 0.3);
 			print3d(self.origin - VectorScale((0, 0, 1), 7), str_extra_info, color, 0.8, 0.15);
-			function_9063d1b4("Dev Block strings are not supported", "Dev Block strings are not supported");
-			function_9063d1b4("Dev Block strings are not supported", "Dev Block strings are not supported");
-			function_9063d1b4("Dev Block strings are not supported", "Dev Block strings are not supported");
-			function_9063d1b4("Dev Block strings are not supported", "Dev Block strings are not supported");
-			function_2182aee7();
+			render_tag("Dev Block strings are not supported", "Dev Block strings are not supported");
+			render_tag("Dev Block strings are not supported", "Dev Block strings are not supported");
+			render_tag("Dev Block strings are not supported", "Dev Block strings are not supported");
+			render_tag("Dev Block strings are not supported", "Dev Block strings are not supported");
+			_reset_frame();
 			wait(0.01);
 		}
 	#/
 }
 
 /*
-	Name: function_6596e38
+	Name: get_ent_type
 	Namespace: animation
 	Checksum: 0xF464E42
 	Offset: 0x680
@@ -110,7 +110,7 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag, n_
 	Parameters: 0
 	Flags: None
 */
-function function_6596e38()
+function get_ent_type()
 {
 	/#
 		if(isdefined(self.classname))
@@ -124,7 +124,7 @@ function function_6596e38()
 }
 
 /*
-	Name: function_b8bf0754
+	Name: _init_frame
 	Namespace: animation
 	Checksum: 0x3EDA4064
 	Offset: 0x6C8
@@ -132,14 +132,14 @@ function function_6596e38()
 	Parameters: 0
 	Flags: None
 */
-function function_b8bf0754()
+function _init_frame()
 {
 	/#
 	#/
 }
 
 /*
-	Name: function_2182aee7
+	Name: _reset_frame
 	Namespace: animation
 	Checksum: 0xA115834F
 	Offset: 0x6D8
@@ -147,15 +147,15 @@ function function_b8bf0754()
 	Parameters: 0
 	Flags: None
 */
-function function_2182aee7()
+function _reset_frame()
 {
 	/#
-		self.var_cd57ce78 = undefined;
+		self.v_centroid = undefined;
 	#/
 }
 
 /*
-	Name: function_9063d1b4
+	Name: render_tag
 	Namespace: animation
 	Checksum: 0xBA824C8C
 	Offset: 0x6F8
@@ -163,7 +163,7 @@ function function_2182aee7()
 	Parameters: 2
 	Flags: None
 */
-function function_9063d1b4(str_tag, str_label)
+function render_tag(str_tag, str_label)
 {
 	/#
 		if(!isdefined(str_label))
@@ -175,9 +175,9 @@ function function_9063d1b4(str_tag, str_label)
 		{
 			v_tag_ang = self GetTagAngles(str_tag);
 			anim_origin_render(v_tag_org, v_tag_ang, 2, str_label);
-			if(isdefined(self.var_cd57ce78))
+			if(isdefined(self.v_centroid))
 			{
-				line(self.var_cd57ce78, v_tag_org, VectorScale((1, 1, 1), 0.3), 0.5, 1);
+				line(self.v_centroid, v_tag_org, VectorScale((1, 1, 1), 0.3), 0.5, 1);
 			}
 		}
 	#/

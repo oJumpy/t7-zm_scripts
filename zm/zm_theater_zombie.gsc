@@ -34,7 +34,7 @@
 function autoexec init()
 {
 	SetDvar("scr_zm_use_code_enemy_selection", 0);
-	level.closest_player_override = &function_4fbc4348;
+	level.closest_player_override = &theater_closest_player;
 	level thread update_closest_player();
 	level.move_valid_poi_to_navmesh = 1;
 	level.pathdist_type = 2;
@@ -55,7 +55,7 @@ function private function_ce2310c1(player)
 }
 
 /*
-	Name: function_9b4b4134
+	Name: theater_validate_last_closest_player
 	Namespace: namespace_38087cad
 	Checksum: 0x32B1B233
 	Offset: 0x478
@@ -63,7 +63,7 @@ function private function_ce2310c1(player)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9b4b4134(players)
+function private theater_validate_last_closest_player(players)
 {
 	if(isdefined(self.last_closest_player) && (isdefined(self.last_closest_player.am_i_valid) && self.last_closest_player.am_i_valid) && function_ce2310c1(self.last_closest_player))
 	{
@@ -82,7 +82,7 @@ function private function_9b4b4134(players)
 }
 
 /*
-	Name: function_4fbc4348
+	Name: theater_closest_player
 	Namespace: namespace_38087cad
 	Checksum: 0x933F06AA
 	Offset: 0x5B0
@@ -90,7 +90,7 @@ function private function_9b4b4134(players)
 	Parameters: 2
 	Flags: None
 */
-function function_4fbc4348(origin, players)
+function theater_closest_player(origin, players)
 {
 	if(players.size == 0)
 	{
@@ -123,7 +123,7 @@ function function_4fbc4348(origin, players)
 	}
 	if(isdefined(level.last_closest_time) && level.last_closest_time >= level.time)
 	{
-		self function_9b4b4134(players);
+		self theater_validate_last_closest_player(players);
 		return self.last_closest_player;
 	}
 	if(isdefined(self.need_closest_player) && self.need_closest_player)
@@ -166,7 +166,7 @@ function function_4fbc4348(origin, players)
 	{
 		self zm_utility::approximate_path_dist(closest);
 	}
-	self function_9b4b4134(players);
+	self theater_validate_last_closest_player(players);
 	return self.last_closest_player;
 }
 

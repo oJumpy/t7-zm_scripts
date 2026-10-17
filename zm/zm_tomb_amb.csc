@@ -20,20 +20,20 @@
 function main()
 {
 	audio::snd_set_snapshot("cmn_fade_in");
-	level.var_3e9ce4b5 = undefined;
+	level.sndchambermusoverride = undefined;
 	level thread function_af7b8418("water");
 	level thread function_af7b8418("fire");
 	level thread function_af7b8418("air");
 	level thread function_af7b8418("lightning");
 	setsoundcontext("train", "tunnel");
-	level.var_da1a3c87 = &function_da1a3c87;
-	function_6cc11add();
-	level thread function_714746a6();
+	level.sndambientcontextonplayer = &sndambientcontextonplayer;
+	init_audio_clientfields();
+	level thread sndstartambience();
 	thread snd_play_loopers();
-	level thread function_ee449b54();
+	level thread sndtombbgsetup();
 	level thread function_c9207335();
 	level thread function_c052f9b8();
-	level thread function_d19cb2f8();
+	level thread startzmbspawnersoundloops();
 }
 
 /*
@@ -124,17 +124,17 @@ function function_60a32834()
 function function_d667714e()
 {
 	level.var_b6342abd = "mus_tomb_underscore_null";
-	level.var_6d9d81aa = "mus_tomb_underscore_null";
+	level.newmus = "mus_tomb_underscore_null";
 	level.var_eb526c90 = spawn(0, (0, 0, 0), "script_origin");
 	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(level.var_b6342abd, 2);
 	while(1)
 	{
 		level waittill("hash_51d7bc7c", location);
-		level.var_6d9d81aa = "mus_tomb_underscore_" + location;
-		if(level.var_6d9d81aa != level.var_b6342abd)
+		level.newmus = "mus_tomb_underscore_" + location;
+		if(level.newmus != level.var_b6342abd)
 		{
-			level thread function_b234849(level.var_6d9d81aa);
-			level.var_b6342abd = level.var_6d9d81aa;
+			level thread function_b234849(level.newmus);
+			level.var_b6342abd = level.newmus;
 		}
 	}
 }
@@ -167,12 +167,12 @@ function function_89793e8f()
 	Parameters: 1
 	Flags: None
 */
-function function_b234849(var_6d9d81aa)
+function function_b234849(newmus)
 {
 	level endon("hash_51d7bc7c");
 	level.var_eb526c90 StopAllLoopSounds(2);
 	wait(1);
-	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(var_6d9d81aa, 2);
+	level.var_9433cf5a = level.var_eb526c90 PlayLoopSound(newmus, 2);
 }
 
 /*
@@ -188,12 +188,12 @@ function function_c052f9b8()
 {
 	while(1)
 	{
-		level waittill("hash_f099c69d");
-		if(isdefined(level.var_1c69bb12.var_b13d6dfb) && level.var_1c69bb12.var_b13d6dfb)
+		level waittill("sndweatherupdate");
+		if(isdefined(level.sndweather.israin) && level.sndweather.israin)
 		{
 			setsoundcontext("train", "country");
 		}
-		else if(isdefined(level.var_1c69bb12.var_308c43c8) && level.var_1c69bb12.var_308c43c8)
+		else if(isdefined(level.sndweather.issnow) && level.sndweather.issnow)
 		{
 			setsoundcontext("train", "city");
 		}
@@ -205,7 +205,7 @@ function function_c052f9b8()
 }
 
 /*
-	Name: function_33be1969
+	Name: sndweathersetup
 	Namespace: zm_tomb_amb
 	Checksum: 0x4AD49724
 	Offset: 0xD20
@@ -213,15 +213,15 @@ function function_c052f9b8()
 	Parameters: 0
 	Flags: None
 */
-function function_33be1969()
+function sndweathersetup()
 {
-	level.var_1c69bb12 = spawnstruct();
-	level.var_1c69bb12.var_b13d6dfb = 0;
-	level.var_1c69bb12.var_308c43c8 = 0;
+	level.sndweather = spawnstruct();
+	level.sndweather.israin = 0;
+	level.sndweather.issnow = 0;
 }
 
 /*
-	Name: function_da1a3c87
+	Name: sndambientcontextonplayer
 	Namespace: zm_tomb_amb
 	Checksum: 0xDE974E92
 	Offset: 0xD70
@@ -229,7 +229,7 @@ function function_33be1969()
 	Parameters: 2
 	Flags: None
 */
-function function_da1a3c87(room, player)
+function sndambientcontextonplayer(room, player)
 {
 	switch(room)
 	{
@@ -250,7 +250,7 @@ function function_da1a3c87(room, player)
 }
 
 /*
-	Name: function_6fae68d7
+	Name: sndcapturezonetrigs
 	Namespace: zm_tomb_amb
 	Checksum: 0xBEA9063C
 	Offset: 0xE10
@@ -258,7 +258,7 @@ function function_da1a3c87(room, player)
 	Parameters: 0
 	Flags: None
 */
-function function_6fae68d7()
+function sndcapturezonetrigs()
 {
 	trigs = GetEntArray(0, "sndCaptureZone", "targetname");
 	if(isdefined(trigs))
@@ -267,13 +267,13 @@ function function_6fae68d7()
 		{
 			trig.players = 0;
 			trig.active = 0;
-			trig thread function_6576aaa4();
+			trig thread sndcapturezonetrig();
 		}
 	}
 }
 
 /*
-	Name: function_6576aaa4
+	Name: sndcapturezonetrig
 	Namespace: zm_tomb_amb
 	Checksum: 0xB35220D4
 	Offset: 0xF08
@@ -281,21 +281,21 @@ function function_6fae68d7()
 	Parameters: 0
 	Flags: None
 */
-function function_6576aaa4()
+function sndcapturezonetrig()
 {
-	self thread function_74c85975();
+	self thread sndcapturezonetrig_deactivate();
 	while(1)
 	{
 		self waittill("trigger", who);
-		if(who isPlayer() && (!isdefined(who.var_c7721e47) && who.var_c7721e47))
+		if(who isPlayer() && (!isdefined(who.sndincapzone) && who.sndincapzone))
 		{
 			self.players++;
-			who.var_c7721e47 = 1;
-			self thread function_8e8fcdfc(who);
+			who.sndincapzone = 1;
+			self thread sndcapturezonetrig_player(who);
 			if(!self.active)
 			{
 				self.active = 1;
-				self thread function_3abd927c();
+				self thread sndcapturezonetrig_activate();
 			}
 		}
 		wait(0.05);
@@ -303,7 +303,7 @@ function function_6576aaa4()
 }
 
 /*
-	Name: function_8e8fcdfc
+	Name: sndcapturezonetrig_player
 	Namespace: zm_tomb_amb
 	Checksum: 0x14170CF6
 	Offset: 0x1000
@@ -311,7 +311,7 @@ function function_6576aaa4()
 	Parameters: 1
 	Flags: None
 */
-function function_8e8fcdfc(player)
+function sndcapturezonetrig_player(player)
 {
 	while(isdefined(self) && isdefined(player) && player istouching(self))
 	{
@@ -320,13 +320,13 @@ function function_8e8fcdfc(player)
 	self.players--;
 	if(isdefined(player))
 	{
-		player.var_c7721e47 = 0;
+		player.sndincapzone = 0;
 	}
-	self notify("hash_961b140e");
+	self notify("player_left");
 }
 
 /*
-	Name: function_3abd927c
+	Name: sndcapturezonetrig_activate
 	Namespace: zm_tomb_amb
 	Checksum: 0x26CD2E68
 	Offset: 0x1080
@@ -334,18 +334,18 @@ function function_8e8fcdfc(player)
 	Parameters: 0
 	Flags: None
 */
-function function_3abd927c()
+function sndcapturezonetrig_activate()
 {
 	playsound(0, "zmb_zone_plate_down", self.origin);
-	self.var_5ad6cc0c = self PlayLoopSound("zmb_zone_plate_loop", 2);
-	self waittill("hash_8cd1836c");
+	self.sndloop = self PlayLoopSound("zmb_zone_plate_loop", 2);
+	self waittill("zone_deactivate");
 	self.active = 0;
-	self StopLoopSound(self.var_5ad6cc0c);
+	self StopLoopSound(self.sndloop);
 	playsound(0, "zmb_zone_plate_up", self.origin);
 }
 
 /*
-	Name: function_74c85975
+	Name: sndcapturezonetrig_deactivate
 	Namespace: zm_tomb_amb
 	Checksum: 0xA2CC9AFD
 	Offset: 0x1140
@@ -353,21 +353,21 @@ function function_3abd927c()
 	Parameters: 0
 	Flags: None
 */
-function function_74c85975()
+function sndcapturezonetrig_deactivate()
 {
 	while(1)
 	{
-		self waittill("hash_961b140e");
+		self waittill("player_left");
 		if(self.players <= 0)
 		{
 			self.players = 0;
-			self notify("hash_8cd1836c");
+			self notify("zone_deactivate");
 		}
 	}
 }
 
 /*
-	Name: function_6cc11add
+	Name: init_audio_clientfields
 	Namespace: zm_tomb_amb
 	Checksum: 0x4BAC2FD1
 	Offset: 0x1190
@@ -375,15 +375,15 @@ function function_74c85975()
 	Parameters: 0
 	Flags: None
 */
-function function_6cc11add()
+function init_audio_clientfields()
 {
 	level.var_8f027e99 = Array();
 	clientfield::register("toplayer", "sndEggElements", 21000, 1, "int", &function_3599b48b, 0, 0);
-	level.sndChargeShot_Func = &function_6442a8c2;
+	level.sndChargeShot_Func = &sndchargeshot;
 }
 
 /*
-	Name: function_ec990408
+	Name: audio_snapshot_clientfield_callback
 	Namespace: zm_tomb_amb
 	Checksum: 0xC0C165A3
 	Offset: 0x1218
@@ -391,7 +391,7 @@ function function_6cc11add()
 	Parameters: 7
 	Flags: None
 */
-function function_ec990408(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function audio_snapshot_clientfield_callback(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
@@ -414,23 +414,23 @@ function function_ec990408(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_3599b48b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
-	var_92c47b0e = struct::get_array("s_zhdegg_elements", "targetname");
+	a_s_array = struct::get_array("s_zhdegg_elements", "targetname");
 	if(!isdefined(level.var_8f027e99))
 	{
 		level.var_8f027e99 = Array();
 	}
 	if(newVal)
 	{
-		foreach(s_struct in var_92c47b0e)
+		foreach(s_struct in a_s_array)
 		{
-			var_61bcec7 = s_struct.script_string;
+			str_element = s_struct.script_string;
 			if(s_struct.script_string == "lightning")
 			{
-				var_61bcec7 = "elec";
+				str_element = "elec";
 			}
 			if(s_struct.script_string == "water")
 			{
-				var_61bcec7 = "ice";
+				str_element = "ice";
 			}
 			if(isdefined(level.var_c27b47a[s_struct.script_string]) && level.var_c27b47a[s_struct.script_string])
 			{
@@ -438,7 +438,7 @@ function function_3599b48b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 				{
 					stopfx(localClientNum, level.var_8f027e99[s_struct.script_string]);
 				}
-				level.var_8f027e99[s_struct.script_string] = playFX(localClientNum, level._effect[var_61bcec7 + "_glow"], s_struct.origin);
+				level.var_8f027e99[s_struct.script_string] = playFX(localClientNum, level._effect[str_element + "_glow"], s_struct.origin);
 			}
 		}
 		break;
@@ -451,7 +451,7 @@ function function_3599b48b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_714746a6
+	Name: sndstartambience
 	Namespace: zm_tomb_amb
 	Checksum: 0x7C01CAE4
 	Offset: 0x1588
@@ -459,7 +459,7 @@ function function_3599b48b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 0
 	Flags: None
 */
-function function_714746a6()
+function sndstartambience()
 {
 	thread snd_start_autofx_audio();
 	thread flyovers();
@@ -533,17 +533,17 @@ function function_8189f66f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		if(newVal == 1)
 		{
-			self thread function_c85630a7();
+			self thread sndactivatemudloop();
 		}
 		else
 		{
-			self thread function_555b3a00();
+			self thread snddeactivatemudloop();
 		}
 	}
 }
 
 /*
-	Name: function_c85630a7
+	Name: sndactivatemudloop
 	Namespace: zm_tomb_amb
 	Checksum: 0xCD801760
 	Offset: 0x1820
@@ -551,31 +551,31 @@ function function_8189f66f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 0
 	Flags: None
 */
-function function_c85630a7()
+function sndactivatemudloop()
 {
-	self endon("hash_ed11651a");
+	self endon("stop_mud");
 	self endon("entityshutdown");
-	if(!isdefined(self.var_29fe0572))
+	if(!isdefined(self.sndwadeent))
 	{
-		self.var_29fe0572 = spawn(0, self.origin, "script_origin");
-		self.var_29fe0572 LinkTo(self, "tag_origin");
+		self.sndwadeent = spawn(0, self.origin, "script_origin");
+		self.sndwadeent LinkTo(self, "tag_origin");
 	}
-	self.var_29fe0572.var_8d8259d3 = self.var_29fe0572 PlayLoopSound("zmb_tomb_slowed_movement_loop", 1);
+	self.sndwadeent.var_8d8259d3 = self.sndwadeent PlayLoopSound("zmb_tomb_slowed_movement_loop", 1);
 	while(1)
 	{
 		if(!isdefined(self))
 		{
 			return;
 		}
-		var_3ec2ad89 = Abs(self getspeed());
-		var_fef3a6cb = audio::scale_speed(21, 285, 0.01, 1, var_3ec2ad89);
-		self.var_29fe0572 setloopstate("zmb_tomb_slowed_movement_loop", var_fef3a6cb, 1);
+		mud_speed = Abs(self getspeed());
+		mud_vol = audio::scale_speed(21, 285, 0.01, 1, mud_speed);
+		self.sndwadeent setloopstate("zmb_tomb_slowed_movement_loop", mud_vol, 1);
 		wait(0.1);
 	}
 }
 
 /*
-	Name: function_555b3a00
+	Name: snddeactivatemudloop
 	Namespace: zm_tomb_amb
 	Checksum: 0xC12EE60
 	Offset: 0x1988
@@ -583,11 +583,11 @@ function function_c85630a7()
 	Parameters: 0
 	Flags: None
 */
-function function_555b3a00()
+function snddeactivatemudloop()
 {
-	self notify("hash_ed11651a");
-	self.var_29fe0572 StopLoopSound(self.var_29fe0572.var_8d8259d3, 1.5);
-	self.var_29fe0572.var_8d8259d3 = undefined;
+	self notify("stop_mud");
+	self.sndwadeent StopLoopSound(self.sndwadeent.var_8d8259d3, 1.5);
+	self.sndwadeent.var_8d8259d3 = undefined;
 }
 
 /*
@@ -1277,7 +1277,7 @@ function snd_play_loopers()
 }
 
 /*
-	Name: function_6442a8c2
+	Name: sndchargeshot
 	Namespace: zm_tomb_amb
 	Checksum: 0x46D7A96C
 	Offset: 0x3FC8
@@ -1285,16 +1285,16 @@ function snd_play_loopers()
 	Parameters: 3
 	Flags: None
 */
-function function_6442a8c2(localClientNum, weapon, chargeShotLevel)
+function sndchargeshot(localClientNum, weapon, chargeShotLevel)
 {
 	weaponName = weapon.name;
-	self.var_4dde9ce5 = chargeShotLevel;
-	if(!isdefined(self.var_d159d52b))
+	self.sndcurrentcharge = chargeShotLevel;
+	if(!isdefined(self.sndchargeloopent))
 	{
-		self.var_d159d52b = spawn(0, (0, 0, 0), "script_origin");
+		self.sndchargeloopent = spawn(0, (0, 0, 0), "script_origin");
 	}
-	self thread function_6ee5be43();
-	if(!isdefined(self.var_276de066) || self.var_4dde9ce5 != self.var_276de066)
+	self thread sndstoploopent();
+	if(!isdefined(self.sndlastcharge) || self.sndcurrentcharge != self.sndlastcharge)
 	{
 		alias = "wpn_firestaff_charge_";
 		if(weaponName == "staff_water_upgraded")
@@ -1309,14 +1309,14 @@ function function_6442a8c2(localClientNum, weapon, chargeShotLevel)
 		{
 			alias = "wpn_airstaff_charge_";
 		}
-		self.var_710dd188 = self.var_d159d52b PlayLoopSound(alias + "loop", 1.5);
-		playsound(localClientNum, alias + self.var_4dde9ce5, (0, 0, 0));
-		self.var_276de066 = self.var_4dde9ce5;
+		self.var_710dd188 = self.sndchargeloopent PlayLoopSound(alias + "loop", 1.5);
+		playsound(localClientNum, alias + self.sndcurrentcharge, (0, 0, 0));
+		self.sndlastcharge = self.sndcurrentcharge;
 	}
 }
 
 /*
-	Name: function_6ee5be43
+	Name: sndstoploopent
 	Namespace: zm_tomb_amb
 	Checksum: 0xF309F496
 	Offset: 0x4168
@@ -1324,17 +1324,17 @@ function function_6442a8c2(localClientNum, weapon, chargeShotLevel)
 	Parameters: 0
 	Flags: None
 */
-function function_6ee5be43()
+function sndstoploopent()
 {
-	level notify("hash_df9ed1b6");
-	level endon("hash_df9ed1b6");
+	level notify("sndstopthisfunction");
+	level endon("sndstopthisfunction");
 	wait(0.5);
-	self.var_d159d52b StopLoopSound(self.var_710dd188, 0.1);
-	self.var_4dde9ce5 = 0;
+	self.sndchargeloopent StopLoopSound(self.var_710dd188, 0.1);
+	self.sndcurrentcharge = 0;
 }
 
 /*
-	Name: function_ee449b54
+	Name: sndtombbgsetup
 	Namespace: zm_tomb_amb
 	Checksum: 0x99EC1590
 	Offset: 0x41D0
@@ -1342,12 +1342,12 @@ function function_6ee5be43()
 	Parameters: 0
 	Flags: None
 */
-function function_ee449b54()
+function sndtombbgsetup()
 {
 }
 
 /*
-	Name: function_8b8dd551
+	Name: sndtombbgplayers
 	Namespace: zm_tomb_amb
 	Checksum: 0x74EF3744
 	Offset: 0x41E0
@@ -1355,26 +1355,26 @@ function function_ee449b54()
 	Parameters: 1
 	Flags: None
 */
-function function_8b8dd551(localClientNum)
+function sndtombbgplayers(localClientNum)
 {
 	self endon("disconnect");
 	self.sndent = spawn(0, (0, 0, 0), "script_origin");
-	self.var_c5cda021 = "mus_underscore_default";
-	self.var_a15dcd51 = "null";
+	self.sndbgalias = "mus_underscore_default";
+	self.sndbgaliaslast = "null";
 	while(1)
 	{
-		if(self.var_a15dcd51 != self.var_c5cda021)
+		if(self.sndbgaliaslast != self.sndbgalias)
 		{
-			self.var_a15dcd51 = self.var_c5cda021;
-			self.sndent notify("hash_9d70babf");
-			self.sndent thread function_bca19b62(self.var_c5cda021);
+			self.sndbgaliaslast = self.sndbgalias;
+			self.sndent notify("sndbackgroundchanging");
+			self.sndent thread sndtombbgmusic(self.sndbgalias);
 		}
 		wait(2);
 	}
 }
 
 /*
-	Name: function_4ff80996
+	Name: sndtombbgtriggers
 	Namespace: zm_tomb_amb
 	Checksum: 0x108F668F
 	Offset: 0x42B0
@@ -1382,7 +1382,7 @@ function function_8b8dd551(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_4ff80996(localClientNum)
+function sndtombbgtriggers(localClientNum)
 {
 	self endon("disconnect");
 	self endon("death");
@@ -1391,22 +1391,22 @@ function function_4ff80996(localClientNum)
 		self waittill("trigger", who);
 		if(isdefined(who) && who isLocalPlayer())
 		{
-			if(isdefined(level.var_3e9ce4b5) && self.script_sound == "mus_underscore_chamber")
+			if(isdefined(level.sndchambermusoverride) && self.script_sound == "mus_underscore_chamber")
 			{
-				who.var_c5cda021 = level.var_3e9ce4b5;
+				who.sndbgalias = level.sndchambermusoverride;
 			}
 			else
 			{
-				who.var_c5cda021 = self.script_sound;
+				who.sndbgalias = self.script_sound;
 			}
-			who thread function_bc0edf8b();
+			who thread sndtombbgtrigger_timeout();
 		}
 		wait(0.5);
 	}
 }
 
 /*
-	Name: function_bc0edf8b
+	Name: sndtombbgtrigger_timeout
 	Namespace: zm_tomb_amb
 	Checksum: 0x1C157040
 	Offset: 0x4390
@@ -1414,20 +1414,20 @@ function function_4ff80996(localClientNum)
 	Parameters: 0
 	Flags: None
 */
-function function_bc0edf8b()
+function sndtombbgtrigger_timeout()
 {
-	self notify("hash_11d444cc");
+	self notify("sndbgtimeout");
 	self endon("disconnect");
-	self endon("hash_11d444cc");
+	self endon("sndbgtimeout");
 	wait(4);
 	if(isdefined(self) && self isLocalPlayer())
 	{
-		self.var_c5cda021 = "mus_underscore_default";
+		self.sndbgalias = "mus_underscore_default";
 	}
 }
 
 /*
-	Name: function_bca19b62
+	Name: sndtombbgmusic
 	Namespace: zm_tomb_amb
 	Checksum: 0x12C80BC0
 	Offset: 0x43F8
@@ -1435,9 +1435,9 @@ function function_bc0edf8b()
 	Parameters: 1
 	Flags: None
 */
-function function_bca19b62(alias)
+function sndtombbgmusic(alias)
 {
-	self endon("hash_9d70babf");
+	self endon("sndbackgroundchanging");
 	self endon("death");
 	self StopLoopSound(2);
 	wait(2);
@@ -1493,7 +1493,7 @@ function function_572d945d()
 }
 
 /*
-	Name: function_d19cb2f8
+	Name: startzmbspawnersoundloops
 	Namespace: zm_tomb_amb
 	Checksum: 0xECB7F1EF
 	Offset: 0x45B0
@@ -1501,7 +1501,7 @@ function function_572d945d()
 	Parameters: 0
 	Flags: None
 */
-function function_d19cb2f8()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("exterior_goal", "targetname");
 	if(isdefined(loopers) && loopers.size > 0)

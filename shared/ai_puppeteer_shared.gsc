@@ -34,12 +34,12 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	/#
-		level thread function_b469f415();
+		level thread ai_puppeteer_think();
 	#/
 }
 
 /*
-	Name: function_b469f415
+	Name: ai_puppeteer_think
 	Namespace: ai_puppeteer
 	Checksum: 0x7D4EFA32
 	Offset: 0x1E0
@@ -47,7 +47,7 @@ function __init__()
 	Parameters: 0
 	Flags: None
 */
-function function_b469f415()
+function ai_puppeteer_think()
 {
 	/#
 		while(1)
@@ -452,18 +452,18 @@ function ai_puppeteer_create_hud()
 			level.puppeteer_hud_shoot.alignX = "Dev Block strings are not supported";
 			level.puppeteer_hud_shoot.horzAlign = "Dev Block strings are not supported";
 			level.puppeteer_hud_shoot.color = (1, 1, 1);
-			level.var_16b904f3 = NewDebugHudElem();
-			level.var_16b904f3.x = 0;
-			level.var_16b904f3.y = 260;
-			level.var_16b904f3.fontscale = 1;
-			level.var_16b904f3.alignX = "Dev Block strings are not supported";
-			level.var_16b904f3.horzAlign = "Dev Block strings are not supported";
-			level.var_16b904f3.color = (1, 0, 0);
+			level.puppeteer_hud_teleport = NewDebugHudElem();
+			level.puppeteer_hud_teleport.x = 0;
+			level.puppeteer_hud_teleport.y = 260;
+			level.puppeteer_hud_teleport.fontscale = 1;
+			level.puppeteer_hud_teleport.alignX = "Dev Block strings are not supported";
+			level.puppeteer_hud_teleport.horzAlign = "Dev Block strings are not supported";
+			level.puppeteer_hud_teleport.color = (1, 0, 0);
 			level.puppeteer_hud_select setText("Dev Block strings are not supported");
 			level.puppeteer_hud_goto setText("Dev Block strings are not supported");
 			level.puppeteer_hud_lookat setText("Dev Block strings are not supported");
 			level.puppeteer_hud_shoot setText("Dev Block strings are not supported");
-			level.var_16b904f3 setText("Dev Block strings are not supported");
+			level.puppeteer_hud_teleport setText("Dev Block strings are not supported");
 		#/
 	#/
 }
@@ -555,7 +555,7 @@ function ai_puppeteer_render_ai(ai, color)
 {
 	/#
 		circle(ai.goalpos + (0, 0, 1), ai.goalRadius, color, 0, 1);
-		circle(ai.origin + (0, 0, 1), ai function_7e33656b(), (1, 0, 0), 0, 1);
+		circle(ai.origin + (0, 0, 1), ai getpathfindingradius(), (1, 0, 0), 0, 1);
 		line(ai.goalpos, ai.origin, color, 1, 1);
 	#/
 }

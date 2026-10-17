@@ -42,7 +42,7 @@ function __init__()
 	}
 	level flag::init("world_is_paused");
 	bgb::register("zm_bgb_killing_time", "activated", 1, undefined, undefined, &validation, &activation);
-	bgb::function_3422638b("zm_bgb_killing_time", &actor_damage_override);
+	bgb::register_actor_damage_override("zm_bgb_killing_time", &actor_damage_override);
 	zm::register_vehicle_damage_callback(&vehicle_damage_override);
 	clientfield::register("actor", "zombie_instakill_fx", 1, 1, "int");
 	clientfield::register("toplayer", "instakill_upgraded_fx", 1, 1, "int");
@@ -59,7 +59,7 @@ function __init__()
 */
 function activation()
 {
-	self function_eb0b4e74();
+	self instakill_upgraded_think();
 }
 
 /*
@@ -77,9 +77,9 @@ function validation()
 	{
 		return 0;
 	}
-	if(isdefined(level.var_9f5c2c50))
+	if(isdefined(level.zm_bgb_killing_time_validation_override))
 	{
-		return [[level.var_9f5c2c50]]();
+		return [[level.zm_bgb_killing_time_validation_override]]();
 	}
 	return 1;
 }
@@ -109,14 +109,14 @@ function private actor_damage_override(eInflictor, eAttacker, iDamage, iDFlags, 
 	}
 	if(isPlayer(eAttacker) && (isdefined(eAttacker.forceAnhilateOnDeath) && eAttacker.forceAnhilateOnDeath))
 	{
-		if(isdefined(eAttacker.var_d63e841a) && eAttacker.var_d63e841a)
+		if(isdefined(eAttacker.bzm_forcekeepaialive) && eAttacker.bzm_forcekeepaialive)
 		{
 			/#
-				Assert(isdefined(eAttacker.var_b3258f2e));
+				Assert(isdefined(eAttacker.bzm_instakillaibucket));
 			#/
-			if(!IsInArray(eAttacker.var_b3258f2e, self))
+			if(!IsInArray(eAttacker.bzm_instakillaibucket, self))
 			{
-				eAttacker.var_b3258f2e[eAttacker.var_b3258f2e.size] = self;
+				eAttacker.bzm_instakillaibucket[eAttacker.bzm_instakillaibucket.size] = self;
 				self thread zombie_utility::zombie_eye_glow_stop();
 			}
 			return 0;
@@ -147,14 +147,14 @@ function private vehicle_damage_override(eInflictor, eAttacker, iDamage, iDFlags
 	}
 	if(isPlayer(eAttacker) && (isdefined(eAttacker.forceAnhilateOnDeath) && eAttacker.forceAnhilateOnDeath))
 	{
-		if(isdefined(eAttacker.var_d63e841a) && eAttacker.var_d63e841a)
+		if(isdefined(eAttacker.bzm_forcekeepaialive) && eAttacker.bzm_forcekeepaialive)
 		{
 			/#
-				Assert(isdefined(eAttacker.var_b3258f2e));
+				Assert(isdefined(eAttacker.bzm_instakillaibucket));
 			#/
-			if(!IsInArray(eAttacker.var_b3258f2e, self))
+			if(!IsInArray(eAttacker.bzm_instakillaibucket, self))
 			{
-				eAttacker.var_b3258f2e[eAttacker.var_b3258f2e.size] = self;
+				eAttacker.bzm_instakillaibucket[eAttacker.bzm_instakillaibucket.size] = self;
 			}
 			return 0;
 		}
@@ -171,7 +171,7 @@ function private vehicle_damage_override(eInflictor, eAttacker, iDamage, iDFlags
 }
 
 /*
-	Name: function_eb0b4e74
+	Name: instakill_upgraded_think
 	Namespace: namespace_9dd35181
 	Checksum: 0xD8F430F8
 	Offset: 0x828
@@ -179,21 +179,21 @@ function private vehicle_damage_override(eInflictor, eAttacker, iDamage, iDFlags
 	Parameters: 0
 	Flags: None
 */
-function function_eb0b4e74()
+function instakill_upgraded_think()
 {
 	self endon("death");
 	/#
-		Assert(!isdefined(self.var_b3258f2e));
+		Assert(!isdefined(self.bzm_instakillaibucket));
 	#/
 	foreach(player in level.players)
 	{
 		player clientfield::set_to_player("instakill_upgraded_fx", 1);
 	}
-	self.var_b3258f2e = [];
+	self.bzm_instakillaibucket = [];
 	self.forceAnhilateOnDeath = 1;
 	self playsound("zmb_bgb_killingtime_start");
 	self PlayLoopSound("zmb_bgb_killingtime_loop", 1);
-	self.var_d63e841a = 1;
+	self.bzm_forcekeepaialive = 1;
 	level.bzm_worldPaused = 1;
 	level flag::set("world_is_paused");
 	SetPauseWorld(1);
@@ -216,16 +216,16 @@ function function_f2925308()
 	str_notify = self util::waittill_any_return("death", "killing_time_done");
 	if(str_notify == "killing_time_done")
 	{
-		self.var_d63e841a = 0;
+		self.bzm_forcekeepaialive = 0;
 		self StopLoopSound(0.5);
 		self playsound("zmb_bgb_killingtime_end");
 		foreach(player in level.players)
 		{
 			self clientfield::set_to_player("instakill_upgraded_fx", 0);
 		}
-		for(i = self.var_b3258f2e.size - 1; i >= 0; i--)
+		for(i = self.bzm_instakillaibucket.size - 1; i >= 0; i--)
 		{
-			ai = self.var_b3258f2e[i];
+			ai = self.bzm_instakillaibucket[i];
 			if(isdefined(ai) && isalive(ai))
 			{
 				if(IsActor(ai))
@@ -237,7 +237,7 @@ function function_f2925308()
 				ai DoDamage(ai.health + 1, self.origin, self);
 			}
 		}
-		self.var_b3258f2e = undefined;
+		self.bzm_instakillaibucket = undefined;
 		self.forceAnhilateOnDeath = 0;
 	}
 	level.bzm_worldPaused = 0;

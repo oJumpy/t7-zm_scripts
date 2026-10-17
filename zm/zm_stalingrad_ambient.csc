@@ -185,13 +185,13 @@ function function_866a2751()
 */
 function function_916d6917(str_targetname)
 {
-	var_1bbd14fd = function_de7504ea(str_targetname);
-	foreach(n_model_index in var_1bbd14fd)
+	a_n_model_indices = findstaticmodelindexarray(str_targetname);
+	foreach(n_model_index in a_n_model_indices)
 	{
 		HideStaticModel(n_model_index);
 	}
 	level waittill("hash_bad0de07");
-	foreach(n_model_index in var_1bbd14fd)
+	foreach(n_model_index in a_n_model_indices)
 	{
 		UnhideStaticModel(n_model_index);
 	}
@@ -208,13 +208,13 @@ function function_916d6917(str_targetname)
 */
 function function_4820908f(str_targetname)
 {
-	var_1bbd14fd = function_de7504ea(str_targetname);
-	foreach(n_model_index in var_1bbd14fd)
+	a_n_model_indices = findstaticmodelindexarray(str_targetname);
+	foreach(n_model_index in a_n_model_indices)
 	{
 		UnhideStaticModel(n_model_index);
 	}
 	level waittill("hash_bad0de07");
-	foreach(n_model_index in var_1bbd14fd)
+	foreach(n_model_index in a_n_model_indices)
 	{
 		HideStaticModel(n_model_index);
 	}

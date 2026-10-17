@@ -2508,7 +2508,7 @@ function weapon_spawn_think()
 				{
 					player zm_stats::increment_client_stat("wallbuy_weapons_purchased");
 					player zm_stats::increment_player_stat("wallbuy_weapons_purchased");
-					bb::function_91f32a58(player, self, cost, weapon.name, player has_upgrade(weapon), "_weapon", "_purchase");
+					bb::logpurchaseevent(player, self, cost, weapon.name, player has_upgrade(weapon), "_weapon", "_purchase");
 					weaponIndex = undefined;
 					if(isdefined(weaponIndex))
 					{
@@ -2600,7 +2600,7 @@ function weapon_spawn_think()
 				{
 					player zm_score::minus_to_player_score(ammo_cost);
 				}
-				bb::function_91f32a58(player, self, ammo_cost, weapon.name, player has_upgrade(weapon), "_ammo", "_purchase");
+				bb::logpurchaseevent(player, self, ammo_cost, weapon.name, player has_upgrade(weapon), "_ammo", "_purchase");
 				weaponIndex = undefined;
 				if(isdefined(weapon))
 				{

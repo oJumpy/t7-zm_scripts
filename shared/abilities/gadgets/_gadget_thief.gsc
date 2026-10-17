@@ -218,7 +218,7 @@ function gadget_thief_kill_callback(victim, weapon)
 function gadget_thief_on_take(slot, weapon)
 {
 	/#
-		if(level.var_e76bb7e3 === 1)
+		if(level.devgui_giving_abilities === 1)
 		{
 			self.isThief = 0;
 		}
@@ -238,10 +238,10 @@ function gadget_thief_on_connect()
 {
 	self.pers["hash_c5c4a13f"] = 1;
 	/#
-		level.var_bc61f38b = GetDvarInt("Dev Block strings are not supported", 0);
-		if(level.var_bc61f38b)
+		level.gadgetthieftforcebeam = GetDvarInt("Dev Block strings are not supported", 0);
+		if(level.gadgetthieftforcebeam)
 		{
-			self thread function_8da00c80();
+			self thread watchforallkillsdebug();
 		}
 	#/
 }
@@ -803,7 +803,7 @@ function spawnThiefBeamEffect(origin)
 }
 
 /*
-	Name: function_8da00c80
+	Name: watchforallkillsdebug
 	Namespace: thief
 	Checksum: 0x76089856
 	Offset: 0x2328
@@ -811,7 +811,7 @@ function spawnThiefBeamEffect(origin)
 	Parameters: 0
 	Flags: None
 */
-function function_8da00c80()
+function watchforallkillsdebug()
 {
 	/#
 		while(1)

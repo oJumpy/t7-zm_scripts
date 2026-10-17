@@ -17,7 +17,7 @@
 */
 function autoexec main()
 {
-	function_9b385ca5();
+	__constructor();
 	level.ai_ammo_throttle = Throttle;
 	Initialize(level.ai_ammo_throttle, 1);
 }
@@ -94,7 +94,7 @@ function ammo_pouch_think()
 		{
 			maxAmmo = weapon.maxAmmo;
 		}
-		if(b_is_primary_or_secondary_grenade && player function_76f34311("cybercom_copycat") != 2)
+		if(b_is_primary_or_secondary_grenade && player hascybercomrig("cybercom_copycat") != 2)
 		{
 			continue;
 		}

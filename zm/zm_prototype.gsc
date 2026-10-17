@@ -105,7 +105,7 @@ function main()
 	initCharacterStartIndex();
 	level._zombie_custom_add_weapons = &custom_add_weapons;
 	include_perks_in_random_rotation();
-	spawner::add_archetype_spawn_function("zombie", &function_c86e49f5);
+	spawner::add_archetype_spawn_function("zombie", &prototype_zombie_spawned);
 	load::main();
 	level.default_laststandpistol = GetWeapon("pistol_m1911");
 	level.default_solo_laststandpistol = GetWeapon("pistol_m1911_upgraded");
@@ -130,7 +130,7 @@ function main()
 	level flag::wait_till("start_zombie_round_logic");
 	level notify("hash_d51af150");
 	zm_power::turn_power_on_and_open_doors();
-	level.var_9aaae7ae = &function_869d6f66;
+	level.zm_bgb_anywhere_but_here_validation_override = &anywhere_but_here_validation_override;
 	level thread zm_perks::spare_change();
 	namespace_5150364b::main_end();
 }
@@ -152,7 +152,7 @@ function fx_overrides()
 }
 
 /*
-	Name: function_869d6f66
+	Name: anywhere_but_here_validation_override
 	Namespace: zm_prototype
 	Checksum: 0xD48D5AD
 	Offset: 0x1108
@@ -160,7 +160,7 @@ function fx_overrides()
 	Parameters: 0
 	Flags: None
 */
-function function_869d6f66()
+function anywhere_but_here_validation_override()
 {
 	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
 	{
@@ -468,30 +468,30 @@ function function_54da140a()
 		{
 			var_343b1937 = a_s_spots[i].script_int;
 		}
-		var_c15b2128 = [];
-		foreach(var_a0bd4da1 in level.zombie_spawners)
+		a_sp_zombies = [];
+		foreach(sp_zombie in level.zombie_spawners)
 		{
-			if(var_a0bd4da1.script_int == var_343b1937)
+			if(sp_zombie.script_int == var_343b1937)
 			{
-				if(!isdefined(var_c15b2128))
+				if(!isdefined(a_sp_zombies))
 				{
-					var_c15b2128 = [];
+					a_sp_zombies = [];
 				}
-				else if(!IsArray(var_c15b2128))
+				else if(!IsArray(a_sp_zombies))
 				{
-					var_c15b2128 = Array(var_c15b2128);
+					a_sp_zombies = Array(a_sp_zombies);
 				}
-				var_c15b2128[var_c15b2128.size] = var_a0bd4da1;
+				a_sp_zombies[a_sp_zombies.size] = sp_zombie;
 			}
 		}
-		if(var_c15b2128.size)
+		if(a_sp_zombies.size)
 		{
-			var_a0bd4da1 = Array::random(var_c15b2128);
-			return var_a0bd4da1;
+			sp_zombie = Array::random(a_sp_zombies);
+			return sp_zombie;
 		}
 	}
 	/#
-		Assert(isdefined(var_a0bd4da1), "Dev Block strings are not supported" + var_343b1937);
+		Assert(isdefined(sp_zombie), "Dev Block strings are not supported" + var_343b1937);
 	#/
 }
 
@@ -568,9 +568,9 @@ function init_weapon_cabinet()
 	}
 	var_e453319 = struct::get(var_68c121fd.target, "targetname");
 	var_e41aa7b8 = GetEntArray(var_e453319.target, "targetname");
-	foreach(var_adad709 in var_e41aa7b8)
+	foreach(mdl_door in var_e41aa7b8)
 	{
-		var_adad709 thread weapon_cabinet_door_open(var_adad709.script_noteworthy);
+		mdl_door thread weapon_cabinet_door_open(mdl_door.script_noteworthy);
 	}
 }
 
@@ -583,13 +583,13 @@ function init_weapon_cabinet()
 	Parameters: 1
 	Flags: None
 */
-function weapon_cabinet_door_open(var_4ed1d865)
+function weapon_cabinet_door_open(str_left_or_right)
 {
-	if(var_4ed1d865 == "left")
+	if(str_left_or_right == "left")
 	{
 		self RotateYaw(120, 0.3, 0.2, 0.1);
 	}
-	else if(var_4ed1d865 == "right")
+	else if(str_left_or_right == "right")
 	{
 		self RotateYaw(-120, 0.3, 0.2, 0.1);
 	}
@@ -680,7 +680,7 @@ function function_ab3e14a3()
 }
 
 /*
-	Name: function_c86e49f5
+	Name: prototype_zombie_spawned
 	Namespace: zm_prototype
 	Checksum: 0x82C15099
 	Offset: 0x2378
@@ -688,13 +688,13 @@ function function_ab3e14a3()
 	Parameters: 0
 	Flags: Private
 */
-function private function_c86e49f5()
+function private prototype_zombie_spawned()
 {
-	self.cant_move_cb = &function_e6b1e0be;
+	self.cant_move_cb = &prototype_cant_move_cb;
 }
 
 /*
-	Name: function_e6b1e0be
+	Name: prototype_cant_move_cb
 	Namespace: zm_prototype
 	Checksum: 0x4BB86ADA
 	Offset: 0x23A0
@@ -702,7 +702,7 @@ function private function_c86e49f5()
 	Parameters: 0
 	Flags: Private
 */
-function private function_e6b1e0be()
+function private prototype_cant_move_cb()
 {
 	self PushActors(0);
 	self.enablePushTime = GetTime() + 1000;

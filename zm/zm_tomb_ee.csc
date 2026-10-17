@@ -20,21 +20,21 @@
 */
 function init()
 {
-	clientfield::register("world", "wagon_1_fire", 21000, 1, "int", &function_6db69694, 0, 0);
-	clientfield::register("world", "wagon_2_fire", 21000, 1, "int", &function_6db69694, 0, 0);
-	clientfield::register("world", "wagon_3_fire", 21000, 1, "int", &function_6db69694, 0, 0);
-	clientfield::register("world", "ee_sam_portal", 21000, 2, "int", &function_aff1c5b2, 0, 0);
-	clientfield::register("actor", "ee_zombie_fist_fx", 21000, 1, "int", &function_64b44f6b, 0, 0);
-	clientfield::register("actor", "ee_zombie_soul_portal", 21000, 1, "int", &function_a8fdf631, 0, 0);
-	clientfield::register("actor", "ee_zombie_tablet_fx", 21000, 1, "int", &function_74610c8a, 0, 0);
-	clientfield::register("vehicle", "ee_plane_fx", 21000, 1, "int", &function_19452a40, 0, 0);
-	clientfield::register("toplayer", "ee_beacon_reward", 21000, 1, "int", &function_b628a101, 0, 0);
+	clientfield::register("world", "wagon_1_fire", 21000, 1, "int", &toggle_wagon_fire_fx, 0, 0);
+	clientfield::register("world", "wagon_2_fire", 21000, 1, "int", &toggle_wagon_fire_fx, 0, 0);
+	clientfield::register("world", "wagon_3_fire", 21000, 1, "int", &toggle_wagon_fire_fx, 0, 0);
+	clientfield::register("world", "ee_sam_portal", 21000, 2, "int", &set_ee_portal_fx, 0, 0);
+	clientfield::register("actor", "ee_zombie_fist_fx", 21000, 1, "int", &toggle_fist_fx, 0, 0);
+	clientfield::register("actor", "ee_zombie_soul_portal", 21000, 1, "int", &zombie_soul_portal_fx, 0, 0);
+	clientfield::register("actor", "ee_zombie_tablet_fx", 21000, 1, "int", &tablet_fx, 0, 0);
+	clientfield::register("vehicle", "ee_plane_fx", 21000, 1, "int", &run_plane_fx, 0, 0);
+	clientfield::register("toplayer", "ee_beacon_reward", 21000, 1, "int", &toggle_beacon_portal, 0, 0);
 	clientfield::register("world", "TombEndGameBlackScreen", 21000, 1, "int", &function_13792d2, 0, 0);
 	zm_tomb_ee_lights::main();
 }
 
 /*
-	Name: function_6db69694
+	Name: toggle_wagon_fire_fx
 	Namespace: namespace_711a44f0
 	Checksum: 0x90458FDB
 	Offset: 0x730
@@ -42,44 +42,44 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_6db69694(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function toggle_wagon_fire_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	switch(fieldName)
 	{
 		case "wagon_1_fire":
 		{
-			var_a58a7b24 = "fxexp_211";
+			str_exploder_name = "fxexp_211";
 			break;
 		}
 		case "wagon_2_fire":
 		{
-			var_a58a7b24 = "fxexp_212";
+			str_exploder_name = "fxexp_212";
 			break;
 		}
 		case "wagon_3_fire":
 		{
-			var_a58a7b24 = "fxexp_213";
+			str_exploder_name = "fxexp_213";
 			break;
 		}
 		case default:
 		{
-			var_a58a7b24 = "";
+			str_exploder_name = "";
 		}
 	}
 	if(newVal == 1)
 	{
-		exploder::stop_exploder(var_a58a7b24, localClientNum);
-		level thread function_1ebf0afe(1, fieldName);
+		exploder::stop_exploder(str_exploder_name, localClientNum);
+		level thread sndwagonfire(1, fieldName);
 	}
 	else
 	{
-		exploder::exploder(var_a58a7b24, localClientNum);
-		level thread function_1ebf0afe(0, fieldName);
+		exploder::exploder(str_exploder_name, localClientNum);
+		level thread sndwagonfire(0, fieldName);
 	}
 }
 
 /*
-	Name: function_6e543e40
+	Name: wagon_fire_fx_loop
 	Namespace: namespace_711a44f0
 	Checksum: 0x5BB96156
 	Offset: 0x870
@@ -87,7 +87,7 @@ function function_6db69694(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_6e543e40(localClientNum, fieldName)
+function wagon_fire_fx_loop(localClientNum, fieldName)
 {
 	level notify("stop_" + fieldName);
 	self endon("stop_" + fieldName);
@@ -100,7 +100,7 @@ function function_6e543e40(localClientNum, fieldName)
 }
 
 /*
-	Name: function_1ebf0afe
+	Name: sndwagonfire
 	Namespace: namespace_711a44f0
 	Checksum: 0x32F14AA9
 	Offset: 0x960
@@ -108,7 +108,7 @@ function function_6e543e40(localClientNum, fieldName)
 	Parameters: 2
 	Flags: None
 */
-function function_1ebf0afe(isOn, fieldName)
+function sndwagonfire(isOn, fieldName)
 {
 	struct = struct::get(fieldName, "targetname");
 	origin = struct.origin;
@@ -123,7 +123,7 @@ function function_1ebf0afe(isOn, fieldName)
 }
 
 /*
-	Name: function_64b44f6b
+	Name: toggle_fist_fx
 	Namespace: namespace_711a44f0
 	Checksum: 0xC51EE2F0
 	Offset: 0xA10
@@ -131,35 +131,35 @@ function function_1ebf0afe(isOn, fieldName)
 	Parameters: 7
 	Flags: None
 */
-function function_64b44f6b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function toggle_fist_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{
 		if(!isdefined(self.has_soul))
 		{
 			self.has_soul = 1;
-			self.var_8020f50b = PlayFXOnTag(localClientNum, level._effect["fist_glow"], self, "J_Wrist_RI");
-			self.var_9c121695 = PlayFXOnTag(localClientNum, level._effect["fist_glow"], self, "J_Wrist_LE");
+			self.fist_fx_r = PlayFXOnTag(localClientNum, level._effect["fist_glow"], self, "J_Wrist_RI");
+			self.fist_fx_l = PlayFXOnTag(localClientNum, level._effect["fist_glow"], self, "J_Wrist_LE");
 		}
-		if(!isdefined(self.var_3a8912f4))
+		if(!isdefined(self.sndfist))
 		{
-			self.var_3a8912f4 = spawn(0, self.origin, "script_origin");
-			self.var_3a8912f4 LinkTo(self);
-			self.var_3a8912f4 PlayLoopSound("zmb_squest_punchtime_fist_loop", 1);
-			self thread function_587c5a03(self.var_3a8912f4);
+			self.sndfist = spawn(0, self.origin, "script_origin");
+			self.sndfist LinkTo(self);
+			self.sndfist PlayLoopSound("zmb_squest_punchtime_fist_loop", 1);
+			self thread snddeletesndent(self.sndfist);
 		}
 	}
 	else if(isdefined(self.has_soul))
 	{
 		self.has_soul = undefined;
-		stopfx(localClientNum, self.var_8020f50b);
-		stopfx(localClientNum, self.var_9c121695);
+		stopfx(localClientNum, self.fist_fx_r);
+		stopfx(localClientNum, self.fist_fx_l);
 	}
 	self notify("hash_613e39fa");
 }
 
 /*
-	Name: function_587c5a03
+	Name: snddeletesndent
 	Namespace: namespace_711a44f0
 	Checksum: 0x5BA95816
 	Offset: 0xBF0
@@ -167,14 +167,14 @@ function function_64b44f6b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_587c5a03(ent)
+function snddeletesndent(ent)
 {
 	self util::waittill_any("death", "entityshutdown", "sndDeleteEnt");
 	ent delete();
 }
 
 /*
-	Name: function_a8fdf631
+	Name: zombie_soul_portal_fx
 	Namespace: namespace_711a44f0
 	Checksum: 0x2289C365
 	Offset: 0xC50
@@ -182,7 +182,7 @@ function function_587c5a03(ent)
 	Parameters: 7
 	Flags: None
 */
-function function_a8fdf631(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function zombie_soul_portal_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	v_dest = GetEnt(localClientNum, "ee_sam_portal", "targetname").origin;
 	e_fx = spawn(localClientNum, self GetTagOrigin("J_SpineUpper"), "script_model");
@@ -199,7 +199,7 @@ function function_a8fdf631(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_aff1c5b2
+	Name: set_ee_portal_fx
 	Namespace: namespace_711a44f0
 	Checksum: 0x9A1D1C0B
 	Offset: 0xE68
@@ -207,7 +207,7 @@ function function_a8fdf631(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_aff1c5b2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function set_ee_portal_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	e_fx = GetEnt(localClientNum, "ee_sam_portal", "targetname");
 	if(isdefined(e_fx.fx_id))
@@ -232,7 +232,7 @@ function function_aff1c5b2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_19452a40
+	Name: run_plane_fx
 	Namespace: namespace_711a44f0
 	Checksum: 0xBF792F42
 	Offset: 0x1030
@@ -240,18 +240,18 @@ function function_aff1c5b2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_19452a40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function run_plane_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("entityshutdown");
 	self util::waittill_dobj(localClientNum);
 	while(1)
 	{
 		e_player = GetLocalPlayer(localClientNum);
-		if(isdefined(e_player) && (isdefined(e_player.var_c5eb485f) && e_player.var_c5eb485f) && !isdefined(self.var_f37e5d12))
+		if(isdefined(e_player) && (isdefined(e_player.zombie_blood_fx) && e_player.zombie_blood_fx) && !isdefined(self.var_f37e5d12))
 		{
 			self.var_f37e5d12 = PlayFXOnTag(localClientNum, level._effect["biplane_glow"], self, "tag_origin");
 		}
-		if(isdefined(e_player) && (!isdefined(e_player.var_c5eb485f) && e_player.var_c5eb485f) && isdefined(self.var_f37e5d12))
+		if(isdefined(e_player) && (!isdefined(e_player.zombie_blood_fx) && e_player.zombie_blood_fx) && isdefined(self.var_f37e5d12))
 		{
 			stopfx(localClientNum, self.var_f37e5d12);
 			self.var_f37e5d12 = undefined;
@@ -261,7 +261,7 @@ function function_19452a40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_74610c8a
+	Name: tablet_fx
 	Namespace: namespace_711a44f0
 	Checksum: 0xC2BF3970
 	Offset: 0x11A8
@@ -269,7 +269,7 @@ function function_19452a40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_74610c8a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function tablet_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	a_structs = struct::get_array("tablet_charge_pos", "targetname");
 	s_box = ArrayGetClosest(self.origin, a_structs);
@@ -287,7 +287,7 @@ function function_74610c8a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b628a101
+	Name: toggle_beacon_portal
 	Namespace: namespace_711a44f0
 	Checksum: 0x8AB4C4B2
 	Offset: 0x13D0
@@ -295,28 +295,28 @@ function function_74610c8a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b628a101(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function toggle_beacon_portal(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{
-		if(!isdefined(self.var_e6c8ca8e))
+		if(!isdefined(self.beacon_portal))
 		{
-			self.var_e6c8ca8e = 1;
-			self thread function_4e9276ed(localClientNum);
-			self.m_reward = util::spawn_model(localClientNum, level.var_25ef5fab.worldmodel, (-141, 4464, -322) + (8, 35, 20), self.angles);
-			self.m_reward thread function_17bc361f(localClientNum);
+			self.beacon_portal = 1;
+			self thread create_beacon_portal(localClientNum);
+			self.m_reward = util::spawn_model(localClientNum, level.w_beacon.worldmodel, (-141, 4464, -322) + (8, 35, 20), self.angles);
+			self.m_reward thread rotate_beacon(localClientNum);
 		}
 	}
-	else if(isdefined(self.var_e6c8ca8e))
+	else if(isdefined(self.beacon_portal))
 	{
-		self.var_e6c8ca8e = 0;
-		self notify("hash_7066982d");
+		self.beacon_portal = 0;
+		self notify("stop_beacon_portal");
 		self.m_reward delete();
 	}
 }
 
 /*
-	Name: function_17bc361f
+	Name: rotate_beacon
 	Namespace: namespace_711a44f0
 	Checksum: 0x38A003A0
 	Offset: 0x1508
@@ -324,7 +324,7 @@ function function_b628a101(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_17bc361f(localClientNum)
+function rotate_beacon(localClientNum)
 {
 	self endon("entityshutdown");
 	self endon("death");
@@ -342,7 +342,7 @@ function function_17bc361f(localClientNum)
 }
 
 /*
-	Name: function_4e9276ed
+	Name: create_beacon_portal
 	Namespace: namespace_711a44f0
 	Checksum: 0x65AE7554
 	Offset: 0x1628
@@ -350,10 +350,10 @@ function function_17bc361f(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_4e9276ed(localClientNum)
+function create_beacon_portal(localClientNum)
 {
 	self endon("disconnect");
-	self endon("hash_7066982d");
+	self endon("stop_beacon_portal");
 	while(1)
 	{
 		playFX(localClientNum, level._effect["bottle_glow"], (-141, 4464, -322) + (60, 10, 25));

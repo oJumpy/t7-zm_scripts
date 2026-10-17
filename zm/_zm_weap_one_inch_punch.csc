@@ -31,22 +31,22 @@ function function_c9202f92(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	self endon("death");
 	self endon("disconnect");
-	var_4383636a = 75;
-	var_bf0c8e05 = 60;
+	phys_explosion_outer_radius = 75;
+	phys_explosion_inner_radius = 60;
 	if(newVal == 1)
 	{
-		if(!isdefined(level.var_57220446))
+		if(!isdefined(level.punching_players))
 		{
-			level.var_57220446 = [];
+			level.punching_players = [];
 		}
-		level.var_57220446[self GetEntityNumber()] = GetTime();
+		level.punching_players[self GetEntityNumber()] = GetTime();
 		self Earthquake(0.5, 0.5, self.origin, 300);
 		self PlayRumbleOnEntity(localClientNum, "damage_heavy");
 		if(isdefined(self.b_punch_upgraded) && self.b_punch_upgraded && isdefined(self.str_punch_element) && self.str_punch_element == "air")
 		{
-			var_4383636a = var_4383636a * 2;
+			phys_explosion_outer_radius = phys_explosion_outer_radius * 2;
 		}
-		PhysicsExplosionCylinder(localClientNum, self.origin, var_4383636a, var_bf0c8e05, 1);
+		PhysicsExplosionCylinder(localClientNum, self.origin, phys_explosion_outer_radius, phys_explosion_inner_radius, 1);
 	}
 }
 
@@ -64,27 +64,27 @@ function function_7c6b248c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	self endon("entity_shutdown");
 	if(newVal == 1)
 	{
-		var_70efc576 = undefined;
-		var_17013cd1 = 0;
-		if(isdefined(level.var_57220446))
+		punching_player_index = undefined;
+		most_recent_punch_time = 0;
+		if(isdefined(level.punching_players))
 		{
-			for(i = 0; i < level.var_57220446.size; i++)
+			for(i = 0; i < level.punching_players.size; i++)
 			{
-				if(isdefined(level.var_57220446[i]) && level.var_57220446[i] > var_17013cd1)
+				if(isdefined(level.punching_players[i]) && level.punching_players[i] > most_recent_punch_time)
 				{
-					var_70efc576 = i;
-					var_17013cd1 = level.var_57220446[i];
+					punching_player_index = i;
+					most_recent_punch_time = level.punching_players[i];
 				}
 			}
 		}
-		else if(isdefined(var_70efc576))
+		else if(isdefined(punching_player_index))
 		{
 			a_players = GetLocalPlayers();
-			var_b262e13f = a_players[var_70efc576];
+			punching_player = a_players[punching_player_index];
 		}
-		if(isdefined(var_b262e13f))
+		if(isdefined(punching_player))
 		{
-			v_launch = VectorNormalize(self.origin - var_b262e13f.origin) * randomIntRange(125, 150) + (0, 0, randomIntRange(75, 150));
+			v_launch = VectorNormalize(self.origin - punching_player.origin) * randomIntRange(125, 150) + (0, 0, randomIntRange(75, 150));
 		}
 		if(isdefined(v_launch))
 		{

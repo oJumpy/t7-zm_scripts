@@ -115,12 +115,12 @@ function function_63be352d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		case 0:
 		{
-			self function_406fdb8("p7_fxanim_zm_bow_rune_prison_01_bundle");
+			self scene_play("p7_fxanim_zm_bow_rune_prison_01_bundle");
 			if(!isdefined(self))
 			{
 				return;
 			}
-			self thread function_406fdb8("p7_fxanim_zm_bow_rune_prison_01_dissolve_bundle", self.var_728caca2);
+			self thread scene_play("p7_fxanim_zm_bow_rune_prison_01_dissolve_bundle", self.var_728caca2);
 			self.var_728caca2 thread function_79854312(localClientNum);
 			break;
 		}
@@ -134,7 +134,7 @@ function function_63be352d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_406fdb8
+	Name: scene_play
 	Namespace: namespace_2d73d751
 	Checksum: 0xB7EF3984
 	Offset: 0xB28
@@ -142,12 +142,12 @@ function function_63be352d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 2
 	Flags: None
 */
-function function_406fdb8(scene, var_7b98b639)
+function scene_play(scene, mdl_rune)
 {
-	self notify("hash_406fdb8");
-	self endon("hash_406fdb8");
+	self notify("scene_play");
+	self endon("scene_play");
 	self scene::stop();
-	self function_6221b6b9(scene, var_7b98b639);
+	self function_6221b6b9(scene, mdl_rune);
 	if(isdefined(self))
 	{
 		self scene::stop();
@@ -163,10 +163,10 @@ function function_406fdb8(scene, var_7b98b639)
 	Parameters: 2
 	Flags: None
 */
-function function_6221b6b9(scene, var_7b98b639)
+function function_6221b6b9(scene, mdl_rune)
 {
 	level endon("demo_jump");
-	self scene::Play(scene, var_7b98b639);
+	self scene::Play(scene, mdl_rune);
 }
 
 /*
@@ -271,15 +271,15 @@ function function_ddc32cba(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	self endon("entityshutdown");
 	if(newVal)
 	{
-		var_7929bbd6 = GetTime();
-		n_start_time = var_7929bbd6;
-		var_39255d08 = var_7929bbd6 + 1200;
-		while(var_7929bbd6 < var_39255d08)
+		n_cur_time = GetTime();
+		n_start_time = n_cur_time;
+		var_39255d08 = n_cur_time + 1200;
+		while(n_cur_time < var_39255d08)
 		{
-			var_dd5c416e = var_7929bbd6 - n_start_time / 1200;
+			var_dd5c416e = n_cur_time - n_start_time / 1200;
 			self MapShaderConstant(localClientNum, 0, "scriptVector0", var_dd5c416e, var_dd5c416e, 0);
 			wait(0.016);
-			var_7929bbd6 = GetTime();
+			n_cur_time = GetTime();
 		}
 	}
 }

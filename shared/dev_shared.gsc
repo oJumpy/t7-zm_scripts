@@ -301,7 +301,7 @@ function minimapWarn(corners)
 }
 
 /*
-	Name: function_dfab5e4f
+	Name: body_customization_setup_helmet
 	Namespace: dev
 	Checksum: 0xF87EFA4F
 	Offset: 0x1360
@@ -309,18 +309,18 @@ function minimapWarn(corners)
 	Parameters: 1
 	Flags: None
 */
-function function_dfab5e4f(var_9a65c47f)
+function body_customization_setup_helmet(helmet_index)
 {
 	/#
 		foreach(player in GetPlayers())
 		{
-			player SetCharacterHelmetStyle(var_9a65c47f);
+			player SetCharacterHelmetStyle(helmet_index);
 		}
 	#/
 }
 
 /*
-	Name: function_5fcfe5a4
+	Name: body_customization_setup_body
 	Namespace: dev
 	Checksum: 0x22469CFD
 	Offset: 0x1418
@@ -328,19 +328,19 @@ function function_dfab5e4f(var_9a65c47f)
 	Parameters: 2
 	Flags: None
 */
-function function_5fcfe5a4(character_index, var_ff6a12cc)
+function body_customization_setup_body(character_index, body_index)
 {
 	/#
 		foreach(player in GetPlayers())
 		{
 			player SetCharacterBodyType(character_index);
-			player SetCharacterBodyStyle(var_ff6a12cc);
+			player SetCharacterBodyStyle(body_index);
 		}
 	#/
 }
 
 /*
-	Name: function_ddb1104b
+	Name: body_customization_process_command
 	Namespace: dev
 	Checksum: 0xCAEB5420
 	Offset: 0x14F0
@@ -348,7 +348,7 @@ function function_5fcfe5a4(character_index, var_ff6a12cc)
 	Parameters: 1
 	Flags: None
 */
-function function_ddb1104b(character_index)
+function body_customization_process_command(character_index)
 {
 	/#
 		split = StrTok(character_index, "Dev Block strings are not supported");
@@ -357,28 +357,28 @@ function function_ddb1104b(character_index)
 			case 1:
 			case default:
 			{
-				var_2123031c = StrTok(split[0], "Dev Block strings are not supported");
-				character_index = Int(var_2123031c[1]);
-				var_ff6a12cc = 0;
-				var_9a65c47f = 0;
-				function_dfab5e4f(var_9a65c47f);
-				function_5fcfe5a4(character_index, var_ff6a12cc);
+				command0 = StrTok(split[0], "Dev Block strings are not supported");
+				character_index = Int(command0[1]);
+				body_index = 0;
+				helmet_index = 0;
+				body_customization_setup_helmet(helmet_index);
+				body_customization_setup_body(character_index, body_index);
 				break;
 			}
 			case 2:
 			{
-				var_2123031c = StrTok(split[0], "Dev Block strings are not supported");
-				character_index = Int(var_2123031c[1]);
-				var_47257d85 = StrTok(split[1], "Dev Block strings are not supported");
-				if(var_47257d85[0] == "Dev Block strings are not supported")
+				command0 = StrTok(split[0], "Dev Block strings are not supported");
+				character_index = Int(command0[1]);
+				command1 = StrTok(split[1], "Dev Block strings are not supported");
+				if(command1[0] == "Dev Block strings are not supported")
 				{
-					var_ff6a12cc = Int(var_47257d85[1]);
-					function_5fcfe5a4(character_index, var_ff6a12cc);
+					body_index = Int(command1[1]);
+					body_customization_setup_body(character_index, body_index);
 				}
-				else if(var_47257d85[0] == "Dev Block strings are not supported")
+				else if(command1[0] == "Dev Block strings are not supported")
 				{
-					var_9a65c47f = Int(var_47257d85[1]);
-					function_dfab5e4f(var_9a65c47f);
+					helmet_index = Int(command1[1]);
+					body_customization_setup_helmet(helmet_index);
 				}
 				break;
 			}
@@ -387,7 +387,7 @@ function function_ddb1104b(character_index)
 }
 
 /*
-	Name: function_630b630
+	Name: body_customization_populate
 	Namespace: dev
 	Checksum: 0x13761B6
 	Offset: 0x1718
@@ -395,23 +395,23 @@ function function_ddb1104b(character_index)
 	Parameters: 1
 	Flags: None
 */
-function function_630b630(mode)
+function body_customization_populate(mode)
 {
 	/#
-		bodies = function_59422ded(mode);
-		var_bf149c5c = "Dev Block strings are not supported";
-		foreach(var_6344ba56 in bodies)
+		bodies = getallcharacterbodies(mode);
+		body_customization_devgui_base = "Dev Block strings are not supported";
+		foreach(playerbodytype in bodies)
 		{
-			var_e9e7ca71 = MakeLocalizedString(function_8ce32d2b(var_6344ba56, mode)) + "Dev Block strings are not supported" + function_fc19efdd(var_6344ba56, mode) + "Dev Block strings are not supported";
-			AddDebugCommand(var_bf149c5c + var_e9e7ca71 + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_6344ba56 + "Dev Block strings are not supported");
-			for(i = 0; i < function_d1ccb69c(var_6344ba56, mode); i++)
+			body_name = MakeLocalizedString(getcharacterdisplayname(playerbodytype, mode)) + "Dev Block strings are not supported" + getcharacterassetname(playerbodytype, mode) + "Dev Block strings are not supported";
+			AddDebugCommand(body_customization_devgui_base + body_name + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + playerbodytype + "Dev Block strings are not supported");
+			for(i = 0; i < getcharacterbodymodelcount(playerbodytype, mode); i++)
 			{
-				AddDebugCommand(var_bf149c5c + var_e9e7ca71 + "Dev Block strings are not supported" + i + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_6344ba56 + "Dev Block strings are not supported" + "Dev Block strings are not supported" + i + "Dev Block strings are not supported");
+				AddDebugCommand(body_customization_devgui_base + body_name + "Dev Block strings are not supported" + i + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + playerbodytype + "Dev Block strings are not supported" + "Dev Block strings are not supported" + i + "Dev Block strings are not supported");
 				wait(0.05);
 			}
-			for(i = 0; i < function_4e534f37(var_6344ba56, mode); i++)
+			for(i = 0; i < getcharacterhelmetmodelcount(playerbodytype, mode); i++)
 			{
-				AddDebugCommand(var_bf149c5c + var_e9e7ca71 + "Dev Block strings are not supported" + i + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + var_6344ba56 + "Dev Block strings are not supported" + "Dev Block strings are not supported" + i + "Dev Block strings are not supported");
+				AddDebugCommand(body_customization_devgui_base + body_name + "Dev Block strings are not supported" + i + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + playerbodytype + "Dev Block strings are not supported" + "Dev Block strings are not supported" + i + "Dev Block strings are not supported");
 				wait(0.05);
 			}
 			wait(0.05);
@@ -420,7 +420,7 @@ function function_630b630(mode)
 }
 
 /*
-	Name: function_8ed979e4
+	Name: body_customization_devgui
 	Namespace: dev
 	Checksum: 0xCE02794D
 	Offset: 0x1A08
@@ -428,16 +428,16 @@ function function_630b630(mode)
 	Parameters: 1
 	Flags: None
 */
-function function_8ed979e4(mode)
+function body_customization_devgui(mode)
 {
 	/#
-		thread function_630b630(mode);
+		thread body_customization_populate(mode);
 		for(;;)
 		{
 			character_index = GetDvarString("Dev Block strings are not supported");
 			if(character_index != "Dev Block strings are not supported")
 			{
-				function_ddb1104b(character_index);
+				body_customization_process_command(character_index);
 			}
 			SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
 			wait(0.5);
@@ -446,7 +446,7 @@ function function_8ed979e4(mode)
 }
 
 /*
-	Name: function_484d1e26
+	Name: add_perk_devgui
 	Namespace: dev
 	Checksum: 0xA9980C64
 	Offset: 0x1AA8
@@ -454,13 +454,13 @@ function function_8ed979e4(mode)
 	Parameters: 2
 	Flags: None
 */
-function function_484d1e26(name, specialties)
+function add_perk_devgui(name, specialties)
 {
 	/#
-		var_f0b4337e = "Dev Block strings are not supported";
+		perk_devgui_base = "Dev Block strings are not supported";
 		perk_name = MakeLocalizedString(name);
-		test = var_f0b4337e + perk_name + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + specialties + "Dev Block strings are not supported";
-		AddDebugCommand(var_f0b4337e + perk_name + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + specialties + "Dev Block strings are not supported");
+		test = perk_devgui_base + perk_name + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + specialties + "Dev Block strings are not supported";
+		AddDebugCommand(perk_devgui_base + perk_name + "Dev Block strings are not supported" + "Dev Block strings are not supported" + "Dev Block strings are not supported" + specialties + "Dev Block strings are not supported");
 	#/
 }
 

@@ -15,14 +15,14 @@
 */
 function autoexec init()
 {
-	zombie_utility::register_ignore_player_handler("margwa", &function_478e89a7);
-	zombie_utility::register_ignore_player_handler("zombie", &function_478e89a7);
+	zombie_utility::register_ignore_player_handler("margwa", &zod_ignore_player);
+	zombie_utility::register_ignore_player_handler("zombie", &zod_ignore_player);
 	level.raps_can_reach_inaccessible_location = &raps_can_reach_inaccessible_location;
 	level.is_player_accessible_to_raps = &is_player_accessible_to_raps;
 }
 
 /*
-	Name: function_478e89a7
+	Name: zod_ignore_player
 	Namespace: namespace_29da2c3c
 	Checksum: 0x3BEE7064
 	Offset: 0x178
@@ -30,7 +30,7 @@ function autoexec init()
 	Parameters: 0
 	Flags: Private
 */
-function private function_478e89a7()
+function private zod_ignore_player()
 {
 	self.ignore_player = [];
 	foreach(player in level.players)
@@ -42,17 +42,17 @@ function private function_478e89a7()
 		}
 		if(isdefined(player.on_train) && player.on_train)
 		{
-			var_d3443466 = function_3e62f527();
-			if(!isdefined(self.var_e0d198e4) && self.var_e0d198e4 && (!isdefined(var_d3443466) && var_d3443466))
+			var_d3443466 = get_doors_state();
+			if(!isdefined(self.locked_in_train) && self.locked_in_train && (!isdefined(var_d3443466) && var_d3443466))
 			{
-				touching = function_406e4ba9(level.o_zod_train);
+				touching = is_touching_train_volume(level.o_zod_train);
 				if(!touching)
 				{
 					Array::add(self.ignore_player, player);
 				}
 			}
 		}
-		if(isdefined(self.var_81ac9e79) && self.var_81ac9e79 && (!isdefined(player.var_84f1bc44) && player.var_84f1bc44))
+		if(isdefined(self.var_81ac9e79) && self.var_81ac9e79 && (!isdefined(player.is_in_defend_area) && player.is_in_defend_area))
 		{
 			Array::add(self.ignore_player, player);
 			continue;
@@ -76,7 +76,7 @@ function private function_478e89a7()
 */
 function raps_can_reach_inaccessible_location()
 {
-	if(function_406e4ba9(level.o_zod_train))
+	if(is_touching_train_volume(level.o_zod_train))
 	{
 		return 1;
 	}
@@ -96,8 +96,8 @@ function is_player_accessible_to_raps(player)
 {
 	if(isdefined(player.on_train) && player.on_train)
 	{
-		var_d3443466 = function_3e62f527();
-		if(!isdefined(self.var_e0d198e4) && self.var_e0d198e4 && (!isdefined(var_d3443466) && var_d3443466))
+		var_d3443466 = get_doors_state();
+		if(!isdefined(self.locked_in_train) && self.locked_in_train && (!isdefined(var_d3443466) && var_d3443466))
 		{
 			return 0;
 		}

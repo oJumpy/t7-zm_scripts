@@ -74,7 +74,7 @@ function register()
 }
 
 /*
-	Name: function_b0f1e452
+	Name: createelectroballgrenadewatcher
 	Namespace: namespace_3df25fcf
 	Checksum: 0x83FBFC52
 	Offset: 0x780
@@ -82,7 +82,7 @@ function register()
 	Parameters: 0
 	Flags: None
 */
-function function_b0f1e452()
+function createelectroballgrenadewatcher()
 {
 	if(isPlayer(self))
 	{
@@ -109,11 +109,11 @@ function function_b0f1e452()
 	watcher.activationDelay = 0.05;
 	watcher.activateSound = "wpn_claymore_alert";
 	watcher.immunespecialty = "specialty_immunetriggershock";
-	watcher.onSpawn = &function_f424c33d;
+	watcher.onSpawn = &onspawnelectroballgrenadeweaponobject;
 }
 
 /*
-	Name: function_f424c33d
+	Name: onspawnelectroballgrenadeweaponobject
 	Namespace: namespace_3df25fcf
 	Checksum: 0x5EF42B94
 	Offset: 0x980
@@ -121,7 +121,7 @@ function function_b0f1e452()
 	Parameters: 2
 	Flags: None
 */
-function function_f424c33d(watcher, owner)
+function onspawnelectroballgrenadeweaponobject(watcher, owner)
 {
 	self thread setupKillCamEnt();
 	if(isPlayer(owner))
@@ -398,7 +398,7 @@ function on_player_spawned()
 {
 	if(isPlayer(self))
 	{
-		self thread function_b0f1e452();
+		self thread createelectroballgrenadewatcher();
 		self thread begin_other_grenade_tracking();
 		self thread function_62ffcc2c();
 	}
@@ -417,7 +417,7 @@ function on_ai_spawned()
 {
 	if(self.archetype === "mechz")
 	{
-		self thread function_b0f1e452();
+		self thread createelectroballgrenadewatcher();
 		self thread begin_other_grenade_tracking();
 	}
 }
