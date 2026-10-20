@@ -2,11 +2,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\visionset_mgr_shared;
 
-#namespace namespace_1c31c03d;
+#namespace zm_ai_raz;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xE991112F
 	Offset: 0x120
 	Size: 0x3B
@@ -20,7 +20,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xE7FE6FE9
 	Offset: 0x168
 	Size: 0x43
@@ -30,12 +30,12 @@ function autoexec __init__sytem__()
 function autoexec __init__()
 {
 	level._effect["fx_raz_eye_glow"] = "dlc3/stalingrad/fx_raz_eye_glow";
-	ai::add_archetype_spawn_function("raz", &function_f87a1709);
+	ai::add_archetype_spawn_function("raz", &raz_spawn_init);
 }
 
 /*
 	Name: __main__
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x99EC1590
 	Offset: 0x1B8
 	Size: 0x3
@@ -47,15 +47,15 @@ function __main__()
 }
 
 /*
-	Name: function_f87a1709
-	Namespace: namespace_1c31c03d
+	Name: raz_spawn_init
+	Namespace: zm_ai_raz
 	Checksum: 0xBB8F5C6B
 	Offset: 0x1C8
 	Size: 0x33
 	Parameters: 1
 	Flags: None
 */
-function function_f87a1709(localClientNum)
+function raz_spawn_init(localClientNum)
 {
 	self._eyeglow_fx_override = level._effect["fx_raz_eye_glow"];
 	self._eyeglow_tag_override = "tag_eye_glow";

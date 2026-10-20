@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x11DDF0BF
+	Checksum: 0x7888D1C6
 	Offset: 0x380
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xA481624
+	Checksum: 0x350594F6
 	Offset: 0x3C0
 	Size: 0x83
 	Parameters: 0
@@ -39,7 +39,7 @@ function __init__()
 /*
 	Name: init_electric_cherry
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x541947E0
+	Checksum: 0xDD922402
 	Offset: 0x450
 	Size: 0x225
 	Parameters: 0
@@ -66,7 +66,7 @@ function init_electric_cherry()
 /*
 	Name: electric_cherry_client_field_func
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x29B49CC9
+	Checksum: 0xAFB83AC7
 	Offset: 0x680
 	Size: 0x3B
 	Parameters: 0
@@ -93,7 +93,7 @@ function electric_cherry_code_callback_func()
 /*
 	Name: electric_cherry_reload_attack_fx
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x32A16DD
+	Checksum: 0x9C62EDF6
 	Offset: 0x6D8
 	Size: 0x175
 	Parameters: 7
@@ -127,7 +127,7 @@ function electric_cherry_reload_attack_fx(localClientNum, oldVal, newVal, bNewEn
 /*
 	Name: tesla_death_fx_callback
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x3BC169
+	Checksum: 0x289AEBEB
 	Offset: 0x858
 	Size: 0x12D
 	Parameters: 7
@@ -159,7 +159,7 @@ function tesla_death_fx_callback(localClientNum, oldVal, newVal, bNewEnt, bIniti
 /*
 	Name: tesla_shock_eyes_fx_callback
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xDE9EFE6D
+	Checksum: 0x37E770F6
 	Offset: 0x990
 	Size: 0x1C5
 	Parameters: 7

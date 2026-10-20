@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_3f74549;
+#namespace zm_bgb_whos_keeping_score;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3f74549
+	Namespace: zm_bgb_whos_keeping_score
 	Checksum: 0x57F939CB
 	Offset: 0x158
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3f74549
+	Namespace: zm_bgb_whos_keeping_score
 	Checksum: 0x5C276FD0
 	Offset: 0x198
 	Size: 0x3B

@@ -14,11 +14,11 @@
 #using scripts\zm\zm_zod_portals;
 #using scripts\zm\zm_zod_quest;
 
-#namespace namespace_783690d8;
+#namespace zm_zod_smashables;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0x873314BF
 	Offset: 0x408
 	Size: 0x33
@@ -113,7 +113,7 @@ function private parse_parameters()
 		self.m_a_b_parameters[str_param] = 1;
 		if(str_param == "connect_paths")
 		{
-			add_callback(&namespace_783690d8::cb_connect_paths);
+			add_callback(&zm_zod_smashables::cb_connect_paths);
 			continue;
 		}
 		if(str_param == "any_damage")
@@ -205,7 +205,7 @@ function private setup_fxanims()
 			level scene::init(self.m_e_trigger.target, "targetname");
 		}
 		var_5b3a6271 = function_3408f1a2();
-		add_callback(&namespace_783690d8::cb_fxanim, var_5b3a6271, self.var_afea543d, self.var_6e27ff4);
+		add_callback(&zm_zod_smashables::cb_fxanim, var_5b3a6271, self.var_afea543d, self.var_6e27ff4);
 	}
 }
 
@@ -313,7 +313,7 @@ function private main()
 	self.m_e_trigger waittill("trigger", who);
 	if(isdefined(who))
 	{
-		who notify("hash_d8f4150d");
+		who notify("smashable_smashed");
 	}
 	foreach(model in self.m_a_e_models)
 	{
@@ -531,11 +531,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_783690d8;
+#namespace zm_zod_smashables;
 
 /*
 	Name: csmashable
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0x7100D8FD
 	Offset: 0x1620
 	Size: 0x3B5
@@ -568,7 +568,7 @@ function private autoexec csmashable()
 
 /*
 	Name: __init__
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0x6A6BFEE7
 	Offset: 0x19E0
 	Size: 0xB1
@@ -586,7 +586,7 @@ function __init__()
 
 /*
 	Name: smashable_from_scriptbundle_targetname
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0xEE087432
 	Offset: 0x1AA0
 	Size: 0xBD
@@ -607,7 +607,7 @@ function private smashable_from_scriptbundle_targetname(str_targetname)
 
 /*
 	Name: add_scriptbundle_models
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0xD83FC7C7
 	Offset: 0x1B68
 	Size: 0xE5
@@ -632,7 +632,7 @@ function private add_scriptbundle_models(a_models)
 
 /*
 	Name: init_smashables
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0xE898167C
 	Offset: 0x1C58
 	Size: 0x299
@@ -670,11 +670,11 @@ function private init_smashables()
 		level.zod_smashables[str_id] = o_smashable;
 		if(IsSubStr(str_id, "portal"))
 		{
-			set_trigger_func(o_smashable, &namespace_8e2647d0::function_54ec766b);
+			set_trigger_func(o_smashable, &zm_zod_portals::function_54ec766b);
 		}
 		if(IsSubStr(str_id, "memento"))
 		{
-			set_trigger_func(o_smashable, &namespace_1f61c67f::reveal_personal_item);
+			set_trigger_func(o_smashable, &zm_zod_quest::reveal_personal_item);
 		}
 		if(IsSubStr(str_id, "beast_kiosk"))
 		{
@@ -682,7 +682,7 @@ function private init_smashables()
 		}
 		if(str_id === "unlock_quest_key")
 		{
-			set_trigger_func(o_smashable, &function_1c061892);
+			set_trigger_func(o_smashable, &unlock_quest_key);
 		}
 		init(o_smashable);
 	}
@@ -690,7 +690,7 @@ function private init_smashables()
 
 /*
 	Name: unlock_beast_kiosk
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0x194D5801
 	Offset: 0x1F00
 	Size: 0x4B
@@ -705,7 +705,7 @@ function unlock_beast_kiosk(str_id)
 
 /*
 	Name: unlock_beast_trigger
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0xC71A8978
 	Offset: 0x1F58
 	Size: 0xD9
@@ -725,22 +725,22 @@ function unlock_beast_trigger(str_targetname, str_id)
 }
 
 /*
-	Name: function_1c061892
-	Namespace: namespace_783690d8
+	Name: unlock_quest_key
+	Namespace: zm_zod_smashables
 	Checksum: 0xBD1DD1BD
 	Offset: 0x2040
 	Size: 0x17
 	Parameters: 1
 	Flags: None
 */
-function function_1c061892(str_id)
+function unlock_quest_key(str_id)
 {
 	level.quest_key_can_be_picked_up = 1;
 }
 
 /*
 	Name: add_callback
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0xF72C2CB0
 	Offset: 0x2060
 	Size: 0xA7
@@ -764,7 +764,7 @@ function add_callback(targetname, fn_callback, param1, param2, param3)
 
 /*
 	Name: cb_connect_paths
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0x3E491AF4
 	Offset: 0x2110
 	Size: 0xE1
@@ -788,7 +788,7 @@ function private cb_connect_paths()
 
 /*
 	Name: cb_fxanim
-	Namespace: namespace_783690d8
+	Namespace: zm_zod_smashables
 	Checksum: 0xEF2183CD
 	Offset: 0x2200
 	Size: 0xD3

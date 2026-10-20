@@ -94,7 +94,7 @@ function onPlayerConnect()
 function achievement_i_said_were_closed()
 {
 	level endon("end_game");
-	level endon("hash_634c6ab7");
+	level endon("i_said_were_closed_failed");
 	level waittill("start_zombie_round_logic");
 	level thread function_2d04250a();
 	while(level.round_number < 3)
@@ -104,7 +104,7 @@ function achievement_i_said_were_closed()
 	/#
 	#/
 	level zm_utility::giveachievement_wrapper("ZM_PROTOTYPE_I_SAID_WERE_CLOSED", 1);
-	level notify("hash_41c22693");
+	level notify("i_said_were_closed_completed");
 }
 
 /*
@@ -138,8 +138,8 @@ function function_2d04250a()
 function function_c97e69a9()
 {
 	self endon("death");
-	level endon("hash_634c6ab7");
-	level endon("hash_41c22693");
+	level endon("i_said_were_closed_failed");
+	level endon("i_said_were_closed_completed");
 	if(self.archetype !== "zombie")
 	{
 		return;
@@ -147,7 +147,7 @@ function function_c97e69a9()
 	self waittill("completed_emerging_into_playable_area");
 	if(self.zone_name === "start_zone")
 	{
-		level notify("hash_634c6ab7");
+		level notify("i_said_were_closed_failed");
 	}
 }
 

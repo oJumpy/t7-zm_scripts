@@ -15,11 +15,11 @@
 #using scripts\zm\_zm_unitrigger;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_b361ecc3;
+#namespace zm_zod_beastcode;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_b361ecc3
+	Namespace: zm_zod_beastcode
 	Checksum: 0xF5AC61D0
 	Offset: 0x438
 	Size: 0x33
@@ -33,7 +33,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_b361ecc3
+	Namespace: zm_zod_beastcode
 	Checksum: 0x99EC1590
 	Offset: 0x478
 	Size: 0x3
@@ -46,7 +46,7 @@ function __init__()
 
 /*
 	Name: init
-	Namespace: namespace_b361ecc3
+	Namespace: zm_zod_beastcode
 	Checksum: 0xF86350C0
 	Offset: 0x488
 	Size: 0x1FF
@@ -80,7 +80,7 @@ function init()
 
 /*
 	Name: keeper_sword_locker_open_locker
-	Namespace: namespace_b361ecc3
+	Namespace: zm_zod_beastcode
 	Checksum: 0xA3B990EF
 	Offset: 0x690
 	Size: 0x23
@@ -256,7 +256,7 @@ function hide_readout(b_hide)
 			continue;
 		}
 		mdl_input show();
-		namespace_215602b6::function_41cc3fc8();
+		zm_altbody_beast::function_41cc3fc8();
 	}
 }
 
@@ -287,7 +287,7 @@ function setup_input_threads()
 {
 	for(i = 0; i < self.m_a_mdl_inputs.size; i++)
 	{
-		self.m_a_mdl_inputs[i] thread namespace_215602b6::watch_lightning_damage(self.m_a_t_inputs[i]);
+		self.m_a_mdl_inputs[i] thread zm_altbody_beast::watch_lightning_damage(self.m_a_t_inputs[i]);
 		self.m_a_t_inputs[i] thread keycode_input_trigger_think(self, i);
 		set_input_number(i, i);
 	}
@@ -711,11 +711,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_b361ecc3;
+#namespace zm_zod_beastcode;
 
 /*
 	Name: cbeastcode
-	Namespace: namespace_b361ecc3
+	Namespace: zm_zod_beastcode
 	Checksum: 0x19B2D208
 	Offset: 0x1AB0
 	Size: 0x4D5

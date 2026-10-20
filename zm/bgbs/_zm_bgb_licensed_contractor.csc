@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_2f4bd124;
+#namespace zm_bgb_licensed_contractor;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2f4bd124
+	Namespace: zm_bgb_licensed_contractor
 	Checksum: 0x5F57DE5C
 	Offset: 0x158
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2f4bd124
+	Namespace: zm_bgb_licensed_contractor
 	Checksum: 0x7D698B67
 	Offset: 0x198
 	Size: 0x3B

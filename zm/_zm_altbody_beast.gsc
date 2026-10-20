@@ -30,11 +30,11 @@
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\zm_zod_util;
 
-#namespace namespace_215602b6;
+#namespace zm_altbody_beast;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x5F3C5E87
 	Offset: 0xB18
 	Size: 0x3B
@@ -48,7 +48,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x4DAA56FE
 	Offset: 0xB60
 	Size: 0x5B1
@@ -67,7 +67,7 @@ function __init__()
 	loadout = Array("zombie_beast_grapple_dwr", "zombie_beast_lightning_dwl", "zombie_beast_lightning_dwl2", "zombie_beast_lightning_dwl3");
 	beastmode_loadout = zm_weapons::create_loadout(loadout);
 	var_55affbc1 = Array("zm_bgb_disorderly_combat");
-	zm_altbody::init("beast_mode", "beast_mode_kiosk", &"ZM_ZOD_ENTER_BEAST_MODE", "zombie_beast_2", 123, beastmode_loadout, 4, &player_enter_beastmode, &function_b2631b3c, &player_allow_beastmode, &"ZM_ZOD_CANT_ENTER_BEAST_MODE", var_55affbc1);
+	zm_altbody::init("beast_mode", "beast_mode_kiosk", &"ZM_ZOD_ENTER_BEAST_MODE", "zombie_beast_2", 123, beastmode_loadout, 4, &player_enter_beastmode, &player_exit_beastmode, &player_allow_beastmode, &"ZM_ZOD_CANT_ENTER_BEAST_MODE", var_55affbc1);
 	callback::on_connect(&player_on_connect);
 	callback::on_spawned(&player_on_spawned);
 	callback::on_player_killed(&player_on_killed);
@@ -105,7 +105,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x9F6A4B4C
 	Offset: 0x1120
 	Size: 0x93
@@ -125,7 +125,7 @@ function __main__()
 
 /*
 	Name: player_cover_transition
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x6948187D
 	Offset: 0x11C0
 	Size: 0x1D
@@ -142,7 +142,7 @@ function player_cover_transition(extra_time)
 
 /*
 	Name: player_disappear_in_flash
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x23858842
 	Offset: 0x11E8
 	Size: 0x23
@@ -156,7 +156,7 @@ function player_disappear_in_flash(washuman)
 
 /*
 	Name: player_enter_beastmode
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x951F79E5
 	Offset: 0x1218
 	Size: 0x5C3
@@ -229,14 +229,14 @@ function player_enter_beastmode(name, trigger)
 		self player_enter_superbeastmode();
 	}
 	/#
-		var_1ee18766 = GetDvarInt("Dev Block strings are not supported") > 0;
+		scr_beast_no_visionset = GetDvarInt("Dev Block strings are not supported") > 0;
 		self thread watch_scr_beast_no_visionset();
 	#/
 }
 
 /*
 	Name: watch_scr_beast_no_visionset
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xAC0B168C
 	Offset: 0x17E8
 	Size: 0x189
@@ -245,16 +245,16 @@ function player_enter_beastmode(name, trigger)
 */
 function watch_scr_beast_no_visionset(localClientNum)
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	was_scr_beast_no_visionset = 0;
 	while(isdefined(self))
 	{
-		var_1ee18766 = GetDvarInt("scr_beast_no_visionset") > 0;
-		if(var_1ee18766 != was_scr_beast_no_visionset)
+		scr_beast_no_visionset = GetDvarInt("scr_beast_no_visionset") > 0;
+		if(scr_beast_no_visionset != was_scr_beast_no_visionset)
 		{
 			name = "beast_mode";
 			visionset = "zombie_beast_2";
-			if(var_1ee18766)
+			if(scr_beast_no_visionset)
 			{
 				if(isdefined(visionset))
 				{
@@ -278,14 +278,14 @@ function watch_scr_beast_no_visionset(localClientNum)
 				self.altbody_visionset[name] = 1;
 			}
 		}
-		was_scr_beast_no_visionset = var_1ee18766;
+		was_scr_beast_no_visionset = scr_beast_no_visionset;
 		wait(1);
 	}
 }
 
 /*
 	Name: player_enter_superbeastmode
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xD776B18
 	Offset: 0x1980
 	Size: 0xD3
@@ -307,7 +307,7 @@ function player_enter_superbeastmode()
 
 /*
 	Name: player_recharge_superbeastmode
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x889B4317
 	Offset: 0x1A60
 	Size: 0x5B
@@ -323,7 +323,7 @@ function player_recharge_superbeastmode(trigger, name)
 
 /*
 	Name: superbeastmode_override_hp
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xEE3DAED4
 	Offset: 0x1AC8
 	Size: 0x33
@@ -332,7 +332,7 @@ function player_recharge_superbeastmode(trigger, name)
 */
 function superbeastmode_override_hp()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	while(isdefined(self))
 	{
 		self.beastmana = self.superbeastmana;
@@ -341,15 +341,15 @@ function superbeastmode_override_hp()
 }
 
 /*
-	Name: function_b2631b3c
-	Namespace: namespace_215602b6
+	Name: player_exit_beastmode
+	Namespace: zm_altbody_beast
 	Checksum: 0xC48B8418
 	Offset: 0x1B08
 	Size: 0x3A3
 	Parameters: 2
 	Flags: None
 */
-function function_b2631b3c(name, trigger)
+function player_exit_beastmode(name, trigger)
 {
 	/#
 		Assert(isdefined(self.beastmode) && self.beastmode);
@@ -366,7 +366,7 @@ function function_b2631b3c(name, trigger)
 	{
 		wait(0);
 	}
-	self notify("hash_b2631b3c");
+	self notify("player_exit_beastmode");
 	bb::logplayerevent(self, "exit_beast_mode");
 	self thread wait_invulnerable(2);
 	self thread wait_enable_offhand_weapons(3);
@@ -410,7 +410,7 @@ function function_b2631b3c(name, trigger)
 
 /*
 	Name: wait_and_appear
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x1617416E
 	Offset: 0x1EB8
 	Size: 0x643
@@ -507,7 +507,7 @@ function wait_and_appear(no_ignore)
 
 /*
 	Name: wait_invulnerable
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xC0A4AB60
 	Offset: 0x2508
 	Size: 0x63
@@ -526,7 +526,7 @@ function wait_invulnerable(time)
 
 /*
 	Name: wait_enable_offhand_weapons
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x3ECB7F90
 	Offset: 0x2578
 	Size: 0x16F
@@ -568,7 +568,7 @@ function wait_enable_offhand_weapons(time)
 
 /*
 	Name: player_allow_beastmode
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xD0755861
 	Offset: 0x26F0
 	Size: 0xE7
@@ -594,12 +594,12 @@ function player_allow_beastmode(name, kiosk)
 	{
 		return 1;
 	}
-	return self.var_5e82a563 >= 1;
+	return self.beastlives >= 1;
 }
 
 /*
 	Name: kiosk_allowed
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xEDC001EB
 	Offset: 0x27E0
 	Size: 0x2F
@@ -613,7 +613,7 @@ function kiosk_allowed(kiosk)
 
 /*
 	Name: player_on_connect
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x124C36E8
 	Offset: 0x2818
 	Size: 0x23
@@ -627,7 +627,7 @@ function player_on_connect()
 
 /*
 	Name: player_on_spawned
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xAFA1D322
 	Offset: 0x2848
 	Size: 0xBB
@@ -640,11 +640,11 @@ function player_on_spawned()
 	self.beastmana = 1;
 	if(level flag::get("solo_game"))
 	{
-		self.var_5e82a563 = 3;
+		self.beastlives = 3;
 	}
 	else
 	{
-		self.var_5e82a563 = 1;
+		self.beastlives = 1;
 	}
 	self thread update_kiosk_effects();
 	self thread player_watch_mana();
@@ -653,7 +653,7 @@ function player_on_spawned()
 
 /*
 	Name: make_powerups_grapplable
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x34C86644
 	Offset: 0x2910
 	Size: 0x5F
@@ -672,7 +672,7 @@ function make_powerups_grapplable()
 
 /*
 	Name: function_10dcd1d5
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x2BF244E
 	Offset: 0x2978
 	Size: 0x149
@@ -693,7 +693,7 @@ function function_10dcd1d5(kiosk_name)
 
 /*
 	Name: update_kiosk_effects
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xE13FC731
 	Offset: 0x2AD0
 	Size: 0x167
@@ -726,7 +726,7 @@ function update_kiosk_effects()
 
 /*
 	Name: get_number_of_available_kiosks
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x9C35D71A
 	Offset: 0x2C40
 	Size: 0xA5
@@ -748,7 +748,7 @@ function get_number_of_available_kiosks()
 
 /*
 	Name: function_f6014f2c
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x4ABCEC3B
 	Offset: 0x2CF0
 	Size: 0xF5
@@ -761,7 +761,7 @@ function function_f6014f2c(v_origin, var_8ebf7724)
 	a_kiosks = Array::filter(a_kiosks, 0, &function_b7520b09);
 	for(i = 0; i < a_kiosks.size && i < var_8ebf7724; i++)
 	{
-		namespace_8e578893::function_5cc835d6(v_origin, a_kiosks[i].origin, 1);
+		zm_zod_util::function_5cc835d6(v_origin, a_kiosks[i].origin, 1);
 		a_kiosks[i].is_cooling_down = 0;
 		wait(0.05);
 	}
@@ -769,7 +769,7 @@ function function_f6014f2c(v_origin, var_8ebf7724)
 
 /*
 	Name: function_b7520b09
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xE9206972
 	Offset: 0x2DF0
 	Size: 0x47
@@ -787,7 +787,7 @@ function function_b7520b09(s_kiosk)
 
 /*
 	Name: kiosk_cooldown
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x652DC63A
 	Offset: 0x2E40
 	Size: 0x47
@@ -808,7 +808,7 @@ function kiosk_cooldown()
 
 /*
 	Name: round_number
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x3B7A2C2F
 	Offset: 0x2E90
 	Size: 0x2F
@@ -827,7 +827,7 @@ function round_number()
 
 /*
 	Name: _kiosk_cooldown
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xA7E37804
 	Offset: 0x2EC8
 	Size: 0x87
@@ -849,7 +849,7 @@ function _kiosk_cooldown()
 
 /*
 	Name: function_fd8fb00d
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x2AF48D55
 	Offset: 0x2F58
 	Size: 0x10D
@@ -881,7 +881,7 @@ function function_fd8fb00d(b_cooldown)
 
 /*
 	Name: player_watch_cancel
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xF193C9DA
 	Offset: 0x3070
 	Size: 0xDF
@@ -890,7 +890,7 @@ function function_fd8fb00d(b_cooldown)
 */
 function player_watch_cancel()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	if(!self flag::exists("beast_hint_shown"))
 	{
@@ -914,7 +914,7 @@ function player_watch_cancel()
 
 /*
 	Name: beast_cancel_hint
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xF6B53B9C
 	Offset: 0x3158
 	Size: 0xBB
@@ -937,7 +937,7 @@ function beast_cancel_hint()
 
 /*
 	Name: watch_beast_hint_use
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x36FDECEB
 	Offset: 0x3220
 	Size: 0x73
@@ -953,7 +953,7 @@ function watch_beast_hint_use(minTime, maxTime)
 
 /*
 	Name: watch_beast_hint_end
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xD3825F44
 	Offset: 0x32A0
 	Size: 0x61
@@ -973,7 +973,7 @@ function watch_beast_hint_end(minTime, maxTime)
 
 /*
 	Name: player_stance_hold_think
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xF3D55F35
 	Offset: 0x3310
 	Size: 0x81
@@ -986,7 +986,7 @@ function player_stance_hold_think()
 	retval = self util::waittill_any_return("exit_succeed", "exit_failed");
 	if(retval == "exit_succeed")
 	{
-		self notify("hash_f0078f48");
+		self notify("altbody_end");
 		return 1;
 	}
 	self.beast_cancel_timer = 0;
@@ -995,7 +995,7 @@ function player_stance_hold_think()
 
 /*
 	Name: function_92acebd3
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x2D958236
 	Offset: 0x33A0
 	Size: 0x79
@@ -1004,18 +1004,18 @@ function player_stance_hold_think()
 */
 function function_92acebd3()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	self waittill("player_did_a_revive");
 	self PlayRumbleOnEntity("damage_heavy");
 	wait(1.5);
 	self player_take_mana(1);
-	self notify("hash_f0078f48");
+	self notify("altbody_end");
 }
 
 /*
 	Name: player_continue_cancel
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xE613F32B
 	Offset: 0x3428
 	Size: 0x59
@@ -1041,7 +1041,7 @@ function player_continue_cancel()
 
 /*
 	Name: player_stance_hold_think_internal
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xEE455655
 	Offset: 0x3490
 	Size: 0xF5
@@ -1053,7 +1053,7 @@ function player_stance_hold_think_internal()
 	wait(0.05);
 	if(!isdefined(self))
 	{
-		self notify("hash_59d92a3f");
+		self notify("exit_failed");
 		return;
 	}
 	self.beast_cancel_timer = GetTime();
@@ -1065,17 +1065,17 @@ function player_stance_hold_think_internal()
 	}
 	if(isdefined(self) && self player_continue_cancel() && GetTime() - self.beast_cancel_timer >= build_time)
 	{
-		self notify("hash_a7925b74");
+		self notify("exit_succeed");
 	}
 	else
 	{
-		self notify("hash_59d92a3f");
+		self notify("exit_failed");
 	}
 }
 
 /*
 	Name: player_beast_cancel_bar
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x69CF82F1
 	Offset: 0x3590
 	Size: 0xC3
@@ -1094,7 +1094,7 @@ function player_beast_cancel_bar(start_time, build_time)
 
 /*
 	Name: player_progress_bar_update
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x1B7C2C19
 	Offset: 0x3660
 	Size: 0xCF
@@ -1105,8 +1105,8 @@ function player_progress_bar_update(start_time, build_time)
 {
 	self endon("death");
 	self endon("disconnect");
-	self endon("hash_b2631b3c");
-	self endon("hash_59d92a3f");
+	self endon("player_exit_beastmode");
+	self endon("exit_failed");
 	while(isdefined(self) && GetTime() - start_time < build_time)
 	{
 		progress = GetTime() - start_time / build_time;
@@ -1125,7 +1125,7 @@ function player_progress_bar_update(start_time, build_time)
 
 /*
 	Name: player_take_mana
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xE16133D8
 	Offset: 0x3738
 	Size: 0x51
@@ -1138,13 +1138,13 @@ function player_take_mana(mana)
 	if(self.beastmana <= 0)
 	{
 		self.beastmana = 0;
-		self notify("hash_f0078f48");
+		self notify("altbody_end");
 	}
 }
 
 /*
 	Name: player_give_lives
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xDCF78A2C
 	Offset: 0x3798
 	Size: 0x7B
@@ -1153,23 +1153,23 @@ function player_take_mana(mana)
 */
 function player_give_lives(lives)
 {
-	self.var_5e82a563 = self.var_5e82a563 + lives;
+	self.beastlives = self.beastlives + lives;
 	if(level flag::get("solo_game"))
 	{
-		if(self.var_5e82a563 > 3)
+		if(self.beastlives > 3)
 		{
-			self.var_5e82a563 = 3;
+			self.beastlives = 3;
 		}
 	}
-	else if(self.var_5e82a563 > 1)
+	else if(self.beastlives > 1)
 	{
-		self.var_5e82a563 = 1;
+		self.beastlives = 1;
 	}
 }
 
 /*
 	Name: player_take_lives
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xC75E794E
 	Offset: 0x3820
 	Size: 0x37
@@ -1178,16 +1178,16 @@ function player_give_lives(lives)
 */
 function player_take_lives(lives)
 {
-	self.var_5e82a563 = self.var_5e82a563 - lives;
+	self.beastlives = self.beastlives - lives;
 	if(self.beastmana <= 0)
 	{
-		self.var_5e82a563 = 0;
+		self.beastlives = 0;
 	}
 }
 
 /*
 	Name: player_give_mana
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x456C4FC5
 	Offset: 0x3860
 	Size: 0x43
@@ -1205,7 +1205,7 @@ function player_give_mana(mana)
 
 /*
 	Name: player_get_revive_time
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x66739CD9
 	Offset: 0x38B0
 	Size: 0x11
@@ -1219,7 +1219,7 @@ function player_get_revive_time(player_being_revived)
 
 /*
 	Name: player_damage_override_beast_mode
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x338AEC33
 	Offset: 0x38D0
 	Size: 0x1FD
@@ -1239,18 +1239,18 @@ function player_damage_override_beast_mode(eInflictor, eAttacker, iDamage, iDFla
 		if(superbeastdamage > 0.4)
 		{
 			superbeastdamage = 0.4;
-			self thread namespace_8e578893::set_rumble_to_player(3);
+			self thread zm_zod_util::set_rumble_to_player(3);
 		}
 		else
 		{
-			self thread namespace_8e578893::set_rumble_to_player(2);
+			self thread zm_zod_util::set_rumble_to_player(2);
 		}
 		self.superbeastmana = self.superbeastmana - superbeastdamage;
 		if(self.superbeastmana <= 0)
 		{
-			self notify("hash_f0078f48");
+			self notify("altbody_end");
 			self player_take_mana(1);
-			self.var_5e82a563 = 1;
+			self.beastlives = 1;
 		}
 		return 0;
 	}
@@ -1262,14 +1262,14 @@ function player_damage_override_beast_mode(eInflictor, eAttacker, iDamage, iDFla
 	{
 		return 0;
 	}
-	self notify("hash_f0078f48");
+	self notify("altbody_end");
 	self player_take_mana(1);
 	return 0;
 }
 
 /*
 	Name: player_check_grenades
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x31104357
 	Offset: 0x3AD8
 	Size: 0x27
@@ -1286,7 +1286,7 @@ function player_check_grenades()
 
 /*
 	Name: watch_round_start_mana
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x9DD5268E
 	Offset: 0x3B08
 	Size: 0x19D
@@ -1317,7 +1317,7 @@ function watch_round_start_mana()
 
 /*
 	Name: player_watch_mana
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x7D4503F1
 	Offset: 0x3CB0
 	Size: 0x1F7
@@ -1352,11 +1352,11 @@ function player_watch_mana()
 			n_mapped_mana = math::linear_map(self.beastmana, 0, 1, 0, 1);
 		}
 		self clientfield::set_player_uimodel("player_mana", n_mapped_mana);
-		lives = self.var_5e82a563;
+		lives = self.beastlives;
 		if(lives != self clientfield::get_player_uimodel("player_lives"))
 		{
 			player_give_lives(0);
-			lives = self.var_5e82a563;
+			lives = self.beastlives;
 			self clientfield::set_player_uimodel("player_lives", lives);
 		}
 		wait(0.05);
@@ -1365,7 +1365,7 @@ function player_watch_mana()
 
 /*
 	Name: player_on_killed
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x12BFB3AD
 	Offset: 0x3EB0
 	Size: 0x2B
@@ -1374,13 +1374,13 @@ function player_watch_mana()
 */
 function player_on_killed()
 {
-	self notify("hash_f0078f48");
+	self notify("altbody_end");
 	self player_take_mana(1);
 }
 
 /*
 	Name: hide_ooze_triggers
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xF77787BB
 	Offset: 0x3EE8
 	Size: 0x113
@@ -1400,7 +1400,7 @@ function hide_ooze_triggers()
 
 /*
 	Name: player_update_beast_mode_objects
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xB2DB1481
 	Offset: 0x4008
 	Size: 0x143
@@ -1427,7 +1427,7 @@ function player_update_beast_mode_objects(onOff)
 
 /*
 	Name: entity_set_visible
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x83E9767
 	Offset: 0x4158
 	Size: 0x53
@@ -1448,7 +1448,7 @@ function entity_set_visible(player, onOff)
 
 /*
 	Name: player_watch_melee_charge
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xCD3A3065
 	Offset: 0x41B8
 	Size: 0x51
@@ -1457,7 +1457,7 @@ function entity_set_visible(player, onOff)
 */
 function player_watch_melee_charge()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	while(isdefined(self))
 	{
@@ -1468,7 +1468,7 @@ function player_watch_melee_charge()
 
 /*
 	Name: player_watch_melee_power
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x2612113F
 	Offset: 0x4218
 	Size: 0x51
@@ -1477,7 +1477,7 @@ function player_watch_melee_charge()
 */
 function player_watch_melee_power()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	while(isdefined(self))
 	{
@@ -1488,7 +1488,7 @@ function player_watch_melee_power()
 
 /*
 	Name: player_watch_melee
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xD92DA702
 	Offset: 0x4278
 	Size: 0x14F
@@ -1497,7 +1497,7 @@ function player_watch_melee_power()
 */
 function player_watch_melee()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	while(isdefined(self))
 	{
@@ -1516,7 +1516,7 @@ function player_watch_melee()
 
 /*
 	Name: player_watch_melee_juke
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xA8E0104
 	Offset: 0x43D0
 	Size: 0x77
@@ -1525,7 +1525,7 @@ function player_watch_melee()
 */
 function player_watch_melee_juke()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	while(isdefined(self))
 	{
@@ -1539,7 +1539,7 @@ function player_watch_melee_juke()
 
 /*
 	Name: player_beast_melee_juke
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xD972A214
 	Offset: 0x4450
 	Size: 0x77
@@ -1561,7 +1561,7 @@ function player_beast_melee_juke(weapon)
 
 /*
 	Name: trigger_touching_meleepos
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xB66EA038
 	Offset: 0x44D0
 	Size: 0x79
@@ -1577,7 +1577,7 @@ function trigger_touching_meleepos(meleepos, radius)
 
 /*
 	Name: trigger_melee_only
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x1B4878ED
 	Offset: 0x4558
 	Size: 0x10F
@@ -1609,7 +1609,7 @@ function trigger_melee_only()
 
 /*
 	Name: is_lightning_weapon
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x7C1ED15
 	Offset: 0x4670
 	Size: 0x7F
@@ -1631,7 +1631,7 @@ function is_lightning_weapon(weapon)
 
 /*
 	Name: lightning_weapon_level
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x52374B7B
 	Offset: 0x46F8
 	Size: 0x8F
@@ -1661,7 +1661,7 @@ function lightning_weapon_level(weapon)
 
 /*
 	Name: player_watch_lightning
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xB9DDC1D7
 	Offset: 0x4790
 	Size: 0x9F
@@ -1670,7 +1670,7 @@ function lightning_weapon_level(weapon)
 */
 function player_watch_lightning()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	self.tesla_enemies = undefined;
 	self.tesla_enemies_hit = 0;
@@ -1688,7 +1688,7 @@ function player_watch_lightning()
 
 /*
 	Name: lightning_aoe
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x3F65BA91
 	Offset: 0x4838
 	Size: 0x27F
@@ -1736,7 +1736,7 @@ function lightning_aoe(weapon)
 
 /*
 	Name: arc_damage_init
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xCCAE80DA
 	Offset: 0x4AC0
 	Size: 0xDB
@@ -1766,7 +1766,7 @@ function arc_damage_init(HIT_LOCATION, hit_origin, player, shocklevel)
 
 /*
 	Name: create_lightning_params
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x34DC2009
 	Offset: 0x4BA8
 	Size: 0xC3
@@ -1787,7 +1787,7 @@ function create_lightning_params()
 
 /*
 	Name: get_grapple_targets
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xFCF77A8B
 	Offset: 0x4C78
 	Size: 0x21
@@ -1805,7 +1805,7 @@ function get_grapple_targets()
 
 /*
 	Name: trigger_grapple_only
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xF36560DD
 	Offset: 0x4CA8
 	Size: 0xAF
@@ -1829,7 +1829,7 @@ function trigger_grapple_only()
 
 /*
 	Name: player_watch_grapple
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x504693AB
 	Offset: 0x4D60
 	Size: 0x117
@@ -1838,7 +1838,7 @@ function trigger_grapple_only()
 */
 function player_watch_grapple()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	grapple = GetWeapon("zombie_beast_grapple_dwr");
 	while(isdefined(self))
@@ -1861,7 +1861,7 @@ function player_watch_grapple()
 
 /*
 	Name: function_668dcfac
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x287B2FC2
 	Offset: 0x4E80
 	Size: 0x67
@@ -1881,7 +1881,7 @@ function function_668dcfac(target)
 
 /*
 	Name: function_b8488073
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x5D4ED013
 	Offset: 0x4EF0
 	Size: 0x103
@@ -1909,7 +1909,7 @@ function function_b8488073(target, time)
 
 /*
 	Name: player_beast_grapple_rumble
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xF4CBDE7C
 	Offset: 0x5000
 	Size: 0x8D
@@ -1919,9 +1919,9 @@ function function_b8488073(target, time)
 function player_beast_grapple_rumble(weapon, rumble, length)
 {
 	self endon("grapple_stick");
-	self endon("hash_34020bc3");
-	self endon("hash_d35b1239");
-	self endon("hash_2551795b");
+	self endon("grapple_pulled");
+	self endon("grapple_landed");
+	self endon("grapple_cancel");
 	start_time = GetTime();
 	while(start_time + 3000 > GetTime())
 	{
@@ -1932,7 +1932,7 @@ function player_beast_grapple_rumble(weapon, rumble, length)
 
 /*
 	Name: grapple_valid_target_check
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xBDA62C26
 	Offset: 0x5098
 	Size: 0x75
@@ -1956,7 +1956,7 @@ function grapple_valid_target_check(ent)
 
 /*
 	Name: zombie_on_spawn
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xE2A8F73A
 	Offset: 0x5118
 	Size: 0x93
@@ -1982,7 +1982,7 @@ function zombie_on_spawn()
 
 /*
 	Name: player_watch_grappled_object
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xF61B4941
 	Offset: 0x51B8
 	Size: 0x14F
@@ -1991,7 +1991,7 @@ function zombie_on_spawn()
 */
 function player_watch_grappled_object()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	grapple = GetWeapon("zombie_beast_grapple_dwr");
 	while(isdefined(self))
@@ -1999,7 +1999,7 @@ function player_watch_grappled_object()
 		self waittill("grapple_stick", weapon, target);
 		if(weapon == grapple)
 		{
-			self notify("hash_c5523e8b");
+			self notify("grapplable_grappled");
 			self PlayRumbleOnEntity("zod_beast_grapple_hit");
 			if(isdefined(target))
 			{
@@ -2016,7 +2016,7 @@ function player_watch_grappled_object()
 
 /*
 	Name: player_watch_grapple_traverse
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xBFDD6FB0
 	Offset: 0x5310
 	Size: 0xFF
@@ -2025,7 +2025,7 @@ function player_watch_grappled_object()
 */
 function player_watch_grapple_traverse()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	grapple = GetWeapon("zombie_beast_grapple_dwr");
 	while(isdefined(self))
@@ -2044,7 +2044,7 @@ function player_watch_grapple_traverse()
 
 /*
 	Name: player_watch_grapple_landing
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xCDE95143
 	Offset: 0x5418
 	Size: 0xAB
@@ -2053,11 +2053,11 @@ function player_watch_grapple_traverse()
 */
 function player_watch_grapple_landing(origin)
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	self notify("player_watch_grapple_landing");
 	self endon("player_watch_grapple_landing");
-	self waittill("hash_d35b1239", weapon, target);
+	self waittill("grapple_landed", weapon, target);
 	if(Distance2DSquared(self.origin, origin) > 1024)
 	{
 		self SetOrigin(origin + VectorScale((0, 0, -1), 60));
@@ -2066,7 +2066,7 @@ function player_watch_grapple_landing(origin)
 
 /*
 	Name: player_watch_grappled_zombies
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x47D11806
 	Offset: 0x54D0
 	Size: 0xAF
@@ -2075,7 +2075,7 @@ function player_watch_grapple_landing(origin)
 */
 function player_watch_grappled_zombies()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	grapple = GetWeapon("zombie_beast_grapple_dwr");
 	while(isdefined(self))
@@ -2091,7 +2091,7 @@ function player_watch_grappled_zombies()
 
 /*
 	Name: player_kill_grappled_zombies
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x861E5BB1
 	Offset: 0x5588
 	Size: 0xD7
@@ -2100,12 +2100,12 @@ function player_watch_grappled_zombies()
 */
 function player_kill_grappled_zombies()
 {
-	self endon("hash_b2631b3c");
+	self endon("player_exit_beastmode");
 	self endon("death");
 	grapple = GetWeapon("zombie_beast_grapple_dwr");
 	while(isdefined(self))
 	{
-		self waittill("hash_34020bc3", weapon, target);
+		self waittill("grapple_pulled", weapon, target);
 		if(weapon == grapple)
 		{
 			if(isdefined(target))
@@ -2124,7 +2124,7 @@ function player_kill_grappled_zombies()
 
 /*
 	Name: zombie_gets_pulled
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xD22F52EF
 	Offset: 0x5668
 	Size: 0x213
@@ -2166,7 +2166,7 @@ function zombie_gets_pulled(player)
 
 /*
 	Name: function_d4252c93
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x7978A822
 	Offset: 0x5888
 	Size: 0x1AB
@@ -2211,7 +2211,7 @@ function function_d4252c93(player)
 
 /*
 	Name: lightning_zombie_damage_response
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xD6208464
 	Offset: 0x5A40
 	Size: 0x16B
@@ -2241,7 +2241,7 @@ function lightning_zombie_damage_response(mod, HIT_LOCATION, hit_origin, player,
 
 /*
 	Name: watch_lightning_damage
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x67D0EBD9
 	Offset: 0x5BB8
 	Size: 0x23F
@@ -2259,7 +2259,7 @@ function watch_lightning_damage(triggers)
 		{
 			if(isdefined(attacker))
 			{
-				attacker notify("hash_e22dab6d");
+				attacker notify("shockable_shocked");
 			}
 			if(isdefined(level._effect["beast_shock_box"]))
 			{
@@ -2290,7 +2290,7 @@ function watch_lightning_damage(triggers)
 
 /*
 	Name: beast_mode_death_watch
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x8F8AD0B0
 	Offset: 0x5E00
 	Size: 0x25B
@@ -2346,7 +2346,7 @@ function beast_mode_death_watch(attacker)
 
 /*
 	Name: trigger_ooze_only
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x8D940540
 	Offset: 0x6068
 	Size: 0xB7
@@ -2370,7 +2370,7 @@ function trigger_ooze_only()
 
 /*
 	Name: zombie_can_be_zapped
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xBDA24DB1
 	Offset: 0x6128
 	Size: 0x85
@@ -2400,7 +2400,7 @@ function zombie_can_be_zapped()
 
 /*
 	Name: lightning_slow_zombie
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x572BF128
 	Offset: 0x61B8
 	Size: 0x39B
@@ -2465,7 +2465,7 @@ function lightning_slow_zombie(zombie)
 
 /*
 	Name: lightning_slow_zombie_fx
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x301BA0F2
 	Offset: 0x6560
 	Size: 0xDD
@@ -2489,7 +2489,7 @@ function lightning_slow_zombie_fx(zombie)
 
 /*
 	Name: function_41cc3fc8
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xA5BECDC0
 	Offset: 0x6648
 	Size: 0xB9
@@ -2507,7 +2507,7 @@ function function_41cc3fc8()
 
 /*
 	Name: function_d7b8b2f5
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x87674772
 	Offset: 0x6710
 	Size: 0xD3
@@ -2516,8 +2516,8 @@ function function_41cc3fc8()
 */
 function function_d7b8b2f5()
 {
-	self endon("hash_b2631b3c");
-	self endon("hash_f0078f48");
+	self endon("player_exit_beastmode");
+	self endon("altbody_end");
 	n_start_time = undefined;
 	while(1)
 	{
@@ -2532,7 +2532,7 @@ function function_d7b8b2f5()
 			n_time = n_current_time - n_start_time / 1000;
 			if(n_time >= level.var_87ee6f27)
 			{
-				self notify("hash_f0078f48");
+				self notify("altbody_end");
 				return;
 			}
 		}
@@ -2546,7 +2546,7 @@ function function_d7b8b2f5()
 
 /*
 	Name: beastmode_devgui
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x646FB2FA
 	Offset: 0x67F0
 	Size: 0x1CD
@@ -2577,7 +2577,7 @@ function beastmode_devgui()
 
 /*
 	Name: beastmode_devgui_callback
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xEC8A7A23
 	Offset: 0x69C8
 	Size: 0x5EF
@@ -2720,7 +2720,7 @@ function beastmode_devgui_callback(cmd)
 
 /*
 	Name: player_zombie_devgui_beast_mode
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x48C5B9DB
 	Offset: 0x6FC0
 	Size: 0x9D
@@ -2742,14 +2742,14 @@ function player_zombie_devgui_beast_mode()
 		}
 		else
 		{
-			self notify("hash_f0078f48");
+			self notify("altbody_end");
 		}
 	#/
 }
 
 /*
 	Name: player_zombie_devgui_superbeast_mode
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x1CEECE13
 	Offset: 0x7068
 	Size: 0xD5
@@ -2772,14 +2772,14 @@ function player_zombie_devgui_superbeast_mode()
 		}
 		else
 		{
-			self notify("hash_f0078f48");
+			self notify("altbody_end");
 		}
 	#/
 }
 
 /*
 	Name: detect_reentry
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x5B3BDFF5
 	Offset: 0x7148
 	Size: 0x37
@@ -2803,7 +2803,7 @@ function detect_reentry()
 
 /*
 	Name: player_zombie_devgui_beast_mode_preserve
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xCEFBD38E
 	Offset: 0x7188
 	Size: 0xC7

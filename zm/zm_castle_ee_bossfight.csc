@@ -9,11 +9,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_b1bc995c;
+#namespace zm_castle_ee_bossfight;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xF14FC4F9
 	Offset: 0xC88
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x95C85F9A
 	Offset: 0xCC8
 	Size: 0x82B
@@ -36,61 +36,61 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("toplayer", "player_snow_fx_off", 5000, 1, "counter", &function_45f17e5b, 0, 0);
-	clientfield::register("actor", "boss_skeleton_eye_glow_fx_change", 5000, 1, "counter", &function_6bb3bdae, 0, 0);
+	clientfield::register("toplayer", "player_snow_fx_off", 5000, 1, "counter", &player_snow_fx_off, 0, 0);
+	clientfield::register("actor", "boss_skeleton_eye_glow_fx_change", 5000, 1, "counter", &boss_skeleton_eye_glow_fx_change, 0, 0);
 	level._effect["boss_skeleton_eye_glow"] = "dlc1/castle/fx_glow_eye_orange_skeleton";
-	clientfield::register("scriptmover", "boss_mpd_fx", 5000, 1, "int", &function_3847c737, 0, 0);
+	clientfield::register("scriptmover", "boss_mpd_fx", 5000, 1, "int", &boss_mpd_fx, 0, 0);
 	level._effect["boss_mpd_mist"] = "dlc1/castle/fx_ee_keeper_small_mist_trail";
 	level._effect["boss_mpd_mouth"] = "dlc1/castle/fx_ee_keeper_small_mouth_glow";
-	clientfield::register("scriptmover", "boss_fx", 5000, 1, "int", &function_646d48a7, 0, 0);
-	clientfield::register("scriptmover", "boss_weak_point_shader", 5000, 1, "int", &function_842bfcca, 0, 0);
-	clientfield::register("actor", "boss_zombie_rise_fx", 1, 1, "int", &function_c5c4e352, 1, 1);
+	clientfield::register("scriptmover", "boss_fx", 5000, 1, "int", &boss_fx, 0, 0);
+	clientfield::register("scriptmover", "boss_weak_point_shader", 5000, 1, "int", &boss_weak_point_shader, 0, 0);
+	clientfield::register("actor", "boss_zombie_rise_fx", 1, 1, "int", &boss_zombie_rise_fx, 1, 1);
 	level._effect["boss_mist"] = "dlc1/castle/fx_ee_keeper_mist_trail";
 	level._effect["boss_mouth"] = "dlc1/castle/fx_ee_keeper_mouth_glow";
 	level._effect["boss_rise_burst"] = "dlc1/castle/fx_ee_keeper_hand_burst_zmb";
 	level._effect["boss_rise_billow"] = "dlc1/castle/fx_ee_keeper_body_billowing_zmb";
-	clientfield::register("scriptmover", "boss_teleport_fx", 5000, 1, "counter", &function_b87abae5, 0, 0);
+	clientfield::register("scriptmover", "boss_teleport_fx", 5000, 1, "counter", &boss_teleport_fx, 0, 0);
 	level._effect["boss_teleport"] = "dlc1/castle/fx_ee_keeper_teleport";
-	clientfield::register("scriptmover", "boss_elemental_storm_cast_fx", 5000, 1, "int", &function_8773a235, 0, 0);
-	clientfield::register("scriptmover", "boss_elemental_storm_explode_fx", 5000, 1, "int", &function_22e3090d, 0, 0);
-	clientfield::register("scriptmover", "boss_elemental_storm_stunned_keeper_fx", 5000, 1, "int", &function_c8f3c754, 0, 0);
-	clientfield::register("scriptmover", "boss_elemental_storm_stunned_spikes_fx", 5000, 1, "int", &function_cffccd99, 0, 0);
+	clientfield::register("scriptmover", "boss_elemental_storm_cast_fx", 5000, 1, "int", &boss_elemental_storm_cast_fx, 0, 0);
+	clientfield::register("scriptmover", "boss_elemental_storm_explode_fx", 5000, 1, "int", &boss_elemental_storm_explode_fx, 0, 0);
+	clientfield::register("scriptmover", "boss_elemental_storm_stunned_keeper_fx", 5000, 1, "int", &boss_elemental_storm_stunned_keeper_fx, 0, 0);
+	clientfield::register("scriptmover", "boss_elemental_storm_stunned_spikes_fx", 5000, 1, "int", &boss_elemental_storm_stunned_spikes_fx, 0, 0);
 	level._effect["boss_elemental_storm_cast"] = "dlc1/castle/fx_ee_keeper_storm_tell";
 	level._effect["boss_elemental_storm_explode_loop"] = "dlc1/zmb_weapon/fx_bow_storm_funnel_loop_zmb";
 	level._effect["boss_elemental_storm_explode_end"] = "dlc1/zmb_weapon/fx_bow_storm_funnel_end_zmb";
 	level._effect["boss_elemental_storm_stunned_spikes"] = "dlc1/castle/fx_ee_keeper_beam_stunned_src";
 	level._effect["boss_elemental_storm_stunned_keeper"] = "dlc1/castle/fx_ee_keeper_beam_stunned_tgt";
-	clientfield::register("scriptmover", "boss_demongate_cast_fx", 5000, 1, "int", &function_f53d6e40, 0, 0);
-	clientfield::register("scriptmover", "boss_demongate_chomper_fx", 5000, 1, "int", &function_4004ceb1, 0, 0);
-	clientfield::register("scriptmover", "boss_demongate_chomper_bite_fx", 5000, 1, "counter", &function_7f03b7a2, 0, 0);
+	clientfield::register("scriptmover", "boss_demongate_cast_fx", 5000, 1, "int", &boss_demongate_cast_fx, 0, 0);
+	clientfield::register("scriptmover", "boss_demongate_chomper_fx", 5000, 1, "int", &boss_demongate_chomper_fx, 0, 0);
+	clientfield::register("scriptmover", "boss_demongate_chomper_bite_fx", 5000, 1, "counter", &boss_demongate_chomper_bite_fx, 0, 0);
 	level._effect["boss_demongate_portal_open"] = "dlc1/castle/fx_ee_keeper_demongate_portal_open";
 	level._effect["boss_demongate_portal_loop"] = "dlc1/castle/fx_ee_keeper_demongate_portal_loop";
 	level._effect["boss_demongate_portal_close"] = "dlc1/castle/fx_ee_keeper_demongate_portal_close";
 	level._effect["boss_demongate_chomper_trail"] = "dlc1/castle/fx_ee_keeper_demonhead_trail";
 	level._effect["boss_demongate_chomper_bite"] = "dlc1/castle/fx_ee_keeper_demonhead_despawn";
 	level._effect["boss_demongate_chomper_despawn"] = "dlc1/castle/fx_ee_keeper_demonhead_despawn";
-	clientfield::register("scriptmover", "boss_rune_prison_erupt_fx", 5000, 1, "int", &function_78f6d6a3, 0, 0);
-	clientfield::register("scriptmover", "boss_rune_prison_rock_fx", 5000, 1, "int", &function_c5202764, 0, 0);
-	clientfield::register("scriptmover", "boss_rune_prison_explode_fx", 5000, 1, "int", &function_5cf0ffb0, 0, 0);
-	clientfield::register("allplayers", "boss_rune_prison_dot_fx", 5000, 1, "int", &function_8c589c72, 0, 0);
-	clientfield::register("world", "sndBossBattle", 5000, 1, "int", &function_c5548517, 0, 0);
+	clientfield::register("scriptmover", "boss_rune_prison_erupt_fx", 5000, 1, "int", &boss_rune_prison_erupt_fx, 0, 0);
+	clientfield::register("scriptmover", "boss_rune_prison_rock_fx", 5000, 1, "int", &boss_rune_prison_rock_fx, 0, 0);
+	clientfield::register("scriptmover", "boss_rune_prison_explode_fx", 5000, 1, "int", &boss_rune_prison_explode_fx, 0, 0);
+	clientfield::register("allplayers", "boss_rune_prison_dot_fx", 5000, 1, "int", &boss_rune_prison_dot_fx, 0, 0);
+	clientfield::register("world", "sndBossBattle", 5000, 1, "int", &sndbossbattle, 0, 0);
 	level._effect["boss_rune_prison_erupt"] = "dlc1/castle/fx_ee_keeper_runeprison_glow";
 	level._effect["boss_rune_prison_explode"] = "dlc1/castle/fx_ee_keeper_runeprison_fire";
 	level._effect["boss_rune_prison_dot"] = "dlc1/zmb_weapon/fx_bow_rune_fire_torso_zmb";
-	clientfield::register("world", "boss_wolf_howl_fx_change", 5000, 1, "int", &function_a20d2e82, 0, 0);
-	clientfield::register("world", "boss_gravity_spike_fx_change", 5000, 1, "int", &function_c1ed35c2, 0, 0);
+	clientfield::register("world", "boss_wolf_howl_fx_change", 5000, 1, "int", &boss_wolf_howl_fx_change, 0, 0);
+	clientfield::register("world", "boss_gravity_spike_fx_change", 5000, 1, "int", &boss_gravity_spike_fx_change, 0, 0);
 }
 
 /*
-	Name: function_45f17e5b
-	Namespace: namespace_b1bc995c
+	Name: player_snow_fx_off
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xE341DF9D
 	Offset: 0x1500
 	Size: 0x7F
 	Parameters: 7
 	Flags: None
 */
-function function_45f17e5b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_snow_fx_off(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(level.var_18402cb[localClientNum]))
 	{
@@ -100,29 +100,29 @@ function function_45f17e5b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_6bb3bdae
-	Namespace: namespace_b1bc995c
+	Name: boss_skeleton_eye_glow_fx_change
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x6CE90DA0
 	Offset: 0x1588
 	Size: 0x53
 	Parameters: 7
 	Flags: None
 */
-function function_6bb3bdae(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_skeleton_eye_glow_fx_change(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self._eyeglow_fx_override = level._effect["boss_skeleton_eye_glow"];
 }
 
 /*
-	Name: function_3847c737
-	Namespace: namespace_b1bc995c
+	Name: boss_mpd_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xAA544299
 	Offset: 0x15E8
 	Size: 0x195
 	Parameters: 7
 	Flags: None
 */
-function function_3847c737(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_mpd_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -148,15 +148,15 @@ function function_3847c737(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_646d48a7
-	Namespace: namespace_b1bc995c
+	Name: boss_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x65DA8121
 	Offset: 0x1788
 	Size: 0x195
 	Parameters: 7
 	Flags: None
 */
-function function_646d48a7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -182,15 +182,15 @@ function function_646d48a7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_842bfcca
-	Namespace: namespace_b1bc995c
+	Name: boss_weak_point_shader
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x19CB9426
 	Offset: 0x1928
 	Size: 0x103
 	Parameters: 7
 	Flags: None
 */
-function function_842bfcca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_weak_point_shader(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -213,15 +213,15 @@ function function_842bfcca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c5c4e352
-	Namespace: namespace_b1bc995c
+	Name: boss_zombie_rise_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xA895A8D0
 	Offset: 0x1A38
 	Size: 0x12D
 	Parameters: 7
 	Flags: None
 */
-function function_c5c4e352(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_zombie_rise_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	level endon("demo_jump");
 	self endon("entityshutdown");
@@ -241,7 +241,7 @@ function function_c5c4e352(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_200d4bd2
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xCAD8435D
 	Offset: 0x1B70
 	Size: 0xEB
@@ -258,15 +258,15 @@ function function_200d4bd2(localClientNum, var_ee65ea53, var_7bc37da8)
 }
 
 /*
-	Name: function_b87abae5
-	Namespace: namespace_b1bc995c
+	Name: boss_teleport_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x3F7DCDFD
 	Offset: 0x1C68
 	Size: 0xAD
 	Parameters: 7
 	Flags: None
 */
-function function_b87abae5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_teleport_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self.var_b1fe1ee = PlayFXOnTag(localClientNum, level._effect["boss_teleport"], self, "j_mainroot");
 	wait(0.5);
@@ -278,20 +278,20 @@ function function_b87abae5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_8773a235
-	Namespace: namespace_b1bc995c
+	Name: boss_elemental_storm_cast_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xA9C485A0
 	Offset: 0x1D20
 	Size: 0xFD
 	Parameters: 7
 	Flags: None
 */
-function function_8773a235(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_elemental_storm_cast_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
 		self playsound(0, "zmb_keeper_storm_cast");
-		self function_4278d80d(localClientNum);
+		self boss_elemental_storm_cast_loop(localClientNum);
 	}
 	else
 	{
@@ -310,15 +310,15 @@ function function_8773a235(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4278d80d
-	Namespace: namespace_b1bc995c
+	Name: boss_elemental_storm_cast_loop
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x43B4CD7F
 	Offset: 0x1E28
 	Size: 0xD7
 	Parameters: 1
 	Flags: None
 */
-function function_4278d80d(localClientNum)
+function boss_elemental_storm_cast_loop(localClientNum)
 {
 	self endon("hash_1c2dfa5e");
 	while(isdefined(self))
@@ -338,15 +338,15 @@ function function_4278d80d(localClientNum)
 }
 
 /*
-	Name: function_22e3090d
-	Namespace: namespace_b1bc995c
+	Name: boss_elemental_storm_explode_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x62B08E19
 	Offset: 0x1F08
 	Size: 0x12B
 	Parameters: 7
 	Flags: None
 */
-function function_22e3090d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_elemental_storm_explode_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -367,15 +367,15 @@ function function_22e3090d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_cffccd99
-	Namespace: namespace_b1bc995c
+	Name: boss_elemental_storm_stunned_spikes_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x2C87F867
 	Offset: 0x2040
 	Size: 0xB5
 	Parameters: 7
 	Flags: None
 */
-function function_cffccd99(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_elemental_storm_stunned_spikes_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -389,15 +389,15 @@ function function_cffccd99(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c8f3c754
-	Namespace: namespace_b1bc995c
+	Name: boss_elemental_storm_stunned_keeper_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xA8FFB5D8
 	Offset: 0x2100
 	Size: 0xB5
 	Parameters: 7
 	Flags: None
 */
-function function_c8f3c754(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_elemental_storm_stunned_keeper_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -411,15 +411,15 @@ function function_c8f3c754(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_f53d6e40
-	Namespace: namespace_b1bc995c
+	Name: boss_demongate_cast_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x9130BDFA
 	Offset: 0x21C0
 	Size: 0x1A5
 	Parameters: 7
 	Flags: None
 */
-function function_f53d6e40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_demongate_cast_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -443,15 +443,15 @@ function function_f53d6e40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4004ceb1
-	Namespace: namespace_b1bc995c
+	Name: boss_demongate_chomper_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x7447692F
 	Offset: 0x2370
 	Size: 0x1A3
 	Parameters: 7
 	Flags: None
 */
-function function_4004ceb1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_demongate_chomper_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	if(newVal)
@@ -478,15 +478,15 @@ function function_4004ceb1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_7f03b7a2
-	Namespace: namespace_b1bc995c
+	Name: boss_demongate_chomper_bite_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x99BF320E
 	Offset: 0x2520
 	Size: 0xBB
 	Parameters: 7
 	Flags: None
 */
-function function_7f03b7a2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_demongate_chomper_bite_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self.var_64b4f506 = playFX(localClientNum, level._effect["boss_demongate_chomper_bite"], self.origin);
 	self playsound(0, "zmb_keeper_demongate_chomper_bite");
@@ -495,23 +495,23 @@ function function_7f03b7a2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_78f6d6a3
-	Namespace: namespace_b1bc995c
+	Name: boss_rune_prison_erupt_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x7F38B183
 	Offset: 0x25E8
 	Size: 0xA5
 	Parameters: 7
 	Flags: None
 */
-function function_78f6d6a3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_rune_prison_erupt_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
-		self thread function_92f90eb7(localClientNum);
+		self thread boss_rune_prison_erupt_loop(localClientNum);
 	}
 	else
 	{
-		self notify("hash_f40e20dc");
+		self notify("boss_rune_prison_erupt_end");
 		if(isdefined(self.var_b1fe1ee))
 		{
 			deletefx(localClientNum, self.var_b1fe1ee, 1);
@@ -521,17 +521,17 @@ function function_78f6d6a3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_92f90eb7
-	Namespace: namespace_b1bc995c
+	Name: boss_rune_prison_erupt_loop
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x50EC4B39
 	Offset: 0x2698
 	Size: 0xB7
 	Parameters: 1
 	Flags: None
 */
-function function_92f90eb7(localClientNum)
+function boss_rune_prison_erupt_loop(localClientNum)
 {
-	self endon("hash_f40e20dc");
+	self endon("boss_rune_prison_erupt_end");
 	self endon("entityshutdown");
 	while(1)
 	{
@@ -550,15 +550,15 @@ function function_92f90eb7(localClientNum)
 }
 
 /*
-	Name: function_c5202764
-	Namespace: namespace_b1bc995c
+	Name: boss_rune_prison_rock_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xAC2BE47C
 	Offset: 0x2758
 	Size: 0xB5
 	Parameters: 7
 	Flags: None
 */
-function function_c5202764(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_rune_prison_rock_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{
@@ -577,15 +577,15 @@ function function_c5202764(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_5cf0ffb0
-	Namespace: namespace_b1bc995c
+	Name: boss_rune_prison_explode_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x71C84A4C
 	Offset: 0x2818
 	Size: 0x7B
 	Parameters: 7
 	Flags: None
 */
-function function_5cf0ffb0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_rune_prison_explode_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -594,15 +594,15 @@ function function_5cf0ffb0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_8c589c72
-	Namespace: namespace_b1bc995c
+	Name: boss_rune_prison_dot_fx
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x6AAFF86F
 	Offset: 0x28A0
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_8c589c72(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_rune_prison_dot_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -615,15 +615,15 @@ function function_8c589c72(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_a20d2e82
-	Namespace: namespace_b1bc995c
+	Name: boss_wolf_howl_fx_change
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x83DF4EF0
 	Offset: 0x2948
 	Size: 0x7D
 	Parameters: 7
 	Flags: None
 */
-function function_a20d2e82(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_wolf_howl_fx_change(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -636,15 +636,15 @@ function function_a20d2e82(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c1ed35c2
-	Namespace: namespace_b1bc995c
+	Name: boss_gravity_spike_fx_change
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x560B04C1
 	Offset: 0x29D0
 	Size: 0xB5
 	Parameters: 7
 	Flags: None
 */
-function function_c1ed35c2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function boss_gravity_spike_fx_change(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -659,15 +659,15 @@ function function_c1ed35c2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c5548517
-	Namespace: namespace_b1bc995c
+	Name: sndbossbattle
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x236F0DD4
 	Offset: 0x2A90
 	Size: 0xE3
 	Parameters: 7
 	Flags: None
 */
-function function_c5548517(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sndbossbattle(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{

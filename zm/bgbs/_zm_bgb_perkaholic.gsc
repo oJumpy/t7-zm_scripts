@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_1b7b1237;
+#namespace zm_bgb_perkaholic;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1b7b1237
+	Namespace: zm_bgb_perkaholic
 	Checksum: 0xBDF1B86E
 	Offset: 0x178
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1b7b1237
+	Namespace: zm_bgb_perkaholic
 	Checksum: 0xC01FAB7
 	Offset: 0x1B8
 	Size: 0x53
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_1b7b1237
+	Namespace: zm_bgb_perkaholic
 	Checksum: 0x1C9BAA00
 	Offset: 0x218
 	Size: 0x4B
@@ -53,7 +53,7 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self zm_utility::give_player_all_perks();
 	self bgb::do_one_shot_use(1);
 	wait(0.05);

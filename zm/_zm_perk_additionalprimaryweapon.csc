@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0xAEF8FCBA
+	Checksum: 0xAE590A60
 	Offset: 0x1E0
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0xC88EEAB7
+	Checksum: 0x1149C59D
 	Offset: 0x220
 	Size: 0x13
 	Parameters: 0
@@ -37,7 +37,7 @@ function __init__()
 /*
 	Name: enable_additional_primary_weapon_perk_for_level
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0xCD616E89
+	Checksum: 0x69666521
 	Offset: 0x240
 	Size: 0x83
 	Parameters: 0
@@ -53,7 +53,7 @@ function enable_additional_primary_weapon_perk_for_level()
 /*
 	Name: init_additional_primary_weapon
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0x4C31119D
+	Checksum: 0x955A62BF
 	Offset: 0x2D0
 	Size: 0x35
 	Parameters: 0
@@ -70,7 +70,7 @@ function init_additional_primary_weapon()
 /*
 	Name: additional_primary_weapon_client_field_func
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0x2B630B33
+	Checksum: 0x2FAE9CF3
 	Offset: 0x310
 	Size: 0x3B
 	Parameters: 0

@@ -19,11 +19,11 @@
 #using scripts\zm\_zm_weap_black_hole_bomb;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_d6b63386;
+#namespace zm_weap_black_hole_bomb;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x8B369468
 	Offset: 0x7A8
 	Size: 0x33
@@ -37,7 +37,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x44F0C8DC
 	Offset: 0x7E8
 	Size: 0x2BB
@@ -74,7 +74,7 @@ function __init__()
 
 /*
 	Name: player_give_black_hole_bomb
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x47493AC8
 	Offset: 0xAB0
 	Size: 0x73
@@ -91,7 +91,7 @@ function player_give_black_hole_bomb()
 
 /*
 	Name: player_handle_black_hole_bomb
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xB5C28948
 	Offset: 0xB30
 	Size: 0x55F
@@ -205,7 +205,7 @@ function player_handle_black_hole_bomb()
 
 /*
 	Name: function_e877695e
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xA3EB8453
 	Offset: 0x1098
 	Size: 0xBF
@@ -233,7 +233,7 @@ function function_e877695e()
 
 /*
 	Name: function_1ff5cae1
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x57949E5D
 	Offset: 0x1160
 	Size: 0x169
@@ -257,7 +257,7 @@ function function_1ff5cae1()
 
 /*
 	Name: function_bf9781f8
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x22AF6157
 	Offset: 0x12D8
 	Size: 0x137
@@ -287,7 +287,7 @@ function function_bf9781f8(player)
 
 /*
 	Name: move_valid_poi_to_navmesh
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x28BC1700
 	Offset: 0x1418
 	Size: 0x1D9
@@ -327,7 +327,7 @@ function move_valid_poi_to_navmesh(valid_poi)
 
 /*
 	Name: wait_for_attractor_positions_complete
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xCA644C76
 	Offset: 0x1600
 	Size: 0x1B
@@ -342,7 +342,7 @@ function wait_for_attractor_positions_complete()
 
 /*
 	Name: black_hole_bomb_cleanup
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x9A69CC79
 	Offset: 0x1628
 	Size: 0xA3
@@ -371,7 +371,7 @@ function black_hole_bomb_cleanup(parent, model)
 
 /*
 	Name: black_hole_bomb_corpse_collect
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xF107C05A
 	Offset: 0x16D8
 	Size: 0xAD
@@ -393,7 +393,7 @@ function black_hole_bomb_corpse_collect(vec_origin)
 
 /*
 	Name: black_hole_bomb_corpse_delete
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x90F4C449
 	Offset: 0x1790
 	Size: 0x1B
@@ -407,7 +407,7 @@ function black_hole_bomb_corpse_delete()
 
 /*
 	Name: get_thrown_black_hole_bomb
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x765FB71C
 	Offset: 0x17B8
 	Size: 0x7F
@@ -432,7 +432,7 @@ function get_thrown_black_hole_bomb()
 
 /*
 	Name: monitor_zombie_groans
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x2351BE47
 	Offset: 0x1840
 	Size: 0x1CB
@@ -481,7 +481,7 @@ function monitor_zombie_groans(info)
 
 /*
 	Name: play_zombie_groans
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x688A08AC
 	Offset: 0x1A18
 	Size: 0x65
@@ -508,7 +508,7 @@ function play_zombie_groans()
 
 /*
 	Name: black_hole_bomb_exists
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xED75638A
 	Offset: 0x1A88
 	Size: 0x15
@@ -522,7 +522,7 @@ function black_hole_bomb_exists()
 
 /*
 	Name: black_hole_bomb_store_movement_anim
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xD1F0FC9A
 	Offset: 0x1AA8
 	Size: 0xD3
@@ -548,7 +548,7 @@ function black_hole_bomb_store_movement_anim()
 
 /*
 	Name: black_hole_bomb_being_pulled_fx
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x60677A7D
 	Offset: 0x1B88
 	Size: 0x4F
@@ -565,7 +565,7 @@ function black_hole_bomb_being_pulled_fx()
 
 /*
 	Name: black_hole_bomb_event_horizon_death
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xE9FB3595
 	Offset: 0x1BE0
 	Size: 0x4B
@@ -580,7 +580,7 @@ function black_hole_bomb_event_horizon_death(vec_black_hole_org, grenade)
 
 /*
 	Name: black_hole_bomb_corpse_hide
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x305E4DC1
 	Offset: 0x1C38
 	Size: 0xA7
@@ -599,7 +599,7 @@ function black_hole_bomb_corpse_hide()
 
 /*
 	Name: black_hole_bomb_throttle_anim_changes
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xDF8F86A
 	Offset: 0x1CE8
 	Size: 0x25F
@@ -656,7 +656,7 @@ function black_hole_bomb_throttle_anim_changes()
 
 /*
 	Name: black_hole_bomb_teleport_init
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x72CFDBCF
 	Offset: 0x1F50
 	Size: 0xAB
@@ -679,7 +679,7 @@ function black_hole_bomb_teleport_init(ent_grenade)
 
 /*
 	Name: black_hole_bomb_trigger_monitor
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x7278302D
 	Offset: 0x2008
 	Size: 0xDF
@@ -702,7 +702,7 @@ function black_hole_bomb_trigger_monitor(ent_trigger)
 
 /*
 	Name: black_hole_time_before_teleport
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x47308103
 	Offset: 0x20F0
 	Size: 0x223
@@ -750,7 +750,7 @@ function black_hole_time_before_teleport(ent_player, str_endon)
 
 /*
 	Name: black_hole_teleport_cancel
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x8F0B58E2
 	Offset: 0x2320
 	Size: 0xB
@@ -763,7 +763,7 @@ function black_hole_teleport_cancel(ent_player)
 
 /*
 	Name: black_hole_teleport
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x60A4CFA7
 	Offset: 0x2338
 	Size: 0x24B
@@ -812,7 +812,7 @@ function black_hole_teleport(struct_dest)
 
 /*
 	Name: slightly_delayed_player_response
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x6D634FC
 	Offset: 0x2590
 	Size: 0x2B
@@ -827,7 +827,7 @@ function slightly_delayed_player_response()
 
 /*
 	Name: black_hole_teleport_trigger_thread
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xFAEC90A5
 	Offset: 0x25C8
 	Size: 0x143
@@ -865,7 +865,7 @@ function black_hole_teleport_trigger_thread(ent, on_enter_payload, on_exit_paylo
 
 /*
 	Name: black_hole_teleport_add_trigger_to_ent
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x6293F7B1
 	Offset: 0x2718
 	Size: 0x59
@@ -883,7 +883,7 @@ function black_hole_teleport_add_trigger_to_ent(ent)
 
 /*
 	Name: black_hole_teleport_remove_trigger_from_ent
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x6E58570D
 	Offset: 0x2780
 	Size: 0x69
@@ -905,7 +905,7 @@ function black_hole_teleport_remove_trigger_from_ent(ent)
 
 /*
 	Name: black_hole_teleport_ent_already_in_trigger
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xF25D610F
 	Offset: 0x27F8
 	Size: 0x6F
@@ -931,7 +931,7 @@ function black_hole_teleport_ent_already_in_trigger(trig)
 
 /*
 	Name: black_hole_bomb_kill_counter
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x7051958
 	Offset: 0x2870
 	Size: 0x99
@@ -960,7 +960,7 @@ function black_hole_bomb_kill_counter(grenade)
 
 /*
 	Name: black_hole_bomb_create_exit_portal
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xD51B1AEB
 	Offset: 0x2918
 	Size: 0xE3
@@ -979,7 +979,7 @@ function black_hole_bomb_create_exit_portal(pos)
 
 /*
 	Name: black_hole_bomb_exit_clean_up
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xEC7A3F6C
 	Offset: 0x2A08
 	Size: 0x43
@@ -995,7 +995,7 @@ function black_hole_bomb_exit_clean_up()
 
 /*
 	Name: black_hole_bomb_stolen_by_sam
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x15432CD3
 	Offset: 0x2A58
 	Size: 0x223

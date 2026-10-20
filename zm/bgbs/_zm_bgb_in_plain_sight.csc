@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_14ec45ff;
+#namespace zm_bgb_in_plain_sight;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_14ec45ff
+	Namespace: zm_bgb_in_plain_sight
 	Checksum: 0x58A2DF9B
 	Offset: 0x190
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_14ec45ff
+	Namespace: zm_bgb_in_plain_sight
 	Checksum: 0x2F8DA022
 	Offset: 0x1D0
 	Size: 0x8B

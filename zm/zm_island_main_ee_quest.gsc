@@ -37,11 +37,11 @@
 #using scripts\zm\zm_island_util;
 #using scripts\zm\zm_island_vo;
 
-#namespace namespace_b3c23ec9;
+#namespace main_quest;
 
 /*
 	Name: main
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x88F53E29
 	Offset: 0x16C8
 	Size: 0x123
@@ -54,7 +54,7 @@ function main()
 	e_elevator_wall_decal = GetEnt("main_ee_elevator_wall_decal", "targetname");
 	var_e66037d6 clientfield::set("do_fade_material", 1);
 	e_elevator_wall_decal clientfield::set("do_fade_material", 0.5);
-	level thread function_6e38e085();
+	level thread boat_death_trigger();
 	level thread function_8221532d();
 	level thread function_9f26e724();
 	level thread function_dcc18c22();
@@ -63,7 +63,7 @@ function main()
 
 /*
 	Name: init_quest
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x696ACCB0
 	Offset: 0x17F8
 	Size: 0x3C3
@@ -99,7 +99,7 @@ function init_quest()
 	callback::on_spawned(&function_df4d1d4);
 	level thread function_75e5527f();
 	function_8099bad0();
-	function_5d0980ef();
+	elevator_gears_init();
 	function_62dfc4c7();
 	function_af46160f();
 	level thread function_f818f5b5();
@@ -116,7 +116,7 @@ function init_quest()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x4D6E9FAD
 	Offset: 0x1BC8
 	Size: 0x193
@@ -137,7 +137,7 @@ function register_clientfields()
 
 /*
 	Name: function_85773a07
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xEB281450
 	Offset: 0x1D68
 	Size: 0x6B
@@ -154,7 +154,7 @@ function function_85773a07()
 
 /*
 	Name: function_85b23415
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xA854E6E8
 	Offset: 0x1DE0
 	Size: 0x8B
@@ -171,7 +171,7 @@ function function_85b23415()
 
 /*
 	Name: function_7910f0c2
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xC4BFBF8C
 	Offset: 0x1E78
 	Size: 0xB5
@@ -192,7 +192,7 @@ function function_7910f0c2()
 
 /*
 	Name: function_d9de7eb6
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xA94BF1FB
 	Offset: 0x1F38
 	Size: 0x467
@@ -220,7 +220,7 @@ function function_d9de7eb6(var_a3612ddd)
 			{
 				var_b538c87 = 1;
 				str_vo = "vox_plr_" + e_attacker.characterindex + "_mq_ee_3_1_0";
-				e_attacker thread namespace_f333593c::vo_say(str_vo, 0, 1);
+				e_attacker thread zm_island_vo::vo_say(str_vo, 0, 1);
 			}
 		}
 		else if(w_weapon === level.w_mirg2000_up)
@@ -251,7 +251,7 @@ function function_d9de7eb6(var_a3612ddd)
 
 /*
 	Name: function_df4d1d4
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xCE38367A
 	Offset: 0x23A8
 	Size: 0xD7
@@ -261,7 +261,7 @@ function function_d9de7eb6(var_a3612ddd)
 function function_df4d1d4()
 {
 	self endon("death");
-	level endon("hash_1f9f4017");
+	level endon("flag_play_outro_cutscene");
 	level flag::wait_till("trilogy_released");
 	t_gas = GetEnt("trigger_gas_hurt", "targetname");
 	while(1)
@@ -277,7 +277,7 @@ function function_df4d1d4()
 
 /*
 	Name: function_75e5527f
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xBD8BD71
 	Offset: 0x2488
 	Size: 0x1BD
@@ -303,7 +303,7 @@ function function_75e5527f()
 		if(isdefined(e_talker))
 		{
 			str_vo = "vox_plr_" + e_talker.characterindex + "_mq_ee_3_0_0";
-			e_talker thread namespace_f333593c::vo_say(str_vo, 0, 1);
+			e_talker thread zm_island_vo::vo_say(str_vo, 0, 1);
 			level notify("hash_5790f552");
 		}
 	}
@@ -311,7 +311,7 @@ function function_75e5527f()
 
 /*
 	Name: function_19cfd507
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x19396796
 	Offset: 0x2650
 	Size: 0x8B
@@ -329,7 +329,7 @@ function function_19cfd507()
 
 /*
 	Name: function_d6bb2a6c
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xABEBB493
 	Offset: 0x26E8
 	Size: 0xC3
@@ -346,7 +346,7 @@ function function_d6bb2a6c()
 
 /*
 	Name: function_2fae2796
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x67EA036
 	Offset: 0x27B8
 	Size: 0xD7
@@ -371,7 +371,7 @@ function function_2fae2796()
 
 /*
 	Name: function_8099bad0
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xC2C4F503
 	Offset: 0x2898
 	Size: 0x5B
@@ -386,7 +386,7 @@ function function_8099bad0()
 
 /*
 	Name: function_5b0b2b3d
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xB9B611E
 	Offset: 0x2900
 	Size: 0x42F
@@ -405,7 +405,7 @@ function function_5b0b2b3d()
 		if(w_weapon.name === "island_riotshield" && (isdefined(e_attacker.var_36c3d64a) && e_attacker.var_36c3d64a))
 		{
 			level flag::set("zipline_lightning_charge");
-			e_attacker notify("hash_6bef9736");
+			e_attacker notify("riotshield_lost_lightning");
 			self playsound("zmb_lightning_shield_activate");
 			foreach(s_loc in a_s_loc)
 			{
@@ -440,7 +440,7 @@ function function_5b0b2b3d()
 
 /*
 	Name: function_62dfc4c7
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x70F6A3CA
 	Offset: 0x2D38
 	Size: 0x43
@@ -454,7 +454,7 @@ function function_62dfc4c7()
 
 /*
 	Name: function_e9ec0fdf
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xD08F8357
 	Offset: 0x2D88
 	Size: 0x227
@@ -474,7 +474,7 @@ function function_e9ec0fdf()
 		if(isdefined(w_weapon.isRiotShield) && w_weapon.isRiotShield && (isdefined(e_attacker.var_36c3d64a) && e_attacker.var_36c3d64a))
 		{
 			level flag::set("sewer_lightning_charge_" + self.script_noteworthy);
-			e_attacker notify("hash_6bef9736");
+			e_attacker notify("riotshield_lost_lightning");
 			self playsound("zmb_lightning_shield_activate");
 			s_loc.var_1cdf0f7a clientfield::set("zipline_lightning_fx", 1);
 			wait(5);
@@ -486,7 +486,7 @@ function function_e9ec0fdf()
 
 /*
 	Name: function_af46160f
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xBECCF1D1
 	Offset: 0x2FB8
 	Size: 0x8B
@@ -502,14 +502,14 @@ function function_af46160f()
 
 /*
 	Name: function_4d23baa6
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xB714BB70
 	Offset: 0x3050
 	Size: 0x237
 	Parameters: 4
 	Flags: None
 */
-function function_4d23baa6(v_origin, v_angles, n_cooldown, var_5588387b)
+function function_4d23baa6(v_origin, v_angles, n_cooldown, vending_near_goal_lights)
 {
 	if(!isdefined(n_cooldown))
 	{
@@ -524,13 +524,13 @@ function function_4d23baa6(v_origin, v_angles, n_cooldown, var_5588387b)
 		if(isdefined(w_weapon.isRiotShield) && w_weapon.isRiotShield && (isdefined(e_attacker.var_36c3d64a) && e_attacker.var_36c3d64a))
 		{
 			self notify("charged");
-			e_attacker notify("hash_6bef9736");
+			e_attacker notify("riotshield_lost_lightning");
 			self playsound("zmb_lightning_shield_activate");
 			var_752908f7 = util::spawn_model("tag_origin", v_origin, v_angles);
 			var_752908f7 clientfield::set("zipline_lightning_fx", 1);
-			if(isdefined(var_5588387b))
+			if(isdefined(vending_near_goal_lights))
 			{
-				var_752908f7 thread [[var_5588387b]]();
+				var_752908f7 thread [[vending_near_goal_lights]]();
 			}
 			wait(n_cooldown);
 			var_752908f7 notify("lightning_done");
@@ -543,7 +543,7 @@ function function_4d23baa6(v_origin, v_angles, n_cooldown, var_5588387b)
 
 /*
 	Name: function_426caba9
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xFB410D88
 	Offset: 0x3290
 	Size: 0xDB
@@ -560,7 +560,7 @@ function function_426caba9()
 		__s util::delay_notify(5, "timeout");
 	}
 	level flag::wait_till("flag_zipline_in_use");
-	self waittill("hash_912d72b1");
+	self waittill("zipline_start");
 	while(!self meleeButtonPressed())
 	{
 		wait(0.05);
@@ -572,15 +572,15 @@ function function_426caba9()
 }
 
 /*
-	Name: function_6e38e085
-	Namespace: namespace_b3c23ec9
+	Name: boat_death_trigger
+	Namespace: main_quest
 	Checksum: 0xE17ECEDA
 	Offset: 0x3378
 	Size: 0x127
 	Parameters: 0
 	Flags: None
 */
-function function_6e38e085()
+function boat_death_trigger()
 {
 	t_death = GetEnt("boat_death", "targetname");
 	while(1)
@@ -601,7 +601,7 @@ function function_6e38e085()
 
 /*
 	Name: function_1bbe32e1
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xFA1808EC
 	Offset: 0x34A8
 	Size: 0xA5
@@ -622,7 +622,7 @@ function function_1bbe32e1()
 
 /*
 	Name: function_53246bea
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xAF0EA04B
 	Offset: 0x3558
 	Size: 0xE3
@@ -640,7 +640,7 @@ function function_53246bea()
 
 /*
 	Name: function_1f4e6abd
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xE9CC0DCF
 	Offset: 0x3648
 	Size: 0x1C3
@@ -670,7 +670,7 @@ function function_1f4e6abd()
 
 /*
 	Name: function_ca475941
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xD32E6B17
 	Offset: 0x3818
 	Size: 0x2F
@@ -685,7 +685,7 @@ function function_ca475941(player)
 
 /*
 	Name: function_545006a5
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x62875409
 	Offset: 0x3850
 	Size: 0xB9
@@ -717,7 +717,7 @@ function function_545006a5()
 
 /*
 	Name: aa_gun_think
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x1370DFBA
 	Offset: 0x3918
 	Size: 0x1C5
@@ -738,7 +738,7 @@ function aa_gun_think()
 	{
 		var_16bdbe0a.prompt_and_visibility_func = &function_9c02ad1;
 		zm_unitrigger::register_static_unitrigger(var_16bdbe0a, &function_408069b5);
-		level waittill("hash_e7ebaf47");
+		level waittill("aa_gun_ammo_loaded");
 		zm_unitrigger::unregister_unitrigger(var_16bdbe0a);
 		wait(1);
 		var_16bdbe0a.prompt_and_visibility_func = &function_97bdb2f5;
@@ -751,7 +751,7 @@ function aa_gun_think()
 
 /*
 	Name: function_9c02ad1
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x5BA135DB
 	Offset: 0x3AE8
 	Size: 0x97
@@ -771,7 +771,7 @@ function function_9c02ad1(player)
 
 /*
 	Name: function_408069b5
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xCA37C739
 	Offset: 0x3B88
 	Size: 0x113
@@ -807,7 +807,7 @@ function function_408069b5()
 
 /*
 	Name: function_c0946f91
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x7AC2C835
 	Offset: 0x3CA8
 	Size: 0xCB
@@ -839,7 +839,7 @@ function function_c0946f91()
 
 /*
 	Name: function_97bdb2f5
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x5CE16F0B
 	Offset: 0x3D80
 	Size: 0x77
@@ -859,7 +859,7 @@ function function_97bdb2f5(player)
 
 /*
 	Name: function_248f6385
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xAC4B36A3
 	Offset: 0x3E00
 	Size: 0x123
@@ -883,7 +883,7 @@ function function_248f6385()
 
 /*
 	Name: function_35340bf6
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xDFAEEAD8
 	Offset: 0x3F30
 	Size: 0xD7
@@ -906,7 +906,7 @@ function function_35340bf6()
 
 /*
 	Name: function_45e9f465
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x330273C9
 	Offset: 0x4010
 	Size: 0x493
@@ -972,7 +972,7 @@ function function_45e9f465()
 
 /*
 	Name: function_4280e890
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xA4E25F63
 	Offset: 0x44B0
 	Size: 0x53
@@ -989,7 +989,7 @@ function function_4280e890()
 
 /*
 	Name: function_d81e5824
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xA03FBDE9
 	Offset: 0x4510
 	Size: 0xC3
@@ -1015,7 +1015,7 @@ function function_d81e5824(str_flag)
 
 /*
 	Name: function_9bd3096f
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x9B77B392
 	Offset: 0x45E0
 	Size: 0x11
@@ -1028,15 +1028,15 @@ function private function_9bd3096f(player)
 }
 
 /*
-	Name: function_5d0980ef
-	Namespace: namespace_b3c23ec9
+	Name: elevator_gears_init
+	Namespace: main_quest
 	Checksum: 0x1EA23172
 	Offset: 0x4600
 	Size: 0xA3
 	Parameters: 0
 	Flags: None
 */
-function function_5d0980ef()
+function elevator_gears_init()
 {
 	mdl_gears = GetEnt("elevator_gears", "targetname");
 	mdl_gears HidePart("wheel_01_jnt");
@@ -1047,7 +1047,7 @@ function function_5d0980ef()
 
 /*
 	Name: function_aeef1178
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x92C725FB
 	Offset: 0x46B0
 	Size: 0x1D9
@@ -1079,7 +1079,7 @@ function function_aeef1178()
 
 /*
 	Name: function_a06630fc
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x89A60A85
 	Offset: 0x4898
 	Size: 0x43
@@ -1089,19 +1089,19 @@ function function_aeef1178()
 function function_a06630fc()
 {
 	trigger::wait_till("trigger_see_gears");
-	Array::thread_all(level.players, &function_77f4b1ca);
+	Array::thread_all(level.players, &player_gears_watcher);
 }
 
 /*
-	Name: function_77f4b1ca
-	Namespace: namespace_b3c23ec9
+	Name: player_gears_watcher
+	Namespace: main_quest
 	Checksum: 0xA23B9E19
 	Offset: 0x48E8
 	Size: 0x12B
 	Parameters: 0
 	Flags: None
 */
-function function_77f4b1ca()
+function player_gears_watcher()
 {
 	self endon("disconnect");
 	self endon("gears_seen");
@@ -1116,13 +1116,13 @@ function function_77f4b1ca()
 	}
 	if(zm_utility::is_player_valid(self))
 	{
-		self thread namespace_f333593c::function_d258c672("2");
+		self thread zm_island_vo::function_d258c672("2");
 	}
 }
 
 /*
 	Name: function_6cc2e374
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x4BCDBB2A
 	Offset: 0x4A20
 	Size: 0x483
@@ -1135,7 +1135,7 @@ function function_6cc2e374()
 	t_repair setcursorhint("HINT_NOICON");
 	t_repair setHintString("");
 	mdl_gears = GetEnt("elevator_gears", "targetname");
-	mdl_gears thread function_46d7f262();
+	mdl_gears thread elevator_gears();
 	while(1)
 	{
 		t_repair waittill("trigger", e_who);
@@ -1160,10 +1160,10 @@ function function_6cc2e374()
 		if(level flag::get("elevator_part_gear1_found") && level flag::get("elevator_part_gear2_found") && level flag::get("elevator_part_gear3_found"))
 		{
 			t_repair playsound("zmb_elevator_fix");
-			level thread namespace_f333593c::function_3bf2d62a("elevator", 0, 1, 0);
+			level thread zm_island_vo::function_3bf2d62a("elevator", 0, 1, 0);
 			if(zm_utility::is_player_valid(e_who))
 			{
-				e_who thread namespace_f333593c::function_d258c672("elevator");
+				e_who thread zm_island_vo::function_d258c672("elevator");
 			}
 			level thread elevator_init();
 			break;
@@ -1172,15 +1172,15 @@ function function_6cc2e374()
 }
 
 /*
-	Name: function_46d7f262
-	Namespace: namespace_b3c23ec9
+	Name: elevator_gears
+	Namespace: main_quest
 	Checksum: 0xB5292584
 	Offset: 0x4EB0
 	Size: 0x1D7
 	Parameters: 0
 	Flags: None
 */
-function function_46d7f262()
+function elevator_gears()
 {
 	a_e_elevator = GetEntArray("easter_egg_elevator_cage", "targetname");
 	while(1)
@@ -1214,7 +1214,7 @@ function function_46d7f262()
 
 /*
 	Name: elevator_init
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x6667EF91
 	Offset: 0x5090
 	Size: 0x49B
@@ -1275,7 +1275,7 @@ function elevator_init()
 
 /*
 	Name: function_d93c8e95
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x7863A7DE
 	Offset: 0x5538
 	Size: 0xC1
@@ -1303,7 +1303,7 @@ function function_d93c8e95(player)
 
 /*
 	Name: function_8f599d4f
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xBDBF59B5
 	Offset: 0x5608
 	Size: 0xD7
@@ -1337,7 +1337,7 @@ function function_8f599d4f()
 
 /*
 	Name: function_ee748266
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x9045DA8D
 	Offset: 0x56E8
 	Size: 0x117
@@ -1370,7 +1370,7 @@ function function_ee748266(player)
 
 /*
 	Name: function_66070c12
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x9272236E
 	Offset: 0x5808
 	Size: 0x107
@@ -1407,7 +1407,7 @@ function function_66070c12()
 
 /*
 	Name: elevator_use
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xC49275FA
 	Offset: 0x5918
 	Size: 0x21B
@@ -1446,7 +1446,7 @@ function elevator_use(trig_stub, player)
 
 /*
 	Name: elevator_door
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xAAED1450
 	Offset: 0x5B40
 	Size: 0x619
@@ -1522,7 +1522,7 @@ function elevator_door(b_open)
 
 /*
 	Name: elevator_move
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x65A4B9C0
 	Offset: 0x6168
 	Size: 0x4C3
@@ -1581,7 +1581,7 @@ function elevator_move()
 
 /*
 	Name: function_7b8e6e93
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x54252AC6
 	Offset: 0x6638
 	Size: 0x1C5
@@ -1613,7 +1613,7 @@ function function_7b8e6e93()
 
 /*
 	Name: function_e35db912
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xE83F25F5
 	Offset: 0x6808
 	Size: 0x8D
@@ -1631,7 +1631,7 @@ function function_e35db912()
 
 /*
 	Name: function_f818f5b5
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x91097DAA
 	Offset: 0x68A0
 	Size: 0x297
@@ -1673,7 +1673,7 @@ function function_f818f5b5()
 
 /*
 	Name: function_51f6829f
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x8D94ECE9
 	Offset: 0x6B40
 	Size: 0x227
@@ -1696,7 +1696,7 @@ function function_51f6829f(var_8d943e64)
 					if(!(isdefined(player.var_36c3d64a) && player.var_36c3d64a))
 					{
 						player thread function_8f34e78f();
-						player notify("hash_df77d4a");
+						player notify("player_got_lightning_shield");
 					}
 					continue;
 				}
@@ -1713,7 +1713,7 @@ function function_51f6829f(var_8d943e64)
 
 /*
 	Name: function_69b5fce9
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xC8A8E2F8
 	Offset: 0x6D70
 	Size: 0x2F
@@ -1730,7 +1730,7 @@ function function_69b5fce9()
 
 /*
 	Name: function_8f34e78f
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x1F19BC0E
 	Offset: 0x6DA8
 	Size: 0x5B
@@ -1747,7 +1747,7 @@ function function_8f34e78f()
 
 /*
 	Name: function_e7cf715
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xCF85B17C
 	Offset: 0x6E10
 	Size: 0x73
@@ -1765,7 +1765,7 @@ function function_e7cf715()
 
 /*
 	Name: function_9f26e724
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x22C0C230
 	Offset: 0x6E90
 	Size: 0xD1
@@ -1785,7 +1785,7 @@ function function_9f26e724()
 
 /*
 	Name: function_f295a467
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x1BB1B2B6
 	Offset: 0x6F70
 	Size: 0x297
@@ -1803,7 +1803,7 @@ function function_f295a467()
 		n_damage = 0;
 		if(isdefined(w_weapon.isRiotShield) && w_weapon.isRiotShield && (isdefined(e_attacker.var_36c3d64a) && e_attacker.var_36c3d64a) && !self.var_bf47c5ef)
 		{
-			e_attacker notify("hash_6bef9736");
+			e_attacker notify("riotshield_lost_lightning");
 			self.var_bf47c5ef = 1;
 			self.var_a62a0fde = self.cost;
 			self playsound("zmb_lightning_shield_activate");
@@ -1827,7 +1827,7 @@ function function_f295a467()
 
 /*
 	Name: function_b83e4b61
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x46765314
 	Offset: 0x7210
 	Size: 0x19B
@@ -1885,7 +1885,7 @@ function function_b83e4b61(str_perk, b_on)
 
 /*
 	Name: function_8221532d
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x22EF690C
 	Offset: 0x73B8
 	Size: 0x153
@@ -1911,7 +1911,7 @@ function function_8221532d()
 
 /*
 	Name: function_e20ecfa4
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x529B2646
 	Offset: 0x7518
 	Size: 0x283
@@ -1935,7 +1935,7 @@ function function_e20ecfa4()
 				continue;
 			}
 			self.var_9e209773 playsound("zmb_lightning_shield_activate");
-			e_attacker notify("hash_6bef9736");
+			e_attacker notify("riotshield_lost_lightning");
 			self.var_bf47c5ef = 1;
 			self.var_a62a0fde = self.base_cost;
 			self.base_cost = Int(self.base_cost * 0.5);
@@ -1955,7 +1955,7 @@ function function_e20ecfa4()
 
 /*
 	Name: function_16155679
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x287F4863
 	Offset: 0x77A8
 	Size: 0x11F
@@ -1966,16 +1966,16 @@ function function_16155679(inflictor, attacker, damage, flags, meansOfDeath, wea
 {
 	if(isdefined(weapon.isRiotShield) && weapon.isRiotShield && (isdefined(attacker.var_36c3d64a) && attacker.var_36c3d64a) && !isPlayer(self))
 	{
-		attacker namespace_112fb534::electrocute_actor(self);
+		attacker zm_bgb_pop_shocks::electrocute_actor(self);
 		attacker notify("hash_aacf862e");
-		attacker namespace_f333593c::function_1881817("kill", "shield_electric");
+		attacker zm_island_vo::function_1881817("kill", "shield_electric");
 	}
 	return -1;
 }
 
 /*
 	Name: function_a7a11020
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xA692D776
 	Offset: 0x78D0
 	Size: 0x157
@@ -1990,15 +1990,15 @@ function function_a7a11020(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 		{
 			return 0;
 		}
-		eAttacker namespace_112fb534::electrocute_actor(self);
-		eAttacker namespace_f333593c::function_1881817("kill", "shield_electric");
+		eAttacker zm_bgb_pop_shocks::electrocute_actor(self);
+		eAttacker zm_island_vo::function_1881817("kill", "shield_electric");
 	}
 	return iDamage;
 }
 
 /*
 	Name: function_d68f2492
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x125B4FF4
 	Offset: 0x7A30
 	Size: 0x73
@@ -2009,13 +2009,13 @@ function function_d68f2492(eAttacker, iDamage, sHitLoc, sMeansOfDeath)
 {
 	if(isdefined(self.var_36c3d64a) && self.var_36c3d64a && !isPlayer(eAttacker))
 	{
-		self namespace_112fb534::electrocute_actor(eAttacker);
+		self zm_bgb_pop_shocks::electrocute_actor(eAttacker);
 	}
 }
 
 /*
 	Name: function_e509082
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xEAA57092
 	Offset: 0x7AB0
 	Size: 0x31B
@@ -2027,7 +2027,7 @@ function function_e509082()
 	level flag::wait_till("flag_play_outro_cutscene");
 	foreach(player in level.activePlayers)
 	{
-		player thread namespace_f333593c::function_cf763858();
+		player thread zm_island_vo::function_cf763858();
 	}
 	level LUI::screen_fade_out(0, "black");
 	level util::player_lock_control();
@@ -2051,7 +2051,7 @@ function function_e509082()
 
 /*
 	Name: function_d2e1a913
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x8F0D33B2
 	Offset: 0x7DD8
 	Size: 0x63
@@ -2067,7 +2067,7 @@ function function_d2e1a913()
 
 /*
 	Name: change_character_model
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x7E215C50
 	Offset: 0x7E48
 	Size: 0x4B
@@ -2084,7 +2084,7 @@ function change_character_model()
 
 /*
 	Name: function_c93cd104
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xF2EA75C2
 	Offset: 0x7EA0
 	Size: 0x93
@@ -2107,7 +2107,7 @@ function function_c93cd104(a_ents)
 
 /*
 	Name: function_c5001569
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x72DBFD27
 	Offset: 0x7F40
 	Size: 0x33
@@ -2122,7 +2122,7 @@ function function_c5001569(a_ents)
 
 /*
 	Name: function_dad4e4f3
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x37F0A551
 	Offset: 0x7F80
 	Size: 0x2B
@@ -2136,7 +2136,7 @@ function function_dad4e4f3(a_ents)
 
 /*
 	Name: function_1f3b8e3c
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x14ADA020
 	Offset: 0x7FB8
 	Size: 0x1A3
@@ -2170,7 +2170,7 @@ function function_1f3b8e3c(a_ents)
 
 /*
 	Name: function_da7a6f36
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x2BD30701
 	Offset: 0x8168
 	Size: 0x63
@@ -2186,7 +2186,7 @@ function function_da7a6f36(a_ents)
 
 /*
 	Name: function_f714fcfa
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x15440B97
 	Offset: 0x81D8
 	Size: 0x36B
@@ -2227,7 +2227,7 @@ function function_f714fcfa()
 
 /*
 	Name: function_dcf88974
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xBE992078
 	Offset: 0x8550
 	Size: 0x219
@@ -2258,7 +2258,7 @@ function function_dcf88974()
 
 /*
 	Name: function_449f0778
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x61A9A606
 	Offset: 0x8778
 	Size: 0x20F
@@ -2285,14 +2285,14 @@ function function_449f0778()
 	self setClientUIVisibilityFlag("hud_visible", 1);
 	self setClientUIVisibilityFlag("weapon_hud_visible", 1);
 	level clientfield::set("portal_state_ending_" + n_player_index, 0);
-	level thread namespace_f333593c::function_b83e53a5();
+	level thread zm_island_vo::function_b83e53a5();
 	level flag::set("spawn_zombies");
 	level.disable_nuke_delay_spawning = 0;
 }
 
 /*
 	Name: function_dcc18c22
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x5FB9D8AA
 	Offset: 0x8990
 	Size: 0xB3
@@ -2311,7 +2311,7 @@ function function_dcc18c22()
 
 /*
 	Name: function_12d043ed
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0x4941F329
 	Offset: 0x8A50
 	Size: 0xEB
@@ -2335,7 +2335,7 @@ function function_12d043ed()
 
 /*
 	Name: function_efbc0e1
-	Namespace: namespace_b3c23ec9
+	Namespace: main_quest
 	Checksum: 0xE3BD4288
 	Offset: 0x8B48
 	Size: 0x2FD

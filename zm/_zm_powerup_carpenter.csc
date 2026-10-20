@@ -7,7 +7,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_carpenter
-	Checksum: 0xDF600E67
+	Checksum: 0x91A46BA3
 	Offset: 0xF0
 	Size: 0x33
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_carpenter
-	Checksum: 0x59681989
+	Checksum: 0xE1E319A
 	Offset: 0x130
 	Size: 0x33
 	Parameters: 0

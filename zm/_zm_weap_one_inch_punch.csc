@@ -14,12 +14,12 @@
 */
 function init()
 {
-	clientfield::register("allplayers", "oneinchpunch_impact", 21000, 1, "int", &function_c9202f92, 0, 0);
-	clientfield::register("actor", "oneinchpunch_physics_launchragdoll", 21000, 1, "int", &function_7c6b248c, 0, 0);
+	clientfield::register("allplayers", "oneinchpunch_impact", 21000, 1, "int", &oneinchpunch_impact, 0, 0);
+	clientfield::register("actor", "oneinchpunch_physics_launchragdoll", 21000, 1, "int", &oneinchpunch_physics_launchragdoll, 0, 0);
 }
 
 /*
-	Name: function_c9202f92
+	Name: oneinchpunch_impact
 	Namespace: _zm_weap_one_inch_punch
 	Checksum: 0x5BCC485E
 	Offset: 0x1C0
@@ -27,7 +27,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_c9202f92(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function oneinchpunch_impact(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("death");
 	self endon("disconnect");
@@ -51,7 +51,7 @@ function function_c9202f92(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_7c6b248c
+	Name: oneinchpunch_physics_launchragdoll
 	Namespace: _zm_weap_one_inch_punch
 	Checksum: 0xA4AD2197
 	Offset: 0x348
@@ -59,7 +59,7 @@ function function_c9202f92(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_7c6b248c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function oneinchpunch_physics_launchragdoll(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("entity_shutdown");
 	if(newVal == 1)

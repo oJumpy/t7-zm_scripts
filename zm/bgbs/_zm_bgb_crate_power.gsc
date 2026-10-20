@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_4385caec;
+#namespace zm_bgb_crate_power;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4385caec
+	Namespace: zm_bgb_crate_power
 	Checksum: 0xCB70FB5B
 	Offset: 0x178
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4385caec
+	Namespace: zm_bgb_crate_power
 	Checksum: 0xDB6C86F1
 	Offset: 0x1B8
 	Size: 0x53
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_4385caec
+	Namespace: zm_bgb_crate_power
 	Checksum: 0x1345AC68
 	Offset: 0x218
 	Size: 0x5B
@@ -52,7 +52,7 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self waittill("zm_bgb_crate_power_used");
 	self playsoundtoplayer("zmb_bgb_crate_power", self);
 	self bgb::do_one_shot_use();

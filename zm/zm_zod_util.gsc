@@ -16,11 +16,11 @@
 #using scripts\zm\_zm_unitrigger;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_8e578893;
+#namespace zm_zod_util;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x5FB11104
 	Offset: 0x348
 	Size: 0x3B
@@ -34,7 +34,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xE7160671
 	Offset: 0x390
 	Size: 0xF
@@ -48,7 +48,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xEE9D1FCD
 	Offset: 0x3A8
 	Size: 0x123
@@ -75,7 +75,7 @@ function __main__()
 
 /*
 	Name: tag_origin_allocate
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x41CBCB1
 	Offset: 0x4D8
 	Size: 0xE1
@@ -103,7 +103,7 @@ function tag_origin_allocate(v_pos, v_angles)
 
 /*
 	Name: tag_origin_free
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x495976E7
 	Offset: 0x5C8
 	Size: 0x83
@@ -126,7 +126,7 @@ function tag_origin_free()
 
 /*
 	Name: tag_origin_expire
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x695CD8A1
 	Offset: 0x658
 	Size: 0x4B
@@ -143,7 +143,7 @@ function private tag_origin_expire()
 
 /*
 	Name: watch_zombie_death
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xDAFBD50C
 	Offset: 0x6B0
 	Size: 0xD1
@@ -167,7 +167,7 @@ function private watch_zombie_death()
 
 /*
 	Name: vec_to_string
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xB333C970
 	Offset: 0x790
 	Size: 0x4B
@@ -181,7 +181,7 @@ function vec_to_string(V)
 
 /*
 	Name: zod_unitrigger_assess_visibility
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x522A28FA
 	Offset: 0x7E8
 	Size: 0x16F
@@ -226,7 +226,7 @@ function zod_unitrigger_assess_visibility(player)
 
 /*
 	Name: unitrigger_refresh_message
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x15BD2504
 	Offset: 0x960
 	Size: 0x1B
@@ -240,7 +240,7 @@ function unitrigger_refresh_message()
 
 /*
 	Name: unitrigger_allow_beastmode
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xE5D9A087
 	Offset: 0x988
 	Size: 0xF
@@ -254,7 +254,7 @@ function unitrigger_allow_beastmode()
 
 /*
 	Name: unitrigger_think
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xFC80AA6F
 	Offset: 0x9A0
 	Size: 0x9B
@@ -277,7 +277,7 @@ function private unitrigger_think()
 
 /*
 	Name: teleport_player
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xE7346C2B
 	Offset: 0xA48
 	Size: 0x3CB
@@ -339,7 +339,7 @@ function teleport_player(struct_targetname)
 
 /*
 	Name: set_unitrigger_hint_string
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x7579C6D6
 	Offset: 0xE20
 	Size: 0x63
@@ -356,7 +356,7 @@ function set_unitrigger_hint_string(str_message, param1)
 
 /*
 	Name: spawn_unitrigger
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xC2EF750E
 	Offset: 0xE90
 	Size: 0x1F7
@@ -409,7 +409,7 @@ function private spawn_unitrigger(origin, angles, radius_or_dims, use_trigger, f
 
 /*
 	Name: spawn_trigger_radius
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xE7B132EE
 	Offset: 0x1090
 	Size: 0x59
@@ -427,7 +427,7 @@ function spawn_trigger_radius(origin, radius, use_trigger, func_per_player_msg)
 
 /*
 	Name: spawn_trigger_box
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xB00194D2
 	Offset: 0x10F8
 	Size: 0x61
@@ -445,7 +445,7 @@ function spawn_trigger_box(origin, angles, dims, use_trigger, func_per_player_ms
 
 /*
 	Name: add_zod_zombie_spawn_func
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xB101CAC6
 	Offset: 0x1168
 	Size: 0x11B
@@ -480,7 +480,7 @@ function add_zod_zombie_spawn_func(fn_zombie_spawned)
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x7BA8ABBA
 	Offset: 0x1290
 	Size: 0xB1
@@ -505,7 +505,7 @@ function on_player_connect()
 
 /*
 	Name: on_zombie_killed
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x41550F87
 	Offset: 0x1350
 	Size: 0x91
@@ -531,7 +531,7 @@ function on_zombie_killed(fn_zombie_killed)
 
 /*
 	Name: on_player_bled_out
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x294A7FE6
 	Offset: 0x13F0
 	Size: 0x91
@@ -557,7 +557,7 @@ function on_player_bled_out(fn_callback)
 
 /*
 	Name: set_rumble_to_player
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xCB377CBC
 	Offset: 0x1490
 	Size: 0x83
@@ -579,7 +579,7 @@ function set_rumble_to_player(n_rumbletype, var_d00db512)
 
 /*
 	Name: function_3a7a7013
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xF3A5E99B
 	Offset: 0x1520
 	Size: 0x101
@@ -600,7 +600,7 @@ function function_3a7a7013(n_rumbletype, n_radius, v_origin, var_d00db512)
 
 /*
 	Name: function_5cc835d6
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x12987D36
 	Offset: 0x1630
 	Size: 0x11B
@@ -625,7 +625,7 @@ function function_5cc835d6(v_origin, v_target, n_duration)
 
 /*
 	Name: function_15166300
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x67FF3D05
 	Offset: 0x1758
 	Size: 0x28B
@@ -685,7 +685,7 @@ function function_15166300(var_c3a9e22d)
 
 /*
 	Name: function_55f114f9
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x30304A59
 	Offset: 0x19F0
 	Size: 0x53
@@ -701,7 +701,7 @@ function function_55f114f9(str_uimodel, n_duration)
 
 /*
 	Name: show_infotext_for_duration
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xA26A96A4
 	Offset: 0x1A50
 	Size: 0x53
@@ -717,7 +717,7 @@ function show_infotext_for_duration(str_infotext, n_duration)
 
 /*
 	Name: setup_devgui_func
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0x9EEE0471
 	Offset: 0x1AB0
 	Size: 0x11F

@@ -17,7 +17,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_full_ammo
-	Checksum: 0xD3F246E4
+	Checksum: 0x6ED8010C
 	Offset: 0x2A8
 	Size: 0x33
 	Parameters: 0
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_full_ammo
-	Checksum: 0xDEFD7360
+	Checksum: 0x90EBEC37
 	Offset: 0x2E8
 	Size: 0x9B
 	Parameters: 0
@@ -49,7 +49,7 @@ function __init__()
 /*
 	Name: grab_full_ammo
 	Namespace: zm_powerup_full_ammo
-	Checksum: 0x4051E8D1
+	Checksum: 0xB8DD8C8A
 	Offset: 0x390
 	Size: 0x43
 	Parameters: 1
@@ -64,7 +64,7 @@ function grab_full_ammo(player)
 /*
 	Name: full_ammo_powerup
 	Namespace: zm_powerup_full_ammo
-	Checksum: 0xB43E3EE0
+	Checksum: 0x9F494860
 	Offset: 0x3E0
 	Size: 0x2F3
 	Parameters: 2
@@ -125,7 +125,7 @@ function full_ammo_powerup(drop_item, player)
 /*
 	Name: full_ammo_on_hud
 	Namespace: zm_powerup_full_ammo
-	Checksum: 0xC26AF102
+	Checksum: 0xAD819033
 	Offset: 0x6E0
 	Size: 0x93
 	Parameters: 2

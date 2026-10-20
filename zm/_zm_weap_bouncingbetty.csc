@@ -10,7 +10,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: bouncingbetty
-	Checksum: 0xF3074EED
+	Checksum: 0x445DCA2B
 	Offset: 0x148
 	Size: 0x33
 	Parameters: 0
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: bouncingbetty
-	Checksum: 0xEC6360FF
+	Checksum: 0x61AEBF39
 	Offset: 0x188
 	Size: 0x1B
 	Parameters: 1

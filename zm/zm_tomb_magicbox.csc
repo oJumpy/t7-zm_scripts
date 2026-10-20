@@ -2,11 +2,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_bafc277e;
+#namespace tomb_magicbox;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x92F4C972
 	Offset: 0x220
 	Size: 0x33
@@ -20,7 +20,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x16DB8F03
 	Offset: 0x260
 	Size: 0x123
@@ -31,20 +31,20 @@ function __init__()
 {
 	clientfield::register("zbarrier", "magicbox_initial_fx", 21000, 1, "int", &magicbox_initial_closed_fx, 0, 0);
 	clientfield::register("zbarrier", "magicbox_amb_fx", 21000, 2, "int", &magicbox_ambient_fx, 0, 0);
-	clientfield::register("zbarrier", "magicbox_open_fx", 21000, 1, "int", &function_c8f2b7a1, 0, 0);
-	clientfield::register("zbarrier", "magicbox_leaving_fx", 21000, 1, "int", &function_cac7ed81, 0, 0);
+	clientfield::register("zbarrier", "magicbox_open_fx", 21000, 1, "int", &magicbox_open_fx, 0, 0);
+	clientfield::register("zbarrier", "magicbox_leaving_fx", 21000, 1, "int", &magicbox_leaving_fx, 0, 0);
 }
 
 /*
-	Name: function_cac7ed81
-	Namespace: namespace_bafc277e
+	Name: magicbox_leaving_fx
+	Namespace: tomb_magicbox
 	Checksum: 0x8D02CD90
 	Offset: 0x390
 	Size: 0x103
 	Parameters: 7
 	Flags: None
 */
-function function_cac7ed81(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function magicbox_leaving_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(!isdefined(self.fx_obj))
 	{
@@ -59,15 +59,15 @@ function function_cac7ed81(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c8f2b7a1
-	Namespace: namespace_bafc277e
+	Name: magicbox_open_fx
+	Namespace: tomb_magicbox
 	Checksum: 0xE0CB8762
 	Offset: 0x4A0
 	Size: 0x20B
 	Parameters: 7
 	Flags: None
 */
-function function_c8f2b7a1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function magicbox_open_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(!isdefined(self.fx_obj))
 	{
@@ -97,7 +97,7 @@ function function_c8f2b7a1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: fx_magicbox_portal
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x56EC1106
 	Offset: 0x6B8
 	Size: 0x8B
@@ -114,7 +114,7 @@ function fx_magicbox_portal(localClientNum)
 
 /*
 	Name: magicbox_initial_closed_fx
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0xE6A4DEF0
 	Offset: 0x750
 	Size: 0xE3
@@ -141,7 +141,7 @@ function magicbox_initial_closed_fx(localClientNum, oldVal, newVal, bNewEnt, bIn
 
 /*
 	Name: magicbox_ambient_fx
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x9FAC0535
 	Offset: 0x840
 	Size: 0x473

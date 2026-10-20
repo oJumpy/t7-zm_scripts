@@ -21,11 +21,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_1c31c03d;
+#namespace zm_ai_raz;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x4B28842D
 	Offset: 0x550
 	Size: 0x3B
@@ -39,7 +39,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x7EC096DF
 	Offset: 0x598
 	Size: 0x13
@@ -53,7 +53,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x56529FB6
 	Offset: 0x5B8
 	Size: 0x43
@@ -71,7 +71,7 @@ function __main__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x99EC1590
 	Offset: 0x608
 	Size: 0x3
@@ -84,7 +84,7 @@ function register_clientfields()
 
 /*
 	Name: init
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x978ED1D9
 	Offset: 0x618
 	Size: 0x1EB
@@ -114,7 +114,7 @@ function init()
 
 /*
 	Name: function_6fdcefe3
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x26F0E4FF
 	Offset: 0x810
 	Size: 0x123
@@ -141,7 +141,7 @@ function function_6fdcefe3(str_event, str_mod, str_hit_location, var_48d0b2fe, w
 
 /*
 	Name: enable_raz_rounds
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x128A22B3
 	Offset: 0x940
 	Size: 0x43
@@ -160,7 +160,7 @@ function enable_raz_rounds()
 
 /*
 	Name: raz_spawner_init
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x7F78B32B
 	Offset: 0x990
 	Size: 0x119
@@ -187,7 +187,7 @@ function raz_spawner_init()
 
 /*
 	Name: function_ff9b21c4
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x9B33BF7A
 	Offset: 0xAB8
 	Size: 0x4F
@@ -209,7 +209,7 @@ function function_ff9b21c4()
 
 /*
 	Name: raz_round_tracker
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x7D2B7D3A
 	Offset: 0xB10
 	Size: 0x23F
@@ -269,7 +269,7 @@ function raz_round_tracker()
 
 /*
 	Name: raz_round_start
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xED463214
 	Offset: 0xD58
 	Size: 0x7B
@@ -287,7 +287,7 @@ function raz_round_start()
 
 /*
 	Name: raz_round_stop
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x8C6D8007
 	Offset: 0xDE0
 	Size: 0x5D
@@ -304,7 +304,7 @@ function raz_round_stop()
 
 /*
 	Name: raz_round_spawning
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xED2E6C48
 	Offset: 0xE48
 	Size: 0x2BF
@@ -314,7 +314,7 @@ function raz_round_stop()
 function raz_round_spawning()
 {
 	level endon("intermission");
-	level endon("hash_a613a361");
+	level endon("raz_round");
 	level.a_e_raz_targets = GetPlayers();
 	for(i = 0; i < level.a_e_raz_targets.size; i++)
 	{
@@ -367,7 +367,7 @@ function raz_round_spawning()
 
 /*
 	Name: spawn_raz_zombie
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xBB36E861
 	Offset: 0x1110
 	Size: 0x9F
@@ -388,7 +388,7 @@ function spawn_raz_zombie(spawner, s_spot)
 
 /*
 	Name: function_b8671cc0
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x73307D7D
 	Offset: 0x11B8
 	Size: 0x47
@@ -409,7 +409,7 @@ function function_b8671cc0(s_spot)
 
 /*
 	Name: spawn_raz
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x937CFA31
 	Offset: 0x1208
 	Size: 0x203
@@ -465,7 +465,7 @@ function spawn_raz()
 
 /*
 	Name: get_raz_spawn_total
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x9A8FF8B
 	Offset: 0x1418
 	Size: 0x85
@@ -503,7 +503,7 @@ function get_raz_spawn_total()
 
 /*
 	Name: raz_round_wait_func
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x1E8870C6
 	Offset: 0x14A8
 	Size: 0x87
@@ -526,7 +526,7 @@ function raz_round_wait_func()
 
 /*
 	Name: get_current_raz_count
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xF4B64643
 	Offset: 0x1538
 	Size: 0xD5
@@ -549,7 +549,7 @@ function get_current_raz_count()
 
 /*
 	Name: function_bcbbda54
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xCDA1BF95
 	Offset: 0x1618
 	Size: 0x61
@@ -585,7 +585,7 @@ function function_bcbbda54()
 
 /*
 	Name: can_spawn_raz
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x2E506707
 	Offset: 0x1688
 	Size: 0x77
@@ -605,7 +605,7 @@ function can_spawn_raz()
 
 /*
 	Name: waiting_for_next_raz_spawn
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x262D82DB
 	Offset: 0x1708
 	Size: 0x87
@@ -642,7 +642,7 @@ function waiting_for_next_raz_spawn()
 
 /*
 	Name: raz_round_aftermath
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x1B0A7EB7
 	Offset: 0x1798
 	Size: 0x133
@@ -675,7 +675,7 @@ function raz_round_aftermath()
 
 /*
 	Name: get_favorite_enemy
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x9189E45F
 	Offset: 0x18D8
 	Size: 0x14F
@@ -715,7 +715,7 @@ function get_favorite_enemy()
 
 /*
 	Name: raz_health_increase
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x50AF8ECE
 	Offset: 0x1A30
 	Size: 0x11B
@@ -743,7 +743,7 @@ function raz_health_increase()
 
 /*
 	Name: play_raz_round
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x164C9D33
 	Offset: 0x1B58
 	Size: 0xB3
@@ -762,7 +762,7 @@ function play_raz_round()
 
 /*
 	Name: raz_init
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x4B0DD4EC
 	Offset: 0x1C18
 	Size: 0x2AF
@@ -823,7 +823,7 @@ function raz_init()
 
 /*
 	Name: raz_death
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x39F6A300
 	Offset: 0x1ED0
 	Size: 0x1F3
@@ -869,7 +869,7 @@ function raz_death()
 
 /*
 	Name: raz_explode_fx
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x7B764799
 	Offset: 0x20D0
 	Size: 0xB
@@ -882,7 +882,7 @@ function raz_explode_fx(origin)
 
 /*
 	Name: zombie_setup_attack_properties_raz
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xF9B73238
 	Offset: 0x20E8
 	Size: 0x53
@@ -900,7 +900,7 @@ function zombie_setup_attack_properties_raz()
 
 /*
 	Name: stop_raz_sound_on_death
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xB82979D6
 	Offset: 0x2148
 	Size: 0x23
@@ -915,7 +915,7 @@ function stop_raz_sound_on_death()
 
 /*
 	Name: special_raz_spawn
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x35FFAC78
 	Offset: 0x2178
 	Size: 0x2AB
@@ -986,7 +986,7 @@ function special_raz_spawn(n_to_spawn, func_on_spawned, b_force_spawn, var_b7959
 
 /*
 	Name: function_175052a7
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x4529FDD9
 	Offset: 0x2430
 	Size: 0x4F
@@ -1005,7 +1005,7 @@ function function_175052a7()
 
 /*
 	Name: raz_thundergun_knockdown
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x652F53AC
 	Offset: 0x2488
 	Size: 0x8B
@@ -1021,7 +1021,7 @@ function raz_thundergun_knockdown(player, gib)
 
 /*
 	Name: function_94372a17
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xD5DD9AD7
 	Offset: 0x2520
 	Size: 0x191
@@ -1047,7 +1047,7 @@ function function_94372a17(inflictor, attacker, damage, dFlags, mod, weapon, poi
 
 /*
 	Name: function_a59f11f9
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x9F3DB170
 	Offset: 0x26C0
 	Size: 0xDB
@@ -1078,7 +1078,7 @@ function function_a59f11f9(e_player, s_mod, var_9908b5f4)
 
 /*
 	Name: function_fbcfe4b6
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x74C14E5E
 	Offset: 0x27A8
 	Size: 0x43
@@ -1095,7 +1095,7 @@ function function_fbcfe4b6()
 
 /*
 	Name: function_3626e3d1
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x3154A13F
 	Offset: 0x27F8
 	Size: 0xCD
@@ -1133,7 +1133,7 @@ function function_3626e3d1(cmd)
 
 /*
 	Name: function_39a724b1
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xF3A15BA5
 	Offset: 0x28D0
 	Size: 0x1D1
@@ -1166,7 +1166,7 @@ function function_39a724b1()
 
 /*
 	Name: function_9a80ee5f
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x71388C7F
 	Offset: 0x2AB0
 	Size: 0x39
@@ -1189,7 +1189,7 @@ function function_9a80ee5f()
 
 /*
 	Name: function_e115a394
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xF8B90C2A
 	Offset: 0x2AF8
 	Size: 0x9F
@@ -1218,7 +1218,7 @@ function function_e115a394(n_raz)
 
 /*
 	Name: function_70864ef2
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0xAD68602B
 	Offset: 0x2BA0
 	Size: 0x4B
@@ -1238,7 +1238,7 @@ function function_70864ef2(n_raz)
 
 /*
 	Name: function_d8afb0d4
-	Namespace: namespace_1c31c03d
+	Namespace: zm_ai_raz
 	Checksum: 0x6CE71BE8
 	Offset: 0x2BF8
 	Size: 0x6B

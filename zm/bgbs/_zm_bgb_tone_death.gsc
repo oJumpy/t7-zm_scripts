@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_spawner;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_66043662;
+#namespace zm_bgb_tone_death;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_66043662
+	Namespace: zm_bgb_tone_death
 	Checksum: 0x4E9009C1
 	Offset: 0x200
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_66043662
+	Namespace: zm_bgb_tone_death
 	Checksum: 0x7413B4CE
 	Offset: 0x240
 	Size: 0x7B
@@ -46,7 +46,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_66043662
+	Namespace: zm_bgb_tone_death
 	Checksum: 0xDF37C053
 	Offset: 0x2C8
 	Size: 0x5B
@@ -62,7 +62,7 @@ function event()
 
 /*
 	Name: function_1473087b
-	Namespace: namespace_66043662
+	Namespace: zm_bgb_tone_death
 	Checksum: 0xE8D77D2F
 	Offset: 0x330
 	Size: 0x45
@@ -77,7 +77,7 @@ function function_1473087b()
 
 /*
 	Name: actor_death_override
-	Namespace: namespace_66043662
+	Namespace: zm_bgb_tone_death
 	Checksum: 0x32ECD2B7
 	Offset: 0x380
 	Size: 0xE7
@@ -101,7 +101,7 @@ function actor_death_override(e_attacker)
 		e_attacker bgb::set_timer(e_attacker.n_bgb_tone_death_count, 25);
 		if(e_attacker.n_bgb_tone_death_count <= 0)
 		{
-			e_attacker notify("hash_c2ed79d2");
+			e_attacker notify("bgb_tone_death_maxed");
 		}
 	}
 }

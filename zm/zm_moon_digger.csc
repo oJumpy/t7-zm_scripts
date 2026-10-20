@@ -56,9 +56,9 @@ function digger_moving_earthquake_rumble(localClientNum, oldVal, newVal, bNewEnt
 			{
 				stopfx(i, self.tread_fx);
 			}
-			if(isdefined(self.var_deef11e2))
+			if(isdefined(self.body_fx))
 			{
-				stopfx(i, self.var_deef11e2);
+				stopfx(i, self.body_fx);
 			}
 		}
 	}
@@ -175,7 +175,7 @@ function do_digger_moving_earthquake_rumble(localClientNum, quake_ent)
 	quake_ent endon("stop_moving_rumble");
 	dist_sqd = 6250000;
 	quake_ent.tread_fx = PlayFXOnTag(localClientNum, level._effect["digger_treadfx_fwd"], quake_ent, "tag_origin");
-	quake_ent.var_deef11e2 = PlayFXOnTag(localClientNum, level._effect["exca_body_all"], quake_ent, "tag_origin");
+	quake_ent.body_fx = PlayFXOnTag(localClientNum, level._effect["exca_body_all"], quake_ent, "tag_origin");
 	player = GetLocalPlayers()[localClientNum];
 	if(!isdefined(player))
 	{
@@ -262,11 +262,11 @@ function digger_arm_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fi
 			stopfx(i, self.blink2);
 		}
 	}
-	else if(isdefined(self.var_5f9ccb3a))
+	else if(isdefined(self.arm_fx))
 	{
 		for(i = 0; i < level.localPlayers.size; i++)
 		{
-			stopfx(i, self.var_5f9ccb3a);
+			stopfx(i, self.arm_fx);
 		}
 	}
 }
@@ -288,7 +288,7 @@ function do_digger_arm_fx(localClientNum, ent)
 	{
 		return;
 	}
-	ent.var_5f9ccb3a = PlayFXOnTag(localClientNum, level._effect["exca_arm_all"], ent, "tag_origin");
+	ent.arm_fx = PlayFXOnTag(localClientNum, level._effect["exca_arm_all"], ent, "tag_origin");
 }
 
 /*
@@ -381,23 +381,23 @@ function init_excavator_consoles()
 		if(!level clientfield::get("TCA"))
 		{
 			mdl_console = GetEnt(index, "tunnel_console", "targetname");
-			function_9b3daafa(index, mdl_console, 0);
+			play_console_fx(index, mdl_console, 0);
 		}
 		if(!level clientfield::get("HCA"))
 		{
 			mdl_console = GetEnt(index, "hangar_console", "targetname");
-			function_9b3daafa(index, mdl_console, 0);
+			play_console_fx(index, mdl_console, 0);
 		}
 		if(!level clientfield::get("BCA"))
 		{
 			mdl_console = GetEnt(index, "biodome_console", "targetname");
-			function_9b3daafa(index, mdl_console, 0);
+			play_console_fx(index, mdl_console, 0);
 		}
 	}
 }
 
 /*
-	Name: function_774edb15
+	Name: console_fx
 	Namespace: zm_moon_digger
 	Checksum: 0x77DA2126
 	Offset: 0x1220
@@ -405,7 +405,7 @@ function init_excavator_consoles()
 	Parameters: 7
 	Flags: None
 */
-function function_774edb15(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function console_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	switch(fieldName)
 	{
@@ -428,16 +428,16 @@ function function_774edb15(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	mdl_console = GetEnt(localClientNum, var_ffc320da, "targetname");
 	if(newVal)
 	{
-		function_9b3daafa(localClientNum, mdl_console, 1);
+		play_console_fx(localClientNum, mdl_console, 1);
 	}
 	else
 	{
-		function_9b3daafa(localClientNum, mdl_console, 0);
+		play_console_fx(localClientNum, mdl_console, 0);
 	}
 }
 
 /*
-	Name: function_9b3daafa
+	Name: play_console_fx
 	Namespace: zm_moon_digger
 	Checksum: 0x7278C0DE
 	Offset: 0x1338
@@ -445,7 +445,7 @@ function function_774edb15(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 3
 	Flags: None
 */
-function function_9b3daafa(localClientNum, mdl_console, b_is_on)
+function play_console_fx(localClientNum, mdl_console, b_is_on)
 {
 	if(isdefined(mdl_console.n_fx_id))
 	{

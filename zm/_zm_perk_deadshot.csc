@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_deadshot
-	Checksum: 0x4447CFAA
+	Checksum: 0xF4D1E3F9
 	Offset: 0x1B0
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_deadshot
-	Checksum: 0x9AF53617
+	Checksum: 0xBEF07BC0
 	Offset: 0x1F0
 	Size: 0x13
 	Parameters: 0
@@ -37,7 +37,7 @@ function __init__()
 /*
 	Name: enable_deadshot_perk_for_level
 	Namespace: zm_perk_deadshot
-	Checksum: 0xD75ACCE3
+	Checksum: 0xDD3BDA27
 	Offset: 0x210
 	Size: 0x83
 	Parameters: 0
@@ -53,7 +53,7 @@ function enable_deadshot_perk_for_level()
 /*
 	Name: init_deadshot
 	Namespace: zm_perk_deadshot
-	Checksum: 0x5ED23D72
+	Checksum: 0xC985EF61
 	Offset: 0x2A0
 	Size: 0x35
 	Parameters: 0
@@ -70,7 +70,7 @@ function init_deadshot()
 /*
 	Name: deadshot_client_field_func
 	Namespace: zm_perk_deadshot
-	Checksum: 0xBA20A7D4
+	Checksum: 0x5063D39E
 	Offset: 0x2E0
 	Size: 0x83
 	Parameters: 0
@@ -98,7 +98,7 @@ function deadshot_code_callback_func()
 /*
 	Name: player_deadshot_perk_handler
 	Namespace: zm_perk_deadshot
-	Checksum: 0x8E1DC9FB
+	Checksum: 0xB0EED080
 	Offset: 0x380
 	Size: 0xF3
 	Parameters: 7

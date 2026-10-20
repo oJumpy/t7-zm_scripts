@@ -2,11 +2,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_1a868593;
+#namespace zm_island_fx;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1a868593
+	Namespace: zm_island_fx
 	Checksum: 0x249A992E
 	Offset: 0x860
 	Size: 0x33
@@ -20,7 +20,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1a868593
+	Namespace: zm_island_fx
 	Checksum: 0x99EC1590
 	Offset: 0x8A0
 	Size: 0x3
@@ -33,7 +33,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_1a868593
+	Namespace: zm_island_fx
 	Checksum: 0xD51BDD39
 	Offset: 0x8B0
 	Size: 0x3AD
@@ -80,7 +80,7 @@ function main()
 
 /*
 	Name: Precache
-	Namespace: namespace_1a868593
+	Namespace: zm_island_fx
 	Checksum: 0x99EC1590
 	Offset: 0xC68
 	Size: 0x3

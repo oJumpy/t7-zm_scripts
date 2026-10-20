@@ -32,12 +32,12 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("world", "add_idgun_to_box", 1, 4, "int", &function_623d27f2, 0, 0);
-	clientfield::register("world", "remove_idgun_from_box", 1, 4, "int", &function_5578fd14, 0, 0);
+	clientfield::register("world", "add_idgun_to_box", 1, 4, "int", &add_idgun_to_box, 0, 0);
+	clientfield::register("world", "remove_idgun_from_box", 1, 4, "int", &remove_idgun_from_box, 0, 0);
 }
 
 /*
-	Name: function_623d27f2
+	Name: add_idgun_to_box
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0x849DB830
 	Offset: 0x268
@@ -45,14 +45,14 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_623d27f2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function add_idgun_to_box(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	weapon_idgun = GetWeapon("idgun" + "_" + newVal);
 	AddZombieBoxWeapon(weapon_idgun, weapon_idgun.worldmodel, weapon_idgun.isDualWield);
 }
 
 /*
-	Name: function_5578fd14
+	Name: remove_idgun_from_box
 	Namespace: zm_zod_idgun_quest
 	Checksum: 0xD392FF6
 	Offset: 0x310
@@ -60,7 +60,7 @@ function function_623d27f2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_5578fd14(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function remove_idgun_from_box(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	weapon_idgun = GetWeapon("idgun" + "_" + newVal);
 	removezombieboxweapon(weapon_idgun);

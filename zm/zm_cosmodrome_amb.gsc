@@ -220,7 +220,7 @@ function function_5fd10b57()
 */
 function function_7624a208()
 {
-	level thread namespace_52adc03e::function_e753d4f();
+	level thread zm_audio_zhd::function_e753d4f();
 	level flag::wait_till("snd_song_completed");
 	level thread zm_audio::sndMusicSystem_PlayState("abracadavre");
 }
@@ -262,13 +262,13 @@ function function_337aada8()
 */
 function function_10544d8()
 {
-	self endon("hash_58b9d0eb");
+	self endon("phone_activated");
 	self endon("timeout");
 	self.t_damage = spawn("trigger_damage", self.origin, 0, 5, 5);
 	while(1)
 	{
 		self.t_damage waittill("damage", n_amount, e_attacker, dir, point, str_means_of_death);
-		if(!namespace_52adc03e::function_8090042c())
+		if(!zm_audio_zhd::function_8090042c())
 		{
 			continue;
 		}
@@ -408,7 +408,7 @@ function function_99199901()
 		{
 			if(who useButtonPressed())
 			{
-				self notify("hash_58b9d0eb");
+				self notify("phone_activated");
 				self.var_7f6e3a35 delete();
 				self.var_48df29fd delete();
 				return;
@@ -430,7 +430,7 @@ function function_99199901()
 function function_d772340()
 {
 	level endon("hash_2d7a77fa");
-	self endon("hash_58b9d0eb");
+	self endon("phone_activated");
 	self endon("hash_b524a8eb");
 	wait(10);
 	self notify("timeout");

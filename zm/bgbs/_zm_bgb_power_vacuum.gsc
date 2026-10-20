@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_6cf54cb6;
+#namespace zm_bgb_power_vacuum;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6cf54cb6
+	Namespace: zm_bgb_power_vacuum
 	Checksum: 0xA3AEBFB3
 	Offset: 0x168
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6cf54cb6
+	Namespace: zm_bgb_power_vacuum
 	Checksum: 0x3550DE5F
 	Offset: 0x1A8
 	Size: 0x5B
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_6cf54cb6
+	Namespace: zm_bgb_power_vacuum
 	Checksum: 0xF6C1E19D
 	Offset: 0x210
 	Size: 0x6B
@@ -53,7 +53,7 @@ function enable()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	level.powerup_drop_count = 0;
 	while(1)
 	{
@@ -65,7 +65,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_6cf54cb6
+	Namespace: zm_bgb_power_vacuum
 	Checksum: 0x99EC1590
 	Offset: 0x288
 	Size: 0x3

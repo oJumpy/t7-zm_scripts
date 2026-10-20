@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_2f637cea;
+#namespace zm_bgb_slaughter_slide;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2f637cea
+	Namespace: zm_bgb_slaughter_slide
 	Checksum: 0x7A3A96B
 	Offset: 0x170
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2f637cea
+	Namespace: zm_bgb_slaughter_slide
 	Checksum: 0xD3822A92
 	Offset: 0x1B0
 	Size: 0xC3
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_2f637cea
+	Namespace: zm_bgb_slaughter_slide
 	Checksum: 0xECF54B59
 	Offset: 0x280
 	Size: 0xB7
@@ -55,7 +55,7 @@ function event()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self.var_abd23dd0 = 6;
 	while(self.var_abd23dd0 > 0)
 	{
@@ -74,7 +74,7 @@ function event()
 
 /*
 	Name: is_sliding
-	Namespace: namespace_2f637cea
+	Namespace: zm_bgb_slaughter_slide
 	Checksum: 0xBC1FB679
 	Offset: 0x340
 	Size: 0x65
@@ -94,7 +94,7 @@ function is_sliding(n_count)
 
 /*
 	Name: function_42722ac4
-	Namespace: namespace_2f637cea
+	Namespace: zm_bgb_slaughter_slide
 	Checksum: 0x85313658
 	Offset: 0x3B0
 	Size: 0x163
@@ -116,7 +116,7 @@ function function_42722ac4()
 
 /*
 	Name: actor_damage_override
-	Namespace: namespace_2f637cea
+	Namespace: zm_bgb_slaughter_slide
 	Checksum: 0x4BE7629A
 	Offset: 0x520
 	Size: 0xCD
@@ -138,7 +138,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansOfDeath,
 
 /*
 	Name: vehicle_damage_override
-	Namespace: namespace_2f637cea
+	Namespace: zm_bgb_slaughter_slide
 	Checksum: 0x5428EC4D
 	Offset: 0x5F8
 	Size: 0xE5

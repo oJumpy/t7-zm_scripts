@@ -1071,7 +1071,7 @@ function CodeCallback_VehicleRadiusDamage(eInflictor, eAttacker, iDamage, fInner
 function finishCustomTraversalListener()
 {
 	self endon("death");
-	self waittillmatch("hash_154a271a");
+	self waittillmatch("custom_traversal_anim_finished");
 	self finishtraversal();
 	self Unlink();
 	self.useGoalAnimWeight = 0;

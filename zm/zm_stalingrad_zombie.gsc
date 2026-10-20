@@ -63,11 +63,11 @@ function autoexec init()
 */
 function private initzmstalingradbehaviorsandasm()
 {
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("ZmStalingradAttackableObjectService", &function_972af829);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("ZmStalingradAttackableObjectService", &zmstalingradattackableobjectservice);
 }
 
 /*
-	Name: function_972af829
+	Name: zmstalingradattackableobjectservice
 	Namespace: namespace_eec93adf
 	Checksum: 0x71E31E69
 	Offset: 0x700
@@ -75,7 +75,7 @@ function private initzmstalingradbehaviorsandasm()
 	Parameters: 1
 	Flags: Private
 */
-function private function_972af829(entity)
+function private zmstalingradattackableobjectservice(entity)
 {
 	if(!(isdefined(entity.completed_emerging_into_playable_area) && entity.completed_emerging_into_playable_area))
 	{
@@ -457,7 +457,7 @@ function private update_closest_player()
 function function_b10a912a()
 {
 	self endon("death");
-	self waittill("hash_f07646c0");
+	self waittill("completed_spawning");
 	if(isdefined(self.s_spawn_loc) && IsSubStr(self.s_spawn_loc.targetname, "pavlov"))
 	{
 		self.should_buff_zombies = 1;
@@ -542,7 +542,7 @@ function function_cec23cbf()
 		}
 		if(!level flag::get("spawn_zombies"))
 		{
-			level waittill("hash_67edc7d6");
+			level waittill("spawn_zombies");
 		}
 		n_current_time = GetTime();
 		var_a62c1873 = 0;
@@ -571,19 +571,19 @@ function function_cec23cbf()
 				if(zombie_utility::get_current_zombie_count() + level.zombie_total > 5)
 				{
 					s_spawn_loc = Array::random(var_c9b19c0c);
-					if(namespace_1c31c03d::special_raz_spawn(1, undefined, 1, s_spawn_loc))
+					if(zm_ai_raz::special_raz_spawn(1, undefined, 1, s_spawn_loc))
 					{
 						level.zombie_total--;
 						var_36eeba73 = function_8caf1f25(var_a62c1873);
 					}
 				}
 			}
-			else if(level.var_f73b438a > 1 && var_c48f3f8a <= n_current_time)
+			else if(level.enable_assassination_light > 1 && var_c48f3f8a <= n_current_time)
 			{
-				if(namespace_8bc21961::function_74ab7484() && zombie_utility::get_current_zombie_count() + level.zombie_total > 5)
+				if(zm_ai_sentinel_drone::function_74ab7484() && zombie_utility::get_current_zombie_count() + level.zombie_total > 5)
 				{
 					s_spawn_loc = Array::random(var_bb6abcd9);
-					if(namespace_8bc21961::special_sentinel_spawn(1, undefined, 1, s_spawn_loc))
+					if(zm_ai_sentinel_drone::special_sentinel_spawn(1, undefined, 1, s_spawn_loc))
 					{
 						level.zombie_total--;
 						level.var_bd1e3d02++;
@@ -747,7 +747,7 @@ function function_8b981aa0()
 	}
 	else
 	{
-		return namespace_8bc21961::function_f9c9e7e0();
+		return zm_ai_sentinel_drone::function_f9c9e7e0();
 	}
 }
 
@@ -815,7 +815,7 @@ function function_a442e988(e_player)
 		if(var_d7b33d0c.var_c94972aa === 1)
 		{
 			var_d7b33d0c.var_98bec529 = 0;
-			var_d7b33d0c thread namespace_8bc21961::function_d600cb9a();
+			var_d7b33d0c thread zm_ai_sentinel_drone::function_d600cb9a();
 		}
 	}
 }

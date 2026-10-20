@@ -33,15 +33,15 @@ function main()
 */
 function register_clientfields()
 {
-	clientfield::register("toplayer", "flinger_flying_postfx", 1, 1, "int", &function_a1f3f959, 0, 0);
-	clientfield::register("toplayer", "flinger_land_smash", 1, 1, "counter", &function_8dcf5001, 0, 0);
-	clientfield::register("scriptmover", "player_visibility", 1, 1, "int", &function_a0a5829, 0, 0);
-	clientfield::register("scriptmover", "flinger_launch_fx", 1, 1, "counter", &function_3762396c, 0, 0);
-	clientfield::register("scriptmover", "flinger_pad_active_fx", 1, 1, "int", &function_7dd4913c, 0, 0);
+	clientfield::register("toplayer", "flinger_flying_postfx", 1, 1, "int", &flinger_flying_postfx, 0, 0);
+	clientfield::register("toplayer", "flinger_land_smash", 1, 1, "counter", &flinger_land_smash, 0, 0);
+	clientfield::register("scriptmover", "player_visibility", 1, 1, "int", &player_visibility_callback, 0, 0);
+	clientfield::register("scriptmover", "flinger_launch_fx", 1, 1, "counter", &flinger_launch_callback, 0, 0);
+	clientfield::register("scriptmover", "flinger_pad_active_fx", 1, 1, "int", &flinger_pad_active_fx, 0, 0);
 }
 
 /*
-	Name: function_a1f3f959
+	Name: flinger_flying_postfx
 	Namespace: namespace_4fd1ba2a
 	Checksum: 0x1D14EE41
 	Offset: 0x460
@@ -49,7 +49,7 @@ function register_clientfields()
 	Parameters: 7
 	Flags: None
 */
-function function_a1f3f959(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function flinger_flying_postfx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -71,7 +71,7 @@ function function_a1f3f959(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_7dd4913c
+	Name: flinger_pad_active_fx
 	Namespace: namespace_4fd1ba2a
 	Checksum: 0xA4697BCC
 	Offset: 0x5C8
@@ -79,7 +79,7 @@ function function_a1f3f959(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_7dd4913c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function flinger_pad_active_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -93,7 +93,7 @@ function function_7dd4913c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_8dcf5001
+	Name: flinger_land_smash
 	Namespace: namespace_4fd1ba2a
 	Checksum: 0x820AB1A5
 	Offset: 0x690
@@ -101,13 +101,13 @@ function function_7dd4913c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_8dcf5001(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function flinger_land_smash(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	PlayFXOnTag(localClientNum, level._effect["flinger_land"], self, "tag_origin");
 }
 
 /*
-	Name: function_3762396c
+	Name: flinger_launch_callback
 	Namespace: namespace_4fd1ba2a
 	Checksum: 0xAB67D2D3
 	Offset: 0x708
@@ -115,13 +115,13 @@ function function_8dcf5001(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_3762396c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function flinger_launch_callback(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	PlayFXOnTag(localClientNum, level._effect["flinger_launch"], self, "tag_origin");
 }
 
 /*
-	Name: function_a0a5829
+	Name: player_visibility_callback
 	Namespace: namespace_4fd1ba2a
 	Checksum: 0x1A25C659
 	Offset: 0x780
@@ -129,7 +129,7 @@ function function_3762396c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_a0a5829(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_visibility_callback(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{

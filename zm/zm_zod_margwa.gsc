@@ -83,7 +83,7 @@ function private function_785a0d1e()
 				return 1;
 			}
 		}
-		if(!self zm_zod::function_61b96f56(self.favoriteenemy))
+		if(!self zm_zod::zombie_is_target_reachable(self.favoriteenemy))
 		{
 			return 1;
 		}
@@ -274,7 +274,7 @@ function function_8d578a58()
 	level.var_6e63e659++;
 	level.zombie_ai_limit--;
 	self waittill("death");
-	level thread namespace_b8707f8e::margwa_dead_vo(self.origin);
+	level thread zm_zod_vo::margwa_dead_vo(self.origin);
 	level.var_6e63e659--;
 	level.zombie_ai_limit++;
 	level notify("hash_e332d537");
@@ -330,7 +330,7 @@ function function_26f9f957(modelHit, e_attacker)
 {
 	if(zm_utility::is_player_valid(e_attacker))
 	{
-		e_attacker thread namespace_b8707f8e::margwa_headshot_vo();
+		e_attacker thread zm_zod_vo::margwa_headshot_vo();
 	}
 }
 

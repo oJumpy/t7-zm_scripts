@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_7ffac71e;
+#namespace zm_bgb_phoenix_up;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_7ffac71e
+	Namespace: zm_bgb_phoenix_up
 	Checksum: 0xB57E802A
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_7ffac71e
+	Namespace: zm_bgb_phoenix_up
 	Checksum: 0xB0CFD6E3
 	Offset: 0x188
 	Size: 0x3B

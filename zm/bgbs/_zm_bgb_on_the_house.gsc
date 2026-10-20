@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_b0f00253;
+#namespace zm_bgb_on_the_house;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_b0f00253
+	Namespace: zm_bgb_on_the_house
 	Checksum: 0xC51104C2
 	Offset: 0x178
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_b0f00253
+	Namespace: zm_bgb_on_the_house
 	Checksum: 0xE8DD6036
 	Offset: 0x1B8
 	Size: 0x53
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_b0f00253
+	Namespace: zm_bgb_on_the_house
 	Checksum: 0x3431E142
 	Offset: 0x218
 	Size: 0x23

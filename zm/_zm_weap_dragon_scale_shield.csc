@@ -11,7 +11,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: dragon_scale_shield
-	Checksum: 0x5EBD6D12
+	Checksum: 0x10F48560
 	Offset: 0x320
 	Size: 0x33
 	Parameters: 0
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: dragon_scale_shield
-	Checksum: 0xE23126A3
+	Checksum: 0xC700C34F
 	Offset: 0x360
 	Size: 0x1FB
 	Parameters: 0
@@ -36,16 +36,16 @@ function __init__()
 	clientfield::register("allplayers", "ds_ammo", 12000, 1, "int", &function_3b8ce539, 0, 0);
 	clientfield::register("allplayers", "burninate", 12000, 1, "counter", &function_adc7474a, 0, 0);
 	clientfield::register("allplayers", "burninate_upgraded", 12000, 1, "counter", &function_627dd7e5, 0, 0);
-	clientfield::register("actor", "dragonshield_snd_projectile_impact", 12000, 1, "counter", &function_7ba84100, 0, 0);
-	clientfield::register("vehicle", "dragonshield_snd_projectile_impact", 12000, 1, "counter", &function_7ba84100, 0, 0);
-	clientfield::register("actor", "dragonshield_snd_zombie_knockdown", 12000, 1, "counter", &function_d2012501, 0, 0);
-	clientfield::register("vehicle", "dragonshield_snd_zombie_knockdown", 12000, 1, "counter", &function_d2012501, 0, 0);
+	clientfield::register("actor", "dragonshield_snd_projectile_impact", 12000, 1, "counter", &dragonshield_snd_projectile_impact, 0, 0);
+	clientfield::register("vehicle", "dragonshield_snd_projectile_impact", 12000, 1, "counter", &dragonshield_snd_projectile_impact, 0, 0);
+	clientfield::register("actor", "dragonshield_snd_zombie_knockdown", 12000, 1, "counter", &dragonshield_snd_zombie_knockdown, 0, 0);
+	clientfield::register("vehicle", "dragonshield_snd_zombie_knockdown", 12000, 1, "counter", &dragonshield_snd_zombie_knockdown, 0, 0);
 }
 
 /*
 	Name: function_3b8ce539
 	Namespace: dragon_scale_shield
-	Checksum: 0xAA9D3096
+	Checksum: 0x9BE36C85
 	Offset: 0x568
 	Size: 0xA3
 	Parameters: 7
@@ -66,7 +66,7 @@ function function_3b8ce539(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 /*
 	Name: function_adc7474a
 	Namespace: dragon_scale_shield
-	Checksum: 0xF18DBB7A
+	Checksum: 0x78F8C129
 	Offset: 0x618
 	Size: 0xA3
 	Parameters: 7
@@ -87,7 +87,7 @@ function function_adc7474a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 /*
 	Name: function_627dd7e5
 	Namespace: dragon_scale_shield
-	Checksum: 0x2C66E416
+	Checksum: 0xD1ABDACD
 	Offset: 0x6C8
 	Size: 0xA3
 	Parameters: 7
@@ -106,30 +106,30 @@ function function_627dd7e5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_7ba84100
+	Name: dragonshield_snd_projectile_impact
 	Namespace: dragon_scale_shield
-	Checksum: 0x17DC5F73
+	Checksum: 0x221EE2B3
 	Offset: 0x778
 	Size: 0x8B
 	Parameters: 7
 	Flags: None
 */
-function function_7ba84100(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragonshield_snd_projectile_impact(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	playsound(localClientNum, "vox_dragonshield_forcehit", self.origin);
 	playsound(localClientNum, "wpn_dragonshield_proj_impact", self.origin);
 }
 
 /*
-	Name: function_d2012501
+	Name: dragonshield_snd_zombie_knockdown
 	Namespace: dragon_scale_shield
-	Checksum: 0xBA4B1BD4
+	Checksum: 0x6D37B590
 	Offset: 0x810
 	Size: 0x63
 	Parameters: 7
 	Flags: None
 */
-function function_d2012501(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragonshield_snd_zombie_knockdown(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	playsound(localClientNum, "fly_dragonshield_forcehit", self.origin);
 }

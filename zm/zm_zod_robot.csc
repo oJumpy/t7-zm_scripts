@@ -12,11 +12,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_2cce1885;
+#namespace zm_zod_robot;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x34716B07
 	Offset: 0x2C0
 	Size: 0x33
@@ -30,7 +30,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xE94728A4
 	Offset: 0x300
 	Size: 0xBB
@@ -39,14 +39,14 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "robot_switch", 1, 1, "int", &function_16e00222, 0, 0);
+	clientfield::register("scriptmover", "robot_switch", 1, 1, "int", &robot_switch, 0, 0);
 	clientfield::register("world", "robot_lights", 1, 2, "int", &robot_lights, 0, 0);
 	ai::add_archetype_spawn_function("zod_companion", &function_a0b7ccbf);
 }
 
 /*
 	Name: function_a0b7ccbf
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x25BA1C5C
 	Offset: 0x3C8
 	Size: 0x3B
@@ -60,22 +60,22 @@ function private function_a0b7ccbf(localClientNum)
 }
 
 /*
-	Name: function_16e00222
-	Namespace: namespace_2cce1885
+	Name: robot_switch
+	Namespace: zm_zod_robot
 	Checksum: 0x82129AED
 	Offset: 0x410
 	Size: 0x63
 	Parameters: 7
 	Flags: None
 */
-function function_16e00222(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function robot_switch(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	playFX(localClientNum, "zombie/fx_fuse_master_switch_on_zod_zmb", self.origin);
 }
 
 /*
 	Name: robot_lights
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xCC0E75EA
 	Offset: 0x480
 	Size: 0x1A5

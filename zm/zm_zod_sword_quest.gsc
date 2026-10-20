@@ -26,11 +26,11 @@
 #using scripts\zm\zm_zod_util;
 #using scripts\zm\zm_zod_vo;
 
-#namespace namespace_aa27450a;
+#namespace zm_zod_sword;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x9E699491
 	Offset: 0xDF0
 	Size: 0x3B
@@ -44,7 +44,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x48242844
 	Offset: 0xE38
 	Size: 0x4B3
@@ -78,8 +78,8 @@ function __init__()
 	callback::on_connect(&on_player_connect);
 	callback::on_disconnect(&on_player_disconnect);
 	callback::on_spawned(&on_player_spawned);
-	namespace_8e578893::on_zombie_killed(&on_zombie_killed);
-	namespace_8e578893::on_player_bled_out(&on_bled_out);
+	zm_zod_util::on_zombie_killed(&on_zombie_killed);
+	zm_zod_util::on_player_bled_out(&on_bled_out);
 	/#
 		level thread sword_devgui();
 	#/
@@ -87,7 +87,7 @@ function __init__()
 
 /*
 	Name: function_541cb3c4
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x53C95607
 	Offset: 0x12F8
 	Size: 0xAB
@@ -97,14 +97,14 @@ function __init__()
 function function_541cb3c4()
 {
 	s_initial = GetEnt("initial_egg_statue", "script_noteworthy");
-	level.var_15954023.Eggs[self.characterindex] SetModel(level.var_15954023.egg_models[0]);
+	level.sword_quest.Eggs[self.characterindex] SetModel(level.sword_quest.egg_models[0]);
 	self function_abf3df35(s_initial.statue_id);
 	self clientfield::set_player_uimodel("zmInventory.player_sword_quest_egg_state", 0);
 }
 
 /*
 	Name: function_7f334fcd
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x30CEDE2D
 	Offset: 0x13B0
 	Size: 0x23
@@ -118,7 +118,7 @@ function function_7f334fcd()
 
 /*
 	Name: reset_sword
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x97DE3266
 	Offset: 0x13E0
 	Size: 0x3B
@@ -127,12 +127,12 @@ function function_7f334fcd()
 */
 function reset_sword(b_show)
 {
-	level.var_15954023.swords[self.characterindex] show();
+	level.sword_quest.swords[self.characterindex] show();
 }
 
 /*
 	Name: __main__
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x738C8EBC
 	Offset: 0x1428
 	Size: 0x76B
@@ -141,58 +141,58 @@ function reset_sword(b_show)
 */
 function __main__()
 {
-	level.var_15954023 = spawnstruct();
-	level.var_15954023.weapons = [];
+	level.sword_quest = spawnstruct();
+	level.sword_quest.weapons = [];
 	for(i = 0; i < 4; i++)
 	{
-		level.var_15954023.weapons[i] = [];
-		level.var_15954023.weapons[i][1] = GetWeapon("glaive_apothicon" + "_" + i);
-		level.var_15954023.weapons[i][2] = GetWeapon("glaive_keeper" + "_" + i);
-		foreach(wpn in level.var_15954023.weapons[i])
+		level.sword_quest.weapons[i] = [];
+		level.sword_quest.weapons[i][1] = GetWeapon("glaive_apothicon" + "_" + i);
+		level.sword_quest.weapons[i][2] = GetWeapon("glaive_keeper" + "_" + i);
+		foreach(wpn in level.sword_quest.weapons[i])
 		{
 			/#
 				Assert(wpn != level.weaponNone);
 			#/
 		}
 	}
-	level.var_15954023.statues = GetEntArray("sword_upgrade_statue", "targetname");
-	level.var_15954023.var_e91b9e85 = [];
-	level.var_15954023.var_e91b9e85[0] = "wpn_t7_zmb_zod_sword1_box_no_egg_world";
-	level.var_15954023.var_e91b9e85[1] = "wpn_t7_zmb_zod_sword1_det_no_egg_world";
-	level.var_15954023.var_e91b9e85[2] = "wpn_t7_zmb_zod_sword1_fem_no_egg_world";
-	level.var_15954023.var_e91b9e85[3] = "wpn_t7_zmb_zod_sword1_mag_no_egg_world";
-	level.var_15954023.egg_models = Array("zm_zod_sword_egg_apothicon_s1", "zm_zod_sword_egg_apothicon_s2", "zm_zod_sword_egg_apothicon_s3", "zm_zod_sword_egg_apothicon_s4", "zm_zod_sword_egg_apothicon_s5");
-	for(statue_id = 0; statue_id < level.var_15954023.statues.size; statue_id++)
+	level.sword_quest.statues = GetEntArray("sword_upgrade_statue", "targetname");
+	level.sword_quest.var_e91b9e85 = [];
+	level.sword_quest.var_e91b9e85[0] = "wpn_t7_zmb_zod_sword1_box_no_egg_world";
+	level.sword_quest.var_e91b9e85[1] = "wpn_t7_zmb_zod_sword1_det_no_egg_world";
+	level.sword_quest.var_e91b9e85[2] = "wpn_t7_zmb_zod_sword1_fem_no_egg_world";
+	level.sword_quest.var_e91b9e85[3] = "wpn_t7_zmb_zod_sword1_mag_no_egg_world";
+	level.sword_quest.egg_models = Array("zm_zod_sword_egg_apothicon_s1", "zm_zod_sword_egg_apothicon_s2", "zm_zod_sword_egg_apothicon_s3", "zm_zod_sword_egg_apothicon_s4", "zm_zod_sword_egg_apothicon_s5");
+	for(statue_id = 0; statue_id < level.sword_quest.statues.size; statue_id++)
 	{
-		e_statue = level.var_15954023.statues[statue_id];
+		e_statue = level.sword_quest.statues[statue_id];
 		if(e_statue.script_noteworthy === "initial_egg_statue")
 		{
 			e_statue.egg_tags = Array("j_egg_location_01", "j_egg_location_02", "j_egg_location_03", "j_egg_location_04");
 			e_statue.sword_tags = Array("j_sword_location_01", "j_sword_location_02", "j_sword_location_03", "j_sword_location_04");
-			level.var_15954023.Eggs = [];
+			level.sword_quest.Eggs = [];
 			foreach(str_tag in e_statue.egg_tags)
 			{
 				v_origin = e_statue GetTagOrigin(str_tag);
 				v_angles = e_statue GetTagAngles(str_tag);
-				e_egg = util::spawn_model(level.var_15954023.egg_models[0], v_origin, v_angles);
-				if(!isdefined(level.var_15954023.Eggs))
+				e_egg = util::spawn_model(level.sword_quest.egg_models[0], v_origin, v_angles);
+				if(!isdefined(level.sword_quest.Eggs))
 				{
-					level.var_15954023.Eggs = [];
+					level.sword_quest.Eggs = [];
 				}
-				else if(!IsArray(level.var_15954023.Eggs))
+				else if(!IsArray(level.sword_quest.Eggs))
 				{
-					level.var_15954023.Eggs = Array(level.var_15954023.Eggs);
+					level.sword_quest.Eggs = Array(level.sword_quest.Eggs);
 				}
-				level.var_15954023.Eggs[level.var_15954023.Eggs.size] = e_egg;
+				level.sword_quest.Eggs[level.sword_quest.Eggs.size] = e_egg;
 			}
-			level.var_15954023.swords = [];
+			level.sword_quest.swords = [];
 			for(i = 0; i < e_statue.sword_tags.size; i++)
 			{
 				v_origin = e_statue GetTagOrigin(e_statue.sword_tags[i]);
 				v_angles = e_statue GetTagAngles(e_statue.sword_tags[i]);
-				e_sword = util::spawn_model(level.var_15954023.var_e91b9e85[i], v_origin, v_angles);
-				level.var_15954023.swords[i] = e_sword;
-				level.var_15954023.swords[i].var_c9c683e8 = 0;
+				e_sword = util::spawn_model(level.sword_quest.var_e91b9e85[i], v_origin, v_angles);
+				level.sword_quest.swords[i] = e_sword;
+				level.sword_quest.swords[i].var_c9c683e8 = 0;
 			}
 		}
 		else
@@ -203,7 +203,7 @@ function __main__()
 		s_trigger_pos = struct::get(e_statue.target, "targetname");
 		if(isdefined(s_trigger_pos.target))
 		{
-			namespace_783690d8::add_callback(s_trigger_pos.target, &function_2c009d2e, e_statue);
+			zm_zod_smashables::add_callback(s_trigger_pos.target, &function_2c009d2e, e_statue);
 			continue;
 		}
 		level thread function_2c009d2e(e_statue);
@@ -213,7 +213,7 @@ function __main__()
 
 /*
 	Name: second_sword_quest
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x8C4B985D
 	Offset: 0x1BA0
 	Size: 0x283
@@ -246,7 +246,7 @@ function second_sword_quest()
 
 /*
 	Name: function_e9bb9efa
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x4D640BBC
 	Offset: 0x1E30
 	Size: 0x19D
@@ -277,7 +277,7 @@ function function_e9bb9efa()
 
 /*
 	Name: function_2f36dd89
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x6CA21D4B
 	Offset: 0x1FD8
 	Size: 0x8D
@@ -301,7 +301,7 @@ function function_2f36dd89(var_6b55cb3b)
 
 /*
 	Name: function_ed28cc7
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xAFB02534
 	Offset: 0x2070
 	Size: 0x83
@@ -319,7 +319,7 @@ function function_ed28cc7()
 
 /*
 	Name: function_6c2f52e5
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x3CDF4341
 	Offset: 0x2100
 	Size: 0xB3
@@ -340,7 +340,7 @@ function function_6c2f52e5(n_char_index)
 
 /*
 	Name: function_aa4e4fa4
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x47345C5B
 	Offset: 0x21C0
 	Size: 0x1E3
@@ -369,7 +369,7 @@ function function_aa4e4fa4(s_loc, n_char_index)
 
 /*
 	Name: function_ac03c228
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x9454219E
 	Offset: 0x23B0
 	Size: 0xDF
@@ -401,7 +401,7 @@ function function_ac03c228(player)
 
 /*
 	Name: function_4a703d7c
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x400F16B8
 	Offset: 0x2498
 	Size: 0x145
@@ -435,7 +435,7 @@ function function_4a703d7c(player)
 
 /*
 	Name: function_4a3c552c
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x10E50846
 	Offset: 0x25E8
 	Size: 0xC3
@@ -470,7 +470,7 @@ function function_4a3c552c()
 
 /*
 	Name: function_5356f68f
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xC2486F8C
 	Offset: 0x26B8
 	Size: 0x12B
@@ -480,18 +480,18 @@ function function_4a3c552c()
 function function_5356f68f(trig, player)
 {
 	level clientfield::set("keeper_quest_state_" + trig.stub.n_char_index, 2);
-	trig namespace_8e578893::unitrigger_refresh_message();
+	trig zm_zod_util::unitrigger_refresh_message();
 	player clientfield::set_player_uimodel("zmInventory.player_sword_quest_completed_level_1", 1);
 	player clientfield::set_player_uimodel("zmInventory.player_sword_quest_egg_state", 1);
-	player thread namespace_8e578893::function_55f114f9("zmInventory.widget_egg", 3.5);
-	player thread namespace_8e578893::show_infotext_for_duration("ZM_ZOD_UI_LVL2_EGG_PICKUP", 3.5);
+	player thread zm_zod_util::function_55f114f9("zmInventory.widget_egg", 3.5);
+	player thread zm_zod_util::show_infotext_for_duration("ZM_ZOD_UI_LVL2_EGG_PICKUP", 3.5);
 	player playsound("zmb_zod_egg2_pickup");
-	player thread namespace_b8707f8e::function_9bd30516();
+	player thread zm_zod_vo::function_9bd30516();
 }
 
 /*
 	Name: create_magic_circle_unitrigger
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x685ECC7E
 	Offset: 0x27F0
 	Size: 0x1E3
@@ -520,7 +520,7 @@ function create_magic_circle_unitrigger(s_loc, n_char_index)
 
 /*
 	Name: magic_circle_trigger_visibility
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xC211E321
 	Offset: 0x29E0
 	Size: 0xBF
@@ -544,7 +544,7 @@ function magic_circle_trigger_visibility(player)
 
 /*
 	Name: function_74e5c19
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xD9ABC4AB
 	Offset: 0x2AA8
 	Size: 0x1CF
@@ -597,7 +597,7 @@ function function_74e5c19(player)
 
 /*
 	Name: magic_circle_trigger_think
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x949973BE
 	Offset: 0x2C80
 	Size: 0xF3
@@ -636,7 +636,7 @@ function magic_circle_trigger_think()
 
 /*
 	Name: magic_circle_trigger_activate
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x586180F6
 	Offset: 0x2D80
 	Size: 0x731
@@ -648,7 +648,7 @@ function magic_circle_trigger_activate(trig_stub, player)
 	level flag::set("magic_circle_in_progress");
 	trig_stub notify("hash_15d0dfe4");
 	trig_stub endon("hash_15d0dfe4");
-	level endon("hash_6dbb6b47");
+	level endon("magic_circle_failed");
 	trig_stub.activated = 1;
 	var_181b74a5 = trig_stub.n_char_index;
 	trig_stub.player = player;
@@ -708,7 +708,7 @@ function magic_circle_trigger_activate(trig_stub, player)
 			player.sword_quest_2.circles_completed[var_181b74a5] = n_kills_needed;
 			n_charges = player function_b7af29e0();
 			player clientfield::set_player_uimodel("zmInventory.player_sword_quest_egg_state", 1 + n_charges);
-			player thread namespace_8e578893::function_55f114f9("zmInventory.widget_egg", 3.5);
+			player thread zm_zod_util::function_55f114f9("zmInventory.widget_egg", 3.5);
 			player function_2f36dd89();
 			level flag::clear("magic_circle_in_progress");
 			if(n_charges == 4)
@@ -733,7 +733,7 @@ function magic_circle_trigger_activate(trig_stub, player)
 
 /*
 	Name: function_7922af5f
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x3DCF4E16
 	Offset: 0x34C0
 	Size: 0x2CB
@@ -743,7 +743,7 @@ function magic_circle_trigger_activate(trig_stub, player)
 function function_7922af5f(player, trig_stub, index, str_endon)
 {
 	level endon(str_endon);
-	level endon("hash_6dbb6b47");
+	level endon("magic_circle_failed");
 	var_181b74a5 = trig_stub.n_char_index;
 	while(1)
 	{
@@ -756,7 +756,7 @@ function function_7922af5f(player, trig_stub, index, str_endon)
 		trig_stub.ai_defender[index].no_xp = 1;
 		trig_stub.ai_defender[index].var_de609f65 = player;
 		trig_stub.ai_defender[index] waittill("death", attacker, mod, var_13b27531);
-		if(isdefined(var_13b27531 === level.var_15954023.weapons[player.characterindex][1]))
+		if(isdefined(var_13b27531 === level.sword_quest.weapons[player.characterindex][1]))
 		{
 			player.sword_quest_2.kills[var_181b74a5]++;
 			trig_stub.n_thread_count--;
@@ -777,7 +777,7 @@ function function_7922af5f(player, trig_stub, index, str_endon)
 
 /*
 	Name: function_47563199
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x8D107198
 	Offset: 0x3798
 	Size: 0x20B
@@ -792,7 +792,7 @@ function function_47563199(trig_stub, player, str_endon)
 	n_char_index = player.characterindex;
 	player util::waittill_any("entering_last_stand", "disconnect");
 	level notify("hash_278154b");
-	level notify("hash_6dbb6b47");
+	level notify("magic_circle_failed");
 	for(i = 0; i < trig_stub.ai_defender.size; i++)
 	{
 		if(isalive(trig_stub.ai_defender[i]))
@@ -811,7 +811,7 @@ function function_47563199(trig_stub, player, str_endon)
 
 /*
 	Name: function_413de655
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x7B1F5775
 	Offset: 0x39B0
 	Size: 0xAB
@@ -825,12 +825,12 @@ function function_413de655(trig_stub, player, str_endon)
 	player waittill("bled_out");
 	n_charges = player function_b7af29e0();
 	player clientfield::set_player_uimodel("zmInventory.player_sword_quest_egg_state", 1 + n_charges);
-	player thread namespace_8e578893::function_55f114f9("zmInventory.widget_egg", 3.5);
+	player thread zm_zod_util::function_55f114f9("zmInventory.widget_egg", 3.5);
 }
 
 /*
 	Name: function_278154b
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x41B10A0D
 	Offset: 0x3A68
 	Size: 0x39F
@@ -855,7 +855,7 @@ function function_278154b(var_a246d2ec, var_181b74a5, n_radius, n_rate, str_endo
 				if(n_dist_2 <= N_DIST_MAX)
 				{
 					var_2108630b = 1;
-					wpn_excalibur = self namespace_2318f091::get_correct_sword_for_player_character_at_level(1);
+					wpn_excalibur = self zm_weap_glaive::get_correct_sword_for_player_character_at_level(1);
 					slot = self GadgetGetSlot(wpn_excalibur);
 					temp = self GadgetPowerGet(slot) / 100;
 					temp = temp + 0.01;
@@ -890,7 +890,7 @@ function function_278154b(var_a246d2ec, var_181b74a5, n_radius, n_rate, str_endo
 
 /*
 	Name: function_9867bf60
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xE81F5E02
 	Offset: 0x3E10
 	Size: 0xA3
@@ -916,7 +916,7 @@ function function_9867bf60(var_a246d2ec, N_DIST_MAX, str_endon)
 
 /*
 	Name: function_ed69c2a1
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x225976B3
 	Offset: 0x3EC0
 	Size: 0x47
@@ -934,7 +934,7 @@ function function_ed69c2a1(e_entity, n_script_int)
 
 /*
 	Name: function_b7af29e0
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x936C4F65
 	Offset: 0x3F10
 	Size: 0x6B
@@ -956,7 +956,7 @@ function function_b7af29e0()
 
 /*
 	Name: function_59d9e12a
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xE02478B5
 	Offset: 0x3F88
 	Size: 0xC3
@@ -977,7 +977,7 @@ function function_59d9e12a(n_index)
 
 /*
 	Name: function_96ae1a10
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x7F90678A
 	Offset: 0x4058
 	Size: 0xD3
@@ -998,7 +998,7 @@ function function_96ae1a10(var_181b74a5, n_character_index)
 
 /*
 	Name: function_6f69a416
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xB76B1C7C
 	Offset: 0x4138
 	Size: 0x1E3
@@ -1027,7 +1027,7 @@ function function_6f69a416(s_loc, n_char_index)
 
 /*
 	Name: function_8ca48fdc
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x3D7B4DBD
 	Offset: 0x4328
 	Size: 0x97
@@ -1051,7 +1051,7 @@ function function_8ca48fdc(player)
 
 /*
 	Name: function_c722bbbb
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x48006EF4
 	Offset: 0x43C8
 	Size: 0x155
@@ -1088,7 +1088,7 @@ function function_c722bbbb(player)
 
 /*
 	Name: function_2bca570
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x4806E752
 	Offset: 0x4528
 	Size: 0x143
@@ -1132,7 +1132,7 @@ function function_2bca570()
 
 /*
 	Name: function_e5a7a0eb
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x9D5352C0
 	Offset: 0x4678
 	Size: 0x2CD
@@ -1147,37 +1147,37 @@ function function_e5a7a0eb(stub, player, n_quest_state)
 		player clientfield::set_player_uimodel("zmInventory.widget_egg", 0);
 		level clientfield::set("keeper_quest_state_" + player.characterindex, 7);
 		player flag::set("waiting_for_upgraded_sword");
-		stub namespace_8e578893::unitrigger_refresh_message();
+		stub zm_zod_util::unitrigger_refresh_message();
 		wait(2);
 		player flag::clear("waiting_for_upgraded_sword");
-		stub namespace_8e578893::unitrigger_refresh_message();
+		stub zm_zod_util::unitrigger_refresh_message();
 		break;
 	}
 	if(n_quest_state == 7)
 	{
 		level clientfield::set("keeper_quest_state_" + player.characterindex, 8);
-		player thread namespace_8e578893::show_infotext_for_duration("ZM_ZOD_UI_LVL2_SWORD_PICKUP", 3.5);
+		player thread zm_zod_util::show_infotext_for_duration("ZM_ZOD_UI_LVL2_SWORD_PICKUP", 3.5);
 		player give_sword(2, 1);
 		switch(player.characterindex)
 		{
 			case 0:
 			{
-				level.var_15954023.swords[player.characterindex] SetModel("wpn_t7_zmb_zod_sword2_box_world");
+				level.sword_quest.swords[player.characterindex] SetModel("wpn_t7_zmb_zod_sword2_box_world");
 				break;
 			}
 			case 1:
 			{
-				level.var_15954023.swords[player.characterindex] SetModel("wpn_t7_zmb_zod_sword2_det_world");
+				level.sword_quest.swords[player.characterindex] SetModel("wpn_t7_zmb_zod_sword2_det_world");
 				break;
 			}
 			case 2:
 			{
-				level.var_15954023.swords[player.characterindex] SetModel("wpn_t7_zmb_zod_sword2_fem_world");
+				level.sword_quest.swords[player.characterindex] SetModel("wpn_t7_zmb_zod_sword2_fem_world");
 				break;
 			}
 			case 3:
 			{
-				level.var_15954023.swords[player.characterindex] SetModel("wpn_t7_zmb_zod_sword2_mag_world");
+				level.sword_quest.swords[player.characterindex] SetModel("wpn_t7_zmb_zod_sword2_mag_world");
 				break;
 			}
 		}
@@ -1186,7 +1186,7 @@ function function_e5a7a0eb(stub, player, n_quest_state)
 
 /*
 	Name: function_2f31f931
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x990A4625
 	Offset: 0x4950
 	Size: 0x34D
@@ -1197,19 +1197,19 @@ function function_2f31f931(e_player)
 {
 	self SetInvisibleToPlayer(e_player);
 	n_statue = self.stub.statue_id;
-	e_statue = level.var_15954023.statues[n_statue];
-	b_inventory = !isdefined(e_player.var_15954023.egg_placement);
+	e_statue = level.sword_quest.statues[n_statue];
+	b_inventory = !isdefined(e_player.sword_quest.egg_placement);
 	b_satisfied = e_player function_24978bad(n_statue);
 	b_here = e_player function_6dc5b484(n_statue);
 	b_sword_rock = e_statue.script_noteworthy === "initial_egg_statue";
-	var_c9c683e8 = level.var_15954023.swords[e_player.characterindex].var_c9c683e8;
+	var_c9c683e8 = level.sword_quest.swords[e_player.characterindex].var_c9c683e8;
 	n_ee_quest_state = level clientfield::get("ee_quest_state");
 	n_quest_state = level clientfield::get("keeper_quest_state_" + e_player.characterindex);
 	if(n_quest_state === 7)
 	{
 		self.hint_string = &"";
 	}
-	else if(e_player.var_15954023.upgrade_stage >= 1)
+	else if(e_player.sword_quest.upgrade_stage >= 1)
 	{
 		if(b_sword_rock && !e_player has_sword() && !var_c9c683e8)
 		{
@@ -1252,7 +1252,7 @@ function function_2f31f931(e_player)
 
 /*
 	Name: reset_hud
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x981A10F1
 	Offset: 0x4CA8
 	Size: 0x63
@@ -1268,7 +1268,7 @@ function reset_hud()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x390CAD7
 	Offset: 0x4D18
 	Size: 0x2FB
@@ -1279,23 +1279,23 @@ function on_player_connect()
 {
 	self reset_hud();
 	self.var_b170d6d6 = 0;
-	self.var_15954023 = spawnstruct();
-	self.var_15954023.kills = [];
-	self.var_15954023.all_kills_completed = 0;
+	self.sword_quest = spawnstruct();
+	self.sword_quest.kills = [];
+	self.sword_quest.all_kills_completed = 0;
 	self.sword_quest_2 = spawnstruct();
 	self.sword_quest_2.kills = [];
 	self.sword_quest_2.all_kills_completed = 0;
 	self.sword_quest_2.circles_completed = [];
-	self.var_15954023.upgrade_stage = 0;
+	self.sword_quest.upgrade_stage = 0;
 	self flag::init("waiting_for_upgraded_sword");
 	self flag::init("magic_circle_wait_for_round_completed");
 	a_statues = GetEntArray("sword_upgrade_statue", "targetname");
 	foreach(e_statue in a_statues)
 	{
-		self.var_15954023.kills[e_statue.statue_id] = 0;
+		self.sword_quest.kills[e_statue.statue_id] = 0;
 		if(e_statue.script_noteworthy === "initial_egg_statue")
 		{
-			self.var_15954023.kills[e_statue.statue_id] = 12;
+			self.sword_quest.kills[e_statue.statue_id] = 12;
 		}
 	}
 	self waittill("spawned_player");
@@ -1310,7 +1310,7 @@ function on_player_connect()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x8F298363
 	Offset: 0x5020
 	Size: 0x13B
@@ -1319,9 +1319,9 @@ function on_player_connect()
 */
 function on_player_spawned()
 {
-	if(isdefined(self.var_15954023) && self.var_15954023.upgrade_stage < 1)
+	if(isdefined(self.sword_quest) && self.sword_quest.upgrade_stage < 1)
 	{
-		self function_abf3df35(self.var_15954023.egg_placement);
+		self function_abf3df35(self.sword_quest.egg_placement);
 	}
 	self reset_hud();
 	n_quest_state = level clientfield::get("keeper_quest_state_" + self.characterindex);
@@ -1329,7 +1329,7 @@ function on_player_spawned()
 	{
 		reset_sword();
 	}
-	if(isdefined(self.var_15954023) && self.var_15954023.upgrade_stage < 1)
+	if(isdefined(self.sword_quest) && self.sword_quest.upgrade_stage < 1)
 	{
 		function_541cb3c4();
 	}
@@ -1344,7 +1344,7 @@ function on_player_spawned()
 
 /*
 	Name: on_player_disconnect
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x65E1C290
 	Offset: 0x5168
 	Size: 0xAB
@@ -1355,13 +1355,13 @@ function on_player_disconnect()
 {
 	var_d95a0cf3 = self.characterindex;
 	s_initial = GetEnt("initial_egg_statue", "script_noteworthy");
-	level.var_15954023.Eggs[var_d95a0cf3] SetModel(level.var_15954023.egg_models[0]);
-	level.var_15954023.swords[var_d95a0cf3] show();
+	level.sword_quest.Eggs[var_d95a0cf3] SetModel(level.sword_quest.egg_models[0]);
+	level.sword_quest.swords[var_d95a0cf3] show();
 }
 
 /*
 	Name: on_bled_out
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x21D0B399
 	Offset: 0x5220
 	Size: 0x3B
@@ -1378,7 +1378,7 @@ function on_bled_out()
 
 /*
 	Name: on_zombie_killed
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xADC16C5
 	Offset: 0x5268
 	Size: 0x1D1
@@ -1387,7 +1387,7 @@ function on_bled_out()
 */
 function on_zombie_killed()
 {
-	foreach(e_statue in level.var_15954023.statues)
+	foreach(e_statue in level.sword_quest.statues)
 	{
 		dist_sq = DistanceSquared(self.origin, e_statue.origin);
 		if(isdefined(e_statue.radius))
@@ -1413,7 +1413,7 @@ function on_zombie_killed()
 
 /*
 	Name: bank_zombie_kill
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x2E1D2337
 	Offset: 0x5448
 	Size: 0x343
@@ -1422,25 +1422,25 @@ function on_zombie_killed()
 */
 function private bank_zombie_kill(e_player, e_statue)
 {
-	e_player.var_15954023.kills[e_statue.statue_id]++;
+	e_player.sword_quest.kills[e_statue.statue_id]++;
 	e_player function_67bcb9d9();
 	/#
-		if(isdefined(e_player.var_15954023.cheat) && e_player.var_15954023.cheat)
+		if(isdefined(e_player.sword_quest.cheat) && e_player.sword_quest.cheat)
 		{
-			e_player.var_15954023.kills[e_statue.statue_id] = 12;
+			e_player.sword_quest.kills[e_statue.statue_id] = 12;
 		}
 	#/
 	if(e_player function_24978bad(e_statue.statue_id))
 	{
 		e_statue thread function_ce7bc2ba();
-		e_player.var_15954023.all_kills_completed = 1;
+		e_player.sword_quest.all_kills_completed = 1;
 		n_statues_complete = 0;
-		foreach(e_statue in level.var_15954023.statues)
+		foreach(e_statue in level.sword_quest.statues)
 		{
-			n_kills = e_player.var_15954023.kills[e_statue.statue_id];
+			n_kills = e_player.sword_quest.kills[e_statue.statue_id];
 			if(n_kills < 12)
 			{
-				e_player.var_15954023.all_kills_completed = 0;
+				e_player.sword_quest.all_kills_completed = 0;
 				continue;
 			}
 			if(!e_statue.script_noteworthy === "initial_egg_statue")
@@ -1448,8 +1448,8 @@ function private bank_zombie_kill(e_player, e_statue)
 				n_statues_complete++;
 			}
 		}
-		STR_MODEL = level.var_15954023.egg_models[n_statues_complete];
-		e_model = level.var_15954023.Eggs[e_player.characterindex];
+		STR_MODEL = level.sword_quest.egg_models[n_statues_complete];
+		e_model = level.sword_quest.Eggs[e_player.characterindex];
 		e_model SetModel(STR_MODEL);
 		e_model clientfield::set("zod_egg_glow", 1);
 		e_model PlayLoopSound("zmb_zod_egg_glow_ready", 3);
@@ -1468,7 +1468,7 @@ function private bank_zombie_kill(e_player, e_statue)
 
 /*
 	Name: function_6dc5b484
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x9439D2C0
 	Offset: 0x5798
 	Size: 0x37
@@ -1477,16 +1477,16 @@ function private bank_zombie_kill(e_player, e_statue)
 */
 function private function_6dc5b484(statue_id)
 {
-	if(!isdefined(self.var_15954023.egg_placement))
+	if(!isdefined(self.sword_quest.egg_placement))
 	{
 		return 0;
 	}
-	return self.var_15954023.egg_placement == statue_id;
+	return self.sword_quest.egg_placement == statue_id;
 }
 
 /*
 	Name: function_24978bad
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xE4083AC
 	Offset: 0x57D8
 	Size: 0x25
@@ -1495,12 +1495,12 @@ function private function_6dc5b484(statue_id)
 */
 function private function_24978bad(statue_id)
 {
-	return self.var_15954023.kills[statue_id] >= 12;
+	return self.sword_quest.kills[statue_id] >= 12;
 }
 
 /*
 	Name: function_5fd6959f
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x8CA1B12D
 	Offset: 0x5808
 	Size: 0x49
@@ -1515,7 +1515,7 @@ function private function_5fd6959f(var_a94aa7ef)
 
 /*
 	Name: function_a7e71a86
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xF52F245C
 	Offset: 0x5860
 	Size: 0x21
@@ -1529,7 +1529,7 @@ function private function_a7e71a86(var_a94aa7ef)
 
 /*
 	Name: zombie_blood_soul_streak_fx
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xC61B6DAB
 	Offset: 0x5890
 	Size: 0x173
@@ -1539,7 +1539,7 @@ function private function_a7e71a86(var_a94aa7ef)
 function private zombie_blood_soul_streak_fx(e_statue, e_killer)
 {
 	v_start = self GetTagOrigin("J_SpineLower");
-	e_fx = namespace_8e578893::tag_origin_allocate(v_start, self.angles);
+	e_fx = zm_zod_util::tag_origin_allocate(v_start, self.angles);
 	e_fx clientfield::set("zod_egg_soul", 1);
 	e_fx playsound("zmb_zod_soul_release");
 	v_endpos = e_statue GetTagOrigin(e_statue.egg_tags[e_killer.characterindex]);
@@ -1548,12 +1548,12 @@ function private zombie_blood_soul_streak_fx(e_statue, e_killer)
 	e_fx playsound("zmb_zod_soul_impact");
 	wait(0.25);
 	e_fx clientfield::set("zod_egg_soul", 0);
-	e_fx namespace_8e578893::tag_origin_free();
+	e_fx zm_zod_util::tag_origin_free();
 }
 
 /*
 	Name: spawn_zombie_clone
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x960E980D
 	Offset: 0x5A10
 	Size: 0xB7
@@ -1575,7 +1575,7 @@ function private spawn_zombie_clone()
 
 /*
 	Name: function_67bcb9d9
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xC5EB065B
 	Offset: 0x5AD0
 	Size: 0x17B
@@ -1584,24 +1584,24 @@ function private spawn_zombie_clone()
 */
 function function_67bcb9d9()
 {
-	if(self.var_15954023.upgrade_stage == 0)
+	if(self.sword_quest.upgrade_stage == 0)
 	{
 		n_charges = 0;
-		foreach(e_statue in level.var_15954023.statues)
+		foreach(e_statue in level.sword_quest.statues)
 		{
 			if(e_statue.script_noteworthy === "initial_egg_statue")
 			{
 				continue;
 			}
 			statue_id = e_statue.statue_id;
-			var_74ff1ab4 = self.var_15954023.kills[statue_id];
+			var_74ff1ab4 = self.sword_quest.kills[statue_id];
 			if(var_74ff1ab4 >= 12)
 			{
 				n_charges = n_charges + 1;
 			}
 		}
 	}
-	else if(self.var_15954023.upgrade_stage == 1)
+	else if(self.sword_quest.upgrade_stage == 1)
 	{
 		n_charges = self function_b7af29e0();
 	}
@@ -1610,7 +1610,7 @@ function function_67bcb9d9()
 
 /*
 	Name: function_abf3df35
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xEB40E810
 	Offset: 0x5C58
 	Size: 0x1EB
@@ -1623,19 +1623,19 @@ function function_abf3df35(n_egg_placement, b_completed)
 	{
 		b_completed = 0;
 	}
-	self.var_15954023.egg_placement = n_egg_placement;
-	self.var_15954023.egg_placement_time = GetTime();
-	e_egg = level.var_15954023.Eggs[self.characterindex];
+	self.sword_quest.egg_placement = n_egg_placement;
+	self.sword_quest.egg_placement_time = GetTime();
+	e_egg = level.sword_quest.Eggs[self.characterindex];
 	if(!isdefined(n_egg_placement))
 	{
-		self thread namespace_8e578893::function_55f114f9("zmInventory.widget_egg", 3.5);
+		self thread zm_zod_util::function_55f114f9("zmInventory.widget_egg", 3.5);
 		e_egg ghost();
 		e_egg clientfield::set("zod_egg_glow", 0);
 		e_egg StopLoopSound(1);
 	}
 	else
 	{
-		e_statue = level.var_15954023.statues[n_egg_placement];
+		e_statue = level.sword_quest.statues[n_egg_placement];
 		e_egg.origin = e_statue GetTagOrigin(e_statue.egg_tags[self.characterindex]);
 		e_egg.angles = e_statue GetTagAngles(e_statue.egg_tags[self.characterindex]);
 		e_egg show();
@@ -1649,7 +1649,7 @@ function function_abf3df35(n_egg_placement, b_completed)
 
 /*
 	Name: function_ce7bc2ba
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x5EEA0F2F
 	Offset: 0x5E50
 	Size: 0x103
@@ -1673,7 +1673,7 @@ function function_ce7bc2ba()
 
 /*
 	Name: function_3608024
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x57998C2A
 	Offset: 0x5F60
 	Size: 0xD3
@@ -1697,7 +1697,7 @@ function function_3608024(b_is_active)
 
 /*
 	Name: defend_player_message
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x7FD0F50A
 	Offset: 0x6040
 	Size: 0xB3
@@ -1706,12 +1706,12 @@ function function_3608024(b_is_active)
 */
 function defend_player_message(e_player)
 {
-	s_placement = level.var_15954023.Defend.a_placement[e_player.characterindex];
+	s_placement = level.sword_quest.Defend.a_placement[e_player.characterindex];
 	if(e_player has_sword(1))
 	{
 		return &"ZM_ZOD_SWORD_DEFEND_PLACE";
 	}
-	else if(isdefined(s_placement.sword_model) && e_player.var_15954023.upgrade_stage == 2)
+	else if(isdefined(s_placement.sword_model) && e_player.sword_quest.upgrade_stage == 2)
 	{
 		return &"ZM_ZOD_SWORD_DEFEND_RETRIEVE";
 	}
@@ -1723,7 +1723,7 @@ function defend_player_message(e_player)
 
 /*
 	Name: give_sword
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xD5BC8817
 	Offset: 0x6100
 	Size: 0x2AB
@@ -1740,7 +1740,7 @@ function give_sword(n_sword_level, var_74719138)
 	self set_sword_upgrade_level(n_sword_level);
 	self notify("hash_b29853d8");
 	wait(0.1);
-	wpn_sword = level.var_15954023.weapons[self.characterindex][n_sword_level];
+	wpn_sword = level.sword_quest.weapons[self.characterindex][n_sword_level];
 	/#
 		Assert(isdefined(wpn_sword));
 	#/
@@ -1772,7 +1772,7 @@ function give_sword(n_sword_level, var_74719138)
 
 /*
 	Name: function_40f1b35b
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xAB7A6064
 	Offset: 0x63B8
 	Size: 0xBB
@@ -1792,13 +1792,13 @@ function function_40f1b35b(wpn_sword, n_sword_level)
 			var_6f140d05 = 1;
 		}
 	}
-	namespace_b8707f8e::function_1f2b0c20(self.characterindex, n_sword_level);
-	self thread namespace_b8707f8e::function_a543408d();
+	zm_zod_vo::function_1f2b0c20(self.characterindex, n_sword_level);
+	self thread zm_zod_vo::function_a543408d();
 }
 
 /*
 	Name: take_sword
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xD21391D0
 	Offset: 0x6480
 	Size: 0x67
@@ -1816,7 +1816,7 @@ function take_sword()
 
 /*
 	Name: has_sword
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xED8D695C
 	Offset: 0x64F0
 	Size: 0x97
@@ -1827,13 +1827,13 @@ function has_sword(n_sword_level)
 {
 	if(!isdefined(n_sword_level))
 	{
-		n_sword_level = self.var_15954023.upgrade_stage;
+		n_sword_level = self.sword_quest.upgrade_stage;
 	}
-	if(!isdefined(level.var_15954023.weapons[self.characterindex][n_sword_level]))
+	if(!isdefined(level.sword_quest.weapons[self.characterindex][n_sword_level]))
 	{
 		return 0;
 	}
-	if(self zm_utility::get_player_hero_weapon() === level.var_15954023.weapons[self.characterindex][n_sword_level])
+	if(self zm_utility::get_player_hero_weapon() === level.sword_quest.weapons[self.characterindex][n_sword_level])
 	{
 		return 1;
 	}
@@ -1842,7 +1842,7 @@ function has_sword(n_sword_level)
 
 /*
 	Name: sword_equipped
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xD7A7635D
 	Offset: 0x6590
 	Size: 0x63
@@ -1853,14 +1853,14 @@ function sword_equipped(n_sword_level)
 {
 	if(!isdefined(n_sword_level))
 	{
-		n_sword_level = self.var_15954023.upgrade_stage;
+		n_sword_level = self.sword_quest.upgrade_stage;
 	}
-	return self GetCurrentWeapon() == level.var_15954023.weapons[self.characterindex][n_sword_level];
+	return self GetCurrentWeapon() == level.sword_quest.weapons[self.characterindex][n_sword_level];
 }
 
 /*
 	Name: sword_use_hint
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xE523132F
 	Offset: 0x6600
 	Size: 0xFB
@@ -1901,7 +1901,7 @@ function sword_use_hint(n_sword_level, var_74719138)
 
 /*
 	Name: function_2c009d2e
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x40215594
 	Offset: 0x6708
 	Size: 0x79F
@@ -1915,96 +1915,96 @@ function function_2c009d2e(e_statue)
 		return;
 	}
 	s_trigger_pos = struct::get(e_statue.target, "targetname");
-	e_statue.trigger = namespace_8e578893::spawn_trigger_radius(s_trigger_pos.origin, 64, 1, &function_2f31f931);
+	e_statue.trigger = zm_zod_util::spawn_trigger_radius(s_trigger_pos.origin, 64, 1, &function_2f31f931);
 	e_statue.trigger.statue_id = e_statue.statue_id;
 	while(1)
 	{
-		e_statue.trigger namespace_8e578893::unitrigger_refresh_message();
+		e_statue.trigger zm_zod_util::unitrigger_refresh_message();
 		e_statue.trigger waittill("trigger", e_who);
 		if(!isdefined(e_who.var_b170d6d6) && !level flag::get("keeper_sword_locker"))
 		{
 			continue;
 		}
-		if(isdefined(e_who.var_15954023.egg_placement))
+		if(isdefined(e_who.sword_quest.egg_placement))
 		{
-			if(e_who.var_15954023.egg_placement == e_statue.statue_id)
+			if(e_who.sword_quest.egg_placement == e_statue.statue_id)
 			{
-				if(e_who.var_15954023.kills[e_statue.statue_id] >= 12)
+				if(e_who.sword_quest.kills[e_statue.statue_id] >= 12)
 				{
 					e_who function_abf3df35(undefined);
-					e_who thread namespace_b8707f8e::function_9bd30516();
+					e_who thread zm_zod_vo::function_9bd30516();
 					e_who playsound("zmb_zod_egg_pickup");
 					if(e_statue.script_noteworthy === "initial_egg_statue")
 					{
 						wait(0.1);
 						e_who clientfield::set_player_uimodel("zmInventory.player_sword_quest_egg_state", 1);
-						e_who thread namespace_8e578893::show_infotext_for_duration("ZM_ZOD_UI_LVL1_EGG_PICKUP", 3.5);
+						e_who thread zm_zod_util::show_infotext_for_duration("ZM_ZOD_UI_LVL1_EGG_PICKUP", 3.5);
 					}
 					else
 					{
 						e_who function_67bcb9d9();
 					}
-					if(e_who.var_15954023.all_kills_completed)
+					if(e_who.sword_quest.all_kills_completed)
 					{
 						e_who set_sword_upgrade_level(1);
 					}
 				}
 			}
 		}
-		else if(e_who.var_15954023.kills[e_statue.statue_id] < 12)
+		else if(e_who.sword_quest.kills[e_statue.statue_id] < 12)
 		{
 			e_who function_abf3df35(e_statue.statue_id);
 			e_who playsound("zmb_zod_egg_place");
 			e_who clientfield::set_player_uimodel("zmInventory.widget_egg", 0);
-			e_who thread namespace_b8707f8e::function_c10cc6c5();
+			e_who thread zm_zod_vo::function_c10cc6c5();
 		}
-		else if(e_who.var_15954023.upgrade_stage > 0 && e_statue.script_noteworthy === "initial_egg_statue" && e_who.var_b170d6d6 === 0)
+		else if(e_who.sword_quest.upgrade_stage > 0 && e_statue.script_noteworthy === "initial_egg_statue" && e_who.var_b170d6d6 === 0)
 		{
 			e_who playsound("zmb_zod_egg_place");
 			e_who clientfield::set_player_uimodel("zmInventory.widget_egg", 0);
 			e_who.var_b170d6d6 = 1;
-			e_who thread namespace_b8707f8e::function_c10cc6c5();
-			e_who.var_15954023.egg_placement = undefined;
+			e_who thread zm_zod_vo::function_c10cc6c5();
+			e_who.sword_quest.egg_placement = undefined;
 			switch(e_who.characterindex)
 			{
 				case 0:
 				{
-					level.var_15954023.swords[e_who.characterindex] SetModel("wpn_t7_zmb_zod_sword1_box_world");
+					level.sword_quest.swords[e_who.characterindex] SetModel("wpn_t7_zmb_zod_sword1_box_world");
 					break;
 				}
 				case 1:
 				{
-					level.var_15954023.swords[e_who.characterindex] SetModel("wpn_t7_zmb_zod_sword1_det_world");
+					level.sword_quest.swords[e_who.characterindex] SetModel("wpn_t7_zmb_zod_sword1_det_world");
 					break;
 				}
 				case 2:
 				{
-					level.var_15954023.swords[e_who.characterindex] SetModel("wpn_t7_zmb_zod_sword1_fem_world");
+					level.sword_quest.swords[e_who.characterindex] SetModel("wpn_t7_zmb_zod_sword1_fem_world");
 					break;
 				}
 				case 3:
 				{
-					level.var_15954023.swords[e_who.characterindex] SetModel("wpn_t7_zmb_zod_sword1_mag_world");
+					level.sword_quest.swords[e_who.characterindex] SetModel("wpn_t7_zmb_zod_sword1_mag_world");
 					break;
 				}
 			}
-			level.var_15954023.swords[e_who.characterindex].var_c9c683e8 = 1;
-			e_statue.trigger namespace_8e578893::unitrigger_refresh_message();
+			level.sword_quest.swords[e_who.characterindex].var_c9c683e8 = 1;
+			e_statue.trigger zm_zod_util::unitrigger_refresh_message();
 			wait(0.75);
-			level.var_15954023.swords[e_who.characterindex] thread clientfield::set("sword_statue_glow", 1);
+			level.sword_quest.swords[e_who.characterindex] thread clientfield::set("sword_statue_glow", 1);
 			wait(0.75);
-			level.var_15954023.swords[e_who.characterindex].var_c9c683e8 = 0;
+			level.sword_quest.swords[e_who.characterindex].var_c9c683e8 = 0;
 		}
-		else if(e_who.var_15954023.upgrade_stage > 0 && e_statue.script_noteworthy === "initial_egg_statue" && e_who.var_b170d6d6 === 1)
+		else if(e_who.sword_quest.upgrade_stage > 0 && e_statue.script_noteworthy === "initial_egg_statue" && e_who.var_b170d6d6 === 1)
 		{
 			e_who.var_b170d6d6 = undefined;
-			level.var_15954023.swords[e_who.characterindex] thread clientfield::set("sword_statue_glow", 0);
-			level.var_15954023.swords[e_who.characterindex] ghost();
-			e_who give_sword(e_who.var_15954023.upgrade_stage, 1);
-			if(e_who.var_15954023.upgrade_stage != 2)
+			level.sword_quest.swords[e_who.characterindex] thread clientfield::set("sword_statue_glow", 0);
+			level.sword_quest.swords[e_who.characterindex] ghost();
+			e_who give_sword(e_who.sword_quest.upgrade_stage, 1);
+			if(e_who.sword_quest.upgrade_stage != 2)
 			{
 				e_who notify("hash_1867e603");
-				e_who thread namespace_8e578893::show_infotext_for_duration("ZM_ZOD_UI_LVL1_SWORD_PICKUP", 3.5);
+				e_who thread zm_zod_util::show_infotext_for_duration("ZM_ZOD_UI_LVL1_SWORD_PICKUP", 3.5);
 				e_who function_67bcb9d9();
 			}
 		}
@@ -2013,7 +2013,7 @@ function function_2c009d2e(e_statue)
 
 /*
 	Name: set_sword_upgrade_level
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xFA6A2D50
 	Offset: 0x6EB0
 	Size: 0x67
@@ -2022,23 +2022,23 @@ function function_2c009d2e(e_statue)
 */
 function set_sword_upgrade_level(n_level)
 {
-	if(self.var_15954023.upgrade_stage == n_level)
+	if(self.sword_quest.upgrade_stage == n_level)
 	{
 		return;
 	}
-	switch(self.var_15954023.upgrade_stage)
+	switch(self.sword_quest.upgrade_stage)
 	{
 		case 1:
 		{
 			break;
 		}
 	}
-	self.var_15954023.upgrade_stage = n_level;
+	self.sword_quest.upgrade_stage = n_level;
 }
 
 /*
 	Name: sword_devgui
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x1FFA3F48
 	Offset: 0x6F20
 	Size: 0x78F
@@ -2057,10 +2057,10 @@ function sword_devgui()
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
 		AddDebugCommand("Dev Block strings are not supported");
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 0, &function_b3babd8c);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_b3babd8c);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 2, &function_b3babd8c);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 4, &function_b3babd8c);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 0, &function_b3babd8c);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_b3babd8c);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 2, &function_b3babd8c);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 4, &function_b3babd8c);
 		n_sword_level = 0;
 		var_47719d0d = 0;
 		s_sword_rock = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -2072,7 +2072,7 @@ function sword_devgui()
 				foreach(e_player in level.activePlayers)
 				{
 					e_player.usingsword = 0;
-					e_player namespace_2318f091::disabled_sword();
+					e_player zm_weap_glaive::disabled_sword();
 					e_player notify("hash_b29853d8");
 					if(isdefined(e_player.var_c0d25105))
 					{
@@ -2090,7 +2090,7 @@ function sword_devgui()
 				foreach(e_player in level.activePlayers)
 				{
 					e_player.usingsword = 0;
-					e_player namespace_2318f091::disabled_sword();
+					e_player zm_weap_glaive::disabled_sword();
 					e_player notify("hash_b29853d8");
 					if(isdefined(e_player.var_c0d25105))
 					{
@@ -2108,7 +2108,7 @@ function sword_devgui()
 				{
 					foreach(e_player in level.players)
 					{
-						e_player.var_15954023.cheat = 1;
+						e_player.sword_quest.cheat = 1;
 					}
 					break;
 				}
@@ -2144,7 +2144,7 @@ function sword_devgui()
 			{
 				foreach(e_player in level.players)
 				{
-					namespace_2318f091::function_7855de72(e_player);
+					zm_weap_glaive::function_7855de72(e_player);
 				}
 			}
 			SetDvar("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -2155,7 +2155,7 @@ function sword_devgui()
 
 /*
 	Name: function_31880c32
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xB29F2A65
 	Offset: 0x76B8
 	Size: 0xF
@@ -2170,7 +2170,7 @@ function function_31880c32(n_keeper_state)
 
 /*
 	Name: function_b3babd8c
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x66881435
 	Offset: 0x76D0
 	Size: 0xD3

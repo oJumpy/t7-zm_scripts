@@ -5,11 +5,11 @@
 #using scripts\shared\visionset_mgr_shared;
 #using scripts\zm\_zm_equipment;
 
-#namespace namespace_11fcf241;
+#namespace zm_equip_gasmask;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x712E7161
 	Offset: 0x1D8
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0xB327CC4B
 	Offset: 0x218
 	Size: 0xCB
@@ -40,7 +40,7 @@ function __init__()
 
 /*
 	Name: gasmask_overlay_handler
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0xB643961
 	Offset: 0x2F0
 	Size: 0x145

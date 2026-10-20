@@ -61,13 +61,13 @@ function include_craftables()
 	gravityspike_body.client_field_state = undefined;
 	gravityspike_guards.client_field_state = undefined;
 	gravityspike_handle.client_field_state = undefined;
-	var_b85003d9 = spawnstruct();
-	var_b85003d9.name = craftable_name;
-	var_b85003d9 zm_craftables::add_craftable_piece(gravityspike_body);
-	var_b85003d9 zm_craftables::add_craftable_piece(gravityspike_guards);
-	var_b85003d9 zm_craftables::add_craftable_piece(gravityspike_handle);
-	var_b85003d9.triggerThink = &function_d8efa7d6;
-	zm_craftables::include_zombie_craftable(var_b85003d9);
+	gravityspike = spawnstruct();
+	gravityspike.name = craftable_name;
+	gravityspike zm_craftables::add_craftable_piece(gravityspike_body);
+	gravityspike zm_craftables::add_craftable_piece(gravityspike_guards);
+	gravityspike zm_craftables::add_craftable_piece(gravityspike_handle);
+	gravityspike.triggerThink = &function_d8efa7d6;
+	zm_craftables::include_zombie_craftable(gravityspike);
 	level flag::init(craftable_name + "_" + "part_body" + "_found");
 	level flag::init(craftable_name + "_" + "part_guards" + "_found");
 	level flag::init(craftable_name + "_" + "part_handle" + "_found");
@@ -85,7 +85,7 @@ function include_craftables()
 function init_craftables()
 {
 	register_clientfields();
-	zm_craftables::add_zombie_craftable("gravityspike", &"ZM_CASTLE_GRAVITYSPIKE_CRAFT", "", &"ZM_CASTLE_GRAVITYSPIKE_PICKUP", &function_61ac1c22, 1);
+	zm_craftables::add_zombie_craftable("gravityspike", &"ZM_CASTLE_GRAVITYSPIKE_CRAFT", "", &"ZM_CASTLE_GRAVITYSPIKE_PICKUP", &get_astro_spawn_sounds, 1);
 	zm_craftables::make_zombie_craftable_open("gravityspike", "", VectorScale((0, -1, 0), 90), (0, 0, 0));
 	level._effect["craftable_powerup_grabbed"] = "dlc1/castle/fx_talon_spike_grab_castle";
 }
@@ -295,7 +295,7 @@ function function_7d712d6a()
 	{
 		self waittill("trigger", e_who);
 		self.stub notify("trigger", e_who);
-		level notify("hash_c48be23f");
+		level notify("a10_wall_switch_activated");
 		level thread function_f387f091();
 		level flag::wait_till_clear("rocket_firing");
 	}
@@ -380,7 +380,7 @@ function function_cecf7412(var_d97c08b2, mdl_console_switch)
 	exploder::exploder("lgt_gs_console_red_3");
 	while(!level flag::get("gravityspike_part_guards_found"))
 	{
-		level waittill("hash_c48be23f");
+		level waittill("a10_wall_switch_activated");
 		exploder::stop_exploder("lgt_gs_console_red_1");
 		level function_ff4c7ead("lgt_gs_console_grn_1");
 		var_586d1d4f playsound("zmb_console_light");
@@ -477,7 +477,7 @@ function function_ef8e1546()
 	{
 		self waittill("trigger", e_who);
 		self.stub notify("trigger", e_who);
-		level notify("hash_37faed4c");
+		level notify("a10_switch_activated");
 		level.var_ddbeeb3f = 1;
 		level flag::wait_till_clear("rocket_firing");
 	}
@@ -495,8 +495,8 @@ function function_ef8e1546()
 */
 function function_f387f091()
 {
-	level endon("hash_37faed4c");
-	level endon("hash_c3c346b0");
+	level endon("a10_switch_activated");
+	level endon("open_a10_doors");
 	while(1)
 	{
 		n_round_zombies = zombie_utility::get_current_zombie_count();
@@ -551,11 +551,11 @@ function function_f6e272db()
 	}
 	else if(math::cointoss())
 	{
-		self thread namespace_57695b4d::function_1b1bb1b();
+		self thread zm_elemental_zombie::function_1b1bb1b();
 	}
 	else
 	{
-		self thread namespace_57695b4d::function_f4defbc2();
+		self thread zm_elemental_zombie::function_f4defbc2();
 	}
 }
 
@@ -896,8 +896,8 @@ function function_c1e52ea6(player)
 {
 	level flag::set(self.craftablename + "_" + self.pieceName + "_found");
 	player thread function_9708cb71(self.pieceName);
-	player thread namespace_97ddfc0d::function_43b44df3();
-	level notify("hash_28a4818d");
+	player thread zm_castle_vo::function_43b44df3();
+	level notify("widget_ui_override");
 	foreach(e_player in level.players)
 	{
 		e_player thread function_c1727537("zmInventory.player_crafted_gravityspikes", "zmInventory.widget_gravityspike_parts", 0);
@@ -906,7 +906,7 @@ function function_c1e52ea6(player)
 }
 
 /*
-	Name: function_61ac1c22
+	Name: get_astro_spawn_sounds
 	Namespace: namespace_dddf9a25
 	Checksum: 0xD4AE5B7
 	Offset: 0x2EF8
@@ -914,9 +914,9 @@ function function_c1e52ea6(player)
 	Parameters: 1
 	Flags: None
 */
-function function_61ac1c22(player)
+function get_astro_spawn_sounds(player)
 {
-	level notify("hash_28a4818d");
+	level notify("widget_ui_override");
 	foreach(e_player in level.players)
 	{
 		if(zm_utility::is_player_valid(e_player))
@@ -1059,7 +1059,7 @@ function function_adbf2990(trig_stub, player)
 		wpn_gravityspikes = GetWeapon("hero_gravityspikes_melee");
 		player zm_weapons::weapon_give(wpn_gravityspikes, 0, 1);
 		player thread zm_equipment::show_hint_text(&"ZM_CASTLE_GRAVITYSPIKE_USE_HINT", 3);
-		player thread namespace_97ddfc0d::function_4e11dfdc();
+		player thread zm_castle_vo::function_4e11dfdc();
 		player GadgetPowerSet(player GadgetGetSlot(wpn_gravityspikes), 100);
 		player zm_weap_gravityspikes::update_gravityspikes_state(2);
 		player PlayRumbleOnEntity("zm_castle_interact_rumble");

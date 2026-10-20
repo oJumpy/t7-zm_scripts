@@ -23,7 +23,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_ai_dogs
-	Checksum: 0x81AA3C41
+	Checksum: 0xFD462FC3
 	Offset: 0x678
 	Size: 0x33
 	Parameters: 0
@@ -37,7 +37,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_ai_dogs
-	Checksum: 0x779F1EFB
+	Checksum: 0xA2EC905A
 	Offset: 0x6B8
 	Size: 0x53
 	Parameters: 0
@@ -53,7 +53,7 @@ function __init__()
 /*
 	Name: init
 	Namespace: zm_ai_dogs
-	Checksum: 0x2267E41
+	Checksum: 0x252DF31B
 	Offset: 0x718
 	Size: 0x2C3
 	Parameters: 0
@@ -94,7 +94,7 @@ function init()
 /*
 	Name: init_dog_fx
 	Namespace: zm_ai_dogs
-	Checksum: 0x8F236E8A
+	Checksum: 0xC07A9C7D
 	Offset: 0x9E8
 	Size: 0x71
 	Parameters: 0
@@ -111,7 +111,7 @@ function init_dog_fx()
 /*
 	Name: enable_dog_rounds
 	Namespace: zm_ai_dogs
-	Checksum: 0x9665787C
+	Checksum: 0x19028DD7
 	Offset: 0xA68
 	Size: 0x43
 	Parameters: 0
@@ -130,7 +130,7 @@ function enable_dog_rounds()
 /*
 	Name: dog_spawner_init
 	Namespace: zm_ai_dogs
-	Checksum: 0x91A8F7EB
+	Checksum: 0xB658AB69
 	Offset: 0xAB8
 	Size: 0x1AB
 	Parameters: 0
@@ -165,7 +165,7 @@ function dog_spawner_init()
 /*
 	Name: dog_round_spawning
 	Namespace: zm_ai_dogs
-	Checksum: 0x49C5D0DB
+	Checksum: 0x7D4F1E4F
 	Offset: 0xC70
 	Size: 0x4A7
 	Parameters: 0
@@ -262,7 +262,7 @@ function dog_round_spawning()
 /*
 	Name: waiting_for_next_dog_spawn
 	Namespace: zm_ai_dogs
-	Checksum: 0xF607A242
+	Checksum: 0x98DD748B
 	Offset: 0x1120
 	Size: 0xCD
 	Parameters: 2
@@ -295,7 +295,7 @@ function waiting_for_next_dog_spawn(count, max)
 /*
 	Name: dog_round_aftermath
 	Namespace: zm_ai_dogs
-	Checksum: 0xE6932B08
+	Checksum: 0xE5A6421C
 	Offset: 0x11F8
 	Size: 0xC3
 	Parameters: 0
@@ -323,7 +323,7 @@ function dog_round_aftermath()
 /*
 	Name: dog_spawn_fx
 	Namespace: zm_ai_dogs
-	Checksum: 0xB5DB6735
+	Checksum: 0xD491C1BA
 	Offset: 0x12C8
 	Size: 0x333
 	Parameters: 2
@@ -373,7 +373,7 @@ function dog_spawn_fx(ai, ent)
 /*
 	Name: dog_spawn_factory_logic
 	Namespace: zm_ai_dogs
-	Checksum: 0x2EA8A0D0
+	Checksum: 0x58D8667D
 	Offset: 0x1608
 	Size: 0x121
 	Parameters: 1
@@ -405,7 +405,7 @@ function dog_spawn_factory_logic(favorite_enemy)
 /*
 	Name: get_favorite_enemy
 	Namespace: zm_ai_dogs
-	Checksum: 0x6BBB253C
+	Checksum: 0xB8E5437E
 	Offset: 0x1738
 	Size: 0x15D
 	Parameters: 0
@@ -448,7 +448,7 @@ function get_favorite_enemy()
 /*
 	Name: dog_health_increase
 	Namespace: zm_ai_dogs
-	Checksum: 0x9957B674
+	Checksum: 0x96859193
 	Offset: 0x18A0
 	Size: 0xB7
 	Parameters: 0
@@ -482,7 +482,7 @@ function dog_health_increase()
 /*
 	Name: dog_round_wait_func
 	Namespace: zm_ai_dogs
-	Checksum: 0xF1AF3227
+	Checksum: 0xAEF717E3
 	Offset: 0x1960
 	Size: 0x67
 	Parameters: 0
@@ -505,7 +505,7 @@ function dog_round_wait_func()
 /*
 	Name: dog_round_tracker
 	Namespace: zm_ai_dogs
-	Checksum: 0x6F501481
+	Checksum: 0xAF3D1EA6
 	Offset: 0x19D0
 	Size: 0x1F3
 	Parameters: 0
@@ -552,7 +552,7 @@ function dog_round_tracker()
 /*
 	Name: dog_round_start
 	Namespace: zm_ai_dogs
-	Checksum: 0x8C15BB2E
+	Checksum: 0x8D4E65F0
 	Offset: 0x1BD0
 	Size: 0xF3
 	Parameters: 0
@@ -579,7 +579,7 @@ function dog_round_start()
 /*
 	Name: dog_round_stop
 	Namespace: zm_ai_dogs
-	Checksum: 0xB099DD97
+	Checksum: 0x7B436BC0
 	Offset: 0x1CD0
 	Size: 0xEB
 	Parameters: 0
@@ -600,7 +600,7 @@ function dog_round_stop()
 /*
 	Name: play_dog_round
 	Namespace: zm_ai_dogs
-	Checksum: 0xEAC47A28
+	Checksum: 0xC4F0E9FF
 	Offset: 0x1DC8
 	Size: 0xB3
 	Parameters: 0
@@ -619,7 +619,7 @@ function play_dog_round()
 /*
 	Name: dog_init
 	Namespace: zm_ai_dogs
-	Checksum: 0x2ACD8E95
+	Checksum: 0x81922F51
 	Offset: 0x1E88
 	Size: 0x40F
 	Parameters: 0
@@ -691,7 +691,7 @@ function dog_init()
 /*
 	Name: dog_death
 	Namespace: zm_ai_dogs
-	Checksum: 0x3CFAA7AB
+	Checksum: 0xBD36C797
 	Offset: 0x22A0
 	Size: 0x34D
 	Parameters: 0
@@ -758,7 +758,7 @@ function dog_death()
 /*
 	Name: dog_explode_fx
 	Namespace: zm_ai_dogs
-	Checksum: 0xB8E41CFB
+	Checksum: 0x89AD9303
 	Offset: 0x25F8
 	Size: 0x53
 	Parameters: 1
@@ -773,7 +773,7 @@ function dog_explode_fx(origin)
 /*
 	Name: zombie_setup_attack_properties_dog
 	Namespace: zm_ai_dogs
-	Checksum: 0x2512CD3C
+	Checksum: 0xF3F66994
 	Offset: 0x2658
 	Size: 0x87
 	Parameters: 0
@@ -796,7 +796,7 @@ function zombie_setup_attack_properties_dog()
 /*
 	Name: stop_dog_sound_on_death
 	Namespace: zm_ai_dogs
-	Checksum: 0x87CA10C9
+	Checksum: 0x7C4E0FB2
 	Offset: 0x26E8
 	Size: 0x23
 	Parameters: 0
@@ -811,7 +811,7 @@ function stop_dog_sound_on_death()
 /*
 	Name: dog_behind_audio
 	Namespace: zm_ai_dogs
-	Checksum: 0xC913C961
+	Checksum: 0xB0EB0AF5
 	Offset: 0x2718
 	Size: 0x1DF
 	Parameters: 0
@@ -846,7 +846,7 @@ function dog_behind_audio()
 /*
 	Name: dog_clip_monitor
 	Namespace: zm_ai_dogs
-	Checksum: 0x6B0FABF0
+	Checksum: 0xE193D7EC
 	Offset: 0x2900
 	Size: 0x205
 	Parameters: 0
@@ -894,7 +894,7 @@ function dog_clip_monitor()
 /*
 	Name: special_dog_spawn
 	Namespace: zm_ai_dogs
-	Checksum: 0xD715D269
+	Checksum: 0xE76A39CA
 	Offset: 0x2B10
 	Size: 0x2FB
 	Parameters: 3
@@ -964,7 +964,7 @@ function special_dog_spawn(num_to_spawn, spawners, spawn_point)
 /*
 	Name: dog_run_think
 	Namespace: zm_ai_dogs
-	Checksum: 0xD17D149E
+	Checksum: 0x2E7C4A44
 	Offset: 0x2E18
 	Size: 0xFB
 	Parameters: 0
@@ -998,7 +998,7 @@ function dog_run_think()
 /*
 	Name: dog_stalk_audio
 	Namespace: zm_ai_dogs
-	Checksum: 0x609CC320
+	Checksum: 0x71857F6
 	Offset: 0x2F20
 	Size: 0x5F
 	Parameters: 0
@@ -1019,7 +1019,7 @@ function dog_stalk_audio()
 /*
 	Name: dog_thundergun_knockdown
 	Namespace: zm_ai_dogs
-	Checksum: 0x1B76A9F0
+	Checksum: 0x48D5A4D6
 	Offset: 0x2F88
 	Size: 0x7B
 	Parameters: 2

@@ -18,13 +18,13 @@
 */
 function init()
 {
-	clientfield::register("vehicle", "spider_glow_fx", 9000, 1, "int", &function_b050960b, 0, 0);
+	clientfield::register("vehicle", "spider_glow_fx", 9000, 1, "int", &spider_glow_fx, 0, 0);
 	clientfield::register("vehicle", "spider_drinks_fx", 9000, 2, "int", &function_f9f39b8e, 0, 0);
-	clientfield::register("scriptmover", "jungle_cage_charged_fx", 9000, 1, "int", &function_23e69e71, 0, 0);
+	clientfield::register("scriptmover", "jungle_cage_charged_fx", 9000, 1, "int", &jungle_cage_charged_fx, 0, 0);
 }
 
 /*
-	Name: function_b050960b
+	Name: spider_glow_fx
 	Namespace: namespace_fdccf5c4
 	Checksum: 0xF14BB4BA
 	Offset: 0x2F8
@@ -32,7 +32,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_b050960b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spider_glow_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -78,7 +78,7 @@ function function_f9f39b8e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_23e69e71
+	Name: jungle_cage_charged_fx
 	Namespace: namespace_fdccf5c4
 	Checksum: 0x2BBA3A50
 	Offset: 0x540
@@ -86,7 +86,7 @@ function function_f9f39b8e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_23e69e71(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function jungle_cage_charged_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

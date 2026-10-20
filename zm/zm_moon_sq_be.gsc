@@ -106,10 +106,10 @@ function stage_logic_2()
 		level._be_origin_animate StopAnimScripted();
 		level._be_origin_animate delete();
 	}
-	namespace_ddd35ff::quantum_bomb_register_result("be2", undefined, 100, &be2_validation);
+	zm_weap_quantum_bomb::quantum_bomb_register_result("be2", undefined, 100, &be2_validation);
 	level._be_pos = level._be.origin;
 	level waittill("be2_validation");
-	namespace_ddd35ff::quantum_bomb_deregister_result("be2");
+	zm_weap_quantum_bomb::quantum_bomb_deregister_result("be2");
 	s = struct::get("be2_pos", "targetname");
 	level._be DontInterpolate();
 	level._be.origin = s.origin;
@@ -406,9 +406,9 @@ function moon_be_think()
 			{
 				if(isdefined(node.script_string) && node.script_string == "zap")
 				{
-					namespace_1a0051d2::add_microwaveable_object(d_trig);
+					zm_weap_microwavegun::add_microwaveable_object(d_trig);
 					d_trig waittill("microwaved", vox_dude);
-					namespace_1a0051d2::remove_microwaveable_object(d_trig);
+					zm_weap_microwavegun::remove_microwaveable_object(d_trig);
 					Motivation = 1;
 				}
 				else
@@ -529,9 +529,9 @@ function moon_be_think()
 				{
 					if(isdefined(next_chain_start.script_string) && next_chain_start.script_string == "zap")
 					{
-						namespace_1a0051d2::add_microwaveable_object(d_trig);
+						zm_weap_microwavegun::add_microwaveable_object(d_trig);
 						d_trig waittill("microwaved", vox_dude);
-						namespace_1a0051d2::remove_microwaveable_object(d_trig);
+						zm_weap_microwavegun::remove_microwaveable_object(d_trig);
 						Motivation = 1;
 					}
 					else

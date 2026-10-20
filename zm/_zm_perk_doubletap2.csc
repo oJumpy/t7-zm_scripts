@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_doubletap2
-	Checksum: 0xCDDC133C
+	Checksum: 0x80AAC91A
 	Offset: 0x1A0
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_doubletap2
-	Checksum: 0x431AC83F
+	Checksum: 0xBBB3860D
 	Offset: 0x1E0
 	Size: 0x13
 	Parameters: 0
@@ -37,7 +37,7 @@ function __init__()
 /*
 	Name: enable_doubletap2_perk_for_level
 	Namespace: zm_perk_doubletap2
-	Checksum: 0xC6ED04E1
+	Checksum: 0x4915CF6C
 	Offset: 0x200
 	Size: 0x83
 	Parameters: 0
@@ -53,7 +53,7 @@ function enable_doubletap2_perk_for_level()
 /*
 	Name: init_doubletap2
 	Namespace: zm_perk_doubletap2
-	Checksum: 0x6AFF0331
+	Checksum: 0xFA71F5D7
 	Offset: 0x290
 	Size: 0x35
 	Parameters: 0
@@ -70,7 +70,7 @@ function init_doubletap2()
 /*
 	Name: doubletap2_client_field_func
 	Namespace: zm_perk_doubletap2
-	Checksum: 0x5F8FC1E9
+	Checksum: 0xBB57E9B6
 	Offset: 0x2D0
 	Size: 0x3B
 	Parameters: 0

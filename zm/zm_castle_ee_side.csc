@@ -35,14 +35,14 @@ function __init__()
 {
 	level._effect["clocktower_flash"] = "dlc1/castle/fx_lightning_strike_weathervane";
 	level._effect["exploding_death"] = "dlc1/zmb_weapon/fx_ee_plunger_teleport_impact";
-	clientfield::register("world", "clocktower_flash", 5000, 1, "counter", &function_c7500953, 0, 0);
-	clientfield::register("world", "sndUEB", 5000, 1, "int", &function_b5d300ce, 0, 0);
+	clientfield::register("world", "clocktower_flash", 5000, 1, "counter", &clocktower_flash, 0, 0);
+	clientfield::register("world", "sndUEB", 5000, 1, "int", &sndueb, 0, 0);
 	clientfield::register("actor", "plunger_exploding_ai", 5000, 1, "int", &callback_exploding_death_fx, 0, 0);
-	clientfield::register("toplayer", "plunger_charged_strike", 5000, 1, "counter", &function_e43cd8, 0, 0);
+	clientfield::register("toplayer", "plunger_charged_strike", 5000, 1, "counter", &plunger_charged_strike, 0, 0);
 }
 
 /*
-	Name: function_c7500953
+	Name: clocktower_flash
 	Namespace: namespace_61c0be00
 	Checksum: 0x8665134F
 	Offset: 0x4A8
@@ -50,14 +50,14 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_c7500953(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function clocktower_flash(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	s_rod = struct::get("ee_clocktower_lightning_rod", "targetname");
 	playFX(localClientNum, level._effect["clocktower_flash"], s_rod.origin);
 }
 
 /*
-	Name: function_b5d300ce
+	Name: sndueb
 	Namespace: namespace_61c0be00
 	Checksum: 0xCF7258A2
 	Offset: 0x550
@@ -65,7 +65,7 @@ function function_c7500953(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b5d300ce(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sndueb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -103,7 +103,7 @@ function callback_exploding_death_fx(localClientNum, oldVal, newVal, bNewEnt, bI
 }
 
 /*
-	Name: function_e43cd8
+	Name: plunger_charged_strike
 	Namespace: namespace_61c0be00
 	Checksum: 0xDBEED443
 	Offset: 0x790
@@ -111,7 +111,7 @@ function callback_exploding_death_fx(localClientNum, oldVal, newVal, bNewEnt, bI
 	Parameters: 7
 	Flags: None
 */
-function function_e43cd8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function plunger_charged_strike(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	PlayViewmodelFX(localClientNum, level._effect["plunger_charge_1p"], "tag_fx");
 	PlayFXOnTag(localClientNum, level._effect["plunger_charge_3p"], self, "tag_fx");

@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_score;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_19b2be8a;
+#namespace zm_bgb_profit_sharing;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x349E44D2
 	Offset: 0x288
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x56CF753D
 	Offset: 0x2C8
 	Size: 0xF3
@@ -47,7 +47,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x835A979A
 	Offset: 0x3C8
 	Size: 0x73
@@ -58,14 +58,14 @@ function enable()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
-	self thread bgb::function_4ed517b9(720, &function_ff41ae2d, &function_3c1690be);
+	self endon("bgb_update");
+	self thread bgb::player_proximity_watcher(720, &proximity_start, &proximity_end);
 	self thread function_677e212b();
 }
 
 /*
 	Name: disable
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x99EC1590
 	Offset: 0x448
 	Size: 0x3
@@ -78,7 +78,7 @@ function disable()
 
 /*
 	Name: function_677e212b
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x68B0A1B8
 	Offset: 0x458
 	Size: 0x81
@@ -91,12 +91,12 @@ function function_677e212b()
 	self clientfield::set("zm_bgb_profit_sharing_3p_fx", 1);
 	self util::waittill_either("bled_out", "bgb_update");
 	self clientfield::set("zm_bgb_profit_sharing_3p_fx", 0);
-	self notify("hash_13182d68");
+	self notify("profit_sharing_complete");
 }
 
 /*
 	Name: add_to_player_score_override
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x487FE3A7
 	Offset: 0x4E8
 	Size: 0x235
@@ -151,15 +151,15 @@ function add_to_player_score_override(n_points, str_awarded_by, var_1ed9bd9b)
 }
 
 /*
-	Name: function_ff41ae2d
-	Namespace: namespace_19b2be8a
+	Name: proximity_start
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x9CAE7A35
 	Offset: 0x728
 	Size: 0xDB
 	Parameters: 1
 	Flags: None
 */
-function function_ff41ae2d(e_player)
+function proximity_start(e_player)
 {
 	self function_d1d595b5();
 	e_player function_d1d595b5();
@@ -176,15 +176,15 @@ function function_ff41ae2d(e_player)
 }
 
 /*
-	Name: function_3c1690be
-	Namespace: namespace_19b2be8a
+	Name: proximity_end
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0xE52AF0DC
 	Offset: 0x810
 	Size: 0x3D
 	Parameters: 1
 	Flags: None
 */
-function function_3c1690be(e_player)
+function proximity_end(e_player)
 {
 	str_notify = "profit_sharing_fx_stop_" + self GetEntityNumber();
 	e_player notify(str_notify);
@@ -192,7 +192,7 @@ function function_3c1690be(e_player)
 
 /*
 	Name: function_d1d595b5
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x6534358C
 	Offset: 0x858
 	Size: 0x5F
@@ -214,7 +214,7 @@ function function_d1d595b5()
 
 /*
 	Name: function_c0b35f9d
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0xD977B079
 	Offset: 0x8C0
 	Size: 0x3B

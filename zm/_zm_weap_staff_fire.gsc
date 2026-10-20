@@ -13,11 +13,11 @@
 #using scripts\zm\_zm_weap_staff_common;
 #using scripts\zm\zm_tomb_utility;
 
-#namespace namespace_ecdcc148;
+#namespace zm_weap_staff_fire;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xFC988DC9
 	Offset: 0x378
 	Size: 0x33
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xEB75ACF4
 	Offset: 0x3B8
 	Size: 0x103
@@ -51,7 +51,7 @@ function __init__()
 
 /*
 	Name: onPlayerSpawned
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x2B10FE23
 	Offset: 0x4C8
 	Size: 0x53
@@ -68,7 +68,7 @@ function onPlayerSpawned()
 
 /*
 	Name: watch_staff_fire_fired
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x583592A9
 	Offset: 0x528
 	Size: 0xD7
@@ -96,7 +96,7 @@ function watch_staff_fire_fired()
 
 /*
 	Name: watch_staff_fire_upgrade_fired
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x610AEA1A
 	Offset: 0x608
 	Size: 0x107
@@ -126,7 +126,7 @@ function watch_staff_fire_upgrade_fired()
 
 /*
 	Name: fire_spread_shots
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xD89373BA
 	Offset: 0x718
 	Size: 0x2D3
@@ -163,7 +163,7 @@ function fire_spread_shots(w_weapon)
 
 /*
 	Name: fire_staff_area_of_effect
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xFC77509F
 	Offset: 0x9F8
 	Size: 0x2B3
@@ -212,7 +212,7 @@ function fire_staff_area_of_effect(e_attacker, w_weapon)
 
 /*
 	Name: grenade_waittill_still_or_bounce
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x1FCD6F55
 	Offset: 0xCB8
 	Size: 0x6B
@@ -235,7 +235,7 @@ function grenade_waittill_still_or_bounce()
 
 /*
 	Name: fire_staff_update_grenade_fuse
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x34F479A8
 	Offset: 0xD30
 	Size: 0x53
@@ -252,7 +252,7 @@ function fire_staff_update_grenade_fuse()
 
 /*
 	Name: fire_additional_shots
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x49F26318
 	Offset: 0xD90
 	Size: 0x255
@@ -291,7 +291,7 @@ function fire_additional_shots(w_weapon)
 
 /*
 	Name: staff_fire_zombie_damage_response
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x402BB281
 	Offset: 0xFF0
 	Size: 0xD3
@@ -310,7 +310,7 @@ function staff_fire_zombie_damage_response(mod, HIT_LOCATION, hit_origin, player
 
 /*
 	Name: is_staff_fire_damage
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x288FA6D1
 	Offset: 0x10D0
 	Size: 0x97
@@ -324,7 +324,7 @@ function is_staff_fire_damage(weapon)
 
 /*
 	Name: staff_fire_zombie_hit_response_internal
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x78E7F6C1
 	Offset: 0x1170
 	Size: 0x103
@@ -353,7 +353,7 @@ function staff_fire_zombie_hit_response_internal(mod, damageWeapon, player, amou
 
 /*
 	Name: staff_fire_death_event
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xAE97007A
 	Offset: 0x1280
 	Size: 0x9B
@@ -373,7 +373,7 @@ function staff_fire_death_event(attacker)
 
 /*
 	Name: on_fire_timeout
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x1E4297BE
 	Offset: 0x1328
 	Size: 0x35
@@ -390,7 +390,7 @@ function on_fire_timeout(n_duration)
 
 /*
 	Name: flame_damage_fx
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x7A8C7BEA
 	Offset: 0x1368
 	Size: 0x21B
@@ -435,7 +435,7 @@ function flame_damage_fx(damageWeapon, e_attacker, pct_damage)
 
 /*
 	Name: _fire_stun_zombie_internal
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xEA2694FA
 	Offset: 0x1590
 	Size: 0x67
@@ -457,7 +457,7 @@ function _fire_stun_zombie_internal(do_stun, run_cycle)
 
 /*
 	Name: zombie_set_and_restore_flame_state
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xF84305E0
 	Offset: 0x1600
 	Size: 0x173
@@ -500,7 +500,7 @@ function zombie_set_and_restore_flame_state()
 
 /*
 	Name: get_impact_damage
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xD146D702
 	Offset: 0x1780
 	Size: 0x89
@@ -541,7 +541,7 @@ function get_impact_damage(damageWeapon)
 
 /*
 	Name: get_damage_per_second
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x61EB51B7
 	Offset: 0x1818
 	Size: 0x8D
@@ -582,7 +582,7 @@ function get_damage_per_second(damageWeapon)
 
 /*
 	Name: get_damage_duration
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xE0F6BB4
 	Offset: 0x18B0
 	Size: 0x8D
@@ -623,7 +623,7 @@ function get_damage_duration(damageWeapon)
 
 /*
 	Name: flame_damage_over_time
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xAE1688D9
 	Offset: 0x1948
 	Size: 0x12F
@@ -655,7 +655,7 @@ function flame_damage_over_time(e_attacker, damageWeapon, pct_damage)
 
 /*
 	Name: mechz_flame_damage
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x3949C6AE
 	Offset: 0x1A80
 	Size: 0x7B
@@ -674,7 +674,7 @@ function mechz_flame_damage(damageWeapon, e_attacker, pct_damage)
 
 /*
 	Name: stop_zombie
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xD62C5CF1
 	Offset: 0x1B08
 	Size: 0x93
@@ -693,7 +693,7 @@ function stop_zombie()
 
 /*
 	Name: function_50814f21
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x54B5971C
 	Offset: 0x1BA8
 	Size: 0x2E5

@@ -48,7 +48,7 @@ function autoexec init()
 */
 function private initzmislandbehaviorsandasm()
 {
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("ZmIslandAttackableObjectService", &function_e5272d25);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("ZmIslandAttackableObjectService", &zmislandattackableobjectservice);
 }
 
 /*
@@ -115,7 +115,7 @@ function private function_b3de8aa4(ent, radius)
 }
 
 /*
-	Name: function_e5272d25
+	Name: zmislandattackableobjectservice
 	Namespace: namespace_5b19fee7
 	Checksum: 0x16A49482
 	Offset: 0x800
@@ -123,7 +123,7 @@ function private function_b3de8aa4(ent, radius)
 	Parameters: 1
 	Flags: Private
 */
-function private function_e5272d25(entity)
+function private zmislandattackableobjectservice(entity)
 {
 	if(isdefined(entity.var_7d79a6) && entity.var_7d79a6)
 	{

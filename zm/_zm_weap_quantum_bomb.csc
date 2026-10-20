@@ -3,11 +3,11 @@
 #using scripts\shared\system_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_ddd35ff;
+#namespace zm_weap_quantum_bomb;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x3333389C
 	Offset: 0x1D8
 	Size: 0x33
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x23D6B394
 	Offset: 0x218
 	Size: 0x83
@@ -38,7 +38,7 @@ function __init__()
 
 /*
 	Name: quantum_bomb_notetrack_think
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x8D1F7953
 	Offset: 0x2A8
 	Size: 0xB9
@@ -68,7 +68,7 @@ function quantum_bomb_notetrack_think()
 
 /*
 	Name: quantum_bomb_spawned
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xC30F72D7
 	Offset: 0x370
 	Size: 0xAB

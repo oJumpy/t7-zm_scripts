@@ -3,11 +3,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weap_staff_common;
 
-#namespace namespace_589e3c80;
+#namespace zm_weap_staff_air;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xEFBEA1
 	Offset: 0x228
 	Size: 0x33
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x53E9C14D
 	Offset: 0x268
 	Size: 0x13B
@@ -32,16 +32,16 @@ function __init__()
 {
 	level._effect["whirlwind"] = "dlc5/zmb_weapon/fx_staff_air_impact_ug_miss";
 	clientfield::register("scriptmover", "whirlwind_play_fx", 21000, 1, "int", &whirlwind_fx, 0, 0);
-	clientfield::register("actor", "air_staff_launch", 21000, 1, "int", &function_5640a6aa, 0, 0);
+	clientfield::register("actor", "air_staff_launch", 21000, 1, "int", &air_staff_launch, 0, 0);
 	clientfield::register("allplayers", "air_staff_source", 21000, 1, "int", &set_air_staff_source, 0, 0);
 	level.launch_source = (0, 0, 0);
 	level.whirlwind_pos = [];
-	namespace_c9806b9::function_4be5e665(GetWeapon("staff_air_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_air_lv1");
+	zm_weap_staff::function_4be5e665(GetWeapon("staff_air_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_air_lv1");
 }
 
 /*
 	Name: set_air_staff_source
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x2A8C6E2E
 	Offset: 0x3B0
 	Size: 0x4B
@@ -55,7 +55,7 @@ function set_air_staff_source(localClientNum, oldVal, newVal, bNewEnt, bInitialS
 
 /*
 	Name: ragdoll_impact_watch
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x472E06EE
 	Offset: 0x408
 	Size: 0x20D
@@ -101,15 +101,15 @@ function ragdoll_impact_watch(localClientNum)
 }
 
 /*
-	Name: function_5640a6aa
-	Namespace: namespace_589e3c80
+	Name: air_staff_launch
+	Namespace: zm_weap_staff_air
 	Checksum: 0x5DD287AD
 	Offset: 0x620
 	Size: 0x203
 	Parameters: 7
 	Flags: None
 */
-function function_5640a6aa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function air_staff_launch(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	v_source = level.launch_source;
 	n_verticality = RandomFloatRange(0.05, 0.35);
@@ -134,7 +134,7 @@ function function_5640a6aa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: whirlwind_fx
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xC2DE390E
 	Offset: 0x830
 	Size: 0x1ED
@@ -173,7 +173,7 @@ function whirlwind_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fie
 
 /*
 	Name: snddemojumpmonitor
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x76CA7CFE
 	Offset: 0xA28
 	Size: 0x33

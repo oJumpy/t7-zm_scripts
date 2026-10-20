@@ -169,13 +169,13 @@ function main()
 	level._uses_taser_knuckles = 1;
 	scene::add_scene_func("p7_fxanim_zm_island_power_plant_on_bundle", &namespace_f3e3de78::function_f0a1682d, "init");
 	scene::add_scene_func("p7_fxanim_zm_island_power_plant_on_bundle", &namespace_f3e3de78::function_c1edfb09, "play");
-	level.temporary_power_switch_logic = &namespace_f3e3de78::function_156f973e;
+	level.temporary_power_switch_logic = &namespace_f3e3de78::temporary_power_switch_think;
 	level.var_7b5a9e65 = 120;
 	level.var_7ccadaab = GetDvarInt("loc_language");
 	zm::init_fx();
 	callback::on_spawned(&on_player_spawned);
 	callback::on_connect(&namespace_bbfc4da3::on_player_connect);
-	callback::on_disconnect(&namespace_5f2c95ae::function_c7cd5585);
+	callback::on_disconnect(&zm_island_skullquest::function_c7cd5585);
 	callback::on_disconnect(&namespace_bbfc4da3::on_player_disconnect);
 	callback::on_ai_spawned(&function_e50fed59);
 	var_ddba80d7 = GetMinBitCountForNum(3);
@@ -255,7 +255,7 @@ function main()
 	namespace_e73c08bc::include_craftables();
 	namespace_e73c08bc::init_craftables();
 	namespace_eaae7728::init_quest();
-	namespace_b3c23ec9::init_quest();
+	main_quest::init_quest();
 	namespace_f7d4f63b::init();
 	spider_ee_quest::init();
 	side_ee_golden_bucket::init();
@@ -263,7 +263,7 @@ function main()
 	level thread namespace_14c8b75c::init();
 	namespace_7550a904::main();
 	namespace_c8222934::init();
-	namespace_af029029::function_8e89793a();
+	zm_island_spiders::function_8e89793a();
 	spawner::add_global_spawn_function("axis", &function_b487bafd);
 	load::main();
 	_zm_weap_bowie::init();
@@ -272,12 +272,12 @@ function main()
 	init_sounds();
 	level.no_target_override = &no_target_override;
 	level.player_intersection_tracker_override = &zombie_island_player_intersection_tracker_override;
-	level.fn_custom_round_ai_spawn = &namespace_af029029::function_33aa4940;
-	level thread namespace_27f8b154::enable_spider_rounds();
-	level.var_5f1b87ca = &namespace_f333593c::function_5f161c52;
+	level.fn_custom_round_ai_spawn = &zm_island_spiders::function_33aa4940;
+	level thread zm_ai_spiders::enable_spider_rounds();
+	level.var_5f1b87ca = &zm_island_vo::function_5f161c52;
 	level function_1b14c4b0();
-	level thread namespace_756d2c3d::enable_thrasher_rounds();
-	level thread namespace_9d2fabb6::main();
+	level thread zm_ai_thrasher::enable_thrasher_rounds();
+	level thread zm_island_zones::main();
 	level thread function_1f00b569();
 	level thread placed_powerups();
 	zm_powerups::powerup_remove_from_regular_drops("bonus_points_player");
@@ -287,31 +287,31 @@ function main()
 	level._custom_powerups["ww_grenade"].setup_powerup = &function_8608b597;
 	level._powerup_grab_check = &function_66e965d8;
 	level flag::wait_till("start_zombie_round_logic");
-	level thread namespace_c8222934::function_c97259e9();
+	level thread namespace_c8222934::start_perks();
 	level thread zm_perks::spare_change();
-	level thread namespace_14b4d4ab::function_7309e48();
+	level thread zm_island_traps::function_7309e48();
 	level thread sndFunctions();
-	level thread namespace_1a868593::main();
+	level thread zm_island_fx::main();
 	level thread namespace_13425205::init();
 	level thread namespace_7a07aa2f::init();
 	level thread namespace_f7d4f63b::main();
 	level thread namespace_eaae7728::main();
 	level thread namespace_34c58dc::init();
 	level thread namespace_f3e3de78::main();
-	level thread namespace_b3c23ec9::main();
-	level thread namespace_52f9507e::function_16616103();
-	level thread namespace_5f2c95ae::main();
-	level thread namespace_27f8b154::function_b4fb1b85();
-	level thread namespace_4e4a096c::main();
+	level thread main_quest::main();
+	level thread zm_island_portals::init_portals();
+	level thread zm_island_skullquest::main();
+	level thread zm_ai_spiders::function_b4fb1b85();
+	level thread zm_island_takeo_fight::main();
 	level thread namespace_14c8b75c::main();
 	level thread namespace_bbfc4da3::main();
 	level thread spider_ee_quest::main();
-	level thread namespace_6c640490::main();
-	level thread namespace_28a54cd6::main();
-	level thread namespace_f777c489::main();
-	level thread namespace_5a453011::main();
-	level thread namespace_716ba43f::main();
-	level thread namespace_c63a0940::main();
+	level thread zm_island_side_ee_distant_monster::main();
+	level thread zm_island_side_ee_doppleganger::main();
+	level thread zm_island_side_ee_good_thrasher::main();
+	level thread zm_island_side_ee_secret_maxammo::main();
+	level thread zm_island_side_ee_song::main();
+	level thread zm_island_side_ee_spore_hallucinations::main();
 	level thread side_ee_golden_bucket::main();
 	level thread function_94fc6a19();
 	level thread function_8a2a48bb();
@@ -320,7 +320,7 @@ function main()
 	SetDvar("player_useWaterWadeScale", "0");
 	SetDvar("r_waveWaterNewFormula", 1);
 	SetDvar("hkai_pathfindIterationLimit", 1200);
-	level thread namespace_f333593c::main();
+	level thread zm_island_vo::main();
 	namespace_711c2fc8::main_end();
 }
 
@@ -477,7 +477,7 @@ function no_target_override(ai_zombie)
 	{
 		return;
 	}
-	var_6c8e700c = ai_zombie namespace_1c690923::get_escape_position_in_current_zone();
+	var_6c8e700c = ai_zombie zm_island_cleanup::get_escape_position_in_current_zone();
 	if(isalive(ai_zombie) && isdefined(var_6c8e700c) && isdefined(var_6c8e700c.origin))
 	{
 		ai_zombie thread function_dc683d01(var_6c8e700c.origin);
@@ -576,10 +576,10 @@ function on_player_spawned()
 	self.no_revive_trigger = 0;
 	self.var_90f735f8 = 0;
 	self thread function_dd7044da();
-	self thread function_3363c147();
+	self thread player_underwater_fx();
 	self thread function_94ed46a2();
 	self thread function_708908ca();
-	self thread namespace_48e6dffb::function_1a9a4375();
+	self thread namespace_48e6dffb::player_gasmask_think();
 	self thread namespace_f7d4f63b::on_player_spawned();
 	self thread function_6ca6d73d();
 	self.tesla_network_death_choke = 0;
@@ -650,19 +650,19 @@ function function_708908ca()
 		if(str_notify == "perk_acquired" && self hasPerk("specialty_staminup") && !self.var_b5f30643)
 		{
 			self.var_b5f30643 = 1;
-			self notify("hash_36c37d57");
+			self notify("player_has_staminup");
 		}
 		else if(str_notify == "perk_lost" && self.var_b5f30643)
 		{
 			self.var_b5f30643 = 0;
-			self notify("hash_ce47444f");
+			self notify("player_lost_staminup");
 		}
 		str_notify = undefined;
 	}
 }
 
 /*
-	Name: function_3363c147
+	Name: player_underwater_fx
 	Namespace: namespace_ff3ab036
 	Checksum: 0xC6C20ABD
 	Offset: 0x4560
@@ -670,7 +670,7 @@ function function_708908ca()
 	Parameters: 0
 	Flags: None
 */
-function function_3363c147()
+function player_underwater_fx()
 {
 	self endon("disconnect");
 	if(!isdefined(self.is_under_water))
@@ -713,7 +713,7 @@ function function_3363c147()
 			{
 				self clientfield::set_to_player("set_world_fog", 0);
 			}
-			self notify("hash_5670f4e8");
+			self notify("swim_done");
 		}
 		wait(0.05);
 	}
@@ -1442,9 +1442,9 @@ function function_726351cf()
 	while(1)
 	{
 		self waittill("damage", damage, attacker, direction_vec, point, type, modelName, tagName, partName, weapon, iDFlags);
-		if(namespace_7cee2b44::is_wonder_weapon(weapon))
+		if(mirg2000::is_wonder_weapon(weapon))
 		{
-			if(namespace_7cee2b44::is_wonder_weapon(weapon, "upgraded"))
+			if(mirg2000::is_wonder_weapon(weapon, "upgraded"))
 			{
 				self thread FX::Play("special_web_dissolve_ug", self.origin, self.angles);
 			}
@@ -1591,7 +1591,7 @@ function function_6ca6d73d()
 	self flag::wait_till("has_skull");
 	while(1)
 	{
-		if(self util::attack_button_held() && self namespace_f55b6585::function_97d08b97())
+		if(self util::attack_button_held() && self keeper_skull::function_97d08b97())
 		{
 			self thread function_a9938318();
 			self PlayRumbleOnEntity("zm_island_skull_reveal");

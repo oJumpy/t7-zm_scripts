@@ -17,7 +17,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_deadshot
-	Checksum: 0x592E8A9E
+	Checksum: 0xDB3EF0F2
 	Offset: 0x350
 	Size: 0x33
 	Parameters: 0
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_deadshot
-	Checksum: 0x32DA6F01
+	Checksum: 0x4DF92C46
 	Offset: 0x390
 	Size: 0x13
 	Parameters: 0
@@ -45,7 +45,7 @@ function __init__()
 /*
 	Name: enable_deadshot_perk_for_level
 	Namespace: zm_perk_deadshot
-	Checksum: 0x7DA16B18
+	Checksum: 0x68FAC512
 	Offset: 0x3B0
 	Size: 0x12B
 	Parameters: 0
@@ -64,7 +64,7 @@ function enable_deadshot_perk_for_level()
 /*
 	Name: deadshot_precache
 	Namespace: zm_perk_deadshot
-	Checksum: 0x3B0DC8B3
+	Checksum: 0x9D7ADA71
 	Offset: 0x4E8
 	Size: 0xDF
 	Parameters: 0
@@ -87,7 +87,7 @@ function deadshot_precache()
 /*
 	Name: deadshot_register_clientfield
 	Namespace: zm_perk_deadshot
-	Checksum: 0x75D87402
+	Checksum: 0xC2ECAE0F
 	Offset: 0x5D0
 	Size: 0x63
 	Parameters: 0
@@ -102,7 +102,7 @@ function deadshot_register_clientfield()
 /*
 	Name: deadshot_set_clientfield
 	Namespace: zm_perk_deadshot
-	Checksum: 0x8AC41090
+	Checksum: 0x7F1DECD0
 	Offset: 0x640
 	Size: 0x2B
 	Parameters: 1
@@ -116,7 +116,7 @@ function deadshot_set_clientfield(State)
 /*
 	Name: deadshot_perk_machine_setup
 	Namespace: zm_perk_deadshot
-	Checksum: 0x85426269
+	Checksum: 0xAD6CE5F4
 	Offset: 0x678
 	Size: 0xBB
 	Parameters: 4
@@ -139,7 +139,7 @@ function deadshot_perk_machine_setup(use_trigger, perk_machine, bump_trigger, co
 /*
 	Name: give_deadshot_perk
 	Namespace: zm_perk_deadshot
-	Checksum: 0xB467CA57
+	Checksum: 0xEFF6F691
 	Offset: 0x740
 	Size: 0x23
 	Parameters: 0
@@ -153,7 +153,7 @@ function give_deadshot_perk()
 /*
 	Name: take_deadshot_perk
 	Namespace: zm_perk_deadshot
-	Checksum: 0xC1C76470
+	Checksum: 0x37B0CF76
 	Offset: 0x770
 	Size: 0x3B
 	Parameters: 3

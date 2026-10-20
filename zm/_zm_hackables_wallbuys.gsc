@@ -44,10 +44,10 @@ function hack_wallbuys()
 		struct.script_float = 2;
 		struct.script_int = 3000;
 		struct.wallbuy = weapon_spawns[i];
-		namespace_6d813654::register_pooled_hackable_struct(struct, &wallbuy_hack);
+		zm_equip_hacker::register_pooled_hackable_struct(struct, &wallbuy_hack);
 	}
 	bowie_triggers = GetEntArray("bowie_upgrade", "targetname");
-	Array::thread_all(bowie_triggers, &namespace_6d813654::hide_hint_when_hackers_active);
+	Array::thread_all(bowie_triggers, &zm_equip_hacker::hide_hint_when_hackers_active);
 }
 
 /*
@@ -64,6 +64,6 @@ function wallbuy_hack(hacker)
 	self.wallbuy.trigger_stub.hacked = 1;
 	self.clientFieldName = self.wallbuy.zombie_weapon_upgrade + "_" + self.origin;
 	level clientfield::set(self.clientFieldName, 2);
-	namespace_6d813654::deregister_hackable_struct(self);
+	zm_equip_hacker::deregister_hackable_struct(self);
 }
 

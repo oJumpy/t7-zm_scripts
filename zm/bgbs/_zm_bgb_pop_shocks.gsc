@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_112fb534;
+#namespace zm_bgb_pop_shocks;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0x5D6D53E0
 	Offset: 0x1D8
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0x45DDD2C6
 	Offset: 0x218
 	Size: 0xA3
@@ -46,7 +46,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0x235259FA
 	Offset: 0x2C8
 	Size: 0x4F
@@ -57,7 +57,7 @@ function event()
 {
 	self endon("disconnect");
 	self endon("death");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self.bgb_remaining_hits = 5;
 	while(self.bgb_remaining_hits > 0)
 	{
@@ -67,7 +67,7 @@ function event()
 
 /*
 	Name: actor_damage_override
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0xAB421B3C
 	Offset: 0x320
 	Size: 0x8F
@@ -85,7 +85,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansOfDeath,
 
 /*
 	Name: vehicle_damage_override
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0x8B94DF9E
 	Offset: 0x3B8
 	Size: 0xA7
@@ -103,7 +103,7 @@ function vehicle_damage_override(eInflictor, eAttacker, iDamage, iDFlags, sMeans
 
 /*
 	Name: electric_strike
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0xB40BFF8C
 	Offset: 0x468
 	Size: 0x1C9
@@ -138,7 +138,7 @@ function electric_strike(target)
 
 /*
 	Name: electrocute_actor
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0x4D924C41
 	Offset: 0x640
 	Size: 0xC3
@@ -165,7 +165,7 @@ function electrocute_actor(ai)
 
 /*
 	Name: create_lightning_params
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0x2FBCB64C
 	Offset: 0x710
 	Size: 0x5F
@@ -182,7 +182,7 @@ function create_lightning_params()
 
 /*
 	Name: arc_damage_init
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0x2DA98F28
 	Offset: 0x778
 	Size: 0x53
@@ -201,7 +201,7 @@ function arc_damage_init(player)
 
 /*
 	Name: tesla_death
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0xB398D8D7
 	Offset: 0x7D8
 	Size: 0x53
@@ -218,7 +218,7 @@ function tesla_death()
 
 /*
 	Name: zombie_explodes_on_swipe
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0xB70D9173
 	Offset: 0x838
 	Size: 0x133

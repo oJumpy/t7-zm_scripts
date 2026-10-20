@@ -21,11 +21,11 @@
 #using scripts\zm\zm_island_power;
 #using scripts\zm\zm_island_util;
 
-#namespace namespace_716ba43f;
+#namespace zm_island_side_ee_song;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x9C888FC1
 	Offset: 0x488
 	Size: 0x33
@@ -39,7 +39,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x99EC1590
 	Offset: 0x4C8
 	Size: 0x3
@@ -52,7 +52,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0xD7FC3D18
 	Offset: 0x4D8
 	Size: 0x7B
@@ -72,7 +72,7 @@ function main()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x99EC1590
 	Offset: 0x560
 	Size: 0x3
@@ -85,7 +85,7 @@ function on_player_spawned()
 
 /*
 	Name: function_553b8e23
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x85622B47
 	Offset: 0x570
 	Size: 0xD3
@@ -111,7 +111,7 @@ function function_553b8e23()
 
 /*
 	Name: function_4b02c768
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0xD7C7D94B
 	Offset: 0x650
 	Size: 0x14B
@@ -140,7 +140,7 @@ function function_4b02c768()
 
 /*
 	Name: activate_bear
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x63374814
 	Offset: 0x7A8
 	Size: 0x7B
@@ -161,7 +161,7 @@ function activate_bear()
 
 /*
 	Name: function_88ab6cf8
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x42BCC40
 	Offset: 0x830
 	Size: 0x73
@@ -180,7 +180,7 @@ function function_88ab6cf8()
 
 /*
 	Name: function_aed87222
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x70F857DB
 	Offset: 0x8B0
 	Size: 0xB5
@@ -214,7 +214,7 @@ function function_aed87222(cmd)
 
 /*
 	Name: function_222dc6f4
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0xB02788AC
 	Offset: 0x970
 	Size: 0xED
@@ -232,7 +232,7 @@ function function_222dc6f4()
 
 /*
 	Name: function_4824fe93
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x11892357
 	Offset: 0xA68
 	Size: 0xE3
@@ -254,7 +254,7 @@ function function_4824fe93(origin, num)
 
 /*
 	Name: function_76bcb530
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x7EE76277
 	Offset: 0xB58
 	Size: 0x2D3
@@ -308,7 +308,7 @@ function function_76bcb530()
 
 /*
 	Name: function_69208549
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x84563366
 	Offset: 0xE38
 	Size: 0x3B
@@ -324,7 +324,7 @@ function function_69208549()
 
 /*
 	Name: function_cd6c47c5
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x5BE1CC9
 	Offset: 0xE80
 	Size: 0x1BF
@@ -360,7 +360,7 @@ function function_cd6c47c5()
 
 /*
 	Name: function_f86f94db
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x6F21C92D
 	Offset: 0x1048
 	Size: 0x11F
@@ -391,7 +391,7 @@ function function_f86f94db()
 
 /*
 	Name: function_c5359566
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x51563614
 	Offset: 0x1170
 	Size: 0xD1
@@ -412,7 +412,7 @@ function function_c5359566()
 
 /*
 	Name: function_88572b8
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0xC7B5FDEE
 	Offset: 0x1250
 	Size: 0x249
@@ -450,7 +450,7 @@ function function_88572b8()
 
 /*
 	Name: function_ae93bb6d
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x2F0B5F32
 	Offset: 0x14A8
 	Size: 0xA3
@@ -471,7 +471,7 @@ function function_ae93bb6d()
 
 /*
 	Name: function_d75eac4e
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0x602739EC
 	Offset: 0x1558
 	Size: 0x5D
@@ -491,7 +491,7 @@ function function_d75eac4e()
 
 /*
 	Name: function_e01c1b04
-	Namespace: namespace_716ba43f
+	Namespace: zm_island_side_ee_song
 	Checksum: 0xF634A948
 	Offset: 0x15C0
 	Size: 0xED

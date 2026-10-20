@@ -519,7 +519,7 @@ function function_57a479e1()
 }
 
 /*
-	Name: function_8189f66f
+	Name: sndmudslow
 	Namespace: zm_tomb_amb
 	Checksum: 0xCE72D353
 	Offset: 0x1780
@@ -527,7 +527,7 @@ function function_57a479e1()
 	Parameters: 7
 	Flags: None
 */
-function function_8189f66f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function sndmudslow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(!IsSpectating(localClientNum, 0))
 	{

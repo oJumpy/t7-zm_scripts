@@ -18,7 +18,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0x52F24C1B
+	Checksum: 0x7BAA323
 	Offset: 0x368
 	Size: 0x33
 	Parameters: 0
@@ -32,7 +32,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0x6A100743
+	Checksum: 0x97E96A7D
 	Offset: 0x3A8
 	Size: 0xBB
 	Parameters: 0
@@ -50,7 +50,7 @@ function __init__()
 /*
 	Name: grab_fire_sale
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0xC7D73E46
+	Checksum: 0x82B3A0E5
 	Offset: 0x470
 	Size: 0x43
 	Parameters: 1
@@ -65,7 +65,7 @@ function grab_fire_sale(player)
 /*
 	Name: start_fire_sale
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0x8B8DBAB1
+	Checksum: 0x50836BE8
 	Offset: 0x4C0
 	Size: 0x205
 	Parameters: 1
@@ -109,7 +109,7 @@ function start_fire_sale(item)
 /*
 	Name: check_to_clear_fire_sale
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0xC79543F9
+	Checksum: 0x678DCAFC
 	Offset: 0x6D0
 	Size: 0x2D
 	Parameters: 0
@@ -127,7 +127,7 @@ function check_to_clear_fire_sale()
 /*
 	Name: firesale_chest_is_leaving
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0xC5706698
+	Checksum: 0xC3D38D1
 	Offset: 0x708
 	Size: 0xF9
 	Parameters: 0
@@ -151,7 +151,7 @@ function firesale_chest_is_leaving()
 /*
 	Name: toggle_fire_sale_on
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0xFFE756C4
+	Checksum: 0x5D46606
 	Offset: 0x810
 	Size: 0x255
 	Parameters: 0
@@ -205,7 +205,7 @@ function toggle_fire_sale_on()
 /*
 	Name: apply_fire_sale_to_chest
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0x28421C1
+	Checksum: 0xEBE5BC78
 	Offset: 0xA70
 	Size: 0x93
 	Parameters: 0
@@ -228,7 +228,7 @@ function apply_fire_sale_to_chest()
 /*
 	Name: remove_temp_chest
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0x3D438E2C
+	Checksum: 0x31741F27
 	Offset: 0xB10
 	Size: 0x267
 	Parameters: 1
@@ -270,7 +270,7 @@ function remove_temp_chest(chest_index)
 /*
 	Name: func_should_drop_fire_sale
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0x3B720526
+	Checksum: 0xFF623DB
 	Offset: 0xD80
 	Size: 0x4D
 	Parameters: 0
@@ -288,7 +288,7 @@ function func_should_drop_fire_sale()
 /*
 	Name: sndFiresaleMusic_Start
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0x29813674
+	Checksum: 0x8D66ED81
 	Offset: 0xDD8
 	Size: 0x149
 	Parameters: 0
@@ -315,7 +315,7 @@ function sndFiresaleMusic_Start()
 /*
 	Name: sndFiresaleMusic_Stop
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0x42A35B19
+	Checksum: 0x742E562D
 	Offset: 0xF30
 	Size: 0xC7
 	Parameters: 0

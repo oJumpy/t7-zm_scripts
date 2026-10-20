@@ -17,11 +17,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_52f9507e;
+#namespace zm_island_portals;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xACDF62F
 	Offset: 0x508
 	Size: 0x33
@@ -35,7 +35,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x28888A75
 	Offset: 0x548
 	Size: 0x1BB
@@ -56,21 +56,21 @@ function __init__()
 }
 
 /*
-	Name: function_16616103
-	Namespace: namespace_52f9507e
+	Name: init_portals
+	Namespace: zm_island_portals
 	Checksum: 0x99EC1590
 	Offset: 0x710
 	Size: 0x3
 	Parameters: 0
 	Flags: None
 */
-function function_16616103()
+function init_portals()
 {
 }
 
 /*
 	Name: function_e4ff383e
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xAF8B6022
 	Offset: 0x720
 	Size: 0x43
@@ -85,7 +85,7 @@ function function_e4ff383e(var_49e3dd2e, var_d16ec704)
 
 /*
 	Name: create_portal
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xF618D29D
 	Offset: 0x770
 	Size: 0x333
@@ -132,7 +132,7 @@ function create_portal(str_id, b_use_trigger, var_776628b2)
 
 /*
 	Name: function_16fca6d
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xFC02FCA
 	Offset: 0xAB0
 	Size: 0xE9
@@ -158,7 +158,7 @@ function function_16fca6d(player)
 
 /*
 	Name: function_a90ab0d7
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x6CBB6E6E
 	Offset: 0xBA8
 	Size: 0xA3
@@ -189,7 +189,7 @@ function function_a90ab0d7()
 
 /*
 	Name: function_e0c93f92
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xDC85590A
 	Offset: 0xC58
 	Size: 0x4B
@@ -204,7 +204,7 @@ function function_e0c93f92(str_areaname)
 
 /*
 	Name: portal_open
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x3DF17376
 	Offset: 0xCB0
 	Size: 0x36B
@@ -250,7 +250,7 @@ function portal_open(str_areaname, var_14429fc9)
 
 /*
 	Name: portal_think
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x42817D02
 	Offset: 0x1028
 	Size: 0x183
@@ -287,7 +287,7 @@ function portal_think()
 
 /*
 	Name: portal_teleport_player
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x8D197902
 	Offset: 0x11B8
 	Size: 0x8CB
@@ -405,7 +405,7 @@ function portal_teleport_player(player, show_fx)
 
 /*
 	Name: ai_delay_cleanup
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xAE037F09
 	Offset: 0x1A90
 	Size: 0x5D
@@ -427,7 +427,7 @@ function ai_delay_cleanup()
 
 /*
 	Name: portal_teleport_ai
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x514F9DA6
 	Offset: 0x1AF8
 	Size: 0x2C3

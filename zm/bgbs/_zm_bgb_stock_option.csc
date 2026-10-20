@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_5525011f;
+#namespace zm_bgb_stock_option;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_5525011f
+	Namespace: zm_bgb_stock_option
 	Checksum: 0xD7FBB720
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_5525011f
+	Namespace: zm_bgb_stock_option
 	Checksum: 0xCB4E9D3D
 	Offset: 0x188
 	Size: 0x3B

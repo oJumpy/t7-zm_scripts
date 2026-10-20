@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_18c49b5a;
+#namespace zm_bgb_shopping_free;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_18c49b5a
+	Namespace: zm_bgb_shopping_free
 	Checksum: 0xA41F1D17
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_18c49b5a
+	Namespace: zm_bgb_shopping_free
 	Checksum: 0x357A42E
 	Offset: 0x188
 	Size: 0x3B

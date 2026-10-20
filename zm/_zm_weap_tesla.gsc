@@ -22,7 +22,7 @@
 /*
 	Name: init
 	Namespace: _zm_weap_tesla
-	Checksum: 0x531D73F6
+	Checksum: 0x406BE860
 	Offset: 0x688
 	Size: 0x3CB
 	Parameters: 0
@@ -66,7 +66,7 @@ function init()
 /*
 	Name: tesla_devgui_dvar_think
 	Namespace: _zm_weap_tesla
-	Checksum: 0x9A4BE34F
+	Checksum: 0x659EF668
 	Offset: 0xA60
 	Size: 0x21B
 	Parameters: 0
@@ -101,7 +101,7 @@ function tesla_devgui_dvar_think()
 /*
 	Name: tesla_damage_init
 	Namespace: _zm_weap_tesla
-	Checksum: 0x76778045
+	Checksum: 0x22DEBC4F
 	Offset: 0xC88
 	Size: 0x193
 	Parameters: 3
@@ -137,7 +137,7 @@ function tesla_damage_init(HIT_LOCATION, hit_origin, player)
 /*
 	Name: is_tesla_damage
 	Namespace: _zm_weap_tesla
-	Checksum: 0x3F8EC838
+	Checksum: 0x932B832D
 	Offset: 0xE28
 	Size: 0x4F
 	Parameters: 2
@@ -151,7 +151,7 @@ function is_tesla_damage(mod, weapon)
 /*
 	Name: enemy_killed_by_tesla
 	Namespace: _zm_weap_tesla
-	Checksum: 0x13E2C6E
+	Checksum: 0x3CA0F166
 	Offset: 0xE80
 	Size: 0x15
 	Parameters: 0
@@ -165,7 +165,7 @@ function enemy_killed_by_tesla()
 /*
 	Name: on_player_spawned
 	Namespace: _zm_weap_tesla
-	Checksum: 0x4A40A490
+	Checksum: 0x5A8A039D
 	Offset: 0xEA0
 	Size: 0x4B
 	Parameters: 0
@@ -181,7 +181,7 @@ function on_player_spawned()
 /*
 	Name: tesla_sound_thread
 	Namespace: _zm_weap_tesla
-	Checksum: 0xDE354DB8
+	Checksum: 0x35962425
 	Offset: 0xEF8
 	Size: 0x1BF
 	Parameters: 0
@@ -220,7 +220,7 @@ function tesla_sound_thread()
 /*
 	Name: cleanup_loop_sound
 	Namespace: _zm_weap_tesla
-	Checksum: 0xABD17640
+	Checksum: 0x6C0DE886
 	Offset: 0x10C0
 	Size: 0x3B
 	Parameters: 1
@@ -238,7 +238,7 @@ function cleanup_loop_sound(loop_sound)
 /*
 	Name: tesla_engine_sweets
 	Namespace: _zm_weap_tesla
-	Checksum: 0xF97ECAB9
+	Checksum: 0x9906690E
 	Offset: 0x1108
 	Size: 0x5F
 	Parameters: 0
@@ -258,7 +258,7 @@ function tesla_engine_sweets()
 /*
 	Name: tesla_pvp_thread
 	Namespace: _zm_weap_tesla
-	Checksum: 0x70A4E72B
+	Checksum: 0x8890B60F
 	Offset: 0x1170
 	Size: 0x1AF
 	Parameters: 0
@@ -308,7 +308,7 @@ function tesla_pvp_thread()
 /*
 	Name: play_tesla_sound
 	Namespace: _zm_weap_tesla
-	Checksum: 0x4920116E
+	Checksum: 0x9E361028
 	Offset: 0x1328
 	Size: 0x127
 	Parameters: 1
@@ -338,7 +338,7 @@ function play_tesla_sound(emotion)
 /*
 	Name: tesla_killstreak_sound
 	Namespace: _zm_weap_tesla
-	Checksum: 0xC4245AC2
+	Checksum: 0x24A390BB
 	Offset: 0x1458
 	Size: 0x5B
 	Parameters: 0
@@ -355,7 +355,7 @@ function tesla_killstreak_sound()
 /*
 	Name: tesla_network_choke
 	Namespace: _zm_weap_tesla
-	Checksum: 0xD0881189
+	Checksum: 0xD37F4A60
 	Offset: 0x14C0
 	Size: 0x53
 	Parameters: 0
@@ -377,7 +377,7 @@ function tesla_network_choke()
 /*
 	Name: tesla_zombie_death_response
 	Namespace: _zm_weap_tesla
-	Checksum: 0xF13AD389
+	Checksum: 0x17F76BBF
 	Offset: 0x1520
 	Size: 0x25
 	Parameters: 0
@@ -395,7 +395,7 @@ function tesla_zombie_death_response()
 /*
 	Name: tesla_zombie_damage_response
 	Namespace: _zm_weap_tesla
-	Checksum: 0x89E69DAC
+	Checksum: 0x31C92C31
 	Offset: 0x1550
 	Size: 0xB3
 	Parameters: 13

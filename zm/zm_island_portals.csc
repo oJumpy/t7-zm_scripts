@@ -14,11 +14,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_52f9507e;
+#namespace zm_island_portals;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xB4AA7609
 	Offset: 0x548
 	Size: 0x33
@@ -32,7 +32,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xCA8AE54E
 	Offset: 0x588
 	Size: 0x243
@@ -43,28 +43,28 @@ function __init__()
 {
 	visionset_mgr::register_overlay_info_style_transported("zm_zod", 9000, 15, 2);
 	n_bits = GetMinBitCountForNum(3);
-	clientfield::register("toplayer", "player_stargate_fx", 9000, 1, "int", &function_2396c469, 0, 0);
-	clientfield::register("world", "portal_state_ending_0", 9000, 1, "int", &function_ed05ad08, 0, 0);
-	clientfield::register("world", "portal_state_ending_1", 9000, 1, "int", &function_13082771, 0, 0);
-	clientfield::register("world", "portal_state_ending_2", 9000, 1, "int", &function_390aa1da, 0, 0);
-	clientfield::register("world", "portal_state_ending_3", 9000, 1, "int", &function_5f0d1c43, 0, 0);
+	clientfield::register("toplayer", "player_stargate_fx", 9000, 1, "int", &player_stargate_fx, 0, 0);
+	clientfield::register("world", "portal_state_ending_0", 9000, 1, "int", &portal_state_ending_0, 0, 0);
+	clientfield::register("world", "portal_state_ending_1", 9000, 1, "int", &portal_state_ending_1, 0, 0);
+	clientfield::register("world", "portal_state_ending_2", 9000, 1, "int", &portal_state_ending_2, 0, 0);
+	clientfield::register("world", "portal_state_ending_3", 9000, 1, "int", &portal_state_ending_3, 0, 0);
 	clientfield::register("world", "pulse_ee_boat_portal_top", 9000, 1, "counter", &function_b040f607, 0, 0);
 	clientfield::register("world", "pulse_ee_boat_portal_bottom", 9000, 1, "counter", &function_bfbf92fb, 0, 0);
 }
 
 /*
-	Name: function_2396c469
-	Namespace: namespace_52f9507e
+	Name: player_stargate_fx
+	Namespace: zm_island_portals
 	Checksum: 0x902D3456
 	Offset: 0x7D8
 	Size: 0xF5
 	Parameters: 7
 	Flags: None
 */
-function function_2396c469(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_stargate_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self notify("hash_2396c469");
-	self endon("hash_2396c469");
+	self notify("player_stargate_fx");
+	self endon("player_stargate_fx");
 	if(newVal == 1)
 	{
 		if(IsDemoPlaying() && DemoIsAnyFreeMoveCamera())
@@ -80,13 +80,13 @@ function function_2396c469(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		self notify("hash_ee477153");
+		self notify("player_portal_complete");
 	}
 }
 
 /*
 	Name: function_e7a8756e
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xD3C1131D
 	Offset: 0x8D8
 	Size: 0x4B
@@ -100,15 +100,15 @@ function function_e7a8756e(localClientNum)
 }
 
 /*
-	Name: function_dcfb71f
-	Namespace: namespace_52f9507e
+	Name: portal_3p
+	Namespace: zm_island_portals
 	Checksum: 0x41DD897E
 	Offset: 0x930
 	Size: 0xAB
 	Parameters: 7
 	Flags: None
 */
-function function_dcfb71f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_3p(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("death");
 	if(newVal == 1)
@@ -123,7 +123,7 @@ function function_dcfb71f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_e962c05f
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xCC09A80E
 	Offset: 0x9E8
 	Size: 0x5B
@@ -137,7 +137,7 @@ function function_e962c05f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: portal_state_internal
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xB21EE1BA
 	Offset: 0xA50
 	Size: 0x2AD
@@ -179,7 +179,7 @@ function portal_state_internal(localClientNum, str_areaname, newVal)
 
 /*
 	Name: function_b040f607
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xA69B6DE5
 	Offset: 0xD08
 	Size: 0x5B
@@ -193,7 +193,7 @@ function function_b040f607(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_bfbf92fb
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x32B6DEDF
 	Offset: 0xD70
 	Size: 0x5B
@@ -207,7 +207,7 @@ function function_bfbf92fb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_11ac3c33
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xAB680E8B
 	Offset: 0xDD8
 	Size: 0xED
@@ -232,7 +232,7 @@ function function_11ac3c33(localClientNum, str_areaname, b_is_top)
 
 /*
 	Name: function_c0c1771a
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x1FD87EA3
 	Offset: 0xED0
 	Size: 0x311
@@ -288,7 +288,7 @@ function function_c0c1771a(localClientNum, s_loc, b_open, b_is_subway)
 
 /*
 	Name: function_86743484
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x5FF2EA7C
 	Offset: 0x11F0
 	Size: 0x18D
@@ -319,7 +319,7 @@ function function_86743484(localClientNum, s_loc)
 
 /*
 	Name: get_portal_fx_loc
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x20999577
 	Offset: 0x1388
 	Size: 0x13B
@@ -351,7 +351,7 @@ function get_portal_fx_loc(str_targetname, str_areaname, b_is_top)
 
 /*
 	Name: stop_fx_if_defined
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0xEB1776F5
 	Offset: 0x14D0
 	Size: 0x3B
@@ -368,7 +368,7 @@ function stop_fx_if_defined(localClientNum, fx_reference)
 
 /*
 	Name: sndportal
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x2FD801BF
 	Offset: 0x1518
 	Size: 0x2B
@@ -381,7 +381,7 @@ function sndportal(origin1, origin2, onloop, var_2978dbc6, activation)
 
 /*
 	Name: function_c968dcbc
-	Namespace: namespace_52f9507e
+	Namespace: zm_island_portals
 	Checksum: 0x847C867A
 	Offset: 0x1550
 	Size: 0x35
@@ -397,15 +397,15 @@ function function_c968dcbc(origin1, onloop, oneshot, activate)
 }
 
 /*
-	Name: function_ed05ad08
-	Namespace: namespace_52f9507e
+	Name: portal_state_ending_0
+	Namespace: zm_island_portals
 	Checksum: 0x8B035949
 	Offset: 0x1590
 	Size: 0x3B3
 	Parameters: 7
 	Flags: None
 */
-function function_ed05ad08(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_state_ending_0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{
@@ -449,15 +449,15 @@ function function_ed05ad08(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_13082771
-	Namespace: namespace_52f9507e
+	Name: portal_state_ending_1
+	Namespace: zm_island_portals
 	Checksum: 0x306B4AEE
 	Offset: 0x1950
 	Size: 0x3B3
 	Parameters: 7
 	Flags: None
 */
-function function_13082771(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_state_ending_1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{
@@ -501,15 +501,15 @@ function function_13082771(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_390aa1da
-	Namespace: namespace_52f9507e
+	Name: portal_state_ending_2
+	Namespace: zm_island_portals
 	Checksum: 0x4A57CD5
 	Offset: 0x1D10
 	Size: 0x3B3
 	Parameters: 7
 	Flags: None
 */
-function function_390aa1da(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_state_ending_2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{
@@ -553,15 +553,15 @@ function function_390aa1da(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_5f0d1c43
-	Namespace: namespace_52f9507e
+	Name: portal_state_ending_3
+	Namespace: zm_island_portals
 	Checksum: 0xF6BF7649
 	Offset: 0x20D0
 	Size: 0x3B3
 	Parameters: 7
 	Flags: None
 */
-function function_5f0d1c43(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_state_ending_3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{

@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_105bda17;
+#namespace zm_bgb_fear_in_headlights;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0x4C8117F5
 	Offset: 0x158
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0x73A1C36B
 	Offset: 0x198
 	Size: 0x3B

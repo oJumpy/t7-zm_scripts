@@ -57,7 +57,7 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self waittill("zm_bgb_unbearable", e_chest);
 	self bgb::do_one_shot_use(1);
 	e_chest thread respin_chest_thread(self);

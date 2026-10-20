@@ -33,11 +33,11 @@
 #using scripts\zm\zm_zod_util;
 #using scripts\zm\zm_zod_vo;
 
-#namespace namespace_1f61c67f;
+#namespace zm_zod_quest;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xE1EBCAA8
 	Offset: 0x1610
 	Size: 0x33
@@ -51,7 +51,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xECFA08C2
 	Offset: 0x1650
 	Size: 0xDFB
@@ -167,7 +167,7 @@ function __init__()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x3036E93C
 	Offset: 0x2458
 	Size: 0x1B
@@ -181,7 +181,7 @@ function on_player_connect()
 
 /*
 	Name: function_f7d960ba
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x2D8D0BF3
 	Offset: 0x2480
 	Size: 0x45
@@ -198,7 +198,7 @@ function function_f7d960ba()
 
 /*
 	Name: function_70a7429b
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xEC5E93FE
 	Offset: 0x24D0
 	Size: 0x143
@@ -226,7 +226,7 @@ function function_70a7429b(var_25bc1c51)
 
 /*
 	Name: start_zod_quest
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xA9514938
 	Offset: 0x2620
 	Size: 0x1C3
@@ -268,7 +268,7 @@ function start_zod_quest()
 
 /*
 	Name: prevent_theater_mode_spoilers
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x346498AB
 	Offset: 0x27F0
 	Size: 0x63
@@ -284,7 +284,7 @@ function prevent_theater_mode_spoilers()
 
 /*
 	Name: function_ffcfbd77
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xA8F7103F
 	Offset: 0x2860
 	Size: 0xF9
@@ -303,7 +303,7 @@ function function_ffcfbd77()
 
 /*
 	Name: setup_quest_key
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x39AF3FF6
 	Offset: 0x2968
 	Size: 0xBB
@@ -322,7 +322,7 @@ function setup_quest_key()
 
 /*
 	Name: create_quest_key_pickup_unitrigger
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x718DE5A8
 	Offset: 0x2A30
 	Size: 0x1B3
@@ -350,7 +350,7 @@ function create_quest_key_pickup_unitrigger(mdl_key)
 
 /*
 	Name: quest_key_trigger_visibility
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x99EC780B
 	Offset: 0x2BF0
 	Size: 0x99
@@ -367,7 +367,7 @@ function quest_key_trigger_visibility(player)
 
 /*
 	Name: quest_key_trigger_think
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x34AC52
 	Offset: 0x2C98
 	Size: 0xD3
@@ -392,7 +392,7 @@ function quest_key_trigger_think()
 			continue;
 		}
 		player playsound("zmb_zod_key_pickup");
-		player thread namespace_b8707f8e::function_53b96c8f();
+		player thread zm_zod_vo::function_53b96c8f();
 		level thread quest_key_trigger_pickup(self.stub);
 		break;
 	}
@@ -400,7 +400,7 @@ function quest_key_trigger_think()
 
 /*
 	Name: quest_key_trigger_pickup
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xC4E089EC
 	Offset: 0x2D78
 	Size: 0x153
@@ -416,8 +416,8 @@ function quest_key_trigger_pickup(trig_stub)
 	{
 		if(zm_utility::is_player_valid(player))
 		{
-			player thread namespace_8e578893::function_55f114f9("zmInventory.widget_quest_items", 3.5);
-			player thread namespace_8e578893::show_infotext_for_duration("ZM_ZOD_UI_SUMMONING_KEY_PICKUP", 3.5);
+			player thread zm_zod_util::function_55f114f9("zmInventory.widget_quest_items", 3.5);
+			player thread zm_zod_util::show_infotext_for_duration("ZM_ZOD_UI_SUMMONING_KEY_PICKUP", 3.5);
 		}
 	}
 	set_key_availability(1);
@@ -426,7 +426,7 @@ function quest_key_trigger_pickup(trig_stub)
 
 /*
 	Name: setup_personal_items
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x1F709FBA
 	Offset: 0x2ED8
 	Size: 0x63
@@ -437,13 +437,13 @@ function setup_personal_items()
 {
 	level thread personal_item_junction();
 	level thread personal_item_canal();
-	level thread function_fb535224();
+	level thread keeper_sword_locker();
 	level thread burlesque_door();
 }
 
 /*
 	Name: personal_item_junction
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x32559FF8
 	Offset: 0x2F48
 	Size: 0x63
@@ -460,7 +460,7 @@ function personal_item_junction()
 
 /*
 	Name: personal_item_canal
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xB00F9A17
 	Offset: 0x2FB8
 	Size: 0xF9
@@ -479,7 +479,7 @@ function personal_item_canal()
 
 /*
 	Name: burlesque_door
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x7A1A4C68
 	Offset: 0x30C0
 	Size: 0x143
@@ -500,15 +500,15 @@ function burlesque_door()
 }
 
 /*
-	Name: function_fb535224
-	Namespace: namespace_1f61c67f
+	Name: keeper_sword_locker
+	Namespace: zm_zod_quest
 	Checksum: 0x13D3F190
 	Offset: 0x3210
 	Size: 0x133
 	Parameters: 0
 	Flags: None
 */
-function function_fb535224()
+function keeper_sword_locker()
 {
 	e_door = GetEnt("keeper_sword_locker", "targetname");
 	e_door_clip = GetEnt("keeper_sword_locker_clip", "targetname");
@@ -525,7 +525,7 @@ function function_fb535224()
 
 /*
 	Name: reveal_personal_item
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x1A367952
 	Offset: 0x3350
 	Size: 0x223
@@ -573,7 +573,7 @@ function reveal_personal_item(str_id)
 
 /*
 	Name: function_984725d6
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xE0095362
 	Offset: 0x3580
 	Size: 0x2B3
@@ -594,7 +594,7 @@ function function_984725d6(str_name)
 	function_12370901("keeper_spawn_portals", n_place_index, 1);
 	wait(2.5);
 	a_spawn_points = struct::get_array("memento_spawn_point_" + str_name);
-	level thread namespace_b8707f8e::vo_keepers_arrive(a_spawn_points);
+	level thread zm_zod_vo::vo_keepers_arrive(a_spawn_points);
 	var_4480cf29 = [];
 	foreach(s_spawn_point in a_spawn_points)
 	{
@@ -625,7 +625,7 @@ function function_984725d6(str_name)
 
 /*
 	Name: function_58fe842c
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x8FD196E9
 	Offset: 0x3840
 	Size: 0x2C1
@@ -645,7 +645,7 @@ function function_58fe842c()
 			level clientfield::set("keeper_subway_fx", 1);
 			wait(2.5);
 			a_spawn_points = struct::get_array("keeper_spawn_point_subway");
-			level thread namespace_b8707f8e::vo_keepers_arrive(a_spawn_points);
+			level thread zm_zod_vo::vo_keepers_arrive(a_spawn_points);
 			var_4480cf29 = [];
 			foreach(s_spawn_point in a_spawn_points)
 			{
@@ -675,7 +675,7 @@ function function_58fe842c()
 
 /*
 	Name: function_7965975d
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xC565942C
 	Offset: 0x3B10
 	Size: 0xCD
@@ -697,14 +697,14 @@ function function_7965975d(a_e_keepers)
 		}
 		wait(0.05);
 	}
-	thread namespace_b8707f8e::function_93f0e7bd();
+	thread zm_zod_vo::function_93f0e7bd();
 	level.var_a80c1a9a = 1;
 	level notify("hash_2403fc5b");
 }
 
 /*
 	Name: function_12370901
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x90E2BCA4
 	Offset: 0x3BE8
 	Size: 0x93
@@ -727,7 +727,7 @@ function function_12370901(str_fieldname, n_place_index, b_on)
 
 /*
 	Name: function_411c908f
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x99EC1590
 	Offset: 0x3C88
 	Size: 0x3
@@ -740,7 +740,7 @@ function function_411c908f()
 
 /*
 	Name: function_2d0c5aa1
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xF8AF291B
 	Offset: 0x3C98
 	Size: 0x283
@@ -785,7 +785,7 @@ function function_2d0c5aa1(s_spawn_point)
 
 /*
 	Name: function_efbd4abf
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xEAE583BD
 	Offset: 0x3F28
 	Size: 0xA3
@@ -799,9 +799,9 @@ function function_efbd4abf(ai_zombie, s_spawn_point)
 	{
 		ai_zombie clientfield::set("keeper_fx", 0);
 	}
-	if(isdefined(s_spawn_point.var_e93843aa))
+	if(isdefined(s_spawn_point.zombie_use_failsafe_loop))
 	{
-		s_spawn_point.var_e93843aa--;
+		s_spawn_point.zombie_use_failsafe_loop--;
 	}
 	util::wait_network_frame();
 	if(isdefined(ai_zombie))
@@ -812,7 +812,7 @@ function function_efbd4abf(ai_zombie, s_spawn_point)
 
 /*
 	Name: function_b4c88128
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xDE3DF312
 	Offset: 0x3FD8
 	Size: 0x55
@@ -844,7 +844,7 @@ function function_b4c88128(str_name)
 
 /*
 	Name: setup_defend_areas
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xCBB14295
 	Offset: 0x4038
 	Size: 0x2EF
@@ -876,7 +876,7 @@ function setup_defend_areas()
 
 /*
 	Name: setup_defend_area
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xCF75DCA4
 	Offset: 0x4330
 	Size: 0x157
@@ -898,7 +898,7 @@ function setup_defend_area(str_name)
 
 /*
 	Name: function_b35b6cb3
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x17815112
 	Offset: 0x4490
 	Size: 0xB
@@ -911,7 +911,7 @@ function function_b35b6cb3(State)
 
 /*
 	Name: set_key_availability
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x6D0622B1
 	Offset: 0x44A8
 	Size: 0x11D
@@ -927,7 +927,7 @@ System.ArgumentException: Expecting While Loop At FirstArrayKey
 
 /*
 	Name: ritual_prereq
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xC6E973C
 	Offset: 0x45D0
 	Size: 0x189
@@ -969,7 +969,7 @@ function ritual_prereq(str_name)
 
 /*
 	Name: ritual_start
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xEDA7431A
 	Offset: 0x4768
 	Size: 0x4C3
@@ -999,7 +999,7 @@ function ritual_start(str_name, e_triggerer)
 	else
 	{
 		level.var_9bc9c61f = str_name;
-		level thread namespace_b8707f8e::vo_ritual_start(str_name);
+		level thread zm_zod_vo::vo_ritual_start(str_name);
 	}
 	set_key_availability(0);
 	switch(str_name)
@@ -1070,7 +1070,7 @@ function ritual_start(str_name, e_triggerer)
 
 /*
 	Name: ritual_end
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x7489471E
 	Offset: 0x4C38
 	Size: 0x10D
@@ -1091,7 +1091,7 @@ function ritual_end()
 
 /*
 	Name: ritual_think
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xE90DB769
 	Offset: 0x4D50
 	Size: 0x29B
@@ -1120,19 +1120,19 @@ function ritual_think(str_name)
 		level clientfield::set("ritual_progress", ritual_current_progress);
 		if(ritual_current_progress >= 0.2 && ritual_current_progress < 0.45 && !var_9e663a06)
 		{
-			var_9e663a06 = namespace_b8707f8e::function_335f3a81(0, var_8df092ed);
+			var_9e663a06 = zm_zod_vo::function_335f3a81(0, var_8df092ed);
 		}
 		else if(ritual_current_progress >= 0.45 && ritual_current_progress < 0.7 && !var_c468b46f)
 		{
-			var_c468b46f = namespace_b8707f8e::function_335f3a81(1, var_8df092ed);
+			var_c468b46f = zm_zod_vo::function_335f3a81(1, var_8df092ed);
 		}
 		else if(ritual_current_progress >= 0.7 && ritual_current_progress < 0.9 && !var_52614534)
 		{
-			var_52614534 = namespace_b8707f8e::function_335f3a81(2, var_8df092ed);
+			var_52614534 = zm_zod_vo::function_335f3a81(2, var_8df092ed);
 		}
 		else if(ritual_current_progress >= 0.9 && !var_7863bf9d)
 		{
-			var_7863bf9d = namespace_b8707f8e::function_335f3a81(3, var_8df092ed);
+			var_7863bf9d = zm_zod_vo::function_335f3a81(3, var_8df092ed);
 		}
 		wait(0.05);
 	}
@@ -1140,7 +1140,7 @@ function ritual_think(str_name)
 
 /*
 	Name: function_cc04ada
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xD59C115E
 	Offset: 0x4FF8
 	Size: 0x47
@@ -1156,7 +1156,7 @@ function function_cc04ada(var_bfb1dae2, var_d135f7ae)
 
 /*
 	Name: function_5e98a0b6
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x5D99BD01
 	Offset: 0x5048
 	Size: 0x149
@@ -1205,7 +1205,7 @@ function function_5e98a0b6(str_name)
 
 /*
 	Name: ritual_succeed
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x23A1CC8B
 	Offset: 0x51A0
 	Size: 0x33B
@@ -1252,7 +1252,7 @@ function ritual_succeed(str_name, var_6ec814a1)
 			mdl_relic.origin = s_body.origin;
 			mdl_relic clientfield::set("item_glow_fx", 2);
 		}
-		level thread namespace_b8707f8e::function_17f92643();
+		level thread zm_zod_vo::function_17f92643();
 		set_key_availability(1);
 	}
 	/#
@@ -1261,7 +1261,7 @@ function ritual_succeed(str_name, var_6ec814a1)
 
 /*
 	Name: function_b600b7f6
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xA32C2037
 	Offset: 0x54E8
 	Size: 0xEB
@@ -1285,7 +1285,7 @@ function function_b600b7f6(str_name)
 
 /*
 	Name: ritual_fail
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x734C1520
 	Offset: 0x55E0
 	Size: 0x1BB
@@ -1319,7 +1319,7 @@ function ritual_fail(str_name)
 
 /*
 	Name: set_ritual_barrier
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x4B9EB299
 	Offset: 0x57A8
 	Size: 0x199
@@ -1346,7 +1346,7 @@ function set_ritual_barrier(str_name, b_on)
 
 /*
 	Name: get_enum_from_name
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x8A554C16
 	Offset: 0x5950
 	Size: 0x63
@@ -1383,7 +1383,7 @@ function get_enum_from_name(str_name)
 
 /*
 	Name: ritual_pap_succeed
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xCD8609DE
 	Offset: 0x59C0
 	Size: 0x453
@@ -1421,7 +1421,7 @@ function ritual_pap_succeed()
 		}
 	}
 	function_a6838c4f();
-	level thread namespace_b8707f8e::vo_ritual_pap_succeed();
+	level thread zm_zod_vo::vo_ritual_pap_succeed();
 	level util::waittill_any_timeout(20, "vo_ritual_pap_succeed_done");
 	level thread function_b600b7f6("pap");
 	/#
@@ -1436,7 +1436,7 @@ function ritual_pap_succeed()
 
 /*
 	Name: ritual_pap_fail
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x99732E6F
 	Offset: 0x5E20
 	Size: 0x3F
@@ -1452,7 +1452,7 @@ function ritual_pap_fail()
 
 /*
 	Name: get_completed_ritual_count
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x6A6DF4AD
 	Offset: 0x5E68
 	Size: 0xB7
@@ -1487,7 +1487,7 @@ function get_completed_ritual_count()
 
 /*
 	Name: setup_pap_door
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x7B8CB3B0
 	Offset: 0x5F28
 	Size: 0x433
@@ -1497,11 +1497,11 @@ function get_completed_ritual_count()
 function setup_pap_door()
 {
 	e_pap_door = GetEnt("pap_door", "targetname");
-	var_a31f9f88 = GetEnt("e_pap_door_brick_chunk1", "targetname");
-	var_15270ec3 = GetEnt("e_pap_door_brick_chunk2", "targetname");
+	e_pap_door_brick_chunk1 = GetEnt("e_pap_door_brick_chunk1", "targetname");
+	e_pap_door_brick_chunk2 = GetEnt("e_pap_door_brick_chunk2", "targetname");
 	e_pap_door_clip = GetEnt("pap_door_clip", "targetname");
-	var_a31f9f88 thread clientfield::set("set_subway_wall_dissolve", 1);
-	var_15270ec3 thread clientfield::set("set_subway_wall_dissolve", 1);
+	e_pap_door_brick_chunk1 thread clientfield::set("set_subway_wall_dissolve", 1);
+	e_pap_door_brick_chunk2 thread clientfield::set("set_subway_wall_dissolve", 1);
 	e_pap_door HidePart("tag_ritual_key_on");
 	e_pap_door ShowPart("tag_ritual_key_off");
 	exploder::exploder("fx_exploder_ritual_pap_wall_smk");
@@ -1520,20 +1520,20 @@ function setup_pap_door()
 	e_pap_door SetInvisibleToAll();
 	e_pap_door playsound("zmb_zod_pap_wall_explode");
 	exploder::exploder("fx_exploder_ritual_pap_wall_explo");
-	var_a31f9f88 thread clientfield::set("set_subway_wall_dissolve", 0);
-	var_15270ec3 thread clientfield::set("set_subway_wall_dissolve", 0);
+	e_pap_door_brick_chunk1 thread clientfield::set("set_subway_wall_dissolve", 0);
+	e_pap_door_brick_chunk2 thread clientfield::set("set_subway_wall_dissolve", 0);
 	wait(3.5);
 	e_pap_door_clip connectpaths();
 	e_pap_door delete();
 	e_pap_door_clip delete();
 	exploder::stop_exploder("fx_exploder_ritual_pap_wall_smk");
-	var_a31f9f88 delete();
-	var_15270ec3 delete();
+	e_pap_door_brick_chunk1 delete();
+	e_pap_door_brick_chunk2 delete();
 }
 
 /*
 	Name: pap_door_watch_for_ritual
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x7B88E5B7
 	Offset: 0x6368
 	Size: 0x143
@@ -1554,7 +1554,7 @@ function pap_door_watch_for_ritual(str_name)
 
 /*
 	Name: pap_door_watch_for_explosion
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xA38A1FE4
 	Offset: 0x64B8
 	Size: 0x16F
@@ -1572,11 +1572,11 @@ function pap_door_watch_for_explosion()
 		{
 			if(zombie_utility::is_player_valid(player) && player istouching(t_pap_door))
 			{
-				player namespace_8e578893::set_rumble_to_player(5);
+				player zm_zod_util::set_rumble_to_player(5);
 				wait(1);
 				if(isdefined(player))
 				{
-					player namespace_8e578893::set_rumble_to_player(0);
+					player zm_zod_util::set_rumble_to_player(0);
 				}
 				level flag::set("pap_door_open");
 				return;
@@ -1588,7 +1588,7 @@ function pap_door_watch_for_explosion()
 
 /*
 	Name: setup_pap_chamber
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xA4005734
 	Offset: 0x6630
 	Size: 0x1B3
@@ -1612,12 +1612,12 @@ function setup_pap_chamber()
 	a_flags = Array("pap_basin_2", "pap_basin_3");
 	level thread watch_central_traversal(a_flags);
 	level thread function_ae395e41(a_flags);
-	level thread function_d6a52a8a();
+	level thread pap_chasm_killtrigger();
 }
 
 /*
 	Name: create_ritual_unitrigger
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x5BB41F05
 	Offset: 0x67F0
 	Size: 0x239
@@ -1652,7 +1652,7 @@ function create_ritual_unitrigger(str_flag, hint_string, func_trigger_visibility
 
 /*
 	Name: basin_trigger_visibility
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xAD0FC25C
 	Offset: 0x6A38
 	Size: 0x111
@@ -1680,7 +1680,7 @@ function basin_trigger_visibility(player)
 
 /*
 	Name: altar_trigger_visibility
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xCCD231C7
 	Offset: 0x6B58
 	Size: 0x121
@@ -1712,7 +1712,7 @@ function altar_trigger_visibility(player)
 
 /*
 	Name: are_all_basins_filled
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xA5420858
 	Offset: 0x6C88
 	Size: 0x57
@@ -1733,7 +1733,7 @@ function are_all_basins_filled()
 
 /*
 	Name: clear_all_basins
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xEE3B6521
 	Offset: 0x6CE8
 	Size: 0x4D
@@ -1750,7 +1750,7 @@ function clear_all_basins()
 
 /*
 	Name: is_holding_relic
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x70FD60C4
 	Offset: 0x6D40
 	Size: 0x241
@@ -1788,7 +1788,7 @@ function is_holding_relic(characterindex)
 
 /*
 	Name: function_7839dceb
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xDAC39F8F
 	Offset: 0x6F90
 	Size: 0xA7
@@ -1811,7 +1811,7 @@ function function_7839dceb()
 
 /*
 	Name: get_character_name_from_index
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xBC1F9ED9
 	Offset: 0x7040
 	Size: 0x5D
@@ -1843,7 +1843,7 @@ function get_character_name_from_index(n_character_index)
 
 /*
 	Name: function_7130d103
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x8976E17F
 	Offset: 0x70A8
 	Size: 0x5D
@@ -1875,7 +1875,7 @@ function function_7130d103(n_character_index)
 
 /*
 	Name: basin_trigger_thread
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xC4191ACF
 	Offset: 0x7110
 	Size: 0x29B
@@ -1899,9 +1899,9 @@ function basin_trigger_thread()
 			str_flag = self.stub.str_flag;
 			level flag::set(str_flag);
 			function_5eb042a7(str_flag, str_gateworm_held, 1);
-			e_triggerer thread namespace_8e578893::set_rumble_to_player(6, 1);
+			e_triggerer thread zm_zod_util::set_rumble_to_player(6, 1);
 			Earthquake(0.35, 0.3, e_triggerer.origin, 150);
-			e_triggerer thread namespace_b8707f8e::function_24b80509();
+			e_triggerer thread zm_zod_vo::function_24b80509();
 			level clientfield::set("holder_of_" + zm_zod_craftables::get_character_name_from_value(str_gateworm_held), 0);
 			e_triggerer zm_craftables::player_remove_craftable_piece("ritual_pap", "relic_" + zm_zod_craftables::get_character_name_from_value(str_gateworm_held));
 			level clientfield::set("quest_state_" + zm_zod_craftables::get_character_name_from_value(str_gateworm_held), 5);
@@ -1922,7 +1922,7 @@ function basin_trigger_thread()
 
 /*
 	Name: function_5eb042a7
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x93376628
 	Offset: 0x73B8
 	Size: 0x1FB
@@ -1961,7 +1961,7 @@ function function_5eb042a7(str_flag, str_gateworm_held, b_is_active)
 
 /*
 	Name: get_worm_basin
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x22E07595
 	Offset: 0x75C0
 	Size: 0xC3
@@ -1982,7 +1982,7 @@ function get_worm_basin(str_flag)
 
 /*
 	Name: watch_wallrun
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x9E927C41
 	Offset: 0x7690
 	Size: 0x247
@@ -2029,7 +2029,7 @@ function watch_wallrun(b_is_left, str_flag)
 
 /*
 	Name: set_frieze_power
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x3F56C2AF
 	Offset: 0x78E0
 	Size: 0x21B
@@ -2069,7 +2069,7 @@ function set_frieze_power(b_is_left, b_on)
 
 /*
 	Name: function_7107ea51
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x765F8D6F
 	Offset: 0x7B08
 	Size: 0x17D
@@ -2088,7 +2088,7 @@ function function_7107ea51(mdl_animating, var_4539ae4a)
 		{
 			if(zombie_utility::is_player_valid(player) && Distance2DSquared(player.origin, var_4539ae4a.origin) < 262144)
 			{
-				player namespace_8e578893::set_rumble_to_player(6, 0.25);
+				player zm_zod_util::set_rumble_to_player(6, 0.25);
 			}
 		}
 	}
@@ -2096,7 +2096,7 @@ function function_7107ea51(mdl_animating, var_4539ae4a)
 
 /*
 	Name: gatestone_increment_power
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xACB1D675
 	Offset: 0x7C90
 	Size: 0x43
@@ -2113,7 +2113,7 @@ function gatestone_increment_power()
 
 /*
 	Name: gatestone_decrement_power
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x6BC6D3B8
 	Offset: 0x7CE0
 	Size: 0x43
@@ -2130,7 +2130,7 @@ function gatestone_decrement_power()
 
 /*
 	Name: gatestone_set_power
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x26C453E
 	Offset: 0x7D30
 	Size: 0x53
@@ -2147,7 +2147,7 @@ function gatestone_set_power(n_power_level)
 
 /*
 	Name: gatestone_deactivate_power_level_indicator
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xE95F76F4
 	Offset: 0x7D90
 	Size: 0x4B
@@ -2164,7 +2164,7 @@ function gatestone_deactivate_power_level_indicator()
 
 /*
 	Name: gatestone_activate_power_level_indicator
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x68BDC6F3
 	Offset: 0x7DE8
 	Size: 0x6B
@@ -2181,7 +2181,7 @@ function gatestone_activate_power_level_indicator()
 
 /*
 	Name: update_chasm_awakening_vfx
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xF7545882
 	Offset: 0x7E60
 	Size: 0x53
@@ -2202,7 +2202,7 @@ function update_chasm_awakening_vfx()
 
 /*
 	Name: monitor_wallrun_trigger
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x9ED48652
 	Offset: 0x7EC0
 	Size: 0x6F
@@ -2223,7 +2223,7 @@ function monitor_wallrun_trigger(t_wallrun)
 
 /*
 	Name: enable_wallrun
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x8FB76BDD
 	Offset: 0x7F38
 	Size: 0x9F
@@ -2249,7 +2249,7 @@ function enable_wallrun(t_trigger)
 
 /*
 	Name: watch_island
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x6AF71DA7
 	Offset: 0x7FE0
 	Size: 0x1B7
@@ -2285,7 +2285,7 @@ function watch_island(b_is_near, str_flag)
 
 /*
 	Name: function_c3e5d4f
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xB98271AF
 	Offset: 0x81A0
 	Size: 0x243
@@ -2327,7 +2327,7 @@ function function_c3e5d4f(b_is_near, b_on)
 
 /*
 	Name: watch_central_traversal
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x37FCF242
 	Offset: 0x83F0
 	Size: 0x16F
@@ -2353,15 +2353,15 @@ function watch_central_traversal(a_flags)
 }
 
 /*
-	Name: function_d6a52a8a
-	Namespace: namespace_1f61c67f
+	Name: pap_chasm_killtrigger
+	Namespace: zm_zod_quest
 	Checksum: 0xCC7A616D
 	Offset: 0x8568
 	Size: 0x1EF
 	Parameters: 0
 	Flags: None
 */
-function function_d6a52a8a()
+function pap_chasm_killtrigger()
 {
 	t_kill = GetEnt("pap_chasm_killtrigger", "targetname");
 	level thread function_64cb1f9b("pap_chasm_side_far", 1);
@@ -2392,7 +2392,7 @@ function function_d6a52a8a()
 
 /*
 	Name: function_64cb1f9b
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x3B86C20
 	Offset: 0x8760
 	Size: 0x93
@@ -2414,7 +2414,7 @@ function function_64cb1f9b(str_trigger_name, var_f8826470)
 
 /*
 	Name: host_migration_listener
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x99EC1590
 	Offset: 0x8800
 	Size: 0x3
@@ -2427,7 +2427,7 @@ function host_migration_listener()
 
 /*
 	Name: track_quest_status_thread
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x99EC1590
 	Offset: 0x8810
 	Size: 0x3
@@ -2440,7 +2440,7 @@ function track_quest_status_thread()
 
 /*
 	Name: player_death_watcher
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xC8A32922
 	Offset: 0x8820
 	Size: 0x53
@@ -2463,7 +2463,7 @@ function player_death_watcher()
 
 /*
 	Name: quest_devgui
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x1F63159F
 	Offset: 0x8880
 	Size: 0x23B
@@ -2473,22 +2473,22 @@ function player_death_watcher()
 function quest_devgui()
 {
 	/#
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_dc59b750);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &namespace_81256d2f::function_3f95af32);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_7dda8ea9);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_6c6a5914);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_c0a29676);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_546835a);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_832e2eaa);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_11a2ca3b);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_1dadcc76);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_150df737);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_dc59b750);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &zm_zod_pods::function_3f95af32);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_7dda8ea9);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_6c6a5914);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_c0a29676);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_546835a);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_832e2eaa);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_11a2ca3b);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_1dadcc76);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_150df737);
 	#/
 }
 
 /*
 	Name: function_150df737
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x1182FFD8
 	Offset: 0x8AC8
 	Size: 0x5B
@@ -2503,7 +2503,7 @@ function function_150df737(n_val)
 
 /*
 	Name: function_6c6a5914
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xE992965C
 	Offset: 0x8B30
 	Size: 0x129
@@ -2513,7 +2513,7 @@ function function_150df737(n_val)
 function function_6c6a5914(n_val)
 {
 	level clientfield::set("devgui_gateworm", 1);
-	level thread namespace_81256d2f::function_2947f395();
+	level thread zm_zod_pods::function_2947f395();
 	hidemiscmodels("robot_model");
 	level flag::set("police_box_hide");
 	a_mdl_readouts = GetEntArray("robot_readout_model", "targetname");
@@ -2525,7 +2525,7 @@ function function_6c6a5914(n_val)
 
 /*
 	Name: function_546835a
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xE938EC95
 	Offset: 0x8C68
 	Size: 0x73
@@ -2543,7 +2543,7 @@ function function_546835a(n_val)
 
 /*
 	Name: function_832e2eaa
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xB0FD5BC2
 	Offset: 0x8CE8
 	Size: 0x33
@@ -2558,7 +2558,7 @@ function function_832e2eaa(n_val)
 
 /*
 	Name: function_c0a29676
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x6E0F689D
 	Offset: 0x8D28
 	Size: 0x26B
@@ -2592,7 +2592,7 @@ function function_c0a29676()
 
 /*
 	Name: function_11a2ca3b
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x28C38D41
 	Offset: 0x8FA0
 	Size: 0x43
@@ -2612,7 +2612,7 @@ function function_11a2ca3b(VAL)
 
 /*
 	Name: function_1dadcc76
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x96CCC3E5
 	Offset: 0x8FF0
 	Size: 0x3B
@@ -2632,7 +2632,7 @@ function function_1dadcc76(VAL)
 
 /*
 	Name: function_861cf6b3
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x920A8C27
 	Offset: 0x9038
 	Size: 0x6D
@@ -2650,7 +2650,7 @@ function function_861cf6b3()
 
 /*
 	Name: function_7dda8ea9
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x8477A574
 	Offset: 0x90B0
 	Size: 0x2B
@@ -2664,7 +2664,7 @@ function function_7dda8ea9(n_val)
 
 /*
 	Name: function_dc59b750
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x6193B9E4
 	Offset: 0x90E8
 	Size: 0x23
@@ -2678,7 +2678,7 @@ function function_dc59b750(n_val)
 
 /*
 	Name: function_83c8b6e8
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x36880276
 	Offset: 0x9118
 	Size: 0x18B
@@ -2703,7 +2703,7 @@ function function_83c8b6e8()
 
 /*
 	Name: function_a6838c4f
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x862DF713
 	Offset: 0x92B0
 	Size: 0x89
@@ -2723,7 +2723,7 @@ function function_a6838c4f()
 
 /*
 	Name: function_5630c228
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x2DC80E95
 	Offset: 0x9348
 	Size: 0x42B
@@ -2777,7 +2777,7 @@ function function_5630c228(player, trigger, origin_offset, angles_offset)
 
 /*
 	Name: function_ea272f07
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x55E521BE
 	Offset: 0x9780
 	Size: 0x43B
@@ -2832,7 +2832,7 @@ function function_ea272f07(player, t_trigger, origin_offset, interact_offset)
 
 /*
 	Name: function_f46eb6f9
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x7F436620
 	Offset: 0x9BC8
 	Size: 0x3B
@@ -2848,7 +2848,7 @@ function function_f46eb6f9()
 
 /*
 	Name: function_b99f7d2b
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x44372806
 	Offset: 0x9C10
 	Size: 0x3B
@@ -2864,7 +2864,7 @@ function function_b99f7d2b()
 
 /*
 	Name: function_4de2af97
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xB0AA7FB5
 	Offset: 0x9C58
 	Size: 0x9B
@@ -2883,7 +2883,7 @@ function function_4de2af97(e_tentacle, var_3acfce06)
 
 /*
 	Name: function_e94f1c9c
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x5F5789A9
 	Offset: 0x9D00
 	Size: 0x43
@@ -2900,7 +2900,7 @@ function function_e94f1c9c(e_tentacle)
 
 /*
 	Name: function_2934e5d0
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x2080EC0E
 	Offset: 0x9D50
 	Size: 0x4B
@@ -2916,7 +2916,7 @@ function function_2934e5d0(t_trigger)
 
 /*
 	Name: function_c7ea04e6
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xF284BCF5
 	Offset: 0x9DA8
 	Size: 0x3B
@@ -2932,7 +2932,7 @@ function function_c7ea04e6()
 
 /*
 	Name: function_81e2f06e
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x4E6BBE2F
 	Offset: 0x9DF0
 	Size: 0x43
@@ -2948,7 +2948,7 @@ function function_81e2f06e(notify1, alias, notify2)
 
 /*
 	Name: function_ae395e41
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x12793410
 	Offset: 0x9E40
 	Size: 0xD5
@@ -2971,7 +2971,7 @@ function function_ae395e41(a_flags)
 
 /*
 	Name: function_b62ad2c
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0xF9F8190F
 	Offset: 0x9F20
 	Size: 0x177
@@ -3005,7 +3005,7 @@ function function_b62ad2c()
 
 /*
 	Name: function_15f1b929
-	Namespace: namespace_1f61c67f
+	Namespace: zm_zod_quest
 	Checksum: 0x8C14E5B4
 	Offset: 0xA0A0
 	Size: 0xF

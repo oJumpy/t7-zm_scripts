@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_1b7b1237;
+#namespace zm_bgb_perkaholic;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1b7b1237
+	Namespace: zm_bgb_perkaholic
 	Checksum: 0xE6504199
 	Offset: 0x140
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1b7b1237
+	Namespace: zm_bgb_perkaholic
 	Checksum: 0x30BE19CD
 	Offset: 0x180
 	Size: 0x3B

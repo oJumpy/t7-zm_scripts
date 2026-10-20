@@ -164,8 +164,8 @@ function setup_dogfights()
 		var_e1149395.var_76d4be72 = "animation_plane_1_done";
 		var_7170dfe.var_76d4be72 = "animation_plane_2_done";
 		level.var_1766c187 = 0;
-		var_e1149395 thread function_b6165329();
-		var_7170dfe thread function_b6165329();
+		var_e1149395 thread play_dogfights();
+		var_7170dfe thread play_dogfights();
 		level thread function_511ab91d();
 	}
 	else
@@ -176,7 +176,7 @@ function setup_dogfights()
 }
 
 /*
-	Name: function_b6165329
+	Name: play_dogfights
 	Namespace: zm_tomb_ambient_scripts
 	Checksum: 0x8CBBD44E
 	Offset: 0xA08
@@ -184,7 +184,7 @@ function setup_dogfights()
 	Parameters: 0
 	Flags: None
 */
-function function_b6165329()
+function play_dogfights()
 {
 	while(1)
 	{

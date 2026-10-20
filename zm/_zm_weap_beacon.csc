@@ -26,7 +26,7 @@ function init()
 	clientfield::register("world", "play_launch_artillery_fx_robot_1", 21000, 1, "int", &play_artillery_fx, 0, 0);
 	clientfield::register("world", "play_launch_artillery_fx_robot_2", 21000, 1, "int", &play_artillery_fx, 0, 0);
 	clientfield::register("scriptmover", "play_beacon_fx", 21000, 1, "int", &play_beacon_glow, 0, 0);
-	clientfield::register("scriptmover", "play_artillery_barrage", 21000, 2, "int", &function_1e3322d1, 0, 0);
+	clientfield::register("scriptmover", "play_artillery_barrage", 21000, 2, "int", &play_artillery_barrage, 0, 0);
 }
 
 /*
@@ -99,7 +99,7 @@ function play_beacon_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_1e3322d1
+	Name: play_artillery_barrage
 	Namespace: _zm_weap_beacon
 	Checksum: 0x58BCE7C3
 	Offset: 0x808
@@ -107,7 +107,7 @@ function play_beacon_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	Parameters: 7
 	Flags: None
 */
-function function_1e3322d1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function play_artillery_barrage(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 0)
 	{

@@ -8,11 +8,11 @@
 #using scripts\zm\_zm;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_d6b63386;
+#namespace zm_weap_black_hole_bomb;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xD9F187AC
 	Offset: 0x390
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x99639D8E
 	Offset: 0x3D0
 	Size: 0x1BB
@@ -45,21 +45,21 @@ function __init__()
 	level._visionset_black_hole_bomb_transition_time_out = 1;
 	level._visionset_black_hole_bomb_priority = 10;
 	visionset_mgr::register_visionset_info("zombie_cosmodrome_blackhole", 21000, 30, undefined, "zombie_cosmodrome_blackhole");
-	clientfield::register("toplayer", "bhb_viewlights", 21000, 2, "int", &function_2076deb2, 0, 0);
+	clientfield::register("toplayer", "bhb_viewlights", 21000, 2, "int", &bhb_viewlights, 0, 0);
 	clientfield::register("scriptmover", "toggle_black_hole_deployed", 21000, 1, "int", &black_hole_deployed, 0, 0);
 	clientfield::register("actor", "toggle_black_hole_being_pulled", 21000, 1, "int", &black_hole_zombie_being_pulled, 0, 1);
 }
 
 /*
-	Name: function_2076deb2
-	Namespace: namespace_d6b63386
+	Name: bhb_viewlights
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x9279E2E
 	Offset: 0x598
 	Size: 0xA3
 	Parameters: 7
 	Flags: None
 */
-function function_2076deb2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function bhb_viewlights(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -73,7 +73,7 @@ function function_2076deb2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: black_hole_deployed
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0xB700AC6D
 	Offset: 0x648
 	Size: 0xAD
@@ -95,7 +95,7 @@ function black_hole_deployed(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 
 /*
 	Name: black_hole_fx_start
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x676C55A0
 	Offset: 0x700
 	Size: 0x223
@@ -125,7 +125,7 @@ function black_hole_fx_start(local_client_num, ent_bomb)
 
 /*
 	Name: black_hole_activated
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x736C08E2
 	Offset: 0x930
 	Size: 0xA3
@@ -145,7 +145,7 @@ function black_hole_activated(ent_model, int_local_client_num)
 
 /*
 	Name: black_hole_zombie_being_pulled
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x932D1D94
 	Offset: 0x9E0
 	Size: 0x1E3
@@ -183,7 +183,7 @@ function black_hole_zombie_being_pulled(localClientNum, oldVal, newVal, bNewEnt,
 
 /*
 	Name: black_hole_bomb_pulled_in_fx_clean
-	Namespace: namespace_d6b63386
+	Namespace: zm_weap_black_hole_bomb
 	Checksum: 0x748EE14D
 	Offset: 0xBD0
 	Size: 0x5B

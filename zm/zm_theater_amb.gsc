@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_audio;
 #using scripts\zm\_zm_audio_zhd;
 
-#namespace namespace_6d4f3e39;
+#namespace zm_theater_amb;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xDC89D6E2
 	Offset: 0x410
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x6EF5503E
 	Offset: 0x450
 	Size: 0x33
@@ -41,7 +41,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xE4E4FEB8
 	Offset: 0x490
 	Size: 0x257
@@ -55,11 +55,11 @@ function main()
 	level thread play_projecter_soundtrack();
 	level thread setup_meteor_audio();
 	level thread setup_radio_egg_audio();
-	level thread function_e11d1d5c();
+	level thread sndzhd_knocker();
 	Array::thread_all(GetEntArray("portrait_egg", "targetname"), &portrait_egg_vox);
 	Array::thread_all(GetEntArray("location_egg", "targetname"), &location_egg_vox);
 	level thread function_8d1c7be1();
-	level thread function_d43815df();
+	level thread amb_0_zombie();
 	a_s_traps = struct::get_array("trap_electric", "targetname");
 	foreach(s_trap in a_s_traps)
 	{
@@ -72,15 +72,15 @@ function main()
 }
 
 /*
-	Name: function_d43815df
-	Namespace: namespace_6d4f3e39
+	Name: amb_0_zombie
+	Namespace: zm_theater_amb
 	Checksum: 0xF333CD60
 	Offset: 0x6F0
 	Size: 0xD3
 	Parameters: 0
 	Flags: None
 */
-function function_d43815df()
+function amb_0_zombie()
 {
 	level endon("hash_993b920d");
 	wait(50);
@@ -101,7 +101,7 @@ function function_d43815df()
 
 /*
 	Name: function_ae3642b4
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xE769AB6B
 	Offset: 0x7D0
 	Size: 0x43
@@ -116,7 +116,7 @@ function function_ae3642b4()
 
 /*
 	Name: setup_power_on_sfx
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x3DDD697A
 	Offset: 0x820
 	Size: 0xB5
@@ -137,7 +137,7 @@ function setup_power_on_sfx()
 
 /*
 	Name: play_emitter
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x69D26A6E
 	Offset: 0x8E0
 	Size: 0x8B
@@ -155,7 +155,7 @@ function play_emitter()
 
 /*
 	Name: play_evil_generator_audio
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xFDC03E5F
 	Offset: 0x978
 	Size: 0xBD
@@ -175,7 +175,7 @@ function play_evil_generator_audio()
 
 /*
 	Name: play_projecter_soundtrack
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xCB2F27EF
 	Offset: 0xA40
 	Size: 0x63
@@ -192,7 +192,7 @@ function play_projecter_soundtrack()
 
 /*
 	Name: play_projecter_loop
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x68173613
 	Offset: 0xAB0
 	Size: 0x5B
@@ -208,7 +208,7 @@ function play_projecter_loop()
 
 /*
 	Name: setup_meteor_audio
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x4C3C5636
 	Offset: 0xB18
 	Size: 0xDB
@@ -218,7 +218,7 @@ function play_projecter_loop()
 function setup_meteor_audio()
 {
 	level thread function_1da885f0();
-	level thread namespace_52adc03e::function_e753d4f();
+	level thread zm_audio_zhd::function_e753d4f();
 	level flag::wait_till("snd_song_completed");
 	level thread zm_audio::sndMusicSystem_PlayState("115");
 	wait(4);
@@ -229,7 +229,7 @@ function setup_meteor_audio()
 
 /*
 	Name: function_1da885f0
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x54C58B68
 	Offset: 0xC00
 	Size: 0x87
@@ -255,7 +255,7 @@ function function_1da885f0()
 
 /*
 	Name: function_71554606
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x70D6A89B
 	Offset: 0xC90
 	Size: 0x7D
@@ -273,7 +273,7 @@ function function_71554606()
 
 /*
 	Name: portrait_egg_vox
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xBF8E5189
 	Offset: 0xD18
 	Size: 0xD3
@@ -302,7 +302,7 @@ function portrait_egg_vox()
 
 /*
 	Name: location_egg_vox
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x2753C3FB
 	Offset: 0xDF8
 	Size: 0x7B
@@ -321,7 +321,7 @@ function location_egg_vox()
 
 /*
 	Name: play_radio_egg
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x40401F46
 	Offset: 0xE80
 	Size: 0xBB
@@ -348,7 +348,7 @@ function play_radio_egg(delay)
 
 /*
 	Name: setup_radio_egg_audio
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x39E41C12
 	Offset: 0xF48
 	Size: 0x53
@@ -364,7 +364,7 @@ function setup_radio_egg_audio()
 
 /*
 	Name: radio_egg_trigger
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x39C51DC6
 	Offset: 0xFA8
 	Size: 0x3B
@@ -383,7 +383,7 @@ function radio_egg_trigger()
 
 /*
 	Name: function_8d1c7be1
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xF77BDD89
 	Offset: 0xFF0
 	Size: 0x73
@@ -400,7 +400,7 @@ function function_8d1c7be1()
 
 /*
 	Name: function_57a1070b
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x42BC0775
 	Offset: 0x1070
 	Size: 0x6F
@@ -420,7 +420,7 @@ function function_57a1070b()
 
 /*
 	Name: function_448d83df
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x56EDE9F4
 	Offset: 0x10E8
 	Size: 0x9B
@@ -445,15 +445,15 @@ function function_448d83df(trap, b_start)
 }
 
 /*
-	Name: function_e11d1d5c
-	Namespace: namespace_6d4f3e39
+	Name: sndzhd_knocker
+	Namespace: zm_theater_amb
 	Checksum: 0xE8AB8AE4
 	Offset: 0x1190
 	Size: 0x12B
 	Parameters: 0
 	Flags: None
 */
-function function_e11d1d5c()
+function sndzhd_knocker()
 {
 	var_8e7ce497 = GetEnt("sndzhd_knocker", "targetname");
 	if(!isdefined(var_8e7ce497))
@@ -487,7 +487,7 @@ function function_e11d1d5c()
 
 /*
 	Name: function_57f2b10e
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x8E3E45F8
 	Offset: 0x12C8
 	Size: 0x7B
@@ -504,7 +504,7 @@ function function_57f2b10e(var_8e7ce497)
 
 /*
 	Name: function_5c13c705
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xB0BFBAAA
 	Offset: 0x1350
 	Size: 0x97
@@ -526,7 +526,7 @@ function function_5c13c705(a_pattern, var_8e7ce497)
 
 /*
 	Name: function_7f30e34a
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xC90A63D7
 	Offset: 0x13F0
 	Size: 0x8B
@@ -547,7 +547,7 @@ function function_7f30e34a(a_pattern, var_8e7ce497)
 
 /*
 	Name: function_47cc6622
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xEAF9E097
 	Offset: 0x1488
 	Size: 0x1DD
@@ -556,7 +556,7 @@ function function_7f30e34a(a_pattern, var_8e7ce497)
 */
 function function_47cc6622(a_pattern, var_8e7ce497)
 {
-	level endon("hash_a0b8e4d9");
+	level endon("zhd_knocker_timeout");
 	for(var_918879b9 = 0; var_918879b9 < 3; var_918879b9++)
 	{
 		level thread function_e497b291(3000);
@@ -580,12 +580,12 @@ function function_47cc6622(a_pattern, var_8e7ce497)
 		level thread function_4f9527ef(1000);
 	}
 	wait(0.05);
-	level notify("hash_1e121de9");
+	level notify("zhd_knocker_success");
 }
 
 /*
 	Name: function_e497b291
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x41AD9EE1
 	Offset: 0x1670
 	Size: 0x91
@@ -597,20 +597,20 @@ function function_e497b291(n_max)
 	level notify("hash_165b5152");
 	level endon("hash_165b5152");
 	level endon("hash_a5e68e5c");
-	level endon("hash_a0b8e4d9");
-	level endon("hash_1e121de9");
+	level endon("zhd_knocker_timeout");
+	level endon("zhd_knocker_success");
 	var_c9cd8e88 = GetTime();
 	n_max = n_max + var_c9cd8e88;
 	while(GetTime() < n_max)
 	{
 		wait(0.05);
 	}
-	level notify("hash_a0b8e4d9");
+	level notify("zhd_knocker_timeout");
 }
 
 /*
 	Name: function_4f9527ef
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x27D30769
 	Offset: 0x1710
 	Size: 0x85
@@ -621,20 +621,20 @@ function function_4f9527ef(n_min)
 {
 	level notify("hash_b0b21488");
 	level endon("hash_b0b21488");
-	level endon("hash_a0b8e4d9");
-	level endon("hash_1e121de9");
+	level endon("zhd_knocker_timeout");
+	level endon("zhd_knocker_success");
 	var_c9cd8e88 = GetTime();
 	n_min = n_min + var_c9cd8e88;
 	level waittill("hash_a5e68e5c");
 	if(GetTime() < n_min)
 	{
-		level notify("hash_a0b8e4d9");
+		level notify("zhd_knocker_timeout");
 	}
 }
 
 /*
 	Name: function_314be731
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x69CC72FB
 	Offset: 0x17A0
 	Size: 0xCF
@@ -650,7 +650,7 @@ function function_314be731()
 
 /*
 	Name: function_702e84d0
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x30F79F79
 	Offset: 0x1878
 	Size: 0x4D

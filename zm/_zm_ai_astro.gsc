@@ -121,7 +121,7 @@ function private archetypeastroonanimscriptedcallback(entity)
 */
 function private initastrobehaviorsandasm()
 {
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("astroTargetService", &function_fa8c98de);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("astroTargetService", &astrotargetservice);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeAction("moonAstroProceduralTraversal", &astrotraversestart, &RobotSoldierBehavior::robotProceduralTraversalUpdate, &astrotraverseend);
 }
 
@@ -141,7 +141,7 @@ function astrospawnsetup()
 }
 
 /*
-	Name: function_fa8c98de
+	Name: astrotargetservice
 	Namespace: zm_ai_astro
 	Checksum: 0xB6672ACB
 	Offset: 0xB08
@@ -149,7 +149,7 @@ function astrospawnsetup()
 	Parameters: 1
 	Flags: None
 */
-function function_fa8c98de(entity)
+function astrotargetservice(entity)
 {
 	if(isdefined(entity.ignoreall) && entity.ignoreall)
 	{

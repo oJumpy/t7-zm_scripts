@@ -45,7 +45,7 @@ function hack_perks()
 		}
 		vending_triggers[i].hackable = struct;
 		struct.no_bullet_trace = 1;
-		namespace_6d813654::register_pooled_hackable_struct(struct, &perk_hack, &perk_hack_qualifier);
+		zm_equip_hacker::register_pooled_hackable_struct(struct, &perk_hack, &perk_hack_qualifier);
 	}
 	level._solo_revive_machine_expire_func = &solo_revive_expire_func;
 }
@@ -63,7 +63,7 @@ function solo_revive_expire_func()
 {
 	if(isdefined(self.hackable))
 	{
-		namespace_6d813654::deregister_hackable_struct(self.hackable);
+		zm_equip_hacker::deregister_hackable_struct(self.hackable);
 		self.hackable = undefined;
 	}
 }

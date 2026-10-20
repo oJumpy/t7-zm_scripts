@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_43a18dd5;
+#namespace zm_powerup_zombie_blood;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0x10A3FFA2
 	Offset: 0x2F0
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0xBC45CE0B
 	Offset: 0x330
 	Size: 0x12B
@@ -47,7 +47,7 @@ function __init__()
 
 /*
 	Name: init_filter_zombie_blood
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0x5958323F
 	Offset: 0x468
 	Size: 0x63
@@ -63,7 +63,7 @@ function init_filter_zombie_blood(localClientNum)
 
 /*
 	Name: toggle_player_zombie_blood_fx
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0x78770197
 	Offset: 0x4D8
 	Size: 0x1B5

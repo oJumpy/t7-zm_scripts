@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_f3043f41;
+#namespace zm_bgb_alchemical_antithesis;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f3043f41
+	Namespace: zm_bgb_alchemical_antithesis
 	Checksum: 0x5C89C7F2
 	Offset: 0x1B8
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_f3043f41
+	Namespace: zm_bgb_alchemical_antithesis
 	Checksum: 0xF7A937ED
 	Offset: 0x1F8
 	Size: 0xA3
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_f3043f41
+	Namespace: zm_bgb_alchemical_antithesis
 	Checksum: 0xA7310812
 	Offset: 0x2A8
 	Size: 0x33
@@ -58,7 +58,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_f3043f41
+	Namespace: zm_bgb_alchemical_antithesis
 	Checksum: 0xFE1733BE
 	Offset: 0x2E8
 	Size: 0x37
@@ -74,7 +74,7 @@ function activation()
 
 /*
 	Name: add_to_player_score_override
-	Namespace: namespace_f3043f41
+	Namespace: zm_bgb_alchemical_antithesis
 	Checksum: 0x4F116CAB
 	Offset: 0x328
 	Size: 0x155
@@ -111,7 +111,7 @@ function add_to_player_score_override(points, str_awarded_by, var_1ed9bd9b)
 
 /*
 	Name: function_a6bf711f
-	Namespace: namespace_f3043f41
+	Namespace: zm_bgb_alchemical_antithesis
 	Checksum: 0x6C1E26FE
 	Offset: 0x488
 	Size: 0x6F

@@ -29,19 +29,19 @@ function init_clientfields()
 	zm_sidequests::register_sidequest_icon("cgenerator", 21000);
 	zm_sidequests::register_sidequest_icon("wire", 21000);
 	zm_sidequests::register_sidequest_icon("datalog", 21000);
-	clientfield::register("world", "raise_rockets", 21000, 1, "counter", &function_14b62279, 0, 0);
+	clientfield::register("world", "raise_rockets", 21000, 1, "counter", &raise_rockets, 0, 0);
 	clientfield::register("world", "rocket_launch", 21000, 1, "counter", &rocket_launch, 0, 0);
 	clientfield::register("world", "rocket_explode", 21000, 1, "counter", &rocket_explode, 0, 0);
-	clientfield::register("world", "charge_tank_1", 21000, 1, "counter", &function_4df9054c, 0, 0);
-	clientfield::register("world", "charge_tank_2", 21000, 1, "counter", &function_c0007487, 0, 0);
-	clientfield::register("world", "charge_tank_cleanup", 21000, 1, "counter", &function_94570121, 0, 0);
+	clientfield::register("world", "charge_tank_1", 21000, 1, "counter", &charge_tank_1, 0, 0);
+	clientfield::register("world", "charge_tank_2", 21000, 1, "counter", &charge_tank_2, 0, 0);
+	clientfield::register("world", "charge_tank_cleanup", 21000, 1, "counter", &charge_tank_cleanup, 0, 0);
 	clientfield::register("world", "sam_vo_rumble", 21000, 1, "int", &sam_vo_rumble, 0, 0);
-	clientfield::register("world", "charge_vril_init", 21000, 1, "int", &function_334865c, 0, 0);
-	clientfield::register("world", "sq_wire_init", 21000, 1, "int", &function_224816ac, 0, 0);
+	clientfield::register("world", "charge_vril_init", 21000, 1, "int", &charge_vril_init, 0, 0);
+	clientfield::register("world", "sq_wire_init", 21000, 1, "int", &sq_wire_init, 0, 0);
 	clientfield::register("world", "sam_init", 21000, 1, "int", &sam_init, 0, 0);
 	n_bits = GetMinBitCountForNum(4);
-	clientfield::register("world", "vril_generator", 21000, n_bits, "int", &function_bd20fe8, 0, 0);
-	clientfield::register("world", "sam_end_rumble", 21000, 1, "int", &function_b134b86c, 0, 0);
+	clientfield::register("world", "vril_generator", 21000, n_bits, "int", &vril_generator, 0, 0);
+	clientfield::register("world", "sam_end_rumble", 21000, 1, "int", &sam_end_rumble, 0, 0);
 }
 
 /*
@@ -59,7 +59,7 @@ function rocket_test()
 }
 
 /*
-	Name: function_94570121
+	Name: charge_tank_cleanup
 	Namespace: zm_moon_sq
 	Checksum: 0x930E7D30
 	Offset: 0x920
@@ -67,7 +67,7 @@ function rocket_test()
 	Parameters: 7
 	Flags: None
 */
-function function_94570121(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function charge_tank_cleanup(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	level._ctt_targets = [];
 }
@@ -279,7 +279,7 @@ function build_ctt_targets(tank_names, second_names)
 }
 
 /*
-	Name: function_334865c
+	Name: charge_vril_init
 	Namespace: zm_moon_sq
 	Checksum: 0xE37A84EE
 	Offset: 0x1348
@@ -287,7 +287,7 @@ function build_ctt_targets(tank_names, second_names)
 	Parameters: 7
 	Flags: None
 */
-function function_334865c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function charge_vril_init(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
@@ -302,7 +302,7 @@ function function_334865c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_224816ac
+	Name: sq_wire_init
 	Namespace: zm_moon_sq
 	Checksum: 0x6F84C5F0
 	Offset: 0x1470
@@ -310,7 +310,7 @@ function function_334865c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	Parameters: 7
 	Flags: None
 */
-function function_224816ac(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function sq_wire_init(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
@@ -397,7 +397,7 @@ function bob_vg()
 }
 
 /*
-	Name: function_bd20fe8
+	Name: vril_generator
 	Namespace: zm_moon_sq
 	Checksum: 0xEE4A25CB
 	Offset: 0x18C8
@@ -405,7 +405,7 @@ function bob_vg()
 	Parameters: 7
 	Flags: None
 */
-function function_bd20fe8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function vril_generator(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	targ = struct::get("sq_charge_vg_pos", "targetname");
 	if(!isdefined(level.a_ents))
@@ -455,7 +455,7 @@ function function_bd20fe8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_4df9054c
+	Name: charge_tank_1
 	Namespace: zm_moon_sq
 	Checksum: 0xCF01B906
 	Offset: 0x1BC8
@@ -463,13 +463,13 @@ function function_bd20fe8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	Parameters: 7
 	Flags: None
 */
-function function_4df9054c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function charge_tank_1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	level._ctt_targets = build_ctt_targets("sq_first_tank");
 }
 
 /*
-	Name: function_c0007487
+	Name: charge_tank_2
 	Namespace: zm_moon_sq
 	Checksum: 0x9499ED76
 	Offset: 0x1C30
@@ -477,13 +477,13 @@ function function_4df9054c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_c0007487(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function charge_tank_2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	level._ctt_targets = build_ctt_targets("sq_second_tank", "sq_first_tank");
 }
 
 /*
-	Name: function_b134b86c
+	Name: sam_end_rumble
 	Namespace: zm_moon_sq
 	Checksum: 0xD58008BB
 	Offset: 0x1CA0
@@ -491,7 +491,7 @@ function function_c0007487(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b134b86c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function sam_end_rumble(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{
@@ -499,7 +499,7 @@ function function_b134b86c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		level notify("hash_f9b2abc9");
+		level notify("stop_sam_end_rumble");
 	}
 }
 
@@ -514,7 +514,7 @@ function function_b134b86c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function do_sr_rumble(localClientNum)
 {
-	level endon("hash_f9b2abc9");
+	level endon("stop_sam_end_rumble");
 	s_pyramid = struct::get("pyramid_walls_retract", "targetname");
 	while(1)
 	{
@@ -547,7 +547,7 @@ function sam_vo_rumble(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fi
 {
 	if(newVal)
 	{
-		Array::thread_all(GetLocalPlayers(), &function_9b1295b1, localClientNum);
+		Array::thread_all(GetLocalPlayers(), &play_sam_vo_rumble, localClientNum);
 	}
 	else
 	{
@@ -556,7 +556,7 @@ function sam_vo_rumble(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fi
 }
 
 /*
-	Name: function_9b1295b1
+	Name: play_sam_vo_rumble
 	Namespace: zm_moon_sq
 	Checksum: 0xD533178D
 	Offset: 0x1EF8
@@ -564,7 +564,7 @@ function sam_vo_rumble(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fi
 	Parameters: 1
 	Flags: None
 */
-function function_9b1295b1(localClientNum)
+function play_sam_vo_rumble(localClientNum)
 {
 	self endon("disconnect");
 	level endon("hash_306cf2d4");
@@ -577,7 +577,7 @@ function function_9b1295b1(localClientNum)
 }
 
 /*
-	Name: function_14b62279
+	Name: raise_rockets
 	Namespace: zm_moon_sq
 	Checksum: 0xBFDD5E48
 	Offset: 0x1FB0
@@ -585,7 +585,7 @@ function function_9b1295b1(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_14b62279(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function raise_rockets(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	level thread do_rr_rumble();
 	wait(4.5);

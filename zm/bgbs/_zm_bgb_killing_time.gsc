@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_9dd35181;
+#namespace zm_bgb_killing_time;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0x5C5C62EC
 	Offset: 0x288
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0xDE1D1345
 	Offset: 0x2C8
 	Size: 0x12B
@@ -50,7 +50,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0xA7F568D7
 	Offset: 0x400
 	Size: 0x1B
@@ -64,7 +64,7 @@ function activation()
 
 /*
 	Name: validation
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0x76F082AB
 	Offset: 0x428
 	Size: 0x43
@@ -86,7 +86,7 @@ function validation()
 
 /*
 	Name: actor_damage_override
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0xAAFC20F0
 	Offset: 0x478
 	Size: 0x1FD
@@ -132,7 +132,7 @@ function private actor_damage_override(eInflictor, eAttacker, iDamage, iDFlags, 
 
 /*
 	Name: vehicle_damage_override
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0xB76CA299
 	Offset: 0x680
 	Size: 0x19D
@@ -172,7 +172,7 @@ function private vehicle_damage_override(eInflictor, eAttacker, iDamage, iDFlags
 
 /*
 	Name: instakill_upgraded_think
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0xD8F430F8
 	Offset: 0x828
 	Size: 0x199
@@ -199,12 +199,12 @@ function instakill_upgraded_think()
 	SetPauseWorld(1);
 	self thread function_f2925308();
 	self bgb::run_timer(20);
-	self notify("hash_19c1b90c");
+	self notify("killing_time_done");
 }
 
 /*
 	Name: function_f2925308
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0x7493596E
 	Offset: 0x9D0
 	Size: 0x27B

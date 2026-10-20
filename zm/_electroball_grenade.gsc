@@ -10,12 +10,12 @@
 #using scripts\zm\_zm;
 #using scripts\zm\_zm_elemental_zombies;
 
-#namespace namespace_3df25fcf;
+#namespace electroball_grenade;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3df25fcf
-	Checksum: 0x24BAFD17
+	Namespace: electroball_grenade
+	Checksum: 0xEF440EA4
 	Offset: 0x460
 	Size: 0x33
 	Parameters: 0
@@ -28,8 +28,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3df25fcf
-	Checksum: 0x98358305
+	Namespace: electroball_grenade
+	Checksum: 0xD082B3C6
 	Offset: 0x4A0
 	Size: 0x1D3
 	Parameters: 0
@@ -57,8 +57,8 @@ function __init__()
 
 /*
 	Name: register
-	Namespace: namespace_3df25fcf
-	Checksum: 0x6F91A6F0
+	Namespace: electroball_grenade
+	Checksum: 0xA069323F
 	Offset: 0x680
 	Size: 0xF3
 	Parameters: 0
@@ -75,8 +75,8 @@ function register()
 
 /*
 	Name: createelectroballgrenadewatcher
-	Namespace: namespace_3df25fcf
-	Checksum: 0x83FBFC52
+	Namespace: electroball_grenade
+	Checksum: 0xEB7E7A82
 	Offset: 0x780
 	Size: 0x1F7
 	Parameters: 0
@@ -114,8 +114,8 @@ function createelectroballgrenadewatcher()
 
 /*
 	Name: onspawnelectroballgrenadeweaponobject
-	Namespace: namespace_3df25fcf
-	Checksum: 0x5EF42B94
+	Namespace: electroball_grenade
+	Checksum: 0x1DC745D6
 	Offset: 0x980
 	Size: 0xF3
 	Parameters: 2
@@ -139,8 +139,8 @@ function onspawnelectroballgrenadeweaponobject(watcher, owner)
 
 /*
 	Name: setupKillCamEnt
-	Namespace: namespace_3df25fcf
-	Checksum: 0xEB020A51
+	Namespace: electroball_grenade
+	Checksum: 0x6F9FA867
 	Offset: 0xA80
 	Size: 0x73
 	Parameters: 0
@@ -156,8 +156,8 @@ function setupKillCamEnt()
 
 /*
 	Name: cleanupKillCamEntOnDeath
-	Namespace: namespace_3df25fcf
-	Checksum: 0x71413420
+	Namespace: electroball_grenade
+	Checksum: 0x2920A750
 	Offset: 0xB00
 	Size: 0x43
 	Parameters: 0
@@ -171,8 +171,8 @@ function cleanupKillCamEntOnDeath()
 
 /*
 	Name: proximityDetonate
-	Namespace: namespace_3df25fcf
-	Checksum: 0xA30AD74E
+	Namespace: electroball_grenade
+	Checksum: 0xD6755CE1
 	Offset: 0xB50
 	Size: 0x33
 	Parameters: 3
@@ -185,8 +185,8 @@ function proximityDetonate(attacker, weapon, target)
 
 /*
 	Name: watchProximityGrenadeHitPlayer
-	Namespace: namespace_3df25fcf
-	Checksum: 0x2158EE84
+	Namespace: electroball_grenade
+	Checksum: 0x1B01F084
 	Offset: 0xB90
 	Size: 0x111
 	Parameters: 1
@@ -213,8 +213,8 @@ function watchProximityGrenadeHitPlayer(owner)
 
 /*
 	Name: performHudEffects
-	Namespace: namespace_3df25fcf
-	Checksum: 0x555DCF24
+	Namespace: electroball_grenade
+	Checksum: 0x798E4938
 	Offset: 0xCB0
 	Size: 0x13F
 	Parameters: 2
@@ -233,8 +233,8 @@ function performHudEffects(position, distanceToGrenade)
 
 /*
 	Name: function_62ffcc2c
-	Namespace: namespace_3df25fcf
-	Checksum: 0x1AEE8449
+	Namespace: electroball_grenade
+	Checksum: 0xC5C80DF8
 	Offset: 0xDF8
 	Size: 0xE7
 	Parameters: 0
@@ -257,8 +257,8 @@ function function_62ffcc2c()
 
 /*
 	Name: damagePlayerInRadius
-	Namespace: namespace_3df25fcf
-	Checksum: 0x30C6150A
+	Namespace: electroball_grenade
+	Checksum: 0xD6E50DDB
 	Offset: 0xEE8
 	Size: 0x1F3
 	Parameters: 1
@@ -301,8 +301,8 @@ function damagePlayerInRadius(eAttacker)
 
 /*
 	Name: proximityDeathWait
-	Namespace: namespace_3df25fcf
-	Checksum: 0xF15BB8D6
+	Namespace: electroball_grenade
+	Checksum: 0x85A5BE4B
 	Offset: 0x10E8
 	Size: 0x25
 	Parameters: 1
@@ -316,8 +316,8 @@ function proximityDeathWait(owner)
 
 /*
 	Name: deleteEntOnOwnerDeath
-	Namespace: namespace_3df25fcf
-	Checksum: 0x33817271
+	Namespace: electroball_grenade
+	Checksum: 0xB00FE670
 	Offset: 0x1118
 	Size: 0x61
 	Parameters: 1
@@ -334,8 +334,8 @@ function deleteEntOnOwnerDeath(owner)
 
 /*
 	Name: deleteEntAfterTime
-	Namespace: namespace_3df25fcf
-	Checksum: 0x807641F3
+	Namespace: electroball_grenade
+	Checksum: 0xA0B40048
 	Offset: 0x1188
 	Size: 0x25
 	Parameters: 0
@@ -350,8 +350,8 @@ function deleteEntAfterTime()
 
 /*
 	Name: deleteEntOnTimeout
-	Namespace: namespace_3df25fcf
-	Checksum: 0x8BDCE009
+	Namespace: electroball_grenade
+	Checksum: 0xB723F0C8
 	Offset: 0x11B8
 	Size: 0x33
 	Parameters: 0
@@ -366,8 +366,8 @@ function deleteEntOnTimeout()
 
 /*
 	Name: watch_death
-	Namespace: namespace_3df25fcf
-	Checksum: 0xE5093CB5
+	Namespace: electroball_grenade
+	Checksum: 0x61DE7695
 	Offset: 0x11F8
 	Size: 0xA3
 	Parameters: 0
@@ -387,8 +387,8 @@ function watch_death()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_3df25fcf
-	Checksum: 0xAEC2653D
+	Namespace: electroball_grenade
+	Checksum: 0x7B03D475
 	Offset: 0x12A8
 	Size: 0x63
 	Parameters: 0
@@ -406,8 +406,8 @@ function on_player_spawned()
 
 /*
 	Name: on_ai_spawned
-	Namespace: namespace_3df25fcf
-	Checksum: 0xB3B74871
+	Namespace: electroball_grenade
+	Checksum: 0x31FEE244
 	Offset: 0x1318
 	Size: 0x43
 	Parameters: 0
@@ -424,8 +424,8 @@ function on_ai_spawned()
 
 /*
 	Name: begin_other_grenade_tracking
-	Namespace: namespace_3df25fcf
-	Checksum: 0xDA909244
+	Namespace: electroball_grenade
+	Checksum: 0x220AD969
 	Offset: 0x1368
 	Size: 0xA7
 	Parameters: 0
@@ -449,8 +449,8 @@ function begin_other_grenade_tracking()
 
 /*
 	Name: function_cb55123a
-	Namespace: namespace_3df25fcf
-	Checksum: 0x29FB6CA2
+	Namespace: electroball_grenade
+	Checksum: 0x381721A4
 	Offset: 0x1418
 	Size: 0x217
 	Parameters: 0
@@ -464,9 +464,9 @@ function function_cb55123a()
 	self waittill("grenade_bounce");
 	while(1)
 	{
-		var_82aacc64 = namespace_57695b4d::function_d41418b8();
+		var_82aacc64 = zm_elemental_zombie::function_d41418b8();
 		var_82aacc64 = ArraySortClosest(var_82aacc64, self.origin);
-		var_199ecc3a = namespace_57695b4d::function_4aeed0a5("sparky");
+		var_199ecc3a = zm_elemental_zombie::function_4aeed0a5("sparky");
 		if(!isdefined(level.var_1ae26ca5) || var_199ecc3a < level.var_1ae26ca5)
 		{
 			if(!isdefined(level.var_a9284ac8) || GetTime() - level.var_a9284ac8 >= 0.5)
@@ -477,7 +477,7 @@ function function_cb55123a()
 					if(dist_sq <= 9216 && ai_zombie.is_elemental_zombie !== 1 && ai_zombie.var_3531cf2b !== 1)
 					{
 						ai_zombie clientfield::set("electroball_make_sparky", 1);
-						ai_zombie namespace_57695b4d::function_1b1bb1b();
+						ai_zombie zm_elemental_zombie::function_1b1bb1b();
 						level.var_a9284ac8 = GetTime();
 						break;
 					}
@@ -490,8 +490,8 @@ function function_cb55123a()
 
 /*
 	Name: function_658aacad
-	Namespace: namespace_3df25fcf
-	Checksum: 0x2F275AD6
+	Namespace: electroball_grenade
+	Checksum: 0x8AE465E
 	Offset: 0x1638
 	Size: 0xC3
 	Parameters: 0
@@ -515,8 +515,8 @@ function function_658aacad()
 
 /*
 	Name: function_f338543f
-	Namespace: namespace_3df25fcf
-	Checksum: 0x5F1F3B7F
+	Namespace: electroball_grenade
+	Checksum: 0x35FDC775
 	Offset: 0x1708
 	Size: 0xCF
 	Parameters: 12

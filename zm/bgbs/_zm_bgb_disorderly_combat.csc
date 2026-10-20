@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_bcb3abbf;
+#namespace zm_bgb_disorderly_combat;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x5CCD3EF1
 	Offset: 0x150
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x2D896596
 	Offset: 0x190
 	Size: 0x3B

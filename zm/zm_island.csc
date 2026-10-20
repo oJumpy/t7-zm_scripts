@@ -91,7 +91,7 @@ function autoexec opt_in()
 function main()
 {
 	namespace_711c2fc8::main_start();
-	namespace_1a868593::main();
+	zm_island_fx::main();
 	callback::on_localplayer_spawned(&on_localplayer_spawned);
 	level.setupCustomCharacterExerts = &setup_personality_character_exerts;
 	level._uses_sticky_grenades = 1;
@@ -105,26 +105,26 @@ function main()
 	namespace_eaae7728::init_quest();
 	namespace_7550a904::init();
 	namespace_f3e3de78::init();
-	namespace_14b4d4ab::init();
+	zm_island_traps::init();
 	namespace_34c58dc::init();
 	namespace_7a07aa2f::init();
 	namespace_c8222934::init();
-	namespace_5f2c95ae::init();
+	zm_island_skullquest::init();
 	namespace_78528370::init_quest();
-	namespace_9d2fabb6::init();
+	zm_island_zones::init();
 	namespace_f7d4f63b::init();
 	namespace_48e6dffb::init();
 	namespace_13425205::init();
 	namespace_bbfc4da3::init();
-	namespace_6c640490::init();
-	namespace_28a54cd6::init();
-	namespace_f777c489::init();
+	zm_island_side_ee_distant_monster::init();
+	zm_island_side_ee_doppleganger::init();
+	zm_island_side_ee_good_thrasher::init();
 	namespace_fdccf5c4::init();
 	namespace_79fcd4bc::init();
-	namespace_5a453011::init();
+	zm_island_side_ee_secret_maxammo::init();
 	load::main();
 	level thread namespace_f67badb7::main();
-	level thread namespace_9d2fabb6::main();
+	level thread zm_island_zones::main();
 	util::waitforclient(0);
 	level thread function_3a429aee();
 	namespace_711c2fc8::main_end();
@@ -144,16 +144,16 @@ function register_clientfields()
 	var_ddba80d7 = GetMinBitCountForNum(3);
 	clientfield::register("clientuimodel", "zmInventory.widget_shield_parts", 9000, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.player_crafted_shield", 9000, 1, "int", undefined, 0, 0);
-	clientfield::register("toplayer", "postfx_futz_mild", 9000, 1, "counter", &function_bf8650ca, 0, 0);
-	clientfield::register("toplayer", "water_motes", 9000, 1, "int", &function_5cefaf77, 0, 0);
+	clientfield::register("toplayer", "postfx_futz_mild", 9000, 1, "counter", &postfx_futz_mild, 0, 0);
+	clientfield::register("toplayer", "water_motes", 9000, 1, "int", &water_motes, 0, 0);
 	clientfield::register("toplayer", "play_bubbles", 9000, 1, "int", &function_58e931d1, 0, 0);
 	clientfield::register("toplayer", "set_world_fog", 9000, var_ddba80d7, "int", &world_fog_set, 0, 0);
 	clientfield::register("toplayer", "speed_burst", 9000, 1, "int", &player_speed_changed, 0, 1);
 	clientfield::register("toplayer", "tp_water_sheeting", 9000, 1, "int", &water_sheeting_toggle, 0, 0);
 	clientfield::register("toplayer", "wind_blur", 9000, 1, "int", &function_4a01cc4e, 0, 0);
-	clientfield::register("scriptmover", "set_heavy_web_fade_material", 9000, 1, "int", &function_e0aec577, 0, 0);
-	clientfield::register("world", "force_stream_spiders", 9001, 1, "int", &function_e0410522, 0, 0);
-	clientfield::register("world", "force_stream_takeo_arms", 11001, 1, "int", &function_e4587332, 0, 0);
+	clientfield::register("scriptmover", "set_heavy_web_fade_material", 9000, 1, "int", &set_heavy_web_fade_material, 0, 0);
+	clientfield::register("world", "force_stream_spiders", 9001, 1, "int", &force_stream_spiders, 0, 0);
+	clientfield::register("world", "force_stream_takeo_arms", 11001, 1, "int", &force_stream_takeo_arms, 0, 0);
 }
 
 /*
@@ -297,7 +297,7 @@ function setup_personality_character_exerts()
 }
 
 /*
-	Name: function_bf8650ca
+	Name: postfx_futz_mild
 	Namespace: namespace_ff3ab036
 	Checksum: 0x1D1ED365
 	Offset: 0x32A8
@@ -305,14 +305,14 @@ function setup_personality_character_exerts()
 	Parameters: 7
 	Flags: None
 */
-function function_bf8650ca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function postfx_futz_mild(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	player = GetLocalPlayer(localClientNum);
 	player postfx::playPostfxBundle("pstfx_dni_interrupt_mild");
 }
 
 /*
-	Name: function_5cefaf77
+	Name: water_motes
 	Namespace: namespace_ff3ab036
 	Checksum: 0x55B5F4EF
 	Offset: 0x3330
@@ -320,7 +320,7 @@ function function_bf8650ca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_5cefaf77(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function water_motes(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	wait(0.1);
 	if(newVal)
@@ -546,7 +546,7 @@ function function_4a01cc4e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_e0aec577
+	Name: set_heavy_web_fade_material
 	Namespace: namespace_ff3ab036
 	Checksum: 0xE9EE77A
 	Offset: 0x39C8
@@ -554,7 +554,7 @@ function function_4a01cc4e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_e0aec577(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function set_heavy_web_fade_material(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -648,7 +648,7 @@ function function_3a429aee()
 }
 
 /*
-	Name: function_e0410522
+	Name: force_stream_spiders
 	Namespace: namespace_ff3ab036
 	Checksum: 0xD960D244
 	Offset: 0x3F08
@@ -656,7 +656,7 @@ function function_3a429aee()
 	Parameters: 7
 	Flags: None
 */
-function function_e0410522(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function force_stream_spiders(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -669,7 +669,7 @@ function function_e0410522(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_e4587332
+	Name: force_stream_takeo_arms
 	Namespace: namespace_ff3ab036
 	Checksum: 0xA5B5D80D
 	Offset: 0x3F90
@@ -677,7 +677,7 @@ function function_e0410522(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_e4587332(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function force_stream_takeo_arms(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{

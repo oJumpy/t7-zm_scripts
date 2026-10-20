@@ -21,11 +21,11 @@
 #using scripts\zm\zm_zod_train;
 #using scripts\zm\zm_zod_vo;
 
-#namespace namespace_2cce1885;
+#namespace zm_zod_robot;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xD19E6E35
 	Offset: 0x6E8
 	Size: 0x33
@@ -39,7 +39,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x8E4FFC
 	Offset: 0x728
 	Size: 0x63
@@ -54,7 +54,7 @@ function __init__()
 
 /*
 	Name: init
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xD397FBB1
 	Offset: 0x798
 	Size: 0x273
@@ -87,7 +87,7 @@ function init()
 
 /*
 	Name: function_63fe1ddd
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xF6BCACA
 	Offset: 0xA18
 	Size: 0xCF
@@ -114,7 +114,7 @@ function function_63fe1ddd()
 
 /*
 	Name: monitor_robot_power
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xFEA27E6A
 	Offset: 0xAF0
 	Size: 0xDB
@@ -131,13 +131,13 @@ function monitor_robot_power()
 		e_police_box playsound("zmb_bm_interaction_machine_start");
 	}
 	e_player = zm_utility::get_closest_player(e_police_box.origin);
-	e_player namespace_b8707f8e::function_81ba60e2();
+	e_player zm_zod_vo::function_81ba60e2();
 	e_police_box clientfield::set("robot_switch", 1);
 }
 
 /*
 	Name: function_33a20979
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xA319764B
 	Offset: 0xBD8
 	Size: 0x33
@@ -154,7 +154,7 @@ function function_33a20979()
 
 /*
 	Name: create_callbox_unitrigger
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x7D576DF
 	Offset: 0xC18
 	Size: 0x1EB
@@ -183,7 +183,7 @@ function create_callbox_unitrigger(str_areaname, func_trigger_visibility, func_t
 
 /*
 	Name: robot_callbox_trigger_visibility
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x2F2DB86E
 	Offset: 0xE10
 	Size: 0x1C9
@@ -238,7 +238,7 @@ function robot_callbox_trigger_visibility(player)
 
 /*
 	Name: robot_callbox_trigger_think
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x4F19BDDA
 	Offset: 0xFE8
 	Size: 0x2C7
@@ -305,7 +305,7 @@ function robot_callbox_trigger_think()
 
 /*
 	Name: spawn_robot
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x2DF3CEE5
 	Offset: 0x12B8
 	Size: 0x66B
@@ -316,8 +316,8 @@ function spawn_robot(player, trig_stub, n_spawn_delay)
 {
 	a_s_start_pos = struct::get_array("robot_start_pos", "targetname");
 	a_s_start_pos = Array::filter(a_s_start_pos, 0, &filter_callbox_name, trig_stub.str_areaname);
-	var_b410e4d9 = a_s_start_pos[0];
-	trace = bullettrace(var_b410e4d9.origin, var_b410e4d9.origin + VectorScale((0, 0, -1), 256), 0, var_b410e4d9);
+	robot_start_pos = a_s_start_pos[0];
+	trace = bullettrace(robot_start_pos.origin, robot_start_pos.origin + VectorScale((0, 0, -1), 256), 0, robot_start_pos);
 	v_ground_position = trace["position"];
 	var_36e9b69a = v_ground_position + VectorScale((0, 0, 1), 650);
 	level thread function_70541dc1(v_ground_position);
@@ -392,7 +392,7 @@ function spawn_robot(player, trig_stub, n_spawn_delay)
 
 /*
 	Name: function_490cbdf5
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x53AB88BA
 	Offset: 0x1930
 	Size: 0x13
@@ -407,7 +407,7 @@ function function_490cbdf5()
 
 /*
 	Name: function_ab4d9ece
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x6967B721
 	Offset: 0x1950
 	Size: 0x175
@@ -416,7 +416,7 @@ function function_490cbdf5()
 */
 function function_ab4d9ece(var_21e230b7, e_player)
 {
-	level.ai_robot thread function_32ce0dec();
+	level.ai_robot thread robot_sky_trail();
 	wait(0.5);
 	Earthquake(0.55, 1.2, var_21e230b7, 1200);
 	playFX(level._effect["robot_landing"], var_21e230b7);
@@ -433,15 +433,15 @@ function function_ab4d9ece(var_21e230b7, e_player)
 }
 
 /*
-	Name: function_32ce0dec
-	Namespace: namespace_2cce1885
+	Name: robot_sky_trail
+	Namespace: zm_zod_robot
 	Checksum: 0x89C3793
 	Offset: 0x1AD0
 	Size: 0xB3
 	Parameters: 0
 	Flags: None
 */
-function function_32ce0dec()
+function robot_sky_trail()
 {
 	m_sky_trail = spawn("script_model", self.origin);
 	m_sky_trail SetModel("tag_origin");
@@ -453,7 +453,7 @@ function function_32ce0dec()
 
 /*
 	Name: function_70541dc1
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xF29419BF
 	Offset: 0x1B90
 	Size: 0xA3
@@ -471,7 +471,7 @@ function function_70541dc1(v_ground_position)
 
 /*
 	Name: function_fa1df614
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xDEFD340F
 	Offset: 0x1C40
 	Size: 0x2B9
@@ -512,7 +512,7 @@ function function_fa1df614(v_origin, eAttacker, n_radius)
 
 /*
 	Name: filter_callbox_name
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xC9B003F5
 	Offset: 0x1F08
 	Size: 0x47
@@ -530,7 +530,7 @@ function filter_callbox_name(e_entity, str_areaname)
 
 /*
 	Name: update_readouts_for_remaining_robot_cost
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x80F9912B
 	Offset: 0x1F58
 	Size: 0xB1
@@ -548,7 +548,7 @@ function update_readouts_for_remaining_robot_cost()
 
 /*
 	Name: update_readout_for_remaining_robot_cost
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x15FF3F96
 	Offset: 0x2018
 	Size: 0xDD
@@ -570,7 +570,7 @@ function update_readout_for_remaining_robot_cost()
 
 /*
 	Name: get_placed_array_from_number
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x425271C4
 	Offset: 0x2100
 	Size: 0xB7
@@ -591,7 +591,7 @@ function get_placed_array_from_number(n_number)
 
 /*
 	Name: gib_head_check
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x29201CF4
 	Offset: 0x21C0
 	Size: 0x61
@@ -627,7 +627,7 @@ function private gib_head_check(DAMAGE_LOCATION)
 
 /*
 	Name: gib_check
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x94F9E
 	Offset: 0x2230
 	Size: 0xF
@@ -641,7 +641,7 @@ function private gib_check(damage_percent)
 
 /*
 	Name: function_f9a6039c
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0xA205695C
 	Offset: 0x2248
 	Size: 0x14B
@@ -667,14 +667,14 @@ function function_f9a6039c(entity, suffix, delay)
 	{
 		entity.is_speaking = 1;
 		entity PlaySoundWithNotify(alias + "_" + var_4dc11cc, "sndDone");
-		entity waittill("hash_b6f7c8d2");
+		entity waittill("snddone");
 		entity.is_speaking = 0;
 	}
 }
 
 /*
 	Name: function_be60a9fd
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x95DCD2BC
 	Offset: 0x23A0
 	Size: 0x87
@@ -697,7 +697,7 @@ function function_be60a9fd()
 
 /*
 	Name: function_677061ac
-	Namespace: namespace_2cce1885
+	Namespace: zm_zod_robot
 	Checksum: 0x26415BA4
 	Offset: 0x2430
 	Size: 0x67

@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_fb5c506f;
+#namespace zm_bgb_fatal_contraption;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_fb5c506f
+	Namespace: zm_bgb_fatal_contraption
 	Checksum: 0x538F92B6
 	Offset: 0x178
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_fb5c506f
+	Namespace: zm_bgb_fatal_contraption
 	Checksum: 0x1F90D123
 	Offset: 0x1B8
 	Size: 0x53
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_fb5c506f
+	Namespace: zm_bgb_fatal_contraption
 	Checksum: 0xF14A24CB
 	Offset: 0x218
 	Size: 0x23

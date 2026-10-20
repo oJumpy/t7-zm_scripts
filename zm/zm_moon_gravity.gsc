@@ -676,7 +676,7 @@ function low_gravity_watch()
 			util::wait_network_frame();
 			continue;
 		}
-		if(!level flag::get("power_on") || (isdefined(self.in_low_gravity) && self.in_low_gravity) && !self namespace_11fcf241::gasmask_active())
+		if(!level flag::get("power_on") || (isdefined(self.in_low_gravity) && self.in_low_gravity) && !self zm_equip_gasmask::gasmask_active())
 		{
 			self thread airless_vox_without_repeat();
 			time_til_damage = time_til_damage + diff;

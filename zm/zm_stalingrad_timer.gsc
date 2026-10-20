@@ -15,11 +15,11 @@
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_fd6bdadc;
+#namespace zm_stalingrad_timer;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x744B49DE
 	Offset: 0x360
 	Size: 0x3B
@@ -33,7 +33,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x99EC1590
 	Offset: 0x3A8
 	Size: 0x3
@@ -46,7 +46,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0xFEC4A344
 	Offset: 0x3B8
 	Size: 0x14B
@@ -72,7 +72,7 @@ function __main__()
 
 /*
 	Name: function_6ac3689a
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x54E521E1
 	Offset: 0x510
 	Size: 0xEF
@@ -97,7 +97,7 @@ function function_6ac3689a(player)
 
 /*
 	Name: function_86419da
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x3BE65786
 	Offset: 0x608
 	Size: 0x3BB
@@ -273,7 +273,7 @@ function function_86419da()
 
 /*
 	Name: award_item
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x6B3E463
 	Offset: 0x9D0
 	Size: 0x26B
@@ -332,7 +332,7 @@ function award_item(str_reward)
 
 /*
 	Name: function_3d5b5002
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0xD2A28F06
 	Offset: 0xC48
 	Size: 0xE3
@@ -374,7 +374,7 @@ function function_3d5b5002()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x88CCF2D6
 	Offset: 0xD38
 	Size: 0x1B
@@ -388,7 +388,7 @@ function on_player_spawned()
 
 /*
 	Name: function_88b9bf27
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x6217008D
 	Offset: 0xD60
 	Size: 0x2B
@@ -406,7 +406,7 @@ function function_88b9bf27()
 
 /*
 	Name: function_959f59b8
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x75B3CE55
 	Offset: 0xD98
 	Size: 0x5F

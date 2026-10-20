@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_105bda17;
+#namespace zm_bgb_fear_in_headlights;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0xFE62B444
 	Offset: 0x1F0
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0x5EB6920C
 	Offset: 0x230
 	Size: 0x63
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: function_b13c2f15
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0x45567D84
 	Offset: 0x2A0
 	Size: 0x83
@@ -65,7 +65,7 @@ function private function_b13c2f15()
 
 /*
 	Name: freeze_ai
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0x12DC37BE
 	Offset: 0x330
 	Size: 0xAB
@@ -85,7 +85,7 @@ function private freeze_ai(ai)
 
 /*
 	Name: unfreeze_ai
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0x4053149D
 	Offset: 0x3E8
 	Size: 0xA7
@@ -112,7 +112,7 @@ function private unfreeze_ai(ai)
 
 /*
 	Name: function_723d94f5
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0xAA2BEEBD
 	Offset: 0x498
 	Size: 0x1B1
@@ -143,7 +143,7 @@ function private function_723d94f5(allai, trace, degree)
 
 /*
 	Name: validation
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0x528443D1
 	Offset: 0x658
 	Size: 0x25
@@ -161,7 +161,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0xE94CB83F
 	Offset: 0x688
 	Size: 0xA1
@@ -174,14 +174,14 @@ function activation()
 	self thread function_deeb696f();
 	self playsound("zmb_bgb_fearinheadlights_start");
 	self PlayLoopSound("zmb_bgb_fearinheadlights_loop");
-	self thread function_2715245a();
+	self thread kill_fear_in_headlights();
 	self bgb::run_timer(120);
-	self notify("hash_2715245a");
+	self notify("kill_fear_in_headlights");
 }
 
 /*
 	Name: function_deeb696f
-	Namespace: namespace_105bda17
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0xB4D3AC8
 	Offset: 0x738
 	Size: 0x317
@@ -191,7 +191,7 @@ function activation()
 function function_deeb696f()
 {
 	self endon("disconnect");
-	self endon("hash_2715245a");
+	self endon("kill_fear_in_headlights");
 	var_bd6badee = 1200 * 1200;
 	while(1)
 	{
@@ -230,15 +230,15 @@ function function_deeb696f()
 }
 
 /*
-	Name: function_2715245a
-	Namespace: namespace_105bda17
+	Name: kill_fear_in_headlights
+	Namespace: zm_bgb_fear_in_headlights
 	Checksum: 0x95068479
 	Offset: 0xA58
 	Size: 0x119
 	Parameters: 0
 	Flags: None
 */
-function function_2715245a()
+function kill_fear_in_headlights()
 {
 	str_notify = self util::waittill_any_return("death", "kill_fear_in_headlights");
 	if(str_notify == "kill_fear_in_headlights")

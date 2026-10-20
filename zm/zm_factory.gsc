@@ -126,8 +126,8 @@ function main()
 		SetDvar("art_review", "1");
 		level.random_pandora_box_start = 0;
 		level.start_chest_name = "chest_4";
-		var_8ad3e4ad = GetEnt("clock_snow", "targetname");
-		var_8ad3e4ad ghost();
+		clock_snow = GetEnt("clock_snow", "targetname");
+		clock_snow ghost();
 		scene::add_scene_func("cin_der_01_intro_3rd_sh050", &clock_shot, "play");
 		level thread cinematic();
 	}
@@ -906,12 +906,12 @@ function no_target_override(zombie)
 			}
 		}
 	}
-	escape_position = zombie namespace_45003ce0::get_escape_position_in_current_zone();
+	escape_position = zombie factory_cleanup::get_escape_position_in_current_zone();
 	if(zombie validate_and_set_no_target_position(escape_position))
 	{
 		return;
 	}
-	escape_position = zombie namespace_45003ce0::get_escape_position();
+	escape_position = zombie factory_cleanup::get_escape_position();
 	if(zombie validate_and_set_no_target_position(escape_position))
 	{
 		return;
@@ -1327,7 +1327,7 @@ function flytrap()
 	level flag::wait_till("ee_exp_monkey");
 	level flag::wait_till("ee_bowie_bear");
 	level flag::wait_till("ee_perk_bear");
-	level thread function_d8362620();
+	level thread flytrap_prize();
 }
 
 /*
@@ -2085,7 +2085,7 @@ function sndRadioWait(origin, radio, num)
 {
 	temp_ent = spawn("script_origin", origin);
 	temp_ent thread zm_audio::secretUse("sndRadioHit", VectorScale((1, 0, 0), 255), &zm_audio::sndRadio_Override, radio);
-	temp_ent waittill("hash_678c47ee", player);
+	temp_ent waittill("sndradiohit", player);
 	if(isdefined(level.sndRadioA) && level.sndRadioA == player)
 	{
 		if(num == 1)
@@ -2568,11 +2568,11 @@ function fx_overrides()
 function ciphers()
 {
 	mdl_brick = GetEnt("cipher_brick_main", "script_noteworthy");
-	mdl_brick thread function_b730f44e();
+	mdl_brick thread brick_cipher();
 }
 
 /*
-	Name: function_b730f44e
+	Name: brick_cipher
 	Namespace: zm_factory
 	Checksum: 0x88A3FA55
 	Offset: 0x88E0
@@ -2580,7 +2580,7 @@ function ciphers()
 	Parameters: 0
 	Flags: None
 */
-function function_b730f44e()
+function brick_cipher()
 {
 	self create_unitrigger();
 	self waittill("trigger_activated");
@@ -2716,7 +2716,7 @@ function function_428d50ed()
 function function_7cb67075()
 {
 	self endon("disconnect");
-	level endon("hash_497e0707");
+	level endon("snow_ee_completed");
 	if(level flag::exists("snow_ee_completed") && level flag::get("snow_ee_completed"))
 	{
 		return;
@@ -2870,7 +2870,7 @@ function function_e0f73644()
 {
 	if(math::cointoss())
 	{
-		level._custom_perks["specialty_staminup"].perk_machine_power_override_thread = &function_384be1c4;
+		level._custom_perks["specialty_staminup"].perk_machine_power_override_thread = &start_balcony_norail_on;
 		level._custom_perks["specialty_deadshot"].perk_machine_power_override_thread = &function_49e223a9;
 	}
 	else
@@ -2881,7 +2881,7 @@ function function_e0f73644()
 }
 
 /*
-	Name: function_384be1c4
+	Name: start_balcony_norail_on
 	Namespace: zm_factory
 	Checksum: 0x83C2615C
 	Offset: 0x9548
@@ -2889,7 +2889,7 @@ function function_e0f73644()
 	Parameters: 0
 	Flags: None
 */
-function function_384be1c4()
+function start_balcony_norail_on()
 {
 	zm_perks::perk_machine_removal("specialty_staminup");
 	level._custom_perks = Array::remove_index(level._custom_perks, "specialty_staminup", 1);
@@ -2989,7 +2989,7 @@ function function_8fbb6760(str_perk)
 }
 
 /*
-	Name: function_d8362620
+	Name: flytrap_prize
 	Namespace: zm_factory
 	Checksum: 0x39450F1C
 	Offset: 0x9978
@@ -2997,7 +2997,7 @@ function function_8fbb6760(str_perk)
 	Parameters: 0
 	Flags: None
 */
-function function_d8362620()
+function flytrap_prize()
 {
 	s_prize = struct::get("flytrap_prize", "targetname");
 	mdl_prize = util::spawn_model("wpn_t7_hero_annihilator_world", s_prize.origin, s_prize.angles);
@@ -3092,7 +3092,7 @@ function function_5d3bb3fe(w_annihilator)
 */
 function anywhere_but_here_validation_override()
 {
-	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
+	if(!isdefined(self zm_bgb_anywhere_but_here::function_728dfe3()))
 	{
 		return 0;
 	}

@@ -21,11 +21,11 @@
 #using scripts\zm\zm_island_transport;
 #using scripts\zm\zm_island_vo;
 
-#namespace namespace_9d2fabb6;
+#namespace zm_island_zones;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0x961B648D
 	Offset: 0xB58
 	Size: 0x33
@@ -39,7 +39,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0x9507A86D
 	Offset: 0xB98
 	Size: 0x63
@@ -54,7 +54,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0xCF21DBB6
 	Offset: 0xC08
 	Size: 0x53
@@ -71,7 +71,7 @@ function main()
 
 /*
 	Name: zm_island_zone_init
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0xE91A074
 	Offset: 0xC68
 	Size: 0x8EB
@@ -148,7 +148,7 @@ function zm_island_zone_init()
 
 /*
 	Name: function_2043d032
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0x84971E72
 	Offset: 0x1560
 	Size: 0x2B
@@ -162,7 +162,7 @@ function function_2043d032()
 
 /*
 	Name: function_87fe8382
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0x8470047D
 	Offset: 0x1598
 	Size: 0x57
@@ -172,13 +172,13 @@ function function_2043d032()
 function function_87fe8382()
 {
 	zm_zonemgr::add_adjacent_zone("zone_flooded_bunker_right", "zone_flooded_bunker_tunnel", "connect_flooded_bunker_right_to_flooded_tunnel");
-	level waittill("hash_bb2835ec");
+	level waittill("zone_flooded_bunker_tunnel");
 	level.zones["zone_flooded_bunker_tunnel"].is_spawning_allowed = 0;
 }
 
 /*
 	Name: function_8b7501aa
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0x8AA96F3C
 	Offset: 0x15F8
 	Size: 0x113
@@ -193,7 +193,7 @@ function function_8b7501aa()
 		level flag::set("Dev Block strings are not supported");
 		level flag::set("Dev Block strings are not supported");
 		level flag::set("Dev Block strings are not supported");
-		level thread namespace_5f2c95ae::function_3bd86987("Dev Block strings are not supported");
+		level thread zm_island_skullquest::function_3bd86987("Dev Block strings are not supported");
 		level flag::set("Dev Block strings are not supported");
 		level flag::set("Dev Block strings are not supported");
 		level flag::set("Dev Block strings are not supported");
@@ -202,7 +202,7 @@ function function_8b7501aa()
 
 /*
 	Name: function_6ed87461
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0xFE59C314
 	Offset: 0x1718
 	Size: 0x1F
@@ -216,7 +216,7 @@ function function_6ed87461(a_ents)
 
 /*
 	Name: function_feb4ddde
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0xAC275B0F
 	Offset: 0x1740
 	Size: 0x259
@@ -248,7 +248,7 @@ function function_feb4ddde()
 
 /*
 	Name: function_cd881f16
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0xBAE01F88
 	Offset: 0x19A8
 	Size: 0x3B
@@ -263,7 +263,7 @@ function function_cd881f16()
 
 /*
 	Name: function_afc937e7
-	Namespace: namespace_9d2fabb6
+	Namespace: zm_island_zones
 	Checksum: 0xB694A54F
 	Offset: 0x19F0
 	Size: 0x4B

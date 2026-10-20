@@ -6,11 +6,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_6d4f3e39;
+#namespace zm_theater_amb;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x5BD6209
 	Offset: 0x278
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x3A47970D
 	Offset: 0x2B8
 	Size: 0x4B
@@ -33,12 +33,12 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("toplayer", "player_dust_mote", 21000, 1, "int", &function_9a4cfd8d, 0, 0);
+	clientfield::register("toplayer", "player_dust_mote", 21000, 1, "int", &set_player_dust_motes, 0, 0);
 }
 
 /*
 	Name: main
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x7BD2CC66
 	Offset: 0x310
 	Size: 0x2B
@@ -53,7 +53,7 @@ function main()
 
 /*
 	Name: power_on_all
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xA00E73AE
 	Offset: 0x348
 	Size: 0xE3
@@ -78,7 +78,7 @@ function power_on_all()
 
 /*
 	Name: telepad_loop
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x6CA9990A
 	Offset: 0x438
 	Size: 0x53
@@ -93,7 +93,7 @@ function telepad_loop()
 
 /*
 	Name: teleportation_audio
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x3282F914
 	Offset: 0x498
 	Size: 0xA7
@@ -117,7 +117,7 @@ function teleportation_audio()
 
 /*
 	Name: teleport_2d
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x206C4E12
 	Offset: 0x548
 	Size: 0x5F
@@ -136,7 +136,7 @@ function teleport_2d()
 
 /*
 	Name: teleport_2d_nopad
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x75C2A0D0
 	Offset: 0x5B0
 	Size: 0x87
@@ -157,7 +157,7 @@ function teleport_2d_nopad()
 
 /*
 	Name: teleport_beam_fx_2d
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x360D298F
 	Offset: 0x640
 	Size: 0x3F
@@ -175,7 +175,7 @@ function teleport_beam_fx_2d()
 
 /*
 	Name: teleport_specialroom_start
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xD0228348
 	Offset: 0x688
 	Size: 0x3F
@@ -193,7 +193,7 @@ function teleport_specialroom_start()
 
 /*
 	Name: teleport_specialroom_go
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xFB472EF0
 	Offset: 0x6D0
 	Size: 0x5F
@@ -212,7 +212,7 @@ function teleport_specialroom_go()
 
 /*
 	Name: function_c9207335
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x3E14252C
 	Offset: 0x738
 	Size: 0x73
@@ -229,7 +229,7 @@ function function_c9207335()
 
 /*
 	Name: function_60a32834
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x82A3FED4
 	Offset: 0x7B8
 	Size: 0x93
@@ -258,7 +258,7 @@ function function_60a32834()
 
 /*
 	Name: function_d667714e
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xE85F7801
 	Offset: 0x858
 	Size: 0xF7
@@ -285,7 +285,7 @@ function function_d667714e()
 
 /*
 	Name: function_b234849
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0xEFEB6E0F
 	Offset: 0x958
 	Size: 0x63
@@ -302,7 +302,7 @@ function function_b234849(newmus)
 
 /*
 	Name: function_24ac75e
-	Namespace: namespace_6d4f3e39
+	Namespace: zm_theater_amb
 	Checksum: 0x6600C761
 	Offset: 0x9C8
 	Size: 0x2B
@@ -315,15 +315,15 @@ function function_24ac75e()
 }
 
 /*
-	Name: function_9a4cfd8d
-	Namespace: namespace_6d4f3e39
+	Name: set_player_dust_motes
+	Namespace: zm_theater_amb
 	Checksum: 0xCD376BD1
 	Offset: 0xA00
 	Size: 0xAD
 	Parameters: 7
 	Flags: None
 */
-function function_9a4cfd8d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function set_player_dust_motes(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{

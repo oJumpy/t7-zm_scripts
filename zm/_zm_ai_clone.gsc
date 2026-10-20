@@ -26,11 +26,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_bd8be9f1;
+#namespace zm_ai_clone;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_bd8be9f1
+	Namespace: zm_ai_clone
 	Checksum: 0x3656668A
 	Offset: 0x3A8
 	Size: 0x3B
@@ -44,7 +44,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_bd8be9f1
+	Namespace: zm_ai_clone
 	Checksum: 0x82D72A9F
 	Offset: 0x3F0
 	Size: 0x63
@@ -63,7 +63,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_bd8be9f1
+	Namespace: zm_ai_clone
 	Checksum: 0x5D118D13
 	Offset: 0x460
 	Size: 0x13
@@ -77,7 +77,7 @@ function __main__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_bd8be9f1
+	Namespace: zm_ai_clone
 	Checksum: 0x99EC1590
 	Offset: 0x480
 	Size: 0x3
@@ -90,7 +90,7 @@ function register_clientfields()
 
 /*
 	Name: init
-	Namespace: namespace_bd8be9f1
+	Namespace: zm_ai_clone
 	Checksum: 0xF72A6783
 	Offset: 0x490
 	Size: 0x13
@@ -104,7 +104,7 @@ function init()
 
 /*
 	Name: Precache
-	Namespace: namespace_bd8be9f1
+	Namespace: zm_ai_clone
 	Checksum: 0x99EC1590
 	Offset: 0x4B0
 	Size: 0x3
@@ -117,7 +117,7 @@ function Precache()
 
 /*
 	Name: function_78933fc2
-	Namespace: namespace_bd8be9f1
+	Namespace: zm_ai_clone
 	Checksum: 0x1A73A026
 	Offset: 0x4C0
 	Size: 0x43
@@ -134,7 +134,7 @@ function function_78933fc2()
 
 /*
 	Name: clone_devgui_callback
-	Namespace: namespace_bd8be9f1
+	Namespace: zm_ai_clone
 	Checksum: 0x52E3CFD0
 	Offset: 0x510
 	Size: 0x1E5

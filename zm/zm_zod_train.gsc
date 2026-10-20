@@ -23,11 +23,11 @@
 #using scripts\zm\zm_zod_cleanup_mgr;
 #using scripts\zm\zm_zod_util;
 
-#namespace namespace_835aa2f1;
+#namespace zm_train;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xBDD9C4EF
 	Offset: 0xCE0
 	Size: 0x33
@@ -41,7 +41,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: onPlayerConnect
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x3FA43A3F
 	Offset: 0xD20
 	Size: 0xF
@@ -55,7 +55,7 @@ function onPlayerConnect()
 
 /*
 	Name: __init__
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x43133229
 	Offset: 0xD38
 	Size: 0x1C3
@@ -66,8 +66,8 @@ function __init__()
 {
 	callback::on_connect(&onPlayerConnect);
 	callback::on_spawned(&player_on_spawned);
-	namespace_8e578893::on_zombie_killed(&remove_dead_zombie);
-	namespace_8e578893::add_zod_zombie_spawn_func(&zombie_init);
+	zm_zod_util::on_zombie_killed(&remove_dead_zombie);
+	zm_zod_util::add_zod_zombie_spawn_func(&zombie_init);
 	clientfield::register("vehicle", "train_switch_light", 1, 2, "int");
 	clientfield::register("scriptmover", "train_callbox_light", 1, 2, "int");
 	clientfield::register("scriptmover", "train_map_light", 1, 2, "int");
@@ -83,7 +83,7 @@ function __init__()
 
 /*
 	Name: function_eb0db7bc
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x68EA01F1
 	Offset: 0xF08
 	Size: 0xAB
@@ -106,7 +106,7 @@ function function_eb0db7bc()
 
 /*
 	Name: player_intemission_spawn_callback
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x49391276
 	Offset: 0xFC0
 	Size: 0xBB
@@ -132,7 +132,7 @@ function player_intemission_spawn_callback(origin, angles)
 
 /*
 	Name: initialize_train
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xD73D9D57
 	Offset: 0x1088
 	Size: 0x107
@@ -156,7 +156,7 @@ function initialize_train()
 
 /*
 	Name: function_f37aa349
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xEC474585
 	Offset: 0x1198
 	Size: 0xB5
@@ -178,7 +178,7 @@ function function_f37aa349(sn)
 
 /*
 	Name: function_7465f87
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xF99BFCE4
 	Offset: 0x1258
 	Size: 0x339
@@ -218,7 +218,7 @@ function function_7465f87()
 
 /*
 	Name: player_on_spawned
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xAA3FE45E
 	Offset: 0x15A0
 	Size: 0x1B
@@ -232,7 +232,7 @@ function player_on_spawned()
 
 /*
 	Name: function_69c89e00
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x64908CD3
 	Offset: 0x15C8
 	Size: 0x141
@@ -271,7 +271,7 @@ function function_69c89e00()
 
 /*
 	Name: function_2e9b7fc1
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x539A5EBF
 	Offset: 0x1718
 	Size: 0x4F7
@@ -367,7 +367,7 @@ function function_2e9b7fc1(player, weapon)
 
 /*
 	Name: function_d7993b3d
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x619407B6
 	Offset: 0x1C18
 	Size: 0x63
@@ -384,7 +384,7 @@ function function_d7993b3d(trigger)
 
 /*
 	Name: zombie_init
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x11518FA2
 	Offset: 0x1C88
 	Size: 0xF
@@ -398,7 +398,7 @@ function zombie_init()
 
 /*
 	Name: autosend_train
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xDD56E2FA
 	Offset: 0x1CA0
 	Size: 0x37
@@ -613,7 +613,7 @@ function enable_train_switches(b_enabled)
 	{
 		self flag::clear("switches_enabled");
 		self.m_t_switch setHintString(&"ZM_ZOD_SWITCH_DISABLE");
-		self.m_vh_train notify("hash_51689c0f");
+		self.m_vh_train notify("switch_end");
 	}
 }
 
@@ -1154,7 +1154,7 @@ function Initialize(e_train)
 			continue;
 		}
 		/#
-			IPrintLnBold("Dev Block strings are not supported" + namespace_8e578893::vec_to_string(e_ent.origin) + "Dev Block strings are not supported");
+			IPrintLnBold("Dev Block strings are not supported" + zm_zod_util::vec_to_string(e_ent.origin) + "Dev Block strings are not supported");
 		#/
 	}
 	function_6f6ab7a4();
@@ -1162,7 +1162,7 @@ function Initialize(e_train)
 		if(!isdefined(self.m_e_volume))
 		{
 			/#
-				ASSERTMSG("Dev Block strings are not supported" + namespace_8e578893::vec_to_string(self.m_vh_train.origin) + "Dev Block strings are not supported");
+				ASSERTMSG("Dev Block strings are not supported" + zm_zod_util::vec_to_string(self.m_vh_train.origin) + "Dev Block strings are not supported");
 			#/
 		}
 	#/
@@ -1260,7 +1260,7 @@ function main()
 	self thread function_955e57a7();
 	wait(1);
 	v_front = self.m_vh_train GetTagOrigin("tag_button_front");
-	self.m_s_trigger = namespace_8e578893::spawn_trigger_radius(v_front, 60, 1);
+	self.m_s_trigger = zm_zod_util::spawn_trigger_radius(v_front, 60, 1);
 	self.m_vh_train PlayLoopSound("evt_train_idle_loop", 4);
 	open_doors();
 	thread run_switch();
@@ -1356,12 +1356,12 @@ function main()
 				}
 			#/
 			wait(n_wait);
-			self.m_s_trigger = namespace_8e578893::spawn_trigger_radius(v_trig, 60, 1);
+			self.m_s_trigger = zm_zod_util::spawn_trigger_radius(v_trig, 60, 1);
 			self flag::clear("cooldown");
 		}
 		else
 		{
-			self.m_s_trigger = namespace_8e578893::spawn_trigger_radius(v_trig, 60, 1);
+			self.m_s_trigger = zm_zod_util::spawn_trigger_radius(v_trig, 60, 1);
 		}
 	}
 }
@@ -1494,32 +1494,32 @@ function run_callbox_hintstring(str_callbox, t_use, e_light)
 		if(self.m_str_station == str_callbox)
 		{
 			e_light clientfield::set("train_callbox_light", 0);
-			t_use namespace_8e578893::set_unitrigger_hint_string(&"");
+			t_use zm_zod_util::set_unitrigger_hint_string(&"");
 		}
 		else
 		{
 			e_light clientfield::set("train_callbox_light", 1);
-			t_use namespace_8e578893::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_CALL", 500);
+			t_use zm_zod_util::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_CALL", 500);
 		}
 		self flag::wait_till("moving");
 		e_light clientfield::set("train_callbox_light", 0);
-		t_use namespace_8e578893::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_MOVING");
+		t_use zm_zod_util::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_MOVING");
 		self flag::wait_till_clear("moving");
 		wait(0.05);
 		if(self flag::get("offline"))
 		{
-			t_use namespace_8e578893::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_OFFLINE");
+			t_use zm_zod_util::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_OFFLINE");
 			e_light clientfield::set("train_callbox_light", 2);
 			self flag::wait_till_clear("offline");
 		}
 		else if(self.m_str_station == str_callbox)
 		{
-			t_use namespace_8e578893::set_unitrigger_hint_string(&"");
+			t_use zm_zod_util::set_unitrigger_hint_string(&"");
 			self flag::wait_till_clear("cooldown");
 		}
 		else
 		{
-			t_use namespace_8e578893::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_COOLDOWN");
+			t_use zm_zod_util::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_COOLDOWN");
 			self flag::wait_till_clear("cooldown");
 		}
 	}
@@ -1540,7 +1540,7 @@ function run_callbox(str_callbox)
 		Assert(isdefined(self.m_str_station));
 	#/
 	e_lever = self.m_a_s_stations[str_callbox].callbox;
-	t_use = namespace_8e578893::spawn_trigger_radius(e_lever.origin, 60, 1);
+	t_use = zm_zod_util::spawn_trigger_radius(e_lever.origin, 60, 1);
 	thread run_callbox_hintstring(str_callbox, t_use, GetEnt(e_lever.target, "targetname"));
 	while(1)
 	{
@@ -1926,19 +1926,19 @@ function update_use_trigger()
 	}
 	if(self.m_b_free)
 	{
-		self.m_s_trigger namespace_8e578893::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_USE_FREE");
+		self.m_s_trigger zm_zod_util::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_USE_FREE");
 	}
 	else if(is_offline())
 	{
-		self.m_s_trigger namespace_8e578893::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_OFFLINE");
+		self.m_s_trigger zm_zod_util::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_OFFLINE");
 	}
 	else if(is_cooling_down())
 	{
-		self.m_s_trigger namespace_8e578893::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_COOLDOWN");
+		self.m_s_trigger zm_zod_util::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_COOLDOWN");
 	}
 	else
 	{
-		self.m_s_trigger namespace_8e578893::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_USE", 500);
+		self.m_s_trigger zm_zod_util::set_unitrigger_hint_string(&"ZM_ZOD_TRAIN_USE", 500);
 	}
 }
 
@@ -2015,7 +2015,7 @@ function run_switch()
 */
 function function_de6e1f4f(m_t_switch)
 {
-	self.m_vh_train endon("hash_51689c0f");
+	self.m_vh_train endon("switch_end");
 	if(!flag::get("switches_enabled"))
 	{
 		flag::wait_till("switches_enabled");
@@ -2550,11 +2550,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_835aa2f1;
+#namespace zm_train;
 
 /*
 	Name: czmtrain
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xE17A404F
 	Offset: 0x7FE8
 	Size: 0xC25
@@ -2632,7 +2632,7 @@ function private autoexec czmtrain()
 
 /*
 	Name: in_range_2d
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x6822FD88
 	Offset: 0x8C18
 	Size: 0x7D
@@ -2650,7 +2650,7 @@ function in_range_2d(v1, v2, range, vert_allowance)
 
 /*
 	Name: get_players_on_train
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x7B70A744
 	Offset: 0x8CA0
 	Size: 0x31
@@ -2668,7 +2668,7 @@ function get_players_on_train(b_valid_targets_only)
 
 /*
 	Name: is_moving
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x9C7B626A
 	Offset: 0x8CE0
 	Size: 0x25
@@ -2686,7 +2686,7 @@ function is_moving()
 
 /*
 	Name: zombie_jump_onto_moving_train
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x95C19E39
 	Offset: 0x8D10
 	Size: 0x87
@@ -2706,7 +2706,7 @@ function zombie_jump_onto_moving_train(ai)
 
 /*
 	Name: remove_dead_zombie
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x514BEC09
 	Offset: 0x8DA0
 	Size: 0xE7
@@ -2746,7 +2746,7 @@ function remove_dead_zombie(e_attacker, str_means_of_death, weapon)
 
 /*
 	Name: get_num_zombies_locked_in
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xDE13BFA5
 	Offset: 0x8E90
 	Size: 0x29
@@ -2761,7 +2761,7 @@ function get_num_zombies_locked_in()
 
 /*
 	Name: is_full
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xDAF9ED5D
 	Offset: 0x8EC8
 	Size: 0x17
@@ -2775,7 +2775,7 @@ function is_full()
 
 /*
 	Name: is_ready_for_jumper
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xC4210679
 	Offset: 0x8EE8
 	Size: 0x1F
@@ -2789,7 +2789,7 @@ function is_ready_for_jumper()
 
 /*
 	Name: debug_go_to_train
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x9185ACAB
 	Offset: 0x8F10
 	Size: 0xDB
@@ -2815,7 +2815,7 @@ function debug_go_to_train()
 
 /*
 	Name: train_devgui
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0x5577B68C
 	Offset: 0x8FF8
 	Size: 0x1EF

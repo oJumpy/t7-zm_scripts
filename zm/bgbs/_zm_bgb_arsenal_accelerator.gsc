@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_3ab5ff91;
+#namespace zm_bgb_arsenal_accelerator;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3ab5ff91
+	Namespace: zm_bgb_arsenal_accelerator
 	Checksum: 0x69B661C3
 	Offset: 0x188
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3ab5ff91
+	Namespace: zm_bgb_arsenal_accelerator
 	Checksum: 0x34697311
 	Offset: 0x1C8
 	Size: 0x5B
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_3ab5ff91
+	Namespace: zm_bgb_arsenal_accelerator
 	Checksum: 0xBAFF06
 	Offset: 0x230
 	Size: 0x23
@@ -56,7 +56,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_3ab5ff91
+	Namespace: zm_bgb_arsenal_accelerator
 	Checksum: 0x5E37BE27
 	Offset: 0x260
 	Size: 0x23

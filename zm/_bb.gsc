@@ -44,28 +44,28 @@ function __init__()
 */
 function logdamage(attacker, victim, weapon, damage, damageType, hitlocation, victimkilled, victimdowned)
 {
-	var_14ac1c86 = -1;
-	var_d3117c75 = "";
+	victimid = -1;
+	victimtype = "";
 	victimOrigin = (0, 0, 0);
-	var_4c26f55 = 0;
-	var_99e7469c = 0;
-	var_f4bca593 = 0;
-	var_cb683866 = 0;
-	var_38d64c0f = "";
+	victimignoreme = 0;
+	victimignoreall = 0;
+	victimfovcos = 0;
+	victimmaxsightdistsqrd = 0;
+	victimanimname = "";
 	victimName = "";
 	victimdowns = 0;
-	var_2f4e1ee3 = -1;
-	var_2746427c = "";
+	attackerid = -1;
+	attackertype = "";
 	attackerOrigin = (0, 0, 0);
-	var_6ecba8dc = 0;
-	var_33f13d47 = 0;
-	var_b8bd32a2 = 0;
-	var_ad96a70b = 0;
-	var_cd3a2efe = "";
+	attackerignoreme = 0;
+	attackerignoreall = 0;
+	attackerfovcos = 0;
+	attackermaxsightdistsqrd = 0;
+	attackeranimname = "";
 	attackerName = "";
 	aivictimtype = "";
 	aivictimrank = "";
-	var_b1989306 = "";
+	aivictimcombatmode = "";
 	aiattackertype = "";
 	aiattackerrank = "";
 	aiattackercombatmode = "";
@@ -73,58 +73,58 @@ function logdamage(attacker, victim, weapon, damage, damageType, hitlocation, vi
 	{
 		if(isPlayer(attacker))
 		{
-			var_2f4e1ee3 = getplayerspawnid(attacker);
-			var_2746427c = "_player";
+			attackerid = getplayerspawnid(attacker);
+			attackertype = "_player";
 			attackerName = attacker.name;
 		}
 		else if(isai(attacker))
 		{
-			var_2746427c = "_ai";
+			attackertype = "_ai";
 			aiattackercombatmode = attacker.combatmode;
-			var_2f4e1ee3 = attacker.actor_id;
+			attackerid = attacker.actor_id;
 		}
 		else
 		{
-			var_2746427c = "_other";
+			attackertype = "_other";
 		}
 		attackerOrigin = attacker.origin;
-		var_6ecba8dc = attacker.ignoreme;
-		var_b8bd32a2 = attacker.fovcosine;
-		var_ad96a70b = attacker.maxsightdistsqrd;
+		attackerignoreme = attacker.ignoreme;
+		attackerfovcos = attacker.fovcosine;
+		attackermaxsightdistsqrd = attacker.maxsightdistsqrd;
 		if(isdefined(attacker.animName))
 		{
-			var_cd3a2efe = attacker.animName;
+			attackeranimname = attacker.animName;
 		}
 	}
 	if(isdefined(victim))
 	{
 		if(isPlayer(victim))
 		{
-			var_14ac1c86 = getplayerspawnid(victim);
-			var_d3117c75 = "_player";
+			victimid = getplayerspawnid(victim);
+			victimtype = "_player";
 			victimName = victim.name;
 			victimdowns = victim.downs;
 		}
 		else if(isai(victim))
 		{
-			var_d3117c75 = "_ai";
-			var_b1989306 = victim.combatmode;
-			var_14ac1c86 = victim.actor_id;
+			victimtype = "_ai";
+			aivictimcombatmode = victim.combatmode;
+			victimid = victim.actor_id;
 		}
 		else
 		{
-			var_d3117c75 = "_other";
+			victimtype = "_other";
 		}
 		victimOrigin = victim.origin;
-		var_4c26f55 = victim.ignoreme;
-		var_f4bca593 = victim.fovcosine;
-		var_cb683866 = victim.maxsightdistsqrd;
+		victimignoreme = victim.ignoreme;
+		victimfovcos = victim.fovcosine;
+		victimmaxsightdistsqrd = victim.maxsightdistsqrd;
 		if(isdefined(victim.animName))
 		{
-			var_38d64c0f = victim.animName;
+			victimanimname = victim.animName;
 		}
 	}
-	bbPrint("zmattacks", "gametime %d roundnumber %d attackerid %d attackername %s attackertype %s attackerweapon %s attackerx %d attackery %d attackerz %d aiattckercombatmode %s attackerignoreme %d attackerignoreall %d attackerfovcos %d attackermaxsightdistsqrd %d attackeranimname %s victimid %d victimname %s victimtype %s victimx %d victimy %d victimz %d aivictimcombatmode %s victimignoreme %d victimignoreall %d victimfovcos %d victimmaxsightdistsqrd %d victimanimname %s damage %d damagetype %s damagelocation %s death %d downed %d downs %d", GetTime(), level.round_number, var_2f4e1ee3, attackerName, var_2746427c, weapon.name, attackerOrigin, aiattackercombatmode, var_6ecba8dc, var_33f13d47, var_b8bd32a2, var_ad96a70b, var_cd3a2efe, var_14ac1c86, victimName, var_d3117c75, victimOrigin, var_b1989306, var_4c26f55, var_99e7469c, var_f4bca593, var_cb683866, var_38d64c0f, damage, damageType, hitlocation, victimkilled, victimdowned, victimdowns);
+	bbPrint("zmattacks", "gametime %d roundnumber %d attackerid %d attackername %s attackertype %s attackerweapon %s attackerx %d attackery %d attackerz %d aiattckercombatmode %s attackerignoreme %d attackerignoreall %d attackerfovcos %d attackermaxsightdistsqrd %d attackeranimname %s victimid %d victimname %s victimtype %s victimx %d victimy %d victimz %d aivictimcombatmode %s victimignoreme %d victimignoreall %d victimfovcos %d victimmaxsightdistsqrd %d victimanimname %s damage %d damagetype %s damagelocation %s death %d downed %d downs %d", GetTime(), level.round_number, attackerid, attackerName, attackertype, weapon.name, attackerOrigin, aiattackercombatmode, attackerignoreme, attackerignoreall, attackerfovcos, attackermaxsightdistsqrd, attackeranimname, victimid, victimName, victimtype, victimOrigin, aivictimcombatmode, victimignoreme, victimignoreall, victimfovcos, victimmaxsightdistsqrd, victimanimname, damage, damageType, hitlocation, victimkilled, victimdowned, victimdowns);
 }
 
 /*
@@ -162,7 +162,7 @@ function logplayerevent(player, eventName)
 	{
 		beastmodeactive = player.beastmode;
 	}
-	bbPrint("zmplayerevents", "gametime %d roundnumber %d eventname %s spawnid %d username %s originx %d originy %d originz %d health %d beastlives %d currentweapon %s kills %d zone_name %s sessionstate %s currentscore %d totalscore %d beastmodeon %d", GetTime(), level.round_number, eventName, getplayerspawnid(player), player.name, player.origin, player.health, player.var_5e82a563, currentWeapon, player.kills, player.zone_name, player.sessionstate, player.score, player.score_total, beastmodeactive);
+	bbPrint("zmplayerevents", "gametime %d roundnumber %d eventname %s spawnid %d username %s originx %d originy %d originz %d health %d beastlives %d currentweapon %s kills %d zone_name %s sessionstate %s currentscore %d totalscore %d beastmodeon %d", GetTime(), level.round_number, eventName, getplayerspawnid(player), player.name, player.origin, player.health, player.beastlives, currentWeapon, player.kills, player.zone_name, player.sessionstate, player.score, player.score_total, beastmodeactive);
 }
 
 /*
@@ -208,14 +208,14 @@ function logpurchaseevent(player, sellerent, cost, itemName, itemupgraded, itemT
 */
 function logpowerupevent(powerup, optplayer, eventName)
 {
-	var_34214b08 = -1;
+	playerspawnid = -1;
 	playerName = "";
 	if(isdefined(optplayer) && isPlayer(optplayer))
 	{
-		var_34214b08 = getplayerspawnid(optplayer);
+		playerspawnid = getplayerspawnid(optplayer);
 		playerName = optplayer.name;
 	}
-	bbPrint("zmpowerups", "gametime %d roundnumber %d powerupname %s powerupx %d powerupy %d powerupz %d, eventname %s playerspawnid %d playername %s", GetTime(), level.round_number, powerup.powerup_name, powerup.origin, eventName, var_34214b08, playerName);
+	bbPrint("zmpowerups", "gametime %d roundnumber %d powerupname %s powerupx %d powerupy %d powerupz %d, eventname %s playerspawnid %d playername %s", GetTime(), level.round_number, powerup.powerup_name, powerup.origin, eventName, playerspawnid, playerName);
 	foreach(player in level.players)
 	{
 		logplayerevent(player, "powerup_" + powerup.powerup_name + "_" + eventName);

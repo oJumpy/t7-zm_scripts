@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_weap_riotshield;
 #using scripts\zm\craftables\_zm_craft_shield;
 
-#namespace namespace_4ee929d9;
+#namespace tomb_shield;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4ee929d9
+	Namespace: tomb_shield
 	Checksum: 0x3BC626A9
 	Offset: 0x230
 	Size: 0x3B
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4ee929d9
+	Namespace: tomb_shield
 	Checksum: 0x8B2512DB
 	Offset: 0x278
 	Size: 0x7B
@@ -41,7 +41,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_4ee929d9
+	Namespace: tomb_shield
 	Checksum: 0xAABE1C15
 	Offset: 0x300
 	Size: 0x33

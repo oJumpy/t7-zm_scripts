@@ -26,11 +26,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_7cee2b44;
+#namespace mirg2000;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xBAC84CB5
 	Offset: 0x708
 	Size: 0x3B
@@ -44,7 +44,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xFBC1135B
 	Offset: 0x750
 	Size: 0x1F3
@@ -69,7 +69,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xCC835182
 	Offset: 0x950
 	Size: 0x23
@@ -83,7 +83,7 @@ function __main__()
 
 /*
 	Name: function_182a023
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x8F90155C
 	Offset: 0x980
 	Size: 0x63
@@ -100,7 +100,7 @@ function function_182a023()
 
 /*
 	Name: is_wonder_weapon
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xCB816734
 	Offset: 0x9F0
 	Size: 0x227
@@ -173,7 +173,7 @@ function is_wonder_weapon(weapon, str_type)
 
 /*
 	Name: function_a1fce678
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x447EBD4
 	Offset: 0xC20
 	Size: 0xCD
@@ -224,7 +224,7 @@ function function_a1fce678(var_2b568a63)
 
 /*
 	Name: function_8734b840
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xA80A1EF1
 	Offset: 0xCF8
 	Size: 0xAF
@@ -250,7 +250,7 @@ function function_8734b840(v_start, v_end, n_range_sq, var_a8ed33a)
 
 /*
 	Name: function_794992bd
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x20D778AE
 	Offset: 0xDB0
 	Size: 0xB3
@@ -275,7 +275,7 @@ function function_794992bd(player, v_pos)
 
 /*
 	Name: function_b926526f
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x3D4A684C
 	Offset: 0xE70
 	Size: 0x4B
@@ -289,7 +289,7 @@ function function_b926526f(mod, weapon)
 
 /*
 	Name: watch_weapon_change
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x658A0233
 	Offset: 0xEC8
 	Size: 0x177
@@ -324,7 +324,7 @@ function watch_weapon_change()
 
 /*
 	Name: function_3940d816
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x85F78EE3
 	Offset: 0x1048
 	Size: 0x227
@@ -389,7 +389,7 @@ function function_3940d816()
 
 /*
 	Name: function_9e09b719
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x1EA364CD
 	Offset: 0x1278
 	Size: 0x107
@@ -422,7 +422,7 @@ function function_9e09b719()
 
 /*
 	Name: faction_mission_assign_travel
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xC87EC92C
 	Offset: 0x1388
 	Size: 0xFF
@@ -456,7 +456,7 @@ function faction_mission_assign_travel()
 
 /*
 	Name: function_25db292d
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xBA5691C4
 	Offset: 0x1490
 	Size: 0xDF
@@ -485,7 +485,7 @@ function function_25db292d(var_e4a438f3)
 
 /*
 	Name: function_74a68c49
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x92F1DC7E
 	Offset: 0x1578
 	Size: 0x173
@@ -528,7 +528,7 @@ function function_74a68c49(player, var_d24bfa82)
 
 /*
 	Name: function_1e4094ac
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x881E80C6
 	Offset: 0x16F8
 	Size: 0x17B
@@ -563,7 +563,7 @@ function function_1e4094ac(v_position, var_d24bfa82)
 
 /*
 	Name: function_3604c7ec
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xC26C17DB
 	Offset: 0x1880
 	Size: 0xB5
@@ -589,7 +589,7 @@ function function_3604c7ec(player)
 
 /*
 	Name: function_d3b8fbb0
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x13DCD105
 	Offset: 0x1940
 	Size: 0x2B3
@@ -637,7 +637,7 @@ function function_d3b8fbb0(v_pos, e_plant)
 
 /*
 	Name: function_b6ac59ff
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xA559DA82
 	Offset: 0x1C00
 	Size: 0xB7
@@ -660,7 +660,7 @@ function function_b6ac59ff(v_pos, n_range_sq)
 
 /*
 	Name: function_4a06c777
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x93F3EE7B
 	Offset: 0x1CC0
 	Size: 0x121
@@ -676,20 +676,20 @@ function function_4a06c777(v_position, player)
 	n_range_sq = player function_a1fce678();
 	foreach(mdl_spore in level.var_1abc7758)
 	{
-		if(!isdefined(mdl_spore.var_eec2cd7b))
+		if(!isdefined(mdl_spore.t_spore_damage))
 		{
 			continue;
 		}
 		if(function_8734b840(mdl_spore.origin, v_position, n_range_sq))
 		{
-			mdl_spore.var_eec2cd7b DoDamage(1, v_position, player, player);
+			mdl_spore.t_spore_damage DoDamage(1, v_position, player, player);
 		}
 	}
 }
 
 /*
 	Name: function_508749d7
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x48C44CC4
 	Offset: 0x1DF0
 	Size: 0x131
@@ -713,14 +713,14 @@ function function_508749d7(v_position, player)
 		if(function_8734b840(s_planting_spot.origin, v_position, n_range_sq))
 		{
 			s_planting_spot notify("hash_8dfde2c8");
-			player notify("hash_e7c74581");
+			player notify("player_hit_plant_with_mirg2000");
 		}
 	}
 }
 
 /*
 	Name: function_570d6f32
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x3E6ABA17
 	Offset: 0x1F30
 	Size: 0x131
@@ -750,7 +750,7 @@ function function_570d6f32(v_position, player)
 
 /*
 	Name: function_4a1cb794
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xFA36C998
 	Offset: 0x2070
 	Size: 0x293
@@ -827,15 +827,15 @@ function function_4a1cb794(player)
 	}
 	if(isdefined(self.var_f83345c7) && self.var_f83345c7)
 	{
-		self notify("hash_bbf62f57");
+		self notify("web_torn");
 		player.var_5c159c87 = 1;
-		player namespace_27f8b154::function_20915a1a();
+		player zm_ai_spiders::function_20915a1a();
 	}
 }
 
 /*
 	Name: function_79504f13
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x9DF526A8
 	Offset: 0x2310
 	Size: 0x103
@@ -864,7 +864,7 @@ function function_79504f13(ai_zombie, v_pos)
 
 /*
 	Name: function_9844cc8a
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x614564BF
 	Offset: 0x2420
 	Size: 0x12B
@@ -897,7 +897,7 @@ function function_9844cc8a(v_position, player)
 
 /*
 	Name: function_e0d7bd91
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x84E4FF88
 	Offset: 0x2558
 	Size: 0x293
@@ -943,7 +943,7 @@ function function_e0d7bd91(v_position)
 
 /*
 	Name: function_d150c3fe
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xF2C76906
 	Offset: 0x27F8
 	Size: 0x64B
@@ -1008,7 +1008,7 @@ function function_d150c3fe(ai_zombie)
 		{
 			if(zm_utility::is_player_valid(self))
 			{
-				self notify("hash_9befe1fc");
+				self notify("player_killed_zombie_with_mirg2000");
 			}
 			ai_zombie.ignore_game_over_death = 1;
 			if(isdefined(ai_zombie.missingLegs) && ai_zombie.missingLegs)
@@ -1048,7 +1048,7 @@ function function_d150c3fe(ai_zombie)
 
 /*
 	Name: function_3bc42e24
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x4B657D12
 	Offset: 0x2E50
 	Size: 0x191
@@ -1073,7 +1073,7 @@ function function_3bc42e24(var_8b84dc1b)
 
 /*
 	Name: function_b7e68127
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x94530D4F
 	Offset: 0x2FF0
 	Size: 0x173
@@ -1120,7 +1120,7 @@ function function_b7e68127(b_is_crawler)
 
 /*
 	Name: function_dadca53
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xD133573A
 	Offset: 0x3170
 	Size: 0x47
@@ -1141,7 +1141,7 @@ function function_dadca53(var_2b49e04f)
 
 /*
 	Name: function_24d57358
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x4A551A9F
 	Offset: 0x31C0
 	Size: 0xC3

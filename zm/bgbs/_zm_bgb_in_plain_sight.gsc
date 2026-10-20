@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_14ec45ff;
+#namespace zm_bgb_in_plain_sight;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_14ec45ff
+	Namespace: zm_bgb_in_plain_sight
 	Checksum: 0x98545D42
 	Offset: 0x218
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_14ec45ff
+	Namespace: zm_bgb_in_plain_sight
 	Checksum: 0xA5ABA10A
 	Offset: 0x258
 	Size: 0x143
@@ -54,7 +54,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_14ec45ff
+	Namespace: zm_bgb_in_plain_sight
 	Checksum: 0x3249E9B2
 	Offset: 0x3A8
 	Size: 0x33
@@ -68,7 +68,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_14ec45ff
+	Namespace: zm_bgb_in_plain_sight
 	Checksum: 0x40E53E86
 	Offset: 0x3E8
 	Size: 0x1ED

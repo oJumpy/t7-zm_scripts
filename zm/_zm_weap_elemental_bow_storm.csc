@@ -8,11 +8,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weap_elemental_bow;
 
-#namespace namespace_156ea490;
+#namespace _zm_weap_elemental_bow_storm;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xE5BF068
 	Offset: 0x538
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xF0C12582
 	Offset: 0x578
 	Size: 0x371
@@ -36,13 +36,13 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	clientfield::register("toplayer", "elemental_bow_storm" + "_ambient_bow_fx", 5000, 1, "int", &function_e73829fb, 0, 0);
-	clientfield::register("missile", "elemental_bow_storm" + "_arrow_impact_fx", 5000, 1, "int", &function_93740776, 0, 0);
+	clientfield::register("missile", "elemental_bow_storm" + "_arrow_impact_fx", 5000, 1, "int", &elem_storm_arrow_impact_fx, 0, 0);
 	clientfield::register("missile", "elemental_bow_storm4" + "_arrow_impact_fx", 5000, 1, "int", &function_c50a03db, 0, 0);
-	clientfield::register("scriptmover", "elem_storm_fx", 5000, 1, "int", &function_3481f83b, 0, 0);
-	clientfield::register("toplayer", "elem_storm_whirlwind_rumble", 1, 1, "int", &function_d6997d17, 0, 0);
-	clientfield::register("scriptmover", "elem_storm_bolt_fx", 5000, 1, "int", &function_3b5511c9, 0, 0);
-	clientfield::register("scriptmover", "elem_storm_zap_ambient", 5000, 1, "int", &function_ca0ac11f, 0, 0);
-	clientfield::register("actor", "elem_storm_shock_fx", 5000, 2, "int", &function_df6db522, 0, 0);
+	clientfield::register("scriptmover", "elem_storm_fx", 5000, 1, "int", &elem_storm_fx, 0, 0);
+	clientfield::register("toplayer", "elem_storm_whirlwind_rumble", 1, 1, "int", &elem_storm_whirlwind_rumble, 0, 0);
+	clientfield::register("scriptmover", "elem_storm_bolt_fx", 5000, 1, "int", &elem_storm_bolt_fx, 0, 0);
+	clientfield::register("scriptmover", "elem_storm_zap_ambient", 5000, 1, "int", &elem_storm_zap_ambient, 0, 0);
+	clientfield::register("actor", "elem_storm_shock_fx", 5000, 2, "int", &elem_storm_shock_fx, 0, 0);
 	level._effect["elem_storm_ambient_bow"] = "dlc1/zmb_weapon/fx_bow_storm_ambient_1p_zmb";
 	level._effect["elem_storm_arrow_impact"] = "dlc1/zmb_weapon/fx_bow_storm_impact_zmb";
 	level._effect["elem_storm_arrow_charged_impact"] = "dlc1/zmb_weapon/fx_bow_storm_impact_ug_zmb";
@@ -57,7 +57,7 @@ function __init__()
 
 /*
 	Name: function_e73829fb
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x6825C11E
 	Offset: 0x8F8
 	Size: 0x63
@@ -70,15 +70,15 @@ function function_e73829fb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_93740776
-	Namespace: namespace_156ea490
+	Name: elem_storm_arrow_impact_fx
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x58223664
 	Offset: 0x968
 	Size: 0x73
 	Parameters: 7
 	Flags: None
 */
-function function_93740776(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function elem_storm_arrow_impact_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -88,7 +88,7 @@ function function_93740776(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_c50a03db
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xF325DA09
 	Offset: 0x9E8
 	Size: 0x73
@@ -104,15 +104,15 @@ function function_c50a03db(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_3481f83b
-	Namespace: namespace_156ea490
+	Name: elem_storm_fx
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x3C0431D5
 	Offset: 0xA68
 	Size: 0xFB
 	Parameters: 7
 	Flags: None
 */
-function function_3481f83b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function elem_storm_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	if(newVal)
@@ -129,15 +129,15 @@ function function_3481f83b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_d6997d17
-	Namespace: namespace_156ea490
+	Name: elem_storm_whirlwind_rumble
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xB5894B1
 	Offset: 0xB70
 	Size: 0x6D
 	Parameters: 7
 	Flags: None
 */
-function function_d6997d17(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function elem_storm_whirlwind_rumble(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -151,7 +151,7 @@ function function_d6997d17(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_4d18057
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xE46D7C5B
 	Offset: 0xBE8
 	Size: 0x5F
@@ -171,15 +171,15 @@ function function_4d18057(localClientNum)
 }
 
 /*
-	Name: function_3b5511c9
-	Namespace: namespace_156ea490
+	Name: elem_storm_bolt_fx
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x542B354B
 	Offset: 0xC50
 	Size: 0xFB
 	Parameters: 7
 	Flags: None
 */
-function function_3b5511c9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function elem_storm_bolt_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -195,15 +195,15 @@ function function_3b5511c9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_ca0ac11f
-	Namespace: namespace_156ea490
+	Name: elem_storm_zap_ambient
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xF60246DD
 	Offset: 0xD58
 	Size: 0xA5
 	Parameters: 7
 	Flags: None
 */
-function function_ca0ac11f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function elem_storm_zap_ambient(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -217,15 +217,15 @@ function function_ca0ac11f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_df6db522
-	Namespace: namespace_156ea490
+	Name: elem_storm_shock_fx
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x44F5A072
 	Offset: 0xE08
 	Size: 0x25D
 	Parameters: 7
 	Flags: None
 */
-function function_df6db522(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function elem_storm_shock_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(self isai())
 	{

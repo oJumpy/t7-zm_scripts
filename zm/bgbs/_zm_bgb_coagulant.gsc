@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_4e2ad0b7;
+#namespace zm_bgb_coagulant;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4e2ad0b7
+	Namespace: zm_bgb_coagulant
 	Checksum: 0xA8C7AF2D
 	Offset: 0x1A8
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4e2ad0b7
+	Namespace: zm_bgb_coagulant
 	Checksum: 0x2DD2054A
 	Offset: 0x1E8
 	Size: 0x63
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_4e2ad0b7
+	Namespace: zm_bgb_coagulant
 	Checksum: 0x7C9767BA
 	Offset: 0x258
 	Size: 0x67
@@ -55,7 +55,7 @@ function enable()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self.n_bleedout_time_multiplier = 3;
 	while(1)
 	{
@@ -66,7 +66,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_4e2ad0b7
+	Namespace: zm_bgb_coagulant
 	Checksum: 0x62D30F54
 	Offset: 0x2C8
 	Size: 0xD

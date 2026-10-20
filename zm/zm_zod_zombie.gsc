@@ -50,7 +50,7 @@ function autoexec init()
 function private initzmzodbehaviorsandasm()
 {
 	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_teleport_traversal@zombie", &teleporttraversalmocompstart, undefined, undefined);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodShouldMove", &function_d0ef2cea);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodShouldMove", &zodshouldmove);
 }
 
 /*
@@ -71,12 +71,12 @@ function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime
 	{
 		portal_trig = entity.traverseStartNode.portal_trig;
 		level clientfield::increment("pulse_" + portal_trig.script_noteworthy);
-		portal_trig thread namespace_8e2647d0::portal_teleport_ai(entity);
+		portal_trig thread zm_zod_portals::portal_teleport_ai(entity);
 	}
 }
 
 /*
-	Name: function_d0ef2cea
+	Name: zodshouldmove
 	Namespace: namespace_99cd1d55
 	Checksum: 0xC0A8F5B0
 	Offset: 0x588
@@ -84,7 +84,7 @@ function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime
 	Parameters: 1
 	Flags: None
 */
-function function_d0ef2cea(entity)
+function zodshouldmove(entity)
 {
 	if(isdefined(entity.zombie_tesla_hit) && entity.zombie_tesla_hit && (!isdefined(entity.tesla_death) && entity.tesla_death))
 	{

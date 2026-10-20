@@ -14,11 +14,11 @@
 #using scripts\zm\_zm_weap_staff_common;
 #using scripts\zm\zm_tomb_utility;
 
-#namespace namespace_589e3c80;
+#namespace zm_weap_staff_air;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xA3F2B770
 	Offset: 0x410
 	Size: 0x33
@@ -32,7 +32,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xF1BFE87D
 	Offset: 0x450
 	Size: 0x16B
@@ -55,7 +55,7 @@ function __init__()
 
 /*
 	Name: onPlayerSpawned
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xB7C64E83
 	Offset: 0x5C8
 	Size: 0x53
@@ -72,7 +72,7 @@ function onPlayerSpawned()
 
 /*
 	Name: air_projectile_delete
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x1E14AEF2
 	Offset: 0x628
 	Size: 0x2B
@@ -88,7 +88,7 @@ function air_projectile_delete()
 
 /*
 	Name: watch_staff_air_fired
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x9B3F49F1
 	Offset: 0x660
 	Size: 0xF7
@@ -114,7 +114,7 @@ function watch_staff_air_fired()
 
 /*
 	Name: watch_staff_air_impact
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xCE57585E
 	Offset: 0x760
 	Size: 0xAF
@@ -136,7 +136,7 @@ function watch_staff_air_impact()
 
 /*
 	Name: staff_air_find_source
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xAA8CA3D7
 	Offset: 0x818
 	Size: 0x183
@@ -182,7 +182,7 @@ function staff_air_find_source(v_detonate, w_weapon)
 
 /*
 	Name: staff_air_zombie_source
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xFF8D0695
 	Offset: 0x9A8
 	Size: 0xAB
@@ -204,7 +204,7 @@ function staff_air_zombie_source(ai_zombie, w_weapon)
 
 /*
 	Name: staff_air_position_source
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xDB61B19E
 	Offset: 0xA60
 	Size: 0x23B
@@ -245,7 +245,7 @@ function staff_air_position_source(v_detonate, w_weapon)
 
 /*
 	Name: whirlwind_seek_zombies
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x654A88D6
 	Offset: 0xCA8
 	Size: 0xBB
@@ -272,7 +272,7 @@ function whirlwind_seek_zombies(n_level, w_weapon)
 
 /*
 	Name: whirlwind_timeout
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xBEC17C94
 	Offset: 0xD70
 	Size: 0xAB
@@ -293,7 +293,7 @@ function whirlwind_timeout(n_time)
 
 /*
 	Name: move_along_ground_position
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x69BCFA69
 	Offset: 0xE28
 	Size: 0xAB
@@ -310,7 +310,7 @@ function move_along_ground_position(v_position, n_time)
 
 /*
 	Name: whirlwind_kill_zombies
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x8BD63839
 	Offset: 0xEE0
 	Size: 0x2C7
@@ -371,7 +371,7 @@ function whirlwind_kill_zombies(n_level, w_weapon)
 
 /*
 	Name: whirlwind_drag_zombie
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x9E4F41FC
 	Offset: 0x11B0
 	Size: 0xCB
@@ -395,7 +395,7 @@ function whirlwind_drag_zombie(e_whirlwind, w_weapon)
 
 /*
 	Name: whirlwind_move_zombie
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x93D1DF45
 	Offset: 0x1288
 	Size: 0x233
@@ -437,7 +437,7 @@ function whirlwind_move_zombie(e_whirlwind)
 
 /*
 	Name: whirlwind_unlink
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xD89FDCB
 	Offset: 0x14C8
 	Size: 0x3B
@@ -453,7 +453,7 @@ function whirlwind_unlink(e_whirlwind)
 
 /*
 	Name: source_zombie_death
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x9E794768
 	Offset: 0x1510
 	Size: 0xF3
@@ -481,7 +481,7 @@ function source_zombie_death(ai_zombie)
 
 /*
 	Name: get_air_blast_range
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xEA0EEF7F
 	Offset: 0x1610
 	Size: 0x55
@@ -508,7 +508,7 @@ function get_air_blast_range(n_charge)
 
 /*
 	Name: staff_air_proximity_kill
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xD6295F9C
 	Offset: 0x1670
 	Size: 0x8D
@@ -534,7 +534,7 @@ function staff_air_proximity_kill(a_zombies)
 
 /*
 	Name: staff_air_zombie_range
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x63312265
 	Offset: 0x1708
 	Size: 0x15D
@@ -572,7 +572,7 @@ function staff_air_zombie_range(v_source, n_range)
 
 /*
 	Name: staff_air_fling_zombie
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xFBE45639
 	Offset: 0x1870
 	Size: 0xBB
@@ -599,7 +599,7 @@ function staff_air_fling_zombie(player)
 
 /*
 	Name: zombie_launch
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x2A57743E
 	Offset: 0x1938
 	Size: 0xCB
@@ -623,7 +623,7 @@ function zombie_launch(e_attacker, w_weapon)
 
 /*
 	Name: determine_launch_vector
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x5007A274
 	Offset: 0x1A10
 	Size: 0x8B
@@ -638,7 +638,7 @@ function determine_launch_vector(e_attacker, ai_target)
 
 /*
 	Name: staff_air_gib
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xEDB8979F
 	Offset: 0x1AA8
 	Size: 0x4B
@@ -656,7 +656,7 @@ function staff_air_gib(ai_zombie)
 
 /*
 	Name: staff_air_zombie_damage_response
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xCF913AB6
 	Offset: 0x1B00
 	Size: 0xBB
@@ -675,7 +675,7 @@ function staff_air_zombie_damage_response(mod, HIT_LOCATION, hit_origin, player,
 
 /*
 	Name: is_staff_air_damage
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xE2520E72
 	Offset: 0x1BC8
 	Size: 0x5F
@@ -689,7 +689,7 @@ function is_staff_air_damage(weapon)
 
 /*
 	Name: staff_air_death_event
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x622DC4F3
 	Offset: 0x1C30
 	Size: 0xDB
@@ -719,7 +719,7 @@ function staff_air_death_event(attacker)
 
 /*
 	Name: wind_damage_cone
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x7072F67A
 	Offset: 0x1D18
 	Size: 0x211
@@ -760,7 +760,7 @@ function wind_damage_cone(w_weapon)
 
 /*
 	Name: stun_zombie
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x7A6F27BB
 	Offset: 0x1F38
 	Size: 0xF7
@@ -798,7 +798,7 @@ function stun_zombie()
 
 /*
 	Name: whirlwind_attract_anim_watch_cancel
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0x62B57C7C
 	Offset: 0x2038
 	Size: 0x6F
@@ -819,7 +819,7 @@ function whirlwind_attract_anim_watch_cancel()
 
 /*
 	Name: whirlwind_attract_anim
-	Namespace: namespace_589e3c80
+	Namespace: zm_weap_staff_air
 	Checksum: 0xBC0FEEA6
 	Offset: 0x20B0
 	Size: 0x1DF

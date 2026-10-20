@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_5bdced82;
+#namespace zm_bgb_newtonian_negation;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_5bdced82
+	Namespace: zm_bgb_newtonian_negation
 	Checksum: 0x224BC0CB
 	Offset: 0x150
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_5bdced82
+	Namespace: zm_bgb_newtonian_negation
 	Checksum: 0x3F8CBAA9
 	Offset: 0x190
 	Size: 0x3B

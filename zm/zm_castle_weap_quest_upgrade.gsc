@@ -31,11 +31,11 @@
 #using scripts\zm\zm_castle_vo;
 #using scripts\zm\zm_castle_weap_quest;
 
-#namespace namespace_99cb5531;
+#namespace zm_castle_weap_quest_upgrade;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xBF54EFBD
 	Offset: 0x2948
 	Size: 0x3B
@@ -49,7 +49,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC3C7DE1
 	Offset: 0x2990
 	Size: 0xBB3
@@ -128,7 +128,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x91ECF4D0
 	Offset: 0x3550
 	Size: 0x63
@@ -137,15 +137,15 @@ function __init__()
 */
 function __main__()
 {
-	level thread function_95367d11();
-	level thread function_18251dec();
-	level thread function_166bfc32();
-	level thread function_ba799096();
+	level thread rune_prison();
+	level thread demon_gate();
+	level thread wolf_howl();
+	level thread elemental_storm();
 }
 
 /*
 	Name: function_8c52805
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x15D721BF
 	Offset: 0x35C0
 	Size: 0x7B
@@ -162,7 +162,7 @@ function private function_8c52805(str_widget_clientuimodel)
 
 /*
 	Name: function_f5e9876
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xDE1C7FD3
 	Offset: 0x3648
 	Size: 0x9B
@@ -174,20 +174,20 @@ function private function_f5e9876(str_quest, n_quest_state)
 	var_78cede1 = "quest_state_" + str_quest;
 	str_widget_clientuimodel = "zmInventory.widget_weap_quest_" + str_quest;
 	level clientfield::set(var_78cede1, n_quest_state);
-	level notify("hash_28a4818d");
+	level notify("widget_ui_override");
 	Array::thread_all(level.players, &function_8c52805, str_widget_clientuimodel);
 }
 
 /*
-	Name: function_95367d11
-	Namespace: namespace_99cb5531
+	Name: rune_prison
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7720F0C4
 	Offset: 0x36F0
 	Size: 0x2F3
 	Parameters: 0
 	Flags: None
 */
-function function_95367d11()
+function rune_prison()
 {
 	/#
 		level flag::init("Dev Block strings are not supported");
@@ -205,7 +205,7 @@ function function_95367d11()
 		level flag::set("Dev Block strings are not supported");
 	#/
 	level function_f5e9876("rune", 1);
-	level function_c2de3b2b();
+	level rune_prison_obelisk();
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
@@ -220,7 +220,7 @@ function function_95367d11()
 		level flag::set("Dev Block strings are not supported");
 	#/
 	level function_f5e9876("rune", 4);
-	level function_e5d38df1();
+	level rune_prison_magma_ball();
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
@@ -230,7 +230,7 @@ function function_95367d11()
 
 /*
 	Name: rune_prison_setup
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x15082317
 	Offset: 0x39F0
 	Size: 0x38B
@@ -269,7 +269,7 @@ function rune_prison_setup()
 
 /*
 	Name: rune_prison_clock_wall
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7723C058
 	Offset: 0x3D88
 	Size: 0x1B9
@@ -304,7 +304,7 @@ function rune_prison_clock_wall()
 
 /*
 	Name: function_7a965585
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD47ED924
 	Offset: 0x3F50
 	Size: 0x7F
@@ -333,7 +333,7 @@ function function_7a965585()
 
 /*
 	Name: function_c272bd2a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2748D2B1
 	Offset: 0x3FD8
 	Size: 0x15B
@@ -347,7 +347,7 @@ function function_c272bd2a()
 		{
 			return;
 		}
-		level thread namespace_2a78f3c::function_a01a53de();
+		level thread zm_castle_weap_quest::function_a01a53de();
 		level.var_c62829c7 = level.players[0];
 		level clientfield::set("Dev Block strings are not supported", function_85bfa3fd(level.var_c62829c7.characterindex));
 		level.var_427e7668[level.var_427e7668.size] = level.players[0];
@@ -365,7 +365,7 @@ function function_c272bd2a()
 
 /*
 	Name: function_ab3e9362
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6858B24
 	Offset: 0x4140
 	Size: 0x4B
@@ -382,15 +382,15 @@ function function_ab3e9362()
 }
 
 /*
-	Name: function_c2de3b2b
-	Namespace: namespace_99cb5531
+	Name: rune_prison_obelisk
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x95B8112A
 	Offset: 0x4198
 	Size: 0x253
 	Parameters: 0
 	Flags: None
 */
-function function_c2de3b2b()
+function rune_prison_obelisk()
 {
 	/#
 		level endon("hash_6c9ecb6");
@@ -420,7 +420,7 @@ function function_c2de3b2b()
 
 /*
 	Name: function_d13d5192
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x5B8F7355
 	Offset: 0x43F8
 	Size: 0x1F7
@@ -429,7 +429,7 @@ function function_c2de3b2b()
 */
 function function_d13d5192()
 {
-	level endon("hash_c2de3b2b");
+	level endon("rune_prison_obelisk");
 	var_94f11108 = GetEnt("aq_rp_obelisk_top", "targetname");
 	var_8b1b34fc = GetEnt("aq_rp_obelisk_reveal", "targetname");
 	var_ca72ca5f = GetEnt("aq_rp_obelisk_drain", "targetname");
@@ -453,7 +453,7 @@ function function_d13d5192()
 
 /*
 	Name: function_3d19bfe5
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE5EFA6E3
 	Offset: 0x45F8
 	Size: 0x21B
@@ -465,7 +465,7 @@ function function_3d19bfe5()
 	/#
 		level notify("hash_407883d6");
 		level endon("hash_407883d6");
-		level endon("hash_c2de3b2b");
+		level endon("rune_prison_obelisk");
 		var_94f11108 = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
 		var_8b1b34fc = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
 		var_ca72ca5f = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
@@ -491,7 +491,7 @@ function function_3d19bfe5()
 
 /*
 	Name: function_bc213d43
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x10618A6C
 	Offset: 0x4820
 	Size: 0x7B
@@ -511,7 +511,7 @@ function function_bc213d43()
 
 /*
 	Name: function_d326a001
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE6FD52BB
 	Offset: 0x48A8
 	Size: 0x16B
@@ -541,7 +541,7 @@ function function_d326a001()
 
 /*
 	Name: function_6c9ecb6
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x31260F35
 	Offset: 0x4A20
 	Size: 0x21B
@@ -585,7 +585,7 @@ function function_6c9ecb6()
 
 /*
 	Name: rune_prison_runic_circles
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7105EFCC
 	Offset: 0x4C48
 	Size: 0x213
@@ -625,7 +625,7 @@ function rune_prison_runic_circles()
 
 /*
 	Name: function_eca3cc8a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6518172F
 	Offset: 0x4E68
 	Size: 0x43
@@ -640,7 +640,7 @@ function function_eca3cc8a()
 
 /*
 	Name: function_1d529530
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x5BB845E8
 	Offset: 0x4EB8
 	Size: 0x1EB
@@ -680,7 +680,7 @@ function function_1d529530()
 
 /*
 	Name: function_2ead3d64
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA8F5B935
 	Offset: 0x50B0
 	Size: 0x1F1
@@ -736,7 +736,7 @@ function function_2ead3d64()
 
 /*
 	Name: function_f9027a91
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x358C21
 	Offset: 0x52B0
 	Size: 0x1A7
@@ -764,7 +764,7 @@ function function_f9027a91()
 
 /*
 	Name: function_2da80856
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x87C99C60
 	Offset: 0x5460
 	Size: 0x23
@@ -778,7 +778,7 @@ function function_2da80856(e_attacker)
 
 /*
 	Name: function_dc6aa565
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB109112D
 	Offset: 0x5490
 	Size: 0x1A3
@@ -806,7 +806,7 @@ function function_dc6aa565()
 
 /*
 	Name: function_eba39b3c
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA3DB789
 	Offset: 0x5640
 	Size: 0x1B
@@ -820,7 +820,7 @@ function function_eba39b3c()
 
 /*
 	Name: function_8e83c9ed
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC47CCA56
 	Offset: 0x5668
 	Size: 0x187
@@ -834,7 +834,7 @@ function function_8e83c9ed()
 	#/
 	level endon("hash_40e6d9e7");
 	self endon("death");
-	self endon("hash_477375c9");
+	self endon("quest_swap");
 	var_effd0eae = GetEntArray("aq_rp_runic_circle_volume", "script_noteworthy");
 	var_8ed504dc = 0;
 	while(1)
@@ -856,7 +856,7 @@ function function_8e83c9ed()
 
 /*
 	Name: function_35cccade
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD615A82B
 	Offset: 0x57F8
 	Size: 0x16B
@@ -886,7 +886,7 @@ function function_35cccade()
 
 /*
 	Name: function_23e77c95
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2666AB94
 	Offset: 0x5970
 	Size: 0x53
@@ -904,7 +904,7 @@ function function_23e77c95()
 
 /*
 	Name: function_6de95813
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x29A8B7FA
 	Offset: 0x59D0
 	Size: 0x233
@@ -940,7 +940,7 @@ function function_6de95813()
 
 /*
 	Name: function_fd254a35
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x228B1C29
 	Offset: 0x5C10
 	Size: 0x301
@@ -958,7 +958,7 @@ function function_fd254a35()
 	#/
 	if(isdefined(level.var_c62829c7))
 	{
-		level.var_c62829c7 thread namespace_97ddfc0d::function_21c9c75b();
+		level.var_c62829c7 thread zm_castle_vo::function_21c9c75b();
 	}
 	var_3955eb87 = struct::get("aq_rp_clock_use_struct", "targetname");
 	var_7a76a496 = var_3955eb87 function_88082ccd();
@@ -966,7 +966,7 @@ function function_fd254a35()
 	var_9877e371 thread function_5f8f4823();
 	level.var_ebaeb24a = var_7a76a496;
 	level.var_bf08cf2d = &function_830f5cf3;
-	level thread function_15d43bf4(var_7a76a496);
+	level thread rune_prison_golf(var_7a76a496);
 	level flag::wait_till("rune_prison_golf");
 	var_7f680434 = var_7a76a496.var_336f1366;
 	var_7a76a496 delete();
@@ -993,7 +993,7 @@ function function_fd254a35()
 
 /*
 	Name: function_88082ccd
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAFA2FC7D
 	Offset: 0x5F20
 	Size: 0x437
@@ -1059,7 +1059,7 @@ function function_88082ccd()
 
 /*
 	Name: function_16248b25
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE9670566
 	Offset: 0x6360
 	Size: 0x13F
@@ -1080,7 +1080,7 @@ function function_16248b25(n_index)
 
 /*
 	Name: function_aea90ad4
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x51444B24
 	Offset: 0x64A8
 	Size: 0x5B
@@ -1097,7 +1097,7 @@ function function_aea90ad4()
 
 /*
 	Name: function_561d0d99
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAAC43C58
 	Offset: 0x6510
 	Size: 0x3B
@@ -1112,15 +1112,15 @@ function function_561d0d99()
 }
 
 /*
-	Name: function_15d43bf4
-	Namespace: namespace_99cb5531
+	Name: rune_prison_golf
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x1173BF90
 	Offset: 0x6558
 	Size: 0x507
 	Parameters: 1
 	Flags: None
 */
-function function_15d43bf4(var_7a76a496)
+function rune_prison_golf(var_7a76a496)
 {
 	/#
 		level endon("hash_e09edb0");
@@ -1128,7 +1128,7 @@ function function_15d43bf4(var_7a76a496)
 		level.var_c62829c7 endon("hash_3c5d2ca5");
 	#/
 	level.var_c62829c7 endon("death");
-	level.var_c62829c7 endon("hash_477375c9");
+	level.var_c62829c7 endon("quest_swap");
 	var_eae04066 = 0;
 	level.var_2e55cb98 = var_7a76a496;
 	level.var_c62829c7 thread function_592f1ad2();
@@ -1204,7 +1204,7 @@ function function_15d43bf4(var_7a76a496)
 
 /*
 	Name: function_830f5cf3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB3CCB23E
 	Offset: 0x6A68
 	Size: 0x23
@@ -1213,12 +1213,12 @@ function function_15d43bf4(var_7a76a496)
 */
 function function_830f5cf3()
 {
-	level thread function_15d43bf4(level.var_ebaeb24a);
+	level thread rune_prison_golf(level.var_ebaeb24a);
 }
 
 /*
 	Name: function_c22c33e2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x5B3F8EDF
 	Offset: 0x6A98
 	Size: 0x4F
@@ -1237,7 +1237,7 @@ function function_c22c33e2()
 
 /*
 	Name: function_592f1ad2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC72A5325
 	Offset: 0x6AF0
 	Size: 0x16B
@@ -1251,7 +1251,7 @@ function function_592f1ad2()
 		level.var_c62829c7 endon("hash_3c5d2ca5");
 	#/
 	self endon("death");
-	self endon("hash_477375c9");
+	self endon("quest_swap");
 	var_8ed504dc = 0;
 	while(!level flag::get("rune_prison_golf"))
 	{
@@ -1279,7 +1279,7 @@ function function_592f1ad2()
 
 /*
 	Name: function_2e904288
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2A15BD92
 	Offset: 0x6C68
 	Size: 0xAB
@@ -1288,7 +1288,7 @@ function function_592f1ad2()
 */
 function function_2e904288(var_7a76a496)
 {
-	level endon("hash_15d43bf4");
+	level endon("rune_prison_golf");
 	level.var_c62829c7 util::waittill_either("death", "quest_swap");
 	if(isdefined(level.var_2e55cb98))
 	{
@@ -1305,7 +1305,7 @@ function function_2e904288(var_7a76a496)
 
 /*
 	Name: function_1ae3933d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xFD216A1
 	Offset: 0x6D20
 	Size: 0x2C7
@@ -1318,7 +1318,7 @@ function function_1ae3933d(var_eae04066, s_fireplace)
 		level.var_c62829c7 endon("hash_3c5d2ca5");
 	#/
 	level.var_c62829c7 endon("death");
-	level.var_c62829c7 endon("hash_477375c9");
+	level.var_c62829c7 endon("quest_swap");
 	var_2f3895e7 = GetEnt(s_fireplace.target, "targetname");
 	var_a7b8686c = undefined;
 	do
@@ -1355,7 +1355,7 @@ function function_1ae3933d(var_eae04066, s_fireplace)
 
 /*
 	Name: function_afda729a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6856CE0B
 	Offset: 0x6FF0
 	Size: 0x105
@@ -1381,7 +1381,7 @@ function function_afda729a(var_eae04066, var_2f3895e7, var_20d7ea40)
 
 /*
 	Name: function_a78192b2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2B3B8AA4
 	Offset: 0x7100
 	Size: 0x4B
@@ -1397,7 +1397,7 @@ function function_a78192b2(mdl_anchor)
 
 /*
 	Name: function_e198b188
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x627562C
 	Offset: 0x7158
 	Size: 0x20D
@@ -1463,7 +1463,7 @@ function function_e198b188(var_931bac44)
 
 /*
 	Name: function_455e5c02
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7306E966
 	Offset: 0x7370
 	Size: 0x2BF
@@ -1509,7 +1509,7 @@ function function_455e5c02()
 
 /*
 	Name: function_e7cc5223
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x646B6031
 	Offset: 0x7638
 	Size: 0x73
@@ -1530,7 +1530,7 @@ function function_e7cc5223()
 
 /*
 	Name: function_5f8f4823
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA032B968
 	Offset: 0x76B8
 	Size: 0x19B
@@ -1569,7 +1569,7 @@ function function_5f8f4823()
 
 /*
 	Name: function_a5e1cdff
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x23ED99E1
 	Offset: 0x7860
 	Size: 0x6B
@@ -1586,7 +1586,7 @@ function function_a5e1cdff()
 
 /*
 	Name: function_798d8c4d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA4E8A3C0
 	Offset: 0x78D8
 	Size: 0xA5
@@ -1609,7 +1609,7 @@ function function_798d8c4d()
 
 /*
 	Name: function_e09edb0
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF5AADBE2
 	Offset: 0x7988
 	Size: 0x1FB
@@ -1646,15 +1646,15 @@ function function_e09edb0()
 }
 
 /*
-	Name: function_e5d38df1
-	Namespace: namespace_99cb5531
+	Name: rune_prison_magma_ball
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF5F7222F
 	Offset: 0x7B90
 	Size: 0x403
 	Parameters: 0
 	Flags: None
 */
-function function_e5d38df1()
+function rune_prison_magma_ball()
 {
 	/#
 		level endon("hash_57edd5aa");
@@ -1703,7 +1703,7 @@ function function_e5d38df1()
 		}
 		else
 		{
-			e_who notify("hash_477375c9");
+			e_who notify("quest_swap");
 			level function_7910311b(e_who);
 			level.var_c62829c7 = e_who;
 			level clientfield::set("quest_owner_rune", function_85bfa3fd(e_who.characterindex));
@@ -1722,7 +1722,7 @@ function function_e5d38df1()
 
 /*
 	Name: function_e83bfb3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x185687EB
 	Offset: 0x7FA0
 	Size: 0xF5
@@ -1752,7 +1752,7 @@ function function_e83bfb3()
 
 /*
 	Name: function_57edd5aa
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA88D3767
 	Offset: 0x80A0
 	Size: 0x123
@@ -1784,7 +1784,7 @@ function function_57edd5aa()
 
 /*
 	Name: function_d4533e0c
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3D894863
 	Offset: 0x81D0
 	Size: 0x4B
@@ -1802,7 +1802,7 @@ function function_d4533e0c()
 
 /*
 	Name: function_d04d2c23
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6ED70A08
 	Offset: 0x8228
 	Size: 0x23
@@ -1816,7 +1816,7 @@ function function_d04d2c23(e_attacker)
 
 /*
 	Name: function_293189ba
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE2B8058D
 	Offset: 0x8258
 	Size: 0x173
@@ -1843,7 +1843,7 @@ function function_293189ba()
 
 /*
 	Name: function_44605b46
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4F95E148
 	Offset: 0x83D8
 	Size: 0x2B3
@@ -1892,15 +1892,15 @@ function function_44605b46()
 }
 
 /*
-	Name: function_18251dec
-	Namespace: namespace_99cb5531
+	Name: demon_gate
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7E391EC6
 	Offset: 0x8698
 	Size: 0x2D3
 	Parameters: 0
 	Flags: None
 */
-function function_18251dec()
+function demon_gate()
 {
 	/#
 		level flag::init("Dev Block strings are not supported");
@@ -1917,7 +1917,7 @@ function function_18251dec()
 		level flag::set("Dev Block strings are not supported");
 	#/
 	level function_f5e9876("demon", 1);
-	level function_9a60d5b4();
+	level demon_gate_seal();
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
@@ -1927,12 +1927,12 @@ function function_18251dec()
 		level flag::set("Dev Block strings are not supported");
 	#/
 	level function_f5e9876("demon", 3);
-	level function_80ce23f0();
+	level demon_gate_crawlers();
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
 	level function_f5e9876("demon", 4);
-	level function_5783f652();
+	level demon_gate_runes();
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
@@ -1942,7 +1942,7 @@ function function_18251dec()
 
 /*
 	Name: demon_gate_setup
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x724E8A8D
 	Offset: 0x8978
 	Size: 0x1C9
@@ -1969,7 +1969,7 @@ function demon_gate_setup()
 
 /*
 	Name: demon_gate_gatehouse
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x83F49F7
 	Offset: 0x8B50
 	Size: 0x219
@@ -1998,7 +1998,7 @@ function demon_gate_gatehouse()
 			level.var_72a6d56b = GetEnt("quest_demongate_arrow_broken", "targetname");
 			s_arrow = struct::get("quest_start_demon_gate");
 			s_arrow function_f708e6b2();
-			var_e88abb1 namespace_97ddfc0d::function_f0b775a3("release");
+			var_e88abb1 zm_castle_vo::function_f0b775a3("release");
 			var_e88abb1 delete();
 			return;
 		}
@@ -2007,7 +2007,7 @@ function demon_gate_gatehouse()
 
 /*
 	Name: function_4cb8f913
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x593A625B
 	Offset: 0x8D78
 	Size: 0x8F
@@ -2033,7 +2033,7 @@ function function_4cb8f913()
 
 /*
 	Name: function_4e281784
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA7D23BB1
 	Offset: 0x8E10
 	Size: 0x173
@@ -2056,7 +2056,7 @@ function function_4e281784()
 			level.var_72a6d56b = GetEnt("Dev Block strings are not supported", "Dev Block strings are not supported");
 			level.var_72a6d56b Hide();
 		}
-		level thread namespace_2a78f3c::function_a01a53de();
+		level thread zm_castle_weap_quest::function_a01a53de();
 		level.var_6e68c0d8 = level.players[0];
 		level clientfield::set("Dev Block strings are not supported", function_85bfa3fd(level.var_6e68c0d8.characterindex));
 		level.var_427e7668[level.var_427e7668.size] = level.players[0];
@@ -2065,15 +2065,15 @@ function function_4e281784()
 }
 
 /*
-	Name: function_9a60d5b4
-	Namespace: namespace_99cb5531
+	Name: demon_gate_seal
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x78C55860
 	Offset: 0x8F90
 	Size: 0x18B
 	Parameters: 0
 	Flags: None
 */
-function function_9a60d5b4()
+function demon_gate_seal()
 {
 	/#
 		level endon("hash_ff914e7a");
@@ -2097,7 +2097,7 @@ function function_9a60d5b4()
 
 /*
 	Name: function_c58a0fe3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF6CEC56B
 	Offset: 0x9128
 	Size: 0xDB
@@ -2120,7 +2120,7 @@ function function_c58a0fe3(e_attacker)
 
 /*
 	Name: function_bb59b66c
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x21BA1F48
 	Offset: 0x9210
 	Size: 0x169
@@ -2150,7 +2150,7 @@ function function_bb59b66c()
 			#/
 			zm_unitrigger::unregister_unitrigger(s_urn.var_67b5dd94);
 			var_cd45655b = GetEnt("aq_dg_urn_position", "targetname");
-			var_cd45655b namespace_97ddfc0d::function_f0b775a3("return");
+			var_cd45655b zm_castle_vo::function_f0b775a3("return");
 			return;
 		}
 	}
@@ -2158,7 +2158,7 @@ function function_bb59b66c()
 
 /*
 	Name: function_c0165d14
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3CDFC996
 	Offset: 0x9388
 	Size: 0x8F
@@ -2187,7 +2187,7 @@ function function_c0165d14()
 
 /*
 	Name: function_ff914e7a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x5061E556
 	Offset: 0x9420
 	Size: 0x1B1
@@ -2229,7 +2229,7 @@ function function_ff914e7a()
 
 /*
 	Name: demon_gate_fossils
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xDBC3C60D
 	Offset: 0x95E0
 	Size: 0xCB
@@ -2254,7 +2254,7 @@ function demon_gate_fossils()
 
 /*
 	Name: function_1353f9e3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC8803CE2
 	Offset: 0x96B8
 	Size: 0x211
@@ -2302,7 +2302,7 @@ function function_1353f9e3()
 
 /*
 	Name: function_de755a0
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3F6A1047
 	Offset: 0x98D8
 	Size: 0x259
@@ -2345,15 +2345,15 @@ function function_de755a0()
 }
 
 /*
-	Name: function_80ce23f0
-	Namespace: namespace_99cb5531
+	Name: demon_gate_crawlers
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x61BFCDEC
 	Offset: 0x9B40
 	Size: 0x17F
 	Parameters: 0
 	Flags: None
 */
-function function_80ce23f0()
+function demon_gate_crawlers()
 {
 	/#
 		level endon("hash_2d151482");
@@ -2379,7 +2379,7 @@ function function_80ce23f0()
 
 /*
 	Name: function_10033c3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x67BE9332
 	Offset: 0x9CC8
 	Size: 0xEB
@@ -2406,12 +2406,12 @@ function function_10033c3()
 		wait(0.5);
 	}
 	var_cd45655b = GetEnt("aq_dg_urn_position", "targetname");
-	var_cd45655b thread namespace_97ddfc0d::function_f0b775a3("souls");
+	var_cd45655b thread zm_castle_vo::function_f0b775a3("souls");
 }
 
 /*
 	Name: function_f836dce1
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x390F6244
 	Offset: 0x9DC0
 	Size: 0x2E7
@@ -2458,7 +2458,7 @@ function function_f836dce1()
 
 /*
 	Name: function_4cefb6e2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA4B3B95E
 	Offset: 0xA0B0
 	Size: 0x77
@@ -2476,7 +2476,7 @@ function function_4cefb6e2(ai_enemy)
 
 /*
 	Name: function_b4c4b5dd
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB6BC00D5
 	Offset: 0xA130
 	Size: 0xFB
@@ -2498,7 +2498,7 @@ function function_b4c4b5dd(v_start)
 
 /*
 	Name: function_561017d8
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4E548FA9
 	Offset: 0xA238
 	Size: 0xA3
@@ -2517,7 +2517,7 @@ function function_561017d8()
 
 /*
 	Name: function_2d151482
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4BD2F1B9
 	Offset: 0xA2E8
 	Size: 0x1DB
@@ -2552,15 +2552,15 @@ function function_2d151482()
 }
 
 /*
-	Name: function_5783f652
-	Namespace: namespace_99cb5531
+	Name: demon_gate_runes
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x1190E6B5
 	Offset: 0xA4D0
 	Size: 0x28D
 	Parameters: 0
 	Flags: None
 */
-function function_5783f652()
+function demon_gate_runes()
 {
 	level.var_ca3b8551 = 1;
 	level thread function_f3eb4a12();
@@ -2585,9 +2585,9 @@ function function_5783f652()
 	if(isdefined(level.var_6e68c0d8))
 	{
 		level.var_6e68c0d8.var_c3f90c95 = undefined;
-		level.var_6e68c0d8.var_a53f437d = undefined;
+		level.var_6e68c0d8.player_veh_turret_alert_light = undefined;
 	}
-	level function_b9fe51c7();
+	level demon_gate_runes_cleanup();
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
@@ -2597,7 +2597,7 @@ function function_5783f652()
 
 /*
 	Name: function_f3eb4a12
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB404FC3
 	Offset: 0xA768
 	Size: 0x131
@@ -2625,7 +2625,7 @@ function function_f3eb4a12()
 
 /*
 	Name: function_8700782f
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x9700AC31
 	Offset: 0xA8A8
 	Size: 0x2F5
@@ -2676,7 +2676,7 @@ function function_8700782f()
 
 /*
 	Name: function_3520622d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x9A0158F3
 	Offset: 0xABA8
 	Size: 0x17B
@@ -2696,7 +2696,7 @@ function function_3520622d(b_wait)
 	var_cd45655b = GetEnt("aq_dg_urn_position", "targetname");
 	foreach(str_crest in level.a_str_crests)
 	{
-		b_played = var_cd45655b namespace_97ddfc0d::function_7c63dd65(str_crest, b_wait);
+		b_played = var_cd45655b zm_castle_vo::function_7c63dd65(str_crest, b_wait);
 		if(!b_wait && !b_played)
 		{
 			return;
@@ -2708,12 +2708,12 @@ function function_3520622d(b_wait)
 		self.var_c3f90c95 = 1;
 		var_ed01584 = 1;
 	}
-	var_cd45655b namespace_97ddfc0d::function_f0b775a3("name", var_ed01584, b_wait);
+	var_cd45655b zm_castle_vo::function_f0b775a3("name", var_ed01584, b_wait);
 }
 
 /*
 	Name: function_cf05b763
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x10C931C9
 	Offset: 0xAD30
 	Size: 0x17F
@@ -2729,7 +2729,7 @@ function function_cf05b763()
 			return;
 		}
 	#/
-	level endon("hash_5783f652");
+	level endon("demon_gate_runes");
 	var_42ba5d5d = GetEnt("aq_dg_urn_damage_trig", "targetname");
 	while(1)
 	{
@@ -2744,7 +2744,7 @@ function function_cf05b763()
 
 /*
 	Name: function_f20a422b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB7F7C4C3
 	Offset: 0xAEB8
 	Size: 0x157
@@ -2753,7 +2753,7 @@ function function_cf05b763()
 */
 function function_f20a422b(var_25b51f6b, var_5a2492d5)
 {
-	level endon("hash_5783f652");
+	level endon("demon_gate_runes");
 	self function_3313abd5();
 	self.var_25b51f6b = var_25b51f6b;
 	while(1)
@@ -2766,7 +2766,7 @@ function function_f20a422b(var_25b51f6b, var_5a2492d5)
 			mdl_rune = util::spawn_model(var_25b51f6b, self.origin, self.angles);
 			mdl_rune clientfield::set("demonic_rune_fx", 1);
 			mdl_rune playsound("zmb_rune_armor");
-			mdl_rune namespace_97ddfc0d::function_ebc3d584(var_5a2492d5);
+			mdl_rune zm_castle_vo::function_ebc3d584(var_5a2492d5);
 			wait(2);
 			mdl_rune delete();
 		}
@@ -2775,7 +2775,7 @@ function function_f20a422b(var_25b51f6b, var_5a2492d5)
 
 /*
 	Name: function_686645ab
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xDAE698AD
 	Offset: 0xB018
 	Size: 0xEF
@@ -2784,7 +2784,7 @@ function function_f20a422b(var_25b51f6b, var_5a2492d5)
 */
 function function_686645ab()
 {
-	level endon("hash_5783f652");
+	level endon("demon_gate_runes");
 	var_c199072a = GetEnt("aq_dg_trophy_room_trig", "targetname");
 	var_cd45655b = GetEnt("aq_dg_urn_position", "targetname");
 	while(1)
@@ -2793,15 +2793,15 @@ function function_686645ab()
 		var_c199072a waittill("trigger", e_who);
 		if(e_who === level.var_6e68c0d8)
 		{
-			var_cd45655b thread namespace_97ddfc0d::function_c123b81c("ask_name", "vox_arro_demongate_ask_name_0");
-			var_cd45655b namespace_97ddfc0d::vo_say("vox_arro_demongate_ask_name_0");
+			var_cd45655b thread zm_castle_vo::function_c123b81c("ask_name", "vox_arro_demongate_ask_name_0");
+			var_cd45655b zm_castle_vo::vo_say("vox_arro_demongate_ask_name_0");
 		}
 	}
 }
 
 /*
 	Name: function_dc9521bc
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3A347EB4
 	Offset: 0xB110
 	Size: 0x5B
@@ -2817,7 +2817,7 @@ function function_dc9521bc()
 
 /*
 	Name: function_afa0928d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4BAD499D
 	Offset: 0xB178
 	Size: 0x2D7
@@ -2833,7 +2833,7 @@ function function_afa0928d()
 			return;
 		}
 	#/
-	level endon("hash_5783f652");
+	level endon("demon_gate_runes");
 	while(1)
 	{
 		str_notify = level util::waittill_any_return("demon_gate_runes", "demonic_rune_grabbed", "demonic_rune_timed_out");
@@ -2878,7 +2878,7 @@ function function_afa0928d()
 
 /*
 	Name: function_80d54dff
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xBDBC50E7
 	Offset: 0xB458
 	Size: 0x11D
@@ -2896,7 +2896,7 @@ function function_80d54dff(e_attacker)
 				self.no_powerups = 1;
 				var_50ef61f9 = level.var_234807d9[0];
 				level flag::set("demonic_rune_dropped");
-				level._powerup_timeout_override = &namespace_e581e076::function_5b767c2;
+				level._powerup_timeout_override = &zm_powerup_demonic_rune::function_5b767c2;
 				level thread zm_powerups::specific_powerup_drop(var_50ef61f9, self.origin, undefined, undefined, undefined, level.var_6e68c0d8);
 				level._powerup_timeout_override = undefined;
 			}
@@ -2906,7 +2906,7 @@ function function_80d54dff(e_attacker)
 
 /*
 	Name: function_b08d39a1
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x16214F39
 	Offset: 0xB580
 	Size: 0x1B7
@@ -2915,7 +2915,7 @@ function function_80d54dff(e_attacker)
 */
 function function_b08d39a1()
 {
-	level endon("hash_5783f652");
+	level endon("demon_gate_runes");
 	while(1)
 	{
 		self waittill("damage", amount, attacker, direction, point, mod, tagName, modelName, partName, weapon);
@@ -2934,7 +2934,7 @@ function function_b08d39a1()
 
 /*
 	Name: function_ee73a771
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7500D0E1
 	Offset: 0xB740
 	Size: 0x83
@@ -2943,7 +2943,7 @@ function function_b08d39a1()
 */
 function function_ee73a771()
 {
-	level endon("hash_5783f652");
+	level endon("demon_gate_runes");
 	level flag::wait_till("rune_sequence_failed");
 	level flag::wait_till_clear("rune_sequence_failed");
 	exploder::stop_exploder(self.var_6a1fa689);
@@ -2953,7 +2953,7 @@ function function_ee73a771()
 
 /*
 	Name: function_c85b7e17
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3E15AADD
 	Offset: 0xB7D0
 	Size: 0x2B3
@@ -2962,7 +2962,7 @@ function function_ee73a771()
 */
 function function_c85b7e17(var_25b51f6b, var_5a2492d5)
 {
-	level endon("hash_5783f652");
+	level endon("demon_gate_runes");
 	mdl_rune = util::spawn_model(var_25b51f6b, self.origin, self.angles);
 	playsoundatposition("zmb_demon_runes_pop", mdl_rune.origin);
 	mdl_rune clientfield::set("demonic_rune_fx", 1);
@@ -2985,14 +2985,14 @@ function function_c85b7e17(var_25b51f6b, var_5a2492d5)
 	else
 	{
 		level.var_f00f53e6 = 1;
-		var_cd45655b namespace_97ddfc0d::function_ebc3d584(var_5a2492d5, 1);
+		var_cd45655b zm_castle_vo::function_ebc3d584(var_5a2492d5, 1);
 		if(level.var_ca3b8551 < 3)
 		{
 			if(isdefined(level.var_4e2e87e9) && level.var_4e2e87e9.size > 0)
 			{
 				foreach(str_syllable in level.var_4e2e87e9)
 				{
-					var_cd45655b namespace_97ddfc0d::function_ebc3d584(var_5a2492d5, 1);
+					var_cd45655b zm_castle_vo::function_ebc3d584(var_5a2492d5, 1);
 				}
 			}
 		}
@@ -3007,7 +3007,7 @@ function function_c85b7e17(var_25b51f6b, var_5a2492d5)
 
 /*
 	Name: function_9fc90424
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xDA816B73
 	Offset: 0xBA90
 	Size: 0x3C1
@@ -3038,12 +3038,12 @@ function function_9fc90424()
 	{
 		foreach(str_syllable in level.var_4e2e87e9)
 		{
-			var_cd45655b namespace_97ddfc0d::function_ebc3d584(str_syllable, 1);
+			var_cd45655b zm_castle_vo::function_ebc3d584(str_syllable, 1);
 		}
 		level.var_4e2e87e9 = undefined;
 		level.var_f00f53e6 = undefined;
 	}
-	var_cd45655b namespace_97ddfc0d::function_56c65986(var_e4c7ad11);
+	var_cd45655b zm_castle_vo::function_56c65986(var_e4c7ad11);
 	if(var_e4c7ad11)
 	{
 		level flag::set("demon_gate_runes");
@@ -3067,7 +3067,7 @@ function function_9fc90424()
 
 /*
 	Name: function_bbc0c85c
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x22D4F3F3
 	Offset: 0xBE60
 	Size: 0x91
@@ -3084,15 +3084,15 @@ function function_bbc0c85c()
 }
 
 /*
-	Name: function_b9fe51c7
-	Namespace: namespace_99cb5531
+	Name: demon_gate_runes_cleanup
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x8A927F80
 	Offset: 0xBF00
 	Size: 0x283
 	Parameters: 0
 	Flags: None
 */
-function function_b9fe51c7()
+function demon_gate_runes_cleanup()
 {
 	var_cd45655b = GetEnt("aq_dg_urn_position", "targetname");
 	var_cd45655b delete();
@@ -3116,7 +3116,7 @@ function function_b9fe51c7()
 
 /*
 	Name: function_b2f7fb48
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x62FFB49C
 	Offset: 0xC190
 	Size: 0x5B
@@ -3136,7 +3136,7 @@ function function_b2f7fb48()
 
 /*
 	Name: function_8d7d2896
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x5E8B5DDC
 	Offset: 0xC1F8
 	Size: 0x161
@@ -3165,7 +3165,7 @@ function function_8d7d2896()
 
 /*
 	Name: function_e896a88d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xBE6D5B2
 	Offset: 0xC368
 	Size: 0xBB
@@ -3192,7 +3192,7 @@ function function_e896a88d()
 
 /*
 	Name: function_695d82fd
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7488CFCA
 	Offset: 0xC430
 	Size: 0x67B
@@ -3217,8 +3217,8 @@ function function_695d82fd()
 	var_884470ed = var_605e43a9.angles + VectorScale((0, 1, 0), 90);
 	var_884470ed = var_884470ed * (0, 1, 0);
 	var_e8294063 = var_605e43a9.origin + VectorScale((0, 0, -1), 42);
-	var_12ddc0c7 = spawn("script_origin", var_e8294063);
-	var_12ddc0c7 PlayLoopSound("zmb_demon_runes_portal", 1);
+	portal_sound = spawn("script_origin", var_e8294063);
+	portal_sound PlayLoopSound("zmb_demon_runes_portal", 1);
 	mdl_anchor = util::spawn_model("tag_origin", var_e8294063, var_884470ed);
 	mdl_anchor clientfield::set("demongate_quest_portal", 1);
 	/#
@@ -3231,16 +3231,16 @@ function function_695d82fd()
 		if(e_who === level.var_6e68c0d8)
 		{
 			level notify("hash_768bea1d");
-			var_12ddc0c7 StopLoopSound(10);
-			var_12ddc0c7 playsound("zmb_broken_arrow_pieces");
+			portal_sound StopLoopSound(10);
+			portal_sound playsound("zmb_broken_arrow_pieces");
 			e_who PlayRumbleOnEntity("zm_castle_quest_interact_rumble");
 			level scene::Play("p7_fxanim_zm_castle_quest_demon_arrow_broken_reform_bundle");
 			mdl_anchor clientfield::set("demongate_quest_portal", 0);
 			level scene::init("p7_fxanim_zm_castle_quest_demon_arrow_whole_reform_bundle");
 			exploder::exploder("lgt_Demon_Gate");
-			var_12ddc0c7 playsound("zmb_demon_runes_portal_vanish");
+			portal_sound playsound("zmb_demon_runes_portal_vanish");
 			level waittill("hash_66b2458c");
-			var_12ddc0c7 delete();
+			portal_sound delete();
 			level thread scene::Play("p7_fxanim_zm_castle_quest_demon_arrow_whole_reform_bundle");
 			break;
 		}
@@ -3266,7 +3266,7 @@ function function_695d82fd()
 		}
 		else
 		{
-			e_who notify("hash_477375c9");
+			e_who notify("quest_swap");
 			level function_7910311b(e_who);
 			level.var_6e68c0d8 = e_who;
 			level clientfield::set("quest_owner_demon", function_85bfa3fd(e_who.characterindex));
@@ -3288,7 +3288,7 @@ function function_695d82fd()
 
 /*
 	Name: function_15894f24
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x502C6357
 	Offset: 0xCAB8
 	Size: 0x403
@@ -3333,7 +3333,7 @@ function function_15894f24(var_2f975510)
 
 /*
 	Name: function_dc66bbef
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xEEAE1144
 	Offset: 0xCEC8
 	Size: 0x41B
@@ -3392,7 +3392,7 @@ function function_dc66bbef()
 
 /*
 	Name: function_983083c
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3A7D5F6F
 	Offset: 0xD2F0
 	Size: 0x23
@@ -3406,7 +3406,7 @@ function function_983083c(e_attacker)
 
 /*
 	Name: function_894eef8b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6D0ED36C
 	Offset: 0xD320
 	Size: 0x18B
@@ -3433,7 +3433,7 @@ function function_894eef8b()
 
 /*
 	Name: function_8c23a1c7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x172EEB45
 	Offset: 0xD4B8
 	Size: 0x2D3
@@ -3483,15 +3483,15 @@ function function_8c23a1c7()
 }
 
 /*
-	Name: function_166bfc32
-	Namespace: namespace_99cb5531
+	Name: wolf_howl
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2F4D4F5B
 	Offset: 0xD798
 	Size: 0x23B
 	Parameters: 0
 	Flags: None
 */
-function function_166bfc32()
+function wolf_howl()
 {
 	/#
 		level flag::init("Dev Block strings are not supported");
@@ -3502,7 +3502,7 @@ function function_166bfc32()
 		level flag::init("Dev Block strings are not supported");
 	#/
 	level wolf_howl_setup();
-	level function_4dcd7a8c();
+	level wolf_howl_paintings();
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
@@ -3511,7 +3511,7 @@ function function_166bfc32()
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
-	level function_a03ed799();
+	level wolf_howl_escort();
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
@@ -3526,7 +3526,7 @@ function function_166bfc32()
 
 /*
 	Name: wolf_howl_setup
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC16B8590
 	Offset: 0xD9E0
 	Size: 0x193
@@ -3551,15 +3551,15 @@ function wolf_howl_setup()
 }
 
 /*
-	Name: function_4dcd7a8c
-	Namespace: namespace_99cb5531
+	Name: wolf_howl_paintings
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x8A465743
 	Offset: 0xDB80
 	Size: 0x36B
 	Parameters: 0
 	Flags: None
 */
-function function_4dcd7a8c()
+function wolf_howl_paintings()
 {
 	/#
 		level endon("hash_2a8e7fe2");
@@ -3596,7 +3596,7 @@ function function_4dcd7a8c()
 
 /*
 	Name: function_2601ae75
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x741CA08B
 	Offset: 0xDEF8
 	Size: 0x253
@@ -3608,7 +3608,7 @@ function function_2601ae75(var_c37a8358, var_18f50dca)
 	/#
 		level endon("hash_2a8e7fe2");
 	#/
-	level endon("hash_4dcd7a8c");
+	level endon("wolf_howl_paintings");
 	w_bow = GetWeapon("elemental_bow");
 	while(1)
 	{
@@ -3620,7 +3620,7 @@ function function_2601ae75(var_c37a8358, var_18f50dca)
 				e_who PlayRumbleOnEntity("zm_castle_quest_interact_rumble");
 				self.mdl_painting clientfield::set("painting_symbol_reveal", 1);
 				playsoundatposition("zmb_painting_correct", self.origin);
-				e_who thread namespace_97ddfc0d::function_5fa306b6(var_c37a8358 + 1);
+				e_who thread zm_castle_vo::function_5fa306b6(var_c37a8358 + 1);
 				if(var_c37a8358 == 3)
 				{
 					level flag::set("wolf_howl_paintings");
@@ -3644,7 +3644,7 @@ function function_2601ae75(var_c37a8358, var_18f50dca)
 
 /*
 	Name: function_5e09adfd
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x22CFE14F
 	Offset: 0xE158
 	Size: 0x1A3
@@ -3673,7 +3673,7 @@ function function_5e09adfd()
 
 /*
 	Name: function_4bc49ad0
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xBA31C72B
 	Offset: 0xE308
 	Size: 0x33
@@ -3688,7 +3688,7 @@ function function_4bc49ad0()
 
 /*
 	Name: function_2bac97b4
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xBA727E44
 	Offset: 0xE348
 	Size: 0xEB
@@ -3709,7 +3709,7 @@ function function_2bac97b4()
 
 /*
 	Name: function_64b2bde9
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB3445D84
 	Offset: 0xE440
 	Size: 0xAF
@@ -3736,7 +3736,7 @@ function function_64b2bde9()
 
 /*
 	Name: function_2a8e7fe2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC89A5456
 	Offset: 0xE4F8
 	Size: 0x203
@@ -3750,7 +3750,7 @@ function function_2a8e7fe2()
 		{
 			return;
 		}
-		level thread namespace_2a78f3c::function_a01a53de();
+		level thread zm_castle_weap_quest::function_a01a53de();
 		level.var_52978d72 = level.players[0];
 		level clientfield::set("Dev Block strings are not supported", function_85bfa3fd(level.var_52978d72.characterindex));
 		level.var_427e7668[level.var_427e7668.size] = level.players[0];
@@ -3774,7 +3774,7 @@ function function_2a8e7fe2()
 
 /*
 	Name: function_15f112ea
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x227FA370
 	Offset: 0xE708
 	Size: 0x4B
@@ -3792,7 +3792,7 @@ function function_15f112ea()
 
 /*
 	Name: wolf_howl_skull
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x718372C2
 	Offset: 0xE760
 	Size: 0x67
@@ -3815,7 +3815,7 @@ function wolf_howl_skull()
 
 /*
 	Name: function_15a6ff6a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x874A667A
 	Offset: 0xE7D0
 	Size: 0x1B9
@@ -3833,7 +3833,7 @@ function function_15a6ff6a()
 		}
 	#/
 	level.var_52978d72 endon("death");
-	level.var_52978d72 endon("hash_477375c9");
+	level.var_52978d72 endon("quest_swap");
 	level.var_52978d72 thread function_d62aa556();
 	t_shrine = GetEnt("aq_wh_skull_shrine_trig", "targetname");
 	while(1)
@@ -3852,7 +3852,7 @@ function function_15a6ff6a()
 
 /*
 	Name: function_d62aa556
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD8A082BD
 	Offset: 0xE998
 	Size: 0x313
@@ -3871,7 +3871,7 @@ function function_d62aa556()
 	#/
 	self endon("bleed_out");
 	self endon("death");
-	self endon("hash_477375c9");
+	self endon("quest_swap");
 	level endon("hash_80b27882");
 	var_c068b13 = GetEnt("aq_wh_shrine_rumble_volume", "targetname");
 	var_55b8fc1d = GetEnt("aq_wh_skull_shrine_trig", "targetname");
@@ -3926,7 +3926,7 @@ function function_d62aa556()
 
 /*
 	Name: function_262d06db
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC89E94D0
 	Offset: 0xECB8
 	Size: 0x15F
@@ -3965,7 +3965,7 @@ function function_262d06db()
 
 /*
 	Name: function_5643d04b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAECBDACC
 	Offset: 0xEE20
 	Size: 0x83
@@ -3989,15 +3989,15 @@ function function_5643d04b()
 }
 
 /*
-	Name: function_a03ed799
-	Namespace: namespace_99cb5531
+	Name: wolf_howl_escort
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAABF7DD1
 	Offset: 0xEEB0
 	Size: 0x24B
 	Parameters: 0
 	Flags: None
 */
-function function_a03ed799()
+function wolf_howl_escort()
 {
 	/#
 		level endon("hash_3429d04c");
@@ -4031,7 +4031,7 @@ function function_a03ed799()
 
 /*
 	Name: function_b9485994
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xDF90F7F6
 	Offset: 0xF108
 	Size: 0xE1
@@ -4057,7 +4057,7 @@ function function_b9485994()
 
 /*
 	Name: function_4e530cb
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6C394152
 	Offset: 0xF1F8
 	Size: 0x7B
@@ -4075,7 +4075,7 @@ function function_4e530cb()
 
 /*
 	Name: function_286f3904
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4292AB51
 	Offset: 0xF280
 	Size: 0x1CF
@@ -4084,8 +4084,8 @@ function function_4e530cb()
 */
 function function_286f3904()
 {
-	var_577bbdcb = GetEnt("sp_skadi", "targetname");
-	var_e6d07014 = var_577bbdcb SpawnFromSpawner("skadi", 1);
+	sp_skadi = GetEnt("sp_skadi", "targetname");
+	var_e6d07014 = sp_skadi SpawnFromSpawner("skadi", 1);
 	var_e6d07014.allow_zombie_to_target_ai = 0;
 	var_e6d07014 SetCanDamage(0);
 	var_e6d07014 ai::set_behavior_attribute("sprint", 0);
@@ -4104,7 +4104,7 @@ function function_286f3904()
 
 /*
 	Name: function_a370259a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x61A304D5
 	Offset: 0xF458
 	Size: 0x1B3
@@ -4137,7 +4137,7 @@ function function_a370259a()
 
 /*
 	Name: function_4e1572f1
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAC0F8B1D
 	Offset: 0xF618
 	Size: 0x2CB
@@ -4162,7 +4162,7 @@ function function_4e1572f1(s_goal_pos)
 		self clientfield::set("wolf_footprint_fx", 0);
 		self clientfield::set("wolf_trail_fx", 1);
 		var_b42dfef4 = struct::get(s_goal_pos.targetname + "_aggro", "targetname");
-		level notify("hash_98a1cb7e");
+		level notify("skadi_reached_dig_spot");
 		level thread function_560d53c2();
 		self scene::Play("ai_zm_dlc1_wolf_howl_paw_ground", Array(level.var_e6d07014));
 		mdl_bones = GetEnt("aq_wh_bones_" + s_goal_pos.script_label, "targetname");
@@ -4179,7 +4179,7 @@ function function_4e1572f1(s_goal_pos)
 
 /*
 	Name: function_560d53c2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE5939304
 	Offset: 0xF8F0
 	Size: 0xAF
@@ -4198,7 +4198,7 @@ function function_560d53c2()
 
 /*
 	Name: function_3fe2741d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA8C98553
 	Offset: 0xF9A8
 	Size: 0xFB
@@ -4211,9 +4211,9 @@ function function_3fe2741d()
 		level endon("hash_3429d04c");
 		level endon("hash_4d557400");
 	#/
-	level endon("hash_98a1cb7e");
-	self notify("hash_e50ee448");
-	self endon("hash_e50ee448");
+	level endon("skadi_reached_dig_spot");
+	self notify("player_found_skadi");
+	self endon("player_found_skadi");
 	self thread function_75926d72();
 	str_notify = self util::waittill_any_ex("player_found_skadi", "player_lost_skadi", "death", "quest_swap", level, "skadi_reached_dig_spot");
 	if(str_notify == "player_lost_skadi")
@@ -4229,7 +4229,7 @@ function function_3fe2741d()
 
 /*
 	Name: function_4e062a23
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x50F18A04
 	Offset: 0xFAB0
 	Size: 0x5D
@@ -4239,8 +4239,8 @@ function function_3fe2741d()
 function function_4e062a23()
 {
 	self endon("death");
-	self endon("hash_477375c9");
-	self endon("hash_e50ee448");
+	self endon("quest_swap");
+	self endon("player_found_skadi");
 	wait(2);
 	self zm_audio::create_and_play_dialog("quest", "skadi_far");
 	level.var_a94b846f = undefined;
@@ -4248,7 +4248,7 @@ function function_4e062a23()
 
 /*
 	Name: function_e168806b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x809F2160
 	Offset: 0xFB18
 	Size: 0x12B
@@ -4274,7 +4274,7 @@ function function_e168806b()
 
 /*
 	Name: function_5928a2a7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4636C85D
 	Offset: 0xFC50
 	Size: 0x83
@@ -4296,7 +4296,7 @@ function function_5928a2a7()
 
 /*
 	Name: function_75926d72
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x690DFC94
 	Offset: 0xFCE0
 	Size: 0x13F
@@ -4310,17 +4310,17 @@ function function_75926d72()
 		level endon("hash_4d557400");
 		self endon("hash_3c5d2ca5");
 	#/
-	level endon("hash_98a1cb7e");
+	level endon("skadi_reached_dig_spot");
 	level endon("hash_e168806b");
-	level endon("hash_e50ee448");
+	level endon("player_found_skadi");
 	self endon("death");
-	self endon("hash_477375c9");
+	self endon("quest_swap");
 	while(1)
 	{
 		if(isdefined(self.var_a9e7283f) && self.var_a9e7283f && !self util::is_looking_at(level.var_e6d07014, 0, 1))
 		{
 			self.var_a9e7283f = 0;
-			self notify("hash_19eeca2c");
+			self notify("player_lost_skadi");
 		}
 		else if(!isdefined(self.var_a9e7283f) && self.var_a9e7283f && self util::is_looking_at(level.var_e6d07014, 0, 1))
 		{
@@ -4333,7 +4333,7 @@ function function_75926d72()
 
 /*
 	Name: function_391f894a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x24D3117C
 	Offset: 0xFE28
 	Size: 0x21B
@@ -4377,7 +4377,7 @@ function function_391f894a()
 
 /*
 	Name: function_a3638154
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x84F19337
 	Offset: 0x10050
 	Size: 0x33
@@ -4396,7 +4396,7 @@ function function_a3638154()
 
 /*
 	Name: function_d0d62870
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x51BCD502
 	Offset: 0x10090
 	Size: 0x23
@@ -4410,7 +4410,7 @@ function function_d0d62870(e_attacker)
 
 /*
 	Name: function_986cf5cf
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x1D9F4427
 	Offset: 0x100C0
 	Size: 0x113
@@ -4441,7 +4441,7 @@ function function_986cf5cf()
 
 /*
 	Name: function_af36e4b0
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x1F81AD53
 	Offset: 0x101E0
 	Size: 0x2CD
@@ -4485,7 +4485,7 @@ function function_af36e4b0()
 
 /*
 	Name: function_11dbf9f2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAE437344
 	Offset: 0x104B8
 	Size: 0xBB
@@ -4509,7 +4509,7 @@ function function_11dbf9f2()
 
 /*
 	Name: function_3429d04c
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x858CBF5D
 	Offset: 0x10580
 	Size: 0xF3
@@ -4537,7 +4537,7 @@ function function_3429d04c()
 
 /*
 	Name: function_328260ea
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x67A3CF9B
 	Offset: 0x10680
 	Size: 0x83
@@ -4563,7 +4563,7 @@ function function_328260ea()
 
 /*
 	Name: wolf_howl_burial_chamber
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA6B2A29A
 	Offset: 0x10710
 	Size: 0x19B
@@ -4596,7 +4596,7 @@ function wolf_howl_burial_chamber()
 
 /*
 	Name: function_53b41ebe
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC3BC490B
 	Offset: 0x108B8
 	Size: 0x63
@@ -4614,7 +4614,7 @@ function function_53b41ebe(var_dddbfe51)
 
 /*
 	Name: function_987776f3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x41128255
 	Offset: 0x10928
 	Size: 0x18F
@@ -4624,7 +4624,7 @@ function function_53b41ebe(var_dddbfe51)
 function function_987776f3()
 {
 	level endon("hash_b12ab80e");
-	level endon("hash_9d8654a1");
+	level endon("wolf_howl_repaired");
 	var_dddbfe51 = GetEnt("aq_wh_ledge_collision", "targetname");
 	while(1)
 	{
@@ -4646,7 +4646,7 @@ function function_987776f3()
 
 /*
 	Name: function_6c8179b7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x28F947FB
 	Offset: 0x10AC0
 	Size: 0x143
@@ -4672,7 +4672,7 @@ function function_6c8179b7()
 
 /*
 	Name: function_298099e3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7C078E67
 	Offset: 0x10C10
 	Size: 0x23
@@ -4688,7 +4688,7 @@ function function_298099e3()
 
 /*
 	Name: function_fafba689
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xCC5ED8C4
 	Offset: 0x10C40
 	Size: 0x1B
@@ -4702,7 +4702,7 @@ function function_fafba689()
 
 /*
 	Name: function_7af16606
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4C53713C
 	Offset: 0x10C68
 	Size: 0x13F
@@ -4719,9 +4719,9 @@ function function_7af16606()
 		}
 		self endon("hash_3c5d2ca5");
 	#/
-	level endon("hash_9d8654a1");
+	level endon("wolf_howl_repaired");
 	self endon("death");
-	self endon("hash_477375c9");
+	self endon("quest_swap");
 	self.var_374fd3ef = 0;
 	var_d29c128e = GetEnt("aq_wh_burial_chamber_symbol", "targetname");
 	while(1)
@@ -4745,7 +4745,7 @@ function function_7af16606()
 
 /*
 	Name: function_6ab969b7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE039891B
 	Offset: 0x10DB0
 	Size: 0xA3
@@ -4763,7 +4763,7 @@ function function_6ab969b7()
 
 /*
 	Name: function_1676aad7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA375D1CD
 	Offset: 0x10E60
 	Size: 0x143
@@ -4780,7 +4780,7 @@ function function_1676aad7(n_delay, b_reset)
 	{
 		b_reset = 0;
 	}
-	level endon("hash_9d8654a1");
+	level endon("wolf_howl_repaired");
 	wait(n_delay);
 	self notsolid();
 	self flag::clear("ledge_built");
@@ -4799,7 +4799,7 @@ function function_1676aad7(n_delay, b_reset)
 
 /*
 	Name: function_c57a36bb
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x65E15EBB
 	Offset: 0x10FB0
 	Size: 0x453
@@ -4852,7 +4852,7 @@ function function_c57a36bb()
 		}
 		else
 		{
-			e_who notify("hash_477375c9");
+			e_who notify("quest_swap");
 			level function_7910311b(e_who);
 			level.var_52978d72 = e_who;
 			level clientfield::set("quest_owner_wolf", function_85bfa3fd(e_who.characterindex));
@@ -4879,7 +4879,7 @@ function function_c57a36bb()
 
 /*
 	Name: function_b8a99c68
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4DC41C09
 	Offset: 0x11410
 	Size: 0x183
@@ -4904,7 +4904,7 @@ function function_b8a99c68()
 
 /*
 	Name: function_d5e44655
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x972CC300
 	Offset: 0x115A0
 	Size: 0x23
@@ -4920,7 +4920,7 @@ function function_d5e44655()
 
 /*
 	Name: function_b6709ba6
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6E1B01E7
 	Offset: 0x115D0
 	Size: 0x1A5
@@ -4962,7 +4962,7 @@ function function_b6709ba6()
 
 /*
 	Name: function_e3ef7bf6
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x1FBA0BA5
 	Offset: 0x11780
 	Size: 0x23
@@ -4976,7 +4976,7 @@ function function_e3ef7bf6(e_attacker)
 
 /*
 	Name: function_803f9685
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC431FD65
 	Offset: 0x117B0
 	Size: 0x173
@@ -5003,7 +5003,7 @@ function function_803f9685()
 
 /*
 	Name: function_4bf5f2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xCA1A4487
 	Offset: 0x11930
 	Size: 0x2B3
@@ -5052,15 +5052,15 @@ function function_4bf5f2()
 }
 
 /*
-	Name: function_ba799096
-	Namespace: namespace_99cb5531
+	Name: elemental_storm
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF80D09B2
 	Offset: 0x11BF0
 	Size: 0x373
 	Parameters: 0
 	Flags: None
 */
-function function_ba799096()
+function elemental_storm()
 {
 	/#
 		level flag::init("Dev Block strings are not supported");
@@ -5087,7 +5087,7 @@ function function_ba799096()
 		level flag::set("Dev Block strings are not supported");
 	#/
 	level function_f5e9876("storm", 2);
-	level function_7df3e31c();
+	level elemental_storm_wallrun();
 	/#
 		level flag::set("Dev Block strings are not supported");
 	#/
@@ -5107,7 +5107,7 @@ function function_ba799096()
 
 /*
 	Name: elemental_storm_setup
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xADAAFB4C
 	Offset: 0x11F70
 	Size: 0x123
@@ -5129,7 +5129,7 @@ function elemental_storm_setup()
 
 /*
 	Name: elemental_storm_weather_vane
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x732AAC28
 	Offset: 0x120A0
 	Size: 0x257
@@ -5170,7 +5170,7 @@ function elemental_storm_weather_vane()
 
 /*
 	Name: function_ac08423b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC347452F
 	Offset: 0x12300
 	Size: 0x17B
@@ -5199,7 +5199,7 @@ function function_ac08423b(e_player)
 
 /*
 	Name: function_aaccdd61
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xDB0907CD
 	Offset: 0x12488
 	Size: 0x8F
@@ -5217,7 +5217,7 @@ function function_aaccdd61()
 
 /*
 	Name: function_526fc045
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x1CF108F
 	Offset: 0x12520
 	Size: 0xE7
@@ -5241,7 +5241,7 @@ function function_526fc045(v_angles)
 
 /*
 	Name: function_2db350be
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x87FA47AE
 	Offset: 0x12610
 	Size: 0x173
@@ -5255,7 +5255,7 @@ function function_2db350be()
 		{
 			return;
 		}
-		level thread namespace_2a78f3c::function_a01a53de();
+		level thread zm_castle_weap_quest::function_a01a53de();
 		level.var_f8d1dc16 = level.players[0];
 		level clientfield::set("Dev Block strings are not supported", function_85bfa3fd(level.var_f8d1dc16.characterindex));
 		level.var_427e7668[level.var_427e7668.size] = level.players[0];
@@ -5273,7 +5273,7 @@ function function_2db350be()
 
 /*
 	Name: function_9ad758f3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x518D4827
 	Offset: 0x12790
 	Size: 0x4B
@@ -5291,7 +5291,7 @@ function function_9ad758f3()
 
 /*
 	Name: elemental_storm_beacons
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC29D5964
 	Offset: 0x127E8
 	Size: 0x177
@@ -5325,7 +5325,7 @@ function elemental_storm_beacons()
 
 /*
 	Name: function_a20bce39
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x1AEA42D6
 	Offset: 0x12968
 	Size: 0x7B
@@ -5345,7 +5345,7 @@ function function_a20bce39()
 
 /*
 	Name: function_cad2d4a7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6DAA3469
 	Offset: 0x129F0
 	Size: 0xD9
@@ -5366,7 +5366,7 @@ function function_cad2d4a7()
 
 /*
 	Name: function_6e3cfa55
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x99635EA0
 	Offset: 0x12AD8
 	Size: 0x18B
@@ -5380,7 +5380,7 @@ function function_6e3cfa55()
 		level.var_f8d1dc16 endon("hash_3c5d2ca5");
 	#/
 	level.var_f8d1dc16 endon("death");
-	level.var_f8d1dc16 endon("hash_477375c9");
+	level.var_f8d1dc16 endon("quest_swap");
 	s_beacon = struct::get(self.target);
 	while(1)
 	{
@@ -5394,7 +5394,7 @@ function function_6e3cfa55()
 			s_beacon.var_41f52afd clientfield::set("beacon_fx", 1);
 			self playsound("zmb_beacon_ignite");
 			self.b_lit = 1;
-			self notify("hash_9290d11");
+			self notify("beacon_activated");
 			return;
 		}
 	}
@@ -5402,7 +5402,7 @@ function function_6e3cfa55()
 
 /*
 	Name: function_c57b4999
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7A4269A4
 	Offset: 0x12C70
 	Size: 0x20F
@@ -5445,7 +5445,7 @@ function function_c57b4999()
 
 /*
 	Name: function_cdf5ca22
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6BCFB1EF
 	Offset: 0x12E88
 	Size: 0x18B
@@ -5478,18 +5478,18 @@ function function_cdf5ca22()
 }
 
 /*
-	Name: function_7df3e31c
-	Namespace: namespace_99cb5531
+	Name: elemental_storm_wallrun
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2C1F1C52
 	Offset: 0x13020
 	Size: 0x1E9
 	Parameters: 0
 	Flags: None
 */
-function function_7df3e31c()
+function elemental_storm_wallrun()
 {
 	a_t_wallrun = GetEntArray("aq_es_wallrun_trigger", "targetname");
-	Array::thread_all(a_t_wallrun, &function_56130b0d);
+	Array::thread_all(a_t_wallrun, &elemental_storm_wallrun_think);
 	Array::thread_all(a_t_wallrun, &function_cce911bb);
 	level scene::Play("p7_fxanim_zm_castle_weather_vane_spin_bundle");
 	level function_aaccdd61();
@@ -5506,7 +5506,7 @@ function function_7df3e31c()
 
 /*
 	Name: function_cce911bb
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x175C99E0
 	Offset: 0x13218
 	Size: 0x177
@@ -5522,7 +5522,7 @@ function function_cce911bb()
 			return;
 		}
 	#/
-	level endon("hash_7df3e31c");
+	level endon("elemental_storm_wallrun");
 	mdl_symbol = GetEnt(self.target, "targetname");
 	t_outer = GetEnt(mdl_symbol.target, "targetname");
 	mdl_symbol clientfield::set("wallrun_fx", 1);
@@ -5545,15 +5545,15 @@ function function_cce911bb()
 }
 
 /*
-	Name: function_56130b0d
-	Namespace: namespace_99cb5531
+	Name: elemental_storm_wallrun_think
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2B5072F
 	Offset: 0x13398
 	Size: 0x25B
 	Parameters: 0
 	Flags: None
 */
-function function_56130b0d()
+function elemental_storm_wallrun_think()
 {
 	/#
 		level endon("hash_5508467e");
@@ -5602,7 +5602,7 @@ function function_56130b0d()
 
 /*
 	Name: function_ba8e8ad8
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x9C203399
 	Offset: 0x13600
 	Size: 0x2D3
@@ -5616,8 +5616,8 @@ function function_ba8e8ad8(e_who)
 		e_who endon("hash_3c5d2ca5");
 	#/
 	e_who endon("death");
-	e_who endon("hash_477375c9");
-	level endon("hash_7df3e31c");
+	e_who endon("quest_swap");
+	level endon("elemental_storm_wallrun");
 	e_who PlayRumbleOnEntity("damage_heavy");
 	var_968c3922 = 0;
 	while(var_968c3922 < 4)
@@ -5659,7 +5659,7 @@ function function_ba8e8ad8(e_who)
 
 /*
 	Name: function_5508467e
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xBA552F01
 	Offset: 0x138E0
 	Size: 0x1AB
@@ -5691,7 +5691,7 @@ function function_5508467e()
 
 /*
 	Name: function_be03e13e
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7739776F
 	Offset: 0x13A98
 	Size: 0x2F9
@@ -5721,8 +5721,8 @@ function function_be03e13e()
 		s_battery.var_41f52afd = util::spawn_model("tag_origin", s_battery.origin);
 		s_battery.var_41f52afd clientfield::set("battery_fx", 1);
 	}
-	level thread function_2c0cf08(var_9e89bcdc);
-	level thread function_121030c5();
+	level thread elemental_storm_batteries(var_9e89bcdc);
+	level thread elemental_storm_beacons_charged();
 	level flag::wait_till_all(Array("elemental_storm_batteries", "elemental_storm_beacons_charged"));
 	foreach(var_8f88d1fd in var_9e89bcdc)
 	{
@@ -5736,21 +5736,21 @@ function function_be03e13e()
 }
 
 /*
-	Name: function_2c0cf08
-	Namespace: namespace_99cb5531
+	Name: elemental_storm_batteries
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xECA1E82E
 	Offset: 0x13DA0
 	Size: 0xC3
 	Parameters: 1
 	Flags: None
 */
-function function_2c0cf08(var_9e89bcdc)
+function elemental_storm_batteries(var_9e89bcdc)
 {
 	/#
 		level endon("hash_b1cac6d2");
 		level endon("hash_ae42a737");
 	#/
-	Array::thread_all(var_9e89bcdc, &function_43cb1d81);
+	Array::thread_all(var_9e89bcdc, &elemental_storm_batteries_think);
 	zm_spawner::register_zombie_death_event_callback(&function_71e6353);
 	Array::wait_till(var_9e89bcdc, "activated");
 	zm_spawner::deregister_zombie_death_event_callback(&function_71e6353);
@@ -5758,15 +5758,15 @@ function function_2c0cf08(var_9e89bcdc)
 }
 
 /*
-	Name: function_43cb1d81
-	Namespace: namespace_99cb5531
+	Name: elemental_storm_batteries_think
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAE7C5279
 	Offset: 0x13E70
 	Size: 0x119
 	Parameters: 0
 	Flags: None
 */
-function function_43cb1d81()
+function elemental_storm_batteries_think()
 {
 	/#
 		level endon("hash_b1cac6d2");
@@ -5792,7 +5792,7 @@ function function_43cb1d81()
 
 /*
 	Name: function_71e6353
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD00B8F82
 	Offset: 0x13F98
 	Size: 0x23
@@ -5806,7 +5806,7 @@ function function_71e6353(e_attacker)
 
 /*
 	Name: function_88efea4a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x51210DB6
 	Offset: 0x13FC8
 	Size: 0x16B
@@ -5829,15 +5829,15 @@ function function_88efea4a()
 }
 
 /*
-	Name: function_121030c5
-	Namespace: namespace_99cb5531
+	Name: elemental_storm_beacons_charged
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x15CABAD2
 	Offset: 0x14140
 	Size: 0x12F
 	Parameters: 0
 	Flags: None
 */
-function function_121030c5()
+function elemental_storm_beacons_charged()
 {
 	/#
 		level endon("hash_b1cac6d2");
@@ -5856,7 +5856,7 @@ function function_121030c5()
 
 /*
 	Name: function_94af5935
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x29A20394
 	Offset: 0x14278
 	Size: 0xF1
@@ -5871,28 +5871,28 @@ function function_94af5935()
 	{
 		if(!(isdefined(var_8005a5f6.b_charged) && var_8005a5f6.b_charged))
 		{
-			var_8005a5f6 thread function_1c758ab0();
+			var_8005a5f6 thread elemental_storm_beacons_charged_watcher();
 		}
 	}
 }
 
 /*
-	Name: function_1c758ab0
-	Namespace: namespace_99cb5531
+	Name: elemental_storm_beacons_charged_watcher
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x48DF3287
 	Offset: 0x14378
 	Size: 0x247
 	Parameters: 0
 	Flags: None
 */
-function function_1c758ab0()
+function elemental_storm_beacons_charged_watcher()
 {
 	/#
 		level endon("hash_b1cac6d2");
 		level.var_f8d1dc16 endon("hash_3c5d2ca5");
 	#/
 	level.var_f8d1dc16 endon("death");
-	level.var_f8d1dc16 endon("hash_477375c9");
+	level.var_f8d1dc16 endon("quest_swap");
 	s_beacon = struct::get(self.target);
 	while(1)
 	{
@@ -5920,7 +5920,7 @@ function function_1c758ab0()
 						s_battery.var_41f52afd delete();
 					}
 				}
-				self notify("hash_f706af6c");
+				self notify("beacon_charged");
 				return;
 			}
 		}
@@ -5929,7 +5929,7 @@ function function_1c758ab0()
 
 /*
 	Name: function_4688cd22
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE966C34
 	Offset: 0x145C8
 	Size: 0x223
@@ -5943,7 +5943,7 @@ function function_4688cd22()
 		self endon("hash_3c5d2ca5");
 	#/
 	self endon("death");
-	self endon("hash_477375c9");
+	self endon("quest_swap");
 	a_e_battery = GetEntArray("aq_es_battery_volume_charged", "script_noteworthy");
 	w_bow = GetWeapon("elemental_bow");
 	while(!level flag::get("elemental_storm_beacons_charged"))
@@ -5973,7 +5973,7 @@ function function_4688cd22()
 
 /*
 	Name: function_7e113f9d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x5408AD48
 	Offset: 0x147F8
 	Size: 0xA9
@@ -5995,7 +5995,7 @@ function function_7e113f9d(a_e_battery)
 
 /*
 	Name: function_29163209
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC8168176
 	Offset: 0x148B0
 	Size: 0x7B
@@ -6016,7 +6016,7 @@ function function_29163209()
 
 /*
 	Name: function_191ae48a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF2E5D7E4
 	Offset: 0x14938
 	Size: 0x39
@@ -6035,7 +6035,7 @@ function function_191ae48a()
 
 /*
 	Name: function_6a8283d3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x8E629349
 	Offset: 0x14980
 	Size: 0x1F7
@@ -6078,7 +6078,7 @@ function function_6a8283d3()
 
 /*
 	Name: function_ae42a737
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4D37D51E
 	Offset: 0x14B80
 	Size: 0x203
@@ -6108,7 +6108,7 @@ function function_ae42a737()
 
 /*
 	Name: function_1ad44df5
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7AE152F4
 	Offset: 0x14D90
 	Size: 0x19F
@@ -6144,7 +6144,7 @@ function function_1ad44df5()
 
 /*
 	Name: function_b1cac6d2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4385159D
 	Offset: 0x14F38
 	Size: 0x263
@@ -6184,7 +6184,7 @@ function function_b1cac6d2()
 
 /*
 	Name: elemental_storm_tornado
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x1EE73356
 	Offset: 0x151A8
 	Size: 0x57D
@@ -6248,7 +6248,7 @@ function elemental_storm_tornado()
 		}
 		else
 		{
-			e_who notify("hash_477375c9");
+			e_who notify("quest_swap");
 			level function_7910311b(e_who);
 			level.var_f8d1dc16 = e_who;
 			level clientfield::set("quest_owner_storm", function_85bfa3fd(e_who.characterindex));
@@ -6274,7 +6274,7 @@ function elemental_storm_tornado()
 
 /*
 	Name: function_70fc8e89
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x8F07178A
 	Offset: 0x15730
 	Size: 0x43
@@ -6289,7 +6289,7 @@ function function_70fc8e89()
 
 /*
 	Name: function_4c78e905
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD0F15479
 	Offset: 0x15780
 	Size: 0x5B
@@ -6306,7 +6306,7 @@ function function_4c78e905()
 
 /*
 	Name: function_1b2a8d00
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x9B55AFE9
 	Offset: 0x157E8
 	Size: 0x177
@@ -6342,7 +6342,7 @@ function function_1b2a8d00()
 
 /*
 	Name: function_71419e41
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE20C2C5D
 	Offset: 0x15968
 	Size: 0x253
@@ -6371,7 +6371,7 @@ function function_71419e41()
 
 /*
 	Name: function_44dae424
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6F465A4
 	Offset: 0x15BC8
 	Size: 0x43
@@ -6387,7 +6387,7 @@ function function_44dae424()
 
 /*
 	Name: function_91d15bdf
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAD140FC4
 	Offset: 0x15C18
 	Size: 0x43
@@ -6403,7 +6403,7 @@ function function_91d15bdf()
 
 /*
 	Name: function_632adf35
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x9601EA4E
 	Offset: 0x15C68
 	Size: 0xB3
@@ -6429,7 +6429,7 @@ function function_632adf35()
 
 /*
 	Name: function_c5b609e2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2B1CBE2C
 	Offset: 0x15D28
 	Size: 0x23
@@ -6443,7 +6443,7 @@ function function_c5b609e2(e_attacker)
 
 /*
 	Name: function_392a1ae1
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7A7DA902
 	Offset: 0x15D58
 	Size: 0x173
@@ -6470,7 +6470,7 @@ function function_392a1ae1()
 
 /*
 	Name: function_b88a3579
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAFA27929
 	Offset: 0x15ED8
 	Size: 0x2B3
@@ -6520,7 +6520,7 @@ function function_b88a3579()
 
 /*
 	Name: function_f708e6b2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x8AACD325
 	Offset: 0x16198
 	Size: 0x193
@@ -6573,7 +6573,7 @@ function function_f708e6b2()
 
 /*
 	Name: function_655cb8e
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA867BF7C
 	Offset: 0x16338
 	Size: 0x35D
@@ -6624,7 +6624,7 @@ function function_655cb8e()
 		}
 		else if(isdefined(e_who) && Array::contains(level.var_427e7668, e_who))
 		{
-			e_who notify("hash_477375c9");
+			e_who notify("quest_swap");
 			level function_7910311b(e_who);
 			e_who playsound("zmb_broken_arrow_pickup");
 			switch(self.script_label)
@@ -6664,7 +6664,7 @@ function function_655cb8e()
 
 /*
 	Name: function_e0db1fe7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x25CA6B24
 	Offset: 0x166A0
 	Size: 0x21B
@@ -6705,7 +6705,7 @@ function function_e0db1fe7(e_who)
 
 /*
 	Name: function_16bdda6f
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD8E91693
 	Offset: 0x168C8
 	Size: 0xB7
@@ -6723,7 +6723,7 @@ function function_16bdda6f(e_player, str_quest)
 
 /*
 	Name: function_42084ad5
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x752F435A
 	Offset: 0x16988
 	Size: 0x1B3
@@ -6775,7 +6775,7 @@ function function_42084ad5(var_e459d8fb)
 
 /*
 	Name: function_abeafdcb
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x9AFEEFDC
 	Offset: 0x16B48
 	Size: 0x363
@@ -6854,7 +6854,7 @@ function function_abeafdcb(str_quest)
 
 /*
 	Name: function_7910311b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x29F98646
 	Offset: 0x16EB8
 	Size: 0x85
@@ -6883,7 +6883,7 @@ function function_7910311b(e_player)
 
 /*
 	Name: function_7bbe3a25
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x11DA6963
 	Offset: 0x16F48
 	Size: 0x1A3
@@ -6932,7 +6932,7 @@ function function_7bbe3a25()
 
 /*
 	Name: function_14dd5ea5
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB7A64E8
 	Offset: 0x170F8
 	Size: 0x8BB
@@ -7082,7 +7082,7 @@ function function_14dd5ea5()
 				if(e_who HasWeapon(GetWeapon("elemental_bow")))
 				{
 					e_who zm_weapons::weapon_take(GetWeapon("elemental_bow"));
-					e_who notify("hash_785c8c97");
+					e_who notify("show_base_bow");
 				}
 				zm_unitrigger::unregister_unitrigger(self.var_67b5dd94);
 				break;
@@ -7094,7 +7094,7 @@ function function_14dd5ea5()
 			if(e_who HasWeapon(GetWeapon("elemental_bow")))
 			{
 				e_who zm_weapons::weapon_take(GetWeapon("elemental_bow"));
-				e_who notify("hash_785c8c97");
+				e_who notify("show_base_bow");
 			}
 			zm_unitrigger::unregister_unitrigger(self.var_67b5dd94);
 			break;
@@ -7125,7 +7125,7 @@ function function_14dd5ea5()
 
 /*
 	Name: function_f78eeee0
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x55DF7715
 	Offset: 0x179C0
 	Size: 0x83
@@ -7142,7 +7142,7 @@ function function_f78eeee0(v_position)
 
 /*
 	Name: function_bf26d3fb
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x94498886
 	Offset: 0x17A50
 	Size: 0x53
@@ -7158,7 +7158,7 @@ function function_bf26d3fb(var_e93a0115)
 
 /*
 	Name: function_2c1c1d3e
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE4CD2CAC
 	Offset: 0x17AB0
 	Size: 0x5B3
@@ -7226,7 +7226,7 @@ function function_2c1c1d3e(str_quest)
 
 /*
 	Name: function_1a76d37c
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x17615C07
 	Offset: 0x18070
 	Size: 0x297
@@ -7262,7 +7262,7 @@ function function_1a76d37c()
 
 /*
 	Name: function_8bbebef2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x38F8A90
 	Offset: 0x18310
 	Size: 0xFB
@@ -7289,7 +7289,7 @@ function function_8bbebef2()
 
 /*
 	Name: function_fb704679
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB5F946D7
 	Offset: 0x18418
 	Size: 0x639
@@ -7395,7 +7395,7 @@ function function_fb704679(e_target_player)
 
 /*
 	Name: function_971e3797
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xFC7E5CFC
 	Offset: 0x18A60
 	Size: 0x1F9
@@ -7421,7 +7421,7 @@ function function_971e3797()
 		e_who.var_bec0aa15 = undefined;
 		str_notify = self.script_label + "_returned";
 		level notify(str_notify);
-		e_who notify("hash_785c8c97");
+		e_who notify("show_base_bow");
 		self.mdl_bow show();
 		self thread function_fb704679();
 		level function_8b295d47(self.script_label);
@@ -7431,7 +7431,7 @@ function function_971e3797()
 
 /*
 	Name: function_a4861409
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE1E655EF
 	Offset: 0x18C68
 	Size: 0x319
@@ -7492,7 +7492,7 @@ function function_a4861409(e_player, s_bow)
 
 /*
 	Name: function_b584c1e
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA1948FEE
 	Offset: 0x18F90
 	Size: 0xAD
@@ -7514,7 +7514,7 @@ function function_b584c1e()
 
 /*
 	Name: function_7c48f9d8
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB1322863
 	Offset: 0x19048
 	Size: 0x1B
@@ -7528,7 +7528,7 @@ function function_7c48f9d8()
 
 /*
 	Name: function_cdfce37d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF90A5C6D
 	Offset: 0x19070
 	Size: 0xED
@@ -7554,7 +7554,7 @@ function function_cdfce37d(str_bow_name)
 
 /*
 	Name: function_5facaaf9
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3143109D
 	Offset: 0x19168
 	Size: 0x107
@@ -7573,25 +7573,25 @@ function function_5facaaf9(e_target_player, str_weapon_name)
 				case "elemental_bow_rune_prison":
 				{
 					level.var_c62829c7 = undefined;
-					level notify("hash_f2225849");
+					level notify("rune_prison_complete");
 					break;
 				}
 				case "elemental_bow_demongate":
 				{
 					level.var_6e68c0d8 = undefined;
-					level notify("hash_3a8af95a");
+					level notify("demon_gate_complete");
 					break;
 				}
 				case "elemental_bow_wolf_howl":
 				{
 					level.var_52978d72 = undefined;
-					level notify("hash_22816b8");
+					level notify("wolf_howl_complete");
 					break;
 				}
 				case "elemental_bow_storm":
 				{
 					level.var_f8d1dc16 = undefined;
-					level notify("hash_cd9f0cdc");
+					level notify("elemental_storm_complete");
 					break;
 				}
 			}
@@ -7607,7 +7607,7 @@ function function_5facaaf9(e_target_player, str_weapon_name)
 
 /*
 	Name: function_7b6fdb3e
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x23DEA051
 	Offset: 0x19278
 	Size: 0x89
@@ -7644,7 +7644,7 @@ function function_7b6fdb3e(str_quest)
 
 /*
 	Name: genesis_enemy_discard_override
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF030E344
 	Offset: 0x19310
 	Size: 0x13D
@@ -7688,7 +7688,7 @@ function genesis_enemy_discard_override(w_weapon, var_859c4788, v_impact, t_dama
 
 /*
 	Name: function_fae23b43
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6EC3F1E1
 	Offset: 0x19458
 	Size: 0xC5
@@ -7706,7 +7706,7 @@ function function_fae23b43()
 
 /*
 	Name: function_9dfa159b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x5E474E53
 	Offset: 0x19528
 	Size: 0xC5
@@ -7729,7 +7729,7 @@ function function_9dfa159b()
 
 /*
 	Name: function_ab623d34
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xCB18E992
 	Offset: 0x195F8
 	Size: 0x9D
@@ -7762,7 +7762,7 @@ function function_ab623d34(var_e459d8fb, e_volume)
 
 /*
 	Name: function_55c48922
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x8A47B4B
 	Offset: 0x196A0
 	Size: 0x1D3
@@ -7796,7 +7796,7 @@ function function_55c48922(v_origin, v_target, var_25c1c42e, b_is_crawler)
 
 /*
 	Name: function_3313abd5
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA391F78D
 	Offset: 0x19880
 	Size: 0x1FB
@@ -7862,7 +7862,7 @@ function function_3313abd5(var_81e39ef9, str_hint, v_origin, v_radius)
 
 /*
 	Name: function_c2dcccdc
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB264DFAB
 	Offset: 0x19A88
 	Size: 0x71
@@ -7882,7 +7882,7 @@ function function_c2dcccdc(e_player)
 
 /*
 	Name: function_573ca470
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD8E5CF83
 	Offset: 0x19B08
 	Size: 0xB3
@@ -7914,7 +7914,7 @@ function function_573ca470()
 
 /*
 	Name: unitrigger_refresh_message
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x580830BF
 	Offset: 0x19BC8
 	Size: 0x1B
@@ -7928,7 +7928,7 @@ function unitrigger_refresh_message()
 
 /*
 	Name: function_47b1e30a
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x84534C5F
 	Offset: 0x19BF0
 	Size: 0x2F
@@ -7943,7 +7943,7 @@ function function_47b1e30a(e_player)
 
 /*
 	Name: function_4a58bb9
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x79878D81
 	Offset: 0x19C28
 	Size: 0x6F
@@ -7965,7 +7965,7 @@ function function_4a58bb9(e_player)
 
 /*
 	Name: function_8c1fd619
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2372CEA0
 	Offset: 0x19CA0
 	Size: 0x11D
@@ -7999,7 +7999,7 @@ function function_8c1fd619(e_player)
 
 /*
 	Name: function_3bc663b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x504D54CC
 	Offset: 0x19DC8
 	Size: 0x8D
@@ -8023,7 +8023,7 @@ function function_3bc663b(e_player)
 
 /*
 	Name: function_87cf409b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x34A7E09C
 	Offset: 0x19E60
 	Size: 0x157
@@ -8078,7 +8078,7 @@ function function_87cf409b(e_player)
 
 /*
 	Name: function_4b76cf52
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE0800134
 	Offset: 0x19FC0
 	Size: 0x109
@@ -8121,7 +8121,7 @@ function function_4b76cf52(e_player)
 
 /*
 	Name: function_6041c7d9
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x51B1F7F1
 	Offset: 0x1A0D8
 	Size: 0x285
@@ -8186,7 +8186,7 @@ function function_6041c7d9(e_player)
 
 /*
 	Name: function_3b0f7209
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x61C079E9
 	Offset: 0x1A368
 	Size: 0xBB
@@ -8223,7 +8223,7 @@ function function_3b0f7209(str_weapon_name, n_character_index)
 
 /*
 	Name: function_8b295d47
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3A1235E6
 	Offset: 0x1A430
 	Size: 0xA3
@@ -8260,7 +8260,7 @@ function function_8b295d47(str_weapon_name)
 
 /*
 	Name: function_85bfa3fd
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x5EEC25D0
 	Offset: 0x1A4E0
 	Size: 0x55
@@ -8292,7 +8292,7 @@ function function_85bfa3fd(n_character_index)
 
 /*
 	Name: detect_reentry
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAACED37F
 	Offset: 0x1A540
 	Size: 0x37
@@ -8316,7 +8316,7 @@ function detect_reentry()
 
 /*
 	Name: function_952cba55
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x753BBC5E
 	Offset: 0x1A580
 	Size: 0x5AB
@@ -8390,7 +8390,7 @@ function function_952cba55()
 
 /*
 	Name: function_50564c39
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x398117C6
 	Offset: 0x1AB38
 	Size: 0x145
@@ -8418,7 +8418,7 @@ function function_50564c39(cmd)
 					return 1;
 				}
 				level flag::set("Dev Block strings are not supported");
-				level thread namespace_2a78f3c::function_a01a53de();
+				level thread zm_castle_weap_quest::function_a01a53de();
 				return 1;
 			}
 			case "Dev Block strings are not supported":
@@ -8446,7 +8446,7 @@ function function_50564c39(cmd)
 
 /*
 	Name: function_23e16ccd
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD7D0B46A
 	Offset: 0x1AC88
 	Size: 0x2E5
@@ -8564,7 +8564,7 @@ function function_23e16ccd(cmd)
 
 /*
 	Name: function_f31ec4b7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x694AEC58
 	Offset: 0x1AF78
 	Size: 0x2E5
@@ -8682,7 +8682,7 @@ function function_f31ec4b7(cmd)
 
 /*
 	Name: function_5a256cec
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x8563326C
 	Offset: 0x1B268
 	Size: 0x3E5
@@ -8836,7 +8836,7 @@ function function_5a256cec(cmd)
 
 /*
 	Name: function_144e821b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD64E839D
 	Offset: 0x1B658
 	Size: 0x2E5

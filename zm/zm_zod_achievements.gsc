@@ -146,7 +146,7 @@ function achievement_purchase_and_chew()
 	var_a49e2257 = [];
 	while(var_a49e2257.size < 5)
 	{
-		self waittill("hash_994d5e9e");
+		self waittill("bgb_update");
 		str_name = self.bgb;
 		found = 0;
 		for(i = 0; i < var_a49e2257.size; i++)

@@ -52,15 +52,15 @@ function private initzmtombbehaviorsandasm()
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("wasKilledByWaterStaff", &function_901a96ec);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("wasKilledByFireStaff", &function_7ae408dd);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("wasKilledByLightningStaff", &function_a8b7161f);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("wasKilledOnTank", &function_9449d80c);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("wasKilledOnTank", &waskilledontank);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("wasStunnedByFireStaff", &function_1beccbaf);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("wasStunnedByLightningStaff", &function_4638613d);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zombieShouldWhirlwind", &function_dc92ad10);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zombieStunFireActionEnd", &function_bcaa2d94);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zombieStunLightningActionEnd", &function_5fe08728);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("tombSetFindFleshState", &function_92b303d1);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("tombClearFindFleshState", &function_7ccc282a);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("tombOnTankDeathActionStart", &function_4bf50754);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zombieShouldWhirlwind", &zombieshouldwhirlwind);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zombieStunFireActionEnd", &zombiestunfireactionend);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zombieStunLightningActionEnd", &zombiestunlightningactionend);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("tombSetFindFleshState", &tombsetfindfleshstate);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("tombClearFindFleshState", &tombclearfindfleshstate);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("tombOnTankDeathActionStart", &tombontankdeathactionstart);
 	spawner::add_archetype_spawn_function("zombie", &tomb_zombie_spawned);
 	AnimationStateNetwork::RegisterNotetrackHandlerFunction("shatter", &function_e24c6a3f);
 }
@@ -76,7 +76,7 @@ function private initzmtombbehaviorsandasm()
 */
 function tomb_zombie_spawned()
 {
-	self.zombieMoveActionCallback = &function_92b303d1;
+	self.zombieMoveActionCallback = &tombsetfindfleshstate;
 }
 
 /*
@@ -150,7 +150,7 @@ function function_a8b7161f(behaviorTreeEntity)
 }
 
 /*
-	Name: function_9449d80c
+	Name: waskilledontank
 	Namespace: namespace_ba5e3d70
 	Checksum: 0xDA16385
 	Offset: 0x8D8
@@ -158,7 +158,7 @@ function function_a8b7161f(behaviorTreeEntity)
 	Parameters: 1
 	Flags: None
 */
-function function_9449d80c(behaviorTreeEntity)
+function waskilledontank(behaviorTreeEntity)
 {
 	return self zm_tomb_tank::entity_on_tank() || (isdefined(self.b_climbing_tank) && self.b_climbing_tank);
 }
@@ -200,7 +200,7 @@ function function_4638613d(behaviorTreeEntity)
 }
 
 /*
-	Name: function_dc92ad10
+	Name: zombieshouldwhirlwind
 	Namespace: namespace_ba5e3d70
 	Checksum: 0x5CFF1286
 	Offset: 0x9B0
@@ -208,7 +208,7 @@ function function_4638613d(behaviorTreeEntity)
 	Parameters: 1
 	Flags: None
 */
-function function_dc92ad10(behaviorTreeEntity)
+function zombieshouldwhirlwind(behaviorTreeEntity)
 {
 	if(isdefined(behaviorTreeEntity._whirlwind_attract_anim) && behaviorTreeEntity._whirlwind_attract_anim)
 	{
@@ -218,7 +218,7 @@ function function_dc92ad10(behaviorTreeEntity)
 }
 
 /*
-	Name: function_5fe08728
+	Name: zombiestunlightningactionend
 	Namespace: namespace_ba5e3d70
 	Checksum: 0x9FFE38D3
 	Offset: 0x9F8
@@ -226,13 +226,13 @@ function function_dc92ad10(behaviorTreeEntity)
 	Parameters: 1
 	Flags: None
 */
-function function_5fe08728(behaviorTreeEntity)
+function zombiestunlightningactionend(behaviorTreeEntity)
 {
 	behaviorTreeEntity.var_b52ab77a = 0;
 }
 
 /*
-	Name: function_bcaa2d94
+	Name: zombiestunfireactionend
 	Namespace: namespace_ba5e3d70
 	Checksum: 0x50C2BC42
 	Offset: 0xA20
@@ -240,13 +240,13 @@ function function_5fe08728(behaviorTreeEntity)
 	Parameters: 1
 	Flags: None
 */
-function function_bcaa2d94(behaviorTreeEntity)
+function zombiestunfireactionend(behaviorTreeEntity)
 {
 	behaviorTreeEntity.var_262d5062 = 0;
 }
 
 /*
-	Name: function_4bf50754
+	Name: tombontankdeathactionstart
 	Namespace: namespace_ba5e3d70
 	Checksum: 0x7D2B2D4E
 	Offset: 0xA48
@@ -254,7 +254,7 @@ function function_bcaa2d94(behaviorTreeEntity)
 	Parameters: 1
 	Flags: None
 */
-function function_4bf50754(behaviorTreeEntity)
+function tombontankdeathactionstart(behaviorTreeEntity)
 {
 	behaviorTreeEntity thread function_fe0480d9();
 	var_25c21be0 = spawnstruct();
@@ -465,7 +465,7 @@ function private update_closest_player()
 }
 
 /*
-	Name: function_92b303d1
+	Name: tombsetfindfleshstate
 	Namespace: namespace_ba5e3d70
 	Checksum: 0xCBE841E9
 	Offset: 0x1128
@@ -473,14 +473,14 @@ function private update_closest_player()
 	Parameters: 1
 	Flags: None
 */
-function function_92b303d1(behaviorTreeEntity)
+function tombsetfindfleshstate(behaviorTreeEntity)
 {
 	behaviorTreeEntity.var_68ff8357 = behaviorTreeEntity.ai_state;
 	behaviorTreeEntity.ai_state = "find_flesh";
 }
 
 /*
-	Name: function_7ccc282a
+	Name: tombclearfindfleshstate
 	Namespace: namespace_ba5e3d70
 	Checksum: 0x66F5BB4F
 	Offset: 0x1170
@@ -488,7 +488,7 @@ function function_92b303d1(behaviorTreeEntity)
 	Parameters: 1
 	Flags: None
 */
-function function_7ccc282a(behaviorTreeEntity)
+function tombclearfindfleshstate(behaviorTreeEntity)
 {
 	behaviorTreeEntity.ai_state = behaviorTreeEntity.var_68ff8357;
 	behaviorTreeEntity.var_68ff8357 = undefined;

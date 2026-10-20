@@ -7,7 +7,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0x445C73A
+	Checksum: 0x40E44803
 	Offset: 0x120
 	Size: 0x33
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0xF6B74897
+	Checksum: 0x212AA4A3
 	Offset: 0x160
 	Size: 0x73
 	Parameters: 0

@@ -3,12 +3,12 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_5c41055a;
+#namespace zm_radio;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_5c41055a
-	Checksum: 0x69FE121F
+	Namespace: zm_radio
+	Checksum: 0x390225A4
 	Offset: 0x3B8
 	Size: 0x3B
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_5c41055a
+	Namespace: zm_radio
 	Checksum: 0x99EC1590
 	Offset: 0x400
 	Size: 0x3
@@ -34,8 +34,8 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_5c41055a
-	Checksum: 0x8673CBC7
+	Namespace: zm_radio
+	Checksum: 0xF6577B17
 	Offset: 0x410
 	Size: 0x113
 	Parameters: 0
@@ -70,8 +70,8 @@ function __main__()
 
 /*
 	Name: function_8554d5da
-	Namespace: namespace_5c41055a
-	Checksum: 0x6FD48D7
+	Namespace: zm_radio
+	Checksum: 0x2AC82485
 	Offset: 0x530
 	Size: 0x171
 	Parameters: 0
@@ -107,8 +107,8 @@ function function_8554d5da()
 
 /*
 	Name: function_2d4f4459
-	Namespace: namespace_5c41055a
-	Checksum: 0x46FB1FC9
+	Namespace: zm_radio
+	Checksum: 0xF8D81C5A
 	Offset: 0x6B0
 	Size: 0xA7
 	Parameters: 0
@@ -134,8 +134,8 @@ function function_2d4f4459()
 
 /*
 	Name: function_c62f1c37
-	Namespace: namespace_5c41055a
-	Checksum: 0x2E73FBB2
+	Namespace: zm_radio
+	Checksum: 0xA8F28571
 	Offset: 0x760
 	Size: 0x9D
 	Parameters: 0
@@ -152,14 +152,14 @@ function function_c62f1c37()
 	{
 		self.tracknum = 0;
 	}
-	self waittill("hash_2e6aeba2");
+	self waittill("songdone");
 	self notify("hash_34d24635");
 }
 
 /*
 	Name: function_f184004e
-	Namespace: namespace_5c41055a
-	Checksum: 0x6314310E
+	Namespace: zm_radio
+	Checksum: 0xC920EA6B
 	Offset: 0x808
 	Size: 0x67
 	Parameters: 0
@@ -180,8 +180,8 @@ function function_f184004e()
 
 /*
 	Name: function_4b776d12
-	Namespace: namespace_5c41055a
-	Checksum: 0x4ACA2D9B
+	Namespace: zm_radio
+	Checksum: 0x6663012F
 	Offset: 0x878
 	Size: 0x113
 	Parameters: 0

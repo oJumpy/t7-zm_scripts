@@ -10,11 +10,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weap_elemental_bow;
 
-#namespace namespace_d37f1c72;
+#namespace _zm_weap_elemental_bow_wolf_howl;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xE932100
 	Offset: 0x638
 	Size: 0x33
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xB8820190
 	Offset: 0x678
 	Size: 0x47B
@@ -38,16 +38,16 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	clientfield::register("toplayer", "elemental_bow_wolf_howl" + "_ambient_bow_fx", 5000, 1, "int", &function_cb5344d7, 0, 0);
-	clientfield::register("missile", "elemental_bow_wolf_howl" + "_arrow_impact_fx", 5000, 1, "int", &function_6974030a, 0, 0);
+	clientfield::register("missile", "elemental_bow_wolf_howl" + "_arrow_impact_fx", 5000, 1, "int", &wolf_howl_arrow_impact_fx, 0, 0);
 	clientfield::register("scriptmover", "elemental_bow_wolf_howl4" + "_arrow_impact_fx", 5000, 1, "int", &function_644da66f, 0, 0);
-	clientfield::register("toplayer", "wolf_howl_muzzle_flash", 5000, 1, "int", &function_664b876d, 0, 0);
-	clientfield::register("scriptmover", "wolf_howl_arrow_charged_trail", 5000, 1, "int", &function_76bb77a6, 0, 0);
+	clientfield::register("toplayer", "wolf_howl_muzzle_flash", 5000, 1, "int", &wolf_howl_muzzle_flash, 0, 0);
+	clientfield::register("scriptmover", "wolf_howl_arrow_charged_trail", 5000, 1, "int", &wolf_howl_arrow_trail_fx, 0, 0);
 	clientfield::register("scriptmover", "wolf_howl_arrow_charged_spiral", 5000, 1, "int", &function_714aa0e1, 0, 0);
-	clientfield::register("actor", "wolf_howl_slow_snow_fx", 5000, 1, "int", &function_37d6b2bd, 0, 0);
-	clientfield::register("actor", "zombie_hit_by_wolf_howl_charge", 5000, 1, "int", &function_35593b6a, 0, 0);
-	clientfield::register("actor", "zombie_explode_fx", 5000, 1, "counter", &function_3dbb2f52, 0, 0);
-	clientfield::register("actor", "zombie_explode_fx", -8000, 1, "counter", &function_3dbb2f52, 0, 0);
-	clientfield::register("actor", "wolf_howl_zombie_explode_fx", 8000, 1, "counter", &function_3dbb2f52, 0, 0);
+	clientfield::register("actor", "wolf_howl_slow_snow_fx", 5000, 1, "int", &wolf_howl_slow_snow_fx, 0, 0);
+	clientfield::register("actor", "zombie_hit_by_wolf_howl_charge", 5000, 1, "int", &zombie_hit_by_wolf_howl_charge, 0, 0);
+	clientfield::register("actor", "zombie_explode_fx", 5000, 1, "counter", &wolf_howl_zombie_explode_fx, 0, 0);
+	clientfield::register("actor", "zombie_explode_fx", -8000, 1, "counter", &wolf_howl_zombie_explode_fx, 0, 0);
+	clientfield::register("actor", "wolf_howl_zombie_explode_fx", 8000, 1, "counter", &wolf_howl_zombie_explode_fx, 0, 0);
 	level._effect["wolf_howl_ambient_bow"] = "dlc1/zmb_weapon/fx_bow_wolf_ambient_1p_zmb";
 	level._effect["wolf_howl_arrow_impact"] = "dlc1/zmb_weapon/fx_bow_wolf_impact_zmb";
 	level._effect["wolf_howl_arrow_charged_impact"] = "dlc1/zmb_weapon/fx_bow_wolf_impact_ug_zmb";
@@ -63,7 +63,7 @@ function __init__()
 
 /*
 	Name: function_cb5344d7
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xFC42EC1D
 	Offset: 0xB00
 	Size: 0x63
@@ -76,15 +76,15 @@ function function_cb5344d7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_6974030a
-	Namespace: namespace_d37f1c72
+	Name: wolf_howl_arrow_impact_fx
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x45CA7B3E
 	Offset: 0xB70
 	Size: 0x73
 	Parameters: 7
 	Flags: None
 */
-function function_6974030a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function wolf_howl_arrow_impact_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -94,7 +94,7 @@ function function_6974030a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_644da66f
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xAC6D83E5
 	Offset: 0xBF0
 	Size: 0x73
@@ -110,15 +110,15 @@ function function_644da66f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_664b876d
-	Namespace: namespace_d37f1c72
+	Name: wolf_howl_muzzle_flash
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x62313211
 	Offset: 0xC70
 	Size: 0x73
 	Parameters: 7
 	Flags: None
 */
-function function_664b876d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function wolf_howl_muzzle_flash(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -127,15 +127,15 @@ function function_664b876d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_76bb77a6
-	Namespace: namespace_d37f1c72
+	Name: wolf_howl_arrow_trail_fx
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xA136F6BF
 	Offset: 0xCF0
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_76bb77a6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function wolf_howl_arrow_trail_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -149,7 +149,7 @@ function function_76bb77a6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_714aa0e1
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xB71196F6
 	Offset: 0xD98
 	Size: 0x9B
@@ -169,15 +169,15 @@ function function_714aa0e1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_37d6b2bd
-	Namespace: namespace_d37f1c72
+	Name: wolf_howl_slow_snow_fx
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xB01AFCDE
 	Offset: 0xE40
 	Size: 0xC5
 	Parameters: 7
 	Flags: None
 */
-function function_37d6b2bd(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function wolf_howl_slow_snow_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -194,15 +194,15 @@ function function_37d6b2bd(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_35593b6a
-	Namespace: namespace_d37f1c72
+	Name: zombie_hit_by_wolf_howl_charge
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x51D8BE91
 	Offset: 0xF10
 	Size: 0xB3
 	Parameters: 7
 	Flags: None
 */
-function function_35593b6a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zombie_hit_by_wolf_howl_charge(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	if(newVal)
@@ -214,15 +214,15 @@ function function_35593b6a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_3dbb2f52
-	Namespace: namespace_d37f1c72
+	Name: wolf_howl_zombie_explode_fx
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x292C7829
 	Offset: 0xFD0
 	Size: 0x8B
 	Parameters: 7
 	Flags: None
 */
-function function_3dbb2f52(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function wolf_howl_zombie_explode_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	self util::waittill_dobj(localClientNum);

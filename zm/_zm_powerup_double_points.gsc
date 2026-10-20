@@ -15,7 +15,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_double_points
-	Checksum: 0x768014ED
+	Checksum: 0x9FDA549A
 	Offset: 0x2F8
 	Size: 0x33
 	Parameters: 0
@@ -29,7 +29,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_double_points
-	Checksum: 0x6CB17B5F
+	Checksum: 0xFB088DF
 	Offset: 0x338
 	Size: 0xBB
 	Parameters: 0
@@ -47,7 +47,7 @@ function __init__()
 /*
 	Name: grab_double_points
 	Namespace: zm_powerup_double_points
-	Checksum: 0x936785BB
+	Checksum: 0x38B3762
 	Offset: 0x400
 	Size: 0x43
 	Parameters: 1
@@ -62,7 +62,7 @@ function grab_double_points(player)
 /*
 	Name: double_points_powerup
 	Namespace: zm_powerup_double_points
-	Checksum: 0x376DB927
+	Checksum: 0x93606323
 	Offset: 0x450
 	Size: 0x2A5
 	Parameters: 2

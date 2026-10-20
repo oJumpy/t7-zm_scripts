@@ -12,7 +12,7 @@
 /*
 	Name: init
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x8B008347
+	Checksum: 0x46001348
 	Offset: 0x3F0
 	Size: 0x1F7
 	Parameters: 0
@@ -71,7 +71,7 @@ function init()
 /*
 	Name: player_give_cymbal_monkey
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0xF73F989C
+	Checksum: 0xC73E6850
 	Offset: 0x5F0
 	Size: 0x5B
 	Parameters: 0
@@ -87,7 +87,7 @@ function player_give_cymbal_monkey()
 /*
 	Name: player_give_cymbal_monkey_upgraded
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0xAB224972
+	Checksum: 0x81A08901
 	Offset: 0x658
 	Size: 0xAB
 	Parameters: 0
@@ -110,7 +110,7 @@ function player_give_cymbal_monkey_upgraded()
 /*
 	Name: player_handle_cymbal_monkey
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0xD643BC1E
+	Checksum: 0x728D89C7
 	Offset: 0x710
 	Size: 0xF7
 	Parameters: 0
@@ -147,7 +147,7 @@ function player_handle_cymbal_monkey()
 /*
 	Name: watch_for_dud
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x686475E
+	Checksum: 0x20289376
 	Offset: 0x810
 	Size: 0xF3
 	Parameters: 2
@@ -182,7 +182,7 @@ function watch_for_dud(model, actor)
 /*
 	Name: watch_for_emp
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0xA8207C0F
+	Checksum: 0xB67121E0
 	Offset: 0x910
 	Size: 0x1EB
 	Parameters: 2
@@ -236,7 +236,7 @@ function watch_for_emp(model, actor)
 /*
 	Name: clone_player_angles
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0xE35DA994
+	Checksum: 0xE4E9AE2C
 	Offset: 0xB08
 	Size: 0x4F
 	Parameters: 1
@@ -256,7 +256,7 @@ function clone_player_angles(owner)
 /*
 	Name: show_briefly
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x4597327E
+	Checksum: 0x935D3187
 	Offset: 0xB60
 	Size: 0xAD
 	Parameters: 1
@@ -284,7 +284,7 @@ function show_briefly(showtime)
 /*
 	Name: show_owner_on_attack
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x60E8B30F
+	Checksum: 0xAC87C37
 	Offset: 0xC18
 	Size: 0x7F
 	Parameters: 1
@@ -308,7 +308,7 @@ function show_owner_on_attack(owner)
 /*
 	Name: hide_owner
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x62579F73
+	Checksum: 0xB1AF484C
 	Offset: 0xCA0
 	Size: 0x22B
 	Parameters: 1
@@ -347,7 +347,7 @@ function hide_owner(owner)
 /*
 	Name: proximity_detonate
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x3AF2B9C5
+	Checksum: 0x4C54481B
 	Offset: 0xED8
 	Size: 0x26B
 	Parameters: 1
@@ -400,7 +400,7 @@ function proximity_detonate(owner)
 /*
 	Name: FakeLinkto
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0xB0D2DAB
+	Checksum: 0x5E512E81
 	Offset: 0x1150
 	Size: 0x7F
 	Parameters: 1
@@ -422,7 +422,7 @@ function FakeLinkto(linkee)
 /*
 	Name: player_throw_cymbal_monkey
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x59CA39BC
+	Checksum: 0xC7BE6BBE
 	Offset: 0x11D8
 	Size: 0x75B
 	Parameters: 4
@@ -541,7 +541,7 @@ function player_throw_cymbal_monkey(grenade, num_attractors, max_attract_dist, a
 /*
 	Name: move_valid_poi_to_navmesh
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0xBDE94FEA
+	Checksum: 0xCEB9C86A
 	Offset: 0x1940
 	Size: 0x1E9
 	Parameters: 1
@@ -581,7 +581,7 @@ function move_valid_poi_to_navmesh(valid_poi)
 /*
 	Name: grenade_stolen_by_sam
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x53E0F73C
+	Checksum: 0x8E6A1A8C
 	Offset: 0x1B38
 	Size: 0x2DB
 	Parameters: 3
@@ -638,7 +638,7 @@ function grenade_stolen_by_sam(ent_grenade, ent_model, ent_actor)
 /*
 	Name: monkey_cleanup
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x945465F1
+	Checksum: 0xEFDA4E9D
 	Offset: 0x1E20
 	Size: 0x8B
 	Parameters: 1
@@ -668,7 +668,7 @@ function monkey_cleanup(parent)
 /*
 	Name: pulse_damage
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x283F7B1
+	Checksum: 0x1BBC922D
 	Offset: 0x1EB8
 	Size: 0x1EF
 	Parameters: 2
@@ -703,7 +703,7 @@ function pulse_damage(e_owner, model)
 /*
 	Name: do_monkey_sound
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0xF628398
+	Checksum: 0xC9AB6516
 	Offset: 0x20B0
 	Size: 0x2FB
 	Parameters: 2
@@ -778,7 +778,7 @@ function do_monkey_sound(model, info)
 /*
 	Name: play_delayed_explode_vox
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x1768175C
+	Checksum: 0xDFC69EE6
 	Offset: 0x23B8
 	Size: 0x6B
 	Parameters: 0
@@ -803,7 +803,7 @@ function play_delayed_explode_vox()
 /*
 	Name: get_thrown_monkey
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x342DEE84
+	Checksum: 0x99BC8A1A
 	Offset: 0x2430
 	Size: 0xB7
 	Parameters: 0
@@ -830,7 +830,7 @@ function get_thrown_monkey()
 /*
 	Name: monitor_zombie_groans
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x13C6F717
+	Checksum: 0x4DB917FA
 	Offset: 0x24F0
 	Size: 0x1CB
 	Parameters: 1
@@ -879,7 +879,7 @@ function monitor_zombie_groans(info)
 /*
 	Name: play_zombie_groans
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x60CC1BEE
+	Checksum: 0xB68F8ED4
 	Offset: 0x26C8
 	Size: 0x65
 	Parameters: 0
@@ -906,7 +906,7 @@ function play_zombie_groans()
 /*
 	Name: cymbal_monkey_exists
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0xE07A4342
+	Checksum: 0xF4D7B9FF
 	Offset: 0x2738
 	Size: 0x21
 	Parameters: 1

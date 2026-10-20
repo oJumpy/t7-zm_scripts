@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_43a18dd5;
+#namespace zm_powerup_zombie_blood;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0xA6F82ACA
 	Offset: 0x398
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0x2D0A0913
 	Offset: 0x3D8
 	Size: 0x2CB
@@ -69,7 +69,7 @@ function __init__()
 
 /*
 	Name: init_player_zombie_blood_vars
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0x14B80CAF
 	Offset: 0x6B0
 	Size: 0x31
@@ -84,7 +84,7 @@ function init_player_zombie_blood_vars()
 
 /*
 	Name: grab_zombie_blood
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0xD36BBA9F
 	Offset: 0x6F0
 	Size: 0x23
@@ -98,7 +98,7 @@ function grab_zombie_blood(player)
 
 /*
 	Name: zombie_blood_powerup
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0xF9671EA9
 	Offset: 0x720
 	Size: 0x6B9
@@ -186,7 +186,7 @@ function zombie_blood_powerup(mdl_powerup, e_player)
 
 /*
 	Name: fx_disconnect_watch
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0xFD05D0BF
 	Offset: 0xDE8
 	Size: 0x3B
@@ -202,7 +202,7 @@ function fx_disconnect_watch(e_player)
 
 /*
 	Name: watch_zombie_blood_early_exit
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0x1F6115D5
 	Offset: 0xE30
 	Size: 0x83
@@ -222,7 +222,7 @@ function watch_zombie_blood_early_exit()
 
 /*
 	Name: make_zombie_blood_entity
-	Namespace: namespace_43a18dd5
+	Namespace: zm_powerup_zombie_blood
 	Checksum: 0x407F8505
 	Offset: 0xEC0
 	Size: 0x191

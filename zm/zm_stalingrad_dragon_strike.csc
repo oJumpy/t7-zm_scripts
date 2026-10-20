@@ -32,14 +32,14 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "lockbox_light_1", 12000, 2, "int", &function_5f0e6212, 0, 0);
-	clientfield::register("scriptmover", "lockbox_light_2", 12000, 2, "int", &function_390be7a9, 0, 0);
-	clientfield::register("scriptmover", "lockbox_light_3", 12000, 2, "int", &function_13096d40, 0, 0);
-	clientfield::register("scriptmover", "lockbox_light_4", 12000, 2, "int", &function_1d1ac61f, 0, 0);
+	clientfield::register("scriptmover", "lockbox_light_1", 12000, 2, "int", &lockbox_light_1, 0, 0);
+	clientfield::register("scriptmover", "lockbox_light_2", 12000, 2, "int", &lockbox_light_2, 0, 0);
+	clientfield::register("scriptmover", "lockbox_light_3", 12000, 2, "int", &lockbox_light_3, 0, 0);
+	clientfield::register("scriptmover", "lockbox_light_4", 12000, 2, "int", &lockbox_light_4, 0, 0);
 }
 
 /*
-	Name: function_5f0e6212
+	Name: lockbox_light_1
 	Namespace: stalingrad_dragon_strike
 	Checksum: 0x3CA1EDA7
 	Offset: 0x3A0
@@ -47,7 +47,7 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_5f0e6212(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function lockbox_light_1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(self.fx_light_1))
 	{
@@ -64,7 +64,7 @@ function function_5f0e6212(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_390be7a9
+	Name: lockbox_light_2
 	Namespace: stalingrad_dragon_strike
 	Checksum: 0x5C8654A
 	Offset: 0x498
@@ -72,7 +72,7 @@ function function_5f0e6212(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_390be7a9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function lockbox_light_2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(self.fx_light_2))
 	{
@@ -89,7 +89,7 @@ function function_390be7a9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_13096d40
+	Name: lockbox_light_3
 	Namespace: stalingrad_dragon_strike
 	Checksum: 0x582AAE33
 	Offset: 0x590
@@ -97,7 +97,7 @@ function function_390be7a9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_13096d40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function lockbox_light_3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(self.fx_light_3))
 	{
@@ -114,7 +114,7 @@ function function_13096d40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_1d1ac61f
+	Name: lockbox_light_4
 	Namespace: stalingrad_dragon_strike
 	Checksum: 0x1B5C4922
 	Offset: 0x688
@@ -122,7 +122,7 @@ function function_13096d40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_1d1ac61f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function lockbox_light_4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(self.var_b9f32487))
 	{

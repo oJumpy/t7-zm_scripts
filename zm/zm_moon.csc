@@ -266,7 +266,7 @@ function register_clientfields()
 	clientfield::register("actor", "low_gravity", 21000, 1, "int", &zm_moon_gravity::zombie_low_gravity, 0, 0);
 	clientfield::register("actor", "ctt", 21000, 1, "int", &zm_moon_sq::zombie_release_soul, 0, 0);
 	clientfield::register("actor", "sd", 21000, 1, "int", &zm_moon_sq::function_38a2773c, 0, 0);
-	clientfield::register("world", "jump_pad_pulse", 21000, 3, "counter", &function_1cd5e7c6, 0, 0);
+	clientfield::register("world", "jump_pad_pulse", 21000, 3, "counter", &jump_pad_pulse_fx, 0, 0);
 	clientfield::register("toplayer", "gas_mask_buy", 21000, 1, "counter", &function_7c00de2d, 0, 0);
 	clientfield::register("toplayer", "gas_mask_on", 21000, 1, "counter", &function_29c0676c, 0, 0);
 	clientfield::register("world", "show_earth", 21000, 1, "counter", &show_earth, 0, 0);
@@ -298,9 +298,9 @@ function function_20c21740()
 {
 	clientfield::register("world", "BIO", 21000, 1, "int", &zm_moon_digger::function_a0cf54a0, 0, 0);
 	clientfield::register("world", "DH", 21000, 1, "int", &zm_moon_digger::digger_visibility, 0, 0);
-	clientfield::register("world", "TCA", 21000, 1, "int", &zm_moon_digger::function_774edb15, 0, 0);
-	clientfield::register("world", "HCA", 21000, 1, "int", &zm_moon_digger::function_774edb15, 0, 0);
-	clientfield::register("world", "BCA", 21000, 1, "int", &zm_moon_digger::function_774edb15, 0, 0);
+	clientfield::register("world", "TCA", 21000, 1, "int", &zm_moon_digger::console_fx, 0, 0);
+	clientfield::register("world", "HCA", 21000, 1, "int", &zm_moon_digger::console_fx, 0, 0);
+	clientfield::register("world", "BCA", 21000, 1, "int", &zm_moon_digger::console_fx, 0, 0);
 	clientfield::register("world", "Az1", 21000, 1, "counter", &zm_moon_amb::function_6ce4d731, 0, 0);
 	clientfield::register("world", "Az2a", 21000, 1, "counter", &zm_moon_amb::function_6ce4d731, 0, 0);
 	clientfield::register("world", "Az2b", 21000, 1, "counter", &zm_moon_amb::function_6ce4d731, 0, 0);
@@ -510,7 +510,7 @@ function function_c00b8efb(clientNum)
 }
 
 /*
-	Name: function_1cd5e7c6
+	Name: jump_pad_pulse_fx
 	Namespace: zm_moon
 	Checksum: 0xF8701513
 	Offset: 0x3140
@@ -518,7 +518,7 @@ function function_c00b8efb(clientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_1cd5e7c6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function jump_pad_pulse_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	var_e3a2cc12 = GetEntArray(localClientNum, "jump_pads", "targetname");
 	foreach(e_pad in var_e3a2cc12)

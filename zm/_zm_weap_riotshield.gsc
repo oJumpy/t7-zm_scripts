@@ -24,7 +24,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: riotshield
-	Checksum: 0xA7A17F3B
+	Checksum: 0x89923A0E
 	Offset: 0x570
 	Size: 0x3B
 	Parameters: 0
@@ -38,7 +38,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: riotshield
-	Checksum: 0x92AA122B
+	Checksum: 0x8FC28BDE
 	Offset: 0x5B8
 	Size: 0x30B
 	Parameters: 0
@@ -104,7 +104,7 @@ function __main__()
 /*
 	Name: on_player_connect
 	Namespace: riotshield
-	Checksum: 0x1B4AA19
+	Checksum: 0x6B0A1E4
 	Offset: 0x8E0
 	Size: 0x83
 	Parameters: 0
@@ -125,7 +125,7 @@ function on_player_connect()
 /*
 	Name: player_init_shield_health
 	Namespace: riotshield
-	Checksum: 0xAC90D163
+	Checksum: 0xFBC12387
 	Offset: 0x970
 	Size: 0x47
 	Parameters: 0
@@ -141,7 +141,7 @@ function player_init_shield_health()
 /*
 	Name: player_set_shield_health
 	Namespace: riotshield
-	Checksum: 0xB007E4A2
+	Checksum: 0xC933C9DD
 	Offset: 0x9C0
 	Size: 0x53
 	Parameters: 2
@@ -156,7 +156,7 @@ function player_set_shield_health(damage, max_damage)
 /*
 	Name: player_shield_absorb_damage
 	Namespace: riotshield
-	Checksum: 0xCAAC1CBC
+	Checksum: 0xE724F87F
 	Offset: 0xA20
 	Size: 0x23
 	Parameters: 4
@@ -169,7 +169,7 @@ function player_shield_absorb_damage(eAttacker, iDamage, sHitLoc, sMeansOfDeath)
 /*
 	Name: player_shield_facing_attacker
 	Namespace: riotshield
-	Checksum: 0x8317A53E
+	Checksum: 0x3C5265E8
 	Offset: 0xA50
 	Size: 0x131
 	Parameters: 2
@@ -191,7 +191,7 @@ function player_shield_facing_attacker(vDir, limit)
 /*
 	Name: should_shield_absorb_damage
 	Namespace: riotshield
-	Checksum: 0x993695D2
+	Checksum: 0x5BD4823F
 	Offset: 0xB90
 	Size: 0x179
 	Parameters: 10
@@ -231,7 +231,7 @@ function should_shield_absorb_damage(eInflictor, eAttacker, iDamage, iDFlags, sM
 /*
 	Name: player_damage_override_callback
 	Namespace: riotshield
-	Checksum: 0x68D3A09C
+	Checksum: 0xCD21EB3A
 	Offset: 0xD18
 	Size: 0x1B1
 	Parameters: 10
@@ -264,7 +264,7 @@ function player_damage_override_callback(eInflictor, eAttacker, iDamage, iDFlags
 /*
 	Name: player_damage_shield
 	Namespace: riotshield
-	Checksum: 0xD69B6D95
+	Checksum: 0x1336A262
 	Offset: 0xED8
 	Size: 0x21B
 	Parameters: 4
@@ -315,7 +315,7 @@ function player_damage_shield(iDamage, bHeld, fromCode, smod)
 /*
 	Name: player_watch_weapon_change
 	Namespace: riotshield
-	Checksum: 0xE9AEBD7E
+	Checksum: 0xA82E87B
 	Offset: 0x1100
 	Size: 0x37
 	Parameters: 0
@@ -333,7 +333,7 @@ function player_watch_weapon_change()
 /*
 	Name: player_watch_shield_melee
 	Namespace: riotshield
-	Checksum: 0xEBEC4A1E
+	Checksum: 0xDFFA02A8
 	Offset: 0x1140
 	Size: 0x47
 	Parameters: 0
@@ -354,7 +354,7 @@ function player_watch_shield_melee()
 /*
 	Name: player_watch_shield_melee_power
 	Namespace: riotshield
-	Checksum: 0xA31D88D4
+	Checksum: 0xE28B2C78
 	Offset: 0x1190
 	Size: 0x47
 	Parameters: 0
@@ -375,7 +375,7 @@ function player_watch_shield_melee_power()
 /*
 	Name: riotshield_fling_zombie
 	Namespace: riotshield
-	Checksum: 0xDFC280E0
+	Checksum: 0xE1AE336B
 	Offset: 0x11E0
 	Size: 0x11B
 	Parameters: 3
@@ -409,7 +409,7 @@ function riotshield_fling_zombie(player, fling_vec, index)
 /*
 	Name: zombie_knockdown
 	Namespace: riotshield
-	Checksum: 0x421716CB
+	Checksum: 0xB8B3142E
 	Offset: 0x1308
 	Size: 0xCB
 	Parameters: 2
@@ -433,7 +433,7 @@ function zombie_knockdown(player, gib)
 /*
 	Name: riotshield_knockdown_zombie
 	Namespace: riotshield
-	Checksum: 0xE7E3D2F3
+	Checksum: 0x87B79576
 	Offset: 0x13E0
 	Size: 0x123
 	Parameters: 2
@@ -463,7 +463,7 @@ function riotshield_knockdown_zombie(player, gib)
 /*
 	Name: riotshield_get_enemies_in_range
 	Namespace: riotshield
-	Checksum: 0xEB08484
+	Checksum: 0xA198225F
 	Offset: 0x1510
 	Size: 0x5A7
 	Parameters: 0
@@ -547,7 +547,7 @@ function riotshield_get_enemies_in_range()
 /*
 	Name: riotshield_network_choke
 	Namespace: riotshield
-	Checksum: 0xCB5C162F
+	Checksum: 0xD3F61FA1
 	Offset: 0x1AC0
 	Size: 0x4B
 	Parameters: 0
@@ -567,7 +567,7 @@ function riotshield_network_choke()
 /*
 	Name: riotshield_melee
 	Namespace: riotshield
-	Checksum: 0x69CA118B
+	Checksum: 0x151E6CB7
 	Offset: 0x1B18
 	Size: 0x1F3
 	Parameters: 1
@@ -613,7 +613,7 @@ function riotshield_melee(weapon)
 /*
 	Name: UpdateRiotShieldModel
 	Namespace: riotshield
-	Checksum: 0x405B2FF5
+	Checksum: 0xA9911C82
 	Offset: 0x1D18
 	Size: 0x1D3
 	Parameters: 0
@@ -657,7 +657,7 @@ function UpdateRiotShieldModel()
 /*
 	Name: player_take_riotshield
 	Namespace: riotshield
-	Checksum: 0x679D9FCB
+	Checksum: 0x2C9C03A0
 	Offset: 0x1EF8
 	Size: 0x203
 	Parameters: 0

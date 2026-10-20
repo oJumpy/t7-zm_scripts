@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_828507ab;
+#namespace zm_bgb_extra_credit;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_828507ab
+	Namespace: zm_bgb_extra_credit
 	Checksum: 0xED280D97
 	Offset: 0x190
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_828507ab
+	Namespace: zm_bgb_extra_credit
 	Checksum: 0x86932F6
 	Offset: 0x1D0
 	Size: 0x53
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_828507ab
+	Namespace: zm_bgb_extra_credit
 	Checksum: 0xF80A50FA
 	Offset: 0x230
 	Size: 0x43
@@ -58,7 +58,7 @@ function activation()
 
 /*
 	Name: function_b18c3b2d
-	Namespace: namespace_828507ab
+	Namespace: zm_bgb_extra_credit
 	Checksum: 0xD8283FFF
 	Offset: 0x280
 	Size: 0xD3
@@ -80,7 +80,7 @@ function function_b18c3b2d(origin)
 
 /*
 	Name: function_3258dd42
-	Namespace: namespace_828507ab
+	Namespace: zm_bgb_extra_credit
 	Checksum: 0xF150569D
 	Offset: 0x360
 	Size: 0x7

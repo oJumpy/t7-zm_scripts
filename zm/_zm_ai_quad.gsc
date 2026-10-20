@@ -17,12 +17,12 @@
 #using scripts\zm\_zm_spawner;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_1d58b607;
+#namespace zm_ai_quad;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1d58b607
-	Checksum: 0xE64DEC0E
+	Namespace: zm_ai_quad
+	Checksum: 0xED5FD46F
 	Offset: 0x4F0
 	Size: 0x33
 	Parameters: 0
@@ -35,8 +35,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1d58b607
-	Checksum: 0x3D4BC3EA
+	Namespace: zm_ai_quad
+	Checksum: 0x68B806A4
 	Offset: 0x530
 	Size: 0xF3
 	Parameters: 0
@@ -50,15 +50,15 @@ function __init__()
 		register_overlay();
 	}
 	AnimationStateNetwork::RegisterNotetrackHandlerFunction("quad_melee", &quadnotetrackmeleefire);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("quadDeathAction", &function_ec996060);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("quadDeathAction", &quaddeathaction);
 	level thread AAT::register_immunity("zm_aat_dead_wire", "zombie_quad", 1, 1, 1);
 	level thread AAT::register_immunity("zm_aat_turned", "zombie_quad", 1, 1, 1);
 }
 
 /*
 	Name: quadnotetrackmeleefire
-	Namespace: namespace_1d58b607
-	Checksum: 0xDAFB50FD
+	Namespace: zm_ai_quad
+	Checksum: 0xD6D995AB
 	Offset: 0x630
 	Size: 0x5B
 	Parameters: 1
@@ -73,15 +73,15 @@ function quadnotetrackmeleefire(entity)
 }
 
 /*
-	Name: function_ec996060
-	Namespace: namespace_1d58b607
-	Checksum: 0x588EBF6
+	Name: quaddeathaction
+	Namespace: zm_ai_quad
+	Checksum: 0x602351C5
 	Offset: 0x698
 	Size: 0xC3
 	Parameters: 1
 	Flags: None
 */
-function function_ec996060(entity)
+function quaddeathaction(entity)
 {
 	if(isdefined(entity.fx_quad_trail))
 	{
@@ -97,8 +97,8 @@ function function_ec996060(entity)
 
 /*
 	Name: activate_quad_spawners
-	Namespace: namespace_1d58b607
-	Checksum: 0xD9023778
+	Namespace: zm_ai_quad
+	Checksum: 0xE452B0C0
 	Offset: 0x768
 	Size: 0x9B
 	Parameters: 0
@@ -113,8 +113,8 @@ function activate_quad_spawners()
 
 /*
 	Name: register_overlay
-	Namespace: namespace_1d58b607
-	Checksum: 0x45139164
+	Namespace: zm_ai_quad
+	Checksum: 0xD43DFF69
 	Offset: 0x810
 	Size: 0x53
 	Parameters: 0
@@ -131,8 +131,8 @@ function register_overlay()
 
 /*
 	Name: quad_spawn_check
-	Namespace: namespace_1d58b607
-	Checksum: 0xFA5FE795
+	Namespace: zm_ai_quad
+	Checksum: 0x61CE2E61
 	Offset: 0x870
 	Size: 0x31
 	Parameters: 0
@@ -145,8 +145,8 @@ function quad_spawn_check()
 
 /*
 	Name: get_quad_spawners
-	Namespace: namespace_1d58b607
-	Checksum: 0x6ADB06AC
+	Namespace: zm_ai_quad
+	Checksum: 0x75425E99
 	Offset: 0x8B0
 	Size: 0x9
 	Parameters: 0
@@ -159,8 +159,8 @@ function get_quad_spawners()
 
 /*
 	Name: quad_prespawn
-	Namespace: namespace_1d58b607
-	Checksum: 0x4DA88EC0
+	Namespace: zm_ai_quad
+	Checksum: 0xF2C75FFC
 	Offset: 0x8C8
 	Size: 0x25F
 	Parameters: 0
@@ -173,7 +173,7 @@ function quad_prespawn()
 	self.no_eye_glow = 1;
 	self.no_widows_wine = 1;
 	self.canBeTargetedByTurnedZombies = 1;
-	self.custom_location = &function_cd79a62a;
+	self.custom_location = &quad_location;
 	self zm_spawner::zombie_spawn_init(1);
 	self.zombie_can_sidestep = 0;
 	self.maxhealth = Int(self.maxhealth * 0.75);
@@ -208,8 +208,8 @@ function quad_prespawn()
 
 /*
 	Name: init_quad_zombie_fx
-	Namespace: namespace_1d58b607
-	Checksum: 0xE5F56071
+	Namespace: zm_ai_quad
+	Checksum: 0xAD7BAFB5
 	Offset: 0xB30
 	Size: 0x39
 	Parameters: 0
@@ -222,15 +222,15 @@ function init_quad_zombie_fx()
 }
 
 /*
-	Name: function_cd79a62a
-	Namespace: namespace_1d58b607
-	Checksum: 0x3D05CF78
+	Name: quad_location
+	Namespace: zm_ai_quad
+	Checksum: 0x366D89E1
 	Offset: 0xB78
 	Size: 0x335
 	Parameters: 0
 	Flags: None
 */
-function function_cd79a62a()
+function quad_location()
 {
 	self endon("death");
 	if(level.zm_loc_types["quad_location"].size <= 0)
@@ -282,8 +282,8 @@ function function_cd79a62a()
 
 /*
 	Name: quad_vox
-	Namespace: namespace_1d58b607
-	Checksum: 0x70E76A59
+	Namespace: zm_ai_quad
+	Checksum: 0x99B0FF0D
 	Offset: 0xEB8
 	Size: 0x197
 	Parameters: 0
@@ -322,8 +322,8 @@ function quad_vox()
 
 /*
 	Name: set_default_attack_properties
-	Namespace: namespace_1d58b607
-	Checksum: 0xAB57569C
+	Namespace: zm_ai_quad
+	Checksum: 0x3409B8D1
 	Offset: 0x1058
 	Size: 0x27
 	Parameters: 0
@@ -338,8 +338,8 @@ function set_default_attack_properties()
 
 /*
 	Name: quad_thundergun_knockdown
-	Namespace: namespace_1d58b607
-	Checksum: 0xAB1980F4
+	Namespace: zm_ai_quad
+	Checksum: 0xDDC8CB63
 	Offset: 0x1088
 	Size: 0x7B
 	Parameters: 2
@@ -354,8 +354,8 @@ function quad_thundergun_knockdown(player, gib)
 
 /*
 	Name: quad_gas_explo_death
-	Namespace: namespace_1d58b607
-	Checksum: 0x4630384C
+	Namespace: zm_ai_quad
+	Checksum: 0x6F143A93
 	Offset: 0x1110
 	Size: 0xCB
 	Parameters: 0
@@ -375,8 +375,8 @@ function quad_gas_explo_death()
 
 /*
 	Name: quad_death_explo
-	Namespace: namespace_1d58b607
-	Checksum: 0x3D2B81F6
+	Namespace: zm_ai_quad
+	Checksum: 0x1468F5B0
 	Offset: 0x11E8
 	Size: 0x19B
 	Parameters: 2
@@ -408,8 +408,8 @@ function quad_death_explo(origin, death_vars)
 
 /*
 	Name: quad_damage_func
-	Namespace: namespace_1d58b607
-	Checksum: 0x474C6499
+	Namespace: zm_ai_quad
+	Checksum: 0x9BA90994
 	Offset: 0x1390
 	Size: 0x21
 	Parameters: 1
@@ -426,8 +426,8 @@ function quad_damage_func(player)
 
 /*
 	Name: quad_gas_area_of_effect
-	Namespace: namespace_1d58b607
-	Checksum: 0xE88D1DE1
+	Namespace: zm_ai_quad
+	Checksum: 0x8C2511E6
 	Offset: 0x13C0
 	Size: 0x243
 	Parameters: 2
@@ -466,8 +466,8 @@ function quad_gas_area_of_effect(origin, death_vars)
 
 /*
 	Name: quad_trail
-	Namespace: namespace_1d58b607
-	Checksum: 0xCC35AACD
+	Namespace: zm_ai_quad
+	Checksum: 0xC0A3626C
 	Offset: 0x1610
 	Size: 0xFB
 	Parameters: 0
@@ -485,8 +485,8 @@ function quad_trail()
 
 /*
 	Name: quad_post_death
-	Namespace: namespace_1d58b607
-	Checksum: 0xA584D0BE
+	Namespace: zm_ai_quad
+	Checksum: 0xCFD9B922
 	Offset: 0x1718
 	Size: 0x5D
 	Parameters: 8
@@ -500,8 +500,8 @@ function quad_post_death(eInflictor, attacker, iDamage, sMeansOfDeath, weapon, v
 
 /*
 	Name: quad_killed_override
-	Namespace: namespace_1d58b607
-	Checksum: 0xB90AD64C
+	Namespace: zm_ai_quad
+	Checksum: 0x49A9A4FF
 	Offset: 0x1780
 	Size: 0xD7
 	Parameters: 8
@@ -530,8 +530,8 @@ function quad_killed_override(eInflictor, attacker, iDamage, sMeansOfDeath, weap
 
 /*
 	Name: quad_pre_teleport
-	Namespace: namespace_1d58b607
-	Checksum: 0x8FC7CD75
+	Namespace: zm_ai_quad
+	Checksum: 0xC4B0FA72
 	Offset: 0x1860
 	Size: 0x4B
 	Parameters: 0
@@ -549,8 +549,8 @@ function quad_pre_teleport()
 
 /*
 	Name: quad_post_teleport
-	Namespace: namespace_1d58b607
-	Checksum: 0x6C1829B4
+	Namespace: zm_ai_quad
+	Checksum: 0x4E397D9C
 	Offset: 0x18B8
 	Size: 0x143
 	Parameters: 0

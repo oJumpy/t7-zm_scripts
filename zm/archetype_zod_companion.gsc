@@ -63,23 +63,23 @@ function autoexec main()
 */
 function RegisterBehaviorScriptFunctions()
 {
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionTacticalWalkActionStart", &function_e2fa3648);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionTacticalWalkActionStart", &zodcompaniontacticalwalkactionstart);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionAbleToShoot", &zodcompanionabletoshootcondition);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionShouldTacticalWalk", &function_d7405ceb);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionMovement", &function_522ee3d);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionDelayMovement", &function_2cb38d2c);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionSetDesiredStanceToStand", &function_f7d72d81);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionFinishedSprintTransition", &function_580c8f2d);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionSprintTransitioning", &function_27f60e31);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionKeepsCurrentMovementMode", &function_9ff1641);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionCanJuke", &function_92d6d6ff);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionCanPreemptiveJuke", &function_56b88d0a);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionJukeInitialize", &function_f6c0cf0f);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionPreemptiveJukeTerminate", &function_89bf89b5);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionTargetService", &function_c7372836);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionTryReacquireService", &function_ac06a0e7);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("manage_companion_movement", &function_e3a7ef95);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionCollisionService", &function_13a0d6ef);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionShouldTacticalWalk", &zodcompanionshouldtacticalwalk);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionMovement", &zodcompanionmovement);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionDelayMovement", &zodcompaniondelaymovement);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionSetDesiredStanceToStand", &zodcompanionsetdesiredstancetostand);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionFinishedSprintTransition", &zodcompanionfinishedsprinttransition);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionSprintTransitioning", &zodcompanionsprinttransitioning);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionKeepsCurrentMovementMode", &zodcompanionkeepscurrentmovementmode);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionCanJuke", &zodcompanioncanjuke);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionCanPreemptiveJuke", &zodcompanioncanpreemptivejuke);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionJukeInitialize", &zodcompanionjukeinitialize);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionPreemptiveJukeTerminate", &zodcompanionpreemptivejuketerminate);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionTargetService", &zodcompaniontargetservice);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionTryReacquireService", &zodcompaniontryreacquireservice);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("manage_companion_movement", &manage_companion_movement);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodCompanionCollisionService", &zodcompanioncollisionservice);
 }
 
 /*
@@ -184,7 +184,7 @@ function private zodcompaniongetgibbedlimbs()
 }
 
 /*
-	Name: function_2cb38d2c
+	Name: zodcompaniondelaymovement
 	Namespace: zodcompanionbehavior
 	Checksum: 0x81C474F3
 	Offset: 0x10A0
@@ -192,13 +192,13 @@ function private zodcompaniongetgibbedlimbs()
 	Parameters: 1
 	Flags: Private
 */
-function private function_2cb38d2c(entity)
+function private zodcompaniondelaymovement(entity)
 {
 	entity PathMode("move delayed", 0, RandomFloatRange(1, 2));
 }
 
 /*
-	Name: function_522ee3d
+	Name: zodcompanionmovement
 	Namespace: zodcompanionbehavior
 	Checksum: 0x97FFAD11
 	Offset: 0x10F0
@@ -206,7 +206,7 @@ function private function_2cb38d2c(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_522ee3d(entity)
+function private zodcompanionmovement(entity)
 {
 	if(blackboard::GetBlackBoardAttribute(entity, "_stance") != "stand")
 	{
@@ -215,7 +215,7 @@ function private function_522ee3d(entity)
 }
 
 /*
-	Name: function_92d6d6ff
+	Name: zodcompanioncanjuke
 	Namespace: zodcompanionbehavior
 	Checksum: 0x4D3CA24A
 	Offset: 0x1158
@@ -223,7 +223,7 @@ function private function_522ee3d(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_92d6d6ff(entity)
+function zodcompanioncanjuke(entity)
 {
 	if(!isdefined(entity.steppedOutOfCover) && entity.steppedOutOfCover && AiUtility::canJuke(entity))
 	{
@@ -242,7 +242,7 @@ function function_92d6d6ff(entity)
 }
 
 /*
-	Name: function_56b88d0a
+	Name: zodcompanioncanpreemptivejuke
 	Namespace: zodcompanionbehavior
 	Checksum: 0x18865039
 	Offset: 0x12B8
@@ -250,7 +250,7 @@ function function_92d6d6ff(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_56b88d0a(entity)
+function zodcompanioncanpreemptivejuke(entity)
 {
 	if(!isdefined(entity.enemy) || !isPlayer(entity.enemy))
 	{
@@ -289,7 +289,7 @@ function function_56b88d0a(entity)
 			#/
 			if(dotProduct > 0.9848)
 			{
-				return function_92d6d6ff(entity);
+				return zodcompanioncanjuke(entity);
 			}
 		}
 	}
@@ -344,7 +344,7 @@ function private _FindClosest(entity, entities)
 }
 
 /*
-	Name: function_c7372836
+	Name: zodcompaniontargetservice
 	Namespace: zodcompanionbehavior
 	Checksum: 0x12B9842D
 	Offset: 0x17E8
@@ -352,7 +352,7 @@ function private _FindClosest(entity, entities)
 	Parameters: 1
 	Flags: Private
 */
-function private function_c7372836(entity)
+function private zodcompaniontargetservice(entity)
 {
 	if(zodcompanionabletoshootcondition(entity))
 	{
@@ -418,7 +418,7 @@ function private function_c7372836(entity)
 }
 
 /*
-	Name: function_e2fa3648
+	Name: zodcompaniontacticalwalkactionstart
 	Namespace: zodcompanionbehavior
 	Checksum: 0xFD51892B
 	Offset: 0x1C28
@@ -426,7 +426,7 @@ function private function_c7372836(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_e2fa3648(entity)
+function private zodcompaniontacticalwalkactionstart(entity)
 {
 	entity OrientMode("face enemy");
 }
@@ -446,7 +446,7 @@ function private zodcompanionabletoshootcondition(entity)
 }
 
 /*
-	Name: function_d7405ceb
+	Name: zodcompanionshouldtacticalwalk
 	Namespace: zodcompanionbehavior
 	Checksum: 0xE4B8C005
 	Offset: 0x1CC0
@@ -454,7 +454,7 @@ function private zodcompanionabletoshootcondition(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_d7405ceb(entity)
+function private zodcompanionshouldtacticalwalk(entity)
 {
 	if(!entity HasPath())
 	{
@@ -464,7 +464,7 @@ function private function_d7405ceb(entity)
 }
 
 /*
-	Name: function_f6c0cf0f
+	Name: zodcompanionjukeinitialize
 	Namespace: zodcompanionbehavior
 	Checksum: 0xFC2FB338
 	Offset: 0x1CF8
@@ -472,7 +472,7 @@ function private function_d7405ceb(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_f6c0cf0f(entity)
+function private zodcompanionjukeinitialize(entity)
 {
 	AiUtility::chooseJukeDirection(entity);
 	entity clearPath();
@@ -483,7 +483,7 @@ function private function_f6c0cf0f(entity)
 }
 
 /*
-	Name: function_89bf89b5
+	Name: zodcompanionpreemptivejuketerminate
 	Namespace: zodcompanionbehavior
 	Checksum: 0xCE04FBD1
 	Offset: 0x1DB0
@@ -491,14 +491,14 @@ function private function_f6c0cf0f(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_89bf89b5(entity)
+function private zodcompanionpreemptivejuketerminate(entity)
 {
 	entity.nextPreemptiveJuke = GetTime() + randomIntRange(4000, 6000);
 	entity.nextPreemptiveJukeAds = RandomFloatRange(0.5, 0.95);
 }
 
 /*
-	Name: function_ac06a0e7
+	Name: zodcompaniontryreacquireservice
 	Namespace: zodcompanionbehavior
 	Checksum: 0x913AD5F5
 	Offset: 0x1E20
@@ -506,7 +506,7 @@ function private function_89bf89b5(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_ac06a0e7(entity)
+function private zodcompaniontryreacquireservice(entity)
 {
 	if(!isdefined(entity.reacquire_state))
 	{
@@ -575,7 +575,7 @@ function private function_ac06a0e7(entity)
 }
 
 /*
-	Name: function_e3a7ef95
+	Name: manage_companion_movement
 	Namespace: zodcompanionbehavior
 	Checksum: 0x34C7F7BF
 	Offset: 0x2120
@@ -583,7 +583,7 @@ function private function_ac06a0e7(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_e3a7ef95(entity)
+function private manage_companion_movement(entity)
 {
 	self endon("death");
 	if(isdefined(level.companion_leader) && level.companion_leader.eligible_leader)
@@ -697,7 +697,7 @@ function private function_e3a7ef95(entity)
 }
 
 /*
-	Name: function_13a0d6ef
+	Name: zodcompanioncollisionservice
 	Namespace: zodcompanionbehavior
 	Checksum: 0xF33E182
 	Offset: 0x28D0
@@ -705,7 +705,7 @@ function private function_e3a7ef95(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_13a0d6ef(entity)
+function private zodcompanioncollisionservice(entity)
 {
 	if(isdefined(entity.dontPushTime))
 	{
@@ -883,7 +883,7 @@ function private function_ab299a53(parasite)
 }
 
 /*
-	Name: function_f7d72d81
+	Name: zodcompanionsetdesiredstancetostand
 	Namespace: zodcompanionbehavior
 	Checksum: 0xAF0D314
 	Offset: 0x2FF0
@@ -891,7 +891,7 @@ function private function_ab299a53(parasite)
 	Parameters: 1
 	Flags: Private
 */
-function private function_f7d72d81(behaviorTreeEntity)
+function private zodcompanionsetdesiredstancetostand(behaviorTreeEntity)
 {
 	currentStance = blackboard::GetBlackBoardAttribute(behaviorTreeEntity, "_stance");
 	if(currentStance == "crouch")
@@ -1014,7 +1014,7 @@ function zod_companion_revive_cleanup(player)
 }
 
 /*
-	Name: function_580c8f2d
+	Name: zodcompanionfinishedsprinttransition
 	Namespace: zodcompanionbehavior
 	Checksum: 0x9EB06BE3
 	Offset: 0x35C8
@@ -1022,7 +1022,7 @@ function zod_companion_revive_cleanup(player)
 	Parameters: 1
 	Flags: Private
 */
-function private function_580c8f2d(behaviorTreeEntity)
+function private zodcompanionfinishedsprinttransition(behaviorTreeEntity)
 {
 	behaviorTreeEntity.sprint_transition_happening = 0;
 	if(blackboard::GetBlackBoardAttribute(behaviorTreeEntity, "_locomotion_speed") == "locomotion_speed_walk")
@@ -1038,7 +1038,7 @@ function private function_580c8f2d(behaviorTreeEntity)
 }
 
 /*
-	Name: function_9ff1641
+	Name: zodcompanionkeepscurrentmovementmode
 	Namespace: zodcompanionbehavior
 	Checksum: 0x587D468E
 	Offset: 0x36B0
@@ -1046,7 +1046,7 @@ function private function_580c8f2d(behaviorTreeEntity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9ff1641(behaviorTreeEntity)
+function private zodcompanionkeepscurrentmovementmode(behaviorTreeEntity)
 {
 	var_ef42515b = 262144;
 	var_1be8672c = 147456;
@@ -1063,7 +1063,7 @@ function private function_9ff1641(behaviorTreeEntity)
 }
 
 /*
-	Name: function_27f60e31
+	Name: zodcompanionsprinttransitioning
 	Namespace: zodcompanionbehavior
 	Checksum: 0x5188172F
 	Offset: 0x3798
@@ -1071,7 +1071,7 @@ function private function_9ff1641(behaviorTreeEntity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_27f60e31(behaviorTreeEntity)
+function private zodcompanionsprinttransitioning(behaviorTreeEntity)
 {
 	if(behaviorTreeEntity.sprint_transition_happening === 1)
 	{

@@ -174,7 +174,7 @@ function function_d9a07413(e_player, var_a70a7d09)
 	}
 	n_start_time = GetTime();
 	n_total_time = 0;
-	e_player thread namespace_dcf9c464::function_96153834();
+	e_player thread zm_stalingrad_vo::function_96153834();
 	while(30 > n_total_time)
 	{
 		function_e0c7ad1e(var_a70a7d09);

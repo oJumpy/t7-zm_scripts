@@ -7,11 +7,11 @@
 #using scripts\shared\util_shared;
 #using scripts\shared\visionset_mgr_shared;
 
-#namespace namespace_fa1b0620;
+#namespace zm_castle_teleporter;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x513EF45D
 	Offset: 0x3E0
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x5814976E
 	Offset: 0x420
 	Size: 0x20B
@@ -49,7 +49,7 @@ function __init__()
 
 /*
 	Name: function_f5cfa4d7
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x9F36DF67
 	Offset: 0x638
 	Size: 0x9B
@@ -73,7 +73,7 @@ function function_f5cfa4d7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_aa99fd7b
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x8CD1628C
 	Offset: 0x6E0
 	Size: 0xD3
@@ -99,7 +99,7 @@ function function_aa99fd7b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_a932c4c
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xF96B8119
 	Offset: 0x7C0
 	Size: 0x109
@@ -124,7 +124,7 @@ function function_a932c4c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_ddac47c8
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x8AC53D21
 	Offset: 0x8D8
 	Size: 0xF1
@@ -142,7 +142,7 @@ function function_ddac47c8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_74eb9e6a
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x185EB609
 	Offset: 0x9D8
 	Size: 0xD3
@@ -166,7 +166,7 @@ function function_74eb9e6a(localClientNum, newVal)
 
 /*
 	Name: setup_teleport_aftereffects
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xB42D522B
 	Offset: 0xAB8
 	Size: 0x125
@@ -191,7 +191,7 @@ function setup_teleport_aftereffects()
 
 /*
 	Name: wait_for_black_box
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x259E4B73
 	Offset: 0xBE8
 	Size: 0xFF
@@ -220,7 +220,7 @@ function wait_for_black_box()
 
 /*
 	Name: wait_for_teleport_aftereffect
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x1E36CDC0
 	Offset: 0xCF0
 	Size: 0xC5
@@ -245,7 +245,7 @@ function wait_for_teleport_aftereffect()
 
 /*
 	Name: teleport_aftereffect_shellshock
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xE47F144F
 	Offset: 0xDC0
 	Size: 0x13
@@ -259,7 +259,7 @@ function teleport_aftereffect_shellshock(localClientNum)
 
 /*
 	Name: teleport_aftereffect_shellshock_electric
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xD0540E6A
 	Offset: 0xDE0
 	Size: 0x13
@@ -273,7 +273,7 @@ function teleport_aftereffect_shellshock_electric(localClientNum)
 
 /*
 	Name: teleport_aftereffect_fov
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xB268D3BE
 	Offset: 0xE00
 	Size: 0xD9
@@ -297,7 +297,7 @@ function teleport_aftereffect_fov(localClientNum)
 
 /*
 	Name: teleport_aftereffect_bw_vision
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x28504CB0
 	Offset: 0xEE8
 	Size: 0x9B
@@ -317,7 +317,7 @@ function teleport_aftereffect_bw_vision(localClientNum)
 
 /*
 	Name: teleport_aftereffect_red_vision
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xFF6E298C
 	Offset: 0xF90
 	Size: 0x9B
@@ -337,7 +337,7 @@ function teleport_aftereffect_red_vision(localClientNum)
 
 /*
 	Name: teleport_aftereffect_flashy_vision
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xED265C6D
 	Offset: 0x1038
 	Size: 0xDB
@@ -361,7 +361,7 @@ function teleport_aftereffect_flashy_vision(localClientNum)
 
 /*
 	Name: teleport_aftereffect_flare_vision
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xBB23A473
 	Offset: 0x1120
 	Size: 0x9B

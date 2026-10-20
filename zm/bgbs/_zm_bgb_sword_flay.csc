@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_6caa802f;
+#namespace zm_bgb_sword_flay;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6caa802f
+	Namespace: zm_bgb_sword_flay
 	Checksum: 0x1A39333E
 	Offset: 0x140
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6caa802f
+	Namespace: zm_bgb_sword_flay
 	Checksum: 0xB78F0BB
 	Offset: 0x180
 	Size: 0x3B

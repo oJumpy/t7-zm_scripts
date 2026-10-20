@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_f09ec4f7;
+#namespace stalingrad_cleanup;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x69E8433
 	Offset: 0x1E8
 	Size: 0x3B
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0xCB54C765
 	Offset: 0x230
 	Size: 0xF
@@ -39,7 +39,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0xF3B1B5CC
 	Offset: 0x248
 	Size: 0x1B
@@ -53,7 +53,7 @@ function __main__()
 
 /*
 	Name: force_check_now
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x2AD5EB8F
 	Offset: 0x270
 	Size: 0x11
@@ -67,7 +67,7 @@ function force_check_now()
 
 /*
 	Name: cleanup_main
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x520C75E1
 	Offset: 0x290
 	Size: 0x20D
@@ -121,7 +121,7 @@ function private cleanup_main()
 
 /*
 	Name: do_cleanup_check
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x83C9465A
 	Offset: 0x4A8
 	Size: 0x273
@@ -190,7 +190,7 @@ function do_cleanup_check(n_override_cleanup_dist)
 
 /*
 	Name: cleanup_zombie
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x216E4666
 	Offset: 0x728
 	Size: 0x3CB
@@ -281,7 +281,7 @@ function cleanup_zombie(var_1503b3f8)
 
 /*
 	Name: player_can_see_me
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x28B3C664
 	Offset: 0xB00
 	Size: 0xD7
@@ -304,7 +304,7 @@ function private player_can_see_me(player)
 
 /*
 	Name: player_ahead_of_me
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x9047645F
 	Offset: 0xBE0
 	Size: 0xB3
@@ -326,7 +326,7 @@ function private player_ahead_of_me(player)
 
 /*
 	Name: get_escape_position
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x94DF6DE3
 	Offset: 0xCA0
 	Size: 0xB3
@@ -352,7 +352,7 @@ function get_escape_position()
 
 /*
 	Name: get_adjacencies_to_zone
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x59D63F4A
 	Offset: 0xD60
 	Size: 0x11D
@@ -384,7 +384,7 @@ function get_adjacencies_to_zone(str_zone)
 
 /*
 	Name: get_wait_locations_in_zones
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x6AF466AE
 	Offset: 0xE88
 	Size: 0xD1
@@ -403,7 +403,7 @@ function private get_wait_locations_in_zones(a_zones)
 
 /*
 	Name: get_farthest_wait_location
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0xAE1EA513
 	Offset: 0xF68
 	Size: 0xD5
@@ -432,7 +432,7 @@ function private get_farthest_wait_location(a_wait_locations)
 
 /*
 	Name: get_wait_locations_in_zone
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0xDF5EEBA0
 	Offset: 0x1048
 	Size: 0x87
@@ -452,7 +452,7 @@ function private get_wait_locations_in_zone(zone)
 
 /*
 	Name: get_escape_position_in_current_zone
-	Namespace: namespace_f09ec4f7
+	Namespace: stalingrad_cleanup
 	Checksum: 0x612642B6
 	Offset: 0x10D8
 	Size: 0x9B

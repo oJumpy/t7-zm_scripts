@@ -65,8 +65,8 @@ function function_4092fa4d()
 	wait(20);
 	for(i = 0; i < 1; i++)
 	{
-		var_2dcff864 = ArrayGetClosest(level.players[0].origin, level.margwa_locations);
-		margwa = spawn_margwa(var_2dcff864);
+		margwa_location = ArrayGetClosest(level.players[0].origin, level.margwa_locations);
+		margwa = spawn_margwa(margwa_location);
 		wait(0.5);
 	}
 }
@@ -673,12 +673,12 @@ function private margwa_wait()
 function private margwa_setup()
 {
 	self.destroyHeadCB = &margwa_destroy_head;
-	self.bodyfallCB = &function_4cf696ce;
+	self.bodyfallCB = &margwa_bodyfall;
 	self.var_16ec9b37 = &function_a89905c6;
 	self.chop_actor_cb = &margwa_chop_actor;
 	self.var_a3b60c68 = &function_dbd9ba44;
 	self.var_de36fc8 = &function_2aa0209c;
-	self.smashAttackCB = &function_c417a61a;
+	self.smashAttackCB = &margwa_smash_attack;
 	self.lightning_chain_immune = 1;
 	self.ignore_game_over_death = 1;
 	self.should_turn = 1;
@@ -708,7 +708,7 @@ function private margwa_destroy_head(modelHit, attacker)
 	loc = spawnstruct();
 	loc.origin = spawn_pos;
 	loc.angles = self.angles;
-	self function_181c5967();
+	self margwa_head_explosion();
 	spawner_override = undefined;
 	if(isdefined(level.var_39c0c115))
 	{
@@ -727,7 +727,7 @@ function private margwa_destroy_head(modelHit, attacker)
 }
 
 /*
-	Name: function_4cf696ce
+	Name: margwa_bodyfall
 	Namespace: zm_ai_margwa
 	Checksum: 0xADBDD166
 	Offset: 0x2108
@@ -735,7 +735,7 @@ function private margwa_destroy_head(modelHit, attacker)
 	Parameters: 0
 	Flags: Private
 */
-function private function_4cf696ce()
+function private margwa_bodyfall()
 {
 	power_up_origin = self.origin + VectorScale(AnglesToForward(self.angles), 32) + VectorScale((0, 0, 1), 16);
 	if(isdefined(power_up_origin) && (!isdefined(self.no_powerups) && self.no_powerups))
@@ -759,7 +759,7 @@ function private function_4cf696ce()
 }
 
 /*
-	Name: function_181c5967
+	Name: margwa_head_explosion
 	Namespace: zm_ai_margwa
 	Checksum: 0xEE1C770F
 	Offset: 0x2288
@@ -767,7 +767,7 @@ function private function_4cf696ce()
 	Parameters: 0
 	Flags: Private
 */
-function private function_181c5967()
+function private margwa_head_explosion()
 {
 	players = GetPlayers();
 	foreach(player in players)
@@ -1056,7 +1056,7 @@ function private function_2aa0209c(trap)
 }
 
 /*
-	Name: function_c417a61a
+	Name: margwa_smash_attack
 	Namespace: zm_ai_margwa
 	Checksum: 0x10002F0F
 	Offset: 0x2E90
@@ -1064,7 +1064,7 @@ function private function_2aa0209c(trap)
 	Parameters: 0
 	Flags: Private
 */
-function private function_c417a61a()
+function private margwa_smash_attack()
 {
 	zombies = zombie_utility::get_round_enemy_array();
 	foreach(zombie in zombies)
@@ -1188,8 +1188,8 @@ function private margwa_devgui_callback(cmd)
 		{
 			case "Dev Block strings are not supported":
 			{
-				var_2dcff864 = ArrayGetClosest(players[0].origin, level.margwa_locations);
-				margwa = spawn_margwa(var_2dcff864);
+				margwa_location = ArrayGetClosest(players[0].origin, level.margwa_locations);
+				margwa = spawn_margwa(margwa_location);
 				break;
 			}
 			case "Dev Block strings are not supported":

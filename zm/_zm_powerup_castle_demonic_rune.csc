@@ -3,11 +3,11 @@
 #using scripts\shared\system_shared;
 #using scripts\zm\_zm_powerups;
 
-#namespace namespace_e581e076;
+#namespace zm_powerup_demonic_rune;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0xD7FF5007
 	Offset: 0x1D0
 	Size: 0x33
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0xE4CED1F7
 	Offset: 0x210
 	Size: 0x16B
@@ -47,7 +47,7 @@ function __init__()
 
 /*
 	Name: function_4a94c040
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0x50A77DED
 	Offset: 0x388
 	Size: 0x6B

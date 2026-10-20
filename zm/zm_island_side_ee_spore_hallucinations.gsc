@@ -22,11 +22,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_island_util;
 
-#namespace namespace_c63a0940;
+#namespace zm_island_side_ee_spore_hallucinations;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x361863EF
 	Offset: 0x4A8
 	Size: 0x33
@@ -40,7 +40,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x5B969E32
 	Offset: 0x4E8
 	Size: 0x115
@@ -60,7 +60,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x6FB9BFF0
 	Offset: 0x608
 	Size: 0x1B
@@ -76,7 +76,7 @@ function main()
 
 /*
 	Name: on_player_connected
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x8E40123B
 	Offset: 0x630
 	Size: 0x43
@@ -91,7 +91,7 @@ function on_player_connected()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x73EBBDE2
 	Offset: 0x680
 	Size: 0x23
@@ -106,7 +106,7 @@ function on_player_spawned()
 
 /*
 	Name: function_e58be395
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x213284E0
 	Offset: 0x6B0
 	Size: 0x8F
@@ -134,7 +134,7 @@ function function_e58be395()
 
 /*
 	Name: function_b200c473
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x63D0E2E4
 	Offset: 0x748
 	Size: 0x37
@@ -156,7 +156,7 @@ function function_b200c473()
 
 /*
 	Name: function_51d3efd
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x7268493C
 	Offset: 0x788
 	Size: 0xFB
@@ -185,7 +185,7 @@ function function_51d3efd()
 
 /*
 	Name: function_5d6bcf98
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0xD00B27FF
 	Offset: 0x890
 	Size: 0x14B
@@ -215,7 +215,7 @@ function function_5d6bcf98()
 
 /*
 	Name: function_5d3a5f36
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0xEBCB71DD
 	Offset: 0x9E8
 	Size: 0x4B
@@ -224,14 +224,14 @@ function function_5d6bcf98()
 */
 function function_5d3a5f36()
 {
-	self function_f0aa6b80(1);
+	self hallucinate_spooky_sounds(1);
 	wait(randomIntRange(10, 20));
-	self function_f0aa6b80(0);
+	self hallucinate_spooky_sounds(0);
 }
 
 /*
 	Name: function_f0e36b57
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x27CCA0D3
 	Offset: 0xA40
 	Size: 0x7B
@@ -240,23 +240,23 @@ function function_5d3a5f36()
 */
 function function_f0e36b57()
 {
-	self function_38943e4d(1);
+	self hallucinate_bloody_walls(1);
 	exploder::exploder("ex_ee_redtanks");
 	wait(randomIntRange(10, 20));
-	self function_38943e4d(0);
+	self hallucinate_bloody_walls(0);
 	exploder::stop_exploder("ex_ee_redtanks");
 }
 
 /*
-	Name: function_38943e4d
-	Namespace: namespace_c63a0940
+	Name: hallucinate_bloody_walls
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x5A7450C2
 	Offset: 0xAC8
 	Size: 0x43
 	Parameters: 1
 	Flags: None
 */
-function function_38943e4d(b_on)
+function hallucinate_bloody_walls(b_on)
 {
 	if(!isdefined(b_on))
 	{
@@ -266,15 +266,15 @@ function function_38943e4d(b_on)
 }
 
 /*
-	Name: function_f0aa6b80
-	Namespace: namespace_c63a0940
+	Name: hallucinate_spooky_sounds
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0xE06F5D35
 	Offset: 0xB18
 	Size: 0x43
 	Parameters: 1
 	Flags: None
 */
-function function_f0aa6b80(b_on)
+function hallucinate_spooky_sounds(b_on)
 {
 	if(!isdefined(b_on))
 	{
@@ -285,7 +285,7 @@ function function_f0aa6b80(b_on)
 
 /*
 	Name: function_c6d55b0d
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0xCF38628A
 	Offset: 0xB68
 	Size: 0xA3
@@ -306,7 +306,7 @@ function function_c6d55b0d()
 
 /*
 	Name: function_4c6daca1
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0xAB39E749
 	Offset: 0xC18
 	Size: 0xFD
@@ -350,7 +350,7 @@ function function_4c6daca1(cmd)
 
 /*
 	Name: function_ef6cd11
-	Namespace: namespace_c63a0940
+	Namespace: zm_island_side_ee_spore_hallucinations
 	Checksum: 0x96B544D3
 	Offset: 0xD20
 	Size: 0xE1

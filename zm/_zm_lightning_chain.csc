@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: lightning_chain
-	Checksum: 0x31266CCA
+	Checksum: 0x46D099EE
 	Offset: 0x258
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: init
 	Namespace: lightning_chain
-	Checksum: 0x43B3577A
+	Checksum: 0x9D723D8
 	Offset: 0x298
 	Size: 0x1AB
 	Parameters: 0
@@ -45,7 +45,7 @@ function init()
 /*
 	Name: lc_shock_fx
 	Namespace: lightning_chain
-	Checksum: 0x7A432861
+	Checksum: 0xF3257E98
 	Offset: 0x450
 	Size: 0x165
 	Parameters: 7
@@ -83,7 +83,7 @@ function lc_shock_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fiel
 /*
 	Name: lc_play_death_fx
 	Namespace: lightning_chain
-	Checksum: 0x9E4AC16F
+	Checksum: 0xDFC18DA0
 	Offset: 0x5C0
 	Size: 0x163
 	Parameters: 7

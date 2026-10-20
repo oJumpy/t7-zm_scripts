@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_staminup
-	Checksum: 0x750B5A10
+	Checksum: 0xD5C601CD
 	Offset: 0x198
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_staminup
-	Checksum: 0xA1F0B948
+	Checksum: 0x7367784B
 	Offset: 0x1D8
 	Size: 0x13
 	Parameters: 0
@@ -37,7 +37,7 @@ function __init__()
 /*
 	Name: enable_staminup_perk_for_level
 	Namespace: zm_perk_staminup
-	Checksum: 0xD279C7DA
+	Checksum: 0xAAFA0897
 	Offset: 0x1F8
 	Size: 0x83
 	Parameters: 0
@@ -53,7 +53,7 @@ function enable_staminup_perk_for_level()
 /*
 	Name: init_staminup
 	Namespace: zm_perk_staminup
-	Checksum: 0x768DD7A0
+	Checksum: 0x36F5D229
 	Offset: 0x288
 	Size: 0x35
 	Parameters: 0
@@ -70,7 +70,7 @@ function init_staminup()
 /*
 	Name: staminup_client_field_func
 	Namespace: zm_perk_staminup
-	Checksum: 0x5D09FB7F
+	Checksum: 0x3632AE71
 	Offset: 0x2C8
 	Size: 0x3B
 	Parameters: 0

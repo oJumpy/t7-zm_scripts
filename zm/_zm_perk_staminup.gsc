@@ -17,7 +17,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_staminup
-	Checksum: 0xD1504B87
+	Checksum: 0xCE32298C
 	Offset: 0x330
 	Size: 0x33
 	Parameters: 0
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_staminup
-	Checksum: 0x84D59C04
+	Checksum: 0xC6A989D5
 	Offset: 0x370
 	Size: 0x13
 	Parameters: 0
@@ -45,7 +45,7 @@ function __init__()
 /*
 	Name: enable_staminup_perk_for_level
 	Namespace: zm_perk_staminup
-	Checksum: 0x808A4B49
+	Checksum: 0x8AF20D73
 	Offset: 0x390
 	Size: 0xF3
 	Parameters: 0
@@ -63,7 +63,7 @@ function enable_staminup_perk_for_level()
 /*
 	Name: staminup_precache
 	Namespace: zm_perk_staminup
-	Checksum: 0xB674A3AA
+	Checksum: 0xC14A6EB3
 	Offset: 0x490
 	Size: 0xDF
 	Parameters: 0
@@ -86,7 +86,7 @@ function staminup_precache()
 /*
 	Name: staminup_register_clientfield
 	Namespace: zm_perk_staminup
-	Checksum: 0x810BF9CE
+	Checksum: 0x72676CE7
 	Offset: 0x578
 	Size: 0x33
 	Parameters: 0
@@ -100,7 +100,7 @@ function staminup_register_clientfield()
 /*
 	Name: staminup_set_clientfield
 	Namespace: zm_perk_staminup
-	Checksum: 0xF0C8EFD6
+	Checksum: 0x1115D66E
 	Offset: 0x5B8
 	Size: 0x2B
 	Parameters: 1
@@ -114,7 +114,7 @@ function staminup_set_clientfield(State)
 /*
 	Name: staminup_perk_machine_setup
 	Namespace: zm_perk_staminup
-	Checksum: 0x2522895
+	Checksum: 0xEF04180A
 	Offset: 0x5F0
 	Size: 0xBB
 	Parameters: 4

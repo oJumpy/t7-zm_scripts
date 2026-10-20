@@ -175,7 +175,7 @@ function unitrigger_refresh_message()
 }
 
 /*
-	Name: function_acd04dc9
+	Name: zombie_no_powerups
 	Namespace: namespace_8aed53c9
 	Checksum: 0x4CFD57A9
 	Offset: 0x840
@@ -183,7 +183,7 @@ function unitrigger_refresh_message()
 	Parameters: 0
 	Flags: None
 */
-function function_acd04dc9()
+function zombie_no_powerups()
 {
 	self endon("death");
 	self waittill("completed_emerging_into_playable_area");
@@ -224,7 +224,7 @@ function function_7448e472(e_target)
 				}
 				else if(self getammocount(level.var_c003f5b))
 				{
-					if(self namespace_f55b6585::function_3f3f64e9(e_target) && self namespace_f55b6585::function_5fa274c1(e_target))
+					if(self keeper_skull::function_3f3f64e9(e_target) && self keeper_skull::function_5fa274c1(e_target))
 					{
 						self PlayRumbleOnEntity("zm_island_skull_reveal");
 						n_count = 0;
@@ -242,7 +242,7 @@ function function_7448e472(e_target)
 							e_target.var_f0b65c0a = self;
 							var_c2b47c7a = 1;
 							playsoundatposition("zmb_wpn_skullgun_discover", e_target.origin);
-							self notify("hash_b2ddad7");
+							self notify("skullweapon_revealed_location");
 							self thread function_4aedb20b();
 							foreach(player in level.players)
 							{

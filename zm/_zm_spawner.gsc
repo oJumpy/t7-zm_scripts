@@ -3441,7 +3441,7 @@ function zombie_complete_emerging_into_playable_area()
 		self.var_85ae7f15 = undefined;
 	}
 	self thread zombie_free_cam_allowed();
-	self thread function_525366e2();
+	self thread zombie_push();
 	self thread zm::update_zone_name();
 }
 
@@ -3466,7 +3466,7 @@ function zombie_free_cam_allowed()
 }
 
 /*
-	Name: function_525366e2
+	Name: zombie_push
 	Namespace: zm_spawner
 	Checksum: 0x92E4F341
 	Offset: 0xA758
@@ -3474,7 +3474,7 @@ function zombie_free_cam_allowed()
 	Parameters: 0
 	Flags: None
 */
-function function_525366e2()
+function zombie_push()
 {
 	self endon("death");
 	wait(5);

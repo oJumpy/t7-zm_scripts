@@ -67,7 +67,7 @@ function __init__()
 }
 
 /*
-	Name: function_d9af860b
+	Name: level_overrides
 	Namespace: zm_prototype
 	Checksum: 0xCACF6A26
 	Offset: 0x600
@@ -75,7 +75,7 @@ function __init__()
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_d9af860b()
+function autoexec level_overrides()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;

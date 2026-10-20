@@ -3,11 +3,11 @@
 #using scripts\shared\postfx_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_8e89abe3;
+#namespace zm_castle_low_grav;
 
 /*
 	Name: main
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x7987337
 	Offset: 0x330
 	Size: 0x83
@@ -26,7 +26,7 @@ function main()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xDECA780D
 	Offset: 0x3C0
 	Size: 0x1FB
@@ -36,9 +36,9 @@ function main()
 function register_clientfields()
 {
 	clientfield::register("scriptmover", "low_grav_powerup_triggered", 5000, 1, "counter", &function_69e96b4d, 0, 0);
-	clientfield::register("scriptmover", "zombie_wall_dust", 5000, 1, "counter", &function_c9ee5588, 0, 0);
+	clientfield::register("scriptmover", "zombie_wall_dust", 5000, 1, "counter", &wall_dust, 0, 0);
 	clientfield::register("toplayer", "player_postfx", 5000, 1, "int", &function_df81c23d, 0, 0);
-	clientfield::register("toplayer", "player_screen_fx", 5000, 1, "int", &function_e6fd161a, 0, 1);
+	clientfield::register("toplayer", "player_screen_fx", 5000, 1, "int", &player_screen_fx, 0, 1);
 	clientfield::register("scriptmover", "undercroft_emissives", 5000, 1, "int", &function_9a8a19ab, 0, 0);
 	clientfield::register("scriptmover", "undercroft_wall_panel_shutdown", 5000, 1, "counter", &mm_katana_male_runjump_land_1f_l, 0, 0);
 	clientfield::register("scriptmover", "floor_panel_emissives_glow", 5000, 1, "int", &function_23861dfe, 0, 0);
@@ -46,7 +46,7 @@ function register_clientfields()
 
 /*
 	Name: function_554db684
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x1D968C68
 	Offset: 0x5C8
 	Size: 0xDB
@@ -66,7 +66,7 @@ function function_554db684()
 
 /*
 	Name: function_69e96b4d
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xCBABF263
 	Offset: 0x6B0
 	Size: 0x63
@@ -79,29 +79,29 @@ function function_69e96b4d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c9ee5588
-	Namespace: namespace_8e89abe3
+	Name: wall_dust
+	Namespace: zm_castle_low_grav
 	Checksum: 0xA74DD69C
 	Offset: 0x720
 	Size: 0x6B
 	Parameters: 7
 	Flags: None
 */
-function function_c9ee5588(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function wall_dust(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	playFX(localClientNum, level._effect["wall_dust"], self.origin);
 }
 
 /*
-	Name: function_e6fd161a
-	Namespace: namespace_8e89abe3
+	Name: player_screen_fx
+	Namespace: zm_castle_low_grav
 	Checksum: 0x411C80D6
 	Offset: 0x798
 	Size: 0xFB
 	Parameters: 7
 	Flags: None
 */
-function function_e6fd161a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_screen_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -119,7 +119,7 @@ function function_e6fd161a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_df81c23d
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xEE657748
 	Offset: 0x8A0
 	Size: 0xBB
@@ -142,7 +142,7 @@ function function_df81c23d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_9a8a19ab
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xC106EC90
 	Offset: 0x968
 	Size: 0x277
@@ -198,7 +198,7 @@ function function_9a8a19ab(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: mm_katana_male_runjump_land_1f_l
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x1B95A9C8
 	Offset: 0xBE8
 	Size: 0x187
@@ -232,7 +232,7 @@ function mm_katana_male_runjump_land_1f_l(localClientNum, oldVal, newVal, bNewEn
 
 /*
 	Name: function_23861dfe
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x95EFA40
 	Offset: 0xD78
 	Size: 0x287
@@ -288,7 +288,7 @@ function function_23861dfe(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: zombie_instakill_fx_cb
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x8B05507F
 	Offset: 0x1008
 	Size: 0xA3
@@ -310,7 +310,7 @@ function zombie_instakill_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInitia
 
 /*
 	Name: playesoundanddelete
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x76AC8A47
 	Offset: 0x10B8
 	Size: 0x53

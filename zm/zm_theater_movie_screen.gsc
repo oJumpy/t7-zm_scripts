@@ -40,7 +40,7 @@ function setupCurtains()
 	curtains_clip = GetEnt("theater_curtains_clip", "targetname");
 	curtains_clip notsolid();
 	curtains_clip connectpaths();
-	level namespace_aed37ba8::theater_open_curtains();
+	level zm_theater::theater_open_curtains();
 	wait(3);
 	level thread lower_movie_screen();
 	wait(6);
@@ -321,7 +321,7 @@ function movie_projector_reel_change()
 			}
 			who notify("reel_set");
 			who thread theater_remove_reel_hud();
-			projector_trigger thread namespace_6d4f3e39::play_radio_egg(2);
+			projector_trigger thread zm_theater_amb::play_radio_egg(2);
 			who playsound("zmb_reel_place");
 			level notify("play_movie", who.reel);
 			who.reel = undefined;

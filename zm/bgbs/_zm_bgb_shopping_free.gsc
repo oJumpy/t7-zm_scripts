@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_18c49b5a;
+#namespace zm_bgb_shopping_free;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_18c49b5a
+	Namespace: zm_bgb_shopping_free
 	Checksum: 0xEA3A306B
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_18c49b5a
+	Namespace: zm_bgb_shopping_free
 	Checksum: 0x517DDE6
 	Offset: 0x188
 	Size: 0x63
@@ -41,7 +41,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_18c49b5a
+	Namespace: zm_bgb_shopping_free
 	Checksum: 0xBF0AC0E8
 	Offset: 0x1F8
 	Size: 0x25
@@ -52,12 +52,12 @@ function enable()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 }
 
 /*
 	Name: disable
-	Namespace: namespace_18c49b5a
+	Namespace: zm_bgb_shopping_free
 	Checksum: 0x99EC1590
 	Offset: 0x228
 	Size: 0x3

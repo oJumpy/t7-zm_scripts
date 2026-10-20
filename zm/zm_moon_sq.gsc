@@ -788,7 +788,7 @@ function sd_init()
 		var_12a1091.targetname = s_start.targetname;
 		var_12a1091 SetScale(s_start.script_float);
 		var_2ad32714 = spawn("trigger_damage", var_12a1091.origin, 0, 15, 15);
-		namespace_1a0051d2::add_microwaveable_object(var_2ad32714);
+		zm_weap_microwavegun::add_microwaveable_object(var_2ad32714);
 		var_12a1091 thread function_7e76fe45(var_2ad32714);
 		level flag::init(var_12a1091.targetname);
 	}
@@ -855,7 +855,7 @@ function function_4ee03f50()
 	s_sd.height = 72;
 	s_sd.script_float = 7;
 	s_sd.custom_string = &"ZM_MOON_HACK_SILENT";
-	namespace_6d813654::register_pooled_hackable_struct(s_sd, &function_9391498d);
+	zm_equip_hacker::register_pooled_hackable_struct(s_sd, &function_9391498d);
 }
 
 /*
@@ -869,7 +869,7 @@ function function_4ee03f50()
 */
 function function_9391498d(hacker)
 {
-	namespace_6d813654::deregister_hackable_struct(self);
+	zm_equip_hacker::deregister_hackable_struct(self);
 	level flag::set("sd_active");
 	level thread function_948d4e7d();
 	level thread function_66951281();

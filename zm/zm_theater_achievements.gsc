@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_spawner;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_3c11443;
+#namespace zm_theater_achievements;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3c11443
+	Namespace: zm_theater_achievements
 	Checksum: 0x6AEFE740
 	Offset: 0x248
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3c11443
+	Namespace: zm_theater_achievements
 	Checksum: 0x964055A2
 	Offset: 0x288
 	Size: 0x5B
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: achievement_sound_func
-	Namespace: namespace_3c11443
+	Namespace: zm_theater_achievements
 	Checksum: 0x12C0B4D0
 	Offset: 0x2F0
 	Size: 0xAB
@@ -66,7 +66,7 @@ function achievement_sound_func(achievement_name_lower)
 
 /*
 	Name: onPlayerConnect
-	Namespace: namespace_3c11443
+	Namespace: zm_theater_achievements
 	Checksum: 0x885FDE47
 	Offset: 0x3A8
 	Size: 0x4B
@@ -82,7 +82,7 @@ function onPlayerConnect()
 
 /*
 	Name: achievement_ive_seen_some_things
-	Namespace: namespace_3c11443
+	Namespace: zm_theater_achievements
 	Checksum: 0xB1DD48B2
 	Offset: 0x400
 	Size: 0x133
@@ -115,7 +115,7 @@ function achievement_ive_seen_some_things()
 
 /*
 	Name: function_24b05d89
-	Namespace: namespace_3c11443
+	Namespace: zm_theater_achievements
 	Checksum: 0xCBB3CF96
 	Offset: 0x540
 	Size: 0x103
@@ -146,7 +146,7 @@ function function_24b05d89()
 
 /*
 	Name: function_6c831509
-	Namespace: namespace_3c11443
+	Namespace: zm_theater_achievements
 	Checksum: 0x630E90CE
 	Offset: 0x650
 	Size: 0x93
@@ -168,7 +168,7 @@ function function_6c831509()
 
 /*
 	Name: function_1abfde35
-	Namespace: namespace_3c11443
+	Namespace: zm_theater_achievements
 	Checksum: 0x3F9A6E84
 	Offset: 0x6F0
 	Size: 0x143

@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_8b3a30e2;
+#namespace zm_bgb_lucky_crit;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8b3a30e2
+	Namespace: zm_bgb_lucky_crit
 	Checksum: 0xAE8AC95E
 	Offset: 0x178
 	Size: 0x4B
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8b3a30e2
+	Namespace: zm_bgb_lucky_crit
 	Checksum: 0xB37E3ABF
 	Offset: 0x1D0
 	Size: 0x93
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: active
-	Namespace: namespace_8b3a30e2
+	Namespace: zm_bgb_lucky_crit
 	Checksum: 0xE867DF8D
 	Offset: 0x270
 	Size: 0x19

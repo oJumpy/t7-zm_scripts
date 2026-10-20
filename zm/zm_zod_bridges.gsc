@@ -11,11 +11,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_f76f5b63;
+#namespace zm_zod_bridges;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f76f5b63
+	Namespace: zm_zod_bridges
 	Checksum: 0xD1F51EE3
 	Offset: 0x330
 	Size: 0x2B
@@ -29,7 +29,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __main__
-	Namespace: namespace_f76f5b63
+	Namespace: zm_zod_bridges
 	Checksum: 0x9B24A9A6
 	Offset: 0x368
 	Size: 0x1B
@@ -43,7 +43,7 @@ function __main__()
 
 /*
 	Name: init_bridges
-	Namespace: namespace_f76f5b63
+	Namespace: zm_zod_bridges
 	Checksum: 0xEE322FE9
 	Offset: 0x390
 	Size: 0x93
@@ -67,7 +67,7 @@ function init_bridges()
 
 /*
 	Name: init_bridge
-	Namespace: namespace_f76f5b63
+	Namespace: zm_zod_bridges
 	Checksum: 0x645BB9C5
 	Offset: 0x430
 	Size: 0x4F
@@ -231,11 +231,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_f76f5b63;
+#namespace zm_zod_bridges;
 
 /*
 	Name: cbridge
-	Namespace: namespace_f76f5b63
+	Namespace: zm_zod_bridges
 	Checksum: 0xEC7B2580
 	Offset: 0xBA8
 	Size: 0x175

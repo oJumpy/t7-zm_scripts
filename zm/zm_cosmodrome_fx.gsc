@@ -1,10 +1,10 @@
 #using scripts\shared\flagsys_shared;
 
-#namespace namespace_eb3fb2b6;
+#namespace zm_cosmodrome_fx;
 
 /*
 	Name: main
-	Namespace: namespace_eb3fb2b6
+	Namespace: zm_cosmodrome_fx
 	Checksum: 0x51208832
 	Offset: 0x5B8
 	Size: 0x2B
@@ -19,7 +19,7 @@ function main()
 
 /*
 	Name: precache_scripted_fx
-	Namespace: namespace_eb3fb2b6
+	Namespace: zm_cosmodrome_fx
 	Checksum: 0x6F20814
 	Offset: 0x5F0
 	Size: 0x24D
@@ -53,7 +53,7 @@ function precache_scripted_fx()
 
 /*
 	Name: fx_overrides
-	Namespace: namespace_eb3fb2b6
+	Namespace: zm_cosmodrome_fx
 	Checksum: 0x4C494F54
 	Offset: 0x848
 	Size: 0xC9

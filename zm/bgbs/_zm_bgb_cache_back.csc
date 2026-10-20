@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_767b8a45;
+#namespace zm_bgb_cache_back;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_767b8a45
+	Namespace: zm_bgb_cache_back
 	Checksum: 0xBF91767B
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_767b8a45
+	Namespace: zm_bgb_cache_back
 	Checksum: 0x9A2BF5EA
 	Offset: 0x188
 	Size: 0x3B

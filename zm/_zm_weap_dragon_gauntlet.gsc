@@ -25,11 +25,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_2ef08cd1;
+#namespace zm_weap_dragon_gauntlet;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xBE46462E
 	Offset: 0x708
 	Size: 0x33
@@ -43,7 +43,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xE29D5E01
 	Offset: 0x748
 	Size: 0x253
@@ -75,7 +75,7 @@ function __init__()
 
 /*
 	Name: function_44774881
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xC197E6F0
 	Offset: 0x9A8
 	Size: 0x1EB
@@ -130,7 +130,7 @@ function private function_44774881()
 
 /*
 	Name: reset_after_bleeding_out
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x3078337
 	Offset: 0xBA0
 	Size: 0x4B
@@ -147,7 +147,7 @@ function reset_after_bleeding_out()
 
 /*
 	Name: function_421902c5
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x6188835
 	Offset: 0xBF8
 	Size: 0x53
@@ -165,7 +165,7 @@ function function_421902c5()
 
 /*
 	Name: function_99a68dd
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x3A2A6B65
 	Offset: 0xC58
 	Size: 0xFF
@@ -187,7 +187,7 @@ function function_99a68dd()
 
 /*
 	Name: function_36f6c07f
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xF5D3BE02
 	Offset: 0xD60
 	Size: 0x17
@@ -201,7 +201,7 @@ function function_36f6c07f(var_147067e4)
 
 /*
 	Name: function_712b36f9
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x16735161
 	Offset: 0xD80
 	Size: 0x233
@@ -244,7 +244,7 @@ function function_712b36f9(var_40c4a571)
 
 /*
 	Name: function_b90c6ba
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x81E25C37
 	Offset: 0xFC0
 	Size: 0xE3
@@ -268,7 +268,7 @@ function function_b90c6ba(var_40c4a571)
 
 /*
 	Name: function_f79afde0
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x7FC9F7D3
 	Offset: 0x10B0
 	Size: 0x1DB
@@ -303,7 +303,7 @@ function function_f79afde0(var_dabe8ae8)
 
 /*
 	Name: function_d638417f
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x62D44725
 	Offset: 0x1298
 	Size: 0x173
@@ -336,7 +336,7 @@ function function_d638417f(var_dabe8ae8)
 
 /*
 	Name: weapon_change_watcher
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xDBF74E8B
 	Offset: 0x1418
 	Size: 0x1FF
@@ -382,7 +382,7 @@ function weapon_change_watcher()
 
 /*
 	Name: function_22a08c51
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xC371313E
 	Offset: 0x1620
 	Size: 0x11D
@@ -418,7 +418,7 @@ function function_22a08c51(weapon)
 
 /*
 	Name: function_c0093887
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xE640FFC0
 	Offset: 0x1748
 	Size: 0x23B
@@ -469,7 +469,7 @@ function function_c0093887()
 
 /*
 	Name: is_in_array
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xD82E75F2
 	Offset: 0x1990
 	Size: 0xA1
@@ -493,7 +493,7 @@ function is_in_array(item, Array)
 
 /*
 	Name: function_d7a4275d
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x73CFC544
 	Offset: 0x1A40
 	Size: 0x2A7
@@ -552,7 +552,7 @@ function function_d7a4275d()
 
 /*
 	Name: function_62d6a233
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xB2E9807C
 	Offset: 0x1CF0
 	Size: 0x11F
@@ -582,7 +582,7 @@ function function_62d6a233()
 
 /*
 	Name: function_8e2014a0
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x50D866A6
 	Offset: 0x1E18
 	Size: 0xFD
@@ -615,7 +615,7 @@ function function_8e2014a0()
 
 /*
 	Name: function_e7fe168a
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x5EBDE3A
 	Offset: 0x1F20
 	Size: 0x17F
@@ -650,7 +650,7 @@ function function_e7fe168a(weapon)
 
 /*
 	Name: function_345e492a
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x3B1FC9F3
 	Offset: 0x20A8
 	Size: 0x329
@@ -700,7 +700,7 @@ function function_345e492a(damage_point, radius)
 
 /*
 	Name: function_fa885ef2
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xFF348C9D
 	Offset: 0x23E0
 	Size: 0x35B
@@ -761,7 +761,7 @@ function function_fa885ef2(e_player, ai_enemy)
 
 /*
 	Name: function_2f36d185
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x47700A4D
 	Offset: 0x2748
 	Size: 0x173
@@ -799,7 +799,7 @@ function function_2f36d185(weapon)
 
 /*
 	Name: function_cd7dbd9d
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xCE863D25
 	Offset: 0x28C8
 	Size: 0xCF
@@ -821,7 +821,7 @@ function function_cd7dbd9d(weapon)
 
 /*
 	Name: function_f5802b55
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xCE3ABDE3
 	Offset: 0x29A0
 	Size: 0x193
@@ -854,7 +854,7 @@ function function_f5802b55()
 
 /*
 	Name: delayed_show
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xD7D9C291
 	Offset: 0x2B40
 	Size: 0x43
@@ -871,7 +871,7 @@ function delayed_show()
 
 /*
 	Name: function_1692b405
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x39E3894
 	Offset: 0x2B90
 	Size: 0x43
@@ -888,7 +888,7 @@ function function_1692b405()
 
 /*
 	Name: function_22d7caeb
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x7F97B335
 	Offset: 0x2BE0
 	Size: 0x8B
@@ -911,7 +911,7 @@ function function_22d7caeb()
 
 /*
 	Name: function_b80d5548
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x880B5889
 	Offset: 0x2C78
 	Size: 0x6F
@@ -934,7 +934,7 @@ function function_b80d5548()
 
 /*
 	Name: function_cb315e40
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xBB41D809
 	Offset: 0x2CF0
 	Size: 0x255
@@ -980,7 +980,7 @@ function function_cb315e40(inflictor, attacker, damage, flags, meansOfDeath, wea
 
 /*
 	Name: function_d775fe77
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x527B208B
 	Offset: 0x2F50
 	Size: 0x103
@@ -997,7 +997,7 @@ function function_d775fe77(eInflictor, attacker, iDamage, sMeansOfDeath, weapon,
 
 /*
 	Name: function_cb6fb97
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x6375ECB1
 	Offset: 0x3060
 	Size: 0x11B
@@ -1015,7 +1015,7 @@ function function_cb6fb97(eInflictor, attacker, iDamage, sMeansOfDeath, weapon, 
 
 /*
 	Name: function_a23fb854
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x5FFB6F76
 	Offset: 0x3188
 	Size: 0x747
@@ -1121,7 +1121,7 @@ function function_a23fb854()
 
 /*
 	Name: function_82f11e44
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xFC7184E3
 	Offset: 0x38D8
 	Size: 0x5F
@@ -1134,7 +1134,7 @@ function function_82f11e44()
 		self endon("disconnect");
 		self endon("death");
 		self endon("bled_out");
-		self endon("hash_bd42c97e");
+		self endon("set_traversal_end_sound");
 		while(1)
 		{
 			self EnableInvulnerability();
@@ -1145,7 +1145,7 @@ function function_82f11e44()
 
 /*
 	Name: function_c2e5ffc1
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x12F83EF8
 	Offset: 0x3940
 	Size: 0x2B
@@ -1155,7 +1155,7 @@ function function_82f11e44()
 function function_c2e5ffc1()
 {
 	/#
-		self notify("hash_bd42c97e");
+		self notify("set_traversal_end_sound");
 		self DisableInvulnerability();
 	#/
 }

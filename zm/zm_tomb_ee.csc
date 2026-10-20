@@ -155,7 +155,7 @@ function toggle_fist_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, f
 		stopfx(localClientNum, self.fist_fx_r);
 		stopfx(localClientNum, self.fist_fx_l);
 	}
-	self notify("hash_613e39fa");
+	self notify("snddeleteent");
 }
 
 /*
@@ -247,14 +247,14 @@ function run_plane_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fie
 	while(1)
 	{
 		e_player = GetLocalPlayer(localClientNum);
-		if(isdefined(e_player) && (isdefined(e_player.zombie_blood_fx) && e_player.zombie_blood_fx) && !isdefined(self.var_f37e5d12))
+		if(isdefined(e_player) && (isdefined(e_player.zombie_blood_fx) && e_player.zombie_blood_fx) && !isdefined(self.plane_fx))
 		{
-			self.var_f37e5d12 = PlayFXOnTag(localClientNum, level._effect["biplane_glow"], self, "tag_origin");
+			self.plane_fx = PlayFXOnTag(localClientNum, level._effect["biplane_glow"], self, "tag_origin");
 		}
-		if(isdefined(e_player) && (!isdefined(e_player.zombie_blood_fx) && e_player.zombie_blood_fx) && isdefined(self.var_f37e5d12))
+		if(isdefined(e_player) && (!isdefined(e_player.zombie_blood_fx) && e_player.zombie_blood_fx) && isdefined(self.plane_fx))
 		{
-			stopfx(localClientNum, self.var_f37e5d12);
-			self.var_f37e5d12 = undefined;
+			stopfx(localClientNum, self.plane_fx);
+			self.plane_fx = undefined;
 		}
 		wait(0.05);
 	}

@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_a3222192;
+#namespace zm_bgb_dead_of_nuclear_winter;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a3222192
+	Namespace: zm_bgb_dead_of_nuclear_winter
 	Checksum: 0xF1AC02A6
 	Offset: 0x160
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a3222192
+	Namespace: zm_bgb_dead_of_nuclear_winter
 	Checksum: 0xF37B4616
 	Offset: 0x1A0
 	Size: 0x3B

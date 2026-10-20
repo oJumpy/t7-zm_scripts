@@ -16,7 +16,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_carpenter
-	Checksum: 0x6F65EBA2
+	Checksum: 0x8A31DF09
 	Offset: 0x2D8
 	Size: 0x33
 	Parameters: 0
@@ -30,7 +30,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_carpenter
-	Checksum: 0xE83BFB6C
+	Checksum: 0x97FC3A3C
 	Offset: 0x318
 	Size: 0xB3
 	Parameters: 0
@@ -49,7 +49,7 @@ function __init__()
 /*
 	Name: grab_carpenter
 	Namespace: zm_powerup_carpenter
-	Checksum: 0x56F49635
+	Checksum: 0x4FD446A2
 	Offset: 0x3D8
 	Size: 0x9B
 	Parameters: 1
@@ -75,7 +75,7 @@ function grab_carpenter(player)
 /*
 	Name: start_carpenter
 	Namespace: zm_powerup_carpenter
-	Checksum: 0xA77760CA
+	Checksum: 0x71DAB0F1
 	Offset: 0x480
 	Size: 0x323
 	Parameters: 1
@@ -136,7 +136,7 @@ function start_carpenter(origin)
 /*
 	Name: get_closest_window_repair
 	Namespace: zm_powerup_carpenter
-	Checksum: 0xBB715FE8
+	Checksum: 0x5110DC51
 	Offset: 0x7B0
 	Size: 0x13D
 	Parameters: 2
@@ -170,7 +170,7 @@ function get_closest_window_repair(windows, origin)
 /*
 	Name: start_carpenter_new
 	Namespace: zm_powerup_carpenter
-	Checksum: 0xA2666C73
+	Checksum: 0x19803083
 	Offset: 0x8F8
 	Size: 0x491
 	Parameters: 1
@@ -259,7 +259,7 @@ function start_carpenter_new(origin)
 /*
 	Name: get_near_boards
 	Namespace: zm_powerup_carpenter
-	Checksum: 0x23CF1427
+	Checksum: 0x5DF7CAB1
 	Offset: 0xD98
 	Size: 0x165
 	Parameters: 1
@@ -300,7 +300,7 @@ function get_near_boards(windows)
 /*
 	Name: get_far_boards
 	Namespace: zm_powerup_carpenter
-	Checksum: 0x6EF7041A
+	Checksum: 0xD6B80218
 	Offset: 0xF08
 	Size: 0x165
 	Parameters: 1
@@ -341,7 +341,7 @@ function get_far_boards(windows)
 /*
 	Name: repair_far_boards
 	Namespace: zm_powerup_carpenter
-	Checksum: 0xEA39F32E
+	Checksum: 0xFB37F39B
 	Offset: 0x1078
 	Size: 0x2ED
 	Parameters: 2
@@ -399,7 +399,7 @@ function repair_far_boards(barriers, upgrade)
 /*
 	Name: func_should_drop_carpenter
 	Namespace: zm_powerup_carpenter
-	Checksum: 0xE0D6046E
+	Checksum: 0xFF5A2E97
 	Offset: 0x1370
 	Size: 0x23
 	Parameters: 0
@@ -417,7 +417,7 @@ function func_should_drop_carpenter()
 /*
 	Name: get_num_window_destroyed
 	Namespace: zm_powerup_carpenter
-	Checksum: 0x37BB78A1
+	Checksum: 0x16F53437
 	Offset: 0x13A0
 	Size: 0x8B
 	Parameters: 0

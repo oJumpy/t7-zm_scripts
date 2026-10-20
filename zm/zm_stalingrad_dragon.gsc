@@ -83,7 +83,7 @@ function __init__()
 	level.var_181b1223 = "south";
 	level.var_5494305 = undefined;
 	function_cf4cd159();
-	function_8be04f83();
+	dragon_transport_init();
 	function_ffa0a9ed();
 	function_d76099a6();
 	level thread function_e56b0a04();
@@ -153,7 +153,7 @@ function dragon_hazard_init()
 }
 
 /*
-	Name: function_98324cb1
+	Name: dragon_hazard_fx_anim_init
 	Namespace: dragon
 	Checksum: 0x121C0708
 	Offset: 0x2B30
@@ -161,7 +161,7 @@ function dragon_hazard_init()
 	Parameters: 0
 	Flags: None
 */
-function function_98324cb1()
+function dragon_hazard_fx_anim_init()
 {
 	level clientfield::set("dragon_hazard_fx_anim_init", 1);
 	level thread scene::init("p7_fxanim_zm_stal_dragon_hazard_fountain_01_bundle");
@@ -176,7 +176,7 @@ function function_98324cb1()
 }
 
 /*
-	Name: function_e4dfcf7c
+	Name: dragon_boss_intro_init
 	Namespace: dragon
 	Checksum: 0x35F26CD8
 	Offset: 0x2C80
@@ -184,12 +184,12 @@ function function_98324cb1()
 	Parameters: 0
 	Flags: None
 */
-function function_e4dfcf7c()
+function dragon_boss_intro_init()
 {
 	if(!level flag::get("dragon_boss_intro_init"))
 	{
 		level flag::set("dragon_boss_intro_init");
-		level notify("hash_dfaade1d");
+		level notify("stop_dragon_hazard_think");
 		level thread scene::Play("cin_t7_ai_zm_dlc3_dragon_boss_fight_intro_b_idle");
 	}
 }
@@ -205,7 +205,7 @@ function function_e4dfcf7c()
 */
 function function_e56b0a04()
 {
-	level waittill("hash_2aa42acf");
+	level waittill("player_enter_boss_arena");
 	namespace_48c05c81::function_4da6e8(0);
 }
 
@@ -220,7 +220,7 @@ function function_e56b0a04()
 */
 function function_f85863e2()
 {
-	level endon("hash_dfaade1d");
+	level endon("stop_dragon_hazard_think");
 	level.var_de98a8ad = 0;
 	while(level.round_number <= 4)
 	{
@@ -240,7 +240,7 @@ function function_f85863e2()
 */
 function function_30137a38()
 {
-	level endon("hash_dfaade1d");
+	level endon("stop_dragon_hazard_think");
 	level.var_a8b674f9 = 0;
 	level flag::wait_till("department_store_upper_open");
 	level.var_a8b674f9 = 1;
@@ -248,7 +248,7 @@ function function_30137a38()
 }
 
 /*
-	Name: function_8be04f83
+	Name: dragon_transport_init
 	Namespace: dragon
 	Checksum: 0x78342B9F
 	Offset: 0x2DD0
@@ -256,11 +256,11 @@ function function_30137a38()
 	Parameters: 0
 	Flags: None
 */
-function function_8be04f83()
+function dragon_transport_init()
 {
 	level.var_163a43e4 = [];
 	level.n_dragon_passenger = 0;
-	level.var_f73b438a = 0;
+	level.enable_assassination_light = 0;
 	level.var_fc730f22 = [];
 	zm_weapons::add_custom_limited_weapon_check(&function_8c1bac65);
 	level.var_6e68a823 = [];
@@ -428,7 +428,7 @@ function function_59bb533b(a_ents)
 function function_851889a0(e_dragon, var_777ffc66)
 {
 	level endon("hash_9ccce34a");
-	level waittill("hash_4990c13");
+	level waittill("wingflap_arrival");
 	switch(var_777ffc66)
 	{
 		case "start":
@@ -467,7 +467,7 @@ function function_851889a0(e_dragon, var_777ffc66)
 			break;
 		}
 	}
-	level waittill("hash_d0fc432c");
+	level waittill("wingflap_exit");
 	switch(var_777ffc66)
 	{
 		case "start":
@@ -650,7 +650,7 @@ function function_c65ef401(a_ents)
 }
 
 /*
-	Name: function_b4d22afe
+	Name: dragon_hazard_think
 	Namespace: dragon
 	Checksum: 0x9A6BB8DF
 	Offset: 0x3D30
@@ -658,9 +658,9 @@ function function_c65ef401(a_ents)
 	Parameters: 0
 	Flags: None
 */
-function function_b4d22afe()
+function dragon_hazard_think()
 {
-	level endon("hash_dfaade1d");
+	level endon("stop_dragon_hazard_think");
 	level thread function_f85863e2();
 	level thread function_30137a38();
 	level.var_2ed06b05 = [];
@@ -677,14 +677,14 @@ function function_b4d22afe()
 			if(var_f72c48e9 <= level.var_de98a8ad)
 			{
 				level.var_777ffc66 = function_517c3b8c();
-				function_c5bbc2a7();
+				dragon_hazard();
 			}
 		}
 	}
 }
 
 /*
-	Name: function_c5bbc2a7
+	Name: dragon_hazard
 	Namespace: dragon
 	Checksum: 0x2267251
 	Offset: 0x3E78
@@ -692,13 +692,13 @@ function function_b4d22afe()
 	Parameters: 1
 	Flags: None
 */
-function function_c5bbc2a7(b_debug)
+function dragon_hazard(b_debug)
 {
 	if(!isdefined(b_debug))
 	{
 		b_debug = 0;
 	}
-	level endon("hash_dfaade1d");
+	level endon("stop_dragon_hazard_think");
 	if(!isdefined(level.var_777ffc66))
 	{
 		return;
@@ -709,7 +709,7 @@ function function_c5bbc2a7(b_debug)
 	}
 	if(b_debug)
 	{
-		level thread function_b4d22afe();
+		level thread dragon_hazard_think();
 	}
 }
 
@@ -724,7 +724,7 @@ function function_c5bbc2a7(b_debug)
 */
 function function_51d28faf()
 {
-	level endon("hash_147a36a4");
+	level endon("dragon_full");
 	wait(10);
 	if(level.var_163a43e4.size > 0)
 	{
@@ -835,7 +835,7 @@ function dragon_ride()
 			level thread scene::Play(var_76862d83 + "_idle_2_pavlovs_p" + n_passenger, player);
 			n_passenger++;
 		}
-		level.var_f73b438a++;
+		level.enable_assassination_light++;
 	}
 	level waittill("hash_803aa6bf");
 	level flag::clear("dragon_console_triggered");
@@ -911,7 +911,7 @@ function function_3d1f7c2e(e_dragon, var_777ffc66, var_90929db6, var_c3052a58)
 */
 function function_21146aa(e_dragon, var_777ffc66)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	a_s_location = struct::get_array("rumble_" + var_777ffc66, "targetname");
 	level waittill("fire_start");
 	e_dragon clientfield::set("dragon_body_glow", 1);
@@ -973,7 +973,7 @@ function function_acdda91d(str_rumble, a_s_location)
 */
 function function_ca29ccc4(e_dragon, var_777ffc66)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	e_dragon thread function_c4860ff6();
 	switch(var_777ffc66)
 	{
@@ -1020,7 +1020,7 @@ function function_ca29ccc4(e_dragon, var_777ffc66)
 */
 function function_d4556285(e_dragon, var_777ffc66)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level endon("hash_a35dee4e");
 	level waittill("breathe_fire");
 	level thread function_ca29ccc4(e_dragon, var_777ffc66);
@@ -1060,7 +1060,7 @@ function function_d4556285(e_dragon, var_777ffc66)
 */
 function function_c4860ff6()
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level waittill("fire_end");
 	self.var_caa5308f.firing = 0;
 }
@@ -1085,10 +1085,10 @@ function function_2d3f510e(var_c3052a58)
 			{
 				if(!var_c3052a58 && math::cointoss() && (!isdefined(self.var_37ba64ca) && self.var_37ba64ca))
 				{
-					if(!isdefined(player.var_22e4c94d) || (isdefined(player.var_22e4c94d) && player.var_22e4c94d.size >= 1))
+					if(!isdefined(player.init_zm_powerup_free_perk_trigger) || (isdefined(player.init_zm_powerup_free_perk_trigger) && player.init_zm_powerup_free_perk_trigger.size >= 1))
 					{
 						self.var_37ba64ca = 1;
-						player thread namespace_dcf9c464::function_b86ec8c9();
+						player thread zm_stalingrad_vo::function_b86ec8c9();
 					}
 				}
 				player thread function_2cc55104();
@@ -1130,7 +1130,7 @@ function function_c6f5d03()
 				player function_20b34915();
 			}
 		}
-		a_zombies = namespace_57695b4d::function_d41418b8();
+		a_zombies = zm_elemental_zombie::function_d41418b8();
 		foreach(zombies in a_zombies)
 		{
 			if(zombies istouching(self) && (!isdefined(self.is_elemental_zombie) && self.is_elemental_zombie))
@@ -1230,7 +1230,7 @@ function function_20b34915()
 	}
 	else
 	{
-		self thread namespace_57695b4d::function_f4defbc2();
+		self thread zm_elemental_zombie::function_f4defbc2();
 		if(!level flag::get("dragon_boss_start"))
 		{
 			self zombie_utility::set_zombie_run_cycle(self.zombie_move_speed_original);
@@ -1538,7 +1538,7 @@ function function_5bafaddd(str_console, a_str_console_other)
 		mdl_console.b_can_use = 0;
 		mdl_antenna = GetEnt("dragon_console_antenna_" + str_console, "targetname");
 		mdl_antenna thread scene::Play("p7_fxanim_zm_stal_dragon_console_antenna_bundle", mdl_antenna);
-		level thread namespace_dcf9c464::function_4311e03d();
+		level thread zm_stalingrad_vo::function_4311e03d();
 		level flag::set("dragon_console_triggered");
 		level flag::wait_till("dragon_platform_arrive");
 		level.var_f5464041[str_console] = 6;
@@ -1593,7 +1593,7 @@ function function_5bafaddd(str_console, a_str_console_other)
 			level.var_f5464041[str_console] = 7;
 			level flag::wait_till_any(Array("dragon_rider_timeout", "dragon_full"));
 			level.var_f5464041[str_console] = 8;
-			level thread namespace_dcf9c464::function_c9fde593();
+			level thread zm_stalingrad_vo::function_c9fde593();
 			level flag::set(str_console + "_console_cooldown");
 			foreach(str_console_other in a_str_console_other)
 			{
@@ -1885,11 +1885,11 @@ function function_8b508a1b()
 		}
 		else if(!level flag::get("dragonride_crafted"))
 		{
-			level thread namespace_dcf9c464::function_cfb82bef();
+			level thread zm_stalingrad_vo::function_cfb82bef();
 		}
 		else if(var_422cea21 == 1 || var_422cea21 == 2 || var_422cea21 == 4 || var_422cea21 == 8)
 		{
-			level thread namespace_dcf9c464::function_902b2a27();
+			level thread zm_stalingrad_vo::function_902b2a27();
 		}
 		util::wait_network_frame();
 	}
@@ -2004,7 +2004,7 @@ function function_d21f20fe()
 }
 
 /*
-	Name: function_1b58252d
+	Name: dragon_console_global_disable
 	Namespace: dragon
 	Checksum: 0x7DE35C7E
 	Offset: 0x7970
@@ -2012,7 +2012,7 @@ function function_d21f20fe()
 	Parameters: 0
 	Flags: None
 */
-function function_1b58252d()
+function dragon_console_global_disable()
 {
 	level flag::set("dragon_console_global_disable");
 	if(isdefined(level.var_9d19c7e))
@@ -2138,7 +2138,7 @@ function function_76121f8c(s_unitrigger)
 	self endon("craft_succeed");
 	self endon("craft_failed");
 	s_unitrigger waittill("kill_trigger");
-	self notify("hash_d9eb4bb1");
+	self notify("dragon_ride_kill_trigger");
 }
 
 /*
@@ -2471,7 +2471,7 @@ function function_280af5e8()
 		self.var_fa6d2a24 = 1;
 		self zm_utility::increment_ignoreme();
 		self.bgb_disabled = 1;
-		self thread namespace_dcf9c464::function_cf8fccfe(1);
+		self thread zm_stalingrad_vo::function_cf8fccfe(1);
 		v_angles = level.var_e29dd7ca GetTagAngles(var_ce48aee6);
 		self SetPlayerAngles((0, v_angles[1], 0));
 		self PlayerLinkToDelta(level.var_e29dd7ca, var_ce48aee6, 1, 45, 45, 80, 10, 1, 1);
@@ -2527,7 +2527,7 @@ function function_fce6cca8(v_target_origin, var_2a65eda2)
 	self clientfield::set("dragon_transport_eject", 1);
 	self playsound("zmb_dragon_eject");
 	self PlayLoopSound("zmb_dragon_fly_lp");
-	self thread namespace_dcf9c464::function_cf8fccfe(0);
+	self thread zm_stalingrad_vo::function_cf8fccfe(0);
 	n_time = var_848f1155 zm_utility::fake_physicslaunch(v_target_origin, 400);
 	wait(n_time);
 	self clientfield::set("dragon_transport_eject", 0);
@@ -2558,7 +2558,7 @@ function function_fce6cca8(v_target_origin, var_2a65eda2)
 */
 function function_3f0f5f61()
 {
-	var_b80ee5b5 = struct::get_array("s_pavlov_player", "targetname");
+	s_pavlov_player = struct::get_array("s_pavlov_player", "targetname");
 	var_9544a498 = 0;
 	var_58151835 = 0;
 	foreach(player in level.var_163a43e4)
@@ -2600,13 +2600,13 @@ function function_3f0f5f61()
 			{
 				var_ce48aee6 = "tag_passenger" + level.var_3f756142;
 				var_2a65eda2 = level.var_e29dd7ca GetTagAngles(var_ce48aee6);
-				player thread function_fce6cca8(var_b80ee5b5[level.var_3f756142 - 1].origin, var_2a65eda2);
+				player thread function_fce6cca8(s_pavlov_player[level.var_3f756142 - 1].origin, var_2a65eda2);
 			}
 			else
 			{
 				var_ce48aee6 = "tag_passenger" + var_9544a498 + 1;
 				var_2a65eda2 = level.var_e29dd7ca GetTagAngles(var_ce48aee6);
-				player thread function_fce6cca8(var_b80ee5b5[var_9544a498].origin, var_2a65eda2);
+				player thread function_fce6cca8(s_pavlov_player[var_9544a498].origin, var_2a65eda2);
 			}
 			wait(0.4);
 		}
@@ -2718,7 +2718,7 @@ function dragon_boss(b_debug)
 		if(b_debug)
 		{
 			level flag::set("Dev Block strings are not supported");
-			function_e4dfcf7c();
+			dragon_boss_intro_init();
 			function_17b7a6a();
 		}
 	#/
@@ -2764,13 +2764,13 @@ function function_c0e035d6(str_spawn, b_raz, var_8f4dddff)
 	a_s_spawn = Array::filter(a_s_spawn, 0, &namespace_48c05c81::function_c66f2957);
 	if(!b_raz)
 	{
-		level notify("hash_e4612674");
+		level notify("stop_dragon_boss_zombie");
 		wait(1);
 		level thread namespace_48c05c81::function_f70dde0b(level.zombie_spawners[0], a_s_spawn, str_spawn, level.var_e66ebd0c[level.activePlayers.size - 1], 1.25, undefined, "stop_dragon_boss_zombie", 0);
 	}
 	else
 	{
-		level notify("hash_e4612674");
+		level notify("stop_dragon_boss_zombie");
 		wait(1);
 		n_zombie_count = level.var_e66ebd0c[level.activePlayers.size - 1] - level.var_8447be11[level.activePlayers.size - 1] * var_8f4dddff;
 		level thread namespace_48c05c81::function_f70dde0b(level.zombie_spawners[0], a_s_spawn, str_spawn, n_zombie_count, 1.25, undefined, "stop_dragon_boss_zombie", 0);
@@ -2869,10 +2869,10 @@ function function_ffa0a9ed()
 	scene::add_scene_func("cin_sta_1st_boss_transition_nikolai", &function_8d48f9f7, "play", 1);
 	scene::add_scene_func("cin_sta_1st_boss_transition_richtofen", &function_8d48f9f7, "play", 2);
 	scene::add_scene_func("cin_sta_1st_boss_transition_takeo", &function_8d48f9f7, "play", 3);
-	scene::add_scene_func("cin_sta_1st_boss_transition_dempsey", &function_da30f1f7, "done");
-	scene::add_scene_func("cin_sta_1st_boss_transition_nikolai", &function_9b8ffa45, "done");
-	scene::add_scene_func("cin_sta_1st_boss_transition_richtofen", &function_f3b8c3fa, "done");
-	scene::add_scene_func("cin_sta_1st_boss_transition_takeo", &function_ce0d21ea, "done");
+	scene::add_scene_func("cin_sta_1st_boss_transition_dempsey", &dragon_boss_transition_dempsey_done, "done");
+	scene::add_scene_func("cin_sta_1st_boss_transition_nikolai", &dragon_boss_transition_nikolai_done, "done");
+	scene::add_scene_func("cin_sta_1st_boss_transition_richtofen", &dragon_boss_transition_richtofen_done, "done");
+	scene::add_scene_func("cin_sta_1st_boss_transition_takeo", &dragon_boss_transition_takeo_done, "done");
 	scene::add_scene_func("cin_sta_vign_mech_intro", &function_109151c2, "init");
 	scene::add_scene_func("cin_sta_vign_mech_intro", &function_bd0972bc, "done");
 	/#
@@ -2961,7 +2961,7 @@ function function_7aaaf6eb()
 	{
 		wait(RandomFloatRange(15, 25));
 		var_448853df = Array::random(self.var_d38bf7e6[level.var_ef6a691]);
-		self.var_fa4643fb thread namespace_dcf9c464::function_897246e4(var_448853df);
+		self.var_fa4643fb thread zm_stalingrad_vo::function_897246e4(var_448853df);
 	}
 }
 
@@ -2999,7 +2999,7 @@ function function_d76099a6()
 }
 
 /*
-	Name: function_11700745
+	Name: dragon_boss_init
 	Namespace: dragon
 	Checksum: 0xA70677C6
 	Offset: 0xA680
@@ -3007,7 +3007,7 @@ function function_d76099a6()
 	Parameters: 0
 	Flags: None
 */
-function function_11700745()
+function dragon_boss_init()
 {
 	level.mdl_dragon_hazard SetModel("c_zom_dlc3_dragon_body_boss_hazard");
 	foreach(var_5cd4afc1 in level.var_553153a1)
@@ -3081,7 +3081,7 @@ function function_b1bbbd8f()
 	while(1)
 	{
 		level flag::wait_till("dragon_boss_vignette");
-		while(!function_8d33a9b5() || !function_1a2d9dc9())
+		while(!dragon_boss_vignette_ready() || !function_1a2d9dc9())
 		{
 			wait(0.1);
 		}
@@ -3148,9 +3148,9 @@ function function_109151c2(a_ents)
 function function_bd0972bc(a_ents)
 {
 	level.var_ef9c43d7 notify("end_attack_thread_gun");
-	level.var_ef9c43d7 thread function_32faa6e1();
+	level.var_ef9c43d7 thread dragon_nikolai_think();
 	level notify("hash_2425bb5b");
-	level.var_ef9c43d7 thread namespace_48757881::function_f7035c2f(level.var_ef9c43d7.var_fa4643fb);
+	level.var_ef9c43d7 thread siegebot_nikolai::function_f7035c2f(level.var_ef9c43d7.var_fa4643fb);
 }
 
 /*
@@ -3164,7 +3164,7 @@ function function_bd0972bc(a_ents)
 */
 function function_cab64a16(a_ents)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level endon("hash_a35dee4e");
 }
 
@@ -3179,11 +3179,11 @@ function function_cab64a16(a_ents)
 */
 function function_3bc22c00(a_ents)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level endon("hash_a35dee4e");
 	if(level flag::get("dragon_boss_vignette"))
 	{
-		if(!function_8d33a9b5())
+		if(!dragon_boss_vignette_ready())
 		{
 			level.var_b04a9a70 = 4;
 			level thread function_c40e4649(level.var_b04a9a70);
@@ -3223,7 +3223,7 @@ function function_3bc22c00(a_ents)
 */
 function function_c08b162c(a_ents)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level endon("hash_a35dee4e");
 	if(!flag::get("dragon_interrupt") && !flag::get("world_is_paused"))
 	{
@@ -3257,7 +3257,7 @@ function function_bf4afe33()
 }
 
 /*
-	Name: function_8d33a9b5
+	Name: dragon_boss_vignette_ready
 	Namespace: dragon
 	Checksum: 0x19108DF3
 	Offset: 0xB648
@@ -3265,7 +3265,7 @@ function function_bf4afe33()
 	Parameters: 0
 	Flags: None
 */
-function function_8d33a9b5()
+function dragon_boss_vignette_ready()
 {
 	level endon("hash_a35dee4e");
 	if(level.var_7a29ed06 == 1)
@@ -3359,11 +3359,11 @@ function function_1a2d9dc9()
 */
 function function_8226b1a6(a_ents)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level endon("hash_a35dee4e");
 	if(level flag::get("dragon_boss_vignette"))
 	{
-		if(!function_8d33a9b5())
+		if(!dragon_boss_vignette_ready())
 		{
 			level.var_b04a9a70 = 4;
 			level thread function_c40e4649(level.var_b04a9a70);
@@ -3478,7 +3478,7 @@ function function_cbded78b(a_ents)
 	level flag::clear("dragon_boss_in_air");
 	if(level flag::get("dragon_boss_vignette"))
 	{
-		if(!function_8d33a9b5())
+		if(!dragon_boss_vignette_ready())
 		{
 			level.var_b04a9a70 = 4;
 			level thread function_c40e4649(level.var_b04a9a70);
@@ -3509,7 +3509,7 @@ function function_cbded78b(a_ents)
 */
 function function_c24d6636(a_ents)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level endon("hash_a35dee4e");
 }
 
@@ -3524,11 +3524,11 @@ function function_c24d6636(a_ents)
 */
 function function_33594820(a_ents)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level endon("hash_a35dee4e");
 	if(level flag::get("dragon_boss_vignette"))
 	{
-		if(!function_8d33a9b5())
+		if(!dragon_boss_vignette_ready())
 		{
 			level.var_b04a9a70 = 4;
 			level thread function_c40e4649(level.var_b04a9a70);
@@ -3585,12 +3585,12 @@ function function_3b09a8e3(a_ents)
 {
 	level endon("hash_a35dee4e");
 	level flag::clear("dragon_boss_in_air");
-	level.var_ef9c43d7 notify("hash_320a6894");
+	level.var_ef9c43d7 notify("reselect_goal");
 	level.var_181b1223 = level.var_5494305;
 	level.var_5494305 = undefined;
 	if(level flag::get("dragon_boss_vignette"))
 	{
-		if(!function_8d33a9b5())
+		if(!dragon_boss_vignette_ready())
 		{
 			level.var_b04a9a70 = 4;
 			level thread function_c40e4649(level.var_b04a9a70);
@@ -3764,7 +3764,7 @@ function function_2a3b64e3()
 	level flag::clear("dragon_boss_start");
 	level LUI::screen_fade_out(1, "white");
 	level thread function_47b84e6b();
-	level thread function_11044369();
+	level thread dragon_nikolai_cleanup();
 	level util::waittill_any("dragon_boss_transition_dempsey_done", "dragon_boss_transition_nikolai_done", "dragon_boss_transition_richtofen_done", "dragon_boss_transition_takeo_done");
 	function_ee289cd();
 }
@@ -3865,7 +3865,7 @@ function function_8d48f9f7(a_ents, n_character)
 }
 
 /*
-	Name: function_da30f1f7
+	Name: dragon_boss_transition_dempsey_done
 	Namespace: dragon
 	Checksum: 0x9E03D263
 	Offset: 0xCBC8
@@ -3873,13 +3873,13 @@ function function_8d48f9f7(a_ents, n_character)
 	Parameters: 1
 	Flags: None
 */
-function function_da30f1f7(a_ents)
+function dragon_boss_transition_dempsey_done(a_ents)
 {
-	level notify("hash_da30f1f7");
+	level notify("dragon_boss_transition_dempsey_done");
 }
 
 /*
-	Name: function_9b8ffa45
+	Name: dragon_boss_transition_nikolai_done
 	Namespace: dragon
 	Checksum: 0x3C4377A3
 	Offset: 0xCBF0
@@ -3887,13 +3887,13 @@ function function_da30f1f7(a_ents)
 	Parameters: 1
 	Flags: None
 */
-function function_9b8ffa45(a_ents)
+function dragon_boss_transition_nikolai_done(a_ents)
 {
-	level notify("hash_9b8ffa45");
+	level notify("dragon_boss_transition_nikolai_done");
 }
 
 /*
-	Name: function_f3b8c3fa
+	Name: dragon_boss_transition_richtofen_done
 	Namespace: dragon
 	Checksum: 0x52338854
 	Offset: 0xCC18
@@ -3901,13 +3901,13 @@ function function_9b8ffa45(a_ents)
 	Parameters: 1
 	Flags: None
 */
-function function_f3b8c3fa(a_ents)
+function dragon_boss_transition_richtofen_done(a_ents)
 {
-	level notify("hash_f3b8c3fa");
+	level notify("dragon_boss_transition_richtofen_done");
 }
 
 /*
-	Name: function_ce0d21ea
+	Name: dragon_boss_transition_takeo_done
 	Namespace: dragon
 	Checksum: 0x87F5861C
 	Offset: 0xCC40
@@ -3915,9 +3915,9 @@ function function_f3b8c3fa(a_ents)
 	Parameters: 1
 	Flags: None
 */
-function function_ce0d21ea(a_ents)
+function dragon_boss_transition_takeo_done(a_ents)
 {
-	level notify("hash_ce0d21ea");
+	level notify("dragon_boss_transition_takeo_done");
 }
 
 /*
@@ -3969,7 +3969,7 @@ function function_ee289cd()
 */
 function function_883bba2(a_ents)
 {
-	function_11700745();
+	dragon_boss_init();
 	level.mdl_dragon_hazard thread dragon_damage();
 	level thread dragon_boss_think();
 	function_c0e035d6("boss_arena_spawn");
@@ -4023,7 +4023,7 @@ function function_96eb8639()
 */
 function function_cf6274b2()
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level endon("hash_a35dee4e");
 	n_decision = RandomFloat(1);
 	if(level.var_ef6a691 < 3)
@@ -4092,7 +4092,7 @@ function function_bba545e9()
 */
 function function_c40e4649(n_decision)
 {
-	level endon("hash_e7150ae0");
+	level endon("dragon_interrupt");
 	level endon("hash_a35dee4e");
 	switch(n_decision)
 	{
@@ -4262,7 +4262,7 @@ function function_6a9f428b()
 	level flag::clear("dragon_boss_in_air");
 	if(level flag::get("dragon_boss_vignette"))
 	{
-		if(!function_8d33a9b5())
+		if(!dragon_boss_vignette_ready())
 		{
 			level.var_b04a9a70 = 4;
 			level thread function_c40e4649(level.var_b04a9a70);
@@ -4393,9 +4393,9 @@ function start_nikolai_boss(b_debug)
 */
 function dragon_boss_stop()
 {
-	level notify("hash_dfaade1d");
+	level notify("stop_dragon_hazard_think");
 	level notify("hash_a35dee4e");
-	level notify("hash_e4612674");
+	level notify("stop_dragon_boss_zombie");
 	level thread namespace_48c05c81::function_adf4d1d0();
 	level thread dragon_boss_music(0);
 	level clientfield::set("deactivate_ai_vox", 0);
@@ -4478,7 +4478,7 @@ function dragon_boss_music(turnOn)
 }
 
 /*
-	Name: function_285a7d29
+	Name: dragon_nikolai_init
 	Namespace: dragon
 	Checksum: 0x3DEF46D4
 	Offset: 0xE3B8
@@ -4486,13 +4486,13 @@ function dragon_boss_music(turnOn)
 	Parameters: 0
 	Flags: None
 */
-function function_285a7d29()
+function dragon_nikolai_init()
 {
 	level scene::init("cin_sta_vign_mech_intro");
 }
 
 /*
-	Name: function_11044369
+	Name: dragon_nikolai_cleanup
 	Namespace: dragon
 	Checksum: 0x71ED0CF8
 	Offset: 0xE3E8
@@ -4500,9 +4500,9 @@ function function_285a7d29()
 	Parameters: 0
 	Flags: None
 */
-function function_11044369()
+function dragon_nikolai_cleanup()
 {
-	level.var_ef9c43d7 notify("hash_434ee59c");
+	level.var_ef9c43d7 notify("stop_dragon_nikolai_think");
 	level.var_ef9c43d7.var_fa4643fb delete();
 	util::wait_network_frame();
 	level.var_ef9c43d7 delete();
@@ -4576,7 +4576,7 @@ function Attack_Thread_Gun()
 	self endon("end_attack_thread");
 	self notify("end_attack_thread_gun");
 	self endon("end_attack_thread_gun");
-	self endon("hash_434ee59c");
+	self endon("stop_dragon_nikolai_think");
 	count = 0;
 	while(1)
 	{
@@ -4655,7 +4655,7 @@ function Attack_Thread_Gun()
 }
 
 /*
-	Name: function_32faa6e1
+	Name: dragon_nikolai_think
 	Namespace: dragon
 	Checksum: 0x47CF388
 	Offset: 0xEB68
@@ -4663,13 +4663,13 @@ function Attack_Thread_Gun()
 	Parameters: 1
 	Flags: None
 */
-function function_32faa6e1(no_delay)
+function dragon_nikolai_think(no_delay)
 {
 	if(!isdefined(no_delay))
 	{
 		no_delay = 0;
 	}
-	self endon("hash_434ee59c");
+	self endon("stop_dragon_nikolai_think");
 	self SetCanDamage(0);
 	self thread Attack_Thread_Gun();
 	if(!no_delay)
@@ -4787,7 +4787,7 @@ function function_6689dfc5(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 */
 function function_5b3d5084(var_8a585abc)
 {
-	self endon("hash_434ee59c");
+	self endon("stop_dragon_nikolai_think");
 	if(var_8a585abc)
 	{
 		v_target = level.mdl_dragon_hazard GetTagOrigin(level.var_61699bd7[level.var_ef6a691][0]);
@@ -4797,7 +4797,7 @@ function function_5b3d5084(var_8a585abc)
 		v_target = level.mdl_dragon_hazard.origin;
 	}
 	self vehicle_ai::SetTurretTarget(v_target, 2);
-	self namespace_48757881::face_target(v_target, 15);
+	self siegebot_nikolai::face_target(v_target, 15);
 	spike = self FireWeapon(2);
 	spike util::waittill_notify_or_timeout("death", 3);
 	self cleargunnertarget(1);
@@ -4815,12 +4815,12 @@ function function_5b3d5084(var_8a585abc)
 */
 function function_4e639a6a()
 {
-	level endon("hash_9b018429");
-	var_a8b9bc3b = struct::get("s_dragon_boss_full_ammo", "targetname");
+	level endon("dragon_boss_dead");
+	s_dragon_boss_full_ammo = struct::get("s_dragon_boss_full_ammo", "targetname");
 	while(1)
 	{
 		level waittill("hash_2425bb5b");
-		e_powerup = zm_powerups::specific_powerup_drop("full_ammo", var_a8b9bc3b.origin);
+		e_powerup = zm_powerups::specific_powerup_drop("full_ammo", s_dragon_boss_full_ammo.origin);
 		e_powerup notify("powerup_reset");
 		level thread function_bdbc171f(e_powerup);
 		e_powerup waittill("powerup_grabbed");
@@ -4839,7 +4839,7 @@ function function_4e639a6a()
 function function_bdbc171f(e_powerup)
 {
 	e_powerup endon("powerup_grabbed");
-	level waittill("hash_7205c53c");
+	level waittill("nikolai_complete");
 	if(isdefined(e_powerup))
 	{
 		e_powerup thread zm_powerups::powerup_timeout();
@@ -4863,7 +4863,7 @@ function dragon_boss_progression()
 	{
 		wait(level.var_299d7581[level.var_7a29ed06]);
 		level flag::set("dragon_boss_vignette");
-		level.var_ef9c43d7 notify("hash_320a6894");
+		level.var_ef9c43d7 notify("reselect_goal");
 		level flag::wait_till("dragon_boss_vignette_ready");
 		switch(level.var_7a29ed06)
 		{
@@ -4920,7 +4920,7 @@ function function_f3810a1d(var_2443f661)
 		}
 		wait(0.05);
 	}
-	self notify("hash_434ee59c");
+	self notify("stop_dragon_nikolai_think");
 	self SetTurretTargetRelativeAngles((0, 0, 0), 0);
 	self SetTurretTargetRelativeAngles((0, 0, 0), 1);
 	self SetTurretTargetRelativeAngles((0, 0, 0), 2);
@@ -4928,7 +4928,7 @@ function function_f3810a1d(var_2443f661)
 	self SetTurretTargetRelativeAngles((0, 0, 0), 4);
 	self SetLookAtEnt(level.mdl_dragon_hazard);
 	self vehicle_ai::SetTurretTarget(level.mdl_dragon_hazard, 0);
-	self namespace_48757881::face_target(var_9e426197.origin, 20, 0);
+	self siegebot_nikolai::face_target(var_9e426197.origin, 20, 0);
 	self.var_1163fa40 = undefined;
 	self.var_11643dca = 1;
 }
@@ -4944,7 +4944,7 @@ function function_f3810a1d(var_2443f661)
 */
 function function_a08562dc(scriptbundlename, nikolai_state, var_8d89a2d7)
 {
-	self notify("hash_434ee59c");
+	self notify("stop_dragon_nikolai_think");
 	self thread function_719d5095(var_8d89a2d7);
 	level thread scene::Play(scriptbundlename);
 	self ASMRequestSubstate(nikolai_state);
@@ -4952,7 +4952,7 @@ function function_a08562dc(scriptbundlename, nikolai_state, var_8d89a2d7)
 	self ASMRequestSubstate("locomotion@movement");
 	wait(0.4);
 	self.var_a079fbeb = 1;
-	self thread function_32faa6e1(1);
+	self thread dragon_nikolai_think(1);
 }
 
 /*
@@ -5028,7 +5028,7 @@ function function_aaf7e575()
 }
 
 /*
-	Name: function_16734812
+	Name: dragon_hazard_start
 	Namespace: dragon
 	Checksum: 0xEE13D2C9
 	Offset: 0xFB40
@@ -5036,13 +5036,13 @@ function function_aaf7e575()
 	Parameters: 0
 	Flags: None
 */
-function function_16734812()
+function dragon_hazard_start()
 {
 	/#
-		level notify("hash_dfaade1d");
+		level notify("stop_dragon_hazard_think");
 		util::wait_network_frame();
 		level.var_777ffc66 = "Dev Block strings are not supported";
-		level thread function_c5bbc2a7(1);
+		level thread dragon_hazard(1);
 	#/
 }
 
@@ -5058,10 +5058,10 @@ function function_16734812()
 function function_e7982921()
 {
 	/#
-		level notify("hash_dfaade1d");
+		level notify("stop_dragon_hazard_think");
 		util::wait_network_frame();
 		level.var_777ffc66 = "Dev Block strings are not supported";
-		level thread function_c5bbc2a7(1);
+		level thread dragon_hazard(1);
 	#/
 }
 
@@ -5077,10 +5077,10 @@ function function_e7982921()
 function function_cfe0d523()
 {
 	/#
-		level notify("hash_dfaade1d");
+		level notify("stop_dragon_hazard_think");
 		util::wait_network_frame();
 		level.var_777ffc66 = "Dev Block strings are not supported";
-		level thread function_c5bbc2a7(1);
+		level thread dragon_hazard(1);
 	#/
 }
 
@@ -5096,10 +5096,10 @@ function function_cfe0d523()
 function function_5f0cb06e()
 {
 	/#
-		level notify("hash_dfaade1d");
+		level notify("stop_dragon_hazard_think");
 		util::wait_network_frame();
 		level.var_777ffc66 = "Dev Block strings are not supported";
-		level thread function_c5bbc2a7(1);
+		level thread dragon_hazard(1);
 	#/
 }
 
@@ -5115,15 +5115,15 @@ function function_5f0cb06e()
 function function_84bd37c8()
 {
 	/#
-		level notify("hash_dfaade1d");
+		level notify("stop_dragon_hazard_think");
 		util::wait_network_frame();
 		level.var_777ffc66 = "Dev Block strings are not supported";
-		level thread function_c5bbc2a7(1);
+		level thread dragon_hazard(1);
 	#/
 }
 
 /*
-	Name: function_8bf8d33b
+	Name: dragon_hazard_library
 	Namespace: dragon
 	Checksum: 0x61E55086
 	Offset: 0xFD20
@@ -5131,13 +5131,13 @@ function function_84bd37c8()
 	Parameters: 0
 	Flags: None
 */
-function function_8bf8d33b()
+function dragon_hazard_library()
 {
 	/#
-		level notify("hash_dfaade1d");
+		level notify("stop_dragon_hazard_think");
 		util::wait_network_frame();
 		level.var_777ffc66 = "Dev Block strings are not supported";
-		level thread function_c5bbc2a7(1);
+		level thread dragon_hazard(1);
 	#/
 }
 
@@ -5153,10 +5153,10 @@ function function_8bf8d33b()
 function function_7977857()
 {
 	/#
-		level notify("hash_dfaade1d");
+		level notify("stop_dragon_hazard_think");
 		util::wait_network_frame();
 		level.var_777ffc66 = "Dev Block strings are not supported";
-		level thread function_c5bbc2a7(1);
+		level thread dragon_hazard(1);
 	#/
 }
 
@@ -5172,10 +5172,10 @@ function function_7977857()
 function function_b8de630a()
 {
 	/#
-		level notify("hash_dfaade1d");
+		level notify("stop_dragon_hazard_think");
 		util::wait_network_frame();
 		level.var_777ffc66 = "Dev Block strings are not supported";
-		level thread function_c5bbc2a7(1);
+		level thread dragon_hazard(1);
 	#/
 }
 
@@ -5217,9 +5217,9 @@ function function_ef4a09c3()
 			namespace_48c05c81::function_4da6e8(1);
 			dragon_boss_stop();
 			dragon_boss_cleanup();
-			function_11044369();
+			dragon_nikolai_cleanup();
 			util::wait_network_frame();
-			level thread function_b4d22afe();
+			level thread dragon_hazard_think();
 			level flag::clear("Dev Block strings are not supported");
 		}
 	#/
@@ -5287,7 +5287,7 @@ function function_c09859f(n_seat)
 	/#
 		if(!level flag::get("Dev Block strings are not supported"))
 		{
-			function_11700745();
+			dragon_boss_init();
 		}
 		function_17b7a6a();
 		function_8a29cbcb();

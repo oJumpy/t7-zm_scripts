@@ -1530,7 +1530,7 @@ function quadrotor_instance_watcher(player_owner)
 	self.health = 200;
 	level.maxis_quadrotor = self;
 	self MakeVehicleUnusable();
-	self thread namespace_3a47cb81::follow_ent(player_owner);
+	self thread zm_ai_quadrotor::follow_ent(player_owner);
 	self thread quadrotor_timer();
 	self thread function_e8aad972(player_owner);
 	level waittill("drone_should_return");

@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_9dd35181;
+#namespace zm_bgb_killing_time;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0xC0FA76BD
 	Offset: 0x1D8
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0x57DE1A93
 	Offset: 0x218
 	Size: 0xCB
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: instakill_upgraded_fx_cb
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0x53C00BA2
 	Offset: 0x2F0
 	Size: 0x55
@@ -64,7 +64,7 @@ function instakill_upgraded_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInit
 
 /*
 	Name: instakill_upgraded_fx_sound
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0x6E3D244B
 	Offset: 0x350
 	Size: 0x85
@@ -87,7 +87,7 @@ function instakill_upgraded_fx_sound(localClientNum)
 
 /*
 	Name: zombie_instakill_fx_cb
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0x13EBA211
 	Offset: 0x3E0
 	Size: 0xA3
@@ -109,7 +109,7 @@ function zombie_instakill_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInitia
 
 /*
 	Name: playesoundanddelete
-	Namespace: namespace_9dd35181
+	Namespace: zm_bgb_killing_time
 	Checksum: 0x4D0D7EF4
 	Offset: 0x490
 	Size: 0x53

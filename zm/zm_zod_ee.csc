@@ -18,11 +18,11 @@
 #using scripts\zm\zm_zod;
 #using scripts\zm\zm_zod_quest;
 
-#namespace namespace_ba13c715;
+#namespace zm_zod_ee;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x1604008A
 	Offset: 0x1168
 	Size: 0x33
@@ -36,7 +36,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x46556135
 	Offset: 0x11A8
 	Size: 0x6D3
@@ -62,36 +62,36 @@ function __init__()
 	n_bits = GetMinBitCountForNum(6);
 	clientfield::register("world", "ee_totem_state", 1, n_bits, "int", undefined, 0, 0);
 	n_bits = GetMinBitCountForNum(10);
-	clientfield::register("world", "ee_keeper_boxer_state", 1, n_bits, "int", &function_c207ce05, 0, 0);
-	clientfield::register("world", "ee_keeper_detective_state", 1, n_bits, "int", &function_2bf1935e, 0, 0);
-	clientfield::register("world", "ee_keeper_femme_state", 1, n_bits, "int", &function_e0fb815d, 0, 0);
-	clientfield::register("world", "ee_keeper_magician_state", 1, n_bits, "int", &function_ac2b60ba, 0, 0);
-	clientfield::register("world", "ee_shadowman_battle_active", 1, 1, "int", &function_110e1004, 0, 0);
+	clientfield::register("world", "ee_keeper_boxer_state", 1, n_bits, "int", &ee_keeper_boxer_state, 0, 0);
+	clientfield::register("world", "ee_keeper_detective_state", 1, n_bits, "int", &ee_keeper_detective_state, 0, 0);
+	clientfield::register("world", "ee_keeper_femme_state", 1, n_bits, "int", &ee_keeper_femme_state, 0, 0);
+	clientfield::register("world", "ee_keeper_magician_state", 1, n_bits, "int", &ee_keeper_magician_state, 0, 0);
+	clientfield::register("world", "ee_shadowman_battle_active", 1, 1, "int", &ee_shadowman_battle_active, 0, 0);
 	n_bits = GetMinBitCountForNum(5);
-	clientfield::register("world", "ee_superworm_state", 1, n_bits, "int", &function_3d781ecc, 0, 0);
-	clientfield::register("scriptmover", "near_apothigod_active", 1, 1, "int", &function_84bc32a6, 0, 0);
-	clientfield::register("scriptmover", "far_apothigod_active", 1, 1, "int", &function_d74175b7, 0, 0);
-	clientfield::register("scriptmover", "near_apothigod_roar", 1, 1, "counter", &function_84bc32a6, 0, 0);
-	clientfield::register("scriptmover", "far_apothigod_roar", 1, 1, "counter", &function_d74175b7, 0, 0);
-	clientfield::register("scriptmover", "apothigod_death", 1, 1, "counter", &function_cb68e14b, 0, 0);
+	clientfield::register("world", "ee_superworm_state", 1, n_bits, "int", &ee_superworm_state, 0, 0);
+	clientfield::register("scriptmover", "near_apothigod_active", 1, 1, "int", &near_apothigod_active, 0, 0);
+	clientfield::register("scriptmover", "far_apothigod_active", 1, 1, "int", &far_apothigod_active, 0, 0);
+	clientfield::register("scriptmover", "near_apothigod_roar", 1, 1, "counter", &near_apothigod_active, 0, 0);
+	clientfield::register("scriptmover", "far_apothigod_roar", 1, 1, "counter", &far_apothigod_active, 0, 0);
+	clientfield::register("scriptmover", "apothigod_death", 1, 1, "counter", &apothigod_death, 0, 0);
 	n_bits = GetMinBitCountForNum(3);
-	clientfield::register("world", "ee_keeper_beam_state", 1, n_bits, "int", &function_b6caaa24, 0, 0);
-	clientfield::register("world", "ee_final_boss_shields", 1, 1, "int", &function_ef925b15, 0, 0);
-	clientfield::register("toplayer", "ee_final_boss_attack_tell", 1, 1, "int", &function_803f7789, 0, 0);
-	clientfield::register("scriptmover", "ee_rail_electricity_state", 1, 1, "int", &function_c87b138e, 0, 0);
-	clientfield::register("world", "sndEndIGC", 1, 1, "int", &function_92650c00, 0, 0);
+	clientfield::register("world", "ee_keeper_beam_state", 1, n_bits, "int", &ee_keeper_beam_state, 0, 0);
+	clientfield::register("world", "ee_final_boss_shields", 1, 1, "int", &ee_final_boss_shields, 0, 0);
+	clientfield::register("toplayer", "ee_final_boss_attack_tell", 1, 1, "int", &ee_final_boss_attack_tell, 0, 0);
+	clientfield::register("scriptmover", "ee_rail_electricity_state", 1, 1, "int", &ee_rail_electricity_state, 0, 0);
+	clientfield::register("world", "sndEndIGC", 1, 1, "int", &sndendigc, 0, 0);
 }
 
 /*
-	Name: function_92650c00
-	Namespace: namespace_ba13c715
+	Name: sndendigc
+	Namespace: zm_zod_ee
 	Checksum: 0x6C2C3DB1
 	Offset: 0x1888
 	Size: 0x7B
 	Parameters: 7
 	Flags: None
 */
-function function_92650c00(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sndendigc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -104,15 +104,15 @@ function function_92650c00(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_110e1004
-	Namespace: namespace_ba13c715
+	Name: ee_shadowman_battle_active
+	Namespace: zm_zod_ee
 	Checksum: 0xCBC2C4F5
 	Offset: 0x1910
 	Size: 0xE3
 	Parameters: 7
 	Flags: None
 */
-function function_110e1004(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_shadowman_battle_active(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -127,7 +127,7 @@ function function_110e1004(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_f2a0dbdc
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x36C60824
 	Offset: 0x1A00
 	Size: 0x76B
@@ -145,13 +145,13 @@ function function_f2a0dbdc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		return;
 	}
 	function_373d3423(localClientNum);
-	mdl_ritual = level.var_b3c23ec9[localClientNum]["pap"].e_assembly;
+	mdl_ritual = level.main_quest[localClientNum]["pap"].e_assembly;
 	mdl_ritual util::waittill_dobj(localClientNum);
 	if(!mdl_ritual HasAnimTree())
 	{
 		mdl_ritual useanimtree(-1);
 	}
-	mdl_victim = level.var_b3c23ec9[localClientNum]["pap"].e_victim;
+	mdl_victim = level.main_quest[localClientNum]["pap"].e_victim;
 	if(!mdl_victim HasAnimTree())
 	{
 		mdl_victim useanimtree(-1);
@@ -162,10 +162,10 @@ function function_f2a0dbdc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		mdl_ritual.vfx_trails[i] = PlayFXOnTag(localClientNum, level._effect["ritual_trail"], mdl_ritual, "key_pcs0" + i + 1 + "_jnt");
 	}
-	level thread namespace_1f61c67f::sndritual(2, mdl_ritual);
+	level thread zm_zod_quest::sndritual(2, mdl_ritual);
 	level thread exploder::exploder("ritual_light_pap");
 	playsound(0, "zmb_zod_shadfight_ending", (0, 0, 0));
-	namespace_1f61c67f::toggle_altar_vfx(localClientNum, "pap", 1);
+	zm_zod_quest::toggle_altar_vfx(localClientNum, "pap", 1);
 	mdl_victim thread animation::Play("ai_zombie_zod_shadowman_captured_intro");
 	mdl_ritual animation::Play("p7_fxanim_zm_zod_redemption_key_ritual_start_anim");
 	mdl_victim ClearAnim("ai_zombie_zod_shadowman_captured_intro", 0);
@@ -179,7 +179,7 @@ function function_f2a0dbdc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	mdl_ritual ClearAnim("p7_fxanim_zm_zod_redemption_key_ritual_loop_anim", 0);
 	mdl_ritual thread animation::Play("p7_fxanim_zm_zod_redemption_key_ritual_loop_fast_anim");
 	wait(1.5);
-	mdl_victim = level.var_b3c23ec9[localClientNum]["pap"].e_victim;
+	mdl_victim = level.main_quest[localClientNum]["pap"].e_victim;
 	mdl_victim.vfx_chest = PlayFXOnTag(localClientNum, level._effect["ritual_glow_chest"], mdl_victim, "j_spineupper");
 	mdl_victim.vfx_head = PlayFXOnTag(localClientNum, level._effect["ritual_glow_head"], mdl_victim, "tag_eye");
 	mdl_ritual ClearAnim("p7_fxanim_zm_zod_redemption_key_ritual_loop_fast_anim", 0);
@@ -190,7 +190,7 @@ function function_f2a0dbdc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 			stopfx(localClientNum, var_2d3cc156);
 		}
 	}
-	level thread namespace_1f61c67f::key_combines_notetrack_watcher(localClientNum, mdl_ritual, undefined, mdl_victim, "pap");
+	level thread zm_zod_quest::key_combines_notetrack_watcher(localClientNum, mdl_ritual, undefined, mdl_victim, "pap");
 	if(newVal == 3)
 	{
 		level thread function_cf8ff04b(localClientNum);
@@ -218,7 +218,7 @@ function function_f2a0dbdc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_705b696b
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x6DD815A
 	Offset: 0x2178
 	Size: 0x7B
@@ -234,7 +234,7 @@ function function_705b696b(localClientNum, str_fx, v_origin, v_fwd, n_seconds)
 
 /*
 	Name: function_cf8ff04b
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x30A76634
 	Offset: 0x2200
 	Size: 0x43
@@ -244,12 +244,12 @@ function function_705b696b(localClientNum, str_fx, v_origin, v_fwd, n_seconds)
 function function_cf8ff04b(localClientNum)
 {
 	flag::wait_till("set_ritual_finished_flag");
-	function_3d781ecc(localClientNum, undefined, 1);
+	ee_superworm_state(localClientNum, undefined, 1);
 }
 
 /*
 	Name: function_373d3423
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0xA9C07A96
 	Offset: 0x2250
 	Size: 0x2D3
@@ -259,79 +259,79 @@ function function_cf8ff04b(localClientNum)
 function function_373d3423(localClientNum)
 {
 	s_position = struct::get("defend_area_pap", "targetname");
-	level.var_b3c23ec9[localClientNum]["pap"] = s_position;
-	level.var_b3c23ec9[localClientNum]["pap"].e_assembly = spawn(localClientNum, s_position.origin, "script_model");
-	level.var_b3c23ec9[localClientNum]["pap"].e_assembly.angles = s_position.angles;
-	level.var_b3c23ec9[localClientNum]["pap"].e_assembly SetModel("p7_fxanim_zm_zod_redemption_key_ritual_mod");
-	level.var_b3c23ec9[localClientNum]["pap"].e_assembly.vfx_trails = [];
-	v_tag_origin = level.var_b3c23ec9[localClientNum]["pap"].e_assembly GetTagOrigin("tag_char_jnt");
-	v_tag_angles = level.var_b3c23ec9[localClientNum]["pap"].e_assembly GetTagAngles("tag_char_jnt");
-	level.var_b3c23ec9[localClientNum]["pap"].e_victim = spawn(localClientNum, v_tag_origin, "script_model");
-	level.var_b3c23ec9[localClientNum]["pap"].e_victim SetModel("c_zom_zod_shadowman_tentacles_fb");
+	level.main_quest[localClientNum]["pap"] = s_position;
+	level.main_quest[localClientNum]["pap"].e_assembly = spawn(localClientNum, s_position.origin, "script_model");
+	level.main_quest[localClientNum]["pap"].e_assembly.angles = s_position.angles;
+	level.main_quest[localClientNum]["pap"].e_assembly SetModel("p7_fxanim_zm_zod_redemption_key_ritual_mod");
+	level.main_quest[localClientNum]["pap"].e_assembly.vfx_trails = [];
+	v_tag_origin = level.main_quest[localClientNum]["pap"].e_assembly GetTagOrigin("tag_char_jnt");
+	v_tag_angles = level.main_quest[localClientNum]["pap"].e_assembly GetTagAngles("tag_char_jnt");
+	level.main_quest[localClientNum]["pap"].e_victim = spawn(localClientNum, v_tag_origin, "script_model");
+	level.main_quest[localClientNum]["pap"].e_victim SetModel("c_zom_zod_shadowman_tentacles_fb");
 	var_dd690641 = struct::get("shadowman_death_loc", "targetname");
-	level.var_b3c23ec9[localClientNum]["pap"].e_victim.origin = var_dd690641.origin;
-	level.var_b3c23ec9[localClientNum]["pap"].e_victim.angles = v_tag_angles;
+	level.main_quest[localClientNum]["pap"].e_victim.origin = var_dd690641.origin;
+	level.main_quest[localClientNum]["pap"].e_victim.angles = v_tag_angles;
 }
 
 /*
-	Name: function_c207ce05
-	Namespace: namespace_ba13c715
+	Name: ee_keeper_boxer_state
+	Namespace: zm_zod_ee
 	Checksum: 0x6FDDC0B1
 	Offset: 0x2530
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_c207ce05(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_keeper_boxer_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	function_a39c9866(localClientNum, newVal, oldVal, 1);
 }
 
 /*
-	Name: function_2bf1935e
-	Namespace: namespace_ba13c715
+	Name: ee_keeper_detective_state
+	Namespace: zm_zod_ee
 	Checksum: 0x1CEF5D46
 	Offset: 0x2598
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_2bf1935e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_keeper_detective_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	function_a39c9866(localClientNum, newVal, oldVal, 2);
 }
 
 /*
-	Name: function_e0fb815d
-	Namespace: namespace_ba13c715
+	Name: ee_keeper_femme_state
+	Namespace: zm_zod_ee
 	Checksum: 0x1CED8764
 	Offset: 0x2600
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_e0fb815d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_keeper_femme_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	function_a39c9866(localClientNum, newVal, oldVal, 3);
 }
 
 /*
-	Name: function_ac2b60ba
-	Namespace: namespace_ba13c715
+	Name: ee_keeper_magician_state
+	Namespace: zm_zod_ee
 	Checksum: 0xAA20489A
 	Offset: 0x2668
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_ac2b60ba(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_keeper_magician_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	function_a39c9866(localClientNum, newVal, oldVal, 4);
 }
 
 /*
 	Name: function_a39c9866
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x5F243027
 	Offset: 0x26D0
 	Size: 0x12B5
@@ -397,8 +397,8 @@ function function_a39c9866(localClientNum, var_fe2fb4b9, var_f471914b, n_charact
 			}
 			PlayFXOnTag(localClientNum, level._effect["ee_ghost_charged"], s_keeper.model, "tag_origin");
 			s_keeper.model ClearAnim("ai_zombie_zod_keeper_give_egg_outro", 0);
-			s_keeper.model zm_zod::function_b48f294(localClientNum, 1, 0);
-			s_keeper.model namespace_1f61c67f::function_4b50c64(localClientNum, 0, 1);
+			s_keeper.model zm_zod::ghost_actor(localClientNum, 1, 0);
+			s_keeper.model zm_zod_quest::keeper_fx(localClientNum, 0, 1);
 			if(isdefined(s_keeper.var_c8ca4ded))
 			{
 				stopfx(localClientNum, s_keeper.var_c8ca4ded);
@@ -441,7 +441,7 @@ function function_a39c9866(localClientNum, var_fe2fb4b9, var_f471914b, n_charact
 			{
 				s_keeper.model playsound(0, "zmb_zod_shadfight_keeper_up");
 				s_keeper.model.angles = s_loc.angles;
-				s_keeper.model namespace_1f61c67f::function_4b50c64(localClientNum, 0, 1);
+				s_keeper.model zm_zod_quest::keeper_fx(localClientNum, 0, 1);
 				s_keeper.model function_267f859f(localClientNum, level._effect["curse_tell"], 0, 1, "tag_origin");
 				s_keeper.model animation::Play("ai_zombie_zod_keeper_sword_quest_revived", undefined, undefined, 1, 0, 0);
 				s_keeper.model thread function_274ba0e6("ai_zombie_zod_keeper_sword_quest_ready_idle", 1);
@@ -476,7 +476,7 @@ function function_a39c9866(localClientNum, var_fe2fb4b9, var_f471914b, n_charact
 			s_keeper.model ClearAnim("ai_zombie_zod_keeper_sword_quest_attack_idle", 0);
 			s_keeper.model.sndloop = s_keeper.model PlayLoopSound("zmb_zod_shadfight_keeper_down_lp", 2);
 			s_keeper.model playsound(0, "zmb_zod_shadfight_keeper_down");
-			s_keeper.model namespace_1f61c67f::function_4b50c64(localClientNum, 1, 0);
+			s_keeper.model zm_zod_quest::keeper_fx(localClientNum, 1, 0);
 			s_keeper.model function_267f859f(localClientNum, level._effect["curse_tell"], 1, 1, "tag_origin");
 			s_keeper.model animation::Play("ai_zombie_zod_keeper_sword_quest_injured_intro", undefined, undefined, 1, 0, 0);
 			s_keeper.model thread function_274ba0e6("ai_zombie_zod_keeper_sword_quest_injured_idle", 1);
@@ -520,7 +520,7 @@ function function_a39c9866(localClientNum, var_fe2fb4b9, var_f471914b, n_charact
 
 /*
 	Name: function_a48022e
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x74B28FC4
 	Offset: 0x3990
 	Size: 0x143
@@ -556,7 +556,7 @@ function function_a48022e(localClientNum, b_on, n_character_index)
 
 /*
 	Name: function_6f29ee45
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x38EA5CBB
 	Offset: 0x3AE0
 	Size: 0x6B
@@ -574,7 +574,7 @@ function function_6f29ee45(s_keeper)
 
 /*
 	Name: function_4d0c8ca8
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0xACD25163
 	Offset: 0x3B58
 	Size: 0x18B
@@ -625,7 +625,7 @@ function function_4d0c8ca8(s_keeper, var_fe2fb4b9, n_character_index)
 
 /*
 	Name: function_e1e53e16
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x79C34E13
 	Offset: 0x3CF0
 	Size: 0x247
@@ -643,7 +643,7 @@ function function_e1e53e16(localClientNum, n_character_index)
 		s_keeper.model.angles = s_loc.angles;
 		s_keeper.var_64c74a6d = 0;
 		s_keeper.model SetModel("c_zom_zod_keeper_fb");
-		s_keeper.model zm_zod::function_b48f294(localClientNum, 0, 1);
+		s_keeper.model zm_zod::ghost_actor(localClientNum, 0, 1);
 	}
 	if(!isdefined(s_keeper.mdl_totem))
 	{
@@ -658,7 +658,7 @@ function function_e1e53e16(localClientNum, n_character_index)
 
 /*
 	Name: function_2c557738
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0xC05A3FA9
 	Offset: 0x3F40
 	Size: 0x111
@@ -681,7 +681,7 @@ function function_2c557738(localClientNum, n_character_index)
 
 /*
 	Name: function_27e2b2cc
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x6ADBA04
 	Offset: 0x4060
 	Size: 0x21B
@@ -713,15 +713,15 @@ function function_27e2b2cc(localClientNum)
 }
 
 /*
-	Name: function_3d781ecc
-	Namespace: namespace_ba13c715
+	Name: ee_superworm_state
+	Namespace: zm_zod_ee
 	Checksum: 0xE75F4482
 	Offset: 0x4288
 	Size: 0x535
 	Parameters: 7
 	Flags: None
 */
-function function_3d781ecc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_superworm_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 4)
 	{
@@ -790,7 +790,7 @@ function function_3d781ecc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_bdd91321
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0xBDD8746
 	Offset: 0x47C8
 	Size: 0x313
@@ -842,15 +842,15 @@ function function_bdd91321(localClientNum, b_hide, b_smashed)
 }
 
 /*
-	Name: function_b6caaa24
-	Namespace: namespace_ba13c715
+	Name: ee_keeper_beam_state
+	Namespace: zm_zod_ee
 	Checksum: 0x6BEC491E
 	Offset: 0x4AE8
 	Size: 0x235
 	Parameters: 7
 	Flags: None
 */
-function function_b6caaa24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_keeper_beam_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(level.var_4c0f7435))
 	{
@@ -885,15 +885,15 @@ function function_b6caaa24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_ef925b15
-	Namespace: namespace_ba13c715
+	Name: ee_final_boss_shields
+	Namespace: zm_zod_ee
 	Checksum: 0x62B5CD0E
 	Offset: 0x4D28
 	Size: 0x161
 	Parameters: 7
 	Flags: None
 */
-function function_ef925b15(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_final_boss_shields(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_dcd4f61a = struct::get_array("final_boss_safepoint", "targetname");
 	foreach(var_495730fe in var_dcd4f61a)
@@ -909,15 +909,15 @@ function function_ef925b15(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_803f7789
-	Namespace: namespace_ba13c715
+	Name: ee_final_boss_attack_tell
+	Namespace: zm_zod_ee
 	Checksum: 0xEC248245
 	Offset: 0x4E98
 	Size: 0x1A3
 	Parameters: 7
 	Flags: None
 */
-function function_803f7789(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_final_boss_attack_tell(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -945,15 +945,15 @@ function function_803f7789(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c87b138e
-	Namespace: namespace_ba13c715
+	Name: ee_rail_electricity_state
+	Namespace: zm_zod_ee
 	Checksum: 0xC1A52EFC
 	Offset: 0x5048
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_c87b138e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ee_rail_electricity_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self function_267f859f(localClientNum, level._effect["ee_quest_powerbox"], newVal, 1, "tag_origin");
 	if(newVal == 1)
@@ -964,7 +964,7 @@ function function_c87b138e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_1461c206
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x2D3D1E37
 	Offset: 0x50F0
 	Size: 0x8F
@@ -989,7 +989,7 @@ function function_1461c206(localClientNum, n_character_index)
 
 /*
 	Name: function_274ba0e6
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x81AA5B4C
 	Offset: 0x5188
 	Size: 0x77
@@ -1012,7 +1012,7 @@ function function_274ba0e6(str_animname, var_e3c27047)
 
 /*
 	Name: function_267f859f
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0x1186DD63
 	Offset: 0x5208
 	Size: 0x18D
@@ -1064,15 +1064,15 @@ function function_267f859f(localClientNum, fx_id, b_on, b_is_ent, str_tag)
 }
 
 /*
-	Name: function_84bc32a6
-	Namespace: namespace_ba13c715
+	Name: near_apothigod_active
+	Namespace: zm_zod_ee
 	Checksum: 0x53CB2FE4
 	Offset: 0x53A0
 	Size: 0x97
 	Parameters: 7
 	Flags: None
 */
-function function_84bc32a6()
+function near_apothigod_active()
 {
 System.Exception: Function contains invalid OpCode.
    at ‍​⁯‮⁪‍‪⁫⁮‎‫⁬‌⁭⁪​‫‬‫​​‌⁬‏‮⁫‪​‪⁫⁭⁮‫​⁮‍‭‌‬‎‮.‌‏‪‍⁫‮⁮‫‍‬⁯⁮⁮‏‬‪‎‎‍⁪‮⁪‬‬⁪⁭‮‫‭⁮‮‫‭‫‏‭‫‪⁪‪‮(⁯‪‪‏⁮‮‎‏‏⁯‍⁬‮⁭‮‏‫‬‌‌‏​⁬‫⁯⁬‮‮⁫⁬‍‫⁮⁫‬⁪⁮‮⁭‌‮ , Int32 )
@@ -1080,15 +1080,15 @@ System.Exception: Function contains invalid OpCode.
 }
 
 /*
-	Name: function_d74175b7
-	Namespace: namespace_ba13c715
+	Name: far_apothigod_active
+	Namespace: zm_zod_ee
 	Checksum: 0x768A8B63
 	Offset: 0x5440
 	Size: 0x97
 	Parameters: 7
 	Flags: None
 */
-function function_d74175b7()
+function far_apothigod_active()
 {
 System.Exception: Function contains invalid OpCode.
    at ‍​⁯‮⁪‍‪⁫⁮‎‫⁬‌⁭⁪​‫‬‫​​‌⁬‏‮⁫‪​‪⁫⁭⁮‫​⁮‍‭‌‬‎‮.‌‏‪‍⁫‮⁮‫‍‬⁯⁮⁮‏‬‪‎‎‍⁪‮⁪‬‬⁪⁭‮‫‭⁮‮‫‭‫‏‭‫‪⁪‪‮(⁯‪‪‏⁮‮‎‏‏⁯‍⁬‮⁭‮‏‫‬‌‌‏​⁬‫⁯⁬‮‮⁫⁬‍‫⁮⁫‬⁪⁮‮⁭‌‮ , Int32 )
@@ -1096,15 +1096,15 @@ System.Exception: Function contains invalid OpCode.
 }
 
 /*
-	Name: function_ac5a5835
-	Namespace: namespace_ba13c715
+	Name: far_apothigod_roar
+	Namespace: zm_zod_ee
 	Checksum: 0x368CDF31
 	Offset: 0x54E0
 	Size: 0x53
 	Parameters: 7
 	Flags: None
 */
-function function_ac5a5835()
+function far_apothigod_roar()
 {
 System.Exception: Function contains invalid OpCode.
    at ‍​⁯‮⁪‍‪⁫⁮‎‫⁬‌⁭⁪​‫‬‫​​‌⁬‏‮⁫‪​‪⁫⁭⁮‫​⁮‍‭‌‬‎‮.‌‏‪‍⁫‮⁮‫‍‬⁯⁮⁮‏‬‪‎‎‍⁪‮⁪‬‬⁪⁭‮‫‭⁮‮‫‭‫‏‭‫‪⁪‪‮(⁯‪‪‏⁮‮‎‏‏⁯‍⁬‮⁭‮‏‫‬‌‌‏​⁬‫⁯⁬‮‮⁫⁬‍‫⁮⁫‬⁪⁮‮⁭‌‮ , Int32 )
@@ -1112,15 +1112,15 @@ System.Exception: Function contains invalid OpCode.
 }
 
 /*
-	Name: function_b2428d44
-	Namespace: namespace_ba13c715
+	Name: near_apothigod_roar
+	Namespace: zm_zod_ee
 	Checksum: 0x76BB163B
 	Offset: 0x5540
 	Size: 0x53
 	Parameters: 7
 	Flags: None
 */
-function function_b2428d44()
+function near_apothigod_roar()
 {
 System.Exception: Function contains invalid OpCode.
    at ‍​⁯‮⁪‍‪⁫⁮‎‫⁬‌⁭⁪​‫‬‫​​‌⁬‏‮⁫‪​‪⁫⁭⁮‫​⁮‍‭‌‬‎‮.‌‏‪‍⁫‮⁮‫‍‬⁯⁮⁮‏‬‪‎‎‍⁪‮⁪‬‬⁪⁭‮‫‭⁮‮‫‭‫‏‭‫‪⁪‪‮(⁯‪‪‏⁮‮‎‏‏⁯‍⁬‮⁭‮‏‫‬‌‌‏​⁬‫⁯⁬‮‮⁫⁬‍‫⁮⁫‬⁪⁮‮⁭‌‮ , Int32 )
@@ -1128,15 +1128,15 @@ System.Exception: Function contains invalid OpCode.
 }
 
 /*
-	Name: function_cb68e14b
-	Namespace: namespace_ba13c715
+	Name: apothigod_death
+	Namespace: zm_zod_ee
 	Checksum: 0x81DA6929
 	Offset: 0x55A0
 	Size: 0x53
 	Parameters: 7
 	Flags: None
 */
-function function_cb68e14b()
+function apothigod_death()
 {
 System.Exception: Function contains invalid OpCode.
    at ‍​⁯‮⁪‍‪⁫⁮‎‫⁬‌⁭⁪​‫‬‫​​‌⁬‏‮⁫‪​‪⁫⁭⁮‫​⁮‍‭‌‬‎‮.‌‏‪‍⁫‮⁮‫‍‬⁯⁮⁮‏‬‪‎‎‍⁪‮⁪‬‬⁪⁭‮‫‭⁮‮‫‭‫‏‭‫‪⁪‪‮(⁯‪‪‏⁮‮‎‏‏⁯‍⁬‮⁭‮‏‫‬‌‌‏​⁬‫⁯⁬‮‮⁫⁬‍‫⁮⁫‬⁪⁮‮⁭‌‮ , Int32 )
@@ -1164,7 +1164,7 @@ function init(localClientNum, mdl_god, b_is_overhead)
 }
 
 /*
-	Name: function_9e0e6936
+	Name: get_overhead
 	Namespace: capothigod
 	Checksum: 0x3F7C6A0F
 	Offset: 0x56A8
@@ -1172,7 +1172,7 @@ function init(localClientNum, mdl_god, b_is_overhead)
 	Parameters: 0
 	Flags: None
 */
-function function_9e0e6936()
+function get_overhead()
 {
 	return self.var_8d207f9b;
 }
@@ -1301,11 +1301,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_ba13c715;
+#namespace zm_zod_ee;
 
 /*
 	Name: capothigod
-	Namespace: namespace_ba13c715
+	Namespace: zm_zod_ee
 	Checksum: 0xB26A5476
 	Offset: 0x5A78
 	Size: 0x1A5
@@ -1321,7 +1321,7 @@ function private autoexec capothigod()
 	classes.capothigod[0].__vtable[-2086669473] = &capothigod::function_839ff35f;
 	classes.capothigod[0].__vtable[770052863] = &capothigod::function_2de612ff;
 	classes.capothigod[0].__vtable[1180619756] = &capothigod::function_465ed3ec;
-	classes.capothigod[0].__vtable[-1643222730] = &capothigod::function_9e0e6936;
+	classes.capothigod[0].__vtable[-1643222730] = &capothigod::get_overhead;
 	classes.capothigod[0].__vtable[-1017222485] = &capothigod::init;
 }
 

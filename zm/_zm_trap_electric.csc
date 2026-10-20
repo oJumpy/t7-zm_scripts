@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_trap_electric
-	Checksum: 0x26A0FAC0
+	Checksum: 0x3FE6E817
 	Offset: 0x170
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_trap_electric
-	Checksum: 0x7FCEB13D
+	Checksum: 0x93D83F5F
 	Offset: 0x1B0
 	Size: 0x109
 	Parameters: 0
@@ -42,7 +42,7 @@ function __init__()
 /*
 	Name: trap_fx_monitor
 	Namespace: zm_trap_electric
-	Checksum: 0x4B16959A
+	Checksum: 0x391F671F
 	Offset: 0x2C8
 	Size: 0x171
 	Parameters: 7
@@ -77,7 +77,7 @@ function trap_fx_monitor(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, 
 /*
 	Name: electric_trap_fx
 	Namespace: zm_trap_electric
-	Checksum: 0xF5FAC119
+	Checksum: 0x6F0DFD00
 	Offset: 0x448
 	Size: 0x12B
 	Parameters: 0
@@ -106,7 +106,7 @@ function electric_trap_fx()
 /*
 	Name: stop_trap_fx
 	Namespace: zm_trap_electric
-	Checksum: 0xC2CFFC0C
+	Checksum: 0x8E1B876C
 	Offset: 0x580
 	Size: 0x87
 	Parameters: 0

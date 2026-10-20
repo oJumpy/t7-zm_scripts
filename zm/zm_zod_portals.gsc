@@ -18,12 +18,12 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_zod_quest;
 
-#namespace namespace_8e2647d0;
+#namespace zm_zod_portals;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8e2647d0
-	Checksum: 0xB683972A
+	Namespace: zm_zod_portals
+	Checksum: 0x9A169138
 	Offset: 0x600
 	Size: 0x33
 	Parameters: 0
@@ -36,8 +36,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8e2647d0
-	Checksum: 0x54A6FBBE
+	Namespace: zm_zod_portals
+	Checksum: 0xD5A08EC2
 	Offset: 0x640
 	Size: 0x293
 	Parameters: 0
@@ -63,8 +63,8 @@ function __init__()
 
 /*
 	Name: function_54ec766b
-	Namespace: namespace_8e2647d0
-	Checksum: 0x3B736B57
+	Namespace: zm_zod_portals
+	Checksum: 0xE64E3602
 	Offset: 0x8E0
 	Size: 0x2BB
 	Parameters: 1
@@ -98,8 +98,8 @@ function function_54ec766b(str_id)
 
 /*
 	Name: function_16fca6d
-	Namespace: namespace_8e2647d0
-	Checksum: 0xE6446812
+	Namespace: zm_zod_portals
+	Checksum: 0x33A38E3E
 	Offset: 0xBA8
 	Size: 0xF1
 	Parameters: 1
@@ -107,7 +107,7 @@ function function_54ec766b(str_id)
 */
 function function_16fca6d(player)
 {
-	level endon("hash_7c61dd0");
+	level endon("ritual_pap_complete");
 	str_areaname = self.stub.str_areaname;
 	var_8f5050e8 = level clientfield::get("portal_state_" + str_areaname);
 	if(var_8f5050e8 !== 1 && (!isdefined(player.beastmode) && player.beastmode))
@@ -125,8 +125,8 @@ function function_16fca6d(player)
 
 /*
 	Name: function_a90ab0d7
-	Namespace: namespace_8e2647d0
-	Checksum: 0x909F3271
+	Namespace: zm_zod_portals
+	Checksum: 0x2E7A084C
 	Offset: 0xCA8
 	Size: 0xAB
 	Parameters: 0
@@ -134,7 +134,7 @@ function function_16fca6d(player)
 */
 function function_a90ab0d7()
 {
-	level endon("hash_7c61dd0");
+	level endon("ritual_pap_complete");
 	while(1)
 	{
 		self waittill("trigger", player);
@@ -157,8 +157,8 @@ function function_a90ab0d7()
 
 /*
 	Name: function_42ed55f2
-	Namespace: namespace_8e2647d0
-	Checksum: 0xAC2689B9
+	Namespace: zm_zod_portals
+	Checksum: 0x82F69D4B
 	Offset: 0xD60
 	Size: 0xE5
 	Parameters: 1
@@ -180,8 +180,8 @@ function function_42ed55f2(str_areaname)
 
 /*
 	Name: function_e0c93f92
-	Namespace: namespace_8e2647d0
-	Checksum: 0x69B35316
+	Namespace: zm_zod_portals
+	Checksum: 0x1F443C9F
 	Offset: 0xE50
 	Size: 0x4B
 	Parameters: 1
@@ -195,8 +195,8 @@ function function_e0c93f92(str_areaname)
 
 /*
 	Name: portal_open
-	Namespace: namespace_8e2647d0
-	Checksum: 0x36C40FF2
+	Namespace: zm_zod_portals
+	Checksum: 0x7F93AC8A
 	Offset: 0xEA8
 	Size: 0x38B
 	Parameters: 2
@@ -242,8 +242,8 @@ function portal_open(str_areaname, var_14429fc9)
 
 /*
 	Name: return_district_name_from_string
-	Namespace: namespace_8e2647d0
-	Checksum: 0x8EA2C018
+	Namespace: zm_zod_portals
+	Checksum: 0xBA3BE233
 	Offset: 0x1240
 	Size: 0xD1
 	Parameters: 1
@@ -263,8 +263,8 @@ function return_district_name_from_string(str_input)
 
 /*
 	Name: portal_think
-	Namespace: namespace_8e2647d0
-	Checksum: 0x355A376
+	Namespace: zm_zod_portals
+	Checksum: 0xF0B3FE88
 	Offset: 0x1320
 	Size: 0x173
 	Parameters: 0
@@ -296,8 +296,8 @@ function portal_think()
 
 /*
 	Name: portal_teleport_player
-	Namespace: namespace_8e2647d0
-	Checksum: 0x733F4314
+	Namespace: zm_zod_portals
+	Checksum: 0xBA9CA66D
 	Offset: 0x14A0
 	Size: 0x923
 	Parameters: 2
@@ -417,8 +417,8 @@ function portal_teleport_player(player, show_fx)
 
 /*
 	Name: ai_delay_cleanup
-	Namespace: namespace_8e2647d0
-	Checksum: 0x7FFAFFFF
+	Namespace: zm_zod_portals
+	Checksum: 0x1E9B6CDC
 	Offset: 0x1DD0
 	Size: 0x5D
 	Parameters: 0
@@ -439,8 +439,8 @@ function ai_delay_cleanup()
 
 /*
 	Name: portal_teleport_ai
-	Namespace: namespace_8e2647d0
-	Checksum: 0xEFF1321
+	Namespace: zm_zod_portals
+	Checksum: 0x45BAD9C8
 	Offset: 0x1E38
 	Size: 0x2C3
 	Parameters: 1

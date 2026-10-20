@@ -13,11 +13,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\zm_stalingrad_vo;
 
-#namespace namespace_6d9dd78a;
+#namespace zm_stalingrad_mounted_mg;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0xA0554EAF
 	Offset: 0x2F0
 	Size: 0x3B
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0xB57013CD
 	Offset: 0x338
 	Size: 0xE7
@@ -50,7 +50,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0x1D39DDFE
 	Offset: 0x428
 	Size: 0xAB
@@ -66,7 +66,7 @@ function __main__()
 
 /*
 	Name: function_f734357f
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0x8AD0C9CA
 	Offset: 0x4E0
 	Size: 0x1BF
@@ -109,7 +109,7 @@ function function_f734357f(e_player)
 
 /*
 	Name: function_be759ad7
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0x6E04EC2D
 	Offset: 0x6A8
 	Size: 0xE3
@@ -133,7 +133,7 @@ function function_be759ad7()
 
 /*
 	Name: function_f8b87a4e
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0xFA21B177
 	Offset: 0x798
 	Size: 0x191
@@ -144,7 +144,7 @@ function function_f8b87a4e(e_player)
 {
 	var_8de107a = self.stub;
 	var_8de107a.b_in_use = 1;
-	e_player thread namespace_dcf9c464::function_32f35525();
+	e_player thread zm_stalingrad_vo::function_32f35525();
 	self.stub thread function_8e896de5(e_player);
 	level.var_ffcc580a turret::enable(0, 1);
 	level.var_ffcc580a MakeVehicleUsable();
@@ -164,7 +164,7 @@ function function_f8b87a4e(e_player)
 
 /*
 	Name: function_8e896de5
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0xCE9DC375
 	Offset: 0x938
 	Size: 0x5B
@@ -182,7 +182,7 @@ function function_8e896de5(e_player)
 
 /*
 	Name: function_711e7f22
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0x83E1D0BA
 	Offset: 0x9A0
 	Size: 0xC3

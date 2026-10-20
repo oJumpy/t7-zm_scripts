@@ -21,17 +21,17 @@
 */
 function init()
 {
-	clientfield::register("world", "perk_light_doubletap", 5000, 1, "int", &function_59525d83, 0, 0);
-	clientfield::register("world", "perk_light_juggernaut", 5000, 1, "int", &function_865d7d93, 0, 0);
-	clientfield::register("world", "perk_light_mule_kick", 1, 1, "int", &function_eb0b323d, 0, 0);
-	clientfield::register("world", "perk_light_quick_revive", 5000, 1, "int", &function_e63629a0, 0, 0);
-	clientfield::register("world", "perk_light_speed_cola", 5000, 1, "int", &function_c574aa0c, 0, 0);
-	clientfield::register("world", "perk_light_staminup", 5000, 1, "int", &function_b169f826, 0, 0);
-	clientfield::register("world", "perk_light_widows_wine", 5000, 1, "int", &function_9021b00a, 0, 0);
+	clientfield::register("world", "perk_light_doubletap", 5000, 1, "int", &perk_light_doubletap, 0, 0);
+	clientfield::register("world", "perk_light_juggernaut", 5000, 1, "int", &perk_light_juggernaut, 0, 0);
+	clientfield::register("world", "perk_light_mule_kick", 1, 1, "int", &perk_light_mule_kick, 0, 0);
+	clientfield::register("world", "perk_light_quick_revive", 5000, 1, "int", &perk_light_quick_revive, 0, 0);
+	clientfield::register("world", "perk_light_speed_cola", 5000, 1, "int", &perk_light_speed_cola, 0, 0);
+	clientfield::register("world", "perk_light_staminup", 5000, 1, "int", &perk_light_staminup, 0, 0);
+	clientfield::register("world", "perk_light_widows_wine", 5000, 1, "int", &perk_light_widows_wine, 0, 0);
 }
 
 /*
-	Name: function_c574aa0c
+	Name: perk_light_speed_cola
 	Namespace: namespace_912a86f7
 	Checksum: 0xD87EE69A
 	Offset: 0x4D8
@@ -39,7 +39,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_c574aa0c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_speed_cola(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -52,7 +52,7 @@ function function_c574aa0c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_865d7d93
+	Name: perk_light_juggernaut
 	Namespace: namespace_912a86f7
 	Checksum: 0x4ED0CD38
 	Offset: 0x560
@@ -60,7 +60,7 @@ function function_c574aa0c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_865d7d93(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_juggernaut(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -73,7 +73,7 @@ function function_865d7d93(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_59525d83
+	Name: perk_light_doubletap
 	Namespace: namespace_912a86f7
 	Checksum: 0x911A6FD0
 	Offset: 0x5E8
@@ -81,7 +81,7 @@ function function_865d7d93(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_59525d83(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_doubletap(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -94,7 +94,7 @@ function function_59525d83(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_e63629a0
+	Name: perk_light_quick_revive
 	Namespace: namespace_912a86f7
 	Checksum: 0xC6AB7D18
 	Offset: 0x670
@@ -102,7 +102,7 @@ function function_59525d83(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_e63629a0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_quick_revive(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -115,7 +115,7 @@ function function_e63629a0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_9021b00a
+	Name: perk_light_widows_wine
 	Namespace: namespace_912a86f7
 	Checksum: 0x38823405
 	Offset: 0x6F8
@@ -123,7 +123,7 @@ function function_e63629a0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_9021b00a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_widows_wine(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -136,7 +136,7 @@ function function_9021b00a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_eb0b323d
+	Name: perk_light_mule_kick
 	Namespace: namespace_912a86f7
 	Checksum: 0xC4776434
 	Offset: 0x780
@@ -144,7 +144,7 @@ function function_9021b00a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_eb0b323d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_mule_kick(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -157,7 +157,7 @@ function function_eb0b323d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b169f826
+	Name: perk_light_staminup
 	Namespace: namespace_912a86f7
 	Checksum: 0x9DC63521
 	Offset: 0x808
@@ -165,7 +165,7 @@ function function_eb0b323d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b169f826(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_staminup(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{

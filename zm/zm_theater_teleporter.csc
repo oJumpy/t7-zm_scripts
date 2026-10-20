@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\shared\visionset_mgr_shared;
 
-#namespace namespace_8847920b;
+#namespace zm_theater_teleporter;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xBB6D6FBD
 	Offset: 0x380
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xCEECF62E
 	Offset: 0x3C0
 	Size: 0x1DB
@@ -36,14 +36,14 @@ function __init__()
 	clientfield::register("scriptmover", "extra_screen", 21000, 1, "int", &function_667aa0b4, 0, 0);
 	clientfield::register("scriptmover", "teleporter_fx", 21000, 1, "counter", &teleporter_fx_play, 0, 0);
 	clientfield::register("allplayers", "player_teleport_fx", 21000, 1, "counter", &function_2b23adc9, 0, 0);
-	clientfield::register("scriptmover", "play_fly_me_to_the_moon_fx", 21000, 1, "int", &function_14c9b6d3, 0, 0);
-	clientfield::register("world", "teleporter_initiate_fx", 21000, 1, "counter", &function_6776dea9, 0, 0);
-	clientfield::register("scriptmover", "teleporter_link_cable_mtl", 21000, 1, "int", &function_2ae4e56, 0, 0);
+	clientfield::register("scriptmover", "play_fly_me_to_the_moon_fx", 21000, 1, "int", &play_fly_me_to_the_moon_fx, 0, 0);
+	clientfield::register("world", "teleporter_initiate_fx", 21000, 1, "counter", &play_teleporter_initiate_fx, 0, 0);
+	clientfield::register("scriptmover", "teleporter_link_cable_mtl", 21000, 1, "int", &teleporter_link_cable_mtl, 0, 0);
 }
 
 /*
 	Name: main
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x5F4CCEEC
 	Offset: 0x5A8
 	Size: 0x33
@@ -58,7 +58,7 @@ function main()
 
 /*
 	Name: setup_teleporter_screen
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x463B6E93
 	Offset: 0x5E8
 	Size: 0x4B
@@ -76,7 +76,7 @@ function setup_teleporter_screen()
 
 /*
 	Name: pack_clock_init
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x56EF38D0
 	Offset: 0x640
 	Size: 0x24B
@@ -122,7 +122,7 @@ function pack_clock_init()
 
 /*
 	Name: pack_clock_run
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x9ECD1A5B
 	Offset: 0x898
 	Size: 0x14B
@@ -154,7 +154,7 @@ function pack_clock_run(time_values)
 
 /*
 	Name: function_667aa0b4
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x24325F55
 	Offset: 0x9F0
 	Size: 0x2E1
@@ -197,7 +197,7 @@ function function_667aa0b4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: teleporter_fx_play
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x385109B8
 	Offset: 0xCE0
 	Size: 0xFB
@@ -218,7 +218,7 @@ function teleporter_fx_play(localClientNum, oldVal, newVal, bNewEnt, bInitialSna
 
 /*
 	Name: function_2b23adc9
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x503EDEEF
 	Offset: 0xDE8
 	Size: 0x139
@@ -236,15 +236,15 @@ function function_2b23adc9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_6776dea9
-	Namespace: namespace_8847920b
+	Name: play_teleporter_initiate_fx
+	Namespace: zm_theater_teleporter
 	Checksum: 0x98CFCE89
 	Offset: 0xF30
 	Size: 0x279
 	Parameters: 7
 	Flags: None
 */
-function function_6776dea9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_teleporter_initiate_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_33e4acb6 = (-306.684, 1116.25, 117.056);
 	var_a1844610 = (0, 0, 0);
@@ -261,15 +261,15 @@ function function_6776dea9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_14c9b6d3
-	Namespace: namespace_8847920b
+	Name: play_fly_me_to_the_moon_fx
+	Namespace: zm_theater_teleporter
 	Checksum: 0x3FD1E314
 	Offset: 0x11B8
 	Size: 0x173
 	Parameters: 7
 	Flags: None
 */
-function function_14c9b6d3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_fly_me_to_the_moon_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -287,15 +287,15 @@ function function_14c9b6d3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_2ae4e56
-	Namespace: namespace_8847920b
+	Name: teleporter_link_cable_mtl
+	Namespace: zm_theater_teleporter
 	Checksum: 0x70A23F31
 	Offset: 0x1338
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_2ae4e56(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function teleporter_link_cable_mtl(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{

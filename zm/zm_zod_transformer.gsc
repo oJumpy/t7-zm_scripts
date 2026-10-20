@@ -13,11 +13,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_ded850b0;
+#namespace zm_zod_transformer;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ded850b0
+	Namespace: zm_zod_transformer
 	Checksum: 0xCFE6EE67
 	Offset: 0x318
 	Size: 0x2B
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __main__
-	Namespace: namespace_ded850b0
+	Namespace: zm_zod_transformer
 	Checksum: 0x896F7415
 	Offset: 0x350
 	Size: 0x73
@@ -47,7 +47,7 @@ function __main__()
 
 /*
 	Name: init_transformers
-	Namespace: namespace_ded850b0
+	Namespace: zm_zod_transformer
 	Checksum: 0xB15D153A
 	Offset: 0x3D0
 	Size: 0x131
@@ -69,7 +69,7 @@ function init_transformers()
 
 /*
 	Name: transformer_think
-	Namespace: namespace_ded850b0
+	Namespace: zm_zod_transformer
 	Checksum: 0xD720BC3B
 	Offset: 0x510
 	Size: 0x14B
@@ -82,7 +82,7 @@ function transformer_think(var_b46b59df)
 		Assert(isdefined(self.script_int), "Dev Block strings are not supported" + self.origin);
 	#/
 	n_power_index = self.script_int;
-	self thread namespace_215602b6::watch_lightning_damage(var_b46b59df);
+	self thread zm_altbody_beast::watch_lightning_damage(var_b46b59df);
 	self clientfield::set("bminteract", 2);
 	level flag::wait_till("power_on" + n_power_index);
 	self thread scene::Play("p7_fxanim_zm_zod_power_box_bundle", self);

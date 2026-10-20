@@ -10,7 +10,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_equip_shield
-	Checksum: 0xD32DECDF
+	Checksum: 0xC698BCE1
 	Offset: 0x1A0
 	Size: 0x33
 	Parameters: 0
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_equip_shield
-	Checksum: 0x2635768E
+	Checksum: 0x32783729
 	Offset: 0x1E0
 	Size: 0x5B
 	Parameters: 0
@@ -39,7 +39,7 @@ function __init__()
 /*
 	Name: player_on_spawned
 	Namespace: zm_equip_shield
-	Checksum: 0x2BA7E3A3
+	Checksum: 0x5DF19537
 	Offset: 0x248
 	Size: 0x23
 	Parameters: 1
@@ -53,7 +53,7 @@ function player_on_spawned(localClientNum)
 /*
 	Name: watch_weapon_changes
 	Namespace: zm_equip_shield
-	Checksum: 0x1D9A1E39
+	Checksum: 0x4DBB2953
 	Offset: 0x278
 	Size: 0x77
 	Parameters: 1
@@ -76,7 +76,7 @@ function watch_weapon_changes(localClientNum)
 /*
 	Name: lock_weapon_model
 	Namespace: zm_equip_shield
-	Checksum: 0xC14D928D
+	Checksum: 0xA6C5ED53
 	Offset: 0x2F8
 	Size: 0x91
 	Parameters: 1
@@ -105,7 +105,7 @@ function lock_weapon_model(model)
 /*
 	Name: unlock_weapon_model
 	Namespace: zm_equip_shield
-	Checksum: 0xD2D32A2F
+	Checksum: 0x52D550C
 	Offset: 0x398
 	Size: 0x93
 	Parameters: 1
@@ -134,7 +134,7 @@ function unlock_weapon_model(model)
 /*
 	Name: lock_weapon_models
 	Namespace: zm_equip_shield
-	Checksum: 0xF363BAC0
+	Checksum: 0x162EE6E2
 	Offset: 0x438
 	Size: 0x103
 	Parameters: 2

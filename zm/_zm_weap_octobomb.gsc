@@ -24,7 +24,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x51ACE1EA
+	Checksum: 0x47DA3B30
 	Offset: 0x628
 	Size: 0x3B
 	Parameters: 0
@@ -38,7 +38,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x4DFB5D0
+	Checksum: 0x62C288C6
 	Offset: 0x670
 	Size: 0x13B
 	Parameters: 0
@@ -60,7 +60,7 @@ function __init__()
 /*
 	Name: __main__
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xF33BB175
+	Checksum: 0x6B609D77
 	Offset: 0x7B8
 	Size: 0xDF
 	Parameters: 0
@@ -84,7 +84,7 @@ function __main__()
 /*
 	Name: player_give_octobomb_upgraded
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x66860B28
+	Checksum: 0x391018F1
 	Offset: 0x8A0
 	Size: 0x23
 	Parameters: 0
@@ -98,7 +98,7 @@ function player_give_octobomb_upgraded()
 /*
 	Name: player_give_octobomb
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x6BBE70AE
+	Checksum: 0xFFEE7782
 	Offset: 0x8D0
 	Size: 0xDB
 	Parameters: 1
@@ -124,7 +124,7 @@ function player_give_octobomb(str_weapon)
 /*
 	Name: player_handle_octobomb
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xBC22068E
+	Checksum: 0x17995136
 	Offset: 0x9B8
 	Size: 0xF7
 	Parameters: 0
@@ -163,7 +163,7 @@ function player_handle_octobomb()
 /*
 	Name: show_briefly
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x1DC08BC5
+	Checksum: 0xD491F4EF
 	Offset: 0xAB8
 	Size: 0xAD
 	Parameters: 1
@@ -191,7 +191,7 @@ function show_briefly(showtime)
 /*
 	Name: show_owner_on_attack
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x6EB61A86
+	Checksum: 0x5DBBB3E7
 	Offset: 0xB70
 	Size: 0x7F
 	Parameters: 1
@@ -215,7 +215,7 @@ function show_owner_on_attack(owner)
 /*
 	Name: hide_owner
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x3F16585C
+	Checksum: 0xE990615A
 	Offset: 0xBF8
 	Size: 0x22B
 	Parameters: 1
@@ -254,7 +254,7 @@ function hide_owner(owner)
 /*
 	Name: FakeLinkto
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xCAD41153
+	Checksum: 0xA3DB895E
 	Offset: 0xE30
 	Size: 0x7F
 	Parameters: 1
@@ -276,7 +276,7 @@ function FakeLinkto(linkee)
 /*
 	Name: grenade_planted
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xF1B25D27
+	Checksum: 0x3D989760
 	Offset: 0xEB8
 	Size: 0x183
 	Parameters: 2
@@ -315,7 +315,7 @@ function grenade_planted(grenade, model)
 /*
 	Name: check_octobomb_on_train
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xACD4817C
+	Checksum: 0xDFC8F2FB
 	Offset: 0x1048
 	Size: 0x73
 	Parameters: 0
@@ -338,7 +338,7 @@ function check_octobomb_on_train()
 /*
 	Name: player_throw_octobomb
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xE43C1BAF
+	Checksum: 0x40A2CDEB
 	Offset: 0x10C8
 	Size: 0x61B
 	Parameters: 4
@@ -427,7 +427,7 @@ function player_throw_octobomb(e_grenade, num_attractors, max_attract_dist, attr
 /*
 	Name: is_on_navmesh
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x215730C8
+	Checksum: 0x1CA9B5DB
 	Offset: 0x16F0
 	Size: 0xF3
 	Parameters: 0
@@ -459,7 +459,7 @@ function is_on_navmesh()
 /*
 	Name: animate_octobomb
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x4E4583A9
+	Checksum: 0x454C4C6E
 	Offset: 0x17F0
 	Size: 0x1B3
 	Parameters: 1
@@ -492,7 +492,7 @@ function animate_octobomb(is_upgraded)
 /*
 	Name: move_away_from_edges
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xA4B302B0
+	Checksum: 0x335B06B9
 	Offset: 0x19B0
 	Size: 0x1D9
 	Parameters: 0
@@ -525,7 +525,7 @@ function move_away_from_edges()
 /*
 	Name: grenade_stolen_by_sam
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x2B271FDB
+	Checksum: 0x9CF99476
 	Offset: 0x1B98
 	Size: 0x2FB
 	Parameters: 1
@@ -581,7 +581,7 @@ function grenade_stolen_by_sam(e_grenade)
 /*
 	Name: octobomb_cleanup
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xD9072A32
+	Checksum: 0x6E45B1F0
 	Offset: 0x1EA0
 	Size: 0xCB
 	Parameters: 0
@@ -619,7 +619,7 @@ function octobomb_cleanup()
 /*
 	Name: do_octobomb_sound
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x1469FE2F
+	Checksum: 0xA4824667
 	Offset: 0x1F78
 	Size: 0xC3
 	Parameters: 0
@@ -647,7 +647,7 @@ function do_octobomb_sound()
 /*
 	Name: do_tentacle_burst
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x321C0A6C
+	Checksum: 0xFF22596F
 	Offset: 0x2048
 	Size: 0x287
 	Parameters: 2
@@ -698,7 +698,7 @@ function do_tentacle_burst(e_player, is_upgraded)
 /*
 	Name: zombie_spore_infect
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x605D82E8
+	Checksum: 0x7B194CF6
 	Offset: 0x22D8
 	Size: 0x14B
 	Parameters: 3
@@ -736,7 +736,7 @@ function zombie_spore_infect(e_player, e_grenade, is_upgraded)
 /*
 	Name: zombie_explodes
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xD42BFE1C
+	Checksum: 0x695E2A9E
 	Offset: 0x2430
 	Size: 0x63
 	Parameters: 0
@@ -758,7 +758,7 @@ function zombie_explodes()
 /*
 	Name: do_tentacle_grab
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x8C57E552
+	Checksum: 0x8B4378EA
 	Offset: 0x24A0
 	Size: 0x37F
 	Parameters: 2
@@ -833,7 +833,7 @@ function do_tentacle_grab(e_player, is_upgraded)
 /*
 	Name: octo_gib
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xD03FC6FB
+	Checksum: 0xAA2B963B
 	Offset: 0x2828
 	Size: 0x73
 	Parameters: 0
@@ -856,7 +856,7 @@ function octo_gib()
 /*
 	Name: special_attractor_spawn
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xCD367F35
+	Checksum: 0x249819B7
 	Offset: 0x28A8
 	Size: 0x34F
 	Parameters: 2
@@ -907,7 +907,7 @@ function special_attractor_spawn(e_player, max_attract_dist)
 /*
 	Name: vehicle_attractor
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x4AC33718
+	Checksum: 0xF36B0CED
 	Offset: 0x2C00
 	Size: 0x5F
 	Parameters: 1
@@ -927,7 +927,7 @@ function vehicle_attractor(e_grenade)
 /*
 	Name: vehicle_attractor_damage
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xBF318B1A
+	Checksum: 0x4B2E9071
 	Offset: 0x2C68
 	Size: 0x7B
 	Parameters: 1
@@ -949,7 +949,7 @@ function vehicle_attractor_damage(e_player)
 /*
 	Name: parasite_attractor_init
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x66612A2E
+	Checksum: 0x365F2ABB
 	Offset: 0x2CF0
 	Size: 0x22D
 	Parameters: 0
@@ -1000,7 +1000,7 @@ function parasite_attractor_init()
 /*
 	Name: parasite_variables
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xD738A365
+	Checksum: 0x7ADBF606
 	Offset: 0x2F28
 	Size: 0xF3
 	Parameters: 1
@@ -1026,7 +1026,7 @@ function parasite_variables(e_grenade)
 /*
 	Name: parasite_attractor
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xA3E24B1F
+	Checksum: 0x1DA0D818
 	Offset: 0x3028
 	Size: 0x1CF
 	Parameters: 1
@@ -1072,7 +1072,7 @@ function parasite_attractor(e_grenade)
 /*
 	Name: parasite_attractor_grab
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x61A6C658
+	Checksum: 0xE4E5C975
 	Offset: 0x3200
 	Size: 0x25F
 	Parameters: 1
@@ -1133,7 +1133,7 @@ function parasite_attractor_grab(e_grenade)
 /*
 	Name: sndAttackVox
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x1A76B328
+	Checksum: 0x224D2E80
 	Offset: 0x3468
 	Size: 0x57
 	Parameters: 0
@@ -1154,7 +1154,7 @@ function sndAttackVox()
 /*
 	Name: get_thrown_octobomb
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xA00E9117
+	Checksum: 0x14853A57
 	Offset: 0x34C8
 	Size: 0xB7
 	Parameters: 0
@@ -1181,7 +1181,7 @@ function get_thrown_octobomb()
 /*
 	Name: octobomb_exists
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x188ABBD
+	Checksum: 0xE8F8FD5B
 	Offset: 0x3588
 	Size: 0x19
 	Parameters: 0
@@ -1195,7 +1195,7 @@ function octobomb_exists()
 /*
 	Name: octobomb_devgui
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xFAA6A6A7
+	Checksum: 0x8002C04C
 	Offset: 0x35B0
 	Size: 0x9B
 	Parameters: 0
@@ -1213,7 +1213,7 @@ function octobomb_devgui()
 /*
 	Name: setup_devgui_func
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xE4FD05DB
+	Checksum: 0x922C8022
 	Offset: 0x3658
 	Size: 0x11F
 	Parameters: 5
@@ -1242,7 +1242,7 @@ function private setup_devgui_func(str_devgui_path, str_dvar, n_value, func, n_b
 /*
 	Name: devgui_octobomb_give
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x35598070
+	Checksum: 0x3DC3CE8F
 	Offset: 0x3780
 	Size: 0xF1
 	Parameters: 1
@@ -1269,7 +1269,7 @@ function devgui_octobomb_give(n_player_index)
 /*
 	Name: octobomb_give
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x6B955389
+	Checksum: 0x6343B229
 	Offset: 0x3880
 	Size: 0x8B
 	Parameters: 1

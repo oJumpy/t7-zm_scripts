@@ -17,7 +17,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0xA7F3D051
+	Checksum: 0x520C9563
 	Offset: 0x348
 	Size: 0x33
 	Parameters: 0
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0xA26DCA17
+	Checksum: 0x62852FC
 	Offset: 0x388
 	Size: 0x13
 	Parameters: 0
@@ -45,7 +45,7 @@ function __init__()
 /*
 	Name: enable_sleight_of_hand_perk_for_level
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0x1EF8E0CF
+	Checksum: 0xCA0F9A72
 	Offset: 0x3A8
 	Size: 0xF3
 	Parameters: 0
@@ -63,7 +63,7 @@ function enable_sleight_of_hand_perk_for_level()
 /*
 	Name: sleight_of_hand_precache
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0xE8F09156
+	Checksum: 0x95520246
 	Offset: 0x4A8
 	Size: 0xDF
 	Parameters: 0
@@ -86,7 +86,7 @@ function sleight_of_hand_precache()
 /*
 	Name: sleight_of_hand_register_clientfield
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0x242FE200
+	Checksum: 0x496082AD
 	Offset: 0x590
 	Size: 0x33
 	Parameters: 0
@@ -100,7 +100,7 @@ function sleight_of_hand_register_clientfield()
 /*
 	Name: sleight_of_hand_set_clientfield
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0x545CF648
+	Checksum: 0x4EAD7DFB
 	Offset: 0x5D0
 	Size: 0x2B
 	Parameters: 1
@@ -114,7 +114,7 @@ function sleight_of_hand_set_clientfield(State)
 /*
 	Name: sleight_of_hand_perk_machine_setup
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0xD2A699D9
+	Checksum: 0x22632085
 	Offset: 0x608
 	Size: 0xBB
 	Parameters: 4

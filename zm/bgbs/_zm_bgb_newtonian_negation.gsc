@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_5bdced82;
+#namespace zm_bgb_newtonian_negation;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_5bdced82
+	Namespace: zm_bgb_newtonian_negation
 	Checksum: 0xE91D8A00
 	Offset: 0x1A8
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_5bdced82
+	Namespace: zm_bgb_newtonian_negation
 	Checksum: 0x17A758B2
 	Offset: 0x1E8
 	Size: 0x5B
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_5bdced82
+	Namespace: zm_bgb_newtonian_negation
 	Checksum: 0xC088CF25
 	Offset: 0x250
 	Size: 0x33
@@ -58,7 +58,7 @@ function enable()
 
 /*
 	Name: function_7d6ddd3a
-	Namespace: namespace_5bdced82
+	Namespace: zm_bgb_newtonian_negation
 	Checksum: 0x7D77B374
 	Offset: 0x290
 	Size: 0x2B
@@ -74,7 +74,7 @@ function function_7d6ddd3a()
 
 /*
 	Name: disable
-	Namespace: namespace_5bdced82
+	Namespace: zm_bgb_newtonian_negation
 	Checksum: 0xB239C052
 	Offset: 0x2C8
 	Size: 0xDB
@@ -100,7 +100,7 @@ function disable()
 
 /*
 	Name: function_2b4ff13a
-	Namespace: namespace_5bdced82
+	Namespace: zm_bgb_newtonian_negation
 	Checksum: 0xD8054583
 	Offset: 0x3B0
 	Size: 0x53

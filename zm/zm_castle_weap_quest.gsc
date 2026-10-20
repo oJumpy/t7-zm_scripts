@@ -20,11 +20,11 @@
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\zm_castle_vo;
 
-#namespace namespace_2a78f3c;
+#namespace zm_castle_weap_quest;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xEDFFC252
 	Offset: 0x9C8
 	Size: 0x3B
@@ -38,7 +38,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xEE6081CF
 	Offset: 0xA10
 	Size: 0x2E7
@@ -78,7 +78,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xB51F8491
 	Offset: 0xD00
 	Size: 0x3B
@@ -92,7 +92,7 @@ function __main__()
 
 /*
 	Name: create_anim_references_on_server
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x49E64FEC
 	Offset: 0xD48
 	Size: 0x251
@@ -127,7 +127,7 @@ function create_anim_references_on_server()
 
 /*
 	Name: soul_catcher_state_manager
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x33C0043
 	Offset: 0xFA8
 	Size: 0x12B
@@ -141,7 +141,7 @@ function soul_catcher_state_manager()
 	self waittill("first_zombie_killed_in_zone", e_player);
 	level clientfield::set(self.script_parameters, 1);
 	anim_length = getanimlength(%rtrg_o_zm_dlc1_dragonhead_intro);
-	e_player thread namespace_97ddfc0d::function_ad27f488(anim_length);
+	e_player thread zm_castle_vo::function_ad27f488(anim_length);
 	wait(anim_length);
 	while(!self.is_charged)
 	{
@@ -153,7 +153,7 @@ function soul_catcher_state_manager()
 
 /*
 	Name: zombie_spawn_func
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x76B43303
 	Offset: 0x10E0
 	Size: 0x1B
@@ -167,7 +167,7 @@ function zombie_spawn_func()
 
 /*
 	Name: zombie_killed_override
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x6D14A0EB
 	Offset: 0x1108
 	Size: 0x1B3
@@ -204,7 +204,7 @@ function zombie_killed_override(eInflictor, attacker, iDamage, sMeansOfDeath, sW
 
 /*
 	Name: function_1fba78c8
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x53A5424
 	Offset: 0x12C8
 	Size: 0xA9
@@ -232,7 +232,7 @@ function function_1fba78c8()
 
 /*
 	Name: zombie_soul_catcher_death
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xA8F1FEB1
 	Offset: 0x1380
 	Size: 0x3EF
@@ -300,7 +300,7 @@ function zombie_soul_catcher_death(eInflictor, attacker, iDamage, sMeansOfDeath,
 
 /*
 	Name: get_correct_model_array
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xEB26829E
 	Offset: 0x1778
 	Size: 0xD7
@@ -335,7 +335,7 @@ function get_correct_model_array()
 
 /*
 	Name: function_edf4b761
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xB5C066B4
 	Offset: 0x1858
 	Size: 0x4B
@@ -352,7 +352,7 @@ function function_edf4b761()
 
 /*
 	Name: which_eating_anim
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x510B4979
 	Offset: 0x18B0
 	Size: 0x103
@@ -383,7 +383,7 @@ function which_eating_anim()
 
 /*
 	Name: soul_catcher_check
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x4C15307A
 	Offset: 0x19C0
 	Size: 0x103
@@ -412,14 +412,14 @@ function soul_catcher_check()
 	{
 		level flag::set("soul_catchers_charged");
 		self thread function_b7dd8bb3();
-		level.var_63e17dd5 thread namespace_97ddfc0d::function_439c7159();
+		level.var_63e17dd5 thread zm_castle_vo::function_439c7159();
 		level thread function_a01a53de();
 	}
 }
 
 /*
 	Name: function_e775e6a4
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xAAA7A358
 	Offset: 0x1AD0
 	Size: 0xBB
@@ -443,7 +443,7 @@ function function_e775e6a4(var_63530679)
 
 /*
 	Name: function_7b154c37
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x99EC1590
 	Offset: 0x1B98
 	Size: 0x3
@@ -456,7 +456,7 @@ function function_7b154c37()
 
 /*
 	Name: function_54af3e05
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x99EC1590
 	Offset: 0x1BA8
 	Size: 0x3
@@ -469,7 +469,7 @@ function function_54af3e05()
 
 /*
 	Name: function_b7dd8bb3
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x99EC1590
 	Offset: 0x1BB8
 	Size: 0x3
@@ -482,7 +482,7 @@ function function_b7dd8bb3()
 
 /*
 	Name: function_a01a53de
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x7450503B
 	Offset: 0x1BC8
 	Size: 0x293
@@ -521,7 +521,7 @@ function function_a01a53de()
 
 /*
 	Name: function_9376cff9
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xE7C7B2CD
 	Offset: 0x1E68
 	Size: 0x15F
@@ -556,7 +556,7 @@ function function_9376cff9()
 
 /*
 	Name: function_e464049a
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x4C46CE70
 	Offset: 0x1FD0
 	Size: 0xF5
@@ -574,7 +574,7 @@ function function_e464049a()
 
 /*
 	Name: function_fb853e2c
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xE54D7704
 	Offset: 0x20D0
 	Size: 0xDF
@@ -601,7 +601,7 @@ function function_fb853e2c()
 
 /*
 	Name: function_71d4f620
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x20B82F6F
 	Offset: 0x21B8
 	Size: 0xBF
@@ -626,7 +626,7 @@ function function_71d4f620()
 
 /*
 	Name: function_c9cdf051
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xC80FA01C
 	Offset: 0x2280
 	Size: 0x1B
@@ -640,7 +640,7 @@ function function_c9cdf051()
 
 /*
 	Name: function_bb60c970
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x5D3F38E3
 	Offset: 0x22A8
 	Size: 0xFB
@@ -664,7 +664,7 @@ function function_bb60c970()
 
 /*
 	Name: function_65fb1c47
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x90A21B12
 	Offset: 0x23B0
 	Size: 0x7F
@@ -684,7 +684,7 @@ function function_65fb1c47(e_player)
 
 /*
 	Name: function_26e22a99
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x86251B11
 	Offset: 0x2438
 	Size: 0x2B7
@@ -712,7 +712,7 @@ function function_26e22a99()
 		}
 		w_bow = GetWeapon("elemental_bow");
 		e_who zm_weapons::weapon_give(w_bow, 0, 0, 1);
-		e_who thread namespace_97ddfc0d::function_db92bdf2();
+		e_who thread zm_castle_vo::base_bow_picked_up();
 		if(isdefined(e_who.var_e8e28d9e))
 		{
 			e_who SetWeaponAmmoStock(w_bow, e_who.var_e8e28d9e);
@@ -736,7 +736,7 @@ function function_26e22a99()
 
 /*
 	Name: function_9dfa159b
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xD8753211
 	Offset: 0x26F8
 	Size: 0xC5

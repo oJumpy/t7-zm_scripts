@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_6c640490;
+#namespace zm_island_side_ee_distant_monster;
 
 /*
 	Name: init
-	Namespace: namespace_6c640490
+	Namespace: zm_island_side_ee_distant_monster
 	Checksum: 0x99EC1590
 	Offset: 0x148
 	Size: 0x3

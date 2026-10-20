@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_4566f62;
+#namespace zm_bgb_im_feelin_lucky;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4566f62
+	Namespace: zm_bgb_im_feelin_lucky
 	Checksum: 0x3327B3A5
 	Offset: 0x198
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4566f62
+	Namespace: zm_bgb_im_feelin_lucky
 	Checksum: 0x618ABAC6
 	Offset: 0x1D8
 	Size: 0x53
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_4566f62
+	Namespace: zm_bgb_im_feelin_lucky
 	Checksum: 0x13E16015
 	Offset: 0x238
 	Size: 0x1BB
@@ -89,7 +89,7 @@ function activation()
 
 /*
 	Name: function_29a9b9b8
-	Namespace: namespace_4566f62
+	Namespace: zm_bgb_im_feelin_lucky
 	Checksum: 0x43562EDC
 	Offset: 0x400
 	Size: 0xF1

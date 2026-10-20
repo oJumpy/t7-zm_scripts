@@ -7,7 +7,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_double_points
-	Checksum: 0x22B46B31
+	Checksum: 0xDB21ED6B
 	Offset: 0x128
 	Size: 0x33
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_double_points
-	Checksum: 0xA1F39732
+	Checksum: 0x86B7402
 	Offset: 0x168
 	Size: 0x73
 	Parameters: 0

@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_78eb0295;
+#namespace zm_bgb_soda_fountain;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_78eb0295
+	Namespace: zm_bgb_soda_fountain
 	Checksum: 0x7D924837
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_78eb0295
+	Namespace: zm_bgb_soda_fountain
 	Checksum: 0x1DD74D08
 	Offset: 0x188
 	Size: 0x3B

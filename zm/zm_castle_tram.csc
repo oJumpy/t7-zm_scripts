@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_filter;
 
-#namespace namespace_30db0d4;
+#namespace zm_castle_tram;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xB3D00FDF
 	Offset: 0x278
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xE0202E89
 	Offset: 0x2B8
 	Size: 0x173
@@ -34,17 +34,17 @@ function __init__()
 {
 	level._effect["tram_fuse_destroy"] = "dlc1/castle/fx_glow_115_fuse_burst_castle";
 	level._effect["tram_fuse_fx"] = "dlc1/castle/fx_glow_115_fuse_castle";
-	clientfield::register("scriptmover", "tram_fuse_destroy", 1, 1, "counter", &function_1bf93100, 0, 0);
-	clientfield::register("scriptmover", "tram_fuse_fx", 1, 1, "counter", &function_1383302a, 0, 0);
+	clientfield::register("scriptmover", "tram_fuse_destroy", 1, 1, "counter", &tram_fuse_destroy, 0, 0);
+	clientfield::register("scriptmover", "tram_fuse_fx", 1, 1, "counter", &tram_fuse_fx_callback, 0, 0);
 	clientfield::register("scriptmover", "cleanup_dynents", 1, 1, "counter", &remove_dyn_ents, 0, 0);
-	clientfield::register("world", "snd_tram", 5000, 2, "int", &function_965b3fb9, 0, 0);
+	clientfield::register("world", "snd_tram", 5000, 2, "int", &snd_tram, 0, 0);
 	thread function_58a73de9();
 	thread function_60283937();
 }
 
 /*
 	Name: function_b84c3341
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x3A75998A
 	Offset: 0x438
 	Size: 0x5B
@@ -61,7 +61,7 @@ function function_b84c3341(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_19082f83
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x162940B6
 	Offset: 0x4A0
 	Size: 0x83
@@ -78,7 +78,7 @@ function function_19082f83()
 
 /*
 	Name: function_2d89f1a7
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x9CAA2046
 	Offset: 0x530
 	Size: 0xA3
@@ -107,48 +107,48 @@ function function_2d89f1a7(var_e2026f3a, n_blink_rate)
 }
 
 /*
-	Name: function_1383302a
-	Namespace: namespace_30db0d4
+	Name: tram_fuse_fx_callback
+	Namespace: zm_castle_tram
 	Checksum: 0x13841580
 	Offset: 0x5E0
 	Size: 0x73
 	Parameters: 7
 	Flags: None
 */
-function function_1383302a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function tram_fuse_fx_callback(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self.var_89526350 = PlayFXOnTag(localClientNum, level._effect["tram_fuse_fx"], self, "j_fuse_main");
+	self.tram_fuse_fx = PlayFXOnTag(localClientNum, level._effect["tram_fuse_fx"], self, "j_fuse_main");
 }
 
 /*
-	Name: function_1bf93100
-	Namespace: namespace_30db0d4
+	Name: tram_fuse_destroy
+	Namespace: zm_castle_tram
 	Checksum: 0x9BD35B3A
 	Offset: 0x660
 	Size: 0xA3
 	Parameters: 7
 	Flags: None
 */
-function function_1bf93100(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function tram_fuse_destroy(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	if(isdefined(self.var_89526350))
+	if(isdefined(self.tram_fuse_fx))
 	{
-		deletefx(localClientNum, self.var_89526350, 1);
-		self.var_89526350 = undefined;
+		deletefx(localClientNum, self.tram_fuse_fx, 1);
+		self.tram_fuse_fx = undefined;
 	}
 	PlayFXOnTag(localClientNum, level._effect["tram_fuse_destroy"], self, "j_fuse_main");
 }
 
 /*
-	Name: function_965b3fb9
-	Namespace: namespace_30db0d4
+	Name: snd_tram
+	Namespace: zm_castle_tram
 	Checksum: 0xCBF25B09
 	Offset: 0x710
 	Size: 0x2D9
 	Parameters: 7
 	Flags: None
 */
-function function_965b3fb9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function snd_tram(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -181,7 +181,7 @@ function function_965b3fb9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_58a73de9
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xB1F8A7D8
 	Offset: 0x9F8
 	Size: 0x83
@@ -196,7 +196,7 @@ function function_58a73de9()
 
 /*
 	Name: function_60283937
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x22EDDF39
 	Offset: 0xA88
 	Size: 0x8F
@@ -221,7 +221,7 @@ function function_60283937()
 
 /*
 	Name: remove_dyn_ents
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x12C754A6
 	Offset: 0xB20
 	Size: 0x4B

@@ -117,10 +117,10 @@ function plates()
 		plates[i].origin = targs[i].origin;
 		plates[i].angles = targs[i].angles;
 	}
-	namespace_ddd35ff::quantum_bomb_register_result("ctvg", &dud_func, 100, &ctvg_validation);
+	zm_weap_quantum_bomb::quantum_bomb_register_result("ctvg", &dud_func, 100, &ctvg_validation);
 	level._ctvg_pos = targs[0].origin;
 	level waittill("ctvg_validation");
-	namespace_ddd35ff::quantum_bomb_deregister_result("ctvg");
+	zm_weap_quantum_bomb::quantum_bomb_deregister_result("ctvg");
 	players = GetPlayers();
 	players[randomIntRange(0, players.size)] thread zm_audio::create_and_play_dialog("eggs", "quest5", randomIntRange(4, 6));
 	for(i = 0; i < plates.size; i++)

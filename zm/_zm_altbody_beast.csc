@@ -17,11 +17,11 @@
 #using scripts\zm\_zm_perks;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_215602b6;
+#namespace zm_altbody_beast;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x2911AC80
 	Offset: 0xA88
 	Size: 0x33
@@ -35,7 +35,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x21EAAE4
 	Offset: 0xAC8
 	Size: 0x41D
@@ -44,19 +44,19 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	if(!isdefined(level.var_767d230))
+	if(!isdefined(level.bminteract))
 	{
-		level.var_767d230 = [];
+		level.bminteract = [];
 	}
 	clientfield::register("missile", "bminteract", 1, 2, "int", &bminteract_changed, 0, 0);
 	clientfield::register("scriptmover", "bminteract", 1, 2, "int", &bminteract_changed, 0, 0);
-	clientfield::register("actor", "bm_zombie_melee_kill", 1, 1, "int", &function_b2532c75, 0, 0);
-	clientfield::register("actor", "bm_zombie_grapple_kill", 1, 1, "int", &function_46405286, 0, 0);
+	clientfield::register("actor", "bm_zombie_melee_kill", 1, 1, "int", &bm_zombie_melee_kill, 0, 0);
+	clientfield::register("actor", "bm_zombie_grapple_kill", 1, 1, "int", &bm_zombie_grapple_kill, 0, 0);
 	clientfield::register("toplayer", "beast_blood_on_player", 1, 1, "counter", &function_70f7f4d2, 0, 0);
 	clientfield::register("world", "bm_superbeast", 1, 1, "int", undefined, 0, 0);
 	function_10dcd1d5("beast_mode_kiosk");
 	duplicate_render::set_dr_filter_offscreen("bmint", 35, "bminteract,bmplayer", undefined, 2, "mc/hud_keyline_beastmode", 0);
-	zm_altbody::init("beast_mode", "beast_mode_kiosk", &"ZM_ZOD_ENTER_BEAST_MODE", "zombie_beast_2", 123, &player_enter_beastmode, &function_b2631b3c, &function_df3032fc, &function_da014198);
+	zm_altbody::init("beast_mode", "beast_mode_kiosk", &"ZM_ZOD_ENTER_BEAST_MODE", "zombie_beast_2", 123, &player_enter_beastmode, &player_exit_beastmode, &function_df3032fc, &function_da014198);
 	callback::on_localclient_connect(&player_on_connect);
 	callback::on_spawned(&player_on_spawned);
 	level._effect["beast_kiosk_fx_reset"] = "zombie/fx_bmode_kiosk_fire_reset_zod_zmb";
@@ -76,7 +76,7 @@ function __init__()
 
 /*
 	Name: player_on_connect
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x8323681C
 	Offset: 0xEF0
 	Size: 0x2D
@@ -85,15 +85,15 @@ function __init__()
 */
 function player_on_connect(localClientNum)
 {
-	if(!isdefined(level.var_767d230[localClientNum]))
+	if(!isdefined(level.bminteract[localClientNum]))
 	{
-		level.var_767d230[localClientNum] = [];
+		level.bminteract[localClientNum] = [];
 	}
 }
 
 /*
 	Name: player_on_spawned
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xE77C623F
 	Offset: 0xF28
 	Size: 0x13B
@@ -120,7 +120,7 @@ function player_on_spawned(localClientNum)
 
 /*
 	Name: player_enter_beastmode
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x76D2D048
 	Offset: 0x1070
 	Size: 0x2B3
@@ -134,37 +134,37 @@ function player_enter_beastmode(localClientNum)
 	self.beast_mode = 1;
 	self thread player_update_beast_mode_objects(localClientNum, !function_faf41e73(localClientNum));
 	self thread sndbeastmode(player === var_84301bb1);
-	self thread function_2a7bb7b3(localClientNum, 1);
-	self thread function_b25c9962(1, "tag_flash", 0.15);
+	self thread beast_fx(localClientNum, 1);
+	self thread grapple_watch(1, "tag_flash", 0.15);
 	self thread function_89d6f49a(localClientNum, 1);
 	self function_2d565c0(localClientNum, 0);
 	function_cce7ef03(localClientNum, 1);
-	var_1ee18766 = 0;
+	scr_beast_no_visionset = 0;
 	/#
-		var_1ee18766 = GetDvarInt("Dev Block strings are not supported") > 0;
+		scr_beast_no_visionset = GetDvarInt("Dev Block strings are not supported") > 0;
 		self thread watch_scr_beast_no_visionset(localClientNum);
 	#/
 	if(IsDemoPlaying())
 	{
 		self thread function_cb236f81(localClientNum);
 	}
-	if(!var_1ee18766 && !function_faf41e73(localClientNum) && player === var_84301bb1)
+	if(!scr_beast_no_visionset && !function_faf41e73(localClientNum) && player === var_84301bb1)
 	{
 		setpbgactivebank(localClientNum, 2);
 		self thread function_56c9cf9d(localClientNum);
-		self.var_b65bad1f = PlayFXOnCamera(localClientNum, level._effect["beast_1p_light"]);
+		self.beast_1p_light = PlayFXOnCamera(localClientNum, level._effect["beast_1p_light"]);
 	}
 	/#
 		if(GetDvarInt("Dev Block strings are not supported") > 0)
 		{
-			self.var_45a700e5 = PlayFXOnTag(localClientNum, level._effect["Dev Block strings are not supported"], self, "Dev Block strings are not supported");
+			self.beast_3p_trail = PlayFXOnTag(localClientNum, level._effect["Dev Block strings are not supported"], self, "Dev Block strings are not supported");
 		}
 	#/
 }
 
 /*
 	Name: watch_scr_beast_no_visionset
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xAF52451D
 	Offset: 0x1330
 	Size: 0x167
@@ -173,19 +173,19 @@ function player_enter_beastmode(localClientNum)
 */
 function watch_scr_beast_no_visionset(localClientNum)
 {
-	self endon("hash_dd954547");
+	self endon("beast_mode_exit");
 	was_scr_beast_no_visionset = GetDvarInt("scr_beast_no_visionset") > 0;
 	while(isdefined(self))
 	{
-		var_1ee18766 = GetDvarInt("scr_beast_no_visionset") > 0;
-		if(var_1ee18766 != was_scr_beast_no_visionset)
+		scr_beast_no_visionset = GetDvarInt("scr_beast_no_visionset") > 0;
+		if(scr_beast_no_visionset != was_scr_beast_no_visionset)
 		{
-			if(var_1ee18766)
+			if(scr_beast_no_visionset)
 			{
-				if(isdefined(self.var_b65bad1f))
+				if(isdefined(self.beast_1p_light))
 				{
-					stopfx(localClientNum, self.var_b65bad1f);
-					self.var_b65bad1f = undefined;
+					stopfx(localClientNum, self.beast_1p_light);
+					self.beast_1p_light = undefined;
 				}
 				setpbgactivebank(localClientNum, 1);
 				self thread function_ea06d888(localClientNum);
@@ -194,17 +194,17 @@ function watch_scr_beast_no_visionset(localClientNum)
 			{
 				setpbgactivebank(localClientNum, 2);
 				self thread function_56c9cf9d(localClientNum);
-				self.var_b65bad1f = PlayFXOnCamera(localClientNum, level._effect["beast_1p_light"]);
+				self.beast_1p_light = PlayFXOnCamera(localClientNum, level._effect["beast_1p_light"]);
 			}
 		}
-		was_scr_beast_no_visionset = var_1ee18766;
+		was_scr_beast_no_visionset = scr_beast_no_visionset;
 		wait(1);
 	}
 }
 
 /*
 	Name: function_faf41e73
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xA8290583
 	Offset: 0x14A0
 	Size: 0x31
@@ -218,7 +218,7 @@ function function_faf41e73(localClientNum)
 
 /*
 	Name: function_cb236f81
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x562F9096
 	Offset: 0x14E0
 	Size: 0x197
@@ -227,7 +227,7 @@ function function_faf41e73(localClientNum)
 */
 function function_cb236f81(localClientNum)
 {
-	self endon("hash_dd954547");
+	self endon("beast_mode_exit");
 	if(!IsDemoPlaying())
 	{
 		return;
@@ -240,10 +240,10 @@ function function_cb236f81(localClientNum)
 		{
 			if(var_26495de5)
 			{
-				if(isdefined(self.var_b65bad1f))
+				if(isdefined(self.beast_1p_light))
 				{
-					stopfx(localClientNum, self.var_b65bad1f);
-					self.var_b65bad1f = undefined;
+					stopfx(localClientNum, self.beast_1p_light);
+					self.beast_1p_light = undefined;
 				}
 				setpbgactivebank(localClientNum, 1);
 				self thread function_ea06d888(localClientNum);
@@ -252,7 +252,7 @@ function function_cb236f81(localClientNum)
 			{
 				setpbgactivebank(localClientNum, 2);
 				self thread function_56c9cf9d(localClientNum);
-				self.var_b65bad1f = PlayFXOnCamera(localClientNum, level._effect["beast_1p_light"]);
+				self.beast_1p_light = PlayFXOnCamera(localClientNum, level._effect["beast_1p_light"]);
 			}
 			self thread player_update_beast_mode_objects(localClientNum, !var_26495de5);
 		}
@@ -263,7 +263,7 @@ function function_cb236f81(localClientNum)
 
 /*
 	Name: function_56c9cf9d
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x3E8FC19F
 	Offset: 0x1680
 	Size: 0x2B
@@ -276,36 +276,36 @@ function function_56c9cf9d(localClientNum)
 }
 
 /*
-	Name: function_b2631b3c
-	Namespace: namespace_215602b6
+	Name: player_exit_beastmode
+	Namespace: zm_altbody_beast
 	Checksum: 0xA4650177
 	Offset: 0x16B8
 	Size: 0x16F
 	Parameters: 1
 	Flags: None
 */
-function function_b2631b3c(localClientNum)
+function player_exit_beastmode(localClientNum)
 {
-	self notify("hash_dd954547");
+	self notify("beast_mode_exit");
 	/#
-		if(isdefined(self.var_45a700e5))
+		if(isdefined(self.beast_3p_trail))
 		{
-			stopfx(localClientNum, self.var_45a700e5);
-			self.var_45a700e5 = undefined;
+			stopfx(localClientNum, self.beast_3p_trail);
+			self.beast_3p_trail = undefined;
 		}
 	#/
-	if(isdefined(self.var_b65bad1f))
+	if(isdefined(self.beast_1p_light))
 	{
-		stopfx(localClientNum, self.var_b65bad1f);
-		self.var_b65bad1f = undefined;
+		stopfx(localClientNum, self.beast_1p_light);
+		self.beast_1p_light = undefined;
 	}
 	function_cce7ef03(localClientNum, 0);
 	setpbgactivebank(localClientNum, 1);
 	self thread function_89d6f49a(localClientNum, 0);
 	self thread function_ea06d888(localClientNum);
-	self thread function_b25c9962(0);
+	self thread grapple_watch(0);
 	self thread player_update_beast_mode_objects(localClientNum, 0);
-	self thread function_2a7bb7b3(localClientNum, 0);
+	self thread beast_fx(localClientNum, 0);
 	self thread sndbeastmode(0);
 	self oed_sitrepscan_enable(4);
 	self.beast_mode = 0;
@@ -313,7 +313,7 @@ function function_b2631b3c(localClientNum)
 
 /*
 	Name: function_ea06d888
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x13ADD9EF
 	Offset: 0x1830
 	Size: 0x23
@@ -327,7 +327,7 @@ function function_ea06d888(localClientNum)
 
 /*
 	Name: function_df3032fc
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x594E1169
 	Offset: 0x1860
 	Size: 0x6B
@@ -336,13 +336,13 @@ function function_ea06d888(localClientNum)
 */
 function function_df3032fc(localClientNum)
 {
-	self.var_45a700e5 = PlayFXOnTag(localClientNum, level._effect["beast_3p_trail"], self, "j_spinelower");
-	self thread function_b25c9962(1, "J_Tent_Main_14_RI", 0.05);
+	self.beast_3p_trail = PlayFXOnTag(localClientNum, level._effect["beast_3p_trail"], self, "j_spinelower");
+	self thread grapple_watch(1, "J_Tent_Main_14_RI", 0.05);
 }
 
 /*
 	Name: function_da014198
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xAE109876
 	Offset: 0x18D8
 	Size: 0x55
@@ -351,17 +351,17 @@ function function_df3032fc(localClientNum)
 */
 function function_da014198(localClientNum)
 {
-	self thread function_b25c9962(0);
-	if(isdefined(self.var_45a700e5))
+	self thread grapple_watch(0);
+	if(isdefined(self.beast_3p_trail))
 	{
-		stopfx(localClientNum, self.var_45a700e5);
-		self.var_45a700e5 = undefined;
+		stopfx(localClientNum, self.beast_3p_trail);
+		self.beast_3p_trail = undefined;
 	}
 }
 
 /*
 	Name: get_script_noteworthy_array
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x1213E76E
 	Offset: 0x1938
 	Size: 0xFF
@@ -387,7 +387,7 @@ function get_script_noteworthy_array(localClientNum, VAL, key)
 
 /*
 	Name: function_70f7f4d2
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xCBD9FF07
 	Offset: 0x1A40
 	Size: 0x8B
@@ -405,7 +405,7 @@ function function_70f7f4d2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_4685bc0f
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xB7FF55E9
 	Offset: 0x1AD8
 	Size: 0xB3
@@ -429,7 +429,7 @@ function function_4685bc0f(localClientNum, time_up, var_72af98b3)
 
 /*
 	Name: function_ef4c8536
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x3574E92
 	Offset: 0x1B98
 	Size: 0x23B
@@ -468,7 +468,7 @@ function function_ef4c8536(localClientNum, time_up, var_72af98b3)
 
 /*
 	Name: function_cce7ef03
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x96B4F06C
 	Offset: 0x1DE0
 	Size: 0xDB
@@ -499,7 +499,7 @@ function function_cce7ef03(localClientNum, onOff)
 
 /*
 	Name: player_update_beast_mode_objects
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xA0C18453
 	Offset: 0x1EC8
 	Size: 0x133
@@ -513,13 +513,13 @@ function player_update_beast_mode_objects(localClientNum, onOff)
 	bmho = get_script_noteworthy_array(localClientNum, "not_beast_mode", "script_noteworthy");
 	Array::run_all(bmho, &entity_set_visible, localClientNum, self, !onOff);
 	wait(0.016);
-	clean_deleted(level.var_767d230[localClientNum]);
-	Array::run_all(level.var_767d230[localClientNum], &entity_set_bmplayer, localClientNum, onOff);
+	clean_deleted(level.bminteract[localClientNum]);
+	Array::run_all(level.bminteract[localClientNum], &entity_set_bmplayer, localClientNum, onOff);
 }
 
 /*
 	Name: entity_set_bmplayer
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x5225610A
 	Offset: 0x2008
 	Size: 0x16B
@@ -528,14 +528,14 @@ function player_update_beast_mode_objects(localClientNum, onOff)
 */
 function entity_set_bmplayer(localClientNum, onOff)
 {
-	if(!isdefined(self.var_2a7bb7b3))
+	if(!isdefined(self.beast_fx))
 	{
-		self.var_2a7bb7b3 = [];
+		self.beast_fx = [];
 	}
-	if(isdefined(self.var_2a7bb7b3[localClientNum]))
+	if(isdefined(self.beast_fx[localClientNum]))
 	{
-		stopfx(localClientNum, self.var_2a7bb7b3[localClientNum]);
-		self.var_2a7bb7b3[localClientNum] = undefined;
+		stopfx(localClientNum, self.beast_fx[localClientNum]);
+		self.beast_fx[localClientNum] = undefined;
 	}
 	if(isdefined(self.model))
 	{
@@ -549,7 +549,7 @@ function entity_set_bmplayer(localClientNum, onOff)
 		}
 		if(isdefined(FX))
 		{
-			self.var_2a7bb7b3[localClientNum] = PlayFXOnTag(localClientNum, FX, self, "tag_origin");
+			self.beast_fx[localClientNum] = PlayFXOnTag(localClientNum, FX, self, "tag_origin");
 		}
 	}
 	if(!IsSplitscreen() && !IsDemoPlaying())
@@ -561,7 +561,7 @@ function entity_set_bmplayer(localClientNum, onOff)
 
 /*
 	Name: function_d9f5b74d
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x726560EE
 	Offset: 0x2180
 	Size: 0x7F
@@ -602,7 +602,7 @@ function function_d9f5b74d(modelName)
 
 /*
 	Name: function_f74ecbae
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xFF139AC7
 	Offset: 0x2208
 	Size: 0x2F
@@ -623,7 +623,7 @@ function function_f74ecbae(modelName)
 
 /*
 	Name: entity_set_visible
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xA29A5215
 	Offset: 0x2240
 	Size: 0x53
@@ -644,7 +644,7 @@ function entity_set_visible(localClientNum, player, onOff)
 
 /*
 	Name: add_remove_list
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x59747A3A
 	Offset: 0x22A0
 	Size: 0x83
@@ -672,7 +672,7 @@ function add_remove_list(a, on_off)
 
 /*
 	Name: clean_deleted
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x96643789
 	Offset: 0x2330
 	Size: 0xE1
@@ -699,7 +699,7 @@ function clean_deleted(Array)
 
 /*
 	Name: function_7d675424
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x69F457D7
 	Offset: 0x2420
 	Size: 0x8F
@@ -720,7 +720,7 @@ function function_7d675424(type)
 
 /*
 	Name: bminteract_changed
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x5BDEDEDC
 	Offset: 0x24B8
 	Size: 0x22B
@@ -739,7 +739,7 @@ function bminteract_changed(local_client_num, oldVal, newVal, bNewEnt, bInitialS
 	{
 		self setentbeastmodeicontype(newVal);
 	}
-	self add_remove_list(level.var_767d230[local_client_num], onOff);
+	self add_remove_list(level.bminteract[local_client_num], onOff);
 	if(!IsSplitscreen())
 	{
 		self duplicate_render::set_dr_flag("bmplayer", isdefined(GetLocalPlayer(local_client_num).beast_mode) && GetLocalPlayer(local_client_num).beast_mode);
@@ -749,14 +749,14 @@ function bminteract_changed(local_client_num, oldVal, newVal, bNewEnt, bInitialS
 		self duplicate_render::set_dr_flag("bminteract", onOff);
 		self duplicate_render::update_dr_filters(local_client_num);
 	}
-	else if(!isdefined(self.var_2a7bb7b3))
+	else if(!isdefined(self.beast_fx))
 	{
-		self.var_2a7bb7b3 = [];
+		self.beast_fx = [];
 	}
-	if(isdefined(self.var_2a7bb7b3[local_client_num]))
+	if(isdefined(self.beast_fx[local_client_num]))
 	{
-		stopfx(local_client_num, self.var_2a7bb7b3[local_client_num]);
-		self.var_2a7bb7b3[local_client_num] = undefined;
+		stopfx(local_client_num, self.beast_fx[local_client_num]);
+		self.beast_fx[local_client_num] = undefined;
 	}
 	if(isdefined(self.currentdrfilter))
 	{
@@ -767,7 +767,7 @@ function bminteract_changed(local_client_num, oldVal, newVal, bNewEnt, bInitialS
 
 /*
 	Name: function_10dcd1d5
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x3B840A5A
 	Offset: 0x26F0
 	Size: 0x1D9
@@ -799,7 +799,7 @@ function function_10dcd1d5(kiosk_name)
 
 /*
 	Name: function_62095f03
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xFF86EFD0
 	Offset: 0x28D8
 	Size: 0x1A1
@@ -831,7 +831,7 @@ function function_62095f03(localClientNum)
 
 /*
 	Name: function_fa828651
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x353B920E
 	Offset: 0x2A88
 	Size: 0x11B
@@ -861,7 +861,7 @@ function function_fa828651(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: update_kiosk_state
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x7580E43
 	Offset: 0x2BB0
 	Size: 0x333
@@ -914,7 +914,7 @@ function update_kiosk_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSna
 
 /*
 	Name: function_5e873a4e
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xF71CF6CD
 	Offset: 0x2EF0
 	Size: 0x9B
@@ -932,7 +932,7 @@ function function_5e873a4e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: bm_cursed
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xBA005EDB
 	Offset: 0x2F98
 	Size: 0x15B
@@ -965,7 +965,7 @@ function bm_cursed(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldN
 
 /*
 	Name: sndbeastmode
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x280E7A3D
 	Offset: 0x3100
 	Size: 0x7B
@@ -988,7 +988,7 @@ function sndbeastmode(activate)
 
 /*
 	Name: sndbeastmode_manastart
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x3C2397F0
 	Offset: 0x3188
 	Size: 0x117
@@ -1024,7 +1024,7 @@ function sndbeastmode_manastart()
 
 /*
 	Name: sndbeastmode_manastop
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x12619A13
 	Offset: 0x32A8
 	Size: 0x45
@@ -1042,37 +1042,37 @@ function sndbeastmode_manastop()
 }
 
 /*
-	Name: function_14637ad2
-	Namespace: namespace_215602b6
+	Name: stop_beast_fx
+	Namespace: zm_altbody_beast
 	Checksum: 0xEB78A48D
 	Offset: 0x32F8
 	Size: 0x3D
 	Parameters: 1
 	Flags: None
 */
-function function_14637ad2(localClientNum)
+function stop_beast_fx(localClientNum)
 {
-	if(isdefined(self.var_a4e22c06))
+	if(isdefined(self.beast_fork_fx))
 	{
-		stopfx(localClientNum, self.var_a4e22c06);
-		self.var_a4e22c06 = undefined;
+		stopfx(localClientNum, self.beast_fork_fx);
+		self.beast_fork_fx = undefined;
 	}
 }
 
 /*
-	Name: function_2a7bb7b3
-	Namespace: namespace_215602b6
+	Name: beast_fx
+	Namespace: zm_altbody_beast
 	Checksum: 0xBDD54BDC
 	Offset: 0x3340
 	Size: 0x1F7
 	Parameters: 2
 	Flags: None
 */
-function function_2a7bb7b3(localClientNum, on_off)
+function beast_fx(localClientNum, on_off)
 {
-	self notify("hash_2a7bb7b3");
-	self endon("hash_2a7bb7b3");
-	function_14637ad2(localClientNum);
+	self notify("beast_fx");
+	self endon("beast_fx");
+	stop_beast_fx(localClientNum);
 	if(on_off)
 	{
 		while(isdefined(self))
@@ -1080,24 +1080,24 @@ function function_2a7bb7b3(localClientNum, on_off)
 			level waittill("Notetrack", lcn, note);
 			if(note == "shock_loop")
 			{
-				function_14637ad2(localClientNum);
+				stop_beast_fx(localClientNum);
 				charge = getweaponchargelevel(localClientNum);
 				switch(charge)
 				{
 					case 2:
 					{
-						self.var_a4e22c06 = PlayViewmodelFX(localClientNum, level._effect["beast_fork_2"], "tag_flash_le");
+						self.beast_fork_fx = PlayViewmodelFX(localClientNum, level._effect["beast_fork_2"], "tag_flash_le");
 						break;
 					}
 					case 3:
 					{
-						self.var_a4e22c06 = PlayViewmodelFX(localClientNum, level._effect["beast_fork_3"], "tag_flash_le");
+						self.beast_fork_fx = PlayViewmodelFX(localClientNum, level._effect["beast_fork_3"], "tag_flash_le");
 						break;
 					}
 					case 1:
 					case default:
 					{
-						self.var_a4e22c06 = PlayViewmodelFX(localClientNum, level._effect["beast_fork_1"], "tag_flash_le");
+						self.beast_fork_fx = PlayViewmodelFX(localClientNum, level._effect["beast_fork_1"], "tag_flash_le");
 						break;
 					}
 				}
@@ -1105,7 +1105,7 @@ function function_2a7bb7b3(localClientNum, on_off)
 			}
 			else if(note == "shock_loop_end")
 			{
-				function_14637ad2(localClientNum);
+				stop_beast_fx(localClientNum);
 			}
 		}
 	}
@@ -1113,7 +1113,7 @@ function function_2a7bb7b3(localClientNum, on_off)
 
 /*
 	Name: function_2d565c0
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x54DFA2E9
 	Offset: 0x3540
 	Size: 0xEB
@@ -1153,7 +1153,7 @@ function function_2d565c0(localClientNum, charge)
 
 /*
 	Name: function_892cc334
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x76FEC9A1
 	Offset: 0x3638
 	Size: 0x15F
@@ -1164,7 +1164,7 @@ function function_892cc334(localClientNum, time, pmin, pmax, charge)
 {
 	self notify("hash_892cc334");
 	self endon("hash_892cc334");
-	self endon("hash_dd954547");
+	self endon("beast_mode_exit");
 	if(!isdefined(self.var_652e98))
 	{
 		self.var_652e98 = 0;
@@ -1188,7 +1188,7 @@ function function_892cc334(localClientNum, time, pmin, pmax, charge)
 
 /*
 	Name: function_ac7706bc
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xBB7B6D6B
 	Offset: 0x37A0
 	Size: 0x2DB
@@ -1254,7 +1254,7 @@ function function_ac7706bc()
 
 /*
 	Name: function_55af4b5b
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xC2CBFF8D
 	Offset: 0x3A88
 	Size: 0x53
@@ -1270,7 +1270,7 @@ function function_55af4b5b(player, tag, pivot, delay)
 
 /*
 	Name: grapple_beam
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xF46C7C5B
 	Offset: 0x3AE8
 	Size: 0x8B
@@ -1285,15 +1285,15 @@ function grapple_beam(player, tag, pivot)
 }
 
 /*
-	Name: function_b25c9962
-	Namespace: namespace_215602b6
+	Name: grapple_watch
+	Namespace: zm_altbody_beast
 	Checksum: 0x1062B659
 	Offset: 0x3B80
 	Size: 0x199
 	Parameters: 3
 	Flags: None
 */
-function function_b25c9962(onOff, tag, delay)
+function grapple_watch(onOff, tag, delay)
 {
 	if(!isdefined(tag))
 	{
@@ -1304,8 +1304,8 @@ function function_b25c9962(onOff, tag, delay)
 		delay = 0.15;
 	}
 	self notify("grapple_done");
-	self notify("hash_b25c9962");
-	self endon("hash_b25c9962");
+	self notify("grapple_watch");
+	self endon("grapple_watch");
 	if(onOff)
 	{
 		while(isdefined(self))
@@ -1330,7 +1330,7 @@ function function_b25c9962(onOff, tag, delay)
 
 /*
 	Name: function_4778b020
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x4780DD3A
 	Offset: 0x3D28
 	Size: 0x95
@@ -1345,7 +1345,7 @@ function function_4778b020(lo, Hi)
 
 /*
 	Name: function_4b2bbece
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0x3CFEDAC2
 	Offset: 0x3DC8
 	Size: 0xA9
@@ -1361,7 +1361,7 @@ function function_4b2bbece(cfrom, cto, frac)
 
 /*
 	Name: function_89d6f49a
-	Namespace: namespace_215602b6
+	Namespace: zm_altbody_beast
 	Checksum: 0xEE1F3FD6
 	Offset: 0x3E80
 	Size: 0x1E1
@@ -1406,15 +1406,15 @@ function function_89d6f49a(localClientNum, onOff)
 }
 
 /*
-	Name: function_b2532c75
-	Namespace: namespace_215602b6
+	Name: bm_zombie_melee_kill
+	Namespace: zm_altbody_beast
 	Checksum: 0x8404D992
 	Offset: 0x4070
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_b2532c75(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function bm_zombie_melee_kill(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(util::is_mature() && !util::is_gib_restricted_build())
 	{
@@ -1423,15 +1423,15 @@ function function_b2532c75(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_46405286
-	Namespace: namespace_215602b6
+	Name: bm_zombie_grapple_kill
+	Namespace: zm_altbody_beast
 	Checksum: 0x2DF04B7A
 	Offset: 0x4118
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_46405286(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function bm_zombie_grapple_kill(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(util::is_mature() && !util::is_gib_restricted_build())
 	{

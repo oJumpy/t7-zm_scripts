@@ -7,7 +7,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0xF14025C5
+	Checksum: 0xD0B2EA78
 	Offset: 0x118
 	Size: 0x33
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_fire_sale
-	Checksum: 0x18E04E00
+	Checksum: 0xE86DB204
 	Offset: 0x158
 	Size: 0x73
 	Parameters: 0

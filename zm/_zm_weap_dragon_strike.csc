@@ -6,12 +6,12 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_42aab40d;
+#namespace dragon_strike;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_42aab40d
-	Checksum: 0x3B620DB8
+	Namespace: dragon_strike
+	Checksum: 0x85945C75
 	Offset: 0x490
 	Size: 0x33
 	Parameters: 0
@@ -24,8 +24,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_42aab40d
-	Checksum: 0x356358DD
+	Namespace: dragon_strike
+	Checksum: 0xEB709240
 	Offset: 0x4D0
 	Size: 0x415
 	Parameters: 0
@@ -33,17 +33,17 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "dragon_strike_spawn_fx", 12000, 1, "int", &function_9edf1eca, 0, 0);
-	clientfield::register("scriptmover", "dragon_strike_marker_on", 12000, 1, "int", &function_a911d32e, 0, 0);
-	clientfield::register("scriptmover", "dragon_strike_marker_fx", 12000, 1, "counter", &function_ba315afb, 0, 0);
-	clientfield::register("scriptmover", "dragon_strike_marker_upgraded_fx", 12000, 1, "counter", &function_64751666, 0, 0);
-	clientfield::register("scriptmover", "dragon_strike_marker_invalid_fx", 12000, 1, "counter", &function_20b03867, 0, 0);
-	clientfield::register("scriptmover", "dragon_strike_marker_upgraded_invalid_fx", 12000, 1, "counter", &function_6072780a, 0, 0);
-	clientfield::register("scriptmover", "dragon_strike_flare_fx", 12000, 1, "int", &function_67175345, 0, 0);
-	clientfield::register("scriptmover", "dragon_strike_marker_fx_fadeout", 12000, 1, "counter", &function_3fd3d9a8, 0, 0);
-	clientfield::register("scriptmover", "dragon_strike_marker_upgraded_fx_fadeout", 12000, 1, "counter", &function_adb23339, 0, 0);
-	clientfield::register("actor", "dragon_strike_zombie_fire", 12000, 2, "int", &function_aea822d9, 0, 0);
-	clientfield::register("vehicle", "dragon_strike_zombie_fire", 12000, 2, "int", &function_aea822d9, 0, 0);
+	clientfield::register("scriptmover", "dragon_strike_spawn_fx", 12000, 1, "int", &dragon_strike_spawn_fx, 0, 0);
+	clientfield::register("scriptmover", "dragon_strike_marker_on", 12000, 1, "int", &dragon_strike_marker_on, 0, 0);
+	clientfield::register("scriptmover", "dragon_strike_marker_fx", 12000, 1, "counter", &dragon_strike_marker_fx, 0, 0);
+	clientfield::register("scriptmover", "dragon_strike_marker_upgraded_fx", 12000, 1, "counter", &dragon_strike_marker_upgraded_fx, 0, 0);
+	clientfield::register("scriptmover", "dragon_strike_marker_invalid_fx", 12000, 1, "counter", &dragon_strike_marker_invalid_fx, 0, 0);
+	clientfield::register("scriptmover", "dragon_strike_marker_upgraded_invalid_fx", 12000, 1, "counter", &dragon_strike_marker_upgraded_invalid_fx, 0, 0);
+	clientfield::register("scriptmover", "dragon_strike_flare_fx", 12000, 1, "int", &dragon_strike_flare_fx, 0, 0);
+	clientfield::register("scriptmover", "dragon_strike_marker_fx_fadeout", 12000, 1, "counter", &dragon_strike_marker_fx_fadeout, 0, 0);
+	clientfield::register("scriptmover", "dragon_strike_marker_upgraded_fx_fadeout", 12000, 1, "counter", &dragon_strike_marker_upgraded_fx_fadeout, 0, 0);
+	clientfield::register("actor", "dragon_strike_zombie_fire", 12000, 2, "int", &dragon_strike_zombie_fire, 0, 0);
+	clientfield::register("vehicle", "dragon_strike_zombie_fire", 12000, 2, "int", &dragon_strike_zombie_fire, 0, 0);
 	clientfield::register("clientuimodel", "dragon_strike_invalid_use", 12000, 1, "counter", undefined, 0, 0);
 	clientfield::register("clientuimodel", "hudItems.showDpadRight_DragonStrike", 12000, 1, "int", undefined, 0, 0);
 	level._effect["dragon_strike_portal"] = "dlc3/stalingrad/fx_dragonstrike_portal_flash";
@@ -54,15 +54,15 @@ function __init__()
 }
 
 /*
-	Name: function_9edf1eca
-	Namespace: namespace_42aab40d
-	Checksum: 0x4C679876
+	Name: dragon_strike_spawn_fx
+	Namespace: dragon_strike
+	Checksum: 0xF7191940
 	Offset: 0x8F0
 	Size: 0xD3
 	Parameters: 7
 	Flags: None
 */
-function function_9edf1eca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_spawn_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -73,20 +73,20 @@ function function_9edf1eca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_a911d32e
-	Namespace: namespace_42aab40d
-	Checksum: 0x3F7B2534
+	Name: dragon_strike_marker_on
+	Namespace: dragon_strike
+	Checksum: 0xB2F88330
 	Offset: 0x9D0
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_a911d32e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_marker_on(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
 		self dragonstrike_enable(1);
-		self thread function_778495b0(localClientNum);
+		self thread dragon_strike_marker_fx_loop(localClientNum);
 	}
 	else
 	{
@@ -96,15 +96,15 @@ function function_a911d32e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_778495b0
-	Namespace: namespace_42aab40d
-	Checksum: 0x79D6D7C0
+	Name: dragon_strike_marker_fx_loop
+	Namespace: dragon_strike
+	Checksum: 0xA1162BA9
 	Offset: 0xA78
 	Size: 0x4F
 	Parameters: 1
 	Flags: None
 */
-function function_778495b0(localClientNum)
+function dragon_strike_marker_fx_loop(localClientNum)
 {
 	self endon("hash_e98f7ec4");
 	self endon("entityshutdown");
@@ -116,71 +116,71 @@ function function_778495b0(localClientNum)
 }
 
 /*
-	Name: function_ba315afb
-	Namespace: namespace_42aab40d
-	Checksum: 0x222CEC20
+	Name: dragon_strike_marker_fx
+	Namespace: dragon_strike
+	Checksum: 0x587AC41
 	Offset: 0xAD0
 	Size: 0x7B
 	Parameters: 7
 	Flags: None
 */
-function function_ba315afb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_marker_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self dragonstrike_setcolorradiusspinpulse(0.25, 3, 0.25, 128, 0.5, 0);
 }
 
 /*
-	Name: function_64751666
-	Namespace: namespace_42aab40d
-	Checksum: 0xA0F6A8C8
+	Name: dragon_strike_marker_upgraded_fx
+	Namespace: dragon_strike
+	Checksum: 0x883118C2
 	Offset: 0xB58
 	Size: 0x7B
 	Parameters: 7
 	Flags: None
 */
-function function_64751666(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_marker_upgraded_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self dragonstrike_setcolorradiusspinpulse(0.15, 3, 0.15, 128, 0.75, 0);
 }
 
 /*
-	Name: function_20b03867
-	Namespace: namespace_42aab40d
-	Checksum: 0xABBF7E1F
+	Name: dragon_strike_marker_invalid_fx
+	Namespace: dragon_strike
+	Checksum: 0xE7C651AC
 	Offset: 0xBE0
 	Size: 0x7B
 	Parameters: 7
 	Flags: None
 */
-function function_20b03867(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_marker_invalid_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self dragonstrike_setcolorradiusspinpulse(4, 0.5, 0.25, 128, 0.5, 0);
 }
 
 /*
-	Name: function_6072780a
-	Namespace: namespace_42aab40d
-	Checksum: 0xEF0E6351
+	Name: dragon_strike_marker_upgraded_invalid_fx
+	Namespace: dragon_strike
+	Checksum: 0x31EA806E
 	Offset: 0xC68
 	Size: 0x7B
 	Parameters: 7
 	Flags: None
 */
-function function_6072780a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_marker_upgraded_invalid_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self dragonstrike_setcolorradiusspinpulse(4, 0.5, 0.25, 128, 0.75, 0);
 }
 
 /*
-	Name: function_67175345
-	Namespace: namespace_42aab40d
-	Checksum: 0xC8E7EA1A
+	Name: dragon_strike_flare_fx
+	Namespace: dragon_strike
+	Checksum: 0x907F069B
 	Offset: 0xCF0
 	Size: 0xB5
 	Parameters: 7
 	Flags: None
 */
-function function_67175345(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_flare_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -194,43 +194,43 @@ function function_67175345(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_3fd3d9a8
-	Namespace: namespace_42aab40d
-	Checksum: 0x235DE35D
+	Name: dragon_strike_marker_fx_fadeout
+	Namespace: dragon_strike
+	Checksum: 0x6BFF3CEE
 	Offset: 0xDB0
 	Size: 0x73
 	Parameters: 7
 	Flags: None
 */
-function function_3fd3d9a8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_marker_fx_fadeout(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self thread function_1ba92b11(0.25, 3, 0.25, 0.5);
+	self thread dragon_strike_marker_fx_fadeout_loop(0.25, 3, 0.25, 0.5);
 }
 
 /*
-	Name: function_adb23339
-	Namespace: namespace_42aab40d
-	Checksum: 0x45C02EC4
+	Name: dragon_strike_marker_upgraded_fx_fadeout
+	Namespace: dragon_strike
+	Checksum: 0x8DDA959
 	Offset: 0xE30
 	Size: 0x73
 	Parameters: 7
 	Flags: None
 */
-function function_adb23339(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_marker_upgraded_fx_fadeout(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self thread function_1ba92b11(0.15, 3, 0.15, 0.75);
+	self thread dragon_strike_marker_fx_fadeout_loop(0.15, 3, 0.15, 0.75);
 }
 
 /*
-	Name: function_1ba92b11
-	Namespace: namespace_42aab40d
-	Checksum: 0x2189F563
+	Name: dragon_strike_marker_fx_fadeout_loop
+	Namespace: dragon_strike
+	Checksum: 0x6D30C0FA
 	Offset: 0xEB0
 	Size: 0xFD
 	Parameters: 4
 	Flags: None
 */
-function function_1ba92b11(var_6d056a0e, var_9ad65443, var_cddc37e, var_76d07324)
+function dragon_strike_marker_fx_fadeout_loop(var_6d056a0e, var_9ad65443, var_cddc37e, var_76d07324)
 {
 	var_e0a873d1 = var_6d056a0e / 16;
 	var_24ce51da = var_9ad65443 / 16;
@@ -246,15 +246,15 @@ function function_1ba92b11(var_6d056a0e, var_9ad65443, var_cddc37e, var_76d07324
 }
 
 /*
-	Name: function_aea822d9
-	Namespace: namespace_42aab40d
-	Checksum: 0x98E285C
+	Name: dragon_strike_zombie_fire
+	Namespace: dragon_strike
+	Checksum: 0xDF4D5EFF
 	Offset: 0xFB8
 	Size: 0x11B
 	Parameters: 7
 	Flags: None
 */
-function function_aea822d9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_strike_zombie_fire(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 2)
 	{
@@ -271,7 +271,7 @@ function function_aea822d9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		self.var_9f5c18b = 1;
 		if(isdefined(self))
 		{
-			self.var_aea822d9 = PlayFXOnTag(localClientNum, level._effect["dragon_strike_zombie_fire"], self, str_tag);
+			self.dragon_strike_zombie_fire = PlayFXOnTag(localClientNum, level._effect["dragon_strike_zombie_fire"], self, str_tag);
 			self thread function_3cc1555d(localClientNum);
 		}
 	}
@@ -279,8 +279,8 @@ function function_aea822d9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_3cc1555d
-	Namespace: namespace_42aab40d
-	Checksum: 0x271D424
+	Namespace: dragon_strike
+	Checksum: 0x805C8365
 	Offset: 0x10E0
 	Size: 0x67
 	Parameters: 1
@@ -292,7 +292,7 @@ function function_3cc1555d(localClientNum)
 	wait(12);
 	if(isdefined(self) && isalive(self))
 	{
-		stopfx(localClientNum, self.var_aea822d9);
+		stopfx(localClientNum, self.dragon_strike_zombie_fire);
 		self.var_9f5c18b = 0;
 	}
 }

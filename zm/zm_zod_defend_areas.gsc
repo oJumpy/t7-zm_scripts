@@ -180,7 +180,7 @@ function set_duration(n_duration)
 function start()
 {
 	ritual_start_dims = (110, 110, 128);
-	self.m_t_use = namespace_8e578893::spawn_trigger_box(self.m_s_centerpoint.origin, self.m_s_centerpoint.angles, ritual_start_dims, 1);
+	self.m_t_use = zm_zod_util::spawn_trigger_box(self.m_s_centerpoint.origin, self.m_s_centerpoint.angles, ritual_start_dims, 1);
 	self.m_t_use.o_defend_area = self;
 	self.m_t_use.prompt_and_visibility_func = self.m_func_trigger_visibility;
 	self.m_b_started = 1;
@@ -323,8 +323,8 @@ function function_4e035595(player)
 	player.var_b999c630 = 1;
 	if(zm_utility::is_player_valid(player))
 	{
-		player thread namespace_8e578893::function_55f114f9("zmInventory.widget_quest_items", 3.5);
-		player thread namespace_8e578893::show_infotext_for_duration("ZM_ZOD_UI_RITUAL_BUSY", 3.5);
+		player thread zm_zod_util::function_55f114f9("zmInventory.widget_quest_items", 3.5);
+		player thread zm_zod_util::show_infotext_for_duration("ZM_ZOD_UI_RITUAL_BUSY", 3.5);
 	}
 	wait(3.5);
 	player.var_b999c630 = 0;
@@ -427,13 +427,13 @@ function progress_think()
 			{
 				if(!isdefined(player.is_in_defend_area))
 				{
-					player thread namespace_8e578893::set_rumble_to_player(5);
+					player thread zm_zod_util::set_rumble_to_player(5);
 					Array::add(self.m_a_players_involved, player, 0);
 					player.is_in_defend_area = 1;
 				}
 				if(!player.is_in_defend_area)
 				{
-					player thread namespace_8e578893::set_rumble_to_player(5);
+					player thread zm_zod_util::set_rumble_to_player(5);
 					player.is_in_defend_area = 1;
 					self reset_hud(player);
 				}
@@ -443,7 +443,7 @@ function progress_think()
 			{
 				if(isdefined(player.is_in_defend_area) && player.is_in_defend_area)
 				{
-					player thread namespace_8e578893::set_rumble_to_player(0);
+					player thread zm_zod_util::set_rumble_to_player(0);
 					player.is_in_defend_area = 0;
 					self reset_hud(player);
 					player.defend_area_luimenu_status = player OpenLUIMenu(self.m_str_luimenu_return);
@@ -563,7 +563,7 @@ function monitor_defend_event_zombies()
 				continue;
 			}
 			ai.var_81ac9e79 = 1;
-			ai thread namespace_1f61c67f::function_2d0c5aa1(s_spawn_point);
+			ai thread zm_zod_quest::function_2d0c5aa1(s_spawn_point);
 			ai thread function_877a7365();
 			Array::add(self.m_a_defend_event_zombies, ai, 0);
 		}
@@ -692,7 +692,7 @@ function defend_succeeded()
 		{
 			continue;
 		}
-		player thread namespace_8e578893::set_rumble_to_player(6);
+		player thread zm_zod_util::set_rumble_to_player(6);
 		player.is_in_defend_area = undefined;
 		self thread defend_succeeded_hud(player);
 		player zm_score::add_to_player_score(500);
@@ -726,7 +726,7 @@ function defend_failed()
 		{
 			continue;
 		}
-		player thread namespace_8e578893::set_rumble_to_player(0);
+		player thread zm_zod_util::set_rumble_to_player(0);
 		player.is_in_defend_area = undefined;
 		self thread defend_failed_hud(player);
 	}

@@ -11,11 +11,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_d8d03071;
+#namespace zm_zod_traps;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0xB7499AD7
 	Offset: 0x528
 	Size: 0x33
@@ -29,7 +29,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x54CBFDDC
 	Offset: 0x568
 	Size: 0x93
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: update_chain_anims
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0xF418AB20
 	Offset: 0x608
 	Size: 0x17B
@@ -70,7 +70,7 @@ function update_chain_anims(localClientNum, oldVal, newVal, bNewEnt, bInitialSna
 
 /*
 	Name: location_func
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x87806552
 	Offset: 0x790
 	Size: 0x3B
@@ -83,7 +83,7 @@ function location_func(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fi
 
 /*
 	Name: filter_areaname
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x131B17F7
 	Offset: 0x7D8
 	Size: 0x33
@@ -101,7 +101,7 @@ function filter_areaname(e_entity, str_areaname)
 
 /*
 	Name: update_active_chain_anims
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x632CE833
 	Offset: 0x818
 	Size: 0x18D
@@ -148,7 +148,7 @@ function update_active_chain_anims(localClientNum, oldVal, newVal, bNewEnt, bIni
 
 /*
 	Name: scene_play
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0xD7013C9D
 	Offset: 0x9B0
 	Size: 0x7B
@@ -166,7 +166,7 @@ function scene_play(scene, mdl_pod)
 
 /*
 	Name: function_6221b6b9
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x532443A6
 	Offset: 0xA38
 	Size: 0x3B
@@ -181,7 +181,7 @@ function function_6221b6b9(scene, mdl_pod)
 
 /*
 	Name: function_a89bd6f9
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x3AE9D485
 	Offset: 0xA80
 	Size: 0x1CD
@@ -212,7 +212,7 @@ function function_a89bd6f9()
 
 /*
 	Name: function_3f7430db
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0xE7D8A97F
 	Offset: 0xC58
 	Size: 0x111

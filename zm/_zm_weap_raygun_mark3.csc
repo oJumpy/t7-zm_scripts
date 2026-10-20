@@ -12,7 +12,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x304A131A
+	Checksum: 0x29DAEF80
 	Offset: 0x468
 	Size: 0x33
 	Parameters: 0
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xEAA6CF0
+	Checksum: 0xE0E03331
 	Offset: 0x4A8
 	Size: 0x2C3
 	Parameters: 0
@@ -54,7 +54,7 @@ function __init__()
 /*
 	Name: is_beam_raygun
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x8322BB81
+	Checksum: 0xE5CB1214
 	Offset: 0x778
 	Size: 0x33
 	Parameters: 1
@@ -72,7 +72,7 @@ function is_beam_raygun(weapon)
 /*
 	Name: monitor_raygun_mark3
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xE800478A
+	Checksum: 0xDF12111
 	Offset: 0x7B8
 	Size: 0xFF
 	Parameters: 1
@@ -101,7 +101,7 @@ function monitor_raygun_mark3(n_local_client)
 /*
 	Name: glow_monitor
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xB9A9B102
+	Checksum: 0xB0B5DAF9
 	Offset: 0x8C0
 	Size: 0xC7
 	Parameters: 1
@@ -124,7 +124,7 @@ function glow_monitor(n_local_client)
 /*
 	Name: waittill_notetrack
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x6F4BED28
+	Checksum: 0x64799C02
 	Offset: 0x990
 	Size: 0x57
 	Parameters: 1
@@ -147,7 +147,7 @@ function waittill_notetrack(str_notetrack)
 /*
 	Name: slow_vortex_fx
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x6714F73
+	Checksum: 0xA48B2543
 	Offset: 0x9F0
 	Size: 0x133
 	Parameters: 7
@@ -177,7 +177,7 @@ function slow_vortex_fx(n_local_client, n_old, n_new, b_new_ent, b_initial_snap,
 /*
 	Name: ai_slow_vortex_fx
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x71253CC3
+	Checksum: 0xDB904A96
 	Offset: 0xB30
 	Size: 0x153
 	Parameters: 7
@@ -208,7 +208,7 @@ function ai_slow_vortex_fx(n_local_client, n_old, n_new, b_new_ent, b_initial_sn
 /*
 	Name: vortex_shake_and_rumble
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xE0070E9F
+	Checksum: 0xF460BE0A
 	Offset: 0xC90
 	Size: 0x9F
 	Parameters: 2
@@ -235,7 +235,7 @@ function vortex_shake_and_rumble(n_local_client, n_damage_level)
 /*
 	Name: zombie_blacken
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x921731EC
+	Checksum: 0xEF8407A5
 	Offset: 0xD38
 	Size: 0x11F
 	Parameters: 2
@@ -269,7 +269,7 @@ function zombie_blacken(n_local_client, b_blacken)
 /*
 	Name: ai_disintegrate
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xFC9F7296
+	Checksum: 0x74C1DC7F
 	Offset: 0xE60
 	Size: 0x123
 	Parameters: 7

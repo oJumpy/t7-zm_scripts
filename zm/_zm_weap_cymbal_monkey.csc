@@ -7,7 +7,7 @@
 /*
 	Name: init
 	Namespace: _zm_weap_cymbal_monkey
-	Checksum: 0x1164836
+	Checksum: 0x160BFC22
 	Offset: 0x110
 	Size: 0x6F
 	Parameters: 0

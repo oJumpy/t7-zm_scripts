@@ -5,11 +5,11 @@
 #using scripts\shared\vehicles\_dragon_whelp;
 #using scripts\zm\_callbacks;
 
-#namespace namespace_2ef08cd1;
+#namespace zm_weap_dragon_gauntlet;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x4388266D
 	Offset: 0x4F8
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x14B25167
 	Offset: 0x538
 	Size: 0x23
@@ -37,7 +37,7 @@ function __init__()
 
 /*
 	Name: player_on_spawned
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x79CC3A39
 	Offset: 0x568
 	Size: 0x23
@@ -51,7 +51,7 @@ function player_on_spawned(localClientNum)
 
 /*
 	Name: watch_weapon_changes
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xCEB2EBF0
 	Offset: 0x598
 	Size: 0x18D
@@ -62,12 +62,12 @@ function watch_weapon_changes(localClientNum)
 {
 	self endon("disconnect");
 	self endon("entityshutdown");
-	self.var_eb91e4f9 = GetWeapon("dragon_gauntlet_flamethrower");
+	self.dragon_gauntlet = GetWeapon("dragon_gauntlet_flamethrower");
 	self.var_dd5c3be0 = GetWeapon("dragon_gauntlet");
 	while(isdefined(self))
 	{
 		self waittill("weapon_change", weapon);
-		if(weapon === self.var_eb91e4f9)
+		if(weapon === self.dragon_gauntlet)
 		{
 			self thread function_7645efdb(localClientNum);
 			self thread function_6c7c9327(localClientNum);
@@ -79,7 +79,7 @@ function watch_weapon_changes(localClientNum)
 			self thread function_a8ac2d1d(localClientNum);
 			self thread function_3011ccf6(localClientNum);
 		}
-		if(weapon !== self.var_eb91e4f9 && weapon !== self.var_dd5c3be0)
+		if(weapon !== self.dragon_gauntlet && weapon !== self.var_dd5c3be0)
 		{
 			self function_99aba1a5(localClientNum);
 			self function_7645efdb(localClientNum);
@@ -90,7 +90,7 @@ function watch_weapon_changes(localClientNum)
 
 /*
 	Name: function_6c7c9327
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x7052A51B
 	Offset: 0x730
 	Size: 0x16D
@@ -116,7 +116,7 @@ function function_6c7c9327(localClientNum)
 
 /*
 	Name: function_a8ac2d1d
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x14C08406
 	Offset: 0x8A8
 	Size: 0x2BD
@@ -148,7 +148,7 @@ function function_a8ac2d1d(localClientNum)
 
 /*
 	Name: function_99aba1a5
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x1485465F
 	Offset: 0xB70
 	Size: 0xB1
@@ -168,7 +168,7 @@ function function_99aba1a5(localClientNum)
 
 /*
 	Name: function_7645efdb
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0x6CBD7E65
 	Offset: 0xC30
 	Size: 0xB1
@@ -188,7 +188,7 @@ function function_7645efdb(localClientNum)
 
 /*
 	Name: function_3011ccf6
-	Namespace: namespace_2ef08cd1
+	Namespace: zm_weap_dragon_gauntlet
 	Checksum: 0xBB81351A
 	Offset: 0xCF0
 	Size: 0x31D

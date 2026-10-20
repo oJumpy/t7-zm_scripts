@@ -11,11 +11,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_island;
 
-#namespace namespace_1c690923;
+#namespace zm_island_cleanup;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0xACC26B74
 	Offset: 0x240
 	Size: 0x3B
@@ -29,7 +29,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x4D917DA7
 	Offset: 0x288
 	Size: 0xF
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x2D0EDF1F
 	Offset: 0x2A0
 	Size: 0x1B
@@ -57,7 +57,7 @@ function __main__()
 
 /*
 	Name: cleanup_main
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x13DB4DCD
 	Offset: 0x2C8
 	Size: 0x29D
@@ -123,7 +123,7 @@ function private cleanup_main()
 
 /*
 	Name: do_cleanup_check
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x755C15A5
 	Offset: 0x570
 	Size: 0x2E3
@@ -200,7 +200,7 @@ function do_cleanup_check(n_override_cleanup_dist)
 
 /*
 	Name: delete_zombie_noone_looking
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x531FF317
 	Offset: 0x860
 	Size: 0xDB
@@ -229,7 +229,7 @@ function private delete_zombie_noone_looking()
 
 /*
 	Name: function_cc0c7e36
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0xBCCC6D01
 	Offset: 0x948
 	Size: 0x23
@@ -244,7 +244,7 @@ function private function_cc0c7e36()
 
 /*
 	Name: function_e89cc6dd
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x6F52D7F2
 	Offset: 0x978
 	Size: 0x1EB
@@ -274,7 +274,7 @@ function private function_e89cc6dd()
 			level.a_zombie_respawn_health[self.archetype][level.a_zombie_respawn_health[self.archetype].size] = self.health;
 		}
 	}
-	self notify("hash_d4c32fa6");
+	self notify("enemy_cleaned_up");
 	util::wait_network_frame();
 	if(isalive(self))
 	{
@@ -290,7 +290,7 @@ function private function_e89cc6dd()
 
 /*
 	Name: player_can_see_me
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0xA6D8DCAA
 	Offset: 0xB70
 	Size: 0xD7
@@ -313,7 +313,7 @@ function private player_can_see_me(player)
 
 /*
 	Name: player_ahead_of_me
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x2689EE81
 	Offset: 0xC50
 	Size: 0xB3
@@ -335,7 +335,7 @@ function private player_ahead_of_me(player)
 
 /*
 	Name: get_escape_position
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x1A2F9B8B
 	Offset: 0xD10
 	Size: 0xCB
@@ -361,7 +361,7 @@ function get_escape_position()
 
 /*
 	Name: get_adjacencies_to_zone
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0xFC31EA47
 	Offset: 0xDE8
 	Size: 0x11D
@@ -393,7 +393,7 @@ function get_adjacencies_to_zone(str_zone)
 
 /*
 	Name: get_wait_locations_in_zones
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x1C186094
 	Offset: 0xF10
 	Size: 0xD1
@@ -412,7 +412,7 @@ function private get_wait_locations_in_zones(a_zones)
 
 /*
 	Name: get_farthest_wait_location
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x45B9F0EC
 	Offset: 0xFF0
 	Size: 0xD5
@@ -441,7 +441,7 @@ function private get_farthest_wait_location(a_wait_locations)
 
 /*
 	Name: get_wait_locations_in_zone
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0x4CB39629
 	Offset: 0x10D0
 	Size: 0x87
@@ -461,7 +461,7 @@ function private get_wait_locations_in_zone(zone)
 
 /*
 	Name: get_escape_position_in_current_zone
-	Namespace: namespace_1c690923
+	Namespace: zm_island_cleanup
 	Checksum: 0xF32084AC
 	Offset: 0x1160
 	Size: 0xB3

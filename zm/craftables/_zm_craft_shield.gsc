@@ -21,7 +21,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_craft_shield
-	Checksum: 0xBCDFEAD9
+	Checksum: 0xE545974F
 	Offset: 0x438
 	Size: 0x3B
 	Parameters: 0
@@ -48,7 +48,7 @@ function __init__()
 /*
 	Name: init
 	Namespace: zm_craft_shield
-	Checksum: 0xD1DE82A4
+	Checksum: 0x514D5DE
 	Offset: 0x490
 	Size: 0x47B
 	Parameters: 6
@@ -98,7 +98,7 @@ function init(shield_equipment, shield_weapon, shield_model, str_to_craft, str_t
 /*
 	Name: __main__
 	Namespace: zm_craft_shield
-	Checksum: 0xF6E2A1B7
+	Checksum: 0x9D2B83B5
 	Offset: 0x918
 	Size: 0x1B
 	Parameters: 0
@@ -114,7 +114,7 @@ function __main__()
 /*
 	Name: riotshield_craftable
 	Namespace: zm_craft_shield
-	Checksum: 0x36DDED58
+	Checksum: 0x1030396
 	Offset: 0x940
 	Size: 0x3B
 	Parameters: 0
@@ -128,7 +128,7 @@ function riotshield_craftable()
 /*
 	Name: show_infotext_for_duration
 	Namespace: zm_craft_shield
-	Checksum: 0xAD949706
+	Checksum: 0xA53A73D6
 	Offset: 0x988
 	Size: 0x53
 	Parameters: 2
@@ -144,7 +144,7 @@ function show_infotext_for_duration(str_infotext, n_duration)
 /*
 	Name: on_pickup_common
 	Namespace: zm_craft_shield
-	Checksum: 0xB9CAAEF0
+	Checksum: 0xF4F30277
 	Offset: 0x9E8
 	Size: 0x147
 	Parameters: 1
@@ -172,7 +172,7 @@ function on_pickup_common(player)
 /*
 	Name: on_drop_common
 	Namespace: zm_craft_shield
-	Checksum: 0x557AB9C5
+	Checksum: 0x98FFD3B3
 	Offset: 0xB38
 	Size: 0x4D
 	Parameters: 1
@@ -190,7 +190,7 @@ function on_drop_common(player)
 /*
 	Name: pickup_from_mover
 	Namespace: zm_craft_shield
-	Checksum: 0xE41D3E73
+	Checksum: 0xB4375D44
 	Offset: 0xB90
 	Size: 0x1F
 	Parameters: 0
@@ -207,7 +207,7 @@ function pickup_from_mover()
 /*
 	Name: on_fully_crafted
 	Namespace: zm_craft_shield
-	Checksum: 0x6B2C9E53
+	Checksum: 0x3FC45DA
 	Offset: 0xBB8
 	Size: 0xED
 	Parameters: 0
@@ -230,7 +230,7 @@ function on_fully_crafted()
 /*
 	Name: drop_on_mover
 	Namespace: zm_craft_shield
-	Checksum: 0x67DA6688
+	Checksum: 0x47A111CF
 	Offset: 0xCB0
 	Size: 0x27
 	Parameters: 1
@@ -247,7 +247,7 @@ function drop_on_mover(player)
 /*
 	Name: on_buy_weapon_riotshield
 	Namespace: zm_craft_shield
-	Checksum: 0xAA9DCEBC
+	Checksum: 0x6F63E23C
 	Offset: 0xCE0
 	Size: 0x95
 	Parameters: 1
@@ -270,7 +270,7 @@ function on_buy_weapon_riotshield(player)
 /*
 	Name: shield_devgui
 	Namespace: zm_craft_shield
-	Checksum: 0x4C2E5071
+	Checksum: 0xA2CDA087
 	Offset: 0xD80
 	Size: 0xF3
 	Parameters: 0
@@ -292,7 +292,7 @@ function shield_devgui()
 /*
 	Name: shield_devgui_callback
 	Namespace: zm_craft_shield
-	Checksum: 0x40B6BD33
+	Checksum: 0x46E3E8BD
 	Offset: 0xE80
 	Size: 0x1CF
 	Parameters: 1
@@ -361,7 +361,7 @@ function shield_devgui_callback(cmd)
 /*
 	Name: detect_reentry
 	Namespace: zm_craft_shield
-	Checksum: 0xF5AE50B3
+	Checksum: 0x79ED3A4A
 	Offset: 0x1058
 	Size: 0x37
 	Parameters: 0
@@ -385,7 +385,7 @@ function detect_reentry()
 /*
 	Name: function_2b0b208f
 	Namespace: zm_craft_shield
-	Checksum: 0x5CFF49E3
+	Checksum: 0xAC95A94A
 	Offset: 0x1098
 	Size: 0x197
 	Parameters: 0
@@ -436,7 +436,7 @@ function function_2b0b208f()
 /*
 	Name: function_70d7908d
 	Namespace: zm_craft_shield
-	Checksum: 0xEF6668B6
+	Checksum: 0xDEA123C9
 	Offset: 0x1238
 	Size: 0x53
 	Parameters: 0

@@ -100,11 +100,11 @@
 #using scripts\zm\zm_castle_zombie;
 #using scripts\zm\zm_castle_zones;
 
-#namespace namespace_c491e335;
+#namespace zm_castle;
 
 /*
 	Name: opt_in
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x28FDA671
 	Offset: 0x21F8
 	Size: 0x4B
@@ -123,7 +123,7 @@ function autoexec opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xAAC5ADA3
 	Offset: 0x2250
 	Size: 0xABB
@@ -157,7 +157,7 @@ function main()
 	level.custom_devgui = &zm_castle_devgui;
 	level flag::init("rocket_firing");
 	zm::init_fx();
-	namespace_35f5e9b2::main();
+	zm_castle_fx::main();
 	level._effect["animscript_gibtrail_fx"] = "trail/fx_trail_blood_streak";
 	level._effect["animscript_gib_fx"] = "weapon/bullet/fx_flesh_gib_fatal_01";
 	level._effect["bloodspurt"] = "misc/fx_zombie_bloodspurt";
@@ -178,7 +178,7 @@ function main()
 	level.register_offhand_weapons_for_level_defaults_override = &offhand_weapon_overrride;
 	level.zombiemode_offhand_weapon_give_override = &offhand_weapon_give_override;
 	level.sndWeaponPickupOverride = Array("elemental_bow", "elemental_bow_demongate", "elemental_bow_rune_prison", "elemental_bow_storm", "elemental_bow_wolf_howl");
-	level.craft_shield_piece_pickup_vo_override = &namespace_97ddfc0d::function_43b44df3;
+	level.craft_shield_piece_pickup_vo_override = &zm_castle_vo::function_43b44df3;
 	level._zombie_custom_add_weapons = &custom_add_weapons;
 	level thread custom_add_vox();
 	level._allow_melee_weapon_switching = 1;
@@ -200,13 +200,13 @@ function main()
 	level.debug_keyline_zombies = 0;
 	namespace_4fd1ba2a::function_976c9217();
 	include_perks_in_random_rotation();
-	namespace_f2d05c13::main();
+	zm_castle_death_ray_trap::main();
 	namespace_ee5f5b26::main();
-	level thread namespace_2eabe570::main();
+	level thread zm_castle_masher_trap::main();
 	level thread function_69573a4c();
 	level thread function_e0836624();
-	level thread namespace_c93e4c32::main();
-	level thread namespace_b1bc995c::init();
+	level thread zm_castle_ee::main();
+	level thread zm_castle_ee_bossfight::init();
 	level thread namespace_61c0be00::main();
 	namespace_912a86f7::init();
 	zm_craftables::init();
@@ -228,7 +228,7 @@ function main()
 	}
 	namespace_48131a3f::enable_mechz_rounds();
 	zombie_utility::set_zombie_var("below_world_check", -2500);
-	level thread function_6058f34d();
+	level thread castle_power_on();
 	level thread function_a691b3f6();
 	level thread power_electric_switch();
 	level thread function_632e15ea();
@@ -253,7 +253,7 @@ function main()
 
 /*
 	Name: function_59909697
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x3C0A900A
 	Offset: 0x2D18
 	Size: 0x63
@@ -271,7 +271,7 @@ function function_59909697()
 
 /*
 	Name: castle_select_zombie_spawner
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xA3EBF435
 	Offset: 0x2D88
 	Size: 0x1EB
@@ -310,7 +310,7 @@ function castle_select_zombie_spawner()
 			level.var_a70b4aef[level.var_a70b4aef.size] = e_spawner;
 		}
 	}
-	else if(level.var_9bf9e084 === 1)
+	else if(level.get_maxis_portal_path_trigger === 1)
 	{
 		sp_zombie = Array::random(level.var_2c78e44c);
 	}
@@ -323,7 +323,7 @@ function castle_select_zombie_spawner()
 
 /*
 	Name: castle_any_player_in_zone
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xCC617185
 	Offset: 0x2F80
 	Size: 0x183
@@ -361,7 +361,7 @@ function castle_any_player_in_zone(zone_name)
 
 /*
 	Name: function_e0836624
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xCF971DCA
 	Offset: 0x3110
 	Size: 0x9F
@@ -384,7 +384,7 @@ function function_e0836624()
 
 /*
 	Name: zm_castle_devgui
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x3C52D705
 	Offset: 0x31B8
 	Size: 0x355
@@ -434,13 +434,13 @@ function zm_castle_devgui(cmd)
 		}
 		case "toggle_skeletons_castle":
 		{
-			if(level.var_9bf9e084 !== 1)
+			if(level.get_maxis_portal_path_trigger !== 1)
 			{
-				level.var_9bf9e084 = 1;
+				level.get_maxis_portal_path_trigger = 1;
 			}
 			else
 			{
-				level.var_9bf9e084 = 0;
+				level.get_maxis_portal_path_trigger = 0;
 			}
 			break;
 		}
@@ -449,7 +449,7 @@ function zm_castle_devgui(cmd)
 
 /*
 	Name: player_out_of_playable_area_monitor_callback
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x4E4A29D5
 	Offset: 0x3518
 	Size: 0x33
@@ -471,7 +471,7 @@ function player_out_of_playable_area_monitor_callback()
 
 /*
 	Name: function_9b56d76
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xC673219A
 	Offset: 0x3558
 	Size: 0x5B
@@ -490,7 +490,7 @@ function function_9b56d76(player)
 
 /*
 	Name: function_f42077ff
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x5206158
 	Offset: 0x35C0
 	Size: 0x61
@@ -510,7 +510,7 @@ function function_f42077ff()
 
 /*
 	Name: init_sounds
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x516A46C3
 	Offset: 0x3630
 	Size: 0x83
@@ -527,7 +527,7 @@ function init_sounds()
 
 /*
 	Name: offhand_weapon_overrride
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xD48D3001
 	Offset: 0x36C0
 	Size: 0xBD
@@ -548,7 +548,7 @@ function offhand_weapon_overrride()
 
 /*
 	Name: offhand_weapon_give_override
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x6FA2FF21
 	Offset: 0x3788
 	Size: 0xBD
@@ -568,7 +568,7 @@ function offhand_weapon_give_override(str_weapon)
 
 /*
 	Name: function_f9a3207d
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x139A2232
 	Offset: 0x3850
 	Size: 0x137
@@ -582,7 +582,7 @@ function function_f9a3207d(ai_enemy)
 
 /*
 	Name: function_862e966e
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x55FF21BE
 	Offset: 0x3990
 	Size: 0x2F
@@ -596,7 +596,7 @@ function function_862e966e(ai_enemy)
 
 /*
 	Name: intro_screen
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x211A01EA
 	Offset: 0x39C8
 	Size: 0x243
@@ -643,7 +643,7 @@ function intro_screen()
 
 /*
 	Name: custom_add_weapons
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x7AE90265
 	Offset: 0x3C18
 	Size: 0x33
@@ -658,7 +658,7 @@ function custom_add_weapons()
 
 /*
 	Name: custom_add_vox
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x15223B0F
 	Offset: 0x3C58
 	Size: 0x1B
@@ -672,7 +672,7 @@ function custom_add_vox()
 
 /*
 	Name: setupMusic
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x618ACB38
 	Offset: 0x3C80
 	Size: 0x1F3
@@ -697,7 +697,7 @@ function setupMusic()
 
 /*
 	Name: function_44dc3fb4
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xC5C236C2
 	Offset: 0x3E80
 	Size: 0x8F
@@ -727,7 +727,7 @@ function function_44dc3fb4()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xCF98B747
 	Offset: 0x3F18
 	Size: 0xD3
@@ -743,7 +743,7 @@ function on_player_spawned()
 	self.var_b94b5f2f = 1;
 	if(!level flag::get("pap_reformed"))
 	{
-		self thread namespace_155a700c::function_b9cca08f();
+		self thread zm_castle_pap_quest::function_b9cca08f();
 	}
 	level flag::wait_till("start_zombie_round_logic");
 	wait(0.05);
@@ -752,7 +752,7 @@ function on_player_spawned()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x53EDF0E4
 	Offset: 0x3FF8
 	Size: 0x33
@@ -761,13 +761,13 @@ function on_player_spawned()
 */
 function on_player_connect()
 {
-	self thread namespace_8e89abe3::function_c3f6aa22();
+	self thread zm_castle_low_grav::function_c3f6aa22();
 	self thread function_30cebef9();
 }
 
 /*
 	Name: include_perks_in_random_rotation
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x48B5CC2B
 	Offset: 0x4038
 	Size: 0xF3
@@ -790,7 +790,7 @@ function include_perks_in_random_rotation()
 
 /*
 	Name: function_798c5d1a
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x5B599423
 	Offset: 0x4138
 	Size: 0x1A3
@@ -825,7 +825,7 @@ function function_798c5d1a()
 
 /*
 	Name: enemy_location_override
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x820A6223
 	Offset: 0x42E8
 	Size: 0x10D
@@ -853,7 +853,7 @@ function enemy_location_override(ai_zombie, ai_enemy)
 
 /*
 	Name: function_d578bf1a
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x27EB61E7
 	Offset: 0x4400
 	Size: 0xE1
@@ -874,7 +874,7 @@ function function_d578bf1a()
 
 /*
 	Name: function_c7d8dba7
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x153EECDE
 	Offset: 0x44F0
 	Size: 0x13B
@@ -911,7 +911,7 @@ function function_c7d8dba7()
 
 /*
 	Name: function_632e15ea
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x83FCBBF4
 	Offset: 0x4638
 	Size: 0xDB
@@ -931,7 +931,7 @@ function function_632e15ea()
 
 /*
 	Name: function_814261d
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x780BDCF6
 	Offset: 0x4720
 	Size: 0xD3
@@ -951,7 +951,7 @@ function function_814261d()
 
 /*
 	Name: function_4da48892
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x1B8574A5
 	Offset: 0x4800
 	Size: 0x93
@@ -969,7 +969,7 @@ function function_4da48892()
 
 /*
 	Name: function_9c99c6db
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x8CB1DF24
 	Offset: 0x48A0
 	Size: 0x93
@@ -987,7 +987,7 @@ function function_9c99c6db()
 
 /*
 	Name: function_5dd2bbf1
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xAA40E61B
 	Offset: 0x4940
 	Size: 0x10B
@@ -1007,7 +1007,7 @@ function function_5dd2bbf1()
 
 /*
 	Name: function_8921895f
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x26DF79A3
 	Offset: 0x4A58
 	Size: 0x1AF
@@ -1042,7 +1042,7 @@ function function_8921895f()
 
 /*
 	Name: function_98a0818e
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xE78157FE
 	Offset: 0x4C10
 	Size: 0x6D
@@ -1064,7 +1064,7 @@ function function_98a0818e()
 
 /*
 	Name: anywhere_but_here_validation_override
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x83B36AFF
 	Offset: 0x4C88
 	Size: 0x6F
@@ -1073,7 +1073,7 @@ function function_98a0818e()
 */
 function anywhere_but_here_validation_override()
 {
-	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
+	if(!isdefined(self zm_bgb_anywhere_but_here::function_728dfe3()))
 	{
 		return 0;
 	}
@@ -1086,7 +1086,7 @@ function anywhere_but_here_validation_override()
 
 /*
 	Name: function_d9e1ec4d
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x5D82E55D
 	Offset: 0x4D00
 	Size: 0x77
@@ -1105,7 +1105,7 @@ function function_d9e1ec4d(a_s_valid_respawn_points)
 
 /*
 	Name: function_6190ec3f
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x6767E5C3
 	Offset: 0x4D80
 	Size: 0xDB
@@ -1126,7 +1126,7 @@ function function_6190ec3f()
 
 /*
 	Name: function_77b8a0f7
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x65FBFF6C
 	Offset: 0x4E68
 	Size: 0x5B
@@ -1148,7 +1148,7 @@ function function_77b8a0f7(w_damage_weapon, n_points)
 
 /*
 	Name: function_5a64329b
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x9DA01FF
 	Offset: 0x4ED0
 	Size: 0x43
@@ -1166,7 +1166,7 @@ function function_5a64329b(w_damage_weapon, n_points)
 
 /*
 	Name: no_target_override
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x56E64A74
 	Offset: 0x4F20
 	Size: 0x63
@@ -1185,7 +1185,7 @@ function no_target_override(ai_zombie)
 
 /*
 	Name: get_escape_position
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x1D9C2041
 	Offset: 0x4F90
 	Size: 0x145
@@ -1201,7 +1201,7 @@ function private get_escape_position()
 	}
 	if(isdefined(str_zone))
 	{
-		a_zones = namespace_f59aa2e8::get_adjacencies_to_zone(str_zone);
+		a_zones = castle_cleanup::get_adjacencies_to_zone(str_zone);
 		a_wait_locations = get_wait_locations_in_zones(a_zones);
 		ArraySortClosest(a_wait_locations, self.origin);
 		a_wait_locations = Array::reverse(a_wait_locations);
@@ -1218,7 +1218,7 @@ function private get_escape_position()
 
 /*
 	Name: get_wait_locations_in_zones
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xDDE154DA
 	Offset: 0x50E0
 	Size: 0xD1
@@ -1237,7 +1237,7 @@ function private get_wait_locations_in_zones(a_zones)
 
 /*
 	Name: function_eadbcbdb
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x7D5CAA67
 	Offset: 0x51C0
 	Size: 0x5D
@@ -1262,7 +1262,7 @@ function private function_eadbcbdb()
 
 /*
 	Name: function_dc683d01
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x65126481
 	Offset: 0x5228
 	Size: 0xC9
@@ -1286,7 +1286,7 @@ function private function_dc683d01(var_b52b26b9)
 
 /*
 	Name: check_player_available
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xE2BF1D0C
 	Offset: 0x5300
 	Size: 0x77
@@ -1310,7 +1310,7 @@ function private check_player_available()
 
 /*
 	Name: can_zombie_see_any_player
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xA9A4174B
 	Offset: 0x5380
 	Size: 0x7F
@@ -1335,7 +1335,7 @@ function private can_zombie_see_any_player()
 
 /*
 	Name: castle_custom_spawn_location_selection
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x94DB125E
 	Offset: 0x5408
 	Size: 0x16B
@@ -1380,7 +1380,7 @@ function castle_custom_spawn_location_selection(a_spots)
 
 /*
 	Name: function_69573a4c
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x48CFDB36
 	Offset: 0x5580
 	Size: 0x33
@@ -1394,7 +1394,7 @@ function function_69573a4c()
 
 /*
 	Name: function_f7046db2
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x344EA73A
 	Offset: 0x55C0
 	Size: 0x163
@@ -1420,7 +1420,7 @@ function function_f7046db2(a_ents)
 
 /*
 	Name: function_a8aef7fe
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x7A570D8A
 	Offset: 0x5730
 	Size: 0x77
@@ -1440,15 +1440,15 @@ function function_a8aef7fe()
 }
 
 /*
-	Name: function_6058f34d
-	Namespace: namespace_c491e335
+	Name: castle_power_on
+	Namespace: zm_castle
 	Checksum: 0x9AE15467
 	Offset: 0x57B0
 	Size: 0x13B
 	Parameters: 0
 	Flags: None
 */
-function function_6058f34d()
+function castle_power_on()
 {
 	exploder::exploder("power_door_lgts");
 	level flag::wait_till("power_on");
@@ -1466,7 +1466,7 @@ function function_6058f34d()
 
 /*
 	Name: function_a691b3f6
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x6720595F
 	Offset: 0x58F8
 	Size: 0x1E1
@@ -1494,7 +1494,7 @@ function function_a691b3f6()
 
 /*
 	Name: function_7aae0fb2
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xBFED8C71
 	Offset: 0x5AE8
 	Size: 0x3B
@@ -1508,7 +1508,7 @@ function function_7aae0fb2(a_ents)
 
 /*
 	Name: power_electric_switch
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x79765153
 	Offset: 0x5B30
 	Size: 0x203
@@ -1544,7 +1544,7 @@ function power_electric_switch()
 
 /*
 	Name: function_639f3b62
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xF2DA1BE7
 	Offset: 0x5D40
 	Size: 0x1B
@@ -1553,12 +1553,12 @@ function power_electric_switch()
 */
 function function_639f3b62()
 {
-	self thread namespace_8e89abe3::function_3ccd9604();
+	self thread zm_castle_low_grav::function_3ccd9604();
 }
 
 /*
 	Name: function_30cebef9
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xC4A7C3FA
 	Offset: 0x5D68
 	Size: 0x2C3
@@ -1613,7 +1613,7 @@ function function_30cebef9()
 
 /*
 	Name: function_a6477691
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x99D6D678
 	Offset: 0x6038
 	Size: 0x277
@@ -1652,7 +1652,7 @@ function function_a6477691()
 
 /*
 	Name: function_555e8704
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xE212D569
 	Offset: 0x62B8
 	Size: 0xF3
@@ -1699,7 +1699,7 @@ function function_555e8704()
 
 /*
 	Name: function_9be4ecd1
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x5C45C447
 	Offset: 0x63B8
 	Size: 0x211
@@ -1751,7 +1751,7 @@ function function_9be4ecd1()
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x378C0534
 	Offset: 0x65D8
 	Size: 0x621
@@ -1804,7 +1804,7 @@ function setup_personality_character_exerts()
 
 /*
 	Name: function_13fc99fa
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xFE088D48
 	Offset: 0x6C08
 	Size: 0x83
@@ -1824,7 +1824,7 @@ function function_13fc99fa()
 
 /*
 	Name: function_ec8a9331
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xCD4BD18A
 	Offset: 0x6C98
 	Size: 0x7B
@@ -1841,7 +1841,7 @@ function function_ec8a9331(inflictor, attacker, damage, flags, meansOfDeath, wea
 
 /*
 	Name: detect_reentry
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xFDEDA4C4
 	Offset: 0x6D20
 	Size: 0x37
@@ -1865,7 +1865,7 @@ function detect_reentry()
 
 /*
 	Name: function_287ae5ec
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xC27BA03
 	Offset: 0x6D60
 	Size: 0x63
@@ -1884,7 +1884,7 @@ function function_287ae5ec()
 
 /*
 	Name: function_f04119b5
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x65ACB937
 	Offset: 0x6DD0
 	Size: 0x65
@@ -1902,7 +1902,7 @@ function function_f04119b5(cmd)
 				{
 					return 1;
 				}
-				level thread function_7f27602f();
+				level thread super_sesame();
 				return 1;
 			}
 		}
@@ -1911,15 +1911,15 @@ function function_f04119b5(cmd)
 }
 
 /*
-	Name: function_7f27602f
-	Namespace: namespace_c491e335
+	Name: super_sesame
+	Namespace: zm_castle
 	Checksum: 0xF773CC0B
 	Offset: 0x6E40
 	Size: 0x143
 	Parameters: 0
 	Flags: None
 */
-function function_7f27602f()
+function super_sesame()
 {
 	/#
 		zm_devgui::zombie_devgui_open_sesame();
@@ -1929,7 +1929,7 @@ function function_7f27602f()
 		{
 			t_pad_trigger delete();
 		}
-		level notify("hash_854ff4f5");
+		level notify("pressure_pads_activated");
 		var_a6e47643 = struct::get_array("Dev Block strings are not supported", "Dev Block strings are not supported");
 		Array::thread_all(var_a6e47643, &function_e9162f72);
 	#/
@@ -1937,7 +1937,7 @@ function function_7f27602f()
 
 /*
 	Name: function_e9162f72
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x83D1C7DB
 	Offset: 0x6F90
 	Size: 0x83

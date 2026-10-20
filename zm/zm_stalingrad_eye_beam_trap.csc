@@ -5,11 +5,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_a26e93d0;
+#namespace zm_stalingrad_eye_beam_trap;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0x4EE396EE
 	Offset: 0x228
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0x736FE9CD
 	Offset: 0x268
 	Size: 0xDB
@@ -32,21 +32,21 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("toplayer", "eye_beam_trap_postfx", 12000, 1, "int", &function_822dbe7f, 0, 0);
+	clientfield::register("toplayer", "eye_beam_trap_postfx", 12000, 1, "int", &eye_beam_trap_postfx_callback, 0, 0);
 	clientfield::register("world", "eye_beam_rumble_factory", 12000, 1, "int", &function_3d1860f, 0, 0);
 	clientfield::register("world", "eye_beam_rumble_library", 12000, 1, "int", &function_ea1e41d4, 0, 0);
 }
 
 /*
-	Name: function_822dbe7f
-	Namespace: namespace_a26e93d0
+	Name: eye_beam_trap_postfx_callback
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0xC918714A
 	Offset: 0x350
 	Size: 0x7B
 	Parameters: 7
 	Flags: None
 */
-function function_822dbe7f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function eye_beam_trap_postfx_callback(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -60,7 +60,7 @@ function function_822dbe7f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_3d1860f
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0x133B4D5A
 	Offset: 0x3D8
 	Size: 0xF3
@@ -83,7 +83,7 @@ function function_3d1860f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_ea1e41d4
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0xCCD8526
 	Offset: 0x4D8
 	Size: 0xF3
@@ -106,7 +106,7 @@ function function_ea1e41d4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_3975127
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0x9B6FD2A6
 	Offset: 0x5D8
 	Size: 0xA7

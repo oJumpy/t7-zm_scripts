@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_128a1bda;
+#namespace zm_bgb_eye_candy;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xA8463548
 	Offset: 0x300
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xFD7BE37
 	Offset: 0x340
 	Size: 0x3FB
@@ -91,7 +91,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0x3B229375
 	Offset: 0x748
 	Size: 0x33
@@ -105,7 +105,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xC12D5E34
 	Offset: 0x788
 	Size: 0x1EB
@@ -126,7 +126,7 @@ function activation()
 		wait(0.05);
 		self.var_e20073c4++;
 	}
-	self notify("hash_9979acd5");
+	self notify("bgb_eye_candy_activation");
 	if(self.var_e20073c4 >= 4)
 	{
 		return;
@@ -164,7 +164,7 @@ function activation()
 
 /*
 	Name: function_48adddeb
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xB6F58F6F
 	Offset: 0x980
 	Size: 0x123
@@ -190,7 +190,7 @@ function function_48adddeb(str_vision)
 
 /*
 	Name: function_b390826f
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xBDFF86A5
 	Offset: 0xAB0
 	Size: 0x3B
@@ -205,7 +205,7 @@ function function_b390826f()
 
 /*
 	Name: function_3b5b1f1e
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xF4F368B9
 	Offset: 0xAF8
 	Size: 0x3B
@@ -224,7 +224,7 @@ function function_3b5b1f1e()
 
 /*
 	Name: function_67d0cc9f
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xEB50C618
 	Offset: 0xB40
 	Size: 0x31

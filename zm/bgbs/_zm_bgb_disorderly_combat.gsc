@@ -14,11 +14,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_bcb3abbf;
+#namespace zm_bgb_disorderly_combat;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0xF8ED0BCC
 	Offset: 0x3B0
 	Size: 0x43
@@ -32,7 +32,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0xAA7C8B1C
 	Offset: 0x400
 	Size: 0x93
@@ -53,7 +53,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x53464231
 	Offset: 0x4A0
 	Size: 0x2B
@@ -71,7 +71,7 @@ function __main__()
 
 /*
 	Name: enable
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x7BCFE5E3
 	Offset: 0x4D8
 	Size: 0x3B
@@ -82,13 +82,13 @@ function enable()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self function_7039f685();
 }
 
 /*
 	Name: disable
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0xF5DEC5E0
 	Offset: 0x520
 	Size: 0x13
@@ -102,7 +102,7 @@ function disable()
 
 /*
 	Name: function_32710943
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x7DB249BE
 	Offset: 0x540
 	Size: 0xFB
@@ -125,7 +125,7 @@ function function_32710943()
 
 /*
 	Name: function_a2ab8d19
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x9DDDFA3B
 	Offset: 0x648
 	Size: 0x2B
@@ -139,7 +139,7 @@ function function_a2ab8d19(w_remove)
 
 /*
 	Name: function_32818605
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x1601F055
 	Offset: 0x680
 	Size: 0x53
@@ -156,7 +156,7 @@ function function_32818605()
 
 /*
 	Name: function_7039f685
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x3A61DE60
 	Offset: 0x6E0
 	Size: 0x34D
@@ -167,7 +167,7 @@ function function_7039f685()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	level.var_8fcdc919 = Array::randomize(level.var_8fcdc919);
 	self setPerk("specialty_ammodrainsfromstockfirst");
 	self thread disable_weapons();
@@ -229,7 +229,7 @@ function function_7039f685()
 
 /*
 	Name: function_dedb7bff
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x99D0311D
 	Offset: 0xA38
 	Size: 0x4B
@@ -240,14 +240,14 @@ function function_dedb7bff()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	wait(5);
 	self playsoundtoplayer("zmb_bgb_disorderly_5seconds", self);
 }
 
 /*
 	Name: disable_weapons
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x26973370
 	Offset: 0xA90
 	Size: 0x67
@@ -258,7 +258,7 @@ function disable_weapons()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	while(1)
 	{
 		waittillframeend;
@@ -270,7 +270,7 @@ function disable_weapons()
 
 /*
 	Name: give_random_weapon
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0xCE0C0F39
 	Offset: 0xB00
 	Size: 0x1A7
@@ -314,7 +314,7 @@ function give_random_weapon(n_index, b_upgraded, str_att)
 
 /*
 	Name: function_f0cecf3c
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x102EF4D5
 	Offset: 0xCB0
 	Size: 0x95
@@ -348,7 +348,7 @@ function function_f0cecf3c()
 
 /*
 	Name: function_bd7f98af
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0xEBF79993
 	Offset: 0xD50
 	Size: 0x181
@@ -386,7 +386,7 @@ function function_bd7f98af()
 
 /*
 	Name: function_be4232bc
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0xCBEC705C
 	Offset: 0xEE0
 	Size: 0x2D
@@ -403,7 +403,7 @@ function function_be4232bc()
 
 /*
 	Name: function_1f90c35a
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x460964ED
 	Offset: 0xF18
 	Size: 0x21
@@ -421,7 +421,7 @@ function function_1f90c35a()
 
 /*
 	Name: function_8a5ef15f
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x18EB50ED
 	Offset: 0xF48
 	Size: 0xD3
@@ -438,7 +438,7 @@ function function_8a5ef15f()
 
 /*
 	Name: function_c7d73bac
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0xF6B7C8F0
 	Offset: 0x1028
 	Size: 0xB9
@@ -462,7 +462,7 @@ function function_c7d73bac(str_name)
 
 /*
 	Name: has_weapon
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x575CFA8C
 	Offset: 0x10F0
 	Size: 0xBD
@@ -487,7 +487,7 @@ function has_weapon(w_check)
 
 /*
 	Name: function_7087df78
-	Namespace: namespace_bcb3abbf
+	Namespace: zm_bgb_disorderly_combat
 	Checksum: 0x1C90CA94
 	Offset: 0x11B8
 	Size: 0x55

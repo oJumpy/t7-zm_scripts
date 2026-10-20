@@ -15,11 +15,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\craftables\_zm_craftables;
 
-#namespace namespace_5f2c95ae;
+#namespace zm_island_skullquest;
 
 /*
 	Name: init
-	Namespace: namespace_5f2c95ae
+	Namespace: zm_island_skullquest
 	Checksum: 0xD237F9CA
 	Offset: 0x680
 	Size: 0x31B
@@ -28,29 +28,29 @@
 */
 function init()
 {
-	clientfield::register("world", "keeper_spawn_portals", 1, 1, "int", &function_a17c1f53, 0, 0);
-	clientfield::register("actor", "keeper_fx", 1, 1, "int", &function_4b50c64, 0, 0);
-	clientfield::register("actor", "ritual_attacker_fx", 1, 1, "int", &function_4bcd15cf, 0, 0);
-	clientfield::register("world", "skullquest_ritual_1_fx", 1, 3, "int", &function_92982f75, 0, 0);
-	clientfield::register("world", "skullquest_ritual_2_fx", 1, 3, "int", &function_4ded18a8, 0, 0);
-	clientfield::register("world", "skullquest_ritual_3_fx", 1, 3, "int", &function_ddd543db, 0, 0);
-	clientfield::register("world", "skullquest_ritual_4_fx", 1, 3, "int", &function_7c9daad6, 0, 0);
-	clientfield::register("scriptmover", "skullquest_finish_start_fx", 1, 1, "int", &function_4f126a12, 0, 0);
-	clientfield::register("scriptmover", "skullquest_finish_trail_fx", 1, 1, "int", &function_14555bf6, 0, 0);
-	clientfield::register("scriptmover", "skullquest_finish_end_fx", 1, 1, "int", &function_a35770b3, 0, 0);
-	clientfield::register("scriptmover", "skullquest_finish_done_glow_fx", 1, 1, "int", &function_936bf24a, 0, 0);
+	clientfield::register("world", "keeper_spawn_portals", 1, 1, "int", &keeper_spawn_portals, 0, 0);
+	clientfield::register("actor", "keeper_fx", 1, 1, "int", &keeper_fx, 0, 0);
+	clientfield::register("actor", "ritual_attacker_fx", 1, 1, "int", &ritual_attacker_fx, 0, 0);
+	clientfield::register("world", "skullquest_ritual_1_fx", 1, 3, "int", &skullquest_ritual_1_fx, 0, 0);
+	clientfield::register("world", "skullquest_ritual_2_fx", 1, 3, "int", &skullquest_ritual_2_fx, 0, 0);
+	clientfield::register("world", "skullquest_ritual_3_fx", 1, 3, "int", &skullquest_ritual_3_fx, 0, 0);
+	clientfield::register("world", "skullquest_ritual_4_fx", 1, 3, "int", &skullquest_ritual_4_fx, 0, 0);
+	clientfield::register("scriptmover", "skullquest_finish_start_fx", 1, 1, "int", &skullquest_finish_start_fx, 0, 0);
+	clientfield::register("scriptmover", "skullquest_finish_trail_fx", 1, 1, "int", &skullquest_finish_trail_fx, 0, 0);
+	clientfield::register("scriptmover", "skullquest_finish_end_fx", 1, 1, "int", &skullquest_finish_end_fx, 0, 0);
+	clientfield::register("scriptmover", "skullquest_finish_done_glow_fx", 1, 1, "int", &skullquest_finish_done_glow_fx, 0, 0);
 }
 
 /*
-	Name: function_a17c1f53
-	Namespace: namespace_5f2c95ae
+	Name: keeper_spawn_portals
+	Namespace: zm_island_skullquest
 	Checksum: 0x2389690D
 	Offset: 0x9A8
 	Size: 0x6B
 	Parameters: 7
 	Flags: None
 */
-function function_a17c1f53(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function keeper_spawn_portals(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_eebff756 = "s_spawnpt_skullroom";
 	function_46df8306(localClientNum, var_eebff756, newVal);
@@ -58,7 +58,7 @@ function function_a17c1f53(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_46df8306
-	Namespace: namespace_5f2c95ae
+	Namespace: zm_island_skullquest
 	Checksum: 0xB7E64CBA
 	Offset: 0xA20
 	Size: 0x251
@@ -100,7 +100,7 @@ function function_46df8306(localClientNum, str_name, b_on)
 
 /*
 	Name: function_f58977cd
-	Namespace: namespace_5f2c95ae
+	Namespace: zm_island_skullquest
 	Checksum: 0x79B67A64
 	Offset: 0xC80
 	Size: 0x2B1
@@ -146,64 +146,64 @@ function function_f58977cd(localClientNum, str_name, b_on)
 }
 
 /*
-	Name: function_92982f75
-	Namespace: namespace_5f2c95ae
+	Name: skullquest_ritual_1_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0x34401FF1
 	Offset: 0xF40
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_92982f75(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function skullquest_ritual_1_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	function_4dcbb3a6(localClientNum, 1, newVal);
 }
 
 /*
-	Name: function_4ded18a8
-	Namespace: namespace_5f2c95ae
+	Name: skullquest_ritual_2_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0x7EA0A920
 	Offset: 0xFA8
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_4ded18a8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function skullquest_ritual_2_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	function_4dcbb3a6(localClientNum, 2, newVal);
 }
 
 /*
-	Name: function_ddd543db
-	Namespace: namespace_5f2c95ae
+	Name: skullquest_ritual_3_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0x56E08271
 	Offset: 0x1010
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_ddd543db(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function skullquest_ritual_3_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	function_4dcbb3a6(localClientNum, 3, newVal);
 }
 
 /*
-	Name: function_7c9daad6
-	Namespace: namespace_5f2c95ae
+	Name: skullquest_ritual_4_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0xF0E869E6
 	Offset: 0x1078
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_7c9daad6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function skullquest_ritual_4_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	function_4dcbb3a6(localClientNum, 4, newVal);
 }
 
 /*
 	Name: function_4dcbb3a6
-	Namespace: namespace_5f2c95ae
+	Namespace: zm_island_skullquest
 	Checksum: 0x481F07CF
 	Offset: 0x10E0
 	Size: 0x49B
@@ -277,15 +277,15 @@ function function_4dcbb3a6(localClientNum, n_ritual, n_fx_type)
 }
 
 /*
-	Name: function_4f126a12
-	Namespace: namespace_5f2c95ae
+	Name: skullquest_finish_start_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0xA81AB803
 	Offset: 0x1588
 	Size: 0xBD
 	Parameters: 7
 	Flags: None
 */
-function function_4f126a12(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function skullquest_finish_start_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -299,15 +299,15 @@ function function_4f126a12(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_14555bf6
-	Namespace: namespace_5f2c95ae
+	Name: skullquest_finish_trail_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0x4F20FFDA
 	Offset: 0x1650
 	Size: 0xBD
 	Parameters: 7
 	Flags: None
 */
-function function_14555bf6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function skullquest_finish_trail_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -321,15 +321,15 @@ function function_14555bf6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_a35770b3
-	Namespace: namespace_5f2c95ae
+	Name: skullquest_finish_end_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0x3870CE87
 	Offset: 0x1718
 	Size: 0xBD
 	Parameters: 7
 	Flags: None
 */
-function function_a35770b3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function skullquest_finish_end_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -343,15 +343,15 @@ function function_a35770b3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_936bf24a
-	Namespace: namespace_5f2c95ae
+	Name: skullquest_finish_done_glow_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0xD0B5E4D4
 	Offset: 0x17E0
 	Size: 0xBD
 	Parameters: 7
 	Flags: None
 */
-function function_936bf24a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function skullquest_finish_done_glow_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -365,15 +365,15 @@ function function_936bf24a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4b50c64
-	Namespace: namespace_5f2c95ae
+	Name: keeper_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0x4B7DC518
 	Offset: 0x18A8
 	Size: 0x29B
 	Parameters: 7
 	Flags: None
 */
-function function_4b50c64(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function keeper_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self util::waittill_dobj(localClientNum);
 	if(isdefined(self))
@@ -414,15 +414,15 @@ function function_4b50c64(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_4bcd15cf
-	Namespace: namespace_5f2c95ae
+	Name: ritual_attacker_fx
+	Namespace: zm_island_skullquest
 	Checksum: 0xA5F91755
 	Offset: 0x1B50
 	Size: 0x213
 	Parameters: 7
 	Flags: None
 */
-function function_4bcd15cf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ritual_attacker_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self util::waittill_dobj(localClientNum);
 	if(isdefined(self))
@@ -459,7 +459,7 @@ function function_4bcd15cf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_267f859f
-	Namespace: namespace_5f2c95ae
+	Namespace: zm_island_skullquest
 	Checksum: 0x858EA291
 	Offset: 0x1D70
 	Size: 0x1A7

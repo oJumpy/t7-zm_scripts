@@ -311,7 +311,7 @@ function moon_jolie_greet()
 	{
 		for(i = 0; i < level._osc_rb_jolie_spots.size; i++)
 		{
-			namespace_6d813654::register_pooled_hackable_struct(level._osc_rb_jolie_spots[i], &moon_jolie_access);
+			zm_equip_hacker::register_pooled_hackable_struct(level._osc_rb_jolie_spots[i], &moon_jolie_access);
 		}
 		if(!isdefined(level._osc_flags[2]) || !isdefined(level._osc_flags[3]))
 		{
@@ -334,7 +334,7 @@ function moon_jolie_greet()
 			}
 			for(j = 0; j < level._osc_st.size; j++)
 			{
-				namespace_6d813654::deregister_hackable_struct(level._osc_st[j].focus);
+				zm_equip_hacker::deregister_hackable_struct(level._osc_st[j].focus);
 				if(isdefined(level._osc_st[j].focus._light))
 				{
 					level._osc_st[j].focus._light delete();
@@ -362,7 +362,7 @@ function moon_jolie_greet()
 					level._osc_st[m].focus._light delete();
 				}
 				level._osc_st[m].focus.script_flag = "";
-				namespace_6d813654::deregister_hackable_struct(level._osc_st[m].focus);
+				zm_equip_hacker::deregister_hackable_struct(level._osc_st[m].focus);
 			}
 			if(level flag::get(level._osc_flags[2]))
 			{
@@ -391,7 +391,7 @@ function moon_jolie_access(ent_hacker)
 	level._lid_close_sound = 1;
 	for(i = 0; i < level._osc_rb_jolie_spots.size; i++)
 	{
-		namespace_6d813654::deregister_hackable_struct(level._osc_rb_jolie_spots[i]);
+		zm_equip_hacker::deregister_hackable_struct(level._osc_rb_jolie_spots[i]);
 	}
 	level._osc_terms = 0;
 	random_array = level._osc_st;
@@ -407,7 +407,7 @@ function moon_jolie_access(ent_hacker)
 		random_array[j] function_27fd2e20(1);
 		random_array[j].focus._light playsound("evt_sq_rbs_light_on");
 		random_array[j].focus._light PlayLoopSound("evt_sq_rbs_light_loop", 1);
-		namespace_6d813654::register_pooled_hackable_struct(random_array[j].focus, &moon_jolie_work);
+		zm_equip_hacker::register_pooled_hackable_struct(random_array[j].focus, &moon_jolie_work);
 	}
 	level thread moon_good_jolie();
 	level thread moon_bad_jolie();
@@ -462,7 +462,7 @@ function moon_jolie_work(ent_hacker)
 	{
 		self thread play_moon_pass_vox(ent_hacker);
 	}
-	namespace_6d813654::deregister_hackable_struct(self);
+	zm_equip_hacker::deregister_hackable_struct(self);
 }
 
 /*

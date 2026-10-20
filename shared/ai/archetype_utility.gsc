@@ -1699,14 +1699,14 @@ function updateFrustrationLevel(entity)
 	{
 		if(entity.aggressiveMode)
 		{
-			if(!isdefined(entity.var_533cea8f))
+			if(!isdefined(entity.start_amb_sophia_boot_sounds))
 			{
-				entity.var_533cea8f = GetTime();
+				entity.start_amb_sophia_boot_sounds = GetTime();
 			}
-			if(entity.var_533cea8f + 5000 < GetTime())
+			if(entity.start_amb_sophia_boot_sounds + 5000 < GetTime())
 			{
 				entity.frustrationLevel++;
-				entity.var_533cea8f = GetTime();
+				entity.start_amb_sophia_boot_sounds = GetTime();
 				entity.frustrationLevel = clampFrustration(entity.frustrationLevel);
 			}
 		}

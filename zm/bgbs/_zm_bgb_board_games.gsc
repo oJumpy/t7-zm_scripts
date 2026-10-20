@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_93a0c6cf;
+#namespace zm_bgb_board_games;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_93a0c6cf
+	Namespace: zm_bgb_board_games
 	Checksum: 0x939E567D
 	Offset: 0x1D0
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_93a0c6cf
+	Namespace: zm_bgb_board_games
 	Checksum: 0x76E19A19
 	Offset: 0x210
 	Size: 0x5B
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_93a0c6cf
+	Namespace: zm_bgb_board_games
 	Checksum: 0x17E56E38
 	Offset: 0x278
 	Size: 0x1B
@@ -57,7 +57,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_93a0c6cf
+	Namespace: zm_bgb_board_games
 	Checksum: 0x99EC1590
 	Offset: 0x2A0
 	Size: 0x3
@@ -70,7 +70,7 @@ function disable()
 
 /*
 	Name: function_7b627622
-	Namespace: namespace_93a0c6cf
+	Namespace: zm_bgb_board_games
 	Checksum: 0x418D6917
 	Offset: 0x2B0
 	Size: 0x77
@@ -81,7 +81,7 @@ function function_7b627622()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	while(1)
 	{
 		self waittill("boarding_window", s_window);
@@ -92,7 +92,7 @@ function function_7b627622()
 
 /*
 	Name: function_d5ed5165
-	Namespace: namespace_93a0c6cf
+	Namespace: zm_bgb_board_games
 	Checksum: 0x8481EE4B
 	Offset: 0x330
 	Size: 0x2DB

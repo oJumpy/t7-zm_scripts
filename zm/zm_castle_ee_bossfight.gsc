@@ -35,11 +35,11 @@
 #using scripts\zm\zm_castle_util;
 #using scripts\zm\zm_castle_vo;
 
-#namespace namespace_b1bc995c;
+#namespace zm_castle_ee_bossfight;
 
 /*
 	Name: init
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x2ADEF490
 	Offset: 0x13F0
 	Size: 0x807
@@ -76,7 +76,7 @@ function init()
 	level flag::init("boss_completed_early");
 	level flag::init("boss_fight_completed");
 	level.custom_spawner_entry["boss_riser"] = &function_77025eb5;
-	level thread function_dc2735aa();
+	level thread boss_skeleton_spawner_init();
 	/#
 		level flag::init("Dev Block strings are not supported");
 		level flag::init("Dev Block strings are not supported");
@@ -88,7 +88,7 @@ function init()
 	#/
 	level flag::wait_till("boss_fight_ready");
 	level function_b18f59bf();
-	level thread function_6f831a91();
+	level thread boss_fight_ready();
 	level flag::wait_till("boss_fight_begin");
 	zm_zonemgr::enable_zone("zone_boss_arena");
 	s_keeper_boss = spawnstruct();
@@ -122,15 +122,15 @@ function init()
 }
 
 /*
-	Name: function_dc2735aa
-	Namespace: namespace_b1bc995c
+	Name: boss_skeleton_spawner_init
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x1C4707D6
 	Offset: 0x1C00
 	Size: 0x19B
 	Parameters: 0
 	Flags: None
 */
-function function_dc2735aa()
+function boss_skeleton_spawner_init()
 {
 	var_7ead9349 = GetEnt("boss_skeleton_spawner", "targetname");
 	var_7ead9349.script_noteworthy = "zombie_spawner";
@@ -164,7 +164,7 @@ function function_dc2735aa()
 
 /*
 	Name: function_b18f59bf
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x51470824
 	Offset: 0x1DA8
 	Size: 0x45B
@@ -173,7 +173,7 @@ function function_dc2735aa()
 */
 function function_b18f59bf()
 {
-	level endon("hash_27340cf3");
+	level endon("boss_fight_begin");
 	s_keeper_end = struct::get("keeper_end_loc");
 	s_keeper_end FX::Play("mpd_fx", s_keeper_end.origin, s_keeper_end.angles, "delete_fx", 0, undefined, 1);
 	level.var_8ef26cd9 = 1;
@@ -192,14 +192,14 @@ function function_b18f59bf()
 	mdl_mpd.targetname = "undercroft_pyramid";
 	mdl_mpd playsound("zmb_ee_mpd_spawn_pyramid");
 	mdl_mpd disconnectpaths();
-	s_keeper_end notify("hash_629fd78d");
+	s_keeper_end notify("delete_fx");
 	callback::remove_on_connect(&namespace_744abc1c::function_fa7da172);
 	level.var_8ef26cd9 = undefined;
 	level thread function_1fd76e61(mdl_mpd);
 	wait(0.15);
 	mdl_mpd thread function_83ff2eda();
 	exploder::exploder("lgt_MPD_exp");
-	level thread namespace_97ddfc0d::function_698d2c6b();
+	level thread zm_castle_vo::function_698d2c6b();
 	level waittill("hash_3921dbad");
 	s_keeper_end FX::Play("mpd_fx", s_keeper_end.origin + VectorScale((0, 0, 1), 32), s_keeper_end.angles, "delete_fx", 0, undefined, 1);
 	mdl_mpd playsound("zmb_ee_mpd_open");
@@ -215,7 +215,7 @@ function function_b18f59bf()
 
 /*
 	Name: function_1fd76e61
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xB99232F0
 	Offset: 0x2210
 	Size: 0x2FF
@@ -262,7 +262,7 @@ function function_1fd76e61(mdl_mpd)
 
 /*
 	Name: function_83ff2eda
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xD1D9F708
 	Offset: 0x2518
 	Size: 0x249
@@ -283,7 +283,7 @@ function function_83ff2eda()
 	zm_unitrigger::unregister_unitrigger(s_canister.s_unitrigger);
 	mdl_origin playsound("zmb_ee_mpd_broken_canister_replace");
 	mdl_origin StopLoopSound(1);
-	self notify("hash_629fd78d");
+	self notify("delete_fx");
 	self HidePart("tag_broken_can");
 	self ShowPart("tag_prestine_can");
 	exploder::exploder("lgt_MPD_broken_exp");
@@ -293,7 +293,7 @@ function function_83ff2eda()
 
 /*
 	Name: function_91a378e3
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xCFA09557
 	Offset: 0x2770
 	Size: 0x223
@@ -313,20 +313,20 @@ function function_91a378e3()
 	wait(0.05);
 	mdl_keeper function_a1658f19("ai_zm_dlc1_corrupted_keeper_roar", "ai_zm_dlc1_corrupted_keeper_float_idle");
 	mdl_keeper PlayLoopSound("zmb_ee_resurrect_keeper_notghost_lp", 2);
-	namespace_97ddfc0d::function_cbf21c9d();
+	zm_castle_vo::function_cbf21c9d();
 	level flag::wait_till("boss_fight_begin");
 	callback::remove_on_connect(&namespace_744abc1c::function_fa7da172);
 	level.var_8ef26cd9 = undefined;
 	mdl_keeper delete();
 	s_keeper_end = struct::get("keeper_end_loc");
-	s_keeper_end notify("hash_629fd78d");
+	s_keeper_end notify("delete_fx");
 	mdl_mpd = GetEnt("undercroft_pyramid", "targetname");
 	mdl_mpd delete();
 }
 
 /*
 	Name: function_735d5e85
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xF0049FFF
 	Offset: 0x29A0
 	Size: 0x12B
@@ -365,7 +365,7 @@ function function_735d5e85()
 
 /*
 	Name: function_434db4ff
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xBA1A292D
 	Offset: 0x2AD8
 	Size: 0xC5
@@ -393,7 +393,7 @@ function function_434db4ff()
 
 /*
 	Name: function_2777756a
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xFB5EA869
 	Offset: 0x2BA8
 	Size: 0x5B
@@ -412,7 +412,7 @@ function function_2777756a()
 
 /*
 	Name: function_77025eb5
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x8691A650
 	Offset: 0x2C10
 	Size: 0x42D
@@ -486,7 +486,7 @@ function function_77025eb5(spot)
 
 /*
 	Name: function_4e3a8fa9
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x2E73AC3B
 	Offset: 0x3048
 	Size: 0x101
@@ -513,7 +513,7 @@ function function_4e3a8fa9(b_on)
 
 /*
 	Name: function_8fbf0a59
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x74A684E1
 	Offset: 0x3158
 	Size: 0x4B
@@ -522,16 +522,16 @@ function function_4e3a8fa9(b_on)
 */
 function function_8fbf0a59(var_9fb46041, var_c5b6daaa)
 {
-	level thread function_5db6ba34(var_9fb46041);
+	level thread clear_zombies(var_9fb46041);
 	if(isdefined(var_c5b6daaa))
 	{
-		level thread function_5db6ba34(var_c5b6daaa);
+		level thread clear_zombies(var_c5b6daaa);
 	}
 }
 
 /*
 	Name: get_unused_spawn_point
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xD65305DB
 	Offset: 0x31B0
 	Size: 0x1FF
@@ -596,17 +596,17 @@ function get_unused_spawn_point(var_4a032429, var_f759b439, var_610499ec)
 }
 
 /*
-	Name: function_6f831a91
-	Namespace: namespace_b1bc995c
+	Name: boss_fight_ready
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x1AC49EEA
 	Offset: 0x33B8
 	Size: 0x1A3
 	Parameters: 0
 	Flags: None
 */
-function function_6f831a91()
+function boss_fight_ready()
 {
-	level endon("hash_27340cf3");
+	level endon("boss_fight_begin");
 	level.var_b366f2dc = 0;
 	var_23a96e18 = GetEntArray("boss_gravity_spike_start_area", "targetname");
 	foreach(var_ad2fc56d in var_23a96e18)
@@ -628,7 +628,7 @@ function function_6f831a91()
 
 /*
 	Name: function_1c249965
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x8C946B1D
 	Offset: 0x3568
 	Size: 0x163
@@ -637,7 +637,7 @@ function function_6f831a91()
 */
 function function_1c249965()
 {
-	level endon("hash_27340cf3");
+	level endon("boss_fight_begin");
 	while(1)
 	{
 		foreach(player in level.players)
@@ -659,7 +659,7 @@ function function_1c249965()
 
 /*
 	Name: boss_fight_ready_gravity_trap_tracker
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xFE5E721A
 	Offset: 0x36D8
 	Size: 0x8F
@@ -669,7 +669,7 @@ function function_1c249965()
 function boss_fight_ready_gravity_trap_tracker(player)
 {
 	player endon("boss_fight_ready_gravity_trap_tracker_end" + self.script_int);
-	level endon("hash_27340cf3");
+	level endon("boss_fight_begin");
 	while(1)
 	{
 		player waittill("gravity_trap_planted");
@@ -688,7 +688,7 @@ function boss_fight_ready_gravity_trap_tracker(player)
 
 /*
 	Name: boss_fight_init
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xAC00AAE8
 	Offset: 0x3770
 	Size: 0xA6D
@@ -839,7 +839,7 @@ function boss_fight_init()
 
 /*
 	Name: function_a86bf815
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x148A9D5
 	Offset: 0x41E8
 	Size: 0x2B3
@@ -889,7 +889,7 @@ function function_a86bf815()
 
 /*
 	Name: function_1466b3f1
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xB09B6C50
 	Offset: 0x44A8
 	Size: 0x773
@@ -998,7 +998,7 @@ function function_1466b3f1()
 
 /*
 	Name: function_4bea595
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x37656D01
 	Offset: 0x4C28
 	Size: 0xDF
@@ -1007,7 +1007,7 @@ function function_1466b3f1()
 */
 function function_4bea595()
 {
-	level endon("hash_e991baf");
+	level endon("boss_fight_completed");
 	level endon("_zombie_game_over");
 	self endon("bleed_out");
 	self endon("disconnect");
@@ -1024,7 +1024,7 @@ function function_4bea595()
 
 /*
 	Name: boss_fight_start
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xF8B78D21
 	Offset: 0x4D10
 	Size: 0x34F
@@ -1033,8 +1033,8 @@ function function_4bea595()
 */
 function boss_fight_start()
 {
-	level endon("hash_e991baf");
-	level thread function_5db6ba34();
+	level endon("boss_fight_completed");
+	level thread clear_zombies();
 	a_s_temp = struct::get_array("boss_start_tele_point", "targetname");
 	var_7fcbf214 = Array::sort_by_script_int(a_s_temp, 1);
 	foreach(player in level.players)
@@ -1063,7 +1063,7 @@ function boss_fight_start()
 
 /*
 	Name: boss_fight_complete
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xA284F936
 	Offset: 0x5068
 	Size: 0x48B
@@ -1102,7 +1102,7 @@ function boss_fight_complete()
 	zm_spawner::deregister_zombie_death_event_callback(&function_369525ff);
 	function_4e3a8fa9(0);
 	wait(3);
-	level thread namespace_97ddfc0d::function_64505195();
+	level thread zm_castle_vo::function_64505195();
 	level flag::set("boss_fight_completed");
 	wait(25);
 	level flag::set("zombie_drop_powerups");
@@ -1114,7 +1114,7 @@ function boss_fight_complete()
 
 /*
 	Name: function_8ac50ad
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x3214DD24
 	Offset: 0x5500
 	Size: 0x9B
@@ -1133,7 +1133,7 @@ function function_8ac50ad(v_pos, v_angles)
 
 /*
 	Name: boss_fight_cleanup
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x8547F6F3
 	Offset: 0x55A8
 	Size: 0x151
@@ -1162,7 +1162,7 @@ function boss_fight_cleanup()
 
 /*
 	Name: function_a1658f19
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xE291EA4
 	Offset: 0x5708
 	Size: 0x7B
@@ -1187,15 +1187,15 @@ function function_a1658f19(str_anim, str_loop)
 }
 
 /*
-	Name: function_5db6ba34
-	Namespace: namespace_b1bc995c
+	Name: clear_zombies
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x7D4F93F4
 	Offset: 0x5790
 	Size: 0x3BD
 	Parameters: 1
 	Flags: None
 */
-function function_5db6ba34(var_dcc4bd3d)
+function clear_zombies(var_dcc4bd3d)
 {
 	wait(0.5);
 	a_ai_zombies = [];
@@ -1273,7 +1273,7 @@ function function_5db6ba34(var_dcc4bd3d)
 
 /*
 	Name: function_1261fd50
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xCFE9C4C
 	Offset: 0x5B58
 	Size: 0x3D9
@@ -1287,7 +1287,7 @@ function function_1261fd50()
 	var_1e84d44a = struct::get("boss_start_point", "targetname");
 	self function_1b20ff86(var_1e84d44a.origin);
 	wait(1);
-	level thread namespace_97ddfc0d::function_6b44bc05();
+	level thread zm_castle_vo::function_6b44bc05();
 	self thread function_e2f41bf2();
 	wait(1);
 	self notify("hash_ff6409a6");
@@ -1358,7 +1358,7 @@ function function_1261fd50()
 
 /*
 	Name: function_1b20ff86
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x871CCB28
 	Offset: 0x5F40
 	Size: 0x17B
@@ -1382,7 +1382,7 @@ function function_1b20ff86(var_5ed78a5f)
 
 /*
 	Name: function_ca8445e1
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xD5C492F6
 	Offset: 0x60C8
 	Size: 0xE3
@@ -1403,7 +1403,7 @@ function function_ca8445e1()
 
 /*
 	Name: function_e3ea9055
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xDB63F155
 	Offset: 0x61B8
 	Size: 0x2B
@@ -1424,7 +1424,7 @@ function function_e3ea9055(var_70f504b7)
 
 /*
 	Name: function_28bb5727
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xFEA45654
 	Offset: 0x61F0
 	Size: 0x9CF
@@ -1638,7 +1638,7 @@ function function_28bb5727(var_4a14cd40)
 
 /*
 	Name: function_96db213f
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xE9E32CAA
 	Offset: 0x6BC8
 	Size: 0x7F
@@ -1659,7 +1659,7 @@ function function_96db213f()
 
 /*
 	Name: function_e2f41bf2
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x76D23043
 	Offset: 0x6C50
 	Size: 0x24F
@@ -1669,7 +1669,7 @@ function function_96db213f()
 function function_e2f41bf2()
 {
 	level endon("_zombie_game_over");
-	level endon("hash_e991baf");
+	level endon("boss_fight_completed");
 	level endon("hash_cd6f3cf8");
 	switch(self.var_7e383b58)
 	{
@@ -1722,7 +1722,7 @@ function function_e2f41bf2()
 
 /*
 	Name: function_5e437060
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xF20CF886
 	Offset: 0x6EA8
 	Size: 0x1B
@@ -1737,7 +1737,7 @@ function function_5e437060(n_time)
 
 /*
 	Name: function_5faafe36
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x3FCADE05
 	Offset: 0x6ED0
 	Size: 0xD9
@@ -1756,7 +1756,7 @@ function function_5faafe36()
 
 /*
 	Name: function_be0acb1a
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xE8A876FC
 	Offset: 0x6FB8
 	Size: 0x2D
@@ -1771,7 +1771,7 @@ function function_be0acb1a(n_index)
 
 /*
 	Name: function_1dddcbf0
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x2CFF0706
 	Offset: 0x6FF0
 	Size: 0x3F3
@@ -1781,7 +1781,7 @@ function function_be0acb1a(n_index)
 function function_1dddcbf0()
 {
 	level endon("_zombie_game_over");
-	level endon("hash_e991baf");
+	level endon("boss_fight_completed");
 	/#
 		if(level flag::get("Dev Block strings are not supported"))
 		{
@@ -1856,7 +1856,7 @@ function function_1dddcbf0()
 
 /*
 	Name: function_10739686
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x11A5BC0D
 	Offset: 0x73F0
 	Size: 0x161
@@ -1896,7 +1896,7 @@ function function_10739686(var_466a9f43)
 
 /*
 	Name: function_abdb4498
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x7D785874
 	Offset: 0x7560
 	Size: 0x3BF
@@ -1944,7 +1944,7 @@ function function_abdb4498()
 		}
 		n_index = RandomInt(var_12b659e0.size);
 		var_12b659e0[n_index] clientfield::set("boss_elemental_storm_stunned_spikes_fx", 1);
-		var_48d25fcc = self function_dc38a37e();
+		var_48d25fcc = self boss_stunned();
 		var_12b659e0[n_index] clientfield::set("boss_elemental_storm_stunned_spikes_fx", 0);
 	}
 	else
@@ -1957,7 +1957,7 @@ function function_abdb4498()
 
 /*
 	Name: function_e20da5e0
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xCD477264
 	Offset: 0x7928
 	Size: 0xD3
@@ -1985,15 +1985,15 @@ function function_e20da5e0(player, var_a7ddd99)
 }
 
 /*
-	Name: function_dc38a37e
-	Namespace: namespace_b1bc995c
+	Name: boss_stunned
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xD157B9C3
 	Offset: 0x7A08
 	Size: 0x37D
 	Parameters: 0
 	Flags: None
 */
-function function_dc38a37e()
+function boss_stunned()
 {
 	/#
 	#/
@@ -2044,7 +2044,7 @@ function function_dc38a37e()
 
 /*
 	Name: function_eda57e8b
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xE959A956
 	Offset: 0x7D90
 	Size: 0x7F
@@ -2063,7 +2063,7 @@ function function_eda57e8b()
 
 /*
 	Name: function_39a8c4bd
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x42D1D092
 	Offset: 0x7E18
 	Size: 0x2F3
@@ -2072,7 +2072,7 @@ function function_eda57e8b()
 */
 function function_39a8c4bd()
 {
-	level endon("hash_e991baf");
+	level endon("boss_fight_completed");
 	/#
 	#/
 	self.var_40b46e43 thread function_a1658f19("ai_zm_dlc1_archon_float_spell_elemental_charge_outro");
@@ -2113,7 +2113,7 @@ function function_39a8c4bd()
 
 /*
 	Name: function_1b1fe540
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xCBD3E0A4
 	Offset: 0x8118
 	Size: 0x63
@@ -2131,7 +2131,7 @@ function function_1b1fe540(var_70f504b7)
 
 /*
 	Name: function_624b877f
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xC20AE433
 	Offset: 0x8188
 	Size: 0xB1
@@ -2157,7 +2157,7 @@ function function_624b877f(var_70f504b7, var_39f71e77)
 
 /*
 	Name: function_74d4ae55
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x8163126A
 	Offset: 0x8248
 	Size: 0x213
@@ -2219,7 +2219,7 @@ function function_74d4ae55(var_70f504b7)
 
 /*
 	Name: function_a77c2ade
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x98142A31
 	Offset: 0x8468
 	Size: 0x203
@@ -2279,7 +2279,7 @@ function function_a77c2ade(var_70f504b7)
 
 /*
 	Name: function_36927923
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x7BEA6AAC
 	Offset: 0x8678
 	Size: 0x39B
@@ -2319,15 +2319,15 @@ function function_36927923(var_67eb721b, var_ef983cc5, var_ea42537d, var_4a243bd
 }
 
 /*
-	Name: function_e5dafbe3
-	Namespace: namespace_b1bc995c
+	Name: boss_demongate_chomper_despawn
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x69BF54B1
 	Offset: 0x8A20
 	Size: 0xC9
 	Parameters: 0
 	Flags: None
 */
-function function_e5dafbe3()
+function boss_demongate_chomper_despawn()
 {
 	self.b_spawned = 0;
 	self clientfield::set("boss_demongate_chomper_fx", 0);
@@ -2342,7 +2342,7 @@ function function_e5dafbe3()
 
 /*
 	Name: function_30e15c1e
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x8709749D
 	Offset: 0x8AF8
 	Size: 0xAB
@@ -2366,13 +2366,13 @@ function function_30e15c1e(var_ef983cc5)
 	}
 	else
 	{
-		self function_e5dafbe3();
+		self boss_demongate_chomper_despawn();
 	}
 }
 
 /*
 	Name: function_7574c93e
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x41ABBC93
 	Offset: 0x8BB0
 	Size: 0x121
@@ -2404,7 +2404,7 @@ function function_7574c93e()
 
 /*
 	Name: function_7398c59d
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xBFDB0E2A
 	Offset: 0x8CE0
 	Size: 0x12B
@@ -2433,12 +2433,12 @@ function function_7398c59d()
 		self thread function_30e15c1e();
 		return;
 	}
-	self function_e5dafbe3();
+	self boss_demongate_chomper_despawn();
 }
 
 /*
 	Name: function_9a0bf5f4
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x97570D74
 	Offset: 0x8E18
 	Size: 0x383
@@ -2491,7 +2491,7 @@ function function_9a0bf5f4()
 
 /*
 	Name: function_2cef3631
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x40D2F7A9
 	Offset: 0x91A8
 	Size: 0x8B
@@ -2506,12 +2506,12 @@ function function_2cef3631()
 	{
 		self waittill("damage", n_damage, e_attacker);
 	}
-	self function_e5dafbe3();
+	self boss_demongate_chomper_despawn();
 }
 
 /*
 	Name: function_379868a6
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x87082A9C
 	Offset: 0x9240
 	Size: 0x6D
@@ -2533,7 +2533,7 @@ function function_379868a6(var_70f504b7)
 
 /*
 	Name: function_78d09fbd
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xBE303C86
 	Offset: 0x92B8
 	Size: 0xC1
@@ -2571,7 +2571,7 @@ function function_78d09fbd(var_70f504b7)
 
 /*
 	Name: function_f6b53f16
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x23FDEC5F
 	Offset: 0x9388
 	Size: 0x41B
@@ -2638,7 +2638,7 @@ function function_f6b53f16(var_70f504b7)
 
 /*
 	Name: function_93570bbc
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xDEDFA94A
 	Offset: 0x97B0
 	Size: 0x2F3
@@ -2692,7 +2692,7 @@ function function_93570bbc(var_70f504b7)
 
 /*
 	Name: function_45988f28
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x3D06DB9
 	Offset: 0x9AB0
 	Size: 0x63B
@@ -2748,7 +2748,7 @@ function function_45988f28(var_70f504b7)
 
 /*
 	Name: function_ad721cc0
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x519D728B
 	Offset: 0xA0F8
 	Size: 0x253
@@ -2788,12 +2788,12 @@ function function_ad721cc0()
 		}
 		wait(0.05);
 	}
-	self function_c20e4083();
+	self rune_prison_end();
 }
 
 /*
 	Name: function_3995b832
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x748FDAC3
 	Offset: 0xA358
 	Size: 0x129
@@ -2817,13 +2817,13 @@ function function_3995b832(player)
 	player clientfield::set("boss_rune_prison_dot_fx", 1);
 	wait(0.5);
 	player clientfield::set("boss_rune_prison_dot_fx", 0);
-	self function_c20e4083();
+	self rune_prison_end();
 	self notify("hash_a2b2e823");
 }
 
 /*
 	Name: function_49bf49de
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x428919E
 	Offset: 0xA490
 	Size: 0x87
@@ -2843,15 +2843,15 @@ function function_49bf49de()
 }
 
 /*
-	Name: function_c20e4083
-	Namespace: namespace_b1bc995c
+	Name: rune_prison_end
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x985A52DD
 	Offset: 0xA520
 	Size: 0x79
 	Parameters: 0
 	Flags: None
 */
-function function_c20e4083()
+function rune_prison_end()
 {
 	self thread clientfield::set("boss_rune_prison_rock_fx", 0);
 	wait(0.75);
@@ -2863,7 +2863,7 @@ function function_c20e4083()
 
 /*
 	Name: function_db1c6f68
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x64EB88D3
 	Offset: 0xA5A8
 	Size: 0x4A3
@@ -2876,7 +2876,7 @@ function function_db1c6f68(var_70f504b7)
 	{
 		var_70f504b7 = 0;
 	}
-	level endon("hash_e991baf");
+	level endon("boss_fight_completed");
 	/#
 	#/
 	if(!var_70f504b7)
@@ -2963,7 +2963,7 @@ function function_db1c6f68(var_70f504b7)
 
 /*
 	Name: move_away_from_edges
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x6B5AADB0
 	Offset: 0xAA58
 	Size: 0x161
@@ -2991,7 +2991,7 @@ function move_away_from_edges()
 
 /*
 	Name: function_20559b9e
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xC4A58965
 	Offset: 0xABC8
 	Size: 0x373
@@ -3054,7 +3054,7 @@ function function_20559b9e(s_spawn_point, a_e_spawners)
 
 /*
 	Name: function_369525ff
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xF838EF8E
 	Offset: 0xAF48
 	Size: 0x9B
@@ -3077,7 +3077,7 @@ function function_369525ff()
 
 /*
 	Name: spawn_mech
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x41D72D8
 	Offset: 0xAFF0
 	Size: 0x41B
@@ -3091,14 +3091,14 @@ function spawn_mech()
 	{
 		level.mechz_spawners[0].script_forcespawn = 1;
 		ai = zombie_utility::spawn_zombie(level.mechz_spawners[0], "mechz", s_location);
-		ai thread namespace_ef567265::function_ef1ba7e5();
+		ai thread zm_ai_mechz::function_ef1ba7e5();
 		ai DisableAimAssist();
 		/#
-			ai thread namespace_ef567265::function_75a79bb5();
+			ai thread zm_ai_mechz::function_75a79bb5();
 		#/
 		ai.actor_damage_func = &MechzServerUtils::mechzDamageCallback;
-		ai.damage_scoring_function = &namespace_ef567265::mechz_damage_scoring;
-		ai.mechz_melee_knockdown_function = &namespace_ef567265::mechz_melee_knockdown;
+		ai.damage_scoring_function = &zm_ai_mechz::mechz_damage_scoring;
+		ai.mechz_melee_knockdown_function = &zm_ai_mechz::mechz_melee_knockdown;
 		ai.health = self.mechz_health;
 		ai.faceplate_health = self.MECHZ_FACEPLATE_HEALTH;
 		ai.powercap_cover_health = self.MECHZ_POWERCAP_COVER_HEALTH;
@@ -3121,9 +3121,9 @@ function spawn_mech()
 		var_1750e965 = v_ground_position;
 		ai ForceTeleport(var_1750e965, v_angles);
 		ai thread scene::Play("cin_zm_castle_mechz_entrance", ai);
-		ai thread namespace_ef567265::function_c441eaba(var_1750e965);
-		ai thread namespace_ef567265::function_bbdc1f34(var_1750e965);
-		ai thread namespace_ef567265::function_bb048b27();
+		ai thread zm_ai_mechz::function_c441eaba(var_1750e965);
+		ai thread zm_ai_mechz::function_bbdc1f34(var_1750e965);
+		ai thread zm_ai_mechz::function_bb048b27();
 		ai.ignore_round_robbin_death = 1;
 		/#
 			ai.ignore_devgui_death = 1;
@@ -3140,7 +3140,7 @@ function spawn_mech()
 
 /*
 	Name: function_512742d3
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0xC09969D8
 	Offset: 0xB418
 	Size: 0x67
@@ -3163,7 +3163,7 @@ function function_512742d3()
 
 /*
 	Name: function_fb4ac7ae
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x323BA86C
 	Offset: 0xB488
 	Size: 0xE3
@@ -3188,7 +3188,7 @@ function function_fb4ac7ae()
 
 /*
 	Name: function_b68d06ec
-	Namespace: namespace_b1bc995c
+	Namespace: zm_castle_ee_bossfight
 	Checksum: 0x28BB4F5C
 	Offset: 0xB578
 	Size: 0x3BD

@@ -14,11 +14,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_zod_poweronswitch;
 
-#namespace namespace_de48615;
+#namespace zm_zod_stairs;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_de48615
+	Namespace: zm_zod_stairs
 	Checksum: 0x40BB9F1F
 	Offset: 0x340
 	Size: 0x2B
@@ -32,7 +32,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __main__
-	Namespace: namespace_de48615
+	Namespace: zm_zod_stairs
 	Checksum: 0x6057B528
 	Offset: 0x378
 	Size: 0x1B
@@ -46,7 +46,7 @@ function __main__()
 
 /*
 	Name: init_stairs
-	Namespace: namespace_de48615
+	Namespace: zm_zod_stairs
 	Checksum: 0xC9FA6B54
 	Offset: 0x3A0
 	Size: 0xDB
@@ -69,7 +69,7 @@ function init_stairs()
 
 /*
 	Name: init_stair
-	Namespace: namespace_de48615
+	Namespace: zm_zod_stairs
 	Checksum: 0xEF2AA094
 	Offset: 0x488
 	Size: 0x83
@@ -359,11 +359,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_de48615;
+#namespace zm_zod_stairs;
 
 /*
 	Name: cstair
-	Namespace: namespace_de48615
+	Namespace: zm_zod_stairs
 	Checksum: 0x90830356
 	Offset: 0xF20
 	Size: 0x265

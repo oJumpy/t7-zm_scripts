@@ -7,7 +7,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_full_ammo
-	Checksum: 0xF8C0504E
+	Checksum: 0xBF63B52D
 	Offset: 0x108
 	Size: 0x33
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_full_ammo
-	Checksum: 0x465F7BCA
+	Checksum: 0x6DB31C5F
 	Offset: 0x148
 	Size: 0x6B
 	Parameters: 0

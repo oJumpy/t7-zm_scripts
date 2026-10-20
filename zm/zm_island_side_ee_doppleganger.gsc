@@ -25,11 +25,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_island_util;
 
-#namespace namespace_28a54cd6;
+#namespace zm_island_side_ee_doppleganger;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x2A0E63F0
 	Offset: 0x4A0
 	Size: 0x33
@@ -43,7 +43,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0xC69A70B7
 	Offset: 0x4E0
 	Size: 0x6F
@@ -60,7 +60,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0xDA917A1C
 	Offset: 0x558
 	Size: 0x33
@@ -77,7 +77,7 @@ function main()
 
 /*
 	Name: on_player_connected
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x6ACA1D38
 	Offset: 0x598
 	Size: 0x23
@@ -91,7 +91,7 @@ function on_player_connected()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x83AC1999
 	Offset: 0x5C8
 	Size: 0x23
@@ -105,7 +105,7 @@ function on_player_spawned()
 
 /*
 	Name: on_player_disconnected
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x81186781
 	Offset: 0x5F8
 	Size: 0x2B
@@ -114,15 +114,15 @@ function on_player_spawned()
 */
 function on_player_disconnected()
 {
-	if(isdefined(self.var_c748f21c))
+	if(isdefined(self.ai_doppleganger))
 	{
-		self.var_c748f21c function_38165cb6();
+		self.ai_doppleganger function_38165cb6();
 	}
 }
 
 /*
 	Name: function_46051422
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x23C5904D
 	Offset: 0x630
 	Size: 0x129
@@ -149,7 +149,7 @@ function function_46051422(n_time)
 				if(zm_utility::is_player_valid(e_loner))
 				{
 					e_loner thread function_5ee3951f();
-					while(isalive(e_loner.var_c748f21c))
+					while(isalive(e_loner.ai_doppleganger))
 					{
 						wait(1);
 					}
@@ -162,7 +162,7 @@ function function_46051422(n_time)
 
 /*
 	Name: function_b1aa7056
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x18EAF58C
 	Offset: 0x768
 	Size: 0x137
@@ -171,12 +171,12 @@ function function_46051422(n_time)
 */
 function function_b1aa7056()
 {
-	var_d47cc4f9 = GetEnt("t_lookat_doppleganger_enable", "targetname");
-	if(isdefined(var_d47cc4f9))
+	t_lookat_doppleganger_enable = GetEnt("t_lookat_doppleganger_enable", "targetname");
+	if(isdefined(t_lookat_doppleganger_enable))
 	{
 		while(1)
 		{
-			var_d47cc4f9 waittill("trigger", e_who);
+			t_lookat_doppleganger_enable waittill("trigger", e_who);
 			if(zm_utility::is_player_valid(e_who) && e_who util::ads_button_held() && !e_who flag::get("doppleganger_enabled"))
 			{
 				e_weapon = e_who GetCurrentWeapon();
@@ -193,7 +193,7 @@ function function_b1aa7056()
 
 /*
 	Name: function_957b43e5
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0xD99FDFFF
 	Offset: 0x8A8
 	Size: 0x5B
@@ -211,7 +211,7 @@ function function_957b43e5()
 
 /*
 	Name: function_8c3f76f3
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x8E3A1205
 	Offset: 0x910
 	Size: 0x377
@@ -268,7 +268,7 @@ function function_8c3f76f3()
 
 /*
 	Name: function_5ee3951f
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x8D155736
 	Offset: 0xC90
 	Size: 0x3B3
@@ -280,9 +280,9 @@ function function_5ee3951f()
 	var_697ad100 = Array(0, 1, 2, 3);
 	a_players = ArrayCopy(level.activePlayers);
 	ArrayRemoveValue(a_players, self);
-	if(isdefined(self.var_c748f21c))
+	if(isdefined(self.ai_doppleganger))
 	{
-		self.var_c748f21c delete();
+		self.ai_doppleganger delete();
 	}
 	var_91a9d91c = AnglesToForward(self.angles);
 	v_new_pos = self.origin - var_91a9d91c * 220;
@@ -303,7 +303,7 @@ function function_5ee3951f()
 	{
 		var_411ea70c = self.var_d73c077d - self.origin;
 		var_4e08bd7 = VectorToAngles(var_411ea70c);
-		self.var_c748f21c = SpawnActor("spawner_zm_island_clone", self.var_d73c077d, var_4e08bd7, "ai_doppleganger", 1);
+		self.ai_doppleganger = SpawnActor("spawner_zm_island_clone", self.var_d73c077d, var_4e08bd7, "ai_doppleganger", 1);
 		if(a_players.size > 0)
 		{
 			ArrayRemoveValue(a_players, self);
@@ -318,9 +318,9 @@ function function_5ee3951f()
 		{
 			e_clone = self;
 		}
-		self.var_c748f21c CloneServerUtils::clonePlayerLook(self.var_c748f21c, e_clone, self);
-		self.var_c748f21c Hide();
-		self.var_c748f21c ShowToPlayer(self);
+		self.ai_doppleganger CloneServerUtils::clonePlayerLook(self.ai_doppleganger, e_clone, self);
+		self.ai_doppleganger Hide();
+		self.ai_doppleganger ShowToPlayer(self);
 		self thread doppleganger_think();
 		self flag::clear("doppleganger_enabled");
 	}
@@ -328,7 +328,7 @@ function function_5ee3951f()
 
 /*
 	Name: doppleganger_think
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x4C1CE2EC
 	Offset: 0x1050
 	Size: 0x1E5
@@ -337,21 +337,21 @@ function function_5ee3951f()
 */
 function doppleganger_think()
 {
-	self.var_c748f21c endon("death");
+	self.ai_doppleganger endon("death");
 	self endon("death");
-	self.var_c748f21c ASMSetAnimationRate(1.2);
-	util::magic_bullet_shield(self.var_c748f21c);
+	self.ai_doppleganger ASMSetAnimationRate(1.2);
+	util::magic_bullet_shield(self.ai_doppleganger);
 	var_4010e215 = 10000;
 	var_66d72d36 = 360000;
 	str_do = "";
 	do
 	{
-		n_dist_sq = DistanceSquared(self.origin, self.var_c748f21c.origin);
-		if(n_dist_sq <= var_4010e215 && self namespace_8aed53c9::is_facing(self.var_c748f21c, 0.7))
+		n_dist_sq = DistanceSquared(self.origin, self.ai_doppleganger.origin);
+		if(n_dist_sq <= var_4010e215 && self namespace_8aed53c9::is_facing(self.ai_doppleganger, 0.7))
 		{
 			str_do = "scare";
 		}
-		else if(n_dist_sq > var_66d72d36 && !self namespace_8aed53c9::is_facing(self.var_c748f21c, 0.5))
+		else if(n_dist_sq > var_66d72d36 && !self namespace_8aed53c9::is_facing(self.ai_doppleganger, 0.5))
 		{
 			str_do = "delete";
 		}
@@ -360,7 +360,7 @@ function doppleganger_think()
 			wait(0.1);
 		}
 	}
-	while(!(zm_utility::is_player_valid(self) && isdefined(self.var_c748f21c) && str_do == ""));
+	while(!(zm_utility::is_player_valid(self) && isdefined(self.ai_doppleganger) && str_do == ""));
 	switch(str_do)
 	{
 		case "scare":
@@ -378,7 +378,7 @@ function doppleganger_think()
 
 /*
 	Name: function_69f74476
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x9AE2D383
 	Offset: 0x1240
 	Size: 0x2B3
@@ -387,12 +387,12 @@ function doppleganger_think()
 */
 function function_69f74476()
 {
-	if(isalive(self) && isdefined(self.var_c748f21c))
+	if(isalive(self) && isdefined(self.ai_doppleganger))
 	{
 		self util::player_lock_control();
 		self DisableWeapons(1);
 		self EnableInvulnerability();
-		ai = self.var_c748f21c;
+		ai = self.ai_doppleganger;
 		var_1f377995 = util::spawn_model("tag_origin", ai.origin, self.angles);
 		ai LinkTo(var_1f377995);
 		self SetPlayerAngles(VectorToAngles(ai.origin - self.origin));
@@ -412,7 +412,7 @@ function function_69f74476()
 		self DisableInvulnerability();
 		var_1f377995 delete();
 	}
-	else if(isdefined(self.var_c748f21c))
+	else if(isdefined(self.ai_doppleganger))
 	{
 		self function_38165cb6();
 	}
@@ -420,7 +420,7 @@ function function_69f74476()
 
 /*
 	Name: function_89b0bd32
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x230C0374
 	Offset: 0x1500
 	Size: 0x77
@@ -441,7 +441,7 @@ function function_89b0bd32()
 
 /*
 	Name: function_38165cb6
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x3CD5390D
 	Offset: 0x1580
 	Size: 0x43
@@ -450,16 +450,16 @@ function function_89b0bd32()
 */
 function function_38165cb6()
 {
-	if(isdefined(self.var_c748f21c))
+	if(isdefined(self.ai_doppleganger))
 	{
-		util::stop_magic_bullet_shield(self.var_c748f21c);
-		self.var_c748f21c delete();
+		util::stop_magic_bullet_shield(self.ai_doppleganger);
+		self.ai_doppleganger delete();
 	}
 }
 
 /*
 	Name: function_bece461b
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x47110361
 	Offset: 0x15D0
 	Size: 0x8B
@@ -479,7 +479,7 @@ function function_bece461b()
 
 /*
 	Name: function_8924dbff
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x7E1FDEA2
 	Offset: 0x1668
 	Size: 0x13D

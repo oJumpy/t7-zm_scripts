@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_66b3c421;
+#namespace zm_bgb_crawl_space;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_66b3c421
+	Namespace: zm_bgb_crawl_space
 	Checksum: 0xC67C2F7
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_66b3c421
+	Namespace: zm_bgb_crawl_space
 	Checksum: 0xE31406C0
 	Offset: 0x188
 	Size: 0x3B

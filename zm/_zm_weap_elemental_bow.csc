@@ -30,7 +30,7 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	clientfield::register("toplayer", "elemental_bow" + "_ambient_bow_fx", 5000, 1, "int", &function_5b4bf635, 0, 0);
-	clientfield::register("missile", "elemental_bow" + "_arrow_impact_fx", 5000, 1, "int", &function_4e8aa99, 0, 0);
+	clientfield::register("missile", "elemental_bow" + "_arrow_impact_fx", 5000, 1, "int", &elemental_bow_arrow_impact_fx, 0, 0);
 	clientfield::register("missile", "elemental_bow4" + "_arrow_impact_fx", 5000, 1, "int", &function_bdaa35c, 0, 0);
 	level._effect["elemental_bow_ambient_bow"] = "dlc1/zmb_weapon/fx_bow_default_ambient_1p_zmb";
 	level._effect["elemental_bow_arrow_impact"] = "dlc1/zmb_weapon/fx_bow_default_impact_zmb";
@@ -54,7 +54,7 @@ function function_5b4bf635(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4e8aa99
+	Name: elemental_bow_arrow_impact_fx
 	Namespace: zm_weap_elemental_bow
 	Checksum: 0x6DF5B6AA
 	Offset: 0x4D8
@@ -62,7 +62,7 @@ function function_5b4bf635(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_4e8aa99(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function elemental_bow_arrow_impact_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{

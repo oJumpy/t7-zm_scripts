@@ -128,7 +128,7 @@ function rotate_randomly()
 }
 
 /*
-	Name: function_acd04dc9
+	Name: zombie_no_powerups
 	Namespace: namespace_48c05c81
 	Checksum: 0xB3BBDC95
 	Offset: 0x948
@@ -136,7 +136,7 @@ function rotate_randomly()
 	Parameters: 0
 	Flags: None
 */
-function function_acd04dc9()
+function zombie_no_powerups()
 {
 	self endon("death");
 	if(!(isdefined(self.completed_emerging_into_playable_area) && self.completed_emerging_into_playable_area))
@@ -274,9 +274,9 @@ function function_7fbdcc5f(var_57216c49)
 	self endon("death");
 	self.dragon_whelp endon("death");
 	self.var_9d9ac25d = 1;
-	self.dragon_whelp vehicle_ai::function_81b6f1ac();
+	self.dragon_whelp vehicle_ai::start_scripted();
 	var_5572b89 = self [[var_57216c49]]();
-	self.dragon_whelp vehicle_ai::function_efe9815e();
+	self.dragon_whelp vehicle_ai::stop_scripted();
 	if(isdefined(var_5572b89) && var_5572b89)
 	{
 		return 1;
@@ -656,7 +656,7 @@ function function_ff194e31(var_d965b1c7)
 	{
 		self.no_damage_points = 1;
 		self.deathpoints_already_given = 1;
-		self thread function_acd04dc9();
+		self thread zombie_no_powerups();
 	}
 	self zombie_utility::set_zombie_run_cycle("sprint");
 	self.noCrawler = 1;
@@ -749,8 +749,8 @@ function function_b55ebb81(a_spawnpoints, var_2b71b5b4, var_15eb9a52, var_f92c38
 	{
 		var_ee8c6a82 = 0;
 	}
-	level notify("hash_b2368013");
-	level endon("hash_b2368013");
+	level notify("turbine_idle");
+	level endon("turbine_idle");
 	if(isdefined(str_notify_end))
 	{
 		level endon(str_notify_end);
@@ -851,7 +851,7 @@ function function_b55ebb81(a_spawnpoints, var_2b71b5b4, var_15eb9a52, var_f92c38
 		wait(0.05);
 	}
 	level flag::clear("wave_event_raz_spawning_active");
-	level notify("hash_508be1b9");
+	level notify("wave_event_raz_complete");
 }
 
 /*
@@ -882,7 +882,7 @@ function function_4334972f(str_endon, str_notify_end, var_1d9f5031)
 function function_432cdad9(a_spawnpoints, func_on_spawned)
 {
 	players = GetPlayers();
-	e_favorite_enemy = namespace_1c31c03d::get_favorite_enemy();
+	e_favorite_enemy = zm_ai_raz::get_favorite_enemy();
 	if(isdefined(level.raz_spawn_func))
 	{
 		s_spawn_loc = [[level.raz_spawn_func]](level.a_sp_raz, e_favorite_enemy);
@@ -899,7 +899,7 @@ function function_432cdad9(a_spawnpoints, func_on_spawned)
 	{
 		return undefined;
 	}
-	ai = namespace_1c31c03d::spawn_raz_zombie(level.a_sp_raz[0]);
+	ai = zm_ai_raz::spawn_raz_zombie(level.a_sp_raz[0]);
 	if(isdefined(ai))
 	{
 		ai ForceTeleport(s_spawn_loc.origin, s_spawn_loc.angles);
@@ -1091,7 +1091,7 @@ function function_923f7f72(var_af22dd13, var_ed448d3b, var_e25e1ccc, var_b4fcee8
 		wait(0.05);
 	}
 	level flag::clear("wave_event_sentinel_spawning_active");
-	level notify("hash_6c3bd765");
+	level notify("wave_event_sentinels_complete");
 }
 
 /*
@@ -1115,16 +1115,16 @@ function function_70e59bda(func_on_spawned, var_1d8ab289)
 	}
 	else
 	{
-		s_spawn_loc = namespace_8bc21961::function_f9c9e7e0();
+		s_spawn_loc = zm_ai_sentinel_drone::function_f9c9e7e0();
 	}
 	if(!isdefined(s_spawn_loc))
 	{
 		return undefined;
 	}
-	ai = namespace_8bc21961::function_fded8158(level.var_fda4b3f3[0]);
+	ai = zm_ai_sentinel_drone::function_fded8158(level.var_fda4b3f3[0]);
 	if(isdefined(ai))
 	{
-		ai thread namespace_8bc21961::function_b27530eb(s_spawn_loc.origin);
+		ai thread zm_ai_sentinel_drone::function_b27530eb(s_spawn_loc.origin);
 		if(isdefined(func_on_spawned))
 		{
 			ai thread [[func_on_spawned]]();

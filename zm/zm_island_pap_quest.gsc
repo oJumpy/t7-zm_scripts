@@ -188,11 +188,11 @@ function pap_trigger()
 	level flag::wait_till("pap_water_drained");
 	if(zm_utility::is_player_valid(level.var_16e32c2f))
 	{
-		level.var_16e32c2f notify("hash_7301e8c8");
+		level.var_16e32c2f notify("player_opened_pap");
 	}
 	mdl_gate moveto(mdl_gate.s_pos.origin, 3);
 	mdl_gate playsound("zmb_papquest_gate_move");
-	level thread namespace_f333593c::function_3bf2d62a("pap_opens", 0, 1, 0);
+	level thread zm_island_vo::function_3bf2d62a("pap_opens", 0, 1, 0);
 	mdl_gate waittill("movedone");
 	level flag::set("pap_open");
 	t_hint delete();
@@ -246,13 +246,13 @@ function function_4c046b1b()
 		case 1:
 		{
 			exploder::exploder_stop("fxexp_300");
-			level thread namespace_f333593c::function_3bf2d62a("drain_pap", 0, 1, 0);
+			level thread zm_island_vo::function_3bf2d62a("drain_pap", 0, 1, 0);
 			break;
 		}
 		case 2:
 		{
 			exploder::exploder_stop("fxexp_301");
-			level thread namespace_f333593c::function_3bf2d62a("drain_pap", 0, 1, 0);
+			level thread zm_island_vo::function_3bf2d62a("drain_pap", 0, 1, 0);
 			break;
 		}
 		case 3:
@@ -391,7 +391,7 @@ function function_1a519eae(str_flag)
 		self.trigger waittill("trigger", player);
 		if(zm_utility::is_player_valid(player))
 		{
-			player notify("hash_620ff7e");
+			player notify("player_got_valve_part");
 			zm_unitrigger::unregister_unitrigger(self.trigger);
 			player playsound("zmb_valve_pickup");
 			level flag::set(str_flag);
@@ -511,7 +511,7 @@ function function_c762197b()
 		ai_zombie.b_ignore_cleanup = 1;
 		ai_zombie.no_damage_points = 1;
 		ai_zombie.deathpoints_already_given = 1;
-		ai_zombie thread namespace_8aed53c9::function_acd04dc9();
+		ai_zombie thread namespace_8aed53c9::zombie_no_powerups();
 		wait(0.1);
 		self thread scene::Play("zm_dlc2_zombie_spawn_cocoon_v" + RandomInt(3) + 1, ai_zombie);
 	}
@@ -747,7 +747,7 @@ function defend_start()
 */
 function function_3d4e00c()
 {
-	level endon("hash_9e77115a");
+	level endon("defend_over");
 	wait(5);
 	while(1)
 	{
@@ -775,7 +775,7 @@ function function_3d4e00c()
 */
 function function_9fcd89f7()
 {
-	level notify("hash_d5fa4175");
+	level notify("defend_success");
 	exploder::exploder("fxexp_201");
 	exploder::exploder_stop("lgt_penstock_event");
 	level.var_ced49fc moveto(level.var_ced49fc.v_org, 3);

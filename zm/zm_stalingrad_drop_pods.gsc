@@ -178,12 +178,12 @@ function function_5f435187()
 		}
 		else if(!isdefined(level.var_583e4a97.var_caa5bc3e))
 		{
-			level thread namespace_dcf9c464::function_eaf2cef3();
+			level thread zm_stalingrad_vo::function_eaf2cef3();
 			continue;
 		}
 		else if(isdefined(level.var_583e4a97.var_caa5bc3e) && self.script_parameters != level.var_583e4a97.var_caa5bc3e)
 		{
-			level thread namespace_dcf9c464::function_c0135bef();
+			level thread zm_stalingrad_vo::function_c0135bef();
 			continue;
 		}
 		e_who clientfield::increment_to_player("interact_rumble");
@@ -205,7 +205,7 @@ function function_8aebb789()
 	level.var_583e4a97.s_radio = self;
 	mdl_console = GetEnt(self.target, "targetname");
 	mdl_console thread function_f5212f09();
-	level thread namespace_b57650e4::function_809fbbff(self.script_string);
+	level thread zm_stalingrad_pap::function_809fbbff(self.script_string);
 	level flag::set("drop_pod_active");
 	level flag::clear("ambient_mortar_fire_on");
 	foreach(player in level.activePlayers)
@@ -680,7 +680,7 @@ function function_943a35e3()
 {
 	self FX::Play("drop_pod_smoke", self.origin + VectorScale((0, 0, 1), 24), self.angles + VectorScale((0, 1, 0), 180), "drop_pod_smoke_kill");
 	level waittill("hash_5ddea7af");
-	self notify("hash_509178a3");
+	self notify("drop_pod_smoke_kill");
 }
 
 /*
@@ -825,7 +825,7 @@ function function_306f40e1(str_location)
 					level.zombie_respawns--;
 				}
 				level.var_8cc024f2.var_d2e1ce53++;
-				ai thread function_51837de8();
+				ai thread init_drop_pod_harraser();
 			}
 		}
 		wait(0.3);
@@ -833,7 +833,7 @@ function function_306f40e1(str_location)
 }
 
 /*
-	Name: function_51837de8
+	Name: init_drop_pod_harraser
 	Namespace: zm_stalingrad_drop_pod
 	Checksum: 0x8C35013B
 	Offset: 0x3760
@@ -841,7 +841,7 @@ function function_306f40e1(str_location)
 	Parameters: 0
 	Flags: None
 */
-function function_51837de8()
+function init_drop_pod_harraser()
 {
 	level endon("hash_94bb84a1");
 	self.var_a779ca57 = 1;
@@ -929,7 +929,7 @@ function function_e677d12()
 			var_603f1f19 = 0;
 			if(!mdl_pod namespace_48c05c81::function_1af75b1b(600))
 			{
-				level thread namespace_dcf9c464::function_90ce0342();
+				level thread zm_stalingrad_vo::function_90ce0342();
 			}
 		}
 		mdl_pod playsound("zmb_pod_zombie_melee_hit");
@@ -1090,11 +1090,11 @@ function function_94bb84a1(var_e7a36389, var_51d4ce0d)
 		if(isdefined(var_e7a36389.var_c5718719) && var_e7a36389.var_c5718719)
 		{
 			var_fb6d6762 = var_e7a36389.origin + VectorScale((0, 0, 1), 32);
-			level thread namespace_c5d72679::function_7e6865e3(var_fb6d6762);
+			level thread zm_stalingrad_ee_main::function_7e6865e3(var_fb6d6762);
 		}
 		else if(level.var_583e4a97.var_365bcb3c < 3)
 		{
-			str_part = namespace_b57650e4::function_d32eac7f();
+			str_part = zm_stalingrad_pap::function_d32eac7f();
 			mdl_part = level zm_craftables::get_craftable_piece_model("dragonride", str_part);
 			mdl_part.origin = var_e7a36389.origin + VectorScale((0, 0, 1), 32);
 			mdl_part SetVisibleToAll();
@@ -1117,16 +1117,16 @@ function function_94bb84a1(var_e7a36389, var_51d4ce0d)
 				player notify("hash_2d087eca");
 			}
 		}
-		level thread namespace_dcf9c464::function_73928e79(var_e7a36389.origin);
+		level thread zm_stalingrad_vo::function_73928e79(var_e7a36389.origin);
 		level function_503cfe0f(var_e7a36389);
 	}
 	else
 	{
-		level thread namespace_dcf9c464::function_2b34512a(level.var_8cc024f2.mdl_pod.origin);
+		level thread zm_stalingrad_vo::function_2b34512a(level.var_8cc024f2.mdl_pod.origin);
 		if(isdefined(var_e7a36389.var_c5718719) && var_e7a36389.var_c5718719)
 		{
 			var_e7a36389 thread function_78a4f940();
-			level notify("hash_e2bd4a52");
+			level notify("ee_defend_failed");
 		}
 		else
 		{
@@ -1140,7 +1140,7 @@ function function_94bb84a1(var_e7a36389, var_51d4ce0d)
 	level.var_8cc024f2.var_d2e1ce53 = 0;
 	level.var_583e4a97.var_caa5bc3e = undefined;
 	level.var_583e4a97.var_a622ee25 = 0;
-	level notify("hash_7e4245c8");
+	level notify("drop_pod_boom");
 	level.var_8cc024f2.mdl_pod notify("score_change");
 	level.var_8cc024f2.mdl_pod connectpaths();
 	level.var_8cc024f2.mdl_pod delete();

@@ -13,11 +13,11 @@
 #using scripts\zm\_zm_weap_staff_common;
 #using scripts\zm\zm_tomb_utility;
 
-#namespace namespace_dc4ed61a;
+#namespace zm_weap_staff_lightning;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xDA4F7BFD
 	Offset: 0x488
 	Size: 0x33
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xA5CCBB62
 	Offset: 0x4C8
 	Size: 0x183
@@ -55,7 +55,7 @@ function __init__()
 
 /*
 	Name: onPlayerSpawned
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x7E4F50E1
 	Offset: 0x658
 	Size: 0x3B
@@ -71,7 +71,7 @@ function onPlayerSpawned()
 
 /*
 	Name: watch_staff_lightning_fired
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x33D3FF64
 	Offset: 0x6A0
 	Size: 0xEF
@@ -95,7 +95,7 @@ function watch_staff_lightning_fired()
 
 /*
 	Name: lightning_ball_wait
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xA538717C
 	Offset: 0x798
 	Size: 0x2D
@@ -112,7 +112,7 @@ function lightning_ball_wait(n_lifetime_after_move)
 
 /*
 	Name: staff_lightning_position_source
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xC03E7164
 	Offset: 0x7D0
 	Size: 0x36B
@@ -166,7 +166,7 @@ function staff_lightning_position_source(v_detonate, v_angles, str_weapon)
 
 /*
 	Name: staff_lightning_ball_kill_zombies
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xF2CCAB03
 	Offset: 0xB48
 	Size: 0x117
@@ -197,7 +197,7 @@ function staff_lightning_ball_kill_zombies(e_attacker)
 
 /*
 	Name: staff_lightning_get_valid_targets
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xE27D4559
 	Offset: 0xC68
 	Size: 0x121
@@ -225,7 +225,7 @@ function staff_lightning_get_valid_targets(player, v_source)
 
 /*
 	Name: staff_lightning_get_shot_range
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x6305D988
 	Offset: 0xD98
 	Size: 0x39
@@ -249,7 +249,7 @@ function staff_lightning_get_shot_range(n_charge)
 
 /*
 	Name: get_lightning_blast_range
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xA261E509
 	Offset: 0xDE0
 	Size: 0x71
@@ -282,7 +282,7 @@ function get_lightning_blast_range(n_charge)
 
 /*
 	Name: get_lightning_ball_damage_per_sec
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xA9C32486
 	Offset: 0xE60
 	Size: 0x49
@@ -310,7 +310,7 @@ function get_lightning_ball_damage_per_sec(n_charge)
 
 /*
 	Name: staff_lightning_is_target_valid
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xB7E8382D
 	Offset: 0xEB8
 	Size: 0x6D
@@ -336,7 +336,7 @@ function staff_lightning_is_target_valid(ai_zombie)
 
 /*
 	Name: staff_lightning_ball_damage_over_time
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x5FFD488C
 	Offset: 0xF30
 	Size: 0x2EB
@@ -396,7 +396,7 @@ function staff_lightning_ball_damage_over_time(e_source, e_target, e_attacker)
 
 /*
 	Name: staff_lightning_arc_fx
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x9DC306FD
 	Offset: 0x1228
 	Size: 0xBB
@@ -422,7 +422,7 @@ function staff_lightning_arc_fx(e_source, ai_zombie)
 
 /*
 	Name: staff_lightning_kill_zombie
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xFA1AF81
 	Offset: 0x12F0
 	Size: 0xA3
@@ -443,7 +443,7 @@ function staff_lightning_kill_zombie(player, str_weapon)
 
 /*
 	Name: staff_lightning_death_fx
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x2F32950B
 	Offset: 0x13A0
 	Size: 0x43
@@ -461,7 +461,7 @@ function staff_lightning_death_fx()
 
 /*
 	Name: zombie_shock_eyes_network_safe
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xCD74B845
 	Offset: 0x13F0
 	Size: 0x6B
@@ -481,7 +481,7 @@ function zombie_shock_eyes_network_safe(FX, entity, tag)
 
 /*
 	Name: zombie_shock_eyes
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x543301E9
 	Offset: 0x1468
 	Size: 0x93
@@ -504,7 +504,7 @@ function zombie_shock_eyes()
 
 /*
 	Name: staff_lightning_zombie_damage_response
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x881DE97F
 	Offset: 0x1508
 	Size: 0xBD
@@ -522,7 +522,7 @@ function staff_lightning_zombie_damage_response(mod, HIT_LOCATION, hit_origin, p
 
 /*
 	Name: is_staff_lightning_damage
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xB1C4BF80
 	Offset: 0x15D0
 	Size: 0x5F
@@ -536,7 +536,7 @@ function is_staff_lightning_damage(weapon)
 
 /*
 	Name: staff_lightning_death_event
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x8ED2B4C4
 	Offset: 0x1638
 	Size: 0x11B
@@ -566,7 +566,7 @@ function staff_lightning_death_event(attacker)
 
 /*
 	Name: stun_zombie
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xF77813CD
 	Offset: 0x1760
 	Size: 0x117

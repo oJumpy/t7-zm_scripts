@@ -63,7 +63,7 @@
 #namespace zm_prototype;
 
 /*
-	Name: function_d9af860b
+	Name: level_overrides
 	Namespace: zm_prototype
 	Checksum: 0xC504B49D
 	Offset: 0xCB0
@@ -71,7 +71,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_d9af860b()
+function autoexec level_overrides()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;
@@ -128,7 +128,7 @@ function main()
 	level thread setupMusic();
 	level thread function_9b3e5ee2();
 	level flag::wait_till("start_zombie_round_logic");
-	level notify("hash_d51af150");
+	level notify("additional_primary_weapon_on");
 	zm_power::turn_power_on_and_open_doors();
 	level.zm_bgb_anywhere_but_here_validation_override = &anywhere_but_here_validation_override;
 	level thread zm_perks::spare_change();
@@ -162,7 +162,7 @@ function fx_overrides()
 */
 function anywhere_but_here_validation_override()
 {
-	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
+	if(!isdefined(self zm_bgb_anywhere_but_here::function_728dfe3()))
 	{
 		return 0;
 	}

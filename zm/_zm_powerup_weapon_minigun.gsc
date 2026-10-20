@@ -21,7 +21,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0xBB663B4D
+	Checksum: 0xD5E784FD
 	Offset: 0x360
 	Size: 0x33
 	Parameters: 0
@@ -35,7 +35,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0x7790868A
+	Checksum: 0x9AD1F5D1
 	Offset: 0x3A0
 	Size: 0x183
 	Parameters: 0
@@ -59,7 +59,7 @@ function __init__()
 /*
 	Name: grab_minigun
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0x4680ECB9
+	Checksum: 0x1B2864A8
 	Offset: 0x530
 	Size: 0x63
 	Parameters: 1
@@ -78,7 +78,7 @@ function grab_minigun(player)
 /*
 	Name: init_player_zombie_vars
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0xFA457549
+	Checksum: 0x2444D3E7
 	Offset: 0x5A0
 	Size: 0x2D
 	Parameters: 0
@@ -93,7 +93,7 @@ function init_player_zombie_vars()
 /*
 	Name: func_should_drop_minigun
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0x8EDF7AE5
+	Checksum: 0x37C5C2E4
 	Offset: 0x5D8
 	Size: 0x1D
 	Parameters: 0
@@ -111,7 +111,7 @@ function func_should_drop_minigun()
 /*
 	Name: minigun_weapon_powerup
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0xCDBC811C
+	Checksum: 0xFFF57512
 	Offset: 0x600
 	Size: 0x22B
 	Parameters: 2
@@ -161,7 +161,7 @@ function minigun_weapon_powerup(ent_player, time)
 /*
 	Name: minigun_powerup_last_stand
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0x2D522DE0
+	Checksum: 0x6370D4FF
 	Offset: 0x838
 	Size: 0x1B
 	Parameters: 0
@@ -175,7 +175,7 @@ function minigun_powerup_last_stand()
 /*
 	Name: minigun_countdown
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0x815B5429
+	Checksum: 0xBEDC37B9
 	Offset: 0x860
 	Size: 0x6D
 	Parameters: 2
@@ -193,7 +193,7 @@ function minigun_countdown(ent_player, str_weapon_time)
 /*
 	Name: minigun_weapon_powerup_off
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0xA6FAB6F6
+	Checksum: 0xADB6823D
 	Offset: 0x8D8
 	Size: 0x19
 	Parameters: 0
@@ -207,7 +207,7 @@ function minigun_weapon_powerup_off()
 /*
 	Name: minigun_damage_adjust
 	Namespace: zm_powerup_weapon_minigun
-	Checksum: 0x35F4229
+	Checksum: 0x8A9F16BB
 	Offset: 0x900
 	Size: 0x185
 	Parameters: 12

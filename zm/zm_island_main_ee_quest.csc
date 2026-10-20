@@ -19,13 +19,13 @@
 function init_quest()
 {
 	clientfield::register("vehicle", "plane_hit_by_aa_gun", 9000, 1, "int", &function_3b831537, 0, 0);
-	clientfield::register("scriptmover", "zipline_lightning_fx", 9000, 1, "int", &function_bd9975bc, 0, 0);
-	clientfield::register("allplayers", "lightning_shield_fx", 9000, 1, "int", &function_ac5c6f58, 1, 1);
-	clientfield::register("scriptmover", "smoke_trail_fx", 9000, 1, "int", &function_65a49466, 0, 0);
+	clientfield::register("scriptmover", "zipline_lightning_fx", 9000, 1, "int", &zipline_lightning_fx, 0, 0);
+	clientfield::register("allplayers", "lightning_shield_fx", 9000, 1, "int", &lightning_shield_fx, 1, 1);
+	clientfield::register("scriptmover", "smoke_trail_fx", 9000, 1, "int", &smoke_trail_fx, 0, 0);
 	clientfield::register("scriptmover", "smoke_smolder_fx", 9000, 1, "int", &function_67a61c, 0, 0);
-	clientfield::register("zbarrier", "bgb_lightning_fx", 9000, 1, "int", &function_4a5ead3a, 0, 0);
-	clientfield::register("scriptmover", "perk_lightning_fx", 9000, GetMinBitCountForNum(6), "int", &function_46605813, 0, 0);
-	clientfield::register("world", "umbra_tome_outro_igc", 9000, 1, "int", &function_b87c4724, 0, 0);
+	clientfield::register("zbarrier", "bgb_lightning_fx", 9000, 1, "int", &bgb_lightning_fx, 0, 0);
+	clientfield::register("scriptmover", "perk_lightning_fx", 9000, GetMinBitCountForNum(6), "int", &perk_lightning_fx, 0, 0);
+	clientfield::register("world", "umbra_tome_outro_igc", 9000, 1, "int", &umbra_tome_outro_igc, 0, 0);
 }
 
 /*
@@ -84,7 +84,7 @@ function function_3b831537(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_bd9975bc
+	Name: zipline_lightning_fx
 	Namespace: namespace_78528370
 	Checksum: 0xF78E26AE
 	Offset: 0x828
@@ -92,7 +92,7 @@ function function_3b831537(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_bd9975bc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zipline_lightning_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -109,7 +109,7 @@ function function_bd9975bc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_ac5c6f58
+	Name: lightning_shield_fx
 	Namespace: namespace_78528370
 	Checksum: 0xEA003B22
 	Offset: 0x938
@@ -117,7 +117,7 @@ function function_bd9975bc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_ac5c6f58(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function lightning_shield_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	player = GetLocalPlayer(localClientNum);
 	var_ae6a34c0 = player getlocalclientnumber();
@@ -129,14 +129,14 @@ function function_ac5c6f58(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		{
 			if(player === self)
 			{
-				self.var_ac5c6f58 = PlayViewmodelFX(localClientNum, level._effect["lightning_shield_1p"], "tag_shield_lightning_fx");
+				self.lightning_shield_fx = PlayViewmodelFX(localClientNum, level._effect["lightning_shield_1p"], "tag_shield_lightning_fx");
 			}
 			else
 			{
 				self.var_42ad0d0c[var_ae6a34c0] = undefined;
 				self.var_257ef9e4[var_ae6a34c0] = PlayFXOnTag(var_ae6a34c0, level._effect["lightning_shield_3p"], self, "tag_shield_lightning_fx");
 			}
-			self thread function_7ddd182c(localClientNum);
+			self thread update_lightning_shield_fx(localClientNum);
 		}
 	}
 	else
@@ -146,10 +146,10 @@ function function_ac5c6f58(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		{
 			if(player === self)
 			{
-				if(isdefined(self.var_ac5c6f58))
+				if(isdefined(self.lightning_shield_fx))
 				{
-					deletefx(localClientNum, self.var_ac5c6f58);
-					self.var_ac5c6f58 = undefined;
+					deletefx(localClientNum, self.lightning_shield_fx);
+					self.lightning_shield_fx = undefined;
 				}
 			}
 			else if(isdefined(self.var_257ef9e4) && isdefined(self.var_257ef9e4[var_ae6a34c0]))
@@ -167,7 +167,7 @@ function function_ac5c6f58(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_7ddd182c
+	Name: update_lightning_shield_fx
 	Namespace: namespace_78528370
 	Checksum: 0x7A53D024
 	Offset: 0xBB8
@@ -175,7 +175,7 @@ function function_ac5c6f58(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_7ddd182c(localClientNum)
+function update_lightning_shield_fx(localClientNum)
 {
 	self endon("disconnect");
 	self endon("hash_1a229bcb");
@@ -191,9 +191,9 @@ function function_7ddd182c(localClientNum)
 			{
 				if(player === self)
 				{
-					if(!isdefined(self.var_ac5c6f58))
+					if(!isdefined(self.lightning_shield_fx))
 					{
-						self.var_ac5c6f58 = PlayViewmodelFX(localClientNum, level._effect["lightning_shield_1p"], "tag_shield_lightning_fx");
+						self.lightning_shield_fx = PlayViewmodelFX(localClientNum, level._effect["lightning_shield_1p"], "tag_shield_lightning_fx");
 					}
 				}
 				else if(isdefined(self.var_42ad0d0c) && isdefined(self.var_42ad0d0c[var_ae6a34c0]))
@@ -211,10 +211,10 @@ function function_7ddd182c(localClientNum)
 			{
 				if(player === self)
 				{
-					if(isdefined(self.var_ac5c6f58))
+					if(isdefined(self.lightning_shield_fx))
 					{
-						deletefx(localClientNum, self.var_ac5c6f58);
-						self.var_ac5c6f58 = undefined;
+						deletefx(localClientNum, self.lightning_shield_fx);
+						self.lightning_shield_fx = undefined;
 					}
 				}
 				else if(isdefined(self.var_257ef9e4) && isdefined(self.var_257ef9e4[var_ae6a34c0]))
@@ -233,7 +233,7 @@ function function_7ddd182c(localClientNum)
 }
 
 /*
-	Name: function_65a49466
+	Name: smoke_trail_fx
 	Namespace: namespace_78528370
 	Checksum: 0xDD1CCF0
 	Offset: 0xEB8
@@ -241,7 +241,7 @@ function function_7ddd182c(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_65a49466(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function smoke_trail_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -275,7 +275,7 @@ function function_67a61c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, 
 }
 
 /*
-	Name: function_46605813
+	Name: perk_lightning_fx
 	Namespace: namespace_78528370
 	Checksum: 0xBD7D6777
 	Offset: 0x1038
@@ -283,7 +283,7 @@ function function_67a61c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, 
 	Parameters: 7
 	Flags: None
 */
-function function_46605813(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_lightning_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{
@@ -329,7 +329,7 @@ function function_46605813(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4a5ead3a
+	Name: bgb_lightning_fx
 	Namespace: namespace_78528370
 	Checksum: 0x5F587176
 	Offset: 0x1278
@@ -337,7 +337,7 @@ function function_46605813(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_4a5ead3a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function bgb_lightning_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -350,7 +350,7 @@ function function_4a5ead3a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b87c4724
+	Name: umbra_tome_outro_igc
 	Namespace: namespace_78528370
 	Checksum: 0x2216789D
 	Offset: 0x1350
@@ -358,7 +358,7 @@ function function_4a5ead3a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b87c4724(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function umbra_tome_outro_igc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

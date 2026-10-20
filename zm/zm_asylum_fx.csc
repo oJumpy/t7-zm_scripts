@@ -1,11 +1,11 @@
 #using scripts\codescripts\struct;
 #using scripts\shared\util_shared;
 
-#namespace namespace_bf71ff59;
+#namespace zm_asylum_fx;
 
 /*
 	Name: main
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0x3C90F6AC
 	Offset: 0x10F0
 	Size: 0x12B
@@ -29,7 +29,7 @@ function main()
 
 /*
 	Name: function_dc095355
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0x18E2801E
 	Offset: 0x1228
 	Size: 0x243
@@ -57,7 +57,7 @@ function function_dc095355(ent, localClientNum)
 
 /*
 	Name: function_1c1a68e1
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0x771CF514
 	Offset: 0x1478
 	Size: 0xCB
@@ -77,7 +77,7 @@ function function_1c1a68e1(ent)
 
 /*
 	Name: perk_wire_fx
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0xCC4957F
 	Offset: 0x1550
 	Size: 0x127
@@ -109,7 +109,7 @@ function perk_wire_fx(notify_wait, init_targetname)
 
 /*
 	Name: function_93f91575
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0x84AC52A0
 	Offset: 0x1680
 	Size: 0xBB
@@ -132,7 +132,7 @@ function function_93f91575(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_4c17ba1b
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0xC9CE3E34
 	Offset: 0x1748
 	Size: 0xBB
@@ -155,7 +155,7 @@ function function_4c17ba1b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_46f37b91
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0xA29E99B7
 	Offset: 0x1810
 	Size: 0x177
@@ -191,7 +191,7 @@ function function_46f37b91(str_side, localClientNum)
 
 /*
 	Name: function_576a2cdd
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0xABE4814A
 	Offset: 0x1990
 	Size: 0x4D
@@ -206,7 +206,7 @@ function function_576a2cdd(str_side)
 
 /*
 	Name: precache_scripted_fx
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0xD15E433C
 	Offset: 0x19E8
 	Size: 0x1F9
@@ -237,7 +237,7 @@ function precache_scripted_fx()
 
 /*
 	Name: precache_createfx_fx
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0xC2AC7C3B
 	Offset: 0x1BF0
 	Size: 0x621

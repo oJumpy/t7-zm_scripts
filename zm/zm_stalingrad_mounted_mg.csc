@@ -4,11 +4,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_6d9dd78a;
+#namespace zm_stalingrad_mounted_mg;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0x8989E3B4
 	Offset: 0x190
 	Size: 0x33
@@ -22,7 +22,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6d9dd78a
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0xFDC67FFC
 	Offset: 0x1D0
 	Size: 0x63
@@ -32,19 +32,19 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	level._effect["mounted_mg_overheat"] = "dlc3/stalingrad/fx_mg42_over_heat";
-	clientfield::register("vehicle", "overheat_fx", 12000, 1, "int", &function_c71f5e4a, 0, 0);
+	clientfield::register("vehicle", "overheat_fx", 12000, 1, "int", &mounted_mg_overheat_fx, 0, 0);
 }
 
 /*
-	Name: function_c71f5e4a
-	Namespace: namespace_6d9dd78a
+	Name: mounted_mg_overheat_fx
+	Namespace: zm_stalingrad_mounted_mg
 	Checksum: 0xC81E841F
 	Offset: 0x240
 	Size: 0xAB
 	Parameters: 7
 	Flags: None
 */
-function function_c71f5e4a(n_local_client, n_old, n_new, b_new_ent, b_initial_snap, str_field, b_was_time_jump)
+function mounted_mg_overheat_fx(n_local_client, n_old, n_new, b_new_ent, b_initial_snap, str_field, b_was_time_jump)
 {
 	if(n_new)
 	{

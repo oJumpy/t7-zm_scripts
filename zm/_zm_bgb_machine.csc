@@ -39,7 +39,7 @@ function __init__()
 	{
 		return;
 	}
-	level.var_962d1590 = 0.016;
+	level.staggered_start = 0.016;
 	clientfield::register("zbarrier", "zm_bgb_machine", 1, 1, "int", &bgb_machine_init, 0, 0);
 	clientfield::register("zbarrier", "zm_bgb_machine_selection", 1, 8, "int", &bgb_machine_selection, 1, 0);
 	clientfield::register("zbarrier", "zm_bgb_machine_fx_state", 1, 3, "int", &bgb_machine_fx_state, 0, 0);
@@ -116,9 +116,9 @@ function private bgb_machine_init(localClientNum, oldVal, newVal, bNewEnt, bInit
 		level.bgb_machines = [];
 	}
 	Array::add(level.bgb_machines, self);
-	var_962d1590 = level.var_962d1590;
-	level.var_962d1590 = level.var_962d1590 + 0.016;
-	wait(var_962d1590);
+	staggered_start = level.staggered_start;
+	level.staggered_start = level.staggered_start + 0.016;
+	wait(staggered_start);
 	if(!isdefined(self))
 	{
 		return;

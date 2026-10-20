@@ -18,13 +18,13 @@
 */
 function init()
 {
-	clientfield::register("scriptmover", "show_part", 9000, 1, "int", &function_97bd83a7, 0, 0);
-	clientfield::register("actor", "zombie_splash", 9000, 1, "int", &function_b2ce2a08, 0, 0);
-	clientfield::register("world", "lower_pap_water", 9000, 2, "int", &function_470f1fd2, 0, 0);
+	clientfield::register("scriptmover", "show_part", 9000, 1, "int", &play_glow_piece_fx, 0, 0);
+	clientfield::register("actor", "zombie_splash", 9000, 1, "int", &zombie_splash_fx, 0, 0);
+	clientfield::register("world", "lower_pap_water", 9000, 2, "int", &lower_pap_water, 0, 0);
 }
 
 /*
-	Name: function_97bd83a7
+	Name: play_glow_piece_fx
 	Namespace: namespace_f7d4f63b
 	Checksum: 0xA569E8B2
 	Offset: 0x298
@@ -32,13 +32,13 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_97bd83a7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_glow_piece_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	PlayFXOnTag(localClientNum, level._effect["glow_piece"], self, "tag_origin");
 }
 
 /*
-	Name: function_b2ce2a08
+	Name: zombie_splash_fx
 	Namespace: namespace_f7d4f63b
 	Checksum: 0x4533EEC
 	Offset: 0x310
@@ -46,13 +46,13 @@ function function_97bd83a7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b2ce2a08(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zombie_splash_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	playFX(localClientNum, level._effect["water_splash"], self.origin + VectorScale((0, 0, -1), 48));
 }
 
 /*
-	Name: function_470f1fd2
+	Name: lower_pap_water
 	Namespace: namespace_f7d4f63b
 	Checksum: 0x37068F87
 	Offset: 0x398
@@ -60,7 +60,7 @@ function function_b2ce2a08(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_470f1fd2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function lower_pap_water(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_zod_train;
 
-#namespace namespace_2e83114d;
+#namespace zod_cleanup;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0xDFE025BC
 	Offset: 0x1D0
 	Size: 0x3B
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0xA2FC0CC9
 	Offset: 0x218
 	Size: 0xF
@@ -40,7 +40,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0xB315D564
 	Offset: 0x230
 	Size: 0x1B
@@ -54,7 +54,7 @@ function __main__()
 
 /*
 	Name: force_check_now
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0x3189D3B8
 	Offset: 0x258
 	Size: 0x11
@@ -68,7 +68,7 @@ function force_check_now()
 
 /*
 	Name: cleanup_main
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0x4C31B495
 	Offset: 0x278
 	Size: 0x245
@@ -126,7 +126,7 @@ function private cleanup_main()
 
 /*
 	Name: do_cleanup_check
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0x296F29ED
 	Offset: 0x4C8
 	Size: 0x273
@@ -195,7 +195,7 @@ function do_cleanup_check(n_override_cleanup_dist)
 
 /*
 	Name: delete_zombie_noone_looking
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0x90B671F2
 	Offset: 0x748
 	Size: 0x323
@@ -221,12 +221,12 @@ function private delete_zombie_noone_looking()
 	}
 	if(self.archetype === "zombie")
 	{
-		if(self.ai_state == "find_flesh" && namespace_835aa2f1::is_moving() && !namespace_835aa2f1::is_full() && namespace_835aa2f1::is_ready_for_jumper())
+		if(self.ai_state == "find_flesh" && zm_train::is_moving() && !zm_train::is_full() && zm_train::is_ready_for_jumper())
 		{
-			a_on_train = namespace_835aa2f1::get_players_on_train(1);
+			a_on_train = zm_train::get_players_on_train(1);
 			if(a_on_train.size > 0)
 			{
-				namespace_835aa2f1::zombie_jump_onto_moving_train(self);
+				zm_train::zombie_jump_onto_moving_train(self);
 				return;
 			}
 		}
@@ -266,7 +266,7 @@ function private delete_zombie_noone_looking()
 
 /*
 	Name: player_can_see_me
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0xFFAFE3AB
 	Offset: 0xA78
 	Size: 0xD7
@@ -289,7 +289,7 @@ function private player_can_see_me(player)
 
 /*
 	Name: player_ahead_of_me
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0xC893309F
 	Offset: 0xB58
 	Size: 0xB3
@@ -311,7 +311,7 @@ function private player_ahead_of_me(player)
 
 /*
 	Name: get_escape_position
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0x795C4C03
 	Offset: 0xC18
 	Size: 0xB3
@@ -337,7 +337,7 @@ function get_escape_position()
 
 /*
 	Name: get_adjacencies_to_zone
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0x723B0BA4
 	Offset: 0xCD8
 	Size: 0x11D
@@ -369,7 +369,7 @@ function get_adjacencies_to_zone(str_zone)
 
 /*
 	Name: get_wait_locations_in_zones
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0x64A2BB46
 	Offset: 0xE00
 	Size: 0xD1
@@ -388,7 +388,7 @@ function private get_wait_locations_in_zones(a_zones)
 
 /*
 	Name: get_farthest_wait_location
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0xD5036F6E
 	Offset: 0xEE0
 	Size: 0xD5
@@ -417,7 +417,7 @@ function private get_farthest_wait_location(a_wait_locations)
 
 /*
 	Name: get_wait_locations_in_zone
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0xF31334E8
 	Offset: 0xFC0
 	Size: 0x87
@@ -437,7 +437,7 @@ function private get_wait_locations_in_zone(zone)
 
 /*
 	Name: get_escape_position_in_current_zone
-	Namespace: namespace_2e83114d
+	Namespace: zod_cleanup
 	Checksum: 0x6A52BF88
 	Offset: 0x1050
 	Size: 0x9B

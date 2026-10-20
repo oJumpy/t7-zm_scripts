@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_59f1b581;
+#namespace zm_bgb_bullet_boost;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_59f1b581
+	Namespace: zm_bgb_bullet_boost
 	Checksum: 0x45715A4A
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_59f1b581
+	Namespace: zm_bgb_bullet_boost
 	Checksum: 0x4F3E4678
 	Offset: 0x188
 	Size: 0x3B

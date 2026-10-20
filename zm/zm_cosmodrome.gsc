@@ -78,11 +78,11 @@
 #using scripts\zm\zm_remaster_zombie;
 #using scripts\zm\zm_zmhd_cleanup_mgr;
 
-#namespace namespace_670cb61;
+#namespace zm_cosmodrome;
 
 /*
 	Name: opt_in
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC31141F4
 	Offset: 0x1780
 	Size: 0x27
@@ -98,7 +98,7 @@ function autoexec opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x343D736F
 	Offset: 0x17B0
 	Size: 0x7AB
@@ -119,7 +119,7 @@ function main()
 	visionset_mgr::register_info("visionset", "zm_cosmodrome_monkey_on", 21000, 996, 31, 1, &visionset_mgr::ramp_in_thread_per_player, 0);
 	visionset_mgr::register_info("visionset", "zm_cosmodrome_monkey_off", 21000, 995, 31, 1, &visionset_mgr::ramp_in_out_thread_per_player, 0);
 	level.default_game_mode = "zclassic";
-	namespace_eb3fb2b6::main();
+	zm_cosmodrome_fx::main();
 	zm::init_fx();
 	level.zombiemode = 1;
 	level._zmbVoxLevelSpecific = &init_level_specific_audio;
@@ -167,8 +167,8 @@ function main()
 	level.monkey_prespawn = &namespace_b73b7f62::monkey_cosmodrome_prespawn;
 	level.max_perks = 5;
 	level.max_solo_lives = 3;
-	level thread namespace_9d4ce396::init();
-	level thread namespace_9d4ce396::new_lander_intro();
+	level thread zm_cosmodrome_lander::init();
+	level thread zm_cosmodrome_lander::new_lander_intro();
 	level._allow_melee_weapon_switching = 1;
 	level namespace_136a0c13::magic_box_init();
 	level thread function_54bf648f();
@@ -194,21 +194,21 @@ function main()
 	level thread spawn_kill_brushes();
 	level thread hack_vending_clips();
 	level thread zm_perks::spare_change();
-	scene::add_scene_func("cin_zmhd_sizzle_cosmodrome_cam", &function_facd0d5e, "play");
-	scene::add_scene_func("cin_zmhd_sizzle_cosmodrome_cam2", &function_829f6f98, "play");
+	scene::add_scene_func("cin_zmhd_sizzle_cosmodrome_cam", &cin_zmhd_sizzle_cosmodrome_cam, "play");
+	scene::add_scene_func("cin_zmhd_sizzle_cosmodrome_cam2", &cin_zmhd_sizzle_cosmodrome_cam2, "play");
 	namespace_79efb23f::main_end();
 }
 
 /*
-	Name: function_facd0d5e
-	Namespace: namespace_670cb61
+	Name: cin_zmhd_sizzle_cosmodrome_cam
+	Namespace: zm_cosmodrome
 	Checksum: 0x408BB0CE
 	Offset: 0x1F68
 	Size: 0x109
 	Parameters: 1
 	Flags: None
 */
-function function_facd0d5e(a_ents)
+function cin_zmhd_sizzle_cosmodrome_cam(a_ents)
 {
 	level thread scene::Play("cin_zmhd_sizzle_cosmodrome_cam2");
 	foreach(mdl_ent in a_ents)
@@ -221,15 +221,15 @@ function function_facd0d5e(a_ents)
 }
 
 /*
-	Name: function_829f6f98
-	Namespace: namespace_670cb61
+	Name: cin_zmhd_sizzle_cosmodrome_cam2
+	Namespace: zm_cosmodrome
 	Checksum: 0x9C1ED8FB
 	Offset: 0x2080
 	Size: 0xE9
 	Parameters: 1
 	Flags: None
 */
-function function_829f6f98(a_ents)
+function cin_zmhd_sizzle_cosmodrome_cam2(a_ents)
 {
 	foreach(mdl_ent in a_ents)
 	{
@@ -242,7 +242,7 @@ function function_829f6f98(a_ents)
 
 /*
 	Name: init_clientfields
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xA704B468
 	Offset: 0x2178
 	Size: 0x513
@@ -282,7 +282,7 @@ function init_clientfields()
 
 /*
 	Name: round_start_delayed
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x94CFBB68
 	Offset: 0x2698
 	Size: 0x3B
@@ -298,7 +298,7 @@ function round_start_delayed()
 
 /*
 	Name: anywhere_but_here_validation_override
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC0E382DC
 	Offset: 0x26E0
 	Size: 0x41
@@ -307,7 +307,7 @@ function round_start_delayed()
 */
 function anywhere_but_here_validation_override()
 {
-	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
+	if(!isdefined(self zm_bgb_anywhere_but_here::function_728dfe3()))
 	{
 		return 0;
 	}
@@ -320,7 +320,7 @@ function anywhere_but_here_validation_override()
 
 /*
 	Name: function_f97e7fed
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x4633DA75
 	Offset: 0x2730
 	Size: 0x2D
@@ -338,7 +338,7 @@ function function_f97e7fed()
 
 /*
 	Name: spawn_kill_brushes
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x1A3C2425
 	Offset: 0x2768
 	Size: 0xA3
@@ -355,7 +355,7 @@ function spawn_kill_brushes()
 
 /*
 	Name: zombie_cosmodrome_player_out_of_playable_area_monitor_callback
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xF1B4F082
 	Offset: 0x2818
 	Size: 0x39
@@ -373,7 +373,7 @@ function zombie_cosmodrome_player_out_of_playable_area_monitor_callback()
 
 /*
 	Name: centrifuge_jumpup_fix
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x271A0A99
 	Offset: 0x2860
 	Size: 0x165
@@ -409,7 +409,7 @@ function centrifuge_jumpup_fix()
 
 /*
 	Name: centrifuge_jumpdown_fix
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x46B6C402
 	Offset: 0x29D0
 	Size: 0x16D
@@ -445,7 +445,7 @@ function centrifuge_jumpdown_fix()
 
 /*
 	Name: custom_add_weapons
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x5E6C7BED
 	Offset: 0x2B48
 	Size: 0x23
@@ -459,7 +459,7 @@ function custom_add_weapons()
 
 /*
 	Name: custom_add_vox
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x5A46D173
 	Offset: 0x2B78
 	Size: 0x2B
@@ -474,7 +474,7 @@ function custom_add_vox()
 
 /*
 	Name: magic_box_override
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x8204D5DB
 	Offset: 0x2BB0
 	Size: 0x125
@@ -504,7 +504,7 @@ function magic_box_override()
 
 /*
 	Name: cosmodrome_zone_init
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x1C0BA76E
 	Offset: 0x2CE0
 	Size: 0x49B
@@ -549,7 +549,7 @@ function cosmodrome_zone_init()
 
 /*
 	Name: function_54bf648f
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x31AF023C
 	Offset: 0x3188
 	Size: 0x33
@@ -565,7 +565,7 @@ function function_54bf648f()
 
 /*
 	Name: function_54da140a
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x7643EA79
 	Offset: 0x31C8
 	Size: 0x203
@@ -615,7 +615,7 @@ function function_54da140a()
 
 /*
 	Name: electric_switch
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x29F00E00
 	Offset: 0x33D8
 	Size: 0xBB
@@ -634,7 +634,7 @@ function electric_switch()
 
 /*
 	Name: wait_for_power
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x95278E78
 	Offset: 0x34A0
 	Size: 0x1B3
@@ -660,7 +660,7 @@ function wait_for_power()
 
 /*
 	Name: function_98fe9c46
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x3D9247A2
 	Offset: 0x3660
 	Size: 0x43
@@ -676,7 +676,7 @@ function function_98fe9c46()
 
 /*
 	Name: custom_pandora_show_func
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x8733C7DF
 	Offset: 0x36B0
 	Size: 0xB3
@@ -693,7 +693,7 @@ function custom_pandora_show_func(anchor, anchorTarget, pieces)
 
 /*
 	Name: custom_pandora_fx_func
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x52082EEA
 	Offset: 0x3770
 	Size: 0x143
@@ -713,7 +713,7 @@ function custom_pandora_fx_func()
 
 /*
 	Name: centrifuge_init
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x994F0712
 	Offset: 0x38C0
 	Size: 0x53
@@ -731,7 +731,7 @@ function centrifuge_init()
 
 /*
 	Name: link_centrifuge_pieces
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x3CF1089
 	Offset: 0x3920
 	Size: 0x9B
@@ -753,7 +753,7 @@ function link_centrifuge_pieces()
 
 /*
 	Name: centrifuge_rotate
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x5FDA2F15
 	Offset: 0x39C8
 	Size: 0x3B
@@ -771,7 +771,7 @@ function centrifuge_rotate()
 
 /*
 	Name: initCharacterStartIndex
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x336CB8CF
 	Offset: 0x3A10
 	Size: 0x23
@@ -785,7 +785,7 @@ function initCharacterStartIndex()
 
 /*
 	Name: selectCharacterIndexToUse
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC48DB998
 	Offset: 0x3A40
 	Size: 0x3D
@@ -805,7 +805,7 @@ function selectCharacterIndexToUse()
 
 /*
 	Name: giveCustomCharacters
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xEADC1241
 	Offset: 0x3A88
 	Size: 0x2CB
@@ -864,12 +864,12 @@ function giveCustomCharacters()
 	self setMoveSpeedScale(1);
 	self SetSprintDuration(4);
 	self SetSprintCooldown(0);
-	self thread namespace_52adc03e::set_exert_id();
+	self thread zm_audio_zhd::set_exert_id();
 }
 
 /*
 	Name: assign_lowest_unused_character_index
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x69260FA3
 	Offset: 0x3D60
 	Size: 0x213
@@ -927,7 +927,7 @@ function assign_lowest_unused_character_index()
 
 /*
 	Name: cosmodrome_offhand_weapon_overrride
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x697D9492
 	Offset: 0x3F80
 	Size: 0xBD
@@ -948,7 +948,7 @@ function cosmodrome_offhand_weapon_overrride()
 
 /*
 	Name: offhand_weapon_give_override
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x1DFB743C
 	Offset: 0x4048
 	Size: 0x15B
@@ -965,7 +965,7 @@ function offhand_weapon_give_override(w_current_weapon)
 	}
 	if(w_current_weapon.name == "black_hole_bomb")
 	{
-		self namespace_d6b63386::player_give_black_hole_bomb();
+		self zm_weap_black_hole_bomb::player_give_black_hole_bomb();
 		self zm_weapons::play_weapon_vo(w_current_weapon);
 		return 1;
 	}
@@ -980,7 +980,7 @@ function offhand_weapon_give_override(w_current_weapon)
 
 /*
 	Name: init_sounds
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xEEF9A36
 	Offset: 0x41B0
 	Size: 0xE7
@@ -1001,7 +1001,7 @@ function init_sounds()
 
 /*
 	Name: setupMusic
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xDF33B615
 	Offset: 0x42A0
 	Size: 0x1FB
@@ -1025,7 +1025,7 @@ function setupMusic()
 
 /*
 	Name: hack_vending_clips
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xB0AA645D
 	Offset: 0x44A8
 	Size: 0x131
@@ -1035,7 +1035,7 @@ function setupMusic()
 function hack_vending_clips()
 {
 	perk_machines = GetEntArray("zombie_vending", "targetname");
-	var_4b718fa4 = GetEnt("new_revive_clip", "targetname");
+	new_revive_clip = GetEnt("new_revive_clip", "targetname");
 	foreach(perk_machine in perk_machines)
 	{
 		if(isdefined(perk_machine.clip))
@@ -1043,7 +1043,7 @@ function hack_vending_clips()
 			perk_machine.clip delete();
 			if(perk_machine.script_noteworthy == "specialty_quickrevive")
 			{
-				perk_machine.clip = var_4b718fa4;
+				perk_machine.clip = new_revive_clip;
 			}
 		}
 	}
@@ -1051,7 +1051,7 @@ function hack_vending_clips()
 
 /*
 	Name: cosmodrome_devgui
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x95711123
 	Offset: 0x45E8
 	Size: 0x219
@@ -1144,7 +1144,7 @@ function cosmodrome_devgui(cmd)
 
 /*
 	Name: setup_devgui
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xB77233D5
 	Offset: 0x4810
 	Size: 0x4C3
@@ -1203,7 +1203,7 @@ function setup_devgui()
 
 /*
 	Name: function_58ab8a92
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x9FB9A407
 	Offset: 0x4CE0
 	Size: 0x9D7
@@ -1355,7 +1355,7 @@ function function_58ab8a92()
 
 /*
 	Name: devgui_skipto_monkey_round
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xFC2E3B31
 	Offset: 0x56C0
 	Size: 0x2F3
@@ -1409,7 +1409,7 @@ function devgui_skipto_monkey_round()
 
 /*
 	Name: function_9d5d7bb3
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xB58FFB3D
 	Offset: 0x59C0
 	Size: 0x543
@@ -1436,11 +1436,11 @@ function function_9d5d7bb3(choose)
 				target_trigger = vending_trigger;
 			}
 		}
-		if(!isdefined(level.var_93621cb))
+		if(!isdefined(level.perk_monkey))
 		{
-			level.var_93621cb = zombie_utility::spawn_zombie(level.monkey_zombie_spawners[0]);
+			level.perk_monkey = zombie_utility::spawn_zombie(level.monkey_zombie_spawners[0]);
 		}
-		if(isdefined(level.var_93621cb))
+		if(isdefined(level.perk_monkey))
 		{
 			perk_attack_anim = undefined;
 			if(choose == 0)
@@ -1484,43 +1484,43 @@ function function_9d5d7bb3(choose)
 			}
 			attack_spots = struct::get_array(target_trigger.machine.target, "Dev Block strings are not supported");
 			spot = undefined;
-			foreach(var_d76ac410 in attack_spots)
+			foreach(attack_spot in attack_spots)
 			{
-				if(var_d76ac410.script_int == 1)
+				if(attack_spot.script_int == 1)
 				{
 					if(choose == 1 || choose == 2)
 					{
-						spot = var_d76ac410;
+						spot = attack_spot;
 						break;
 					}
 				}
-				if(var_d76ac410.script_int == 2)
+				if(attack_spot.script_int == 2)
 				{
 					if(choose == 0)
 					{
-						spot = var_d76ac410;
+						spot = attack_spot;
 						break;
 					}
 				}
-				if(var_d76ac410.script_int == 3)
+				if(attack_spot.script_int == 3)
 				{
 					if(choose == 3 || choose == 4)
 					{
-						spot = var_d76ac410;
+						spot = attack_spot;
 						break;
 					}
 				}
 			}
-			level.var_93621cb StopAnimScripted();
-			level.var_93621cb notify("hash_cb63b091");
-			level.var_93621cb thread function_a15d765e(spot, perk_attack_anim);
+			level.perk_monkey StopAnimScripted();
+			level.perk_monkey notify("hash_cb63b091");
+			level.perk_monkey thread function_a15d765e(spot, perk_attack_anim);
 		}
 	#/
 }
 
 /*
 	Name: function_a15d765e
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x1CC592ED
 	Offset: 0x5F10
 	Size: 0xB5
@@ -1538,7 +1538,7 @@ function function_a15d765e(spot, perk_attack_anim)
 			while(1)
 			{
 				time = getanimlength(perk_attack_anim);
-				level.var_93621cb AnimScripted("Dev Block strings are not supported", spot.origin, spot.angles, perk_attack_anim);
+				level.perk_monkey AnimScripted("Dev Block strings are not supported", spot.origin, spot.angles, perk_attack_anim);
 				wait(time);
 			}
 		}
@@ -1547,7 +1547,7 @@ function function_a15d765e(spot, perk_attack_anim)
 
 /*
 	Name: function_5b312f
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x3A5739D9
 	Offset: 0x5FD0
 	Size: 0xD7
@@ -1574,7 +1574,7 @@ function function_5b312f()
 
 /*
 	Name: devgui_give_black_hole_bomb
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x675F7C1A
 	Offset: 0x60B0
 	Size: 0x6D
@@ -1587,14 +1587,14 @@ function devgui_give_black_hole_bomb()
 		players = GetPlayers();
 		for(i = 0; i < players.size; i++)
 		{
-			players[i] namespace_d6b63386::player_give_black_hole_bomb();
+			players[i] zm_weap_black_hole_bomb::player_give_black_hole_bomb();
 		}
 	#/
 }
 
 /*
 	Name: devgui_give_dolls
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x314C3727
 	Offset: 0x6128
 	Size: 0x6D
@@ -1614,7 +1614,7 @@ function devgui_give_dolls()
 
 /*
 	Name: devgui_launch_rocket
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x6013858D
 	Offset: 0x61A0
 	Size: 0xA3
@@ -1637,7 +1637,7 @@ function devgui_launch_rocket()
 
 /*
 	Name: devgui_centrifuge_always_on
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xF16E330B
 	Offset: 0x6250
 	Size: 0x1B
@@ -1653,7 +1653,7 @@ function devgui_centrifuge_always_on(b_always)
 
 /*
 	Name: devgui_lander_cooldown
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xD71278A8
 	Offset: 0x6278
 	Size: 0x1B
@@ -1669,7 +1669,7 @@ function devgui_lander_cooldown(b_cooldown)
 
 /*
 	Name: devgui_kassimir_mechanism_egg_debug
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xB4ADAC6E
 	Offset: 0x62A0
 	Size: 0x43
@@ -1690,7 +1690,7 @@ function devgui_kassimir_mechanism_egg_debug()
 
 /*
 	Name: debug_skip_teleport
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x8BEED1CF
 	Offset: 0x62F0
 	Size: 0x5B
@@ -1708,7 +1708,7 @@ function debug_skip_teleport()
 
 /*
 	Name: debug_skip_reroute
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x6F2DC450
 	Offset: 0x6358
 	Size: 0x43
@@ -1726,7 +1726,7 @@ function debug_skip_reroute()
 
 /*
 	Name: debug_skip_sync
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x7D024F0B
 	Offset: 0x63A8
 	Size: 0x23
@@ -1743,7 +1743,7 @@ function debug_skip_sync()
 
 /*
 	Name: debug_skip_pressure_plate
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x4645F6AA
 	Offset: 0x63D8
 	Size: 0x23
@@ -1760,7 +1760,7 @@ function debug_skip_pressure_plate()
 
 /*
 	Name: debug_skip_luna
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xBB0BC511
 	Offset: 0x6408
 	Size: 0x43
@@ -1778,7 +1778,7 @@ function debug_skip_luna()
 
 /*
 	Name: function_55336afe
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x2E7E8E25
 	Offset: 0x6458
 	Size: 0x23
@@ -1795,7 +1795,7 @@ function function_55336afe()
 
 /*
 	Name: debug_display_at_pos
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x12CA6904
 	Offset: 0x6488
 	Size: 0xCF
@@ -1822,7 +1822,7 @@ function debug_display_at_pos(v_org, str_msg, str_ender, n_scale)
 
 /*
 	Name: debug_display_end_msg
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x9F701AB5
 	Offset: 0x6560
 	Size: 0x3B
@@ -1839,7 +1839,7 @@ function debug_display_end_msg(str_msg, str_ender)
 
 /*
 	Name: debug_remove
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x2986CF87
 	Offset: 0x65A8
 	Size: 0x23
@@ -1856,7 +1856,7 @@ function debug_remove(str_ender)
 
 /*
 	Name: init_level_specific_audio
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xB44DAEFC
 	Offset: 0x65D8
 	Size: 0x383
@@ -1885,7 +1885,7 @@ function init_level_specific_audio()
 
 /*
 	Name: function_f9572b4e
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xB26F72F9
 	Offset: 0x6968
 	Size: 0x13B
@@ -1911,7 +1911,7 @@ function function_f9572b4e()
 
 /*
 	Name: function_e509f24d
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x2598B1DA
 	Offset: 0x6AB0
 	Size: 0x23
@@ -1925,7 +1925,7 @@ function function_e509f24d()
 
 /*
 	Name: function_2c076a5e
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x124F32A8
 	Offset: 0x6AE0
 	Size: 0xDB
@@ -1944,7 +1944,7 @@ function function_2c076a5e()
 
 /*
 	Name: function_980a894b
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xD2A7585F
 	Offset: 0x6BC8
 	Size: 0x18B
@@ -1968,7 +1968,7 @@ function function_980a894b()
 
 /*
 	Name: include_perks_in_random_rotation
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x6B95D9ED
 	Offset: 0x6D60
 	Size: 0x4B
@@ -1984,7 +1984,7 @@ function include_perks_in_random_rotation()
 
 /*
 	Name: function_c027d01d
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x4371387F
 	Offset: 0x6DB8
 	Size: 0xA3

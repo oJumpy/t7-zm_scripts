@@ -849,12 +849,12 @@ function function_eeec66f5(mechz)
 {
 	flameTrigger = mechz.flameTrigger;
 	do_tank_sweep_auto_damage = isdefined(self.doing_tank_sweep) && self.doing_tank_sweep && !level.vh_tank flag::get("tank_moving");
-	a_zombies = namespace_57695b4d::function_d41418b8();
+	a_zombies = zm_elemental_zombie::function_d41418b8();
 	foreach(zombie in a_zombies)
 	{
 		if(do_tank_sweep_auto_damage && zombie zm_tomb_tank::entity_on_tank() || zombie istouching(flameTrigger) && zombie.var_e05d0be2 !== 1)
 		{
-			zombie namespace_57695b4d::function_f4defbc2();
+			zombie zm_elemental_zombie::function_f4defbc2();
 		}
 	}
 }
@@ -900,14 +900,14 @@ function function_8166f050(entity)
 */
 function mechz_staff_damage_override(inflictor, attacker, damage, dFlags, mod, weapon, point, dir, hitLoc, offsetTime, boneIndex, modelIndex)
 {
-	if(self namespace_ecdcc148::is_staff_fire_damage(weapon) && mod != "MOD_MELEE")
+	if(self zm_weap_staff_fire::is_staff_fire_damage(weapon) && mod != "MOD_MELEE")
 	{
 		if(mod != "MOD_BURNED" && mod != "MOD_GRENADE_SPLASH")
 		{
-			return namespace_ecdcc148::get_impact_damage(weapon);
+			return zm_weap_staff_fire::get_impact_damage(weapon);
 		}
 	}
-	if(self namespace_589e3c80::is_staff_air_damage(weapon) || self namespace_42f5ba79::is_staff_water_damage(weapon) || self namespace_dc4ed61a::is_staff_lightning_damage(weapon))
+	if(self zm_weap_staff_air::is_staff_air_damage(weapon) || self zm_weap_staff_water::is_staff_water_damage(weapon) || self zm_weap_staff_lightning::is_staff_lightning_damage(weapon))
 	{
 		return damage;
 	}
@@ -1059,7 +1059,7 @@ function mechz_spawning_logic()
 			{
 				continue;
 			}
-			ai = namespace_ef567265::spawn_mechz(s_loc, 1);
+			ai = zm_ai_mechz::spawn_mechz(s_loc, 1);
 			waittillframeend;
 			ai clientfield::set("tomb_mech_eye", 1);
 			ai thread mechz_death();

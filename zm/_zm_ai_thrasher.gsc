@@ -27,11 +27,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_756d2c3d;
+#namespace zm_ai_thrasher;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xC76A15FE
 	Offset: 0x730
 	Size: 0x3B
@@ -45,7 +45,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x28B1477C
 	Offset: 0x778
 	Size: 0x63
@@ -64,7 +64,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xF502A7D6
 	Offset: 0x7E8
 	Size: 0x13
@@ -78,7 +78,7 @@ function __main__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x6F795645
 	Offset: 0x808
 	Size: 0x33
@@ -92,7 +92,7 @@ function register_clientfields()
 
 /*
 	Name: init
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xA0968E02
 	Offset: 0x848
 	Size: 0x353
@@ -135,7 +135,7 @@ function init()
 
 /*
 	Name: function_10d1beae
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xAB176F81
 	Offset: 0xBA8
 	Size: 0x33
@@ -154,7 +154,7 @@ function function_10d1beae()
 
 /*
 	Name: function_e2049637
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x6D962E8D
 	Offset: 0xBE8
 	Size: 0x57
@@ -176,7 +176,7 @@ function function_e2049637(var_5d1c220e)
 
 /*
 	Name: Precache
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x99EC1590
 	Offset: 0xC48
 	Size: 0x3
@@ -189,7 +189,7 @@ function Precache()
 
 /*
 	Name: enable_thrasher_rounds
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xE2378BD6
 	Offset: 0xC58
 	Size: 0x43
@@ -208,7 +208,7 @@ function enable_thrasher_rounds()
 
 /*
 	Name: function_8aac3fe
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xA1384080
 	Offset: 0xCA8
 	Size: 0x20F
@@ -259,7 +259,7 @@ function function_8aac3fe()
 
 /*
 	Name: function_8b7e4b15
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x7D352790
 	Offset: 0xEC0
 	Size: 0x133
@@ -309,14 +309,14 @@ function function_8b7e4b15()
 	}
 	for(i = 0; i < var_30227ea9; i++)
 	{
-		function_c75116aa();
+		spawn_thrasher();
 		wait(30);
 	}
 }
 
 /*
 	Name: function_6f6d7a0b
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xF46A3E79
 	Offset: 0x1000
 	Size: 0xA1
@@ -346,7 +346,7 @@ function function_6f6d7a0b(e_revivee, ignore_sight_checks, ignore_touch_checks)
 
 /*
 	Name: function_6d24956b
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xAA3544E
 	Offset: 0x10B0
 	Size: 0x19F
@@ -425,7 +425,7 @@ function function_6d24956b(v_origin)
 
 /*
 	Name: function_68ee76ee
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xD194928C
 	Offset: 0x1258
 	Size: 0x1AD
@@ -470,7 +470,7 @@ function function_68ee76ee(var_d1cba433, var_48cf4a3d)
 
 /*
 	Name: function_8b323113
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x46516EC0
 	Offset: 0x1410
 	Size: 0x519
@@ -575,7 +575,7 @@ function function_8b323113(var_a4ef4373, var_42fbb5b1, var_ab0dd5e8, var_be10dc4
 
 /*
 	Name: function_1c624caf
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xCA2ED3B6
 	Offset: 0x1938
 	Size: 0x2B
@@ -589,7 +589,7 @@ function function_1c624caf(a_ents, e_align)
 
 /*
 	Name: function_bf8a850e
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x1EEEECB6
 	Offset: 0x1970
 	Size: 0x25F
@@ -638,15 +638,15 @@ function function_bf8a850e(v_origin, weapon, e_attacker)
 }
 
 /*
-	Name: function_c75116aa
-	Namespace: namespace_756d2c3d
+	Name: spawn_thrasher
+	Namespace: zm_ai_thrasher
 	Checksum: 0x25516A5F
 	Offset: 0x1BD8
 	Size: 0x189
 	Parameters: 1
 	Flags: None
 */
-function function_c75116aa(var_42fbb5b1)
+function spawn_thrasher(var_42fbb5b1)
 {
 	if(!isdefined(var_42fbb5b1))
 	{
@@ -676,7 +676,7 @@ function function_c75116aa(var_42fbb5b1)
 
 /*
 	Name: thrasher_teleport
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xB226B203
 	Offset: 0x1D70
 	Size: 0x23B
@@ -714,7 +714,7 @@ function thrasher_teleport(v_pos)
 
 /*
 	Name: thrasher_spawn_logic
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x4AB3F3B9
 	Offset: 0x1FB8
 	Size: 0xBF
@@ -741,7 +741,7 @@ function thrasher_spawn_logic()
 
 /*
 	Name: function_a716de1f
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x8886D955
 	Offset: 0x2080
 	Size: 0x573
@@ -827,7 +827,7 @@ function function_a716de1f()
 
 /*
 	Name: function_bd6d26aa
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x6368FD94
 	Offset: 0x2600
 	Size: 0x15
@@ -841,7 +841,7 @@ function function_bd6d26aa(v_origin, player)
 
 /*
 	Name: function_cb4aac76
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x2D86C7B
 	Offset: 0x2620
 	Size: 0xBD
@@ -859,7 +859,7 @@ function function_cb4aac76(zombie)
 
 /*
 	Name: function_82522cfc
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x2F9248F4
 	Offset: 0x26E8
 	Size: 0x11B
@@ -889,7 +889,7 @@ function function_82522cfc(a_v_points)
 
 /*
 	Name: function_7cec0046
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xDA3FE283
 	Offset: 0x2810
 	Size: 0x5B
@@ -907,7 +907,7 @@ function function_7cec0046()
 
 /*
 	Name: function_a7b4c742
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x171C61A0
 	Offset: 0x2878
 	Size: 0x9B
@@ -925,7 +925,7 @@ function function_a7b4c742(player, gib)
 
 /*
 	Name: function_74b91821
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xC4C9C89F
 	Offset: 0x2920
 	Size: 0x331
@@ -961,7 +961,7 @@ function function_74b91821(entity)
 
 /*
 	Name: function_7febcbb3
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xB9A31009
 	Offset: 0x2C60
 	Size: 0x4B
@@ -979,7 +979,7 @@ function function_7febcbb3(entity)
 
 /*
 	Name: function_7dfa2cf1
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xA4BC204A
 	Offset: 0x2CB8
 	Size: 0x1AB
@@ -1013,7 +1013,7 @@ function function_7dfa2cf1(entity, zombie)
 
 /*
 	Name: function_5185e56a
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x8A6896F6
 	Offset: 0x2E70
 	Size: 0x63
@@ -1033,7 +1033,7 @@ function function_5185e56a(entity)
 
 /*
 	Name: function_d2ac7b69
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x87622972
 	Offset: 0x2EE0
 	Size: 0xD3
@@ -1055,7 +1055,7 @@ function function_d2ac7b69(entity, player, State)
 
 /*
 	Name: function_a2c48487
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x6C37455
 	Offset: 0x2FC0
 	Size: 0x33
@@ -1069,7 +1069,7 @@ function function_a2c48487(entity)
 
 /*
 	Name: function_d95f74d1
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x38EE31F1
 	Offset: 0x3000
 	Size: 0x33
@@ -1083,7 +1083,7 @@ function function_d95f74d1(entity)
 
 /*
 	Name: function_fb5d97db
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xDDD3EEE6
 	Offset: 0x3040
 	Size: 0x33
@@ -1097,7 +1097,7 @@ function function_fb5d97db(entity, player)
 
 /*
 	Name: function_bda057d1
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xBFF37645
 	Offset: 0x3080
 	Size: 0x33
@@ -1111,7 +1111,7 @@ function function_bda057d1(entity, player)
 
 /*
 	Name: function_7a8dca06
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x588DA4AC
 	Offset: 0x30C0
 	Size: 0x35
@@ -1129,7 +1129,7 @@ function function_7a8dca06(entity)
 
 /*
 	Name: function_4912c054
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xD5F32CC
 	Offset: 0x3100
 	Size: 0x8B
@@ -1148,7 +1148,7 @@ function function_4912c054(hitEntity)
 
 /*
 	Name: function_565fed9e
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xECB02358
 	Offset: 0x3198
 	Size: 0x29B
@@ -1190,7 +1190,7 @@ function function_565fed9e(entity)
 
 /*
 	Name: function_70622dc9
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xAE82088B
 	Offset: 0x3440
 	Size: 0xCB
@@ -1215,7 +1215,7 @@ function function_70622dc9()
 
 /*
 	Name: thrasher_death
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xFBCFDDDB
 	Offset: 0x3518
 	Size: 0x16F
@@ -1251,7 +1251,7 @@ function thrasher_death()
 
 /*
 	Name: sndthrasher
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xF6ED57DB
 	Offset: 0x3690
 	Size: 0x9F
@@ -1273,7 +1273,7 @@ function sndthrasher()
 
 /*
 	Name: function_eeeff8b3
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x4917826C
 	Offset: 0x3738
 	Size: 0xD7
@@ -1282,7 +1282,7 @@ function sndthrasher()
 */
 function function_eeeff8b3(origin)
 {
-	var_cbc1b1a6 = GetEntArray("no_teleport_area", "script_noteworthy");
+	no_teleport_area = GetEntArray("no_teleport_area", "script_noteworthy");
 	if(!isdefined(level.check_model))
 	{
 		level.check_model = spawn("script_model", origin);
@@ -1291,9 +1291,9 @@ function function_eeeff8b3(origin)
 	{
 		level.check_model.origin = origin;
 	}
-	for(i = 0; i < var_cbc1b1a6.size; i++)
+	for(i = 0; i < no_teleport_area.size; i++)
 	{
-		if(level.check_model istouching(var_cbc1b1a6[i]))
+		if(level.check_model istouching(no_teleport_area[i]))
 		{
 			return 0;
 		}
@@ -1303,7 +1303,7 @@ function function_eeeff8b3(origin)
 
 /*
 	Name: function_ae069b1c
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x12EE92D5
 	Offset: 0x3818
 	Size: 0x43
@@ -1320,7 +1320,7 @@ function function_ae069b1c()
 
 /*
 	Name: function_11d343a5
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xEAADC62F
 	Offset: 0x3868
 	Size: 0x1F5
@@ -1357,7 +1357,7 @@ function function_11d343a5(thrasher)
 
 /*
 	Name: function_eafe225a
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x9A71B758
 	Offset: 0x3A68
 	Size: 0x2F
@@ -1374,7 +1374,7 @@ function function_eafe225a(thrasher)
 
 /*
 	Name: function_13a79919
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0xD9467036
 	Offset: 0x3AA0
 	Size: 0xD3
@@ -1399,7 +1399,7 @@ function function_13a79919()
 
 /*
 	Name: function_da954e93
-	Namespace: namespace_756d2c3d
+	Namespace: zm_ai_thrasher
 	Checksum: 0x1F22FFA2
 	Offset: 0x3B80
 	Size: 0x725
@@ -1533,7 +1533,7 @@ function function_da954e93(cmd)
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_c75116aa(0);
+				spawn_thrasher(0);
 				break;
 			}
 		}

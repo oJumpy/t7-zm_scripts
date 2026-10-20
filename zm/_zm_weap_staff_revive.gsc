@@ -11,11 +11,11 @@
 #using scripts\zm\_zm_spawner;
 #using scripts\zm\_zm_weap_staff_common;
 
-#namespace namespace_db493cf;
+#namespace zm_weap_staff_revive;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_db493cf
+	Namespace: zm_weap_staff_revive
 	Checksum: 0x266FE419
 	Offset: 0x260
 	Size: 0x33
@@ -29,7 +29,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_db493cf
+	Namespace: zm_weap_staff_revive
 	Checksum: 0xB5506179
 	Offset: 0x2A0
 	Size: 0x23
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: onPlayerSpawned
-	Namespace: namespace_db493cf
+	Namespace: zm_weap_staff_revive
 	Checksum: 0x30301E9A
 	Offset: 0x2D0
 	Size: 0x23
@@ -58,7 +58,7 @@ function onPlayerSpawned()
 
 /*
 	Name: watch_staff_revive_fired
-	Namespace: namespace_db493cf
+	Namespace: zm_weap_staff_revive
 	Checksum: 0x631868F
 	Offset: 0x300
 	Size: 0xBF
@@ -82,7 +82,7 @@ function watch_staff_revive_fired()
 
 /*
 	Name: staff_revive_impact
-	Namespace: namespace_db493cf
+	Namespace: zm_weap_staff_revive
 	Checksum: 0xDAF0C075
 	Offset: 0x3C8
 	Size: 0x199

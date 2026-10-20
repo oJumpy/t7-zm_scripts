@@ -20,7 +20,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x1E116145
+	Checksum: 0x2A1A3B65
 	Offset: 0x490
 	Size: 0x33
 	Parameters: 0
@@ -34,7 +34,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x16F0358B
+	Checksum: 0x8CFF6F56
 	Offset: 0x4D0
 	Size: 0x2B
 	Parameters: 0
@@ -49,7 +49,7 @@ function __init__()
 /*
 	Name: enable_quick_revive_perk_for_level
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x133EEAA5
+	Checksum: 0x711943B0
 	Offset: 0x508
 	Size: 0x183
 	Parameters: 0
@@ -70,7 +70,7 @@ function enable_quick_revive_perk_for_level()
 /*
 	Name: quick_revive_precache
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x6586F077
+	Checksum: 0x60F54ACE
 	Offset: 0x698
 	Size: 0xDF
 	Parameters: 0
@@ -93,7 +93,7 @@ function quick_revive_precache()
 /*
 	Name: quick_revive_register_clientfield
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x3C04F5EF
+	Checksum: 0x746497AE
 	Offset: 0x780
 	Size: 0x33
 	Parameters: 0
@@ -107,7 +107,7 @@ function quick_revive_register_clientfield()
 /*
 	Name: quick_revive_set_clientfield
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x48400063
+	Checksum: 0xF8ED748D
 	Offset: 0x7C0
 	Size: 0x2B
 	Parameters: 1
@@ -121,7 +121,7 @@ function quick_revive_set_clientfield(State)
 /*
 	Name: quick_revive_perk_machine_setup
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x3E456EB2
+	Checksum: 0x7C5A43A3
 	Offset: 0x7F8
 	Size: 0xBB
 	Parameters: 4
@@ -144,7 +144,7 @@ function quick_revive_perk_machine_setup(use_trigger, perk_machine, bump_trigger
 /*
 	Name: revive_cost_override
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x8646F89D
+	Checksum: 0xF6C05955
 	Offset: 0x8C0
 	Size: 0x37
 	Parameters: 0
@@ -166,7 +166,7 @@ function revive_cost_override()
 /*
 	Name: turn_revive_on
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x3FF297DB
+	Checksum: 0xDE274F3D
 	Offset: 0x900
 	Size: 0x749
 	Parameters: 0
@@ -282,7 +282,7 @@ function turn_revive_on()
 /*
 	Name: reenable_quickrevive
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x3FE3AD35
+	Checksum: 0x84E424E8
 	Offset: 0x1058
 	Size: 0x663
 	Parameters: 2
@@ -423,7 +423,7 @@ function reenable_quickrevive(machine_clip, solo_mode)
 /*
 	Name: update_quick_revive
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x54963E60
+	Checksum: 0xE53BFA4A
 	Offset: 0x16C8
 	Size: 0x9B
 	Parameters: 1
@@ -447,7 +447,7 @@ function update_quick_revive(solo_mode)
 /*
 	Name: check_quickrevive_for_hotjoin
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x3D572EC1
+	Checksum: 0x906F7D13
 	Offset: 0x1770
 	Size: 0x17B
 	Parameters: 0
@@ -487,7 +487,7 @@ function check_quickrevive_for_hotjoin()
 /*
 	Name: revive_solo_fx
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x61A2B1A8
+	Checksum: 0x85606B28
 	Offset: 0x18F8
 	Size: 0x389
 	Parameters: 2
@@ -560,7 +560,7 @@ function revive_solo_fx(machine_clip, blocker_model)
 /*
 	Name: disable_quickrevive
 	Namespace: zm_perk_quick_revive
-	Checksum: 0xF0A8FF9D
+	Checksum: 0x21FB77F7
 	Offset: 0x1C90
 	Size: 0x4E9
 	Parameters: 1
@@ -637,7 +637,7 @@ function disable_quickrevive(machine_clip)
 /*
 	Name: unhide_quickrevive
 	Namespace: zm_perk_quick_revive
-	Checksum: 0xF68599E6
+	Checksum: 0xDAA52CE8
 	Offset: 0x2188
 	Size: 0x417
 	Parameters: 0
@@ -716,7 +716,7 @@ function unhide_quickrevive()
 /*
 	Name: restart_quickrevive
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x8D9D3190
+	Checksum: 0xCE7776D5
 	Offset: 0x25A8
 	Size: 0x111
 	Parameters: 0
@@ -743,7 +743,7 @@ function restart_quickrevive()
 /*
 	Name: update_quickrevive_power_state
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x41721125
+	Checksum: 0x15942227
 	Offset: 0x26C8
 	Size: 0x1C1
 	Parameters: 1
@@ -786,7 +786,7 @@ function update_quickrevive_power_state(poweron)
 /*
 	Name: solo_revive_buy_trigger_move
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x382B9450
+	Checksum: 0xA249C783
 	Offset: 0x2898
 	Size: 0xC9
 	Parameters: 1
@@ -805,7 +805,7 @@ function solo_revive_buy_trigger_move(revive_trigger_noteworthy)
 /*
 	Name: solo_revive_buy_trigger_move_trigger
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x9BCDB899
+	Checksum: 0x2FE4C223
 	Offset: 0x2970
 	Size: 0xC3
 	Parameters: 1
@@ -835,7 +835,7 @@ function solo_revive_buy_trigger_move_trigger(revive_perk_trigger)
 /*
 	Name: give_quick_revive_perk
 	Namespace: zm_perk_quick_revive
-	Checksum: 0xB9DA72B1
+	Checksum: 0x1373111D
 	Offset: 0x2A40
 	Size: 0xAB
 	Parameters: 0
@@ -869,7 +869,7 @@ function give_quick_revive_perk()
 /*
 	Name: take_quick_revive_perk
 	Namespace: zm_perk_quick_revive
-	Checksum: 0xE7D08E2B
+	Checksum: 0x1D8F3E1
 	Offset: 0x2AF8
 	Size: 0x1B
 	Parameters: 3

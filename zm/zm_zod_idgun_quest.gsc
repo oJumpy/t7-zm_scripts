@@ -548,7 +548,7 @@ function idgun_zombie_death_watch(attacker)
 			if(idgun.kill_count > 10)
 			{
 				level flag::set("second_idgun_time");
-				idgun.owner namespace_b8707f8e::function_1a180bd3("vox_idgun_upgrade_ready");
+				idgun.owner zm_zod_vo::function_1a180bd3("vox_idgun_upgrade_ready");
 			}
 		}
 	}
@@ -755,9 +755,9 @@ function idgun_proximity_sensor(var_3fbc06aa)
 		if(isdefined(n_time_before_next_pulse))
 		{
 			wait(n_time_before_next_pulse);
-			self namespace_8e578893::set_rumble_to_player(2);
+			self zm_zod_util::set_rumble_to_player(2);
 			util::wait_network_frame();
-			self namespace_8e578893::set_rumble_to_player(0);
+			self zm_zod_util::set_rumble_to_player(0);
 		}
 		else
 		{
@@ -804,7 +804,7 @@ function give_idgun(n_idgun_level)
 		return;
 	}
 	level.idgun[var_6aa62cd2].owner = self;
-	self namespace_b8707f8e::function_aca1bc0c(0);
+	self zm_zod_vo::function_aca1bc0c(0);
 }
 
 /*
@@ -819,9 +819,9 @@ function give_idgun(n_idgun_level)
 function idgun_devgui()
 {
 	/#
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 0, &devgui_idgun_give);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &devgui_idgun_give);
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_8c7ac1b9);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 0, &devgui_idgun_give);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &devgui_idgun_give);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_8c7ac1b9);
 	#/
 }
 
@@ -837,7 +837,7 @@ function idgun_devgui()
 function idgun_quest_devgui()
 {
 	/#
-		level thread namespace_8e578893::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 0, &function_1f7b4ebf);
+		level thread zm_zod_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 0, &function_1f7b4ebf);
 	#/
 }
 

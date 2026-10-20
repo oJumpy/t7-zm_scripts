@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_1958c5da;
+#namespace zm_bgb_impatient;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1958c5da
+	Namespace: zm_bgb_impatient
 	Checksum: 0x89F94FB2
 	Offset: 0x1B0
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1958c5da
+	Namespace: zm_bgb_impatient
 	Checksum: 0xF31290CF
 	Offset: 0x1F0
 	Size: 0x53
@@ -45,7 +45,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_1958c5da
+	Namespace: zm_bgb_impatient
 	Checksum: 0x47ED6A2E
 	Offset: 0x250
 	Size: 0x3B
@@ -55,14 +55,14 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
-	self waittill("hash_eecacfa5");
+	self endon("bgb_update");
+	self waittill("bgb_about_to_take_on_bled_out");
 	self thread special_revive();
 }
 
 /*
 	Name: special_revive
-	Namespace: namespace_1958c5da
+	Namespace: zm_bgb_impatient
 	Checksum: 0xE0C33368
 	Offset: 0x298
 	Size: 0x5B

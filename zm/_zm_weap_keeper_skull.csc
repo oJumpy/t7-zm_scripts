@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_f55b6585;
+#namespace keeper_skull;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xDED8E4E8
 	Offset: 0xB78
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xF9F81D59
 	Offset: 0xBB8
 	Size: 0x65D
@@ -32,15 +32,15 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("actor", "zombie_explode", 9000, 1, "int", &function_615adc5e, 0, 0);
-	clientfield::register("actor", "death_ray_shock_eye_fx", 9000, 1, "int", &function_4513798e, 0, 0);
+	clientfield::register("actor", "zombie_explode", 9000, 1, "int", &zombie_explode_fx, 0, 0);
+	clientfield::register("actor", "death_ray_shock_eye_fx", 9000, 1, "int", &death_ray_shock_eye_fx, 0, 0);
 	clientfield::register("actor", "entranced", 9000, 1, "int", &function_384d8884, 0, 0);
-	clientfield::register("actor", "thrasher_skull_fire", 9000, 1, "int", &function_5543770f, 0, 0);
-	clientfield::register("toplayer", "skull_beam_fx", 9000, 2, "int", &function_4fb98616, 0, 0);
-	clientfield::register("toplayer", "skull_torch_fx", 9000, 2, "int", &function_2802db6f, 0, 0);
-	clientfield::register("allplayers", "skull_beam_3p_fx", 9000, 2, "int", &function_3f47ba02, 0, 0);
-	clientfield::register("allplayers", "skull_torch_3p_fx", 9000, 2, "int", &function_cea6821, 0, 0);
-	clientfield::register("allplayers", "skull_emissive", 9000, 1, "int", &function_c92fcc97, 0, 0);
+	clientfield::register("actor", "thrasher_skull_fire", 9000, 1, "int", &thrasher_skull_fire, 0, 0);
+	clientfield::register("toplayer", "skull_beam_fx", 9000, 2, "int", &play_skull_beam_fx, 0, 0);
+	clientfield::register("toplayer", "skull_torch_fx", 9000, 2, "int", &play_skull_torch_fx, 0, 0);
+	clientfield::register("allplayers", "skull_beam_3p_fx", 9000, 2, "int", &play_skull_beam_3p_fx, 0, 0);
+	clientfield::register("allplayers", "skull_torch_3p_fx", 9000, 2, "int", &play_skull_torch_3p_fx, 0, 0);
+	clientfield::register("allplayers", "skull_emissive", 9000, 1, "int", &skull_emissive_fx, 0, 0);
 	level._effect["death_ray_shock_eyes"] = "zombie/fx_tesla_shock_eyes_zmb";
 	level._effect["glow_eye_white"] = "zombie/fx_glow_eye_white";
 	level._effect["zombie_explode"] = "dlc2/island/fx_zombie_torso_explo";
@@ -79,15 +79,15 @@ function __init__()
 }
 
 /*
-	Name: function_2802db6f
-	Namespace: namespace_f55b6585
+	Name: play_skull_torch_fx
+	Namespace: keeper_skull
 	Checksum: 0xA44C072A
 	Offset: 0x1220
 	Size: 0x345
 	Parameters: 7
 	Flags: None
 */
-function function_2802db6f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_skull_torch_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{
@@ -141,15 +141,15 @@ function function_2802db6f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4fb98616
-	Namespace: namespace_f55b6585
+	Name: play_skull_beam_fx
+	Namespace: keeper_skull
 	Checksum: 0xB99AC059
 	Offset: 0x1570
 	Size: 0x2F5
 	Parameters: 7
 	Flags: None
 */
-function function_4fb98616(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_skull_beam_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{
@@ -197,15 +197,15 @@ function function_4fb98616(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_615adc5e
-	Namespace: namespace_f55b6585
+	Name: zombie_explode_fx
+	Namespace: keeper_skull
 	Checksum: 0x4EF8C552
 	Offset: 0x1870
 	Size: 0x313
 	Parameters: 7
 	Flags: None
 */
-function function_615adc5e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zombie_explode_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(self.gibdef))
 	{
@@ -233,15 +233,15 @@ function function_615adc5e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4513798e
-	Namespace: namespace_f55b6585
+	Name: death_ray_shock_eye_fx
+	Namespace: keeper_skull
 	Checksum: 0xA300BF3B
 	Offset: 0x1B90
 	Size: 0xC5
 	Parameters: 7
 	Flags: None
 */
-function function_4513798e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function death_ray_shock_eye_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -259,7 +259,7 @@ function function_4513798e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_384d8884
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xBB2B7933
 	Offset: 0x1C60
 	Size: 0xC5
@@ -283,15 +283,15 @@ function function_384d8884(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_5543770f
-	Namespace: namespace_f55b6585
+	Name: thrasher_skull_fire
+	Namespace: keeper_skull
 	Checksum: 0xFC56D6E1
 	Offset: 0x1D30
 	Size: 0x93
 	Parameters: 7
 	Flags: None
 */
-function function_5543770f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function thrasher_skull_fire(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 0)
 	{
@@ -305,7 +305,7 @@ function function_5543770f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_c16de463
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x704D11CF
 	Offset: 0x1DD0
 	Size: 0x591
@@ -404,15 +404,15 @@ function function_c16de463(var_1607039a, localClientNum)
 }
 
 /*
-	Name: function_c92fcc97
-	Namespace: namespace_f55b6585
+	Name: skull_emissive_fx
+	Namespace: keeper_skull
 	Checksum: 0xA63DDE97
 	Offset: 0x2370
 	Size: 0xA3
 	Parameters: 7
 	Flags: None
 */
-function function_c92fcc97(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function skull_emissive_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -425,15 +425,15 @@ function function_c92fcc97(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_cea6821
-	Namespace: namespace_f55b6585
+	Name: play_skull_torch_3p_fx
+	Namespace: keeper_skull
 	Checksum: 0x3A41785
 	Offset: 0x2420
 	Size: 0x15D
 	Parameters: 7
 	Flags: None
 */
-function function_cea6821(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_skull_torch_3p_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{
@@ -465,15 +465,15 @@ function function_cea6821(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_3f47ba02
-	Namespace: namespace_f55b6585
+	Name: play_skull_beam_3p_fx
+	Namespace: keeper_skull
 	Checksum: 0xDCBFB49A
 	Offset: 0x2588
 	Size: 0x15D
 	Parameters: 7
 	Flags: None
 */
-function function_3f47ba02(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_skull_beam_3p_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{

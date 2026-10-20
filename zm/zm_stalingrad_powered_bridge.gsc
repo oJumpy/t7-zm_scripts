@@ -115,7 +115,7 @@ function function_5156e4d8()
 			{
 				e_player clientfield::increment_to_player("interact_rumble");
 				e_player zm_score::minus_to_player_score(500);
-				level thread function_9aac06ba(e_player);
+				level thread activate_bridge(e_player);
 			}
 			else
 			{
@@ -135,7 +135,7 @@ function function_5156e4d8()
 }
 
 /*
-	Name: function_9aac06ba
+	Name: activate_bridge
 	Namespace: namespace_486b5371
 	Checksum: 0xC3BD44BE
 	Offset: 0xA08
@@ -143,7 +143,7 @@ function function_5156e4d8()
 	Parameters: 1
 	Flags: None
 */
-function function_9aac06ba(e_player)
+function activate_bridge(e_player)
 {
 	level thread namespace_48c05c81::function_903f6b36(1, "bridge_trap");
 	level flag::set("bridge_in_use");

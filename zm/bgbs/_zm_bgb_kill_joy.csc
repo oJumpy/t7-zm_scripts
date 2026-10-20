@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_969fb372;
+#namespace zm_bgb_kill_joy;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_969fb372
+	Namespace: zm_bgb_kill_joy
 	Checksum: 0x4223F6C8
 	Offset: 0x140
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_969fb372
+	Namespace: zm_bgb_kill_joy
 	Checksum: 0xDA30900F
 	Offset: 0x180
 	Size: 0x3B

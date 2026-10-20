@@ -122,7 +122,7 @@ function function_43b5419a(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 }
 
 /*
-	Name: function_ea7e3000
+	Name: dragon_strike_lockbox_reset
 	Namespace: stalingrad_dragon_strike
 	Checksum: 0x6F8426A7
 	Offset: 0xBA8
@@ -130,7 +130,7 @@ function function_43b5419a(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 	Parameters: 3
 	Flags: None
 */
-function function_ea7e3000(s_unitrigger, var_df61c394, var_60e07243)
+function dragon_strike_lockbox_reset(s_unitrigger, var_df61c394, var_60e07243)
 {
 	self endon("disconnect");
 	var_8de3e280 = GetEnt("pavlovs_second_floor", "targetname");
@@ -380,14 +380,14 @@ function function_68299355()
 		else if(level flag::get("dragon_stage3_started") && !level flag::get("dragon_stage4_started") && !e_player flag::get("dragon_strike_lockbox_upgraded_trigger_used"))
 		{
 			e_player flag::set("dragon_strike_lockbox_upgraded_trigger_used");
-			e_player thread function_ea7e3000(self.stub, "dragon_stage4_started", "dragon_strike_lockbox_upgraded_trigger_used");
+			e_player thread dragon_strike_lockbox_reset(self.stub, "dragon_stage4_started", "dragon_strike_lockbox_upgraded_trigger_used");
 			e_player playsound("zmb_ds_machine_replace");
 			self.stub.var_f30d1f8f.var_f2c16bcc++;
 		}
 		else if(!level flag::get("dragon_strike_unlocked") && !e_player flag::get("dragon_strike_lockbox_trigger_used"))
 		{
 			e_player flag::set("dragon_strike_lockbox_trigger_used");
-			e_player thread function_ea7e3000(self.stub, "dragon_strike_unlocked", "dragon_strike_lockbox_trigger_used");
+			e_player thread dragon_strike_lockbox_reset(self.stub, "dragon_strike_unlocked", "dragon_strike_lockbox_trigger_used");
 			self.stub.var_f30d1f8f.var_f2c16bcc++;
 		}
 	}
@@ -680,6 +680,6 @@ function function_46c8b621()
 {
 	var_2b71b5b4 = 3 + level.players.size;
 	var_af22dd13 = 2 + level.players.size;
-	level thread namespace_b57650e4::function_6236d848(18, 4, 20, 5, 22, 6, var_2b71b5b4, level.players.size + 1, 3, var_af22dd13, level.players.size + 1, 2);
+	level thread zm_stalingrad_pap::function_6236d848(18, 4, 20, 5, 22, 6, var_2b71b5b4, level.players.size + 1, 3, var_af22dd13, level.players.size + 1, 2);
 }
 

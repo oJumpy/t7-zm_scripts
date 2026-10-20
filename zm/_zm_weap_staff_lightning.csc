@@ -3,11 +3,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weap_staff_common;
 
-#namespace namespace_dc4ed61a;
+#namespace zm_weap_staff_lightning;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x82BD8C9C
 	Offset: 0x2E0
 	Size: 0x33
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xEA4DCBA1
 	Offset: 0x320
 	Size: 0x183
@@ -38,12 +38,12 @@ function __init__()
 	clientfield::register("scriptmover", "lightning_miss_fx", 21000, 1, "int", &lightning_miss_play_fx, 0, 0);
 	clientfield::register("actor", "lightning_arc_fx", 21000, 1, "int", &lightning_arc_play_fx, 0, 0);
 	level.lightning_ball_fx = [];
-	namespace_c9806b9::function_4be5e665(GetWeapon("staff_lightning_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_elec_lv1");
+	zm_weap_staff::function_4be5e665(GetWeapon("staff_lightning_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_elec_lv1");
 }
 
 /*
 	Name: lightning_impact_play_fx
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x9FCEE703
 	Offset: 0x4B0
 	Size: 0x93
@@ -61,7 +61,7 @@ function lightning_impact_play_fx(localClientNum, oldVal, newVal, bNewEnt, bInit
 
 /*
 	Name: lightning_miss_play_fx
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xB771C5C6
 	Offset: 0x550
 	Size: 0x101
@@ -83,7 +83,7 @@ function lightning_miss_play_fx(localClientNum, oldVal, newVal, bNewEnt, bInitia
 
 /*
 	Name: watch_ball_fx_killed
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xCCFE6267
 	Offset: 0x660
 	Size: 0x3F
@@ -99,7 +99,7 @@ function watch_ball_fx_killed(localClientNum, ent)
 
 /*
 	Name: lightning_arc_play_fx_thread
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0x55347330
 	Offset: 0x6A8
 	Size: 0x1F7
@@ -132,7 +132,7 @@ function lightning_arc_play_fx_thread(localClientNum)
 
 /*
 	Name: lightning_arc_play_fx
-	Namespace: namespace_dc4ed61a
+	Namespace: zm_weap_staff_lightning
 	Checksum: 0xB75706CA
 	Offset: 0x8A8
 	Size: 0xD5

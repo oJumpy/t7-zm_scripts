@@ -27,11 +27,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_stalingrad_util;
 
-#namespace namespace_48757881;
+#namespace siegebot_nikolai;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xFE793309
 	Offset: 0x9E8
 	Size: 0x33
@@ -45,7 +45,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x5659DF15
 	Offset: 0xA28
 	Size: 0x3EB
@@ -79,7 +79,7 @@ function __init__()
 
 /*
 	Name: siegebot_initialize
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xFC5FE919
 	Offset: 0xE20
 	Size: 0x3F3
@@ -141,7 +141,7 @@ function siegebot_initialize()
 
 /*
 	Name: init_clientfields
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xF4BF2298
 	Offset: 0x1220
 	Size: 0x7B
@@ -158,7 +158,7 @@ function init_clientfields()
 
 /*
 	Name: defaultRole
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x3EE2A51B
 	Offset: 0x12A8
 	Size: 0x1DB
@@ -182,34 +182,34 @@ function defaultRole()
 
 /*
 	Name: function_f7035c2f
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x92195D1C
 	Offset: 0x1490
 	Size: 0x131
 	Parameters: 1
 	Flags: None
 */
-function function_f7035c2f(var_b58fd987)
+function function_f7035c2f(nikolai_driver)
 {
 	self endon("death");
-	var_b58fd987 endon("death");
-	self.var_b58fd987 = var_b58fd987;
+	nikolai_driver endon("death");
+	self.nikolai_driver = nikolai_driver;
 	self EnableLinkTo();
-	var_b58fd987.origin = self GetTagOrigin("tag_driver");
-	var_b58fd987.angles = self GetTagAngles("tag_driver");
-	var_b58fd987.targetname = "nikolai_driver";
-	var_b58fd987 LinkTo(self, "tag_driver");
+	nikolai_driver.origin = self GetTagOrigin("tag_driver");
+	nikolai_driver.angles = self GetTagAngles("tag_driver");
+	nikolai_driver.targetname = "nikolai_driver";
+	nikolai_driver LinkTo(self, "tag_driver");
 	while(1)
 	{
-		var_b58fd987 scene::Play("cin_zm_stalingrad_nikolai_cockpit_drink");
-		var_b58fd987 thread scene::Play("cin_zm_stalingrad_nikolai_cockpit_idle");
+		nikolai_driver scene::Play("cin_zm_stalingrad_nikolai_cockpit_drink");
+		nikolai_driver thread scene::Play("cin_zm_stalingrad_nikolai_cockpit_idle");
 		wait(10 + RandomFloat(10));
 	}
 }
 
 /*
 	Name: state_death_update
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x118B434D
 	Offset: 0x15D0
 	Size: 0x1E3
@@ -231,7 +231,7 @@ function state_death_update(params)
 	self SetTurretTargetRelativeAngles((0, 0, 0), 2);
 	level flag::set("nikolai_complete");
 	self ASMRequestSubstate("death@stationary");
-	self.var_b58fd987 thread scene::Play("cin_zm_stalingrad_nikolai_cockpit_death");
+	self.nikolai_driver thread scene::Play("cin_zm_stalingrad_nikolai_cockpit_death");
 	self waittill("model_swap");
 	self vehicle_death::death_fx();
 	wait(10);
@@ -242,7 +242,7 @@ function state_death_update(params)
 
 /*
 	Name: clean_up_spawned
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x8DC6C62F
 	Offset: 0x17C0
 	Size: 0x33
@@ -259,7 +259,7 @@ function clean_up_spawned()
 
 /*
 	Name: pain_toggle
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xBF97604D
 	Offset: 0x1800
 	Size: 0x17
@@ -273,7 +273,7 @@ function pain_toggle(enabled)
 
 /*
 	Name: pain_canenter
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x28255848
 	Offset: 0x1820
 	Size: 0x41
@@ -288,7 +288,7 @@ function pain_canenter()
 
 /*
 	Name: pain_enter
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xC8255081
 	Offset: 0x1870
 	Size: 0x23
@@ -302,7 +302,7 @@ function pain_enter(params)
 
 /*
 	Name: pain_exit
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x91CBF7DF
 	Offset: 0x18A0
 	Size: 0x23
@@ -316,7 +316,7 @@ function pain_exit(params)
 
 /*
 	Name: pain_update
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x92AD65FC
 	Offset: 0x18D0
 	Size: 0xFB
@@ -343,7 +343,7 @@ function pain_update(params)
 
 /*
 	Name: jump_to
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x5512E890
 	Offset: 0x19D8
 	Size: 0x173
@@ -379,7 +379,7 @@ function jump_to(target)
 
 /*
 	Name: initJumpStruct
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xFBB79D4A
 	Offset: 0x1B58
 	Size: 0x103
@@ -405,7 +405,7 @@ function initJumpStruct()
 
 /*
 	Name: state_jump_enter
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xE62CD6B0
 	Offset: 0x1C68
 	Size: 0x14B
@@ -431,7 +431,7 @@ function state_jump_enter(params)
 
 /*
 	Name: state_jump_exit
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xD560C746
 	Offset: 0x1DC0
 	Size: 0x23
@@ -445,7 +445,7 @@ function state_jump_exit(params)
 
 /*
 	Name: state_jump_update
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x890A2369
 	Offset: 0x1DF0
 	Size: 0xB5B
@@ -552,7 +552,7 @@ function state_jump_update(params)
 
 /*
 	Name: function_f9508f9e
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xF64C9088
 	Offset: 0x2958
 	Size: 0xB3
@@ -571,7 +571,7 @@ function function_f9508f9e()
 
 /*
 	Name: side_step
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x9400D642
 	Offset: 0x2A18
 	Size: 0x273
@@ -611,7 +611,7 @@ function side_step()
 
 /*
 	Name: state_groundCombat_update
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x96A3FA7C
 	Offset: 0x2C98
 	Size: 0xA5
@@ -635,7 +635,7 @@ function state_groundCombat_update(params)
 
 /*
 	Name: footstep_damage
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x57A3F432
 	Offset: 0x2D48
 	Size: 0x4B
@@ -650,7 +650,7 @@ function footstep_damage(tag_name)
 
 /*
 	Name: footstep_left_monitor
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xF85F7F4E
 	Offset: 0x2DA0
 	Size: 0x67
@@ -672,7 +672,7 @@ function footstep_left_monitor()
 
 /*
 	Name: footstep_right_monitor
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x8D74778B
 	Offset: 0x2E10
 	Size: 0x67
@@ -694,7 +694,7 @@ function footstep_right_monitor()
 
 /*
 	Name: Movement_Thread
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x6FB04AAC
 	Offset: 0x2E80
 	Size: 0x1EF
@@ -737,7 +737,7 @@ function Movement_Thread()
 
 /*
 	Name: state_groundCombat_exit
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x2DFE1B7C
 	Offset: 0x3078
 	Size: 0x3B
@@ -753,7 +753,7 @@ function state_groundCombat_exit(params)
 
 /*
 	Name: Attack_Thread_Gun
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x56A75AB2
 	Offset: 0x30C0
 	Size: 0x25F
@@ -807,7 +807,7 @@ function Attack_Thread_Gun()
 
 /*
 	Name: locomotion_start
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x252A44AF
 	Offset: 0x3328
 	Size: 0x33
@@ -822,7 +822,7 @@ function locomotion_start()
 
 /*
 	Name: function_7fcc2a80
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xD853847D
 	Offset: 0x3368
 	Size: 0x11
@@ -836,7 +836,7 @@ function function_7fcc2a80()
 
 /*
 	Name: _sort_by_distance2d
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x26FFB85A
 	Offset: 0x3388
 	Size: 0x81
@@ -852,7 +852,7 @@ function _sort_by_distance2d(left, right, point)
 
 /*
 	Name: stopMovementAndSetBrake
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xB91CA6E3
 	Offset: 0x3418
 	Size: 0x93
@@ -872,7 +872,7 @@ function stopMovementAndSetBrake()
 
 /*
 	Name: face_target
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x1F13FB41
 	Offset: 0x34B8
 	Size: 0x23B
@@ -920,7 +920,7 @@ function face_target(position, targetAngleDiff, var_a39fa3d8)
 
 /*
 	Name: function_75775e52
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x4B48CB19
 	Offset: 0x3700
 	Size: 0x169
@@ -941,7 +941,7 @@ function function_75775e52(point, range)
 
 /*
 	Name: function_86cc3c11
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x7EB1B075
 	Offset: 0x3878
 	Size: 0x5B
@@ -963,7 +963,7 @@ function function_86cc3c11()
 
 /*
 	Name: function_b9b039e0
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xD8764E20
 	Offset: 0x38E0
 	Size: 0x583
@@ -1051,7 +1051,7 @@ function function_b9b039e0(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 	eAttacker show_hit_marker();
 	if(var_cf402baf)
 	{
-		self notify("hash_d4ba4cd");
+		self notify("nikolai_weakpoint_destroyed");
 		if(n_index == 1)
 		{
 			self HidePart("tag_heat_vent_01_d0_col");
@@ -1076,7 +1076,7 @@ function function_b9b039e0(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 		if(function_86cc3c11() >= 4)
 		{
 			self finishVehicleDamage(eInflictor, eAttacker, 4000, iDFlags, "MOD_IMPACT", weapon, vPoint, vDir, sHitLoc, psOffsetTime, damageFromUnderneath, modelIndex, "tag_heat_vent_05_d0", 1);
-			level notify("hash_f6982dc3");
+			level notify("nikolai_final_weakpoint_revealed");
 		}
 	}
 	return 0;
@@ -1084,7 +1084,7 @@ function function_b9b039e0(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 
 /*
 	Name: show_hit_marker
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x9F774E71
 	Offset: 0x3E70
 	Size: 0x87
@@ -1104,7 +1104,7 @@ function show_hit_marker()
 
 /*
 	Name: function_efdfbbf7
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x968FA3B8
 	Offset: 0x3F00
 	Size: 0x193
@@ -1145,7 +1145,7 @@ function function_efdfbbf7(b_expose, n_location)
 
 /*
 	Name: function_37a64cff
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x8899A5A5
 	Offset: 0x40A0
 	Size: 0xA3
@@ -1182,7 +1182,7 @@ function function_37a64cff(var_ce1b5a05)
 
 /*
 	Name: function_a3258c2a
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x7A8A2E53
 	Offset: 0x4150
 	Size: 0x3FB
@@ -1243,7 +1243,7 @@ function function_a3258c2a(var_f8b7c9a1)
 
 /*
 	Name: function_59fe8c9c
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x7E69090D
 	Offset: 0x4558
 	Size: 0x5EB
@@ -1348,7 +1348,7 @@ function function_59fe8c9c(targetposition)
 
 /*
 	Name: function_853d3b2b
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xBF633414
 	Offset: 0x4B50
 	Size: 0x1DB
@@ -1381,7 +1381,7 @@ function function_853d3b2b(var_ff72f147, launchForce)
 
 /*
 	Name: function_902a2c47
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xBEB2A4C
 	Offset: 0x4D38
 	Size: 0x93
@@ -1403,7 +1403,7 @@ function function_902a2c47()
 
 /*
 	Name: function_6deb3e8d
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xBCC39E64
 	Offset: 0x4DD8
 	Size: 0xA7
@@ -1425,7 +1425,7 @@ function function_6deb3e8d()
 
 /*
 	Name: function_3b145bbb
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x595A59E2
 	Offset: 0x4E88
 	Size: 0x31
@@ -1444,7 +1444,7 @@ function function_3b145bbb()
 
 /*
 	Name: pin_spike_to_ground
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x3FBADC8F
 	Offset: 0x4EC8
 	Size: 0x2E7
@@ -1489,7 +1489,7 @@ function pin_spike_to_ground(spike, targetOrigin)
 
 /*
 	Name: function_db9ecada
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0xFE739314
 	Offset: 0x51B8
 	Size: 0xC7
@@ -1512,7 +1512,7 @@ function function_db9ecada()
 
 /*
 	Name: function_d7ef4d80
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x48CBA058
 	Offset: 0x5288
 	Size: 0x117
@@ -1531,7 +1531,7 @@ function function_d7ef4d80()
 			if(!isdefined(ai_zombie.is_elemental_zombie))
 			{
 				ai_zombie.var_bb98125f = 1;
-				ai_zombie thread namespace_57695b4d::function_1b1bb1b();
+				ai_zombie thread zm_elemental_zombie::function_1b1bb1b();
 			}
 		}
 		wait(0.25);
@@ -1540,7 +1540,7 @@ function function_d7ef4d80()
 
 /*
 	Name: function_dfc5ede1
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x5BD40020
 	Offset: 0x53A8
 	Size: 0x39B
@@ -1581,7 +1581,7 @@ function function_dfc5ede1(targetEnt)
 	self thread function_db9ecada();
 	for(i = 0; i < 3; i++)
 	{
-		self waittill("hash_685ef1dd");
+		self waittill("fire_harpoon");
 		spike = self FireWeapon(2);
 		self ClearTurretTarget();
 		if(isdefined(spike))
@@ -1605,7 +1605,7 @@ function function_dfc5ede1(targetEnt)
 
 /*
 	Name: is_valid_target
-	Namespace: namespace_48757881
+	Namespace: siegebot_nikolai
 	Checksum: 0x913EEF54
 	Offset: 0x5750
 	Size: 0xD7

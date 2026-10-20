@@ -53,7 +53,7 @@ function private InitZmBehaviorsAndASM()
 	spawner::add_archetype_spawn_function("zombie", &moon_zombie_spawned);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonZombieKilledByMicrowaveGunDw", &killedbymicrowavegundw);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonZombieKilledByMicrowaveGun", &killedbymicrowavegun);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonShouldMoveLowg", &function_78b1e165);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonShouldMoveLowg", &moonshouldmovelowg);
 }
 
 /*
@@ -81,7 +81,7 @@ function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime
 }
 
 /*
-	Name: function_d0ef2cea
+	Name: zodshouldmove
 	Namespace: namespace_3bf51f67
 	Checksum: 0x16A304C0
 	Offset: 0x6C8
@@ -89,7 +89,7 @@ function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime
 	Parameters: 1
 	Flags: None
 */
-function function_d0ef2cea(entity)
+function zodshouldmove(entity)
 {
 	if(isdefined(entity.zombie_tesla_hit) && entity.zombie_tesla_hit && (!isdefined(entity.tesla_death) && entity.tesla_death))
 	{
@@ -192,7 +192,7 @@ function killedbymicrowavegun(entity)
 }
 
 /*
-	Name: function_78b1e165
+	Name: moonshouldmovelowg
 	Namespace: namespace_3bf51f67
 	Checksum: 0x58C9938F
 	Offset: 0x948
@@ -200,7 +200,7 @@ function killedbymicrowavegun(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_78b1e165(entity)
+function moonshouldmovelowg(entity)
 {
 	return isdefined(entity.in_low_gravity) && entity.in_low_gravity;
 }

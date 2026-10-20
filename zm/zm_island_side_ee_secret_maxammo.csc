@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_5a453011;
+#namespace zm_island_side_ee_secret_maxammo;
 
 /*
 	Name: init
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0x99EC1590
 	Offset: 0x148
 	Size: 0x3

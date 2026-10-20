@@ -147,11 +147,11 @@ function function_bab3ea62()
 	level thread function_8620d917();
 	level thread function_53b9afad();
 	var_29085ef = GetEntArray(0, "sndMusicTrig", "targetname");
-	Array::thread_all(var_29085ef, &function_95d61fc1);
+	Array::thread_all(var_29085ef, &sndmusictrig);
 }
 
 /*
-	Name: function_95d61fc1
+	Name: sndmusictrig
 	Namespace: namespace_db83306f
 	Checksum: 0xED5900C3
 	Offset: 0x7A0
@@ -159,7 +159,7 @@ function function_bab3ea62()
 	Parameters: 0
 	Flags: None
 */
-function function_95d61fc1()
+function sndmusictrig()
 {
 	while(1)
 	{
@@ -241,7 +241,7 @@ function function_8620d917()
 {
 	while(1)
 	{
-		level waittill("hash_8874917e");
+		level waittill("sndpd");
 		if(level.var_98f2b64e == "pavlov")
 		{
 			level.var_98f2b64e = "pavlov_defend";
@@ -270,7 +270,7 @@ function function_a2a905a5()
 {
 	while(1)
 	{
-		level waittill("hash_c9bd87a8");
+		level waittill("sndeed");
 		if(level.var_98f2b64e == "pavlov" || level.var_98f2b64e == "pavlov_defend")
 		{
 			level.var_98f2b64e = "pavlov_ee_koth";
@@ -365,7 +365,7 @@ function play_flux_whispers()
 */
 function function_157aa38()
 {
-	level waittill("hash_bad0de07");
+	level waittill("power_on_level");
 	playsound(0, "amb_sophia_boot", (300, 4862, 296));
 	audio::playloopat("amb_sophia_computer_screen_lp", (-404, 4764, 223));
 	wait(8);

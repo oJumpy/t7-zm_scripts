@@ -2,12 +2,12 @@
 #using scripts\shared\visionset_mgr_shared;
 #using scripts\zm\_zm_elemental_zombies;
 
-#namespace namespace_ef567265;
+#namespace zm_ai_mechz;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ef567265
-	Checksum: 0x4D7F8D7A
+	Namespace: zm_ai_mechz
+	Checksum: 0x15A109AB
 	Offset: 0xF8
 	Size: 0x3B
 	Parameters: 0
@@ -20,7 +20,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ef567265
+	Namespace: zm_ai_mechz
 	Checksum: 0x99EC1590
 	Offset: 0x140
 	Size: 0x3
@@ -33,8 +33,8 @@ function autoexec __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_ef567265
-	Checksum: 0xF2AF64D0
+	Namespace: zm_ai_mechz
+	Checksum: 0x579F66D4
 	Offset: 0x150
 	Size: 0x2B
 	Parameters: 0

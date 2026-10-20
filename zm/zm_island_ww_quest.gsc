@@ -183,7 +183,7 @@ function function_11571878()
 			{
 				zm_unitrigger::unregister_unitrigger(self.trigger);
 				self.trigger = undefined;
-				level thread namespace_f333593c::function_3bf2d62a("kn4_ammo", 0, 1, 0);
+				level thread zm_island_vo::function_3bf2d62a("kn4_ammo", 0, 1, 0);
 				mdl_station scene::Play("p7_fxanim_zm_island_mirg_centrifuge_table_gun_up_bundle", mdl_station);
 				mdl_station scene::Play("p7_fxanim_zm_island_mirg_centrifuge_table_turn_on_bundle", mdl_station);
 				level.mdl_wonderweapon ShowPart("tag_liquid");
@@ -193,7 +193,7 @@ function function_11571878()
 			}
 			else if(zm_utility::is_player_valid(player))
 			{
-				player notify("hash_f48612e4");
+				player notify("player_tried_pickup_mirg2000");
 			}
 		}
 	}
@@ -309,14 +309,14 @@ function function_2578c564(str_flag)
 		if(zm_utility::is_player_valid(player))
 		{
 			level.n_ww_parts++;
-			player notify("hash_f33f0d2a");
+			player notify("player_got_ww_part");
 			zm_unitrigger::unregister_unitrigger(self.trigger);
 			level flag::set(str_flag);
 			if(str_flag == "ww3_found")
 			{
 				mdl_extractor = GetEnt("venom_extractor", "targetname");
 				wait(0.5);
-				mdl_extractor thread function_3c6e89ad();
+				mdl_extractor thread venom_extractor_reset();
 			}
 			self.trigger = undefined;
 			level thread function_ce9a171c(str_flag);
@@ -326,7 +326,7 @@ function function_2578c564(str_flag)
 }
 
 /*
-	Name: function_3c6e89ad
+	Name: venom_extractor_reset
 	Namespace: namespace_eaae7728
 	Checksum: 0x6A22CD5F
 	Offset: 0x22F0
@@ -334,7 +334,7 @@ function function_2578c564(str_flag)
 	Parameters: 0
 	Flags: None
 */
-function function_3c6e89ad()
+function venom_extractor_reset()
 {
 	self scene::Play("p7_fxanim_zm_island_venom_extractor_end_bundle", self);
 	self SetModel("p7_fxanim_zm_island_venom_extractor_red_mod");
@@ -362,7 +362,7 @@ function function_9279976b(player)
 	player GiveWeapon(level.w_mirg2000);
 	player giveMaxAmmo(level.w_mirg2000);
 	player SwitchToWeapon(level.w_mirg2000);
-	player notify("hash_f717c7f5");
+	player notify("player_got_mirg2000");
 	level clientfield::set("add_ww_to_box", 1);
 	player.var_3599826c = 1;
 	level.zombie_weapons[level.w_mirg2000].is_in_box = 1;
@@ -662,7 +662,7 @@ function function_d7b19999()
 	self endon("death");
 	wait(20);
 	self function_2fe542aa();
-	level notify("hash_53c9a941");
+	level notify("ww1_timed_out");
 	zm_unitrigger::unregister_unitrigger(self.trigger);
 	self delete();
 }
@@ -848,7 +848,7 @@ function spider_cage_trigger()
 			}
 			b_state = 1;
 			str_control = &"ZM_ISLAND_CAGE_RAISE";
-			level thread namespace_f333593c::function_3bf2d62a("lower_cage", 1, 0, 0);
+			level thread zm_island_vo::function_3bf2d62a("lower_cage", 1, 0, 0);
 			level thread function_baa845f4();
 		}
 		else if(isdefined(level.var_1deeff56) && level.var_1deeff56)
@@ -865,7 +865,7 @@ function spider_cage_trigger()
 		}
 		b_state = 0;
 		str_control = &"ZM_ISLAND_CAGE_LOWER";
-		level thread namespace_f333593c::function_3bf2d62a("raise_cage", 1, 0, 0);
+		level thread zm_island_vo::function_3bf2d62a("raise_cage", 1, 0, 0);
 		level.var_48762d0c = 1;
 		if(!b_state)
 		{
@@ -1150,7 +1150,7 @@ function function_4a13e10b()
 	mdl_part PlayLoopSound("zmb_vial_loop");
 	mdl_part.trigger = namespace_8aed53c9::spawn_trigger_radius(mdl_part.origin, 50, 1, &function_9bd3096f);
 	mdl_part thread function_2578c564("ww3_found");
-	level thread namespace_f333593c::function_3bf2d62a("spider_venom", 1, 0, 0);
+	level thread zm_island_vo::function_3bf2d62a("spider_venom", 1, 0, 0);
 }
 
 /*
@@ -1357,7 +1357,7 @@ function private function_5521d6b5(player)
 */
 function function_9f93c407(player)
 {
-	player endon("hash_b874720a");
+	player endon("player_upgraded_ww");
 	while(1)
 	{
 		self waittill("trigger", e_who);
@@ -1391,7 +1391,7 @@ function function_9f93c407(player)
 			player SwitchToWeapon(level.w_mirg2000_up);
 			mdl_station = GetEnt("wwup_station", "targetname");
 			mdl_station Detach(level.mdl_wonderweapon_up.model, "mirg_cent_gun_tag_jnt");
-			player notify("hash_b874720a");
+			player notify("player_upgraded_ww");
 		}
 	}
 }
@@ -1644,12 +1644,12 @@ function function_961485f0()
 		{
 			cage_mover("down");
 			level thread function_1d3366a8();
-			level thread namespace_f333593c::function_3bf2d62a("lower_cage", 0, 0, 1);
+			level thread zm_island_vo::function_3bf2d62a("lower_cage", 0, 0, 1);
 		}
 		else
 		{
 			cage_mover("up");
-			level thread namespace_f333593c::function_3bf2d62a("raise_cage", 0, 0, 1);
+			level thread zm_island_vo::function_3bf2d62a("raise_cage", 0, 0, 1);
 		}
 	}
 }
@@ -1702,10 +1702,10 @@ function function_871dbb3a()
 				function_d452a2ca(player);
 				wait(1);
 				cage_mover("down");
-				level thread namespace_f333593c::function_3bf2d62a("lower_cage", 0, 0, 1);
+				level thread zm_island_vo::function_3bf2d62a("lower_cage", 0, 0, 1);
 				wait(5);
 				cage_mover("up");
-				level thread namespace_f333593c::function_3bf2d62a("raise_cage", 0, 0, 1);
+				level thread zm_island_vo::function_3bf2d62a("raise_cage", 0, 0, 1);
 				player Unlink();
 			}
 			while(player istouching(level.t_cage))
@@ -2011,7 +2011,7 @@ function function_72c5554a(str_flag)
 		self.var_1da52e7e waittill("trigger", player);
 		if(zm_utility::is_player_valid(player))
 		{
-			player notify("hash_f33f0d2a");
+			player notify("player_got_ww_part");
 			zm_unitrigger::unregister_unitrigger(self);
 			level flag::set(str_flag);
 			self.var_1da52e7e = undefined;

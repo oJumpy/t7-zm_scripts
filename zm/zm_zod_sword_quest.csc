@@ -10,11 +10,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_aa27450a;
+#namespace zm_zod_sword;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x73194443
 	Offset: 0x890
 	Size: 0x33
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x2AC8D5EE
 	Offset: 0x8D0
 	Size: 0x661
@@ -44,7 +44,7 @@ function __init__()
 	level._effect["sword_quest_sword_glow"] = "zombie/fx_sword_quest_glow_zod_zmb";
 	clientfield::register("scriptmover", "zod_egg_glow", 1, 1, "int", &sword_egg_glow, 0, 0);
 	clientfield::register("scriptmover", "zod_egg_soul", 1, 1, "int", &blood_soul_fx, 0, 0);
-	clientfield::register("scriptmover", "sword_statue_glow", 1, 1, "int", &function_ba060b19, 0, 0);
+	clientfield::register("scriptmover", "sword_statue_glow", 1, 1, "int", &sword_statue_glow, 0, 0);
 	n_bits = GetMinBitCountForNum(5);
 	clientfield::register("toplayer", "magic_circle_state_0", 1, n_bits, "int", &function_528aad40, 0, 1);
 	clientfield::register("toplayer", "magic_circle_state_1", 1, n_bits, "int", &function_1d308217, 0, 1);
@@ -72,15 +72,15 @@ function __init__()
 }
 
 /*
-	Name: function_3803b991
-	Namespace: namespace_aa27450a
+	Name: magic_circle_state_internal
+	Namespace: zm_zod_sword
 	Checksum: 0x80E9111F
 	Offset: 0xF40
 	Size: 0x3F5
 	Parameters: 3
 	Flags: None
 */
-function function_3803b991(localClientNum, newVal, n_current_ritual)
+function magic_circle_state_internal(localClientNum, newVal, n_current_ritual)
 {
 	self notify("magic_circle_state_internal" + localClientNum);
 	self endon("magic_circle_state_internal" + localClientNum);
@@ -143,7 +143,7 @@ function function_3803b991(localClientNum, newVal, n_current_ritual)
 
 /*
 	Name: function_cf043736
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x79CDDDDE
 	Offset: 0x1340
 	Size: 0x9B
@@ -166,7 +166,7 @@ function function_cf043736(s_ritual, b_glowing)
 
 /*
 	Name: function_4d020922
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x9B3A461F
 	Offset: 0x13E8
 	Size: 0xEA9
@@ -339,7 +339,7 @@ function function_4d020922(localClientNum, newVal, n_character_index)
 
 /*
 	Name: function_bd205438
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xBB9F12C0
 	Offset: 0x22A0
 	Size: 0x8B
@@ -355,7 +355,7 @@ function function_bd205438(localClientNum, s_ritual)
 
 /*
 	Name: function_5b78bb9e
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xD956A7EE
 	Offset: 0x2338
 	Size: 0xAB
@@ -372,7 +372,7 @@ function function_5b78bb9e(v_origin)
 
 /*
 	Name: function_274ba0e6
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xE4DA7DD0
 	Offset: 0x23F0
 	Size: 0x57
@@ -391,7 +391,7 @@ function function_274ba0e6(str_animname)
 
 /*
 	Name: function_528aad40
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x5E7EAB09
 	Offset: 0x2450
 	Size: 0x5B
@@ -400,12 +400,12 @@ function function_274ba0e6(str_animname)
 */
 function function_528aad40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	function_3803b991(localClientNum, newVal, 0);
+	magic_circle_state_internal(localClientNum, newVal, 0);
 }
 
 /*
 	Name: function_1d308217
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x1C42A4F5
 	Offset: 0x24B8
 	Size: 0x5B
@@ -414,12 +414,12 @@ function function_528aad40(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_1d308217(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	function_3803b991(localClientNum, newVal, 1);
+	magic_circle_state_internal(localClientNum, newVal, 1);
 }
 
 /*
 	Name: function_b17464d4
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xB9894BD8
 	Offset: 0x2520
 	Size: 0x5B
@@ -428,12 +428,12 @@ function function_1d308217(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_b17464d4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	function_3803b991(localClientNum, newVal, 2);
+	magic_circle_state_internal(localClientNum, newVal, 2);
 }
 
 /*
 	Name: function_b6499939
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x7B63602E
 	Offset: 0x2588
 	Size: 0x5B
@@ -442,12 +442,12 @@ function function_b17464d4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_b6499939(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	function_3803b991(localClientNum, newVal, 3);
+	magic_circle_state_internal(localClientNum, newVal, 3);
 }
 
 /*
 	Name: function_9ba2b995
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xAEA98577
 	Offset: 0x25F0
 	Size: 0x5B
@@ -461,7 +461,7 @@ function function_9ba2b995(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_fd8ec03a
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x6A865EE6
 	Offset: 0x2658
 	Size: 0x5B
@@ -475,7 +475,7 @@ function function_fd8ec03a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_32002235
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x9BCBC289
 	Offset: 0x26C0
 	Size: 0x5B
@@ -489,7 +489,7 @@ function function_32002235(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_4fd5e276
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x98C846A0
 	Offset: 0x2728
 	Size: 0x5B
@@ -503,7 +503,7 @@ function function_4fd5e276(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_5dab7fb
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xD8C85672
 	Offset: 0x2790
 	Size: 0xB3
@@ -512,25 +512,25 @@ function function_4fd5e276(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_5dab7fb(localClientNum, n_current_ritual)
 {
-	if(!isdefined(level.var_15954023))
+	if(!isdefined(level.sword_quest))
 	{
-		level.var_15954023 = [];
+		level.sword_quest = [];
 	}
-	if(!isdefined(level.var_15954023[localClientNum]))
+	if(!isdefined(level.sword_quest[localClientNum]))
 	{
-		level.var_15954023[localClientNum] = [];
+		level.sword_quest[localClientNum] = [];
 	}
-	if(!isdefined(level.var_15954023[localClientNum][n_current_ritual]))
+	if(!isdefined(level.sword_quest[localClientNum][n_current_ritual]))
 	{
-		level.var_15954023[localClientNum][n_current_ritual] = spawnstruct();
+		level.sword_quest[localClientNum][n_current_ritual] = spawnstruct();
 	}
-	s_ritual = level.var_15954023[localClientNum][n_current_ritual];
+	s_ritual = level.sword_quest[localClientNum][n_current_ritual];
 	return s_ritual;
 }
 
 /*
 	Name: function_6890ca81
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x7380D20B
 	Offset: 0x2850
 	Size: 0x3CF
@@ -588,7 +588,7 @@ function function_6890ca81(localClientNum, n_character_index)
 
 /*
 	Name: get_name_from_ritual_clientfield_value
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x719A89EB
 	Offset: 0x2C28
 	Size: 0x5D
@@ -620,7 +620,7 @@ function get_name_from_ritual_clientfield_value(n_current_ritual)
 
 /*
 	Name: function_85b951d8
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x43595057
 	Offset: 0x2C90
 	Size: 0xCD
@@ -641,7 +641,7 @@ function function_85b951d8(var_181b74a5)
 
 /*
 	Name: function_96ae1a10
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xF4556CB3
 	Offset: 0x2D68
 	Size: 0xD3
@@ -662,7 +662,7 @@ function function_96ae1a10(var_181b74a5, n_character_index)
 
 /*
 	Name: play_fx
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xE937124
 	Offset: 0x2E48
 	Size: 0xCB
@@ -685,15 +685,15 @@ function play_fx(localClientNum, str_fx, str_tag)
 }
 
 /*
-	Name: function_ba060b19
-	Namespace: namespace_aa27450a
+	Name: sword_statue_glow
+	Namespace: zm_zod_sword
 	Checksum: 0x91987208
 	Offset: 0x2F20
 	Size: 0x87
 	Parameters: 7
 	Flags: None
 */
-function function_ba060b19(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sword_statue_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -707,7 +707,7 @@ function function_ba060b19(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: sword_egg_glow
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0xD8C0C34D
 	Offset: 0x2FB0
 	Size: 0x7F
@@ -728,7 +728,7 @@ function sword_egg_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, f
 
 /*
 	Name: blood_soul_fx
-	Namespace: namespace_aa27450a
+	Namespace: zm_zod_sword
 	Checksum: 0x37CCDEC7
 	Offset: 0x3038
 	Size: 0x7D

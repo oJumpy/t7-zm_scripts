@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_11fcf241;
+#namespace zm_equip_gasmask;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x6EFAFA2B
 	Offset: 0x2E8
 	Size: 0x3B
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x66F61C76
 	Offset: 0x330
 	Size: 0x12B
@@ -46,7 +46,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x4C492B5E
 	Offset: 0x468
 	Size: 0x4B
@@ -62,7 +62,7 @@ function __main__()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x743CBA77
 	Offset: 0x4C0
 	Size: 0xDB
@@ -83,7 +83,7 @@ function on_player_spawned()
 
 /*
 	Name: gasmask_removed_watcher_thread
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0xC63E9C3D
 	Offset: 0x5A8
 	Size: 0x15F
@@ -125,7 +125,7 @@ function gasmask_removed_watcher_thread()
 
 /*
 	Name: gasmask_activation_watcher_thread
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x3EEB0A44
 	Offset: 0x710
 	Size: 0x4ED
@@ -219,7 +219,7 @@ function gasmask_activation_watcher_thread()
 
 /*
 	Name: function_4933258e
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0xA52FF89
 	Offset: 0xC08
 	Size: 0xE7
@@ -253,7 +253,7 @@ function function_4933258e()
 
 /*
 	Name: remove_gasmask_on_player_bleedout
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x10FD02FC
 	Offset: 0xCF8
 	Size: 0xDF
@@ -276,7 +276,7 @@ function remove_gasmask_on_player_bleedout()
 
 /*
 	Name: remove_gasmask_on_game_over
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0xD9EAFE79
 	Offset: 0xDE0
 	Size: 0x63
@@ -296,7 +296,7 @@ function remove_gasmask_on_game_over()
 
 /*
 	Name: gasmask_active
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x8C59D722
 	Offset: 0xE50
 	Size: 0x21
@@ -310,7 +310,7 @@ function gasmask_active()
 
 /*
 	Name: gasmask_debug_print
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x5C06F647
 	Offset: 0xE80
 	Size: 0x8B
@@ -334,7 +334,7 @@ function gasmask_debug_print(msg, color)
 
 /*
 	Name: function_7cb416b
-	Namespace: namespace_11fcf241
+	Namespace: zm_equip_gasmask
 	Checksum: 0x8A00934
 	Offset: 0xF18
 	Size: 0xBB

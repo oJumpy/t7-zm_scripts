@@ -13,7 +13,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_random
-	Checksum: 0x580E7367
+	Checksum: 0x6B5997E
 	Offset: 0x3E8
 	Size: 0x33
 	Parameters: 0
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_random
-	Checksum: 0x90AF070D
+	Checksum: 0x9C123AD3
 	Offset: 0x428
 	Size: 0x2F9
 	Parameters: 0
@@ -66,7 +66,7 @@ function init_animtree()
 /*
 	Name: turn_on_location_indicator
 	Namespace: zm_perk_random
-	Checksum: 0x5F75A0CF
+	Checksum: 0xE18393FC
 	Offset: 0x740
 	Size: 0x3B
 	Parameters: 7
@@ -79,7 +79,7 @@ function turn_on_location_indicator(localClientNum, oldVal, newVal, bNewEnt, bIn
 /*
 	Name: lightning_bolt_fx_toggle
 	Namespace: zm_perk_random
-	Checksum: 0x88703C4
+	Checksum: 0xCDF70C12
 	Offset: 0x788
 	Size: 0x1A9
 	Parameters: 7
@@ -120,7 +120,7 @@ function lightning_bolt_fx_toggle(localClientNum, oldVal, newVal, bNewEnt, bInit
 /*
 	Name: zone_captured_cb
 	Namespace: zm_perk_random
-	Checksum: 0xF3A48CA6
+	Checksum: 0xFAA578FA
 	Offset: 0x940
 	Size: 0xD3
 	Parameters: 7
@@ -147,7 +147,7 @@ function zone_captured_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 /*
 	Name: perk_random_machine_rock_emissive
 	Namespace: zm_perk_random
-	Checksum: 0xC7BD1009
+	Checksum: 0xC91DA06D
 	Offset: 0xA20
 	Size: 0xB7
 	Parameters: 7
@@ -170,7 +170,7 @@ function perk_random_machine_rock_emissive(localClientNum, oldVal, newVal, bNewE
 /*
 	Name: rock_emissive_think
 	Namespace: zm_perk_random
-	Checksum: 0x532378E9
+	Checksum: 0xB68CA40E
 	Offset: 0xAE0
 	Size: 0x6F
 	Parameters: 1
@@ -189,7 +189,7 @@ function rock_emissive_think(localClientNum)
 /*
 	Name: rock_emissive_fade
 	Namespace: zm_perk_random
-	Checksum: 0x22128F03
+	Checksum: 0x61EDC62B
 	Offset: 0xB58
 	Size: 0x18F
 	Parameters: 3
@@ -225,7 +225,7 @@ function rock_emissive_fade(localClientNum, n_max_val, n_min_val)
 /*
 	Name: perk_random_machine_init
 	Namespace: zm_perk_random
-	Checksum: 0x8A84A10F
+	Checksum: 0xEFA99F2F
 	Offset: 0xCF0
 	Size: 0xA9
 	Parameters: 7
@@ -250,7 +250,7 @@ function private perk_random_machine_init(localClientNum, oldVal, newVal, bNewEn
 /*
 	Name: set_light_state
 	Namespace: zm_perk_random
-	Checksum: 0x19987032
+	Checksum: 0x86772C37
 	Offset: 0xDA8
 	Size: 0x193
 	Parameters: 7
@@ -282,7 +282,7 @@ function set_light_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, 
 /*
 	Name: perk_random_machine_play_fx
 	Namespace: zm_perk_random
-	Checksum: 0x2AE12CE6
+	Checksum: 0x5C07D854
 	Offset: 0xF48
 	Size: 0x11B
 	Parameters: 5
@@ -309,7 +309,7 @@ function private perk_random_machine_play_fx(localClientNum, piece_index, tag, F
 /*
 	Name: turn_on_active_light_green
 	Namespace: zm_perk_random
-	Checksum: 0x7527AC28
+	Checksum: 0x4B0B7DCD
 	Offset: 0x1070
 	Size: 0x97
 	Parameters: 7
@@ -328,7 +328,7 @@ function turn_on_active_light_green(localClientNum, oldVal, newVal, bNewEnt, bIn
 /*
 	Name: turn_on_active_ball_light
 	Namespace: zm_perk_random
-	Checksum: 0xDFBC9EAD
+	Checksum: 0xC33B658F
 	Offset: 0x1110
 	Size: 0x97
 	Parameters: 7
@@ -347,7 +347,7 @@ function turn_on_active_ball_light(localClientNum, oldVal, newVal, bNewEnt, bIni
 /*
 	Name: start_bottle_cycling
 	Namespace: zm_perk_random
-	Checksum: 0x771694BA
+	Checksum: 0x95FF180C
 	Offset: 0x11B0
 	Size: 0x83
 	Parameters: 7
@@ -368,7 +368,7 @@ function start_bottle_cycling(localClientNum, oldVal, newVal, bNewEnt, bInitialS
 /*
 	Name: start_vortex_fx
 	Namespace: zm_perk_random
-	Checksum: 0x16E25DB2
+	Checksum: 0x3D8A12F
 	Offset: 0x1240
 	Size: 0xE3
 	Parameters: 1
@@ -393,7 +393,7 @@ function start_vortex_fx(localClientNum)
 /*
 	Name: stop_vortex_fx
 	Namespace: zm_perk_random
-	Checksum: 0xB8CAD584
+	Checksum: 0x89E2645C
 	Offset: 0x1330
 	Size: 0xB3
 	Parameters: 1
@@ -421,7 +421,7 @@ function stop_vortex_fx(localClientNum)
 /*
 	Name: fx_artifact_pulse_thread
 	Namespace: zm_perk_random
-	Checksum: 0x2EB00F8E
+	Checksum: 0xF6DF10C1
 	Offset: 0x13F0
 	Size: 0xFF
 	Parameters: 1
@@ -449,7 +449,7 @@ function fx_artifact_pulse_thread(localClientNum)
 /*
 	Name: fx_activation_electric_loop
 	Namespace: zm_perk_random
-	Checksum: 0xC98C9B46
+	Checksum: 0x5A58D381
 	Offset: 0x14F8
 	Size: 0x43
 	Parameters: 1
@@ -468,7 +468,7 @@ function fx_activation_electric_loop(localClientNum)
 /*
 	Name: fx_bottle_cycling
 	Namespace: zm_perk_random
-	Checksum: 0x583A710
+	Checksum: 0x6C549FFF
 	Offset: 0x1548
 	Size: 0x37
 	Parameters: 1

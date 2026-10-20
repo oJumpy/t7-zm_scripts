@@ -24,20 +24,20 @@ function init()
 	level._effect["bottle_jugg"] = "zombie/fx_bottle_break_glow_jugg_zmb";
 	level._effect["bottle_dtap"] = "zombie/fx_bottle_break_glow_dtap_zmb";
 	level._effect["bottle_speed"] = "zombie/fx_bottle_break_glow_speed_zmb";
-	clientfield::register("world", "perk_light_speed_cola", 1, 2, "int", &function_c574aa0c, 0, 0);
-	clientfield::register("world", "perk_light_juggernog", 1, 2, "int", &function_3cfbcaf5, 0, 0);
-	clientfield::register("world", "perk_light_doubletap", 1, 2, "int", &function_59525d83, 0, 0);
-	clientfield::register("world", "perk_light_quick_revive", 1, 1, "int", &function_e63629a0, 0, 0);
-	clientfield::register("world", "perk_light_widows_wine", 1, 1, "int", &function_9021b00a, 0, 0);
-	clientfield::register("world", "perk_light_mule_kick", 1, 1, "int", &function_eb0b323d, 0, 0);
-	clientfield::register("world", "perk_light_staminup", 1, 1, "int", &function_b169f826, 0, 0);
-	clientfield::register("scriptmover", "perk_bottle_speed_cola_fx", 1, 1, "int", &function_96fbf181, 0, 0);
-	clientfield::register("scriptmover", "perk_bottle_juggernog_fx", 1, 1, "int", &function_fdc76a3e, 0, 0);
-	clientfield::register("scriptmover", "perk_bottle_doubletap_fx", 1, 1, "int", &function_5192f840, 0, 0);
+	clientfield::register("world", "perk_light_speed_cola", 1, 2, "int", &perk_light_speed_cola, 0, 0);
+	clientfield::register("world", "perk_light_juggernog", 1, 2, "int", &perk_light_juggernog, 0, 0);
+	clientfield::register("world", "perk_light_doubletap", 1, 2, "int", &perk_light_doubletap, 0, 0);
+	clientfield::register("world", "perk_light_quick_revive", 1, 1, "int", &perk_light_quick_revive, 0, 0);
+	clientfield::register("world", "perk_light_widows_wine", 1, 1, "int", &perk_light_widows_wine, 0, 0);
+	clientfield::register("world", "perk_light_mule_kick", 1, 1, "int", &perk_light_mule_kick, 0, 0);
+	clientfield::register("world", "perk_light_staminup", 1, 1, "int", &perk_light_staminup, 0, 0);
+	clientfield::register("scriptmover", "perk_bottle_speed_cola_fx", 1, 1, "int", &perk_bottle_speed_cola_fx, 0, 0);
+	clientfield::register("scriptmover", "perk_bottle_juggernog_fx", 1, 1, "int", &perk_bottle_juggernog_fx, 0, 0);
+	clientfield::register("scriptmover", "perk_bottle_doubletap_fx", 1, 1, "int", &perk_bottle_doubletap_fx, 0, 0);
 }
 
 /*
-	Name: function_c574aa0c
+	Name: perk_light_speed_cola
 	Namespace: namespace_bb738c6
 	Checksum: 0x79E3829F
 	Offset: 0x6F0
@@ -45,7 +45,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_c574aa0c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_speed_cola(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -59,7 +59,7 @@ function function_c574aa0c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_3cfbcaf5
+	Name: perk_light_juggernog
 	Namespace: namespace_bb738c6
 	Checksum: 0x7965421D
 	Offset: 0x7A0
@@ -67,7 +67,7 @@ function function_c574aa0c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_3cfbcaf5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_juggernog(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -81,7 +81,7 @@ function function_3cfbcaf5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_59525d83
+	Name: perk_light_doubletap
 	Namespace: namespace_bb738c6
 	Checksum: 0x5CD4CA2A
 	Offset: 0x850
@@ -89,7 +89,7 @@ function function_3cfbcaf5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_59525d83(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_doubletap(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -103,7 +103,7 @@ function function_59525d83(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_e63629a0
+	Name: perk_light_quick_revive
 	Namespace: namespace_bb738c6
 	Checksum: 0x604F0EC
 	Offset: 0x900
@@ -111,7 +111,7 @@ function function_59525d83(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_e63629a0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_quick_revive(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -124,7 +124,7 @@ function function_e63629a0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_9021b00a
+	Name: perk_light_widows_wine
 	Namespace: namespace_bb738c6
 	Checksum: 0x55512872
 	Offset: 0x988
@@ -132,7 +132,7 @@ function function_e63629a0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_9021b00a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_widows_wine(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -145,7 +145,7 @@ function function_9021b00a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_eb0b323d
+	Name: perk_light_mule_kick
 	Namespace: namespace_bb738c6
 	Checksum: 0xC8FB8059
 	Offset: 0xA10
@@ -153,7 +153,7 @@ function function_9021b00a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_eb0b323d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_mule_kick(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -166,7 +166,7 @@ function function_eb0b323d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b169f826
+	Name: perk_light_staminup
 	Namespace: namespace_bb738c6
 	Checksum: 0x8C655F26
 	Offset: 0xA98
@@ -174,7 +174,7 @@ function function_eb0b323d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b169f826(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_light_staminup(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -187,7 +187,7 @@ function function_b169f826(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_96fbf181
+	Name: perk_bottle_speed_cola_fx
 	Namespace: namespace_bb738c6
 	Checksum: 0xDC49EEE
 	Offset: 0xB20
@@ -195,13 +195,13 @@ function function_b169f826(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_96fbf181(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_bottle_speed_cola_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	PlayFXOnTag(localClientNum, level._effect["bottle_speed"], self, "tag_origin");
 }
 
 /*
-	Name: function_fdc76a3e
+	Name: perk_bottle_juggernog_fx
 	Namespace: namespace_bb738c6
 	Checksum: 0xA0B7505D
 	Offset: 0xB98
@@ -209,13 +209,13 @@ function function_96fbf181(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_fdc76a3e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_bottle_juggernog_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	PlayFXOnTag(localClientNum, level._effect["bottle_jugg"], self, "tag_origin");
 }
 
 /*
-	Name: function_5192f840
+	Name: perk_bottle_doubletap_fx
 	Namespace: namespace_bb738c6
 	Checksum: 0xAA0F9BB2
 	Offset: 0xC10
@@ -223,7 +223,7 @@ function function_fdc76a3e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_5192f840(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function perk_bottle_doubletap_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	PlayFXOnTag(localClientNum, level._effect["bottle_dtap"], self, "tag_origin");
 }

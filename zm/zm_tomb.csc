@@ -94,7 +94,7 @@ function autoexec opt_in()
 function main()
 {
 	level thread zm_tomb_ffotd::main_start();
-	clientfield::register("scriptmover", "glow_biplane_trail_fx", 21000, 1, "int", &function_ea1ce3fa, 0, 0);
+	clientfield::register("scriptmover", "glow_biplane_trail_fx", 21000, 1, "int", &glow_biplane_trail_fx, 0, 0);
 	clientfield::register("scriptmover", "element_glow_fx", 21000, 4, "int", &crystal_fx, 0, 0);
 	clientfield::register("scriptmover", "bryce_cake", 21000, 2, "int", &init_central_crypt_disc, 0, 0);
 	clientfield::register("scriptmover", "switch_spark", 21000, 1, "int", &switch_spark_fx, 0, 0);
@@ -102,7 +102,7 @@ function main()
 	clientfield::register("world", "cooldown_steam", 21000, 2, "int", &switch_cooldown_fx, 0, 0);
 	clientfield::register("scriptmover", "teleporter_fx", 21000, 1, "int", &zm_tomb_teleporter::teleporter_fx_play, 0, 0);
 	n_bits = GetMinBitCountForNum(6);
-	clientfield::register("toplayer", "player_rumble_and_shake", 21000, n_bits, "int", &function_f118a0e7, 0, 0);
+	clientfield::register("toplayer", "player_rumble_and_shake", 21000, n_bits, "int", &player_rumble_and_shake, 0, 0);
 	clientfield::register("scriptmover", "stone_frozen", 21000, 1, "int", &stone_frozen_shader, 0, 0);
 	n_bits = GetMinBitCountForNum(5);
 	clientfield::register("world", "rain_level", 21000, n_bits, "int", &set_level_rain, 0, 0);
@@ -115,17 +115,17 @@ function main()
 	n_bits = GetMinBitCountForNum(4);
 	clientfield::register("actor", "zombie_soul", 21000, n_bits, "int", &zombie_soul_fx, 0, 0);
 	clientfield::register("zbarrier", "magicbox_runes", 21000, 1, "int", &magicbox_shader_cb, 0, 0);
-	clientfield::register("actor", "foot_print_box_fx", 21000, 1, "int", &function_d89b75a4, 0, 0);
-	clientfield::register("scriptmover", "foot_print_box_glow", 21000, 1, "int", &function_d4976b7d, 0, 0);
+	clientfield::register("actor", "foot_print_box_fx", 21000, 1, "int", &foot_print_box_fx, 0, 0);
+	clientfield::register("scriptmover", "foot_print_box_glow", 21000, 1, "int", &foot_print_box_glow, 0, 0);
 	clientfield::register("world", "crypt_open_exploder", 21000, 1, "int", &crypt_open, 0, 0);
 	clientfield::register("world", "lantern_fx", 21000, 1, "int", &toggle_lantern_fx, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.widget_shield_parts", 21000, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.player_crafted_shield", 21000, 1, "int", undefined, 0, 0);
-	clientfield::register("toplayer", "sndMudSlow", 21000, 1, "int", &zm_tomb_amb::function_8189f66f, 0, 0);
+	clientfield::register("toplayer", "sndMudSlow", 21000, 1, "int", &zm_tomb_amb::sndmudslow, 0, 0);
 	clientfield::register("world", "mus_zmb_egg_snapshot_loop", 21000, 1, "int", &zm_tomb_amb::audio_snapshot_clientfield_callback, 1, 0);
 	clientfield::register("toplayer", "sndMaelstrom", 21000, 1, "int", &zm_tomb_amb::sndmaelstrom, 0, 0);
-	clientfield::register("actor", "crusader_emissive_fx", 21000, 1, "int", &function_6b9d2513, 0, 0);
-	clientfield::register("actor", "zombie_instant_explode", 21000, 1, "int", &function_b3ff5e6d, 0, 1);
+	clientfield::register("actor", "crusader_emissive_fx", 21000, 1, "int", &crusader_emissive_fx, 0, 0);
+	clientfield::register("actor", "zombie_instant_explode", 21000, 1, "int", &zombie_instant_explode_cb, 0, 1);
 	level.default_start_location = "tomb";
 	level.default_game_mode = "zclassic";
 	level._no_water_risers = 1;
@@ -876,7 +876,7 @@ function loop_cooldown_fx(localClientNum)
 }
 
 /*
-	Name: function_1a4fa7a
+	Name: teleporter_fx
 	Namespace: zm_tomb
 	Checksum: 0x1DA026FD
 	Offset: 0x50D8
@@ -884,7 +884,7 @@ function loop_cooldown_fx(localClientNum)
 	Parameters: 2
 	Flags: None
 */
-function function_1a4fa7a(localClientNum, enum)
+function teleporter_fx(localClientNum, enum)
 {
 	str_fx = "teleport_air";
 	switch(enum)
@@ -916,7 +916,7 @@ function function_1a4fa7a(localClientNum, enum)
 }
 
 /*
-	Name: function_ea1ce3fa
+	Name: glow_biplane_trail_fx
 	Namespace: zm_tomb
 	Checksum: 0x829B6C6B
 	Offset: 0x51D8
@@ -924,7 +924,7 @@ function function_1a4fa7a(localClientNum, enum)
 	Parameters: 7
 	Flags: None
 */
-function function_ea1ce3fa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function glow_biplane_trail_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
@@ -946,7 +946,7 @@ function crystal_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, field
 	if(newVal >= 5)
 	{
 		element_enum = newVal - 4;
-		function_1a4fa7a(localClientNum, element_enum);
+		teleporter_fx(localClientNum, element_enum);
 		return;
 	}
 	if(newVal == 1)
@@ -1074,7 +1074,7 @@ function sky_pillar_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fi
 }
 
 /*
-	Name: function_f118a0e7
+	Name: player_rumble_and_shake
 	Namespace: zm_tomb
 	Checksum: 0x7230F1B6
 	Offset: 0x5980
@@ -1082,7 +1082,7 @@ function sky_pillar_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fi
 	Parameters: 7
 	Flags: None
 */
-function function_f118a0e7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function player_rumble_and_shake(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("disconnect");
 	if(newVal == 4)
@@ -1290,7 +1290,7 @@ function set_player_snow(localClientNum)
 	}
 	else
 	{
-		self thread function_50664fc(level.weather_snow, localClientNum);
+		self thread _snow_thread(level.weather_snow, localClientNum);
 		level.sndweather.issnow = 1;
 	}
 	level thread sndweatherupdate(self);
@@ -1323,7 +1323,7 @@ function set_player_rain(localClientNum)
 	}
 	else if(isdefined(self.b_lightning) && !self.b_lightning)
 	{
-		self thread function_2a8d9095(localClientNum);
+		self thread _lightning_thread(localClientNum);
 	}
 	self thread _rain_thread(level.weather_rain, localClientNum);
 	level.sndweather.israin = 1;
@@ -1511,7 +1511,7 @@ function _rain_thread(n_level, localClientNum)
 }
 
 /*
-	Name: function_50664fc
+	Name: _snow_thread
 	Namespace: zm_tomb
 	Checksum: 0xF757B3B4
 	Offset: 0x6940
@@ -1519,7 +1519,7 @@ function _rain_thread(n_level, localClientNum)
 	Parameters: 2
 	Flags: None
 */
-function function_50664fc(n_level, localClientNum)
+function _snow_thread(n_level, localClientNum)
 {
 	level notify("_snow_thread" + localClientNum);
 	level notify("_snow_begin" + localClientNum);
@@ -1546,7 +1546,7 @@ function function_50664fc(n_level, localClientNum)
 }
 
 /*
-	Name: function_2a8d9095
+	Name: _lightning_thread
 	Namespace: zm_tomb
 	Checksum: 0x4C387AD
 	Offset: 0x6A70
@@ -1554,7 +1554,7 @@ function function_50664fc(n_level, localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_2a8d9095(localClientNum)
+function _lightning_thread(localClientNum)
 {
 	self endon("disconnect");
 	self endon("entityshutdown");
@@ -1678,7 +1678,7 @@ function lerp_dvar(str_dvar, n_val, n_lerp_time, b_saved_dvar, localClientNum)
 }
 
 /*
-	Name: function_d89b75a4
+	Name: foot_print_box_fx
 	Namespace: zm_tomb
 	Checksum: 0x3569F3E8
 	Offset: 0x7038
@@ -1686,7 +1686,7 @@ function lerp_dvar(str_dvar, n_val, n_lerp_time, b_saved_dvar, localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_d89b75a4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function foot_print_box_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	a_structs = struct::get_array("foot_box_pos", "targetname");
 	s_box = ArrayGetClosest(self.origin, a_structs);
@@ -1704,7 +1704,7 @@ function function_d89b75a4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_d4976b7d
+	Name: foot_print_box_glow
 	Namespace: zm_tomb
 	Checksum: 0xE3443A39
 	Offset: 0x7260
@@ -1712,7 +1712,7 @@ function function_d89b75a4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_d4976b7d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function foot_print_box_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self util::waittill_dobj(localClientNum);
 	if(newVal == 1)
@@ -1886,7 +1886,7 @@ function reset_timer()
 }
 
 /*
-	Name: function_6b9d2513
+	Name: crusader_emissive_fx
 	Namespace: zm_tomb
 	Checksum: 0x2DBD555D
 	Offset: 0x7798
@@ -1894,7 +1894,7 @@ function reset_timer()
 	Parameters: 7
 	Flags: None
 */
-function function_6b9d2513(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function crusader_emissive_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -1907,7 +1907,7 @@ function function_6b9d2513(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b3ff5e6d
+	Name: zombie_instant_explode_cb
 	Namespace: zm_tomb
 	Checksum: 0x20D5F734
 	Offset: 0x7848
@@ -1915,7 +1915,7 @@ function function_6b9d2513(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b3ff5e6d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zombie_instant_explode_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{

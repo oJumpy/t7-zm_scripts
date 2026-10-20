@@ -18,12 +18,12 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_42aab40d;
+#namespace dragon_strike;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_42aab40d
-	Checksum: 0xE5E01DC9
+	Namespace: dragon_strike
+	Checksum: 0xAA9D02DE
 	Offset: 0x648
 	Size: 0x3B
 	Parameters: 0
@@ -36,8 +36,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_42aab40d
-	Checksum: 0x16F28517
+	Namespace: dragon_strike
+	Checksum: 0x79A02A78
 	Offset: 0x690
 	Size: 0x2EB
 	Parameters: 0
@@ -66,8 +66,8 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_42aab40d
-	Checksum: 0x522F0CC
+	Namespace: dragon_strike
+	Checksum: 0x97A6BF5C
 	Offset: 0x988
 	Size: 0xC3
 	Parameters: 0
@@ -90,8 +90,8 @@ function __main__()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_42aab40d
-	Checksum: 0xADBA46C9
+	Namespace: dragon_strike
+	Checksum: 0xC8B8C2C1
 	Offset: 0xA58
 	Size: 0x4B
 	Parameters: 0
@@ -106,8 +106,8 @@ function on_player_connect()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_42aab40d
-	Checksum: 0xF7EF1555
+	Namespace: dragon_strike
+	Checksum: 0x77392B1F
 	Offset: 0xAB0
 	Size: 0xB3
 	Parameters: 0
@@ -129,8 +129,8 @@ function on_player_spawned()
 
 /*
 	Name: function_1939853d
-	Namespace: namespace_42aab40d
-	Checksum: 0x5816D350
+	Namespace: dragon_strike
+	Checksum: 0x689DDB37
 	Offset: 0xB70
 	Size: 0x57
 	Parameters: 0
@@ -151,8 +151,8 @@ function function_1939853d()
 
 /*
 	Name: add_ammo
-	Namespace: namespace_42aab40d
-	Checksum: 0x3028027E
+	Namespace: dragon_strike
+	Checksum: 0xA588A6AF
 	Offset: 0xBD0
 	Size: 0xFB
 	Parameters: 0
@@ -185,8 +185,8 @@ function add_ammo()
 
 /*
 	Name: function_ff07e778
-	Namespace: namespace_42aab40d
-	Checksum: 0xEB7630FF
+	Namespace: dragon_strike
+	Checksum: 0x93DE40F1
 	Offset: 0xCD8
 	Size: 0x1DF
 	Parameters: 0
@@ -219,8 +219,8 @@ function function_ff07e778()
 
 /*
 	Name: on_player_disconnect
-	Namespace: namespace_42aab40d
-	Checksum: 0x8DABD792
+	Namespace: dragon_strike
+	Checksum: 0xD8D3C78C
 	Offset: 0xEC0
 	Size: 0x93
 	Parameters: 0
@@ -240,8 +240,8 @@ function on_player_disconnect()
 
 /*
 	Name: function_43b5419a
-	Namespace: namespace_42aab40d
-	Checksum: 0x85652A4
+	Namespace: dragon_strike
+	Checksum: 0x228F1A6C
 	Offset: 0xF60
 	Size: 0xD5
 	Parameters: 11
@@ -261,8 +261,8 @@ function function_43b5419a(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 
 /*
 	Name: function_2d8749cd
-	Namespace: namespace_42aab40d
-	Checksum: 0xEE52A88D
+	Namespace: dragon_strike
+	Checksum: 0x908059B5
 	Offset: 0x1040
 	Size: 0x73
 	Parameters: 0
@@ -284,8 +284,8 @@ function function_2d8749cd()
 
 /*
 	Name: function_d5acc054
-	Namespace: namespace_42aab40d
-	Checksum: 0x3E536AF9
+	Namespace: dragon_strike
+	Checksum: 0x22FBBAC7
 	Offset: 0x10C0
 	Size: 0x10F
 	Parameters: 0
@@ -308,7 +308,7 @@ function function_d5acc054()
 			}
 			else
 			{
-				self thread function_8ad253d8(previous_weapon);
+				self thread dragon_strike_watcher(previous_weapon);
 			}
 		}
 		else
@@ -321,8 +321,8 @@ function function_d5acc054()
 
 /*
 	Name: function_3e8c94e3
-	Namespace: namespace_42aab40d
-	Checksum: 0xF973ABE5
+	Namespace: dragon_strike
+	Checksum: 0x52F2EB5C
 	Offset: 0x11D8
 	Size: 0x8F
 	Parameters: 0
@@ -343,8 +343,8 @@ function function_3e8c94e3()
 
 /*
 	Name: function_9e0c324b
-	Namespace: namespace_42aab40d
-	Checksum: 0xD3FB12D7
+	Namespace: dragon_strike
+	Checksum: 0x747969FA
 	Offset: 0x1270
 	Size: 0x57
 	Parameters: 1
@@ -360,15 +360,15 @@ function function_9e0c324b(w_check)
 }
 
 /*
-	Name: function_8ad253d8
-	Namespace: namespace_42aab40d
-	Checksum: 0x8D7DCF80
+	Name: dragon_strike_watcher
+	Namespace: dragon_strike
+	Checksum: 0x8643BB48
 	Offset: 0x12D0
 	Size: 0x21B
 	Parameters: 1
 	Flags: None
 */
-function function_8ad253d8(previous_weapon)
+function dragon_strike_watcher(previous_weapon)
 {
 	self endon("hash_85e0a572");
 	self endon("disconnect");
@@ -394,13 +394,13 @@ function function_8ad253d8(previous_weapon)
 	}
 	self playsoundtoplayer("fly_dragon_strike_ui_error", self);
 	self thread zm_equipment::show_hint_text(&"ZM_STALINGRAD_DRAGON_STRIKE_INVALID");
-	self thread function_8ad253d8(previous_weapon);
+	self thread dragon_strike_watcher(previous_weapon);
 }
 
 /*
 	Name: function_f80cd2c9
-	Namespace: namespace_42aab40d
-	Checksum: 0x1E5DB088
+	Namespace: dragon_strike
+	Checksum: 0x8ACC8F4A
 	Offset: 0x14F8
 	Size: 0x17
 	Parameters: 0
@@ -417,8 +417,8 @@ function function_f80cd2c9()
 
 /*
 	Name: function_2864e2c1
-	Namespace: namespace_42aab40d
-	Checksum: 0xEB39B139
+	Namespace: dragon_strike
+	Checksum: 0x5D7C7884
 	Offset: 0x1518
 	Size: 0x8B
 	Parameters: 0
@@ -439,8 +439,8 @@ function function_2864e2c1()
 
 /*
 	Name: function_42ab5fbb
-	Namespace: namespace_42aab40d
-	Checksum: 0xDF0FDEE5
+	Namespace: dragon_strike
+	Checksum: 0xDAFD301F
 	Offset: 0x15B0
 	Size: 0x4B
 	Parameters: 1
@@ -454,8 +454,8 @@ function function_42ab5fbb(var_5d020ece)
 
 /*
 	Name: function_a3b69ec0
-	Namespace: namespace_42aab40d
-	Checksum: 0x17AA93EE
+	Namespace: dragon_strike
+	Checksum: 0x210E2ADF
 	Offset: 0x1608
 	Size: 0x1CB
 	Parameters: 1
@@ -490,8 +490,8 @@ function function_a3b69ec0(var_5d020ece)
 
 /*
 	Name: function_9af893e8
-	Namespace: namespace_42aab40d
-	Checksum: 0x8C5609C3
+	Namespace: dragon_strike
+	Checksum: 0x9A90BC54
 	Offset: 0x17E0
 	Size: 0x241
 	Parameters: 5
@@ -530,8 +530,8 @@ function function_9af893e8(e_player, var_5d020ece, b_upgraded, var_35ab0c48, w_f
 
 /*
 	Name: function_a6d19957
-	Namespace: namespace_42aab40d
-	Checksum: 0xC2B88D80
+	Namespace: dragon_strike
+	Checksum: 0xA1F298EA
 	Offset: 0x1A30
 	Size: 0x179
 	Parameters: 4
@@ -564,8 +564,8 @@ function function_a6d19957(b_upgraded, var_aa911866, v_hitloc, n_range)
 
 /*
 	Name: function_adac83c4
-	Namespace: namespace_42aab40d
-	Checksum: 0x4C8A78AB
+	Namespace: dragon_strike
+	Checksum: 0x76B7F19D
 	Offset: 0x1BB8
 	Size: 0x6D
 	Parameters: 0
@@ -581,8 +581,8 @@ function function_adac83c4()
 
 /*
 	Name: function_6efadb82
-	Namespace: namespace_42aab40d
-	Checksum: 0x8DF7853A
+	Namespace: dragon_strike
+	Checksum: 0x28D76C74
 	Offset: 0x1C30
 	Size: 0x1AB
 	Parameters: 2
@@ -622,8 +622,8 @@ function function_6efadb82(var_825b87b9, w_dragon_strike)
 
 /*
 	Name: function_22664e38
-	Namespace: namespace_42aab40d
-	Checksum: 0x59986E5C
+	Namespace: dragon_strike
+	Checksum: 0x7A5604F8
 	Offset: 0x1DE8
 	Size: 0x8B
 	Parameters: 1
@@ -642,8 +642,8 @@ function function_22664e38(e_attacker)
 
 /*
 	Name: function_604af93b
-	Namespace: namespace_42aab40d
-	Checksum: 0xCACDF1F0
+	Namespace: dragon_strike
+	Checksum: 0x636146C0
 	Offset: 0x1E80
 	Size: 0x33
 	Parameters: 0
@@ -658,8 +658,8 @@ function function_604af93b()
 
 /*
 	Name: function_7fcb14a8
-	Namespace: namespace_42aab40d
-	Checksum: 0x118CF8F0
+	Namespace: dragon_strike
+	Checksum: 0x46958819
 	Offset: 0x1EC0
 	Size: 0x353
 	Parameters: 0
@@ -667,8 +667,8 @@ function function_604af93b()
 */
 function function_7fcb14a8()
 {
-	self notify("hash_26b100ad");
-	self endon("hash_26b100ad");
+	self notify("dragon_strike_reset");
+	self endon("dragon_strike_reset");
 	self endon("disconnect");
 	var_b912cdaf = VectorScale((0, 0, 1), 8);
 	if(!isdefined(self.mdl_target))
@@ -719,8 +719,8 @@ function function_7fcb14a8()
 
 /*
 	Name: function_c7832a90
-	Namespace: namespace_42aab40d
-	Checksum: 0xA1ADCF0E
+	Namespace: dragon_strike
+	Checksum: 0x7D7DC027
 	Offset: 0x2220
 	Size: 0x2D9
 	Parameters: 1
@@ -759,8 +759,8 @@ function function_c7832a90(v_loc)
 
 /*
 	Name: function_5a9be7d8
-	Namespace: namespace_42aab40d
-	Checksum: 0x15FFBBB6
+	Namespace: dragon_strike
+	Checksum: 0x510127D9
 	Offset: 0x2508
 	Size: 0x5D
 	Parameters: 1
@@ -775,8 +775,8 @@ function function_5a9be7d8(var_854898eb)
 
 /*
 	Name: function_6c8dfca2
-	Namespace: namespace_42aab40d
-	Checksum: 0x92A69549
+	Namespace: dragon_strike
+	Checksum: 0x6A6625BF
 	Offset: 0x2570
 	Size: 0xC3
 	Parameters: 1

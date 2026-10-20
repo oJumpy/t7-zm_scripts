@@ -6,11 +6,11 @@
 #using scripts\shared\weapons\_bouncingbetty;
 #using scripts\zm\_util;
 
-#namespace namespace_7b165194;
+#namespace controllable_spider;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x20685F1F
 	Offset: 0x1C0
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x7D540EFD
 	Offset: 0x200
 	Size: 0x9B
@@ -33,20 +33,20 @@ function autoexec __init__sytem__()
 */
 function __init__(localClientNum)
 {
-	clientfield::register("scriptmover", "player_cocooned_fx", 9000, 1, "int", &function_a26b06f6, 0, 0);
-	clientfield::register("allplayers", "player_cocooned_fx", 9000, 1, "int", &function_a26b06f6, 0, 0);
+	clientfield::register("scriptmover", "player_cocooned_fx", 9000, 1, "int", &player_cocooned_fx, 0, 0);
+	clientfield::register("allplayers", "player_cocooned_fx", 9000, 1, "int", &player_cocooned_fx, 0, 0);
 }
 
 /*
-	Name: function_a26b06f6
-	Namespace: namespace_7b165194
+	Name: player_cocooned_fx
+	Namespace: controllable_spider
 	Checksum: 0xFCB6C022
 	Offset: 0x2A8
 	Size: 0xA1
 	Parameters: 7
 	Flags: None
 */
-function function_a26b06f6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_cocooned_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

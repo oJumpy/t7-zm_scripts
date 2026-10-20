@@ -6,12 +6,12 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_57695b4d;
+#namespace zm_elemental_zombie;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_57695b4d
-	Checksum: 0xE748A0EA
+	Namespace: zm_elemental_zombie
+	Checksum: 0x9EE85906
 	Offset: 0x460
 	Size: 0x33
 	Parameters: 0
@@ -24,8 +24,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_57695b4d
-	Checksum: 0xCD094949
+	Namespace: zm_elemental_zombie
+	Checksum: 0xF650F3DD
 	Offset: 0x4A0
 	Size: 0x23
 	Parameters: 0
@@ -39,8 +39,8 @@ function __init__()
 
 /*
 	Name: init_fx
-	Namespace: namespace_57695b4d
-	Checksum: 0x2522D127
+	Namespace: zm_elemental_zombie
+	Checksum: 0xCC4092A1
 	Offset: 0x4D0
 	Size: 0xA9
 	Parameters: 0
@@ -58,8 +58,8 @@ function init_fx()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_57695b4d
-	Checksum: 0x95E15676
+	Namespace: zm_elemental_zombie
+	Checksum: 0xF020CA59
 	Offset: 0x588
 	Size: 0x1B3
 	Parameters: 0
@@ -67,24 +67,24 @@ function init_fx()
 */
 function register_clientfields()
 {
-	clientfield::register("actor", "sparky_zombie_spark_fx", 1, 1, "int", &function_de563d9b, 0, 0);
-	clientfield::register("actor", "sparky_zombie_death_fx", 1, 1, "int", &function_d0886efe, 0, 0);
-	clientfield::register("actor", "napalm_zombie_death_fx", 1, 1, "int", &function_56ad3a27, 0, 0);
+	clientfield::register("actor", "sparky_zombie_spark_fx", 1, 1, "int", &sparky_zombie_spark_fx_cb, 0, 0);
+	clientfield::register("actor", "sparky_zombie_death_fx", 1, 1, "int", &sparky_zombie_death_fx_cb, 0, 0);
+	clientfield::register("actor", "napalm_zombie_death_fx", 1, 1, "int", &napalm_zombie_death_fx_cb, 0, 0);
 	clientfield::register("actor", "sparky_damaged_fx", 1, 1, "counter", &function_86aaed61, 0, 0);
 	clientfield::register("actor", "napalm_damaged_fx", 1, 1, "counter", &function_16467cb6, 0, 0);
 	clientfield::register("actor", "napalm_sfx", 11000, 1, "int", &function_b542950d, 0, 0);
 }
 
 /*
-	Name: function_56ad3a27
-	Namespace: namespace_57695b4d
-	Checksum: 0x8F6A595C
+	Name: napalm_zombie_death_fx_cb
+	Namespace: zm_elemental_zombie
+	Checksum: 0x60E3AA95
 	Offset: 0x748
 	Size: 0xD3
 	Parameters: 7
 	Flags: None
 */
-function function_56ad3a27(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function napalm_zombie_death_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self util::waittill_dobj(localClientNum);
 	if(!isdefined(self))
@@ -100,8 +100,8 @@ function function_56ad3a27(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_16467cb6
-	Namespace: namespace_57695b4d
-	Checksum: 0xB92DDC64
+	Namespace: zm_elemental_zombie
+	Checksum: 0x6B19976B
 	Offset: 0x828
 	Size: 0x143
 	Parameters: 7
@@ -129,8 +129,8 @@ function function_16467cb6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_b542950d
-	Namespace: namespace_57695b4d
-	Checksum: 0x8E2F7B55
+	Namespace: zm_elemental_zombie
+	Checksum: 0x39FD6108
 	Offset: 0x978
 	Size: 0x83
 	Parameters: 7
@@ -140,23 +140,23 @@ function function_b542950d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal == 1)
 	{
-		if(!isdefined(self.var_1f5b576b))
+		if(!isdefined(self.napalm_sfx_loop))
 		{
-			self.var_1f5b576b = self PlayLoopSound("zmb_elemental_zombie_loop_fire", 0.2);
+			self.napalm_sfx_loop = self PlayLoopSound("zmb_elemental_zombie_loop_fire", 0.2);
 		}
 	}
 }
 
 /*
-	Name: function_de563d9b
-	Namespace: namespace_57695b4d
-	Checksum: 0xF792C215
+	Name: sparky_zombie_spark_fx_cb
+	Namespace: zm_elemental_zombie
+	Checksum: 0x97C34110
 	Offset: 0xA08
 	Size: 0x1BB
 	Parameters: 7
 	Flags: None
 */
-function function_de563d9b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sparky_zombie_spark_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(newVal))
 	{
@@ -191,15 +191,15 @@ function function_de563d9b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_d0886efe
-	Namespace: namespace_57695b4d
-	Checksum: 0xAD4BF35E
+	Name: sparky_zombie_death_fx_cb
+	Namespace: zm_elemental_zombie
+	Checksum: 0xDF73AD0D
 	Offset: 0xBD0
 	Size: 0xB3
 	Parameters: 7
 	Flags: None
 */
-function function_d0886efe(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sparky_zombie_death_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(oldVal !== newVal && newVal === 1)
 	{
@@ -210,8 +210,8 @@ function function_d0886efe(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_86aaed61
-	Namespace: namespace_57695b4d
-	Checksum: 0xD5307C91
+	Namespace: zm_elemental_zombie
+	Checksum: 0xDF8AA709
 	Offset: 0xC90
 	Size: 0x12B
 	Parameters: 7

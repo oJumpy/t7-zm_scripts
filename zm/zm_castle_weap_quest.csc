@@ -10,11 +10,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_filter;
 
-#namespace namespace_2a78f3c;
+#namespace zm_castle_weap_quest;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x62117A76
 	Offset: 0x878
 	Size: 0x33
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xA87E869F
 	Offset: 0x8B8
 	Size: 0x13B
@@ -48,7 +48,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xA1BD4BC4
 	Offset: 0xA00
 	Size: 0x6E3
@@ -121,7 +121,7 @@ function main()
 
 /*
 	Name: soul_catcher_callback
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x9156A2AB
 	Offset: 0x10F0
 	Size: 0x5E3
@@ -212,7 +212,7 @@ function soul_catcher_callback(localClientNum, oldVal, newVal, bNewEnt, bInitial
 
 /*
 	Name: function_2731927f
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xF06BFB33
 	Offset: 0x16E0
 	Size: 0x8B
@@ -230,7 +230,7 @@ function function_2731927f(localClientNum)
 
 /*
 	Name: function_c54660fa
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x65EFC1B9
 	Offset: 0x1778
 	Size: 0x207
@@ -271,7 +271,7 @@ function function_c54660fa(localClientNum)
 
 /*
 	Name: function_2ea674b8
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x46AEC7D
 	Offset: 0x1988
 	Size: 0x15F
@@ -303,7 +303,7 @@ function function_2ea674b8(localClientNum)
 
 /*
 	Name: function_aa74062f
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x95F0896E
 	Offset: 0x1AF0
 	Size: 0x12F
@@ -334,7 +334,7 @@ function function_aa74062f(localClientNum)
 
 /*
 	Name: function_a5ee5367
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x113AB1A7
 	Offset: 0x1C28
 	Size: 0x53
@@ -349,7 +349,7 @@ function function_a5ee5367(localClientNum)
 
 /*
 	Name: dragonhead_idle
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xFD1E4ED3
 	Offset: 0x1C88
 	Size: 0xDF
@@ -377,7 +377,7 @@ function dragonhead_idle(localClientNum)
 
 /*
 	Name: pose_dead_body
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xB10C46AC
 	Offset: 0x1D70
 	Size: 0x29D
@@ -425,7 +425,7 @@ function pose_dead_body(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, f
 
 /*
 	Name: function_4bdc99a
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xAADB632A
 	Offset: 0x2018
 	Size: 0x1BB
@@ -456,7 +456,7 @@ function function_4bdc99a(m_body, m_dragon, localClientNum, direction)
 
 /*
 	Name: function_8cce2397
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x63737E2D
 	Offset: 0x21E0
 	Size: 0x10F
@@ -484,7 +484,7 @@ function function_8cce2397(a_ents)
 
 /*
 	Name: function_def5820e
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x9FFB944
 	Offset: 0x22F8
 	Size: 0x10F
@@ -512,7 +512,7 @@ function function_def5820e(a_ents)
 
 /*
 	Name: function_939ae9de
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xD7F1E87B
 	Offset: 0x2410
 	Size: 0x385
@@ -564,7 +564,7 @@ function function_939ae9de(m_dragon, localClientNum, direction, var_3c6f5c75)
 
 /*
 	Name: function_4ae89880
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x9F166A76
 	Offset: 0x27A0
 	Size: 0x223
@@ -602,7 +602,7 @@ function function_4ae89880(body, localClientNum, direction)
 
 /*
 	Name: play_blood_fx_on_bite
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xFEC7B7A0
 	Offset: 0x29D0
 	Size: 0x53
@@ -625,7 +625,7 @@ function play_blood_fx_on_bite(localClientNum)
 
 /*
 	Name: function_aba7532b
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0xB361205C
 	Offset: 0x2A30
 	Size: 0x18B
@@ -661,7 +661,7 @@ function function_aba7532b(localClientNum, body, mini)
 
 /*
 	Name: function_c9ca8c4b
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x1FAB82B
 	Offset: 0x2BC8
 	Size: 0x33
@@ -675,7 +675,7 @@ function function_c9ca8c4b(localClientNum)
 
 /*
 	Name: function_63f39fc0
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x3CD014E3
 	Offset: 0x2C08
 	Size: 0x127
@@ -700,7 +700,7 @@ function function_63f39fc0(localClientNum)
 
 /*
 	Name: assemble_fake_body_head_arrays
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x8EC37435
 	Offset: 0x2D38
 	Size: 0x61
@@ -717,7 +717,7 @@ function assemble_fake_body_head_arrays()
 
 /*
 	Name: function_8e438650
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x8943AC47
 	Offset: 0x2DA8
 	Size: 0x33
@@ -732,7 +732,7 @@ function function_8e438650()
 
 /*
 	Name: function_4e75b7c1
-	Namespace: namespace_2a78f3c
+	Namespace: zm_castle_weap_quest
 	Checksum: 0x784F4360
 	Offset: 0x2DE8
 	Size: 0xEB

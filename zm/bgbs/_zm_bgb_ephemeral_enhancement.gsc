@@ -10,11 +10,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_6d4de49;
+#namespace zm_bgb_ephemeral_enhancement;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6d4de49
+	Namespace: zm_bgb_ephemeral_enhancement
 	Checksum: 0x7FE34B79
 	Offset: 0x278
 	Size: 0x33
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6d4de49
+	Namespace: zm_bgb_ephemeral_enhancement
 	Checksum: 0xFECB091C
 	Offset: 0x2B8
 	Size: 0x93
@@ -48,7 +48,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_6d4de49
+	Namespace: zm_bgb_ephemeral_enhancement
 	Checksum: 0xA6C5F10A
 	Offset: 0x358
 	Size: 0xA1
@@ -71,7 +71,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_6d4de49
+	Namespace: zm_bgb_ephemeral_enhancement
 	Checksum: 0xFE4205DF
 	Offset: 0x408
 	Size: 0x483
@@ -83,7 +83,7 @@ function activation()
 	self endon("death");
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_cf1b207b");
+	self endon("replaced_upgraded_weapon");
 	self util::waittill_any_timeout(1, "weapon_change_complete", "death", "disconnect", "bled_out", "replaced_upgraded_weapon");
 	if(self laststand::player_is_in_laststand())
 	{
@@ -150,7 +150,7 @@ function activation()
 
 /*
 	Name: watch_for_upgraded_weapon_lost
-	Namespace: namespace_6d4de49
+	Namespace: zm_bgb_ephemeral_enhancement
 	Checksum: 0x81199122
 	Offset: 0x898
 	Size: 0x87
@@ -161,14 +161,14 @@ function watch_for_upgraded_weapon_lost(w_upgraded_weapon)
 {
 	self endon("death");
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self endon("hash_5cefcc84");
 	while(1)
 	{
 		self waittill("weapon_change_complete");
 		if(!self zm_weapons::has_weapon_or_attachments(w_upgraded_weapon))
 		{
-			self notify("hash_cf1b207b");
+			self notify("replaced_upgraded_weapon");
 			self.var_fb11234e = undefined;
 			return;
 		}

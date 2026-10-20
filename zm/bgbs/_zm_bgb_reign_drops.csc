@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_7084af67;
+#namespace zm_bgb_reign_drops;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_7084af67
+	Namespace: zm_bgb_reign_drops
 	Checksum: 0xA62972E1
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_7084af67
+	Namespace: zm_bgb_reign_drops
 	Checksum: 0x1BE2EEA4
 	Offset: 0x188
 	Size: 0x3B

@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_5525011f;
+#namespace zm_bgb_stock_option;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_5525011f
+	Namespace: zm_bgb_stock_option
 	Checksum: 0x69AA66A0
 	Offset: 0x188
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_5525011f
+	Namespace: zm_bgb_stock_option
 	Checksum: 0x60E3F36F
 	Offset: 0x1C8
 	Size: 0x5B
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_5525011f
+	Namespace: zm_bgb_stock_option
 	Checksum: 0xC39DE15C
 	Offset: 0x230
 	Size: 0x23
@@ -56,7 +56,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_5525011f
+	Namespace: zm_bgb_stock_option
 	Checksum: 0x65F98B63
 	Offset: 0x260
 	Size: 0x23

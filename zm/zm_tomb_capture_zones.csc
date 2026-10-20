@@ -30,10 +30,10 @@ function init_structs()
 	clientfield::register("world", "zc_change_progress_bar_color", 21000, 1, "int", &zm_utility::setSharedInventoryUIModels, 0, 0);
 	clientfield::register("world", "zone_capture_hud_all_generators_captured", 21000, 1, "int", &pap_monolith_ring_callback, 0, 1);
 	SetupClientFieldCodeCallbacks("world", 1, "zone_capture_hud_all_generators_captured");
-	clientfield::register("world", "pap_monolith_ring_shake", 21000, 1, "counter", &function_d892a20f, 0, 0);
+	clientfield::register("world", "pap_monolith_ring_shake", 21000, 1, "counter", &pap_monolith_ring_shake, 0, 0);
 	clientfield::register("world", "zone_capture_perk_machine_smoke_fx_always_on", 21000, 1, "int", &perk_machine_smoke_fx_always_on_callback, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.capture_generator_wheel_widget", 21000, 1, "int", undefined, 0, 0);
-	clientfield::register("zbarrier", "pap_emissive_fx", 21000, 1, "int", &function_27abf8e3, 0, 0);
+	clientfield::register("zbarrier", "pap_emissive_fx", 21000, 1, "int", &pap_emissive_fx, 0, 0);
 	a_s_generator = struct::get_array("s_generator", "targetname");
 	foreach(struct in a_s_generator)
 	{
@@ -1026,7 +1026,7 @@ function pap_ring_released_anim(oldVal)
 }
 
 /*
-	Name: function_d892a20f
+	Name: pap_monolith_ring_shake
 	Namespace: zm_tomb_capture_zones
 	Checksum: 0x4A0E125A
 	Offset: 0x3790
@@ -1034,7 +1034,7 @@ function pap_ring_released_anim(oldVal)
 	Parameters: 7
 	Flags: None
 */
-function function_d892a20f(localClientNumber, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function pap_monolith_ring_shake(localClientNumber, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	m_ring = get_monolith_ring_model(localClientNumber);
 	m_ring endon("pap_ring_pulling_down");
@@ -1483,13 +1483,13 @@ function capture_zombie_torso_fx_enable(localClientNumber)
 	{
 		self.sndent = spawn(0, self.origin, "script_origin");
 		self.sndent LinkTo(self);
-		self thread function_613e39fa(self.sndent);
+		self thread snddeleteent(self.sndent);
 	}
 	self.sndent PlayLoopSound("zmb_capturezone_zombie_loop", 1);
 }
 
 /*
-	Name: function_613e39fa
+	Name: snddeleteent
 	Namespace: zm_tomb_capture_zones
 	Checksum: 0x501E2868
 	Offset: 0x4AC0
@@ -1497,7 +1497,7 @@ function capture_zombie_torso_fx_enable(localClientNumber)
 	Parameters: 1
 	Flags: None
 */
-function function_613e39fa(ent)
+function snddeleteent(ent)
 {
 	self util::waittill_any("death", "entityshutdown");
 	if(isdefined(ent))
@@ -1606,7 +1606,7 @@ function register_perk_machine_smoke_struct_with_field_name(str_field_name, str_
 }
 
 /*
-	Name: function_27abf8e3
+	Name: pap_emissive_fx
 	Namespace: zm_tomb_capture_zones
 	Checksum: 0xA2A1FC6F
 	Offset: 0x4DA8
@@ -1614,7 +1614,7 @@ function register_perk_machine_smoke_struct_with_field_name(str_field_name, str_
 	Parameters: 7
 	Flags: None
 */
-function function_27abf8e3(localClientNumber, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function pap_emissive_fx(localClientNumber, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{

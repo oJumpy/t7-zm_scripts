@@ -4,11 +4,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\vehicle_shared;
 
-#namespace namespace_f1e2170d;
+#namespace zm_siegebot_nikolai;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f1e2170d
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0xB79FB928
 	Offset: 0x498
 	Size: 0x33
@@ -22,7 +22,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_f1e2170d
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0x4A7A239D
 	Offset: 0x4D8
 	Size: 0x2FB
@@ -32,21 +32,21 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	vehicle::add_vehicletype_callback("siegebot_nikolai", &on_spawned);
-	clientfield::register("vehicle", "nikolai_destroyed_r_arm", 12000, 1, "int", &function_8ca32b42, 0, 0);
-	clientfield::register("vehicle", "nikolai_destroyed_l_arm", 12000, 1, "int", &function_4c694fb0, 0, 0);
-	clientfield::register("vehicle", "nikolai_destroyed_r_chest", 12000, 1, "int", &function_7d45e8fb, 0, 0);
-	clientfield::register("vehicle", "nikolai_destroyed_l_chest", 12000, 1, "int", &function_dc246c0d, 0, 0);
-	clientfield::register("vehicle", "nikolai_weakpoint_l_fx", 12000, 1, "int", &function_44a1e181, 0, 0);
-	clientfield::register("vehicle", "nikolai_weakpoint_r_fx", 12000, 1, "int", &function_78d9544b, 0, 0);
-	clientfield::register("vehicle", "nikolai_gatling_tell", 12000, 1, "int", &function_e504eaab, 0, 0);
-	clientfield::register("missile", "harpoon_impact", 12000, 1, "int", &function_88c952b, 0, 0);
+	clientfield::register("vehicle", "nikolai_destroyed_r_arm", 12000, 1, "int", &nikolai_destroyed_r_arm, 0, 0);
+	clientfield::register("vehicle", "nikolai_destroyed_l_arm", 12000, 1, "int", &nikolai_destroyed_l_arm, 0, 0);
+	clientfield::register("vehicle", "nikolai_destroyed_r_chest", 12000, 1, "int", &nikolai_destroyed_r_chest, 0, 0);
+	clientfield::register("vehicle", "nikolai_destroyed_l_chest", 12000, 1, "int", &nikolai_destroyed_l_chest, 0, 0);
+	clientfield::register("vehicle", "nikolai_weakpoint_l_fx", 12000, 1, "int", &nikolai_weakpoint_l_fx, 0, 0);
+	clientfield::register("vehicle", "nikolai_weakpoint_r_fx", 12000, 1, "int", &nikolai_weakpoint_r_fx, 0, 0);
+	clientfield::register("vehicle", "nikolai_gatling_tell", 12000, 1, "int", &nikolai_gatling_tell, 0, 0);
+	clientfield::register("missile", "harpoon_impact", 12000, 1, "int", &harpoon_impact, 0, 0);
 	clientfield::register("vehicle", "play_raps_trail_fx", 12000, 1, "int", &function_66f3947f, 0, 0);
-	clientfield::register("vehicle", "raps_landing", 12000, 1, "int", &function_4dc797b1, 0, 0);
+	clientfield::register("vehicle", "raps_landing", 12000, 1, "int", &raps_landing, 0, 0);
 }
 
 /*
 	Name: on_spawned
-	Namespace: namespace_f1e2170d
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0xD8240D81
 	Offset: 0x7E0
 	Size: 0x5B
@@ -62,7 +62,7 @@ function on_spawned(localClientNum)
 
 /*
 	Name: function_48c3fc7d
-	Namespace: namespace_f1e2170d
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0xEBAF355
 	Offset: 0x848
 	Size: 0x277
@@ -111,7 +111,7 @@ function function_48c3fc7d(localClientNum)
 
 /*
 	Name: function_97181777
-	Namespace: namespace_f1e2170d
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0x4ECD6910
 	Offset: 0xAC8
 	Size: 0x153
@@ -137,7 +137,7 @@ function function_97181777(Bottle)
 
 /*
 	Name: function_89d7e567
-	Namespace: namespace_f1e2170d
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0xCE04DE2E
 	Offset: 0xC28
 	Size: 0x5F
@@ -156,15 +156,15 @@ function function_89d7e567(localClientNum)
 }
 
 /*
-	Name: function_e504eaab
-	Namespace: namespace_f1e2170d
+	Name: nikolai_gatling_tell
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0xFE384A06
 	Offset: 0xC90
 	Size: 0x185
 	Parameters: 7
 	Flags: None
 */
-function function_e504eaab(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function nikolai_gatling_tell(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -185,15 +185,15 @@ function function_e504eaab(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_8ca32b42
-	Namespace: namespace_f1e2170d
+	Name: nikolai_destroyed_r_arm
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0x9ECC9C86
 	Offset: 0xE20
 	Size: 0xB3
 	Parameters: 7
 	Flags: None
 */
-function function_8ca32b42(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function nikolai_destroyed_r_arm(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -203,15 +203,15 @@ function function_8ca32b42(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4c694fb0
-	Namespace: namespace_f1e2170d
+	Name: nikolai_destroyed_l_arm
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0x6AAB2F5D
 	Offset: 0xEE0
 	Size: 0xB3
 	Parameters: 7
 	Flags: None
 */
-function function_4c694fb0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function nikolai_destroyed_l_arm(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -221,15 +221,15 @@ function function_4c694fb0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_7d45e8fb
-	Namespace: namespace_f1e2170d
+	Name: nikolai_destroyed_r_chest
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0xB5EBA05E
 	Offset: 0xFA0
 	Size: 0xB3
 	Parameters: 7
 	Flags: None
 */
-function function_7d45e8fb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function nikolai_destroyed_r_chest(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -239,15 +239,15 @@ function function_7d45e8fb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_dc246c0d
-	Namespace: namespace_f1e2170d
+	Name: nikolai_destroyed_l_chest
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0x6892A3EB
 	Offset: 0x1060
 	Size: 0xB3
 	Parameters: 7
 	Flags: None
 */
-function function_dc246c0d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function nikolai_destroyed_l_chest(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -257,15 +257,15 @@ function function_dc246c0d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_78d9544b
-	Namespace: namespace_f1e2170d
+	Name: nikolai_weakpoint_r_fx
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0x6952148
 	Offset: 0x1120
 	Size: 0xB5
 	Parameters: 7
 	Flags: None
 */
-function function_78d9544b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function nikolai_weakpoint_r_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -279,15 +279,15 @@ function function_78d9544b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_44a1e181
-	Namespace: namespace_f1e2170d
+	Name: nikolai_weakpoint_l_fx
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0x766C39B5
 	Offset: 0x11E0
 	Size: 0xB5
 	Parameters: 7
 	Flags: None
 */
-function function_44a1e181(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function nikolai_weakpoint_l_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -301,15 +301,15 @@ function function_44a1e181(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_88c952b
-	Namespace: namespace_f1e2170d
+	Name: harpoon_impact
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0x9B3E04A2
 	Offset: 0x12A0
 	Size: 0xFB
 	Parameters: 7
 	Flags: None
 */
-function function_88c952b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function harpoon_impact(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -321,7 +321,7 @@ function function_88c952b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_66f3947f
-	Namespace: namespace_f1e2170d
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0xDBA8FF97
 	Offset: 0x13A8
 	Size: 0xE3
@@ -344,15 +344,15 @@ function function_66f3947f(n_local_client, n_val_old, n_val_new, b_ent_new, b_in
 }
 
 /*
-	Name: function_4dc797b1
-	Namespace: namespace_f1e2170d
+	Name: raps_landing
+	Namespace: zm_siegebot_nikolai
 	Checksum: 0x5043A525
 	Offset: 0x1498
 	Size: 0x93
 	Parameters: 7
 	Flags: None
 */
-function function_4dc797b1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function raps_landing(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{

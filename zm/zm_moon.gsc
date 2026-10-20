@@ -138,7 +138,7 @@ function main()
 	level._blackhole_bomb_valid_area_check = &blackhole_bomb_in_invalid_area;
 	level.quantum_bomb_prevent_player_getting_teleported = &quantum_bomb_prevent_player_getting_teleported_override;
 	level.func_magicbox_update_prompt_use_override = &func_magicbox_update_prompt_use_override;
-	level.func_jump_pad_pulse_override = &zm_moon_jump_pad::function_d4f0f4fe;
+	level.func_jump_pad_pulse_override = &zm_moon_jump_pad::play_jump_pad_pulse;
 	level.dont_unset_perk_when_machine_paused = 1;
 	level._no_water_risers = 1;
 	level.use_clientside_board_fx = 1;
@@ -206,7 +206,7 @@ function main()
 	level.laststandpistol = level.default_laststandpistol;
 	level.start_weapon = level.default_laststandpistol;
 	level thread zm::last_stand_pistol_rank_init();
-	namespace_1d58b607::activate_quad_spawners();
+	zm_ai_quad::activate_quad_spawners();
 	level thread zm_moon_sq::start_moon_sidequest();
 	level thread function_54bf648f();
 	level.zm_bgb_anywhere_but_here_validation_override = &anywhere_but_here_validation_override;
@@ -262,7 +262,7 @@ function main()
 	level thread spare_change();
 	SetDvar("dlc5_get_client_weapon_from_entitystate", 1);
 	SetDvar("hkai_pathfindIterationLimit", 900);
-	scene::add_scene_func("cin_zmhd_sizzle_moon_cam", &function_71153721, "play");
+	scene::add_scene_func("cin_zmhd_sizzle_moon_cam", &cin_zmhd_sizzle_moon_cam, "play");
 	level thread zm_moon_ffotd::main_end();
 }
 
@@ -302,7 +302,7 @@ function set_astro_name()
 }
 
 /*
-	Name: function_71153721
+	Name: cin_zmhd_sizzle_moon_cam
 	Namespace: zm_moon
 	Checksum: 0xDF4A79C1
 	Offset: 0x2B20
@@ -310,7 +310,7 @@ function set_astro_name()
 	Parameters: 1
 	Flags: None
 */
-function function_71153721(a_ents)
+function cin_zmhd_sizzle_moon_cam(a_ents)
 {
 	level.disable_print3d_ent = 1;
 	a_t_airlocks = GetEntArray("airlock_bridge_zone", "script_parameters");
@@ -357,7 +357,7 @@ function function_6db62803()
 function moon_push_zombies_when_astro_explodes(position)
 {
 	level.quantum_bomb_cached_closest_zombies = undefined;
-	self thread namespace_ddd35ff::quantum_bomb_zombie_fling_result(position);
+	self thread zm_weap_quantum_bomb::quantum_bomb_zombie_fling_result(position);
 }
 
 /*
@@ -371,7 +371,7 @@ function moon_push_zombies_when_astro_explodes(position)
 */
 function anywhere_but_here_validation_override()
 {
-	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
+	if(!isdefined(self zm_bgb_anywhere_but_here::function_728dfe3()))
 	{
 		return 0;
 	}
@@ -684,7 +684,7 @@ function packapunch_hack_think()
 		level thread pack_gate_poi_activate(time);
 		wait(time);
 		level flag::set("packapunch_hacked");
-		namespace_6d813654::register_pooled_hackable_struct(level._pack_hack_struct, &zm_hackables_packapunch::packapunch_hack);
+		zm_equip_hacker::register_pooled_hackable_struct(level._pack_hack_struct, &zm_hackables_packapunch::packapunch_hack);
 	}
 }
 
@@ -1834,13 +1834,13 @@ function offhand_weapon_give_override(str_weapon)
 	}
 	if(str_weapon == level.w_black_hole_bomb)
 	{
-		self namespace_d6b63386::player_give_black_hole_bomb();
+		self zm_weap_black_hole_bomb::player_give_black_hole_bomb();
 		self zm_weapons::play_weapon_vo(str_weapon);
 		return 1;
 	}
 	if(str_weapon == level.w_quantum_bomb)
 	{
-		self namespace_ddd35ff::player_give_quantum_bomb();
+		self zm_weap_quantum_bomb::player_give_quantum_bomb();
 		self zm_weapons::play_weapon_vo(str_weapon);
 		return 1;
 	}
@@ -1966,7 +1966,7 @@ function moon_devgui(cmd)
 						player notify("starting_quantum_bomb");
 					}
 				}
-				Array::thread_all(GetPlayers(), &namespace_d6b63386::player_give_black_hole_bomb);
+				Array::thread_all(GetPlayers(), &zm_weap_black_hole_bomb::player_give_black_hole_bomb);
 				break;
 			}
 			case "Dev Block strings are not supported":
@@ -1981,7 +1981,7 @@ function moon_devgui(cmd)
 						player notify("starting_black_hole_bomb");
 					}
 				}
-				Array::thread_all(GetPlayers(), &namespace_ddd35ff::player_give_quantum_bomb);
+				Array::thread_all(GetPlayers(), &zm_weap_quantum_bomb::player_give_quantum_bomb);
 				break;
 			}
 			case "Dev Block strings are not supported":
@@ -2542,7 +2542,7 @@ function blackhole_bomb_in_invalid_area(grenade, model, player)
 	invalid_area = GetEnt("bhb_invalid_area", "targetname");
 	if(model istouching(invalid_area))
 	{
-		level thread namespace_d6b63386::black_hole_bomb_stolen_by_sam(player, model);
+		level thread zm_weap_black_hole_bomb::black_hole_bomb_stolen_by_sam(player, model);
 		return 1;
 	}
 	else

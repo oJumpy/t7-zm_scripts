@@ -59,7 +59,7 @@ function main()
 }
 
 /*
-	Name: function_1a9a4375
+	Name: player_gasmask_think
 	Namespace: namespace_48e6dffb
 	Checksum: 0x5E3951E9
 	Offset: 0x980
@@ -67,14 +67,14 @@ function main()
 	Parameters: 0
 	Flags: None
 */
-function function_1a9a4375()
+function player_gasmask_think()
 {
 	self endon("disconnect");
 	self.has_gasmask = 0;
 	self.var_4d1c77e5 = 0;
 	while(1)
 	{
-		self waittill("hash_b5ecf1dd");
+		self waittill("player_has_gasmask");
 		self thread function_2cc6bcea();
 		self playsoundtoplayer("zmb_gasmask_pickup", self);
 		self thread function_8801a9c5();
@@ -89,7 +89,7 @@ function function_1a9a4375()
 			self thread function_6649823b(var_ba18d83c);
 			wait(1);
 		}
-		self notify("hash_7cbf7e55");
+		self notify("player_lost_gasmask");
 	}
 }
 

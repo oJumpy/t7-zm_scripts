@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_403823cc;
+#namespace zm_bgb_burned_out;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0x4741742B
 	Offset: 0x260
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0x867604FE
 	Offset: 0x2A0
 	Size: 0x153
@@ -49,7 +49,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0x46F389B1
 	Offset: 0x400
 	Size: 0x14F
@@ -59,7 +59,7 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	limit_count = 0;
 	self thread bgb::set_timer(2, 2);
 	for(;;)
@@ -84,7 +84,7 @@ function event()
 
 /*
 	Name: result
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0xD3104A3F
 	Offset: 0x558
 	Size: 0x325

@@ -21,11 +21,11 @@
 #using scripts\zm\_zm_weap_elemental_bow;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_efd1ef23;
+#namespace _zm_weap_elemental_bow_demongate;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x4F5F348B
 	Offset: 0x5A0
 	Size: 0x3B
@@ -39,7 +39,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x4C9C1D0A
 	Offset: 0x5E8
 	Size: 0x21B
@@ -64,7 +64,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xC5337F97
 	Offset: 0x810
 	Size: 0x23
@@ -78,7 +78,7 @@ function __main__()
 
 /*
 	Name: function_71c07c9d
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x215A5E0C
 	Offset: 0x840
 	Size: 0x7B
@@ -94,7 +94,7 @@ function function_71c07c9d()
 
 /*
 	Name: function_7e0efd7
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x265B0D8
 	Offset: 0x8C8
 	Size: 0xBB
@@ -116,7 +116,7 @@ function function_7e0efd7(weapon, position, radius, attacker, normal)
 
 /*
 	Name: function_95ad1040
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x1328B127
 	Offset: 0x990
 	Size: 0x16B
@@ -149,7 +149,7 @@ function function_95ad1040(var_be00572f, var_c211b5bb)
 
 /*
 	Name: function_19575106
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x75A0AA85
 	Offset: 0xB08
 	Size: 0x3C3
@@ -216,7 +216,7 @@ function function_19575106(weapon, position, attacker, normal)
 
 /*
 	Name: function_292e5297
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x1EADFA4C
 	Offset: 0xED8
 	Size: 0x10F
@@ -244,7 +244,7 @@ function function_292e5297()
 
 /*
 	Name: function_3f55c7ab
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xB6E29C02
 	Offset: 0xFF0
 	Size: 0xE3
@@ -267,7 +267,7 @@ function function_3f55c7ab(var_e1784c2b)
 
 /*
 	Name: function_ee626351
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x1F897BFF
 	Offset: 0x10E0
 	Size: 0x93
@@ -284,7 +284,7 @@ function function_ee626351(position, attacker)
 
 /*
 	Name: function_a9eddc64
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xBEDA3C73
 	Offset: 0x1180
 	Size: 0x2E5
@@ -343,7 +343,7 @@ function function_a9eddc64(position, v_angles, n_count)
 
 /*
 	Name: function_308e6c6f
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x76ED9161
 	Offset: 0x1470
 	Size: 0x193
@@ -379,7 +379,7 @@ function function_308e6c6f()
 
 /*
 	Name: function_1d3c583d
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x2752D0B1
 	Offset: 0x1610
 	Size: 0xD3
@@ -388,7 +388,7 @@ function function_308e6c6f()
 */
 function function_1d3c583d()
 {
-	self endon("hash_72391651");
+	self endon("demongate_chomper_despawning");
 	self.n_timer = 0;
 	while(self.n_timer < 3)
 	{
@@ -407,7 +407,7 @@ function function_1d3c583d()
 
 /*
 	Name: function_a3e439a5
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x6CDC63A6
 	Offset: 0x16F0
 	Size: 0x17B
@@ -429,7 +429,7 @@ function function_a3e439a5(e_player, var_67eb721b)
 
 /*
 	Name: function_ab77890b
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xE7335538
 	Offset: 0x1878
 	Size: 0x6B
@@ -451,7 +451,7 @@ function function_ab77890b(e_player)
 
 /*
 	Name: function_9fcea3e8
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xF57A9E45
 	Offset: 0x18F0
 	Size: 0x4D3
@@ -460,7 +460,7 @@ function function_ab77890b(e_player)
 */
 function function_9fcea3e8(e_player)
 {
-	self endon("hash_72391651");
+	self endon("demongate_chomper_despawning");
 	self endon("death");
 	if(!isdefined(self))
 	{
@@ -540,7 +540,7 @@ function function_9fcea3e8(e_player)
 
 /*
 	Name: function_f9dd2ee2
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x26065A57
 	Offset: 0x1DD0
 	Size: 0x6F
@@ -549,8 +549,8 @@ function function_9fcea3e8(e_player)
 */
 function function_f9dd2ee2(e_player)
 {
-	self endon("hash_72391651");
-	self endon("hash_7b23407");
+	self endon("demongate_chomper_despawning");
+	self endon("demongate_chomper_found_target");
 	self endon("movedone");
 	self endon("death");
 	while(!isdefined(self.target_enemy))
@@ -562,7 +562,7 @@ function function_f9dd2ee2(e_player)
 
 /*
 	Name: function_b6e7ec91
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xE3E2A7AF
 	Offset: 0x1E48
 	Size: 0x2CB
@@ -616,7 +616,7 @@ function function_b6e7ec91(e_player)
 
 /*
 	Name: function_3a5a56c7
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x796CFB4A
 	Offset: 0x2120
 	Size: 0xAF
@@ -645,7 +645,7 @@ function function_3a5a56c7()
 
 /*
 	Name: function_3c03253d
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x1C1D96A4
 	Offset: 0x21D8
 	Size: 0x1A3
@@ -680,7 +680,7 @@ function function_3c03253d(var_aad66aa4, b_is_crawler)
 
 /*
 	Name: function_c5e710f7
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x53A05BD1
 	Offset: 0x2388
 	Size: 0x10F
@@ -711,7 +711,7 @@ function function_c5e710f7()
 
 /*
 	Name: function_43415734
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x4A8273ED
 	Offset: 0x24A0
 	Size: 0x13B
@@ -748,7 +748,7 @@ function function_43415734(var_aad66aa4, b_is_crawler)
 
 /*
 	Name: function_aa5b14d0
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xECE8C5D3
 	Offset: 0x25E8
 	Size: 0x2B
@@ -765,7 +765,7 @@ function function_aa5b14d0()
 
 /*
 	Name: function_5dee133f
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x48C081CD
 	Offset: 0x2620
 	Size: 0x393
@@ -830,7 +830,7 @@ function function_5dee133f()
 
 /*
 	Name: function_67903a83
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x5ECA0A60
 	Offset: 0x29C0
 	Size: 0x153
@@ -865,7 +865,7 @@ function function_67903a83(e_player)
 
 /*
 	Name: function_3f57ba41
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x8318453
 	Offset: 0x2B20
 	Size: 0x137
@@ -898,7 +898,7 @@ function function_3f57ba41(e_player)
 
 /*
 	Name: function_99d2c8aa
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xDF7B7992
 	Offset: 0x2C60
 	Size: 0x1B5
@@ -931,13 +931,13 @@ function function_99d2c8aa(e_player)
 		var_9183256c = var_237d778f[0];
 		var_9183256c.var_bc9b5fbd = 1;
 		self.target_enemy = var_9183256c;
-		self notify("hash_7b23407");
+		self notify("demongate_chomper_found_target");
 	}
 }
 
 /*
 	Name: function_c994aef0
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x74397D99
 	Offset: 0x2E20
 	Size: 0x109

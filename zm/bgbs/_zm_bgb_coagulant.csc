@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_4e2ad0b7;
+#namespace zm_bgb_coagulant;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4e2ad0b7
+	Namespace: zm_bgb_coagulant
 	Checksum: 0x5417E983
 	Offset: 0x140
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4e2ad0b7
+	Namespace: zm_bgb_coagulant
 	Checksum: 0x96699459
 	Offset: 0x180
 	Size: 0x3B

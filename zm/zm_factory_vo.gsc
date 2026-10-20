@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_audio;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_4787588d;
+#namespace zm_factory_vo;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0xE2924806
 	Offset: 0xA38
 	Size: 0x3B
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0x99EC1590
 	Offset: 0xA80
 	Size: 0x3
@@ -38,7 +38,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0x57BC9CAC
 	Offset: 0xA90
 	Size: 0x1B
@@ -52,7 +52,7 @@ function __main__()
 
 /*
 	Name: function_7884e6b8
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0xA35586B8
 	Offset: 0xAB8
 	Size: 0xB87
@@ -178,7 +178,7 @@ function function_7884e6b8()
 
 /*
 	Name: function_c23e3a71
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0xC8CA1A8A
 	Offset: 0x1648
 	Size: 0xE3
@@ -211,7 +211,7 @@ function function_c23e3a71(var_49fefccd, n_index, b_wait_if_busy, var_7e649f23, 
 
 /*
 	Name: function_7aa5324a
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0xA73FC471
 	Offset: 0x1738
 	Size: 0x10B
@@ -250,7 +250,7 @@ function function_7aa5324a(a_str_vo, b_wait_if_busy, n_priority, var_d1295208)
 
 /*
 	Name: function_218256bd
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0x69594EEC
 	Offset: 0x1850
 	Size: 0x169
@@ -281,7 +281,7 @@ function function_218256bd(b_dont_speak)
 
 /*
 	Name: function_897246e4
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0x23700ED8
 	Offset: 0x19C8
 	Size: 0x17B
@@ -327,7 +327,7 @@ function function_897246e4(str_vo_alias, n_wait, b_wait_if_busy, n_priority, var
 
 /*
 	Name: vo_say
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0x2830973F
 	Offset: 0x1B50
 	Size: 0x30B
@@ -410,7 +410,7 @@ function vo_say(str_vo_alias, n_delay, b_wait_if_busy, n_priority, var_d1295208)
 
 /*
 	Name: vo_clear
-	Namespace: namespace_4787588d
+	Namespace: zm_factory_vo
 	Checksum: 0x86C0863E
 	Offset: 0x1E68
 	Size: 0xF3

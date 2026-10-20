@@ -20,14 +20,14 @@ function init()
 {
 	var_8b462b02 = GetMinBitCountForNum(2);
 	var_fbab08c0 = GetMinBitCountForNum(3);
-	clientfield::register("scriptmover", "spider_queen_mouth_weakspot", 9000, var_8b462b02, "int", &function_4bd58cb8, 0, 0);
-	clientfield::register("scriptmover", "spider_queen_bleed", 9000, 1, "counter", &function_dfc06604, 0, 0);
-	clientfield::register("scriptmover", "spider_queen_stage_bleed", 9000, var_fbab08c0, "int", &function_e658f597, 0, 0);
-	clientfield::register("scriptmover", "spider_queen_emissive_material", 9000, 1, "int", &function_5945974f, 0, 0);
+	clientfield::register("scriptmover", "spider_queen_mouth_weakspot", 9000, var_8b462b02, "int", &spider_queen_mouth_weakspot, 0, 0);
+	clientfield::register("scriptmover", "spider_queen_bleed", 9000, 1, "counter", &spider_queen_bleed, 0, 0);
+	clientfield::register("scriptmover", "spider_queen_stage_bleed", 9000, var_fbab08c0, "int", &spider_queen_stage_bleed, 0, 0);
+	clientfield::register("scriptmover", "spider_queen_emissive_material", 9000, 1, "int", &spider_queen_emissive_material, 0, 0);
 }
 
 /*
-	Name: function_4bd58cb8
+	Name: spider_queen_mouth_weakspot
 	Namespace: namespace_13425205
 	Checksum: 0x7974707B
 	Offset: 0x3C0
@@ -35,7 +35,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_4bd58cb8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spider_queen_mouth_weakspot(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(self.var_8dd4267f))
 	{
@@ -53,7 +53,7 @@ function function_4bd58cb8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_dfc06604
+	Name: spider_queen_bleed
 	Namespace: namespace_13425205
 	Checksum: 0xA74FC48E
 	Offset: 0x4C8
@@ -61,13 +61,13 @@ function function_4bd58cb8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_dfc06604(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spider_queen_bleed(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	PlayFXOnTag(localClientNum, level._effect["spider_queen_bleed_sm"], self, "tag_turret");
 }
 
 /*
-	Name: function_e658f597
+	Name: spider_queen_stage_bleed
 	Namespace: namespace_13425205
 	Checksum: 0xAAF8E76E
 	Offset: 0x540
@@ -75,7 +75,7 @@ function function_dfc06604(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_e658f597(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spider_queen_stage_bleed(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -98,7 +98,7 @@ function function_e658f597(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_5945974f
+	Name: spider_queen_emissive_material
 	Namespace: namespace_13425205
 	Checksum: 0x18DF7CF9
 	Offset: 0x698
@@ -106,7 +106,7 @@ function function_e658f597(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_5945974f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spider_queen_emissive_material(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

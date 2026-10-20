@@ -4,11 +4,11 @@
 #using scripts\shared\exploder_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_47b9c241;
+#namespace zm_zod_fx;
 
 /*
 	Name: main
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0x7B618D5D
 	Offset: 0x648
 	Size: 0x43
@@ -24,7 +24,7 @@ function main()
 
 /*
 	Name: precache_scripted_fx
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0xB2C8E393
 	Offset: 0x698
 	Size: 0x269
@@ -59,7 +59,7 @@ function precache_scripted_fx()
 
 /*
 	Name: precache_createfx_fx
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0x99EC1590
 	Offset: 0x910
 	Size: 0x3
@@ -72,7 +72,7 @@ function precache_createfx_fx()
 
 /*
 	Name: function_129a815f
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0x3AD0A71D
 	Offset: 0x920
 	Size: 0x23
@@ -86,7 +86,7 @@ function function_129a815f(localClientNum)
 
 /*
 	Name: function_47ecaed4
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0x4099864B
 	Offset: 0x950
 	Size: 0x1E7
@@ -127,7 +127,7 @@ function function_47ecaed4(localClientNum)
 
 /*
 	Name: function_e9849e59
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0x5CE81E5D
 	Offset: 0xB40
 	Size: 0x93
@@ -146,7 +146,7 @@ function function_e9849e59(localClientNum)
 
 /*
 	Name: function_fe8322ed
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0xF3D3B111
 	Offset: 0xBE0
 	Size: 0x93

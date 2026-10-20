@@ -8,11 +8,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_audio;
 
-#namespace namespace_1ed7595f;
+#namespace zm_prototype_barrels;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0xF15F8AC7
 	Offset: 0x308
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0x142F833E
 	Offset: 0x348
 	Size: 0x1E3
@@ -63,7 +63,7 @@ function __init__()
 
 /*
 	Name: function_66d46c7d
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0x33453107
 	Offset: 0x538
 	Size: 0x23
@@ -77,7 +77,7 @@ function function_66d46c7d()
 
 /*
 	Name: function_b6fe19c5
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0x1B19FE27
 	Offset: 0x568
 	Size: 0x23
@@ -91,7 +91,7 @@ function function_b6fe19c5()
 
 /*
 	Name: explodable_barrel_think
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0x9B41691
 	Offset: 0x598
 	Size: 0x1CF
@@ -143,7 +143,7 @@ function explodable_barrel_think()
 
 /*
 	Name: explodable_barrel_burn
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0xA49A7A4B
 	Offset: 0x770
 	Size: 0x153
@@ -180,7 +180,7 @@ function explodable_barrel_burn()
 
 /*
 	Name: explodable_barrel_explode
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0x2B6E1189
 	Offset: 0x8D0
 	Size: 0x41F
@@ -252,7 +252,7 @@ function explodable_barrel_explode()
 
 /*
 	Name: breakable_clip
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0xDB63DD25
 	Offset: 0xCF8
 	Size: 0x9B
@@ -278,7 +278,7 @@ function breakable_clip()
 
 /*
 	Name: function_28ed3370
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0xFF61EC09
 	Offset: 0xDA0
 	Size: 0xEB

@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_6d4de49;
+#namespace zm_bgb_ephemeral_enhancement;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6d4de49
+	Namespace: zm_bgb_ephemeral_enhancement
 	Checksum: 0x376D5FB0
 	Offset: 0x160
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6d4de49
+	Namespace: zm_bgb_ephemeral_enhancement
 	Checksum: 0xC1E33432
 	Offset: 0x1A0
 	Size: 0x3B

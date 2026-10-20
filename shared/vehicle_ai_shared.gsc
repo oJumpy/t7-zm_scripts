@@ -72,7 +72,7 @@ function InitThreatBias()
 		{
 			continue;
 		}
-		if(self.ignoreFireFly === 1 && ai.var_fb7ac308 === 1)
+		if(self.ignoreFireFly === 1 && ai.firefly === 1)
 		{
 			self function_cceed911(ai);
 		}
@@ -476,7 +476,7 @@ function function_4134aafd()
 	self notify("hash_e8f330bf");
 	self endon("hash_e8f330bf");
 	self waittill("hash_1ae8bd76");
-	self notify("hash_6f82574c", "__terminated__");
+	self notify("asm_complete", "__terminated__");
 }
 
 /*
@@ -494,7 +494,7 @@ function function_9dfad743(timeout)
 	self notify("hash_f3b632f7");
 	self endon("hash_f3b632f7");
 	wait(timeout);
-	self notify("hash_6f82574c", "__timeout__");
+	self notify("asm_complete", "__timeout__");
 }
 
 /*
@@ -518,7 +518,7 @@ function waittill_asm_complete(var_147c7cd8, timeout)
 	substate = undefined;
 	while(!isdefined(substate) || (substate != var_147c7cd8 && substate != "__terminated__" && substate != "__timeout__"))
 	{
-		self waittill("hash_6f82574c", substate);
+		self waittill("asm_complete", substate);
 	}
 	self notify("hash_e8f330bf");
 	self notify("hash_f3b632f7");
@@ -812,7 +812,7 @@ function iff_override(owner, time)
 	msg = self util::waittill_any_timeout(timeout, "iff_override_reverted", "death");
 	if(msg == "timeout")
 	{
-		self notify("hash_6eb14bb1", self.settings.var_86098f42);
+		self notify("iff_override_reverted", self.settings.var_86098f42);
 	}
 	self playsound("gdt_iff_deactivate");
 	self function_a3ebd0f(self.var_f3402890);
@@ -836,13 +836,13 @@ function function_a3ebd0f(team)
 	self endon("death");
 	old_ignoreme = self.ignoreme;
 	self.ignoreme = 1;
-	self function_81b6f1ac();
+	self start_scripted();
 	self vehicle::lights_off();
 	wait(0.1);
 	wait(1);
 	self SetTeam(team);
 	self blink_lights_for_time(1);
-	self function_efe9815e();
+	self stop_scripted();
 	wait(1);
 	self.ignoreme = old_ignoreme;
 }
@@ -883,7 +883,7 @@ function blink_lights_for_time(time)
 */
 function turnoff()
 {
-	self notify("hash_777b79d1");
+	self notify("shut_off");
 }
 
 /*
@@ -897,7 +897,7 @@ function turnoff()
 */
 function turnOn()
 {
-	self notify("hash_8d400b59");
+	self notify("start_up");
 }
 
 /*
@@ -1156,7 +1156,7 @@ function StartInitialState(var_d200ec07)
 }
 
 /*
-	Name: function_81b6f1ac
+	Name: start_scripted
 	Namespace: vehicle_ai
 	Checksum: 0xF60E461D
 	Offset: 0x2B70
@@ -1164,7 +1164,7 @@ function StartInitialState(var_d200ec07)
 	Parameters: 2
 	Flags: None
 */
-function function_81b6f1ac(var_93f11df2, var_28dcae96)
+function start_scripted(var_93f11df2, var_28dcae96)
 {
 	params = spawnstruct();
 	params.var_28dcae96 = var_28dcae96;
@@ -1173,7 +1173,7 @@ function function_81b6f1ac(var_93f11df2, var_28dcae96)
 }
 
 /*
-	Name: function_efe9815e
+	Name: stop_scripted
 	Namespace: vehicle_ai
 	Checksum: 0x804A0AA4
 	Offset: 0x2BE8
@@ -1181,7 +1181,7 @@ function function_81b6f1ac(var_93f11df2, var_28dcae96)
 	Parameters: 1
 	Flags: None
 */
-function function_efe9815e(stateName)
+function stop_scripted(stateName)
 {
 	if(isalive(self) && is_instate("scripted"))
 	{
@@ -1461,7 +1461,7 @@ function init_state_machine_for_role(var_f43142a0)
 	self.overrideVehicleKilled = &Callback_VehicleKilled;
 	self.overrideVehicleDeathPostGame = &Callback_VehicleKilled;
 	statemachine thread statemachine::set_state("suspend");
-	self thread function_cdad1698();
+	self thread on_death_cleanup();
 	return statemachine;
 }
 
@@ -1531,7 +1531,7 @@ function Callback_VehicleKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, w
 }
 
 /*
-	Name: function_cdad1698
+	Name: on_death_cleanup
 	Namespace: vehicle_ai
 	Checksum: 0xCACA5A10
 	Offset: 0x3A10
@@ -1539,7 +1539,7 @@ function Callback_VehicleKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, w
 	Parameters: 0
 	Flags: None
 */
-function function_cdad1698()
+function on_death_cleanup()
 {
 	state_machines = self.state_machines;
 	self waittill("free_vehicle");
@@ -2283,11 +2283,11 @@ function defaultstate_off_exit(params)
 	{
 		self LaserOn();
 	}
-	if(isdefined(level.var_b3ce91e0))
+	if(isdefined(level.enable_thermal))
 	{
 		if(self get_next_state() !== "death")
 		{
-			[[level.var_b3ce91e0]]();
+			[[level.enable_thermal]]();
 		}
 	}
 	self vehicle::lights_on();
@@ -2480,7 +2480,7 @@ function FindNewPosition(var_5529f205)
 				#/
 				point.score = point.score + 250;
 			}
-			if(isdefined(point.var_ffab01e6) && point.var_ffab01e6)
+			if(isdefined(point.sight2) && point.sight2)
 			{
 				/#
 					if(!isdefined(point._scoreDebug))
@@ -2491,7 +2491,7 @@ function FindNewPosition(var_5529f205)
 				#/
 				point.score = point.score + 150;
 			}
-			if(isdefined(point.var_25ad7c4f) && point.var_25ad7c4f)
+			if(isdefined(point.sight3) && point.sight3)
 			{
 				/#
 					if(!isdefined(point._scoreDebug))
@@ -2564,9 +2564,9 @@ function TimeSince(var_a3ad3d0f)
 */
 function function_ba468810()
 {
-	if(!isdefined(self.var_95b9a013))
+	if(!isdefined(self._cooldown))
 	{
-		self.var_95b9a013 = [];
+		self._cooldown = [];
 	}
 }
 
@@ -2582,7 +2582,7 @@ function function_ba468810()
 function Cooldown(name, var_c22073e8)
 {
 	function_ba468810();
-	self.var_95b9a013[name] = GetTime() + var_c22073e8 * 1000;
+	self._cooldown[name] = GetTime() + var_c22073e8 * 1000;
 }
 
 /*
@@ -2597,11 +2597,11 @@ function Cooldown(name, var_c22073e8)
 function function_1d641563(name)
 {
 	function_ba468810();
-	if(!isdefined(self.var_95b9a013[name]))
+	if(!isdefined(self._cooldown[name]))
 	{
-		self.var_95b9a013[name] = GetTime() - 1;
+		self._cooldown[name] = GetTime() - 1;
 	}
-	return self.var_95b9a013[name];
+	return self._cooldown[name];
 }
 
 /*
@@ -2635,7 +2635,7 @@ function IsCooldownReady(name, var_84bf858b)
 	{
 		var_84bf858b = 0;
 	}
-	var_79e38ba8 = self.var_95b9a013[name];
+	var_79e38ba8 = self._cooldown[name];
 	return !isdefined(var_79e38ba8) || GetTime() + var_84bf858b * 1000 > var_79e38ba8;
 }
 
@@ -2651,7 +2651,7 @@ function IsCooldownReady(name, var_84bf858b)
 function ClearCooldown(name)
 {
 	function_ba468810();
-	self.var_95b9a013[name] = GetTime() - 1;
+	self._cooldown[name] = GetTime() - 1;
 }
 
 /*
@@ -2666,7 +2666,7 @@ function ClearCooldown(name)
 function AddCooldownTime(name, var_c22073e8)
 {
 	function_ba468810();
-	self.var_95b9a013[name] = function_1d641563(name) + var_c22073e8 * 1000;
+	self._cooldown[name] = function_1d641563(name) + var_c22073e8 * 1000;
 }
 
 /*
@@ -2680,11 +2680,11 @@ function AddCooldownTime(name, var_c22073e8)
 */
 function ClearAllCooldowns()
 {
-	if(isdefined(self.var_95b9a013))
+	if(isdefined(self._cooldown))
 	{
-		foreach(Cooldown in self.var_95b9a013)
+		foreach(Cooldown in self._cooldown)
 		{
-			self.var_95b9a013[str_name] = GetTime() - 1;
+			self._cooldown[str_name] = GetTime() - 1;
 		}
 	}
 }

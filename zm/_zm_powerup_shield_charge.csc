@@ -7,7 +7,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0xCA25F467
+	Checksum: 0xA68F92CD
 	Offset: 0x100
 	Size: 0x33
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0x162F3777
+	Checksum: 0x2FBC460E
 	Offset: 0x140
 	Size: 0x33
 	Parameters: 0

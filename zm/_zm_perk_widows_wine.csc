@@ -10,7 +10,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x95C9EFCF
+	Checksum: 0x161DA8AF
 	Offset: 0x2D8
 	Size: 0x33
 	Parameters: 0
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x42B776B7
+	Checksum: 0xE8FBFBE9
 	Offset: 0x318
 	Size: 0xCB
 	Parameters: 0
@@ -41,7 +41,7 @@ function __init__()
 /*
 	Name: init_widows_wine
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x6D7C4BE6
+	Checksum: 0x5C2C6724
 	Offset: 0x3F0
 	Size: 0x51
 	Parameters: 0
@@ -59,7 +59,7 @@ function init_widows_wine()
 /*
 	Name: widows_wine_client_field_func
 	Namespace: zm_perk_widows_wine
-	Checksum: 0xFC8467A9
+	Checksum: 0xF49ECCE6
 	Offset: 0x450
 	Size: 0xCB
 	Parameters: 0
@@ -88,7 +88,7 @@ function widows_wine_code_callback_func()
 /*
 	Name: widows_wine_wrap_cb
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x9F6E86A5
+	Checksum: 0xD5322EEF
 	Offset: 0x538
 	Size: 0x193
 	Parameters: 7
@@ -126,7 +126,7 @@ function widows_wine_wrap_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 /*
 	Name: widows_wine_1p_contact_explosion
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x6B737327
+	Checksum: 0x69629B7E
 	Offset: 0x6D8
 	Size: 0x9B
 	Parameters: 7
@@ -144,7 +144,7 @@ function widows_wine_1p_contact_explosion(localClientNum, oldVal, newVal, bNewEn
 /*
 	Name: widows_wine_1p_contact_explosion_play
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x2C27DD78
+	Checksum: 0xB96B5FF0
 	Offset: 0x780
 	Size: 0xBB
 	Parameters: 1

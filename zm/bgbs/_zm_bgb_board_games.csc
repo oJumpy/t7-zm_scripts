@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_93a0c6cf;
+#namespace zm_bgb_board_games;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_93a0c6cf
+	Namespace: zm_bgb_board_games
 	Checksum: 0xC130741D
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_93a0c6cf
+	Namespace: zm_bgb_board_games
 	Checksum: 0xEBB6A642
 	Offset: 0x188
 	Size: 0x3B

@@ -1,0 +1,2295 @@
+#using scripts\codescripts\struct;
+#using scripts\shared\ai\zombie_utility;
+#using scripts\shared\ai_shared;
+#using scripts\shared\array_shared;
+#using scripts\shared\callbacks_shared;
+#using scripts\shared\clientfield_shared;
+#using scripts\shared\exploder_shared;
+#using scripts\shared\flag_shared;
+#using scripts\shared\flagsys_shared;
+#using scripts\shared\laststand_shared;
+#using scripts\shared\scene_shared;
+#using scripts\shared\spawner_shared;
+#using scripts\shared\system_shared;
+#using scripts\shared\trigger_shared;
+#using scripts\shared\util_shared;
+#using scripts\shared\vehicle_shared;
+#using scripts\zm\_zm_audio;
+#using scripts\zm\_zm_bgb;
+#using scripts\zm\_zm_devgui;
+#using scripts\zm\_zm_equipment;
+#using scripts\zm\_zm_laststand;
+#using scripts\zm\_zm_perks;
+#using scripts\zm\_zm_power;
+#using scripts\zm\_zm_powerups;
+#using scripts\zm\_zm_spawner;
+#using scripts\zm\_zm_unitrigger;
+#using scripts\zm\_zm_utility;
+#using scripts\zm\_zm_weapons;
+#using scripts\zm\zm_genesis_util;
+
+#namespace zm_genesis_challenges;
+
+/*
+	Name: init_clientfields
+	Namespace: zm_genesis_challenges
+	Checksum: 0xB72C1495
+	Offset: 0xE00
+	Size: 0x1B3
+	Parameters: 0
+	Flags: None
+*/
+function init_clientfields()
+{
+	clientfield::register("clientuimodel", "trialWidget.visible", 15000, 1, "int");
+	clientfield::register("clientuimodel", "trialWidget.progress", 15000, 7, "float");
+	clientfield::register("clientuimodel", "trialWidget.icon", 15000, 2, "int");
+	clientfield::register("toplayer", "challenge1state", 15000, 2, "int");
+	clientfield::register("toplayer", "challenge2state", 15000, 2, "int");
+	clientfield::register("toplayer", "challenge3state", 15000, 2, "int");
+	clientfield::register("toplayer", "challenge_board_eyes", 15000, 1, "int");
+	clientfield::register("scriptmover", "challenge_board_base", 15000, 1, "int");
+	clientfield::register("scriptmover", "challenge_board_reward", 15000, 1, "int");
+}
+
+/*
+	Name: init
+	Namespace: zm_genesis_challenges
+	Checksum: 0x96ADB70D
+	Offset: 0xFC0
+	Size: 0x23
+	Parameters: 0
+	Flags: AutoExec
+*/
+function autoexec init()
+{
+	callback::on_spawned(&on_player_spawned);
+}
+
+/*
+	Name: main
+	Namespace: zm_genesis_challenges
+	Checksum: 0x98A1C8D2
+	Offset: 0xFF0
+	Size: 0x8B3
+	Parameters: 0
+	Flags: None
+*/
+function main()
+{
+	level flag::init("all_challenges_completed");
+	level flag::init("flag_init_player_challenges");
+	if(GetDvarInt("splitscreen_playerCount") > 2)
+	{
+		Array::run_all(GetEntArray("t_lookat_challenge_1", "targetname"), &delete);
+		Array::run_all(GetEntArray("t_lookat_challenge_2", "targetname"), &delete);
+		Array::run_all(GetEntArray("t_lookat_challenge_3", "targetname"), &delete);
+		Array::thread_all(struct::get_array("s_challenge_trigger"), &struct::delete);
+	}
+	else
+	{
+		level.s_challenges = spawnstruct();
+		level.s_challenges.a_challenge_1 = [];
+		level.s_challenges.a_challenge_2 = [];
+		level.s_challenges.a_challenge_3 = [];
+		Array::add(level.s_challenges.a_challenge_1, init_challenges(1, &"ZM_GENESIS_CHALLENGE_1_1", 10, "update_challenge_1_1", &function_1ce88534));
+		Array::add(level.s_challenges.a_challenge_1, init_challenges(1, &"ZM_GENESIS_CHALLENGE_1_2", 15, "update_challenge_1_2", &function_8eeff46f));
+		Array::add(level.s_challenges.a_challenge_1, init_challenges(1, &"ZM_GENESIS_CHALLENGE_1_5", 10, "update_challenge_1_5", &function_84de9b90));
+		Array::add(level.s_challenges.a_challenge_1, init_challenges(1, &"ZM_GENESIS_CHALLENGE_1_8", 1, "update_challenge_1_8", &function_72fed2e5));
+		Array::add(level.s_challenges.a_challenge_1, init_challenges(1, &"ZM_GENESIS_CHALLENGE_1_10", 1, "update_challenge_1_10", &function_9592bd2c));
+		Array::add(level.s_challenges.a_challenge_1, init_challenges(1, &"ZM_GENESIS_CHALLENGE_3_6", 1, "update_challenge_3_6", &garkm2));
+		Array::add(level.s_challenges.a_challenge_2, init_challenges(2, &"ZM_GENESIS_CHALLENGE_2_2", 10, "update_challenge_2_2", &function_e4aef098));
+		Array::add(level.s_challenges.a_challenge_2, init_challenges(2, &"ZM_GENESIS_CHALLENGE_2_7", 1, "update_challenge_2_7", &function_a2bb54a5));
+		Array::add(level.s_challenges.a_challenge_2, init_challenges(2, &"ZM_GENESIS_CHALLENGE_2_8", 15, "update_challenge_2_8", &function_a01222));
+		Array::add(level.s_challenges.a_challenge_2, init_challenges(2, &"ZM_GENESIS_CHALLENGE_1_9", 10, "update_challenge_1_9", &function_4cfc587c));
+		Array::add(level.s_challenges.a_challenge_2, init_challenges(2, &"ZM_GENESIS_CHALLENGE_2_10", 10, "update_challenge_2_10", &function_748fccd9));
+		Array::add(level.s_challenges.a_challenge_2, init_challenges(2, &"ZM_GENESIS_CHALLENGE_2_11", 1, "update_challenge_2_11", &function_4e8d5270));
+		Array::add(level.s_challenges.a_challenge_3, init_challenges(3, &"ZM_GENESIS_CHALLENGE_3_1", 5, "update_challenge_3_1", &garkm5));
+		Array::add(level.s_challenges.a_challenge_3, init_challenges(3, &"ZM_GENESIS_CHALLENGE_3_2", 1, "update_challenge_3_2", &garkm6));
+		Array::add(level.s_challenges.a_challenge_3, init_challenges(3, &"ZM_GENESIS_CHALLENGE_3_3", 1, "update_challenge_3_3", &garkm7));
+		Array::add(level.s_challenges.a_challenge_3, init_challenges(3, &"ZM_GENESIS_CHALLENGE_3_4", 1, "update_challenge_3_4", &garkm0));
+		Array::add(level.s_challenges.a_challenge_3, init_challenges(3, &"ZM_GENESIS_CHALLENGE_3_9", 3, "update_challenge_3_9", &function_477a16ba));
+		Array::add(level.s_challenges.a_challenge_3, init_challenges(3, &"ZM_GENESIS_CHALLENGE_2_9", 1, "update_challenge_2_9", &function_26a28c8b));
+		zm_spawner::register_zombie_death_event_callback(&function_905d9544);
+		zm_spawner::register_zombie_damage_callback(&function_6267dc);
+		level._margwa_damage_cb = &function_ca31caac;
+		level thread all_challenges_completed();
+		level flag::set("flag_init_player_challenges");
+		/#
+			if(GetDvarInt("Dev Block strings are not supported") > 0)
+			{
+				function_b9b4ce34();
+			}
+		#/
+	}
+}
+
+/*
+	Name: init_challenges
+	Namespace: zm_genesis_challenges
+	Checksum: 0x43D2948D
+	Offset: 0x18B0
+	Size: 0xAF
+	Parameters: 5
+	Flags: None
+*/
+function init_challenges(n_challenge_index, str_challenge_info, n_challenge_count, str_challenge_notify, func_challenge_think)
+{
+	s_challenge = spawnstruct();
+	s_challenge.n_index = n_challenge_index;
+	s_challenge.str_info = str_challenge_info;
+	s_challenge.n_count = n_challenge_count;
+	s_challenge.str_notify = str_challenge_notify;
+	s_challenge.func_think = func_challenge_think;
+	return s_challenge;
+}
+
+/*
+	Name: on_player_connect
+	Namespace: zm_genesis_challenges
+	Checksum: 0x4D1D4CD1
+	Offset: 0x1968
+	Size: 0x293
+	Parameters: 0
+	Flags: None
+*/
+function on_player_connect()
+{
+	level flag::wait_till("flag_init_player_challenges");
+	self flag::init("flag_player_collected_reward_1");
+	self flag::init("flag_player_collected_reward_2");
+	self flag::init("flag_player_collected_reward_3");
+	self flag::init("flag_player_completed_challenge_1");
+	self flag::init("flag_player_completed_challenge_2");
+	self flag::init("flag_player_completed_challenge_3");
+	self flag::init("flag_player_initialized_reward");
+	self.s_challenges = spawnstruct();
+	self.s_challenges.a_challenge_1 = [];
+	self.s_challenges.a_challenge_2 = [];
+	self.s_challenges.a_challenge_3 = [];
+	self.s_challenges.a_challenge_1 = Array::random(level.s_challenges.a_challenge_1);
+	self.s_challenges.a_challenge_2 = Array::random(level.s_challenges.a_challenge_2);
+	self.s_challenges.a_challenge_3 = Array::random(level.s_challenges.a_challenge_3);
+	ArrayRemoveValue(level.s_challenges.a_challenge_1, self.s_challenges.a_challenge_1);
+	ArrayRemoveValue(level.s_challenges.a_challenge_2, self.s_challenges.a_challenge_2);
+	ArrayRemoveValue(level.s_challenges.a_challenge_3, self.s_challenges.a_challenge_3);
+	self thread player_challenge_init();
+}
+
+/*
+	Name: on_player_disconnect
+	Namespace: zm_genesis_challenges
+	Checksum: 0x57994019
+	Offset: 0x1C08
+	Size: 0xDB
+	Parameters: 0
+	Flags: None
+*/
+function on_player_disconnect()
+{
+	level flag::wait_till("flag_init_player_challenges");
+	var_a879fa43 = self GetEntityNumber();
+	Array::add(level.s_challenges.a_challenge_1, self.s_challenges.a_challenge_1);
+	Array::add(level.s_challenges.a_challenge_2, self.s_challenges.a_challenge_2);
+	Array::add(level.s_challenges.a_challenge_3, self.s_challenges.a_challenge_3);
+}
+
+/*
+	Name: on_player_spawned
+	Namespace: zm_genesis_challenges
+	Checksum: 0xB9317B9
+	Offset: 0x1CF0
+	Size: 0x3B
+	Parameters: 0
+	Flags: None
+*/
+function on_player_spawned()
+{
+	self.var_b5c08e44 = [];
+	self thread function_a235a040();
+	self thread function_188466cb();
+}
+
+/*
+	Name: function_188466cb
+	Namespace: zm_genesis_challenges
+	Checksum: 0xCC5EF462
+	Offset: 0x1D38
+	Size: 0x8B
+	Parameters: 0
+	Flags: None
+*/
+function function_188466cb()
+{
+	self endon("death");
+	level flag::wait_till_all(Array("start_zombie_round_logic", "challenge_boards_ready"));
+	var_a879fa43 = self GetEntityNumber();
+	self clientfield::set_to_player("challenge_board_eyes", 1);
+}
+
+/*
+	Name: function_a235a040
+	Namespace: zm_genesis_challenges
+	Checksum: 0xCDF5298B
+	Offset: 0x1DD0
+	Size: 0x3B
+	Parameters: 0
+	Flags: None
+*/
+function function_a235a040()
+{
+	self endon("disconnect");
+	while(1)
+	{
+		self function_2983de0c();
+		level waittill("end_of_round");
+	}
+}
+
+/*
+	Name: function_2983de0c
+	Namespace: zm_genesis_challenges
+	Checksum: 0x2FA2EE79
+	Offset: 0x1E18
+	Size: 0x69
+	Parameters: 0
+	Flags: None
+*/
+function function_2983de0c()
+{
+	self.var_b5c08e44["prison_island"] = 0;
+	self.var_b5c08e44["asylum_island"] = 0;
+	self.var_b5c08e44["temple_island"] = 0;
+	self.var_b5c08e44["prototype_island"] = 0;
+	self.var_b5c08e44["start_island"] = 0;
+}
+
+/*
+	Name: function_e8547a5b
+	Namespace: zm_genesis_challenges
+	Checksum: 0x355636C0
+	Offset: 0x1E90
+	Size: 0x53
+	Parameters: 1
+	Flags: None
+*/
+function function_e8547a5b(str_challenge)
+{
+	if(self.challenge_text !== str_challenge)
+	{
+		self.challenge_text = str_challenge;
+		self LUINotifyEvent(&"trial_set_description", 1, self.challenge_text);
+	}
+}
+
+/*
+	Name: function_27f6c3cd
+	Namespace: zm_genesis_challenges
+	Checksum: 0x8166C1CE
+	Offset: 0x1EF0
+	Size: 0xE5
+	Parameters: 2
+	Flags: None
+*/
+function function_27f6c3cd(player, n_challenge_index)
+{
+	switch(n_challenge_index)
+	{
+		case 1:
+		{
+			player function_e8547a5b(player.s_challenges.a_challenge_1.str_info);
+			break;
+		}
+		case 2:
+		{
+			player function_e8547a5b(player.s_challenges.a_challenge_2.str_info);
+			break;
+		}
+		case 3:
+		{
+			player function_e8547a5b(player.s_challenges.a_challenge_3.str_info);
+			break;
+		}
+	}
+}
+
+/*
+	Name: function_33e91747
+	Namespace: zm_genesis_challenges
+	Checksum: 0x8D8B233A
+	Offset: 0x1FE0
+	Size: 0x43
+	Parameters: 2
+	Flags: None
+*/
+function function_33e91747(n_challenge_index, var_fe2fb4b9)
+{
+	self clientfield::set_to_player("challenge" + n_challenge_index + "state", var_fe2fb4b9);
+}
+
+/*
+	Name: function_23c9ffd3
+	Namespace: zm_genesis_challenges
+	Checksum: 0x17BB14D8
+	Offset: 0x2030
+	Size: 0xBB
+	Parameters: 1
+	Flags: None
+*/
+function function_23c9ffd3(trigger)
+{
+	self notify("hash_23c9ffd3");
+	self endon("hash_23c9ffd3");
+	while(1)
+	{
+		wait(0.5);
+		if(!isdefined(self))
+		{
+			break;
+		}
+		if(!isdefined(trigger) || Distance(self.origin, trigger.stub.origin) > trigger.stub.radius)
+		{
+			self clientfield::set_player_uimodel("trialWidget.visible", 0);
+			break;
+		}
+	}
+}
+
+/*
+	Name: init_challenge_boards
+	Namespace: zm_genesis_challenges
+	Checksum: 0x907438E4
+	Offset: 0x20F8
+	Size: 0x28B
+	Parameters: 0
+	Flags: None
+*/
+function init_challenge_boards()
+{
+	level flag::init("challenge_boards_ready");
+	level.a_e_challenge_boards = [];
+	for(x = 0; x < 4; x++)
+	{
+		str_name = "challenge_board_" + x;
+		mdl_board = GetEnt(str_name, "targetname");
+		if(!isdefined(level.a_e_challenge_boards))
+		{
+			level.a_e_challenge_boards = [];
+		}
+		else if(!IsArray(level.a_e_challenge_boards))
+		{
+			level.a_e_challenge_boards = Array(level.a_e_challenge_boards);
+		}
+		level.a_e_challenge_boards[level.a_e_challenge_boards.size] = mdl_board;
+		v_origin = mdl_board GetTagOrigin("tag_fx_skull_top");
+		v_angles = mdl_board GetTagAngles("tag_fx_skull_top");
+		mdl_board thread scene::Play("p7_fxanim_zm_gen_challenge_prizestone_close_bundle", mdl_board);
+		wait(0.2);
+		mdl_board clientfield::set("challenge_board_base", 1);
+	}
+	level flag::set("challenge_boards_ready");
+	for(i = 1; i <= 3; i++)
+	{
+		foreach(t_lookat in GetEntArray("t_lookat_challenge_" + i, "targetname"))
+		{
+			t_lookat SetInvisibleToAll();
+		}
+	}
+}
+
+/*
+	Name: player_challenge_init
+	Namespace: zm_genesis_challenges
+	Checksum: 0x177309D1
+	Offset: 0x2390
+	Size: 0x37D
+	Parameters: 0
+	Flags: None
+*/
+function player_challenge_init()
+{
+	self endon("disconnect");
+	self thread function_2ce855f3(self.s_challenges.a_challenge_1);
+	self thread function_2ce855f3(self.s_challenges.a_challenge_2);
+	self thread function_2ce855f3(self.s_challenges.a_challenge_3);
+	self thread function_fbbc8608(self.s_challenges.a_challenge_1.n_index, "flag_player_completed_challenge_1");
+	self thread function_fbbc8608(self.s_challenges.a_challenge_2.n_index, "flag_player_completed_challenge_2");
+	self thread function_fbbc8608(self.s_challenges.a_challenge_3.n_index, "flag_player_completed_challenge_3");
+	self thread function_974d5f1d();
+	a_n_challenge = [];
+	var_e01fcddc = [];
+	var_a879fa43 = self GetEntityNumber();
+	for(i = 1; i <= 3; i++)
+	{
+		var_f2dc9f0b = [];
+		foreach(t_lookat in GetEntArray("t_lookat_challenge_" + i, "targetname"))
+		{
+			if(t_lookat.script_int == var_a879fa43)
+			{
+				t_lookat SetVisibleToPlayer(self);
+				var_e01fcddc[i] = t_lookat;
+				break;
+			}
+			a_n_challenge[i] = i;
+		}
+		self thread function_a2d25f82(i, var_a879fa43);
+	}
+	foreach(s_challenge in struct::get_array("s_challenge_trigger"))
+	{
+		if(s_challenge.script_int == var_a879fa43)
+		{
+			s_challenge init_challenge_trigger(var_e01fcddc, a_n_challenge);
+			break;
+		}
+	}
+}
+
+/*
+	Name: init_challenge_trigger
+	Namespace: zm_genesis_challenges
+	Checksum: 0xF0DC946D
+	Offset: 0x2718
+	Size: 0xC3
+	Parameters: 2
+	Flags: None
+*/
+function init_challenge_trigger(var_e01fcddc, a_n_challenge)
+{
+	self zm_unitrigger::create_unitrigger("", 128, &function_3ae0d6d5);
+	self.s_unitrigger.require_look_at = 0;
+	self.s_unitrigger.inactive_reassess_time = 0.1;
+	zm_unitrigger::unitrigger_force_per_player_triggers(self.s_unitrigger, 1);
+	self.s_unitrigger.a_n_challenge = a_n_challenge;
+	self.var_e01fcddc = var_e01fcddc;
+	self thread function_424b6fe8();
+}
+
+/*
+	Name: function_424b6fe8
+	Namespace: zm_genesis_challenges
+	Checksum: 0x9A4480EB
+	Offset: 0x27E8
+	Size: 0x3ED
+	Parameters: 0
+	Flags: None
+*/
+function function_424b6fe8()
+{
+	while(1)
+	{
+		self waittill("trigger_activated", e_who);
+		n_entity = e_who GetEntityNumber();
+		if(self.script_int == n_entity)
+		{
+			if(e_who flag::get("flag_player_initialized_reward"))
+			{
+				if(self.mdl_reward.n_challenge == 2)
+				{
+					w_current = e_who GetCurrentWeapon();
+					if(zm_utility::is_placeable_mine(w_current) || zm_equipment::is_equipment(w_current) || w_current == level.weaponNone || (isdefined(w_current.isHeroWeapon) && w_current.isHeroWeapon) || (isdefined(w_current.isgadget) && w_current.isgadget))
+					{
+						continue;
+					}
+					if(e_who bgb::is_enabled("zm_bgb_disorderly_combat"))
+					{
+						continue;
+					}
+				}
+				else if(self.mdl_reward.n_challenge == 3)
+				{
+					a_perks = e_who GetPerks();
+					if(a_perks.size == level._custom_perks.size)
+					{
+						continue;
+					}
+				}
+				e_who PlayRumbleOnEntity("zm_stalingrad_interact_rumble");
+				self.s_unitrigger.playertrigger[e_who.entity_num] sethintstringforplayer(e_who, "");
+				e_who player_give_reward(self.mdl_reward, n_entity);
+				if(isdefined(self.mdl_reward))
+				{
+					self.mdl_reward delete();
+				}
+				break;
+			}
+			for(i = 1; i <= 3; i++)
+			{
+				if(e_who function_3f67a723(self.var_e01fcddc[i].origin, 15, 0) && Distance(e_who.origin, self.origin) < 500)
+				{
+					if(isdefined(e_who.var_c981566c) && e_who.var_c981566c)
+					{
+						break;
+					}
+					if(e_who flag::get("flag_player_completed_challenge_" + i) && !e_who flag::get("flag_player_collected_reward_" + i))
+					{
+						e_who PlayRumbleOnEntity("zm_stalingrad_interact_rumble");
+						self.s_unitrigger.playertrigger[e_who.entity_num] sethintstringforplayer(e_who, "");
+						self function_1d22626(e_who, i);
+						break;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+	Name: function_1d22626
+	Namespace: zm_genesis_challenges
+	Checksum: 0xD44240EE
+	Offset: 0x2BE0
+	Size: 0x4EB
+	Parameters: 2
+	Flags: None
+*/
+function function_1d22626(e_player, n_challenge)
+{
+	e_player endon("disconnect");
+	var_7bb343ef = (0, 90, 0);
+	a_s_rewards = struct::get_array("s_challenge_reward", "targetname");
+	n_entity = e_player GetEntityNumber();
+	foreach(s_reward in a_s_rewards)
+	{
+		if(s_reward.script_int == n_entity)
+		{
+			break;
+		}
+	}
+	switch(n_challenge)
+	{
+		case 1:
+		{
+			var_17b3dc96 = "p7_zm_power_up_max_ammo";
+			s_reward.var_e1513629 = VectorScale((0, 0, 1), 6);
+			s_reward.var_b90d551 = var_7bb343ef;
+			break;
+		}
+		case 2:
+		{
+			a_str_weapon = [];
+			if(!isdefined(a_str_weapon))
+			{
+				a_str_weapon = [];
+			}
+			else if(!IsArray(a_str_weapon))
+			{
+				a_str_weapon = Array(a_str_weapon);
+			}
+			a_str_weapon[a_str_weapon.size] = "lmg_cqb_upgraded";
+			if(!isdefined(a_str_weapon))
+			{
+				a_str_weapon = [];
+			}
+			else if(!IsArray(a_str_weapon))
+			{
+				a_str_weapon = Array(a_str_weapon);
+			}
+			a_str_weapon[a_str_weapon.size] = "ar_damage_upgraded";
+			if(!isdefined(a_str_weapon))
+			{
+				a_str_weapon = [];
+			}
+			else if(!IsArray(a_str_weapon))
+			{
+				a_str_weapon = Array(a_str_weapon);
+			}
+			a_str_weapon[a_str_weapon.size] = "smg_versatile_upgraded";
+			var_17b3dc96 = Array::random(a_str_weapon);
+			var_6b215f76 = AnglesToRight(s_reward.angles) * 5 + AnglesToForward(s_reward.angles) * -2;
+			s_reward.var_e1513629 = var_6b215f76 + (0, 0, 1);
+			s_reward.var_b90d551 = var_7bb343ef;
+			break;
+		}
+		case 3:
+		{
+			var_17b3dc96 = "zombie_pickup_perk_bottle";
+			var_1bfa1f7e = AnglesToForward(s_reward.angles) * -2;
+			s_reward.var_e1513629 = var_1bfa1f7e + VectorScale((0, 0, 1), 7);
+			s_reward.var_b90d551 = var_7bb343ef;
+			break;
+		}
+	}
+	e_player.var_c981566c = 1;
+	mdl_board = level.a_e_challenge_boards[n_entity];
+	mdl_board scene::Play("p7_fxanim_zm_gen_challenge_prizestone_open_bundle", mdl_board);
+	mdl_board clientfield::set("challenge_board_reward", 1);
+	self function_b1f54cb4(e_player, s_reward, var_17b3dc96, 30);
+	self.mdl_reward clientfield::set("powerup_fx", 1);
+	self.mdl_reward.n_challenge = n_challenge;
+	e_player flag::set("flag_player_initialized_reward");
+	self thread function_1ad9d1a0(e_player, 30 * -1, n_entity);
+}
+
+/*
+	Name: function_1ad9d1a0
+	Namespace: zm_genesis_challenges
+	Checksum: 0x8C79455D
+	Offset: 0x30D8
+	Size: 0xD3
+	Parameters: 3
+	Flags: None
+*/
+function function_1ad9d1a0(e_player, n_dist, n_entity)
+{
+	self endon("hash_422dba45");
+	self.mdl_reward MoveZ(n_dist, 12, 6);
+	self.mdl_reward waittill("movedone");
+	if(isdefined(e_player))
+	{
+		e_player flag::clear("flag_player_initialized_reward");
+		e_player.var_c981566c = undefined;
+	}
+	if(isdefined(self.mdl_reward))
+	{
+		self.mdl_reward delete();
+	}
+	function_d57066e8(n_entity);
+}
+
+/*
+	Name: function_b1f54cb4
+	Namespace: zm_genesis_challenges
+	Checksum: 0x6F4BA3A6
+	Offset: 0x31B8
+	Size: 0x18D
+	Parameters: 4
+	Flags: None
+*/
+function function_b1f54cb4(e_player, s_reward, var_17b3dc96, var_21d0cf95)
+{
+	if(isdefined(self.mdl_reward))
+	{
+		self notify("hash_422dba45");
+	}
+	var_51a2f105 = s_reward.origin + s_reward.var_e1513629;
+	v_spawn_angles = s_reward.angles + s_reward.var_b90d551;
+	switch(var_17b3dc96)
+	{
+		case "ar_damage_upgraded":
+		case "lmg_cqb_upgraded":
+		case "smg_versatile_upgraded":
+		{
+			self.mdl_reward = zm_utility::spawn_buildkit_weapon_model(e_player, GetWeapon(var_17b3dc96), undefined, var_51a2f105, v_spawn_angles);
+			self.mdl_reward.str_weapon_name = var_17b3dc96;
+			break;
+		}
+		case default:
+		{
+			self.mdl_reward = util::spawn_model(var_17b3dc96, var_51a2f105, v_spawn_angles);
+			break;
+		}
+	}
+	self.mdl_reward MoveZ(var_21d0cf95, 1);
+	playsoundatposition("evt_prize_rise", self.origin);
+	self.mdl_reward waittill("movedone");
+}
+
+/*
+	Name: function_d57066e8
+	Namespace: zm_genesis_challenges
+	Checksum: 0xD14C29DC
+	Offset: 0x3350
+	Size: 0x63
+	Parameters: 1
+	Flags: None
+*/
+function function_d57066e8(n_entity)
+{
+	mdl_board = level.a_e_challenge_boards[n_entity];
+	mdl_board scene::Play("p7_fxanim_zm_gen_challenge_prizestone_close_bundle", mdl_board);
+	mdl_board clientfield::set("challenge_board_reward", 0);
+}
+
+/*
+	Name: function_a2d25f82
+	Namespace: zm_genesis_challenges
+	Checksum: 0x2AF5D9F3
+	Offset: 0x33C0
+	Size: 0xB3
+	Parameters: 2
+	Flags: None
+*/
+function function_a2d25f82(n_challenge, var_a879fa43)
+{
+	self endon("disconnect");
+	/#
+		self endon("hash_f9ff0ae7");
+	#/
+	self flag::wait_till("flag_player_completed_challenge_" + n_challenge);
+	STR_MODEL = "p7_zm_gen_challenge_medal_0" + n_challenge;
+	mdl_board = level.a_e_challenge_boards[var_a879fa43];
+	mdl_board Attach(STR_MODEL, function_94a89297(n_challenge));
+}
+
+/*
+	Name: function_94a89297
+	Namespace: zm_genesis_challenges
+	Checksum: 0x2BD57D0B
+	Offset: 0x3480
+	Size: 0x59
+	Parameters: 1
+	Flags: None
+*/
+function function_94a89297(n_challenge)
+{
+	switch(n_challenge)
+	{
+		case 1:
+		{
+			return "tag_medal_easy";
+			break;
+		}
+		case 2:
+		{
+			return "tag_medal_med";
+			break;
+		}
+		case default:
+		{
+			return "tag_medal_hard";
+			break;
+		}
+	}
+}
+
+/*
+	Name: function_fbbc8608
+	Namespace: zm_genesis_challenges
+	Checksum: 0xBF97FC5A
+	Offset: 0x34E8
+	Size: 0xFB
+	Parameters: 2
+	Flags: None
+*/
+function function_fbbc8608(n_challenge_index, var_d4adfa57)
+{
+	self endon("disconnect");
+	self flag::wait_till(var_d4adfa57);
+	var_ea22a0bf = "";
+	if(n_challenge_index == 1)
+	{
+		var_ea22a0bf = self.s_challenges.a_challenge_1.str_info;
+	}
+	else if(n_challenge_index == 2)
+	{
+		var_ea22a0bf = self.s_challenges.a_challenge_2.str_info;
+	}
+	else
+	{
+		var_ea22a0bf = self.s_challenges.a_challenge_3.str_info;
+	}
+	self LUINotifyEvent(&"trial_complete", 3, &"ZM_GENESIS_CHALLENGE_COMPLETE", var_ea22a0bf, n_challenge_index - 1);
+}
+
+/*
+	Name: function_3ae0d6d5
+	Namespace: zm_genesis_challenges
+	Checksum: 0x5ABF124B
+	Offset: 0x35F0
+	Size: 0x3F7
+	Parameters: 1
+	Flags: None
+*/
+function function_3ae0d6d5(e_player)
+{
+	if(self.stub.related_parent.script_int == e_player GetEntityNumber())
+	{
+		b_is_looking = 0;
+		if(e_player flag::get("flag_player_initialized_reward"))
+		{
+			self sethintstringforplayer(e_player, &"ZM_GENESIS_CHALLENGE_REWARD_TAKE");
+			if(self.stub.related_parent.mdl_reward.n_challenge == 3)
+			{
+				a_perks = e_player GetPerks();
+				if(a_perks.size == level._custom_perks.size)
+				{
+					self sethintstringforplayer(e_player, "");
+				}
+			}
+			b_is_looking = 1;
+			return 1;
+		}
+		for(i = 1; i <= 3; i++)
+		{
+			if(e_player function_3f67a723(self.stub.related_parent.var_e01fcddc[i].origin, 15, 0) && Distance(e_player.origin, self.stub.origin) < 500)
+			{
+				self function_27f6c3cd(e_player, i);
+				e_player clientfield::set_player_uimodel("trialWidget.icon", i - 1);
+				e_player clientfield::set_player_uimodel("trialWidget.visible", 1);
+				e_player clientfield::set_player_uimodel("trialWidget.progress", e_player.var_5315d90d[i]);
+				e_player thread function_23c9ffd3(self);
+				if(!e_player flag::get("flag_player_completed_challenge_" + i))
+				{
+					self sethintstringforplayer(e_player, "");
+					b_is_looking = 1;
+					return 1;
+					continue;
+				}
+				if(!e_player flag::get("flag_player_collected_reward_" + i) && (!isdefined(e_player.var_c981566c) && e_player.var_c981566c))
+				{
+					self sethintstringforplayer(e_player, &"ZM_GENESIS_CHALLENGE_REWARD");
+					b_is_looking = 1;
+					return 1;
+					continue;
+				}
+				self sethintstringforplayer(e_player, "");
+				b_is_looking = 1;
+				return 1;
+			}
+		}
+		if(!b_is_looking)
+		{
+			self sethintstringforplayer(e_player, "");
+			e_player clientfield::set_player_uimodel("trialWidget.visible", 0);
+			return 0;
+		}
+	}
+	else
+	{
+		self sethintstringforplayer(e_player, "");
+		return 0;
+	}
+}
+
+/*
+	Name: function_3f67a723
+	Namespace: zm_genesis_challenges
+	Checksum: 0x9387A989
+	Offset: 0x39F0
+	Size: 0xB3
+	Parameters: 4
+	Flags: None
+*/
+function function_3f67a723(origin, var_a0fa82de, do_trace, e_ignore)
+{
+	if(!isdefined(var_a0fa82de))
+	{
+		var_a0fa82de = 90;
+	}
+	var_a0fa82de = AbsAngleClamp360(var_a0fa82de);
+	n_cos = cos(var_a0fa82de * 0.5);
+	if(self util::is_player_looking_at(origin, n_cos, do_trace, e_ignore))
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+/*
+	Name: player_give_reward
+	Namespace: zm_genesis_challenges
+	Checksum: 0x1B5B16FA
+	Offset: 0x3AB0
+	Size: 0x1D5
+	Parameters: 2
+	Flags: None
+*/
+function player_give_reward(mdl_reward, n_entity)
+{
+	switch(mdl_reward.n_challenge)
+	{
+		case 1:
+		{
+			level thread zm_powerups::specific_powerup_drop("full_ammo", self.origin);
+			playsoundatposition("evt_grab_powerup", self.origin);
+			break;
+		}
+		case 2:
+		{
+			if(isdefined(mdl_reward.str_weapon_name))
+			{
+				w_reward = GetWeapon(mdl_reward.str_weapon_name);
+			}
+			self thread swap_weapon(w_reward);
+			playsoundatposition("evt_grab_weapon", self.origin);
+			break;
+		}
+		case 3:
+		{
+			self thread function_6131520e();
+			playsoundatposition("evt_grab_perk", self.origin);
+			break;
+		}
+	}
+	self flag::set("flag_player_collected_reward_" + mdl_reward.n_challenge);
+	self flag::clear("flag_player_initialized_reward");
+	self function_33e91747(mdl_reward.n_challenge, 2);
+	level thread function_d57066e8(n_entity);
+	self.var_c981566c = undefined;
+}
+
+/*
+	Name: swap_weapon
+	Namespace: zm_genesis_challenges
+	Checksum: 0xAB89D36F
+	Offset: 0x3C90
+	Size: 0x13B
+	Parameters: 1
+	Flags: None
+*/
+function swap_weapon(w_new)
+{
+	w_current = self GetCurrentWeapon();
+	if(!zm_utility::is_player_valid(self))
+	{
+		return;
+	}
+	if(self.IS_DRINKING > 0)
+	{
+		return;
+	}
+	if(zm_utility::is_placeable_mine(w_current) || zm_equipment::is_equipment(w_current) || w_current == level.weaponNone)
+	{
+		return;
+	}
+	if(!self HasWeapon(w_new.rootweapon, 1))
+	{
+		if(w_current.type === "melee")
+		{
+			self function_3420bc2f(w_new);
+		}
+		else
+		{
+			self take_old_weapon_and_give_new(w_current, w_new);
+		}
+	}
+	else
+	{
+		self giveMaxAmmo(w_new);
+	}
+}
+
+/*
+	Name: take_old_weapon_and_give_new
+	Namespace: zm_genesis_challenges
+	Checksum: 0x5116D481
+	Offset: 0x3DD8
+	Size: 0xD3
+	Parameters: 2
+	Flags: None
+*/
+function take_old_weapon_and_give_new(w_current, w_new)
+{
+	a_w_primaries = self GetWeaponsListPrimaries();
+	if(isdefined(a_w_primaries) && a_w_primaries.size >= zm_utility::get_player_weapon_limit(self))
+	{
+		self TakeWeapon(w_current);
+	}
+	var_6fc96b00 = self zm_weapons::give_build_kit_weapon(w_new);
+	self GiveWeapon(var_6fc96b00);
+	self SwitchToWeapon(var_6fc96b00);
+}
+
+/*
+	Name: function_3420bc2f
+	Namespace: zm_genesis_challenges
+	Checksum: 0xDD662CAD
+	Offset: 0x3EB8
+	Size: 0x113
+	Parameters: 1
+	Flags: None
+*/
+function function_3420bc2f(w_new)
+{
+	a_w_inventory = self GetWeaponsList(1);
+	foreach(w_inventory in a_w_inventory)
+	{
+		if(w_inventory.type === "melee")
+		{
+			self TakeWeapon(w_inventory);
+			break;
+		}
+	}
+	var_6fc96b00 = self zm_weapons::give_build_kit_weapon(w_new);
+	self GiveWeapon(var_6fc96b00);
+}
+
+/*
+	Name: function_6131520e
+	Namespace: zm_genesis_challenges
+	Checksum: 0x5949B03C
+	Offset: 0x3FD8
+	Size: 0xF5
+	Parameters: 0
+	Flags: None
+*/
+function function_6131520e()
+{
+	self endon("disconnect");
+	a_str_perks = getArrayKeys(level._custom_perks);
+	a_str_perks = Array::randomize(a_str_perks);
+	foreach(str_perk in a_str_perks)
+	{
+		if(!self hasPerk(str_perk))
+		{
+			self zm_perks::give_perk(str_perk, 0);
+			break;
+		}
+	}
+}
+
+/*
+	Name: function_1adeaa1c
+	Namespace: zm_genesis_challenges
+	Checksum: 0x3E30CB05
+	Offset: 0x40D8
+	Size: 0x3F
+	Parameters: 0
+	Flags: None
+*/
+function function_1adeaa1c()
+{
+	var_4562cc04 = level.perk_purchase_limit;
+	if(self flag::get("flag_player_collected_reward_3"))
+	{
+		var_4562cc04++;
+	}
+	return var_4562cc04;
+}
+
+/*
+	Name: function_1ce88534
+	Namespace: zm_genesis_challenges
+	Checksum: 0x86060531
+	Offset: 0x4120
+	Size: 0x7B
+	Parameters: 0
+	Flags: None
+*/
+function function_1ce88534()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	if(!isdefined(self.n_flogger_trap_kills))
+	{
+		self.n_flogger_trap_kills = 0;
+	}
+	if(!isdefined(self.n_electric_trap_kills))
+	{
+		self.n_electric_trap_kills = 0;
+	}
+	self thread function_9b1e43e5();
+	self thread function_c120be4e();
+}
+
+/*
+	Name: function_9b1e43e5
+	Namespace: zm_genesis_challenges
+	Checksum: 0x1502A38F
+	Offset: 0x41A8
+	Size: 0x81
+	Parameters: 0
+	Flags: None
+*/
+function function_9b1e43e5()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("flogger_killed_zombie", ai_zombie, e_attacker);
+		if(e_attacker === self && self.n_flogger_trap_kills < 5)
+		{
+			self.n_flogger_trap_kills++;
+			self notify("update_challenge_1_1");
+		}
+	}
+}
+
+/*
+	Name: function_c120be4e
+	Namespace: zm_genesis_challenges
+	Checksum: 0xEC7B088B
+	Offset: 0x4238
+	Size: 0x5D
+	Parameters: 0
+	Flags: None
+*/
+function function_c120be4e()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		self waittill("zombie_zapped");
+		if(self.n_electric_trap_kills < 5)
+		{
+			self.n_electric_trap_kills++;
+			self notify("update_challenge_1_1");
+		}
+	}
+}
+
+/*
+	Name: function_8eeff46f
+	Namespace: zm_genesis_challenges
+	Checksum: 0x570B0AC1
+	Offset: 0x42A0
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_8eeff46f()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("beam_killed_zombie", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_1_2");
+		}
+	}
+}
+
+/*
+	Name: function_68ed7a06
+	Namespace: zm_genesis_challenges
+	Checksum: 0x99A53513
+	Offset: 0x4308
+	Size: 0x71
+	Parameters: 0
+	Flags: None
+*/
+function function_68ed7a06()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		str_result = level util::waittill_any("all_rifts_destroyed", "chaos_round_timeout");
+		if(str_result === "all_rifts_destroyed")
+		{
+			self notify("update_challenge_1_3");
+		}
+	}
+}
+
+/*
+	Name: function_aae115f9
+	Namespace: zm_genesis_challenges
+	Checksum: 0xFDC4638D
+	Offset: 0x4388
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_aae115f9()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_10ed65db", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_1_4");
+		}
+	}
+}
+
+/*
+	Name: function_84de9b90
+	Namespace: zm_genesis_challenges
+	Checksum: 0xF3A57C08
+	Offset: 0x43F0
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_84de9b90()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_646a26b1", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_1_5");
+		}
+	}
+}
+
+/*
+	Name: function_f6e60acb
+	Namespace: zm_genesis_challenges
+	Checksum: 0xCB7E89F0
+	Offset: 0x4458
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_f6e60acb()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_944787dd", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_1_6");
+		}
+	}
+}
+
+/*
+	Name: function_d0e39062
+	Namespace: zm_genesis_challenges
+	Checksum: 0xCC327DD7
+	Offset: 0x44C0
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_d0e39062()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("island_dweller", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("hash_757347c2");
+		}
+	}
+}
+
+/*
+	Name: function_72fed2e5
+	Namespace: zm_genesis_challenges
+	Checksum: 0x923F3D1A
+	Offset: 0x4528
+	Size: 0x5D
+	Parameters: 0
+	Flags: None
+*/
+function function_72fed2e5()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		self waittill("new_equipment", weapon);
+		if(weapon === level.weaponRiotshield)
+		{
+			self notify("update_challenge_1_8");
+		}
+	}
+}
+
+/*
+	Name: function_4cfc587c
+	Namespace: zm_genesis_challenges
+	Checksum: 0xB05B0D43
+	Offset: 0x4590
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_4cfc587c()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_92ad8590", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_1_9");
+		}
+	}
+}
+
+/*
+	Name: function_9592bd2c
+	Namespace: zm_genesis_challenges
+	Checksum: 0x7AC1BB46
+	Offset: 0x45F8
+	Size: 0x41
+	Parameters: 0
+	Flags: None
+*/
+function function_9592bd2c()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_7e8efe7c");
+		self notify("update_challenge_1_10");
+	}
+}
+
+/*
+	Name: function_56b65fd3
+	Namespace: zm_genesis_challenges
+	Checksum: 0x44AC8328
+	Offset: 0x4648
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_56b65fd3()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_11ab530d", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_2_1");
+		}
+	}
+}
+
+/*
+	Name: function_e4aef098
+	Namespace: zm_genesis_challenges
+	Checksum: 0x8E70664A
+	Offset: 0x46B0
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_e4aef098()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_b1a8571a", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_2_2");
+		}
+	}
+}
+
+/*
+	Name: function_ab16b01
+	Namespace: zm_genesis_challenges
+	Checksum: 0x8B49CBD3
+	Offset: 0x4718
+	Size: 0x13D
+	Parameters: 0
+	Flags: None
+*/
+function function_ab16b01()
+{
+	level flagsys::wait_till("start_zombie_round_logic");
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	var_259ad2d8 = GetEnt("apothicon_island", "targetname");
+	level flag::wait_till_all(Array("power_on1", "power_on2", "power_on3", "power_on4"));
+	while(1)
+	{
+		self waittill("hash_a8c34632");
+		start_round = level.round_number;
+		while(self istouching(var_259ad2d8) && level.round_number - start_round < 3)
+		{
+			wait(1);
+		}
+		if(level.round_number - start_round >= 3)
+		{
+			self notify("update_challenge_2_3");
+		}
+	}
+}
+
+/*
+	Name: function_c8bdcf0e
+	Namespace: zm_genesis_challenges
+	Checksum: 0x57585B83
+	Offset: 0x4860
+	Size: 0x81
+	Parameters: 0
+	Flags: None
+*/
+function function_c8bdcf0e()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("chaos_round_start");
+		n_start_time = GetTime();
+		function_ac2bad00(n_start_time, 120);
+		if(n_start_time < 120)
+		{
+			self notify("update_challenge_2_4");
+		}
+	}
+}
+
+/*
+	Name: function_ac2bad00
+	Namespace: zm_genesis_challenges
+	Checksum: 0xE5EFA13E
+	Offset: 0x48F0
+	Size: 0x8F
+	Parameters: 2
+	Flags: None
+*/
+function function_ac2bad00(n_start_time, var_8d05fd02)
+{
+	level endon("chaos_round_complete");
+	level endon("kill_round");
+	level endon("chaos_round_timeout");
+	n_total_time = 0;
+	while(n_total_time < var_8d05fd02)
+	{
+		n_current_time = GetTime();
+		n_total_time = n_current_time - n_start_time / 1000;
+		util::wait_network_frame();
+	}
+}
+
+/*
+	Name: function_eec04977
+	Namespace: zm_genesis_challenges
+	Checksum: 0xD10A03E0
+	Offset: 0x4988
+	Size: 0x89
+	Parameters: 0
+	Flags: None
+*/
+function function_eec04977()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_661aa774");
+		str_result = level util::waittill_any("power_ritual_aborted", "power_ritual_completed", "non_melee_damage");
+		if(str_result === "power_ritual_completed")
+		{
+			self notify("update_challenge_2_5");
+		}
+	}
+}
+
+/*
+	Name: function_7cb8da3c
+	Namespace: zm_genesis_challenges
+	Checksum: 0x78A445C
+	Offset: 0x4A20
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_7cb8da3c()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_1c04ac7f", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_2_6");
+		}
+	}
+}
+
+/*
+	Name: function_a2bb54a5
+	Namespace: zm_genesis_challenges
+	Checksum: 0x770DA73A
+	Offset: 0x4A88
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_a2bb54a5()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_e15c8839", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_2_7");
+		}
+	}
+}
+
+/*
+	Name: function_a01222
+	Namespace: zm_genesis_challenges
+	Checksum: 0x78C365C5
+	Offset: 0x4AF0
+	Size: 0x41
+	Parameters: 0
+	Flags: None
+*/
+function function_a01222()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		self waittill("player_killed_spider");
+		self notify("update_challenge_2_8");
+	}
+}
+
+/*
+	Name: function_26a28c8b
+	Namespace: zm_genesis_challenges
+	Checksum: 0xE76ED530
+	Offset: 0x4B40
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_26a28c8b()
+{
+	self endon("flag_player_completed_challenge_3");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_8dbe1895", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_2_9");
+		}
+	}
+}
+
+/*
+	Name: function_748fccd9
+	Namespace: zm_genesis_challenges
+	Checksum: 0x1562382A
+	Offset: 0x4BA8
+	Size: 0x41
+	Parameters: 0
+	Flags: None
+*/
+function function_748fccd9()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		self waittill("hash_21c74868");
+		self notify("update_challenge_2_10");
+	}
+}
+
+/*
+	Name: function_4e8d5270
+	Namespace: zm_genesis_challenges
+	Checksum: 0x48A4275F
+	Offset: 0x4BF8
+	Size: 0x41
+	Parameters: 0
+	Flags: None
+*/
+function function_4e8d5270()
+{
+	self endon("flag_player_completed_challenge_2");
+	self endon("disconnect");
+	while(1)
+	{
+		self waittill("hash_36abd341");
+		self notify("update_challenge_2_11");
+	}
+}
+
+/*
+	Name: garkm5
+	Namespace: zm_genesis_challenges
+	Checksum: 0xC6B0234
+	Offset: 0x4C48
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function garkm5()
+{
+	self endon("flag_player_completed_challenge_3");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_f312481d", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_3_1");
+		}
+	}
+}
+
+/*
+	Name: garkm6
+	Namespace: zm_genesis_challenges
+	Checksum: 0x262AA49E
+	Offset: 0x4CB0
+	Size: 0x43
+	Parameters: 0
+	Flags: None
+*/
+function garkm6()
+{
+	spawner::add_archetype_spawn_function("mechz", &function_8c4a46cf, self);
+	self thread function_78a15a9();
+}
+
+/*
+	Name: function_8c4a46cf
+	Namespace: zm_genesis_challenges
+	Checksum: 0xB6EDDD49
+	Offset: 0x4D00
+	Size: 0x93
+	Parameters: 1
+	Flags: None
+*/
+function function_8c4a46cf(e_player)
+{
+	e_player endon("flag_player_completed_challenge_3");
+	e_player endon("disconnect");
+	self endon("hash_da235077");
+	self waittill("death", e_attacker, n_damage, w_weapon, v_point, v_dir);
+	if(e_attacker === e_player)
+	{
+		e_attacker notify("update_challenge_3_2");
+	}
+}
+
+/*
+	Name: function_78a15a9
+	Namespace: zm_genesis_challenges
+	Checksum: 0x651A709E
+	Offset: 0x4DA0
+	Size: 0x9F
+	Parameters: 0
+	Flags: None
+*/
+function function_78a15a9()
+{
+	self endon("flag_player_completed_challenge_3");
+	self endon("disconnect");
+	self endon("update_challenge_3_2");
+	while(1)
+	{
+		self waittill("damage", n_damage, e_attacker);
+		if(e_attacker.archetype === "mechz" || e_attacker.archetype === "margwa")
+		{
+			e_attacker notify("hash_da235077");
+		}
+	}
+}
+
+/*
+	Name: garkm7
+	Namespace: zm_genesis_challenges
+	Checksum: 0xB2736C3C
+	Offset: 0x4E48
+	Size: 0x41
+	Parameters: 0
+	Flags: None
+*/
+function garkm7()
+{
+	self endon("flag_player_completed_challenge_3");
+	self endon("disconnect");
+	while(1)
+	{
+		self waittill("hash_bf458b1e");
+		self notify("update_challenge_3_3");
+	}
+}
+
+/*
+	Name: garkm0
+	Namespace: zm_genesis_challenges
+	Checksum: 0x15E8B718
+	Offset: 0x4E98
+	Size: 0xD9
+	Parameters: 0
+	Flags: None
+*/
+function garkm0()
+{
+	self endon("flag_player_completed_challenge_3");
+	self endon("disconnect");
+	var_f434985b = 0;
+	var_2576a2b = 0;
+	while(1)
+	{
+		str_result = self util::waittill_any_return("flag_player_completed_challenge_3", "disconnect", "fire_margwa_death", "shadow_margwa_death");
+		if(str_result == "fire_margwa_death")
+		{
+			var_f434985b = 1;
+		}
+		else if(str_result == "shadow_margwa_death")
+		{
+			var_2576a2b = 1;
+		}
+		if(var_f434985b && var_2576a2b)
+		{
+			self notify("update_challenge_3_4");
+		}
+	}
+}
+
+/*
+	Name: garkm1
+	Namespace: zm_genesis_challenges
+	Checksum: 0x38E997FD
+	Offset: 0x4F80
+	Size: 0xA1
+	Parameters: 0
+	Flags: None
+*/
+function garkm1()
+{
+	level flagsys::wait_till("start_zombie_round_logic");
+	self endon("flag_player_completed_challenge_3");
+	self endon("disconnect");
+	level flag::wait_till_all(Array("power_on1", "power_on2", "power_on3", "power_on4"));
+	if(level.round_number <= 5)
+	{
+		self notify("update_challenge_3_5");
+	}
+}
+
+/*
+	Name: garkm2
+	Namespace: zm_genesis_challenges
+	Checksum: 0x241D47E2
+	Offset: 0x5030
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function garkm2()
+{
+	self endon("flag_player_completed_challenge_1");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_9a954bfc", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("update_challenge_3_6");
+		}
+	}
+}
+
+/*
+	Name: garkm3
+	Namespace: zm_genesis_challenges
+	Checksum: 0x9B34EBFE
+	Offset: 0x5098
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function garkm3()
+{
+	self endon("flag_player_completed_challenge_3");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_22e3a570", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("hash_7a1760a4");
+		}
+	}
+}
+
+/*
+	Name: function_6d7c9123
+	Namespace: zm_genesis_challenges
+	Checksum: 0xC36568C
+	Offset: 0x5100
+	Size: 0x59
+	Parameters: 0
+	Flags: None
+*/
+function function_6d7c9123()
+{
+	self endon("flag_player_completed_challenge_3");
+	self endon("disconnect");
+	while(1)
+	{
+		level waittill("hash_d290d94f", e_attacker);
+		if(e_attacker === self)
+		{
+			self notify("hash_8428b983");
+		}
+	}
+}
+
+/*
+	Name: function_477a16ba
+	Namespace: zm_genesis_challenges
+	Checksum: 0xD8B01E35
+	Offset: 0x5168
+	Size: 0x41
+	Parameters: 0
+	Flags: None
+*/
+function function_477a16ba()
+{
+	self endon("flag_player_completed_challenge_3");
+	self endon("disconnect");
+	while(1)
+	{
+		self waittill("hash_7b1b2d");
+		self notify("update_challenge_3_9");
+	}
+}
+
+/*
+	Name: function_905d9544
+	Namespace: zm_genesis_challenges
+	Checksum: 0x7621865D
+	Offset: 0x51B8
+	Size: 0x283
+	Parameters: 1
+	Flags: None
+*/
+function function_905d9544(e_attacker)
+{
+	if(isPlayer(e_attacker))
+	{
+		if(self.archetype === "apothicon_fury")
+		{
+			if(zm_utility::is_headshot(self.damageWeapon, self.damagelocation, self.damageMod))
+			{
+				level notify("hash_646a26b1", e_attacker);
+			}
+		}
+		if(isdefined(self.traversal))
+		{
+			if(isdefined(self.traversal.startnode))
+			{
+				if(self.traversal.startnode.script_noteworthy === "flinger_traversal")
+				{
+					e_attacker notify("hash_21c74868");
+				}
+			}
+		}
+		if(self.archetype === "zombie")
+		{
+			self thread check_island(e_attacker);
+		}
+		if(isdefined(e_attacker.island_name) && isdefined(self.island_name))
+		{
+			if(e_attacker.island_name !== self.island_name)
+			{
+				level notify("hash_f312481d", e_attacker);
+			}
+		}
+		if(self.archetype === "margwa")
+		{
+			if(self.var_b6802ed1[e_attacker.playerNum] <= 3)
+			{
+				e_attacker notify("hash_bf458b1e");
+			}
+			if(self.element_type === "fire")
+			{
+				e_attacker notify("fire_margwa_death");
+			}
+			else if(self.element_type === "shadow")
+			{
+				e_attacker notify("shadow_margwa_death");
+			}
+			if(self.zone_name === "apothicon_interior_zone")
+			{
+				e_attacker notify("hash_7b1b2d");
+			}
+		}
+	}
+	else if(isdefined(e_attacker) && e_attacker.archetype === "turret")
+	{
+		if(isdefined(e_attacker.activated_by_player))
+		{
+			e_attacker.activated_by_player notify("autoturret_killed_zombie");
+			level notify("autoturret_killed_zombie");
+			self thread check_island(e_attacker.activated_by_player);
+		}
+	}
+}
+
+/*
+	Name: check_island
+	Namespace: zm_genesis_challenges
+	Checksum: 0xB67F8557
+	Offset: 0x5448
+	Size: 0x15D
+	Parameters: 1
+	Flags: None
+*/
+function check_island(player)
+{
+	if(isdefined(self.island_name))
+	{
+		var_bc09c7dd = 1;
+		switch(self.island_name)
+		{
+			case "asylum_island":
+			case "prison_island":
+			case "prototype_island":
+			case "start_island":
+			case "temple_island":
+			{
+				player.var_b5c08e44[self.island_name]++;
+				a_str_keys = getArrayKeys(player.var_b5c08e44);
+				foreach(str_key in a_str_keys)
+				{
+					if(player.var_b5c08e44[str_key] < 5)
+					{
+						var_bc09c7dd = 0;
+					}
+				}
+				if(var_bc09c7dd)
+				{
+					player notify("hash_36abd341");
+				}
+				break;
+			}
+		}
+	}
+}
+
+/*
+	Name: function_6267dc
+	Namespace: zm_genesis_challenges
+	Checksum: 0xB1831B3
+	Offset: 0x55B0
+	Size: 0xC3
+	Parameters: 13
+	Flags: None
+*/
+function function_6267dc(str_mod, str_hit_location, v_hit_origin, e_player, n_amount, w_weapon, v_direction, str_tag, STR_MODEL, str_part, n_flags, e_inflictor, n_chargeLevel)
+{
+	if(isPlayer(e_inflictor))
+	{
+		if(!(isdefined(zm_utility::is_melee_weapon(w_weapon)) && zm_utility::is_melee_weapon(w_weapon)))
+		{
+			level notify("non_melee_damage");
+		}
+	}
+	return 0;
+}
+
+/*
+	Name: function_2ce855f3
+	Namespace: zm_genesis_challenges
+	Checksum: 0xCA2FE9C1
+	Offset: 0x5680
+	Size: 0x153
+	Parameters: 1
+	Flags: None
+*/
+function function_2ce855f3(s_challenge)
+{
+	self endon("disconnect");
+	/#
+		self endon("hash_f9ff0ae7");
+	#/
+	if(isdefined(s_challenge.func_think))
+	{
+		self thread [[s_challenge.func_think]]();
+	}
+	n_challenge_count = s_challenge.n_count;
+	if(!isdefined(self.var_5315d90d))
+	{
+		self.var_5315d90d = [];
+	}
+	self.var_5315d90d[s_challenge.n_index] = 0;
+	var_ea184c3d = n_challenge_count;
+	while(n_challenge_count > 0)
+	{
+		self waittill(s_challenge.str_notify);
+		n_challenge_count--;
+		self.var_5315d90d[s_challenge.n_index] = 1 - n_challenge_count / var_ea184c3d;
+	}
+	self function_33e91747(s_challenge.n_index, 1);
+	self flag::set("flag_player_completed_challenge_" + s_challenge.n_index);
+}
+
+/*
+	Name: function_974d5f1d
+	Namespace: zm_genesis_challenges
+	Checksum: 0xEE0974CE
+	Offset: 0x57E0
+	Size: 0x69
+	Parameters: 0
+	Flags: None
+*/
+function function_974d5f1d()
+{
+	self endon("disconnect");
+	a_flags = Array("flag_player_completed_challenge_1", "flag_player_completed_challenge_2", "flag_player_completed_challenge_3");
+	self flag::wait_till_all(a_flags);
+	level notify("player_all_challenges_completed");
+}
+
+/*
+	Name: all_challenges_completed
+	Namespace: zm_genesis_challenges
+	Checksum: 0x7593FB71
+	Offset: 0x5858
+	Size: 0x8B
+	Parameters: 0
+	Flags: None
+*/
+function all_challenges_completed()
+{
+	level.var_c28313cd = 0;
+	callback::on_disconnect(&function_b1cd865a);
+	while(1)
+	{
+		level waittill("player_all_challenges_completed");
+		level.var_c28313cd++;
+		if(level.var_c28313cd >= level.players.size)
+		{
+			level flag::set("all_challenges_completed");
+			break;
+		}
+	}
+}
+
+/*
+	Name: function_b1cd865a
+	Namespace: zm_genesis_challenges
+	Checksum: 0xD48001CF
+	Offset: 0x58F0
+	Size: 0x33
+	Parameters: 0
+	Flags: None
+*/
+function function_b1cd865a()
+{
+	if(level.var_c28313cd >= level.players.size)
+	{
+		level flag::set("all_challenges_completed");
+	}
+}
+
+/*
+	Name: function_ca31caac
+	Namespace: zm_genesis_challenges
+	Checksum: 0x207A9E0F
+	Offset: 0x5930
+	Size: 0xE9
+	Parameters: 12
+	Flags: None
+*/
+function function_ca31caac(inflictor, attacker, damage, dFlags, mod, weapon, point, dir, hitLoc, offsetTime, boneIndex, modelIndex)
+{
+	if(isPlayer(attacker))
+	{
+		if(!isdefined(self.var_b6802ed1))
+		{
+			self.var_b6802ed1 = [];
+		}
+		if(!isdefined(self.var_b6802ed1[attacker.playerNum]))
+		{
+			self.var_b6802ed1[attacker.playerNum] = 0;
+		}
+		self.var_b6802ed1[attacker.playerNum]++;
+	}
+}
+
+/*
+	Name: function_b9b4ce34
+	Namespace: zm_genesis_challenges
+	Checksum: 0xA9D71721
+	Offset: 0x5A28
+	Size: 0xBB
+	Parameters: 0
+	Flags: None
+*/
+function function_b9b4ce34()
+{
+	/#
+		zm_devgui::add_custom_devgui_callback(&challenges_devgui_callback);
+		AddDebugCommand("Dev Block strings are not supported");
+		AddDebugCommand("Dev Block strings are not supported");
+		AddDebugCommand("Dev Block strings are not supported");
+		AddDebugCommand("Dev Block strings are not supported");
+		AddDebugCommand("Dev Block strings are not supported");
+		AddDebugCommand("Dev Block strings are not supported");
+	#/
+}
+
+/*
+	Name: challenges_devgui_callback
+	Namespace: zm_genesis_challenges
+	Checksum: 0xCE5A43D9
+	Offset: 0x5AF0
+	Size: 0x411
+	Parameters: 1
+	Flags: None
+*/
+function challenges_devgui_callback(cmd)
+{
+	/#
+		switch(cmd)
+		{
+			case "Dev Block strings are not supported":
+			{
+				level flag::set("Dev Block strings are not supported");
+				return 1;
+			}
+			case "Dev Block strings are not supported":
+			{
+				foreach(e_player in level.players)
+				{
+					e_player flag::set("Dev Block strings are not supported");
+					e_player notify("hash_fb393ffe");
+					e_player.var_5315d90d[1] = 1;
+					e_player function_33e91747(1, 1);
+				}
+				return 1;
+			}
+			case "Dev Block strings are not supported":
+			{
+				foreach(e_player in level.players)
+				{
+					e_player flag::set("Dev Block strings are not supported");
+					e_player notify("hash_d536c595");
+					e_player.var_5315d90d[2] = 1;
+					e_player function_33e91747(2, 1);
+				}
+				return 1;
+			}
+			case "Dev Block strings are not supported":
+			{
+				foreach(e_player in level.players)
+				{
+					e_player flag::set("Dev Block strings are not supported");
+					e_player notify("hash_af344b2c");
+					e_player.var_5315d90d[3] = 1;
+					e_player function_33e91747(3, 1);
+				}
+				return 1;
+			}
+			case "Dev Block strings are not supported":
+			{
+				level function_dcfe1b91();
+				foreach(e_player in level.players)
+				{
+					e_player function_224232f4();
+				}
+				return 1;
+			}
+			case "Dev Block strings are not supported":
+			{
+				foreach(e_player in level.players)
+				{
+					e_player function_224232f4();
+				}
+				return 1;
+			}
+		}
+		return 0;
+	#/
+}
+
+/*
+	Name: function_224232f4
+	Namespace: zm_genesis_challenges
+	Checksum: 0xA4F1EEE6
+	Offset: 0x5F10
+	Size: 0x26F
+	Parameters: 0
+	Flags: None
+*/
+function function_224232f4()
+{
+	/#
+		self notify("hash_f9ff0ae7");
+		self flag::clear("Dev Block strings are not supported");
+		self flag::clear("Dev Block strings are not supported");
+		self flag::clear("Dev Block strings are not supported");
+		self flag::clear("Dev Block strings are not supported");
+		self flag::clear("Dev Block strings are not supported");
+		self flag::clear("Dev Block strings are not supported");
+		self thread function_2ce855f3(self.s_challenges.a_challenge_1);
+		self thread function_2ce855f3(self.s_challenges.a_challenge_2);
+		self thread function_2ce855f3(self.s_challenges.a_challenge_3);
+		var_a879fa43 = self GetEntityNumber();
+		for(i = 1; i <= 3; i++)
+		{
+			self.var_5315d90d[i] = 0;
+			self function_33e91747(i, 0);
+			foreach(s_glyph in struct::get_array("Dev Block strings are not supported" + i, "Dev Block strings are not supported"))
+			{
+				if(s_glyph.script_int == var_a879fa43)
+				{
+					break;
+				}
+			}
+		}
+	#/
+}
+
+/*
+	Name: function_dcfe1b91
+	Namespace: zm_genesis_challenges
+	Checksum: 0x9340083A
+	Offset: 0x6188
+	Size: 0x451
+	Parameters: 0
+	Flags: None
+*/
+function function_dcfe1b91()
+{
+	/#
+		foreach(e_player in level.players)
+		{
+			if(!isdefined(level.s_challenges.a_challenge_1))
+			{
+				level.s_challenges.a_challenge_1 = [];
+			}
+			else if(!IsArray(level.s_challenges.a_challenge_1))
+			{
+				level.s_challenges.a_challenge_1 = Array(level.s_challenges.a_challenge_1);
+			}
+			level.s_challenges.a_challenge_1[level.s_challenges.a_challenge_1.size] = e_player.s_challenges.a_challenge_1;
+			if(!isdefined(level.s_challenges.a_challenge_2))
+			{
+				level.s_challenges.a_challenge_2 = [];
+			}
+			else if(!IsArray(level.s_challenges.a_challenge_2))
+			{
+				level.s_challenges.a_challenge_2 = Array(level.s_challenges.a_challenge_2);
+			}
+			level.s_challenges.a_challenge_2[level.s_challenges.a_challenge_2.size] = e_player.s_challenges.a_challenge_2;
+			if(!isdefined(level.s_challenges.a_challenge_3))
+			{
+				level.s_challenges.a_challenge_3 = [];
+			}
+			else if(!IsArray(level.s_challenges.a_challenge_3))
+			{
+				level.s_challenges.a_challenge_3 = Array(level.s_challenges.a_challenge_3);
+			}
+			level.s_challenges.a_challenge_3[level.s_challenges.a_challenge_3.size] = e_player.s_challenges.a_challenge_3;
+		}
+		foreach(e_player in level.players)
+		{
+			e_player.s_challenges.a_challenge_1 = Array::random(level.s_challenges.a_challenge_1);
+			e_player.s_challenges.a_challenge_2 = Array::random(level.s_challenges.a_challenge_2);
+			e_player.s_challenges.a_challenge_3 = Array::random(level.s_challenges.a_challenge_3);
+			ArrayRemoveValue(level.s_challenges.a_challenge_1, e_player.s_challenges.a_challenge_1);
+			ArrayRemoveValue(level.s_challenges.a_challenge_2, e_player.s_challenges.a_challenge_2);
+			ArrayRemoveValue(level.s_challenges.a_challenge_3, e_player.s_challenges.a_challenge_3);
+		}
+	#/
+}
+

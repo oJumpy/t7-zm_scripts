@@ -9,11 +9,11 @@
 #using scripts\shared\vehicle_shared;
 #using scripts\zm\_zm_devgui;
 
-#namespace namespace_3a47cb81;
+#namespace zm_ai_quadrotor;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x654C2274
 	Offset: 0x460
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x6B0E8DB7
 	Offset: 0x4A0
 	Size: 0x63
@@ -45,7 +45,7 @@ function __init__()
 
 /*
 	Name: quadrotor_think
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x9883EA80
 	Offset: 0x510
 	Size: 0x17B
@@ -75,7 +75,7 @@ function quadrotor_think()
 
 /*
 	Name: follow_ent
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x31DDDD55
 	Offset: 0x698
 	Size: 0x1A7
@@ -114,7 +114,7 @@ function follow_ent(e_followee)
 
 /*
 	Name: quadrotor_start_ai
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x8DD52D18
 	Offset: 0x848
 	Size: 0x33
@@ -130,7 +130,7 @@ function quadrotor_start_ai()
 
 /*
 	Name: quadrotor_main
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xAB38657F
 	Offset: 0x888
 	Size: 0x7B
@@ -148,7 +148,7 @@ function quadrotor_main()
 
 /*
 	Name: quadrotor_fireupdate
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x880A2E58
 	Offset: 0x910
 	Size: 0x1A7
@@ -190,7 +190,7 @@ function quadrotor_fireupdate()
 
 /*
 	Name: quadrotor_watch_for_game_end
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x124B4058
 	Offset: 0xAC0
 	Size: 0xAB
@@ -214,7 +214,7 @@ function quadrotor_watch_for_game_end()
 
 /*
 	Name: quadrotor_check_move
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xAE670C7A
 	Offset: 0xB78
 	Size: 0x6D
@@ -233,7 +233,7 @@ function quadrotor_check_move(position)
 
 /*
 	Name: quadrotor_adjust_goal_for_enemy_height
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xF4D5D9F6
 	Offset: 0xBF0
 	Size: 0x167
@@ -271,7 +271,7 @@ function quadrotor_adjust_goal_for_enemy_height(goalpos)
 
 /*
 	Name: make_sure_goal_is_well_above_ground
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xB010948E
 	Offset: 0xD60
 	Size: 0x12B
@@ -297,7 +297,7 @@ function make_sure_goal_is_well_above_ground(pos)
 
 /*
 	Name: waittill_pathing_done
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xC2A54BBC
 	Offset: 0xE98
 	Size: 0x5B
@@ -317,7 +317,7 @@ function waittill_pathing_done()
 
 /*
 	Name: quadrotor_movementupdate
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xB3C60C42
 	Offset: 0xF00
 	Size: 0xCC3
@@ -524,7 +524,7 @@ function quadrotor_movementupdate()
 
 /*
 	Name: quadrotor_escape_into_air
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xC0A36311
 	Offset: 0x1BD0
 	Size: 0x189
@@ -561,7 +561,7 @@ function quadrotor_escape_into_air()
 
 /*
 	Name: quadrotor_get_closest_node
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xD07F300C
 	Offset: 0x1D68
 	Size: 0x121
@@ -588,7 +588,7 @@ function quadrotor_get_closest_node()
 
 /*
 	Name: quadrotor_find_new_position
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x28471008
 	Offset: 0x1E98
 	Size: 0x32B
@@ -650,7 +650,7 @@ function quadrotor_find_new_position()
 
 /*
 	Name: quadrotor_teleport_to_nearest_node
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x513B5794
 	Offset: 0x21D0
 	Size: 0x23
@@ -664,7 +664,7 @@ function quadrotor_teleport_to_nearest_node()
 
 /*
 	Name: quadrotor_damage
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xA00208FC
 	Offset: 0x2200
 	Size: 0x23F
@@ -682,7 +682,7 @@ Parameter name: index
 
 /*
 	Name: quadrotor_cleanup_fx
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xED4D36EE
 	Offset: 0x2448
 	Size: 0x2B
@@ -699,7 +699,7 @@ function quadrotor_cleanup_fx()
 
 /*
 	Name: quadrotor_death
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xA89B50FB
 	Offset: 0x2480
 	Size: 0x1D5
@@ -744,7 +744,7 @@ function quadrotor_death()
 
 /*
 	Name: death_fx
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x811022A0
 	Offset: 0x2660
 	Size: 0x53
@@ -762,7 +762,7 @@ function death_fx()
 
 /*
 	Name: quadrotor_crash_movement
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x62108DC1
 	Offset: 0x26C0
 	Size: 0x3B5
@@ -816,7 +816,7 @@ function quadrotor_crash_movement(attacker, hitdir)
 
 /*
 	Name: qrotor_dmg_snd
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x85DD98A3
 	Offset: 0x2A80
 	Size: 0xCB
@@ -836,7 +836,7 @@ function qrotor_dmg_snd()
 
 /*
 	Name: quadrotor_fire_for_time
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xA91F341
 	Offset: 0x2B58
 	Size: 0x153
@@ -875,7 +875,7 @@ function quadrotor_fire_for_time(totalFireTime)
 
 /*
 	Name: quadrotor_crash_accel
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xD7D6C669
 	Offset: 0x2CB8
 	Size: 0x1C7
@@ -920,7 +920,7 @@ function quadrotor_crash_accel()
 
 /*
 	Name: quadrotor_predicted_collision
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x667FEBA0
 	Offset: 0x2E88
 	Size: 0x85
@@ -944,7 +944,7 @@ function quadrotor_predicted_collision()
 
 /*
 	Name: quadrotor_collision_player
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x4EE4685B
 	Offset: 0x2F18
 	Size: 0xFF
@@ -971,7 +971,7 @@ function quadrotor_collision_player()
 
 /*
 	Name: quadrotor_collision
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x2829E489
 	Offset: 0x3020
 	Size: 0x545
@@ -1081,7 +1081,7 @@ function quadrotor_collision()
 
 /*
 	Name: death_fire_loop_audio
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x2F0C9711
 	Offset: 0x3570
 	Size: 0x8B
@@ -1099,7 +1099,7 @@ function death_fire_loop_audio()
 
 /*
 	Name: quadrotor_set_team
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x4C5BAFEC
 	Offset: 0x3608
 	Size: 0x5B
@@ -1119,7 +1119,7 @@ function quadrotor_set_team(team)
 
 /*
 	Name: quadrotor_blink_lights
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x78D28147
 	Offset: 0x3670
 	Size: 0x4B
@@ -1137,7 +1137,7 @@ function quadrotor_blink_lights()
 
 /*
 	Name: quadrotor_self_destruct
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xC9F34E25
 	Offset: 0x36C8
 	Size: 0x1AB
@@ -1186,7 +1186,7 @@ function quadrotor_self_destruct()
 
 /*
 	Name: quadrotor_level_out_for_landing
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xA56FF709
 	Offset: 0x3880
 	Size: 0xFF
@@ -1212,7 +1212,7 @@ function quadrotor_level_out_for_landing()
 
 /*
 	Name: quadrotor_temp_bullet_shield
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x13E8BAB3
 	Offset: 0x3988
 	Size: 0x73
@@ -1238,7 +1238,7 @@ function quadrotor_temp_bullet_shield(invulnerable_time)
 
 /*
 	Name: death_radius_damage
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x5AF37F0E
 	Offset: 0x3A08
 	Size: 0x7B
@@ -1260,7 +1260,7 @@ function death_radius_damage()
 
 /*
 	Name: set_death_model
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xFC86DC36
 	Offset: 0x3A90
 	Size: 0x83
@@ -1289,7 +1289,7 @@ function set_death_model(sModel, fDelay)
 
 /*
 	Name: player_in_last_stand_within_range
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x92C1D38
 	Offset: 0x3B20
 	Size: 0x163
@@ -1320,7 +1320,7 @@ function player_in_last_stand_within_range(range)
 
 /*
 	Name: watch_for_fail_revive
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0xE592EA94
 	Offset: 0x3C90
 	Size: 0xF1
@@ -1346,7 +1346,7 @@ function watch_for_fail_revive(quad_rotor)
 
 /*
 	Name: kill_fx_if_target_revive
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x78426348
 	Offset: 0x3D90
 	Size: 0x1D3
@@ -1385,7 +1385,7 @@ function kill_fx_if_target_revive(quadrotor, revive_target)
 
 /*
 	Name: function_a05da9fb
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x9AAD8BE7
 	Offset: 0x3F70
 	Size: 0x43
@@ -1402,7 +1402,7 @@ function private function_a05da9fb()
 
 /*
 	Name: function_d3a31a35
-	Namespace: namespace_3a47cb81
+	Namespace: zm_ai_quadrotor
 	Checksum: 0x56D97388
 	Offset: 0x3FC0
 	Size: 0xC7

@@ -59,18 +59,18 @@
 #using scripts\zm\zm_asylum_zombie;
 #using scripts\zm\zm_zmhd_cleanup_mgr;
 
-#namespace namespace_f69b3b38;
+#namespace zm_asylum;
 
 /*
-	Name: function_d9af860b
-	Namespace: namespace_f69b3b38
+	Name: level_overrides
+	Namespace: zm_asylum
 	Checksum: 0xBBFD8A28
 	Offset: 0x11F8
 	Size: 0x4B
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_d9af860b()
+function autoexec level_overrides()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;
@@ -80,7 +80,7 @@ function autoexec function_d9af860b()
 
 /*
 	Name: main
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xBCE1E742
 	Offset: 0x1250
 	Size: 0x49B
@@ -94,7 +94,7 @@ function main()
 	level.sndZHDAudio = 1;
 	level.default_game_mode = "zclassic";
 	level.default_start_location = "default";
-	namespace_bf71ff59::main();
+	zm_asylum_fx::main();
 	init_clientfields();
 	visionset_mgr::register_info("visionset", "zm_showerhead", 21000, 100, 31, 1, &visionset_mgr::ramp_in_out_thread_per_player, 0);
 	visionset_mgr::register_info("overlay", "zm_showerhead_postfx", 21000, 500, 32, 1);
@@ -146,7 +146,7 @@ function main()
 
 /*
 	Name: init_clientfields
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xC797FF15
 	Offset: 0x16F8
 	Size: 0xC3
@@ -163,7 +163,7 @@ function init_clientfields()
 
 /*
 	Name: customHudReveal
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x4BA1968C
 	Offset: 0x17C8
 	Size: 0x4B
@@ -180,7 +180,7 @@ function customHudReveal()
 
 /*
 	Name: anywhere_but_here_validation_override
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x7A94062F
 	Offset: 0x1820
 	Size: 0x27
@@ -189,7 +189,7 @@ function customHudReveal()
 */
 function anywhere_but_here_validation_override()
 {
-	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
+	if(!isdefined(self zm_bgb_anywhere_but_here::function_728dfe3()))
 	{
 		return 0;
 	}
@@ -198,7 +198,7 @@ function anywhere_but_here_validation_override()
 
 /*
 	Name: init_sounds
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xFC335EE3
 	Offset: 0x1850
 	Size: 0x9B
@@ -216,7 +216,7 @@ function init_sounds()
 
 /*
 	Name: setupMusic
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x3961B4B3
 	Offset: 0x18F8
 	Size: 0x143
@@ -237,7 +237,7 @@ function setupMusic()
 
 /*
 	Name: initCharacterStartIndex
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x5AD987DA
 	Offset: 0x1A48
 	Size: 0x23
@@ -251,7 +251,7 @@ function initCharacterStartIndex()
 
 /*
 	Name: selectCharacterIndexToUse
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x7CF18148
 	Offset: 0x1A78
 	Size: 0x3D
@@ -271,7 +271,7 @@ function selectCharacterIndexToUse()
 
 /*
 	Name: giveCustomCharacters
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x74D702EB
 	Offset: 0x1AC0
 	Size: 0x2DB
@@ -335,7 +335,7 @@ function giveCustomCharacters()
 
 /*
 	Name: assign_lowest_unused_character_index
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x71B70FC3
 	Offset: 0x1DA8
 	Size: 0x153
@@ -373,7 +373,7 @@ function assign_lowest_unused_character_index()
 
 /*
 	Name: offhand_weapon_overrride
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x7046BBC1
 	Offset: 0x1F08
 	Size: 0xA5
@@ -393,7 +393,7 @@ function offhand_weapon_overrride()
 
 /*
 	Name: asylum_zone_init
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x1F2AB23F
 	Offset: 0x1FB8
 	Size: 0x16B
@@ -415,7 +415,7 @@ function asylum_zone_init()
 
 /*
 	Name: function_54bf648f
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x7A914011
 	Offset: 0x2130
 	Size: 0x33
@@ -431,7 +431,7 @@ function function_54bf648f()
 
 /*
 	Name: function_54da140a
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xCFF5D468
 	Offset: 0x2170
 	Size: 0x203
@@ -481,7 +481,7 @@ function function_54da140a()
 
 /*
 	Name: custom_add_weapons
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x146AA2A4
 	Offset: 0x2380
 	Size: 0x23
@@ -495,7 +495,7 @@ function custom_add_weapons()
 
 /*
 	Name: custom_add_vox
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x9C0EC3FF
 	Offset: 0x23B0
 	Size: 0x1B
@@ -509,7 +509,7 @@ function custom_add_vox()
 
 /*
 	Name: intro_screen
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x2B818FC9
 	Offset: 0x23D8
 	Size: 0x42B
@@ -572,7 +572,7 @@ function intro_screen()
 
 /*
 	Name: init_zombie_asylum
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xF6505950
 	Offset: 0x2810
 	Size: 0xAB
@@ -590,7 +590,7 @@ function init_zombie_asylum()
 
 /*
 	Name: chair_useage
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x7D26DABF
 	Offset: 0x28C8
 	Size: 0xDD
@@ -617,7 +617,7 @@ function chair_useage()
 
 /*
 	Name: function_a67a7819
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x7AC9FE6B
 	Offset: 0x29B0
 	Size: 0x17B
@@ -654,7 +654,7 @@ function function_a67a7819()
 
 /*
 	Name: function_f8772aa4
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x5D5DC03F
 	Offset: 0x2B38
 	Size: 0x37
@@ -676,7 +676,7 @@ function function_f8772aa4(player)
 
 /*
 	Name: init_lights
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x2B3C29F5
 	Offset: 0x2B78
 	Size: 0x29D
@@ -724,7 +724,7 @@ function init_lights()
 
 /*
 	Name: asylum_player_spawn_logic
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x957076A6
 	Offset: 0x2E20
 	Size: 0xB7
@@ -747,7 +747,7 @@ function asylum_player_spawn_logic(predictedSpawn)
 
 /*
 	Name: getportfreespawnpoint
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x8261BC38
 	Offset: 0x2EE0
 	Size: 0x129
@@ -781,7 +781,7 @@ function getportfreespawnpoint(Spawnpoints, player)
 
 /*
 	Name: get_asylum_player_spawnpoints
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xA845A7A5
 	Offset: 0x3018
 	Size: 0x24D
@@ -835,7 +835,7 @@ function get_asylum_player_spawnpoints()
 
 /*
 	Name: disable_bump_trigger
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xDB21ED77
 	Offset: 0x3270
 	Size: 0xB9
@@ -859,7 +859,7 @@ function disable_bump_trigger(triggername)
 
 /*
 	Name: master_electric_switch
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x39712EC
 	Offset: 0x3338
 	Size: 0x4C3
@@ -924,7 +924,7 @@ function master_electric_switch()
 
 /*
 	Name: function_463cb1c6
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x5398772
 	Offset: 0x3808
 	Size: 0x1EB
@@ -963,7 +963,7 @@ function function_463cb1c6()
 
 /*
 	Name: electric_trap_wire_sparks
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x40523BC9
 	Offset: 0x3A00
 	Size: 0x237
@@ -1002,7 +1002,7 @@ function electric_trap_wire_sparks(side)
 
 /*
 	Name: electric_current_open_middle_door
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x57CB27B1
 	Offset: 0x3C40
 	Size: 0x293
@@ -1042,7 +1042,7 @@ function electric_current_open_middle_door()
 
 /*
 	Name: play_the_numbers
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x4E206EFA
 	Offset: 0x3EE0
 	Size: 0x7F
@@ -1062,7 +1062,7 @@ function play_the_numbers()
 
 /*
 	Name: function_9a0695b3
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x9FB08932
 	Offset: 0x3F68
 	Size: 0x4F
@@ -1080,7 +1080,7 @@ function function_9a0695b3()
 
 /*
 	Name: magic_box_limit_location_init
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xB1344714
 	Offset: 0x3FC0
 	Size: 0xFB
@@ -1104,7 +1104,7 @@ function magic_box_limit_location_init()
 
 /*
 	Name: waitfor_flag_open_chest_location
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xC2AAEA90
 	Offset: 0x40C8
 	Size: 0x175
@@ -1156,7 +1156,7 @@ function waitfor_flag_open_chest_location(which)
 
 /*
 	Name: watersheet_on_trigger
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x64271CF7
 	Offset: 0x4248
 	Size: 0x105
@@ -1192,7 +1192,7 @@ function watersheet_on_trigger()
 
 /*
 	Name: function_4c24944a
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xF3303C02
 	Offset: 0x4358
 	Size: 0x1CF
@@ -1230,7 +1230,7 @@ function function_4c24944a(t_water)
 
 /*
 	Name: setup_custom_vox
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x3FC7BB0F
 	Offset: 0x4530
 	Size: 0x27
@@ -1244,7 +1244,7 @@ function setup_custom_vox()
 
 /*
 	Name: exit_level_func
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x3E29D03A
 	Offset: 0x4560
 	Size: 0x129
@@ -1276,7 +1276,7 @@ function exit_level_func()
 
 /*
 	Name: play_pa_system
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xFEF23131
 	Offset: 0x4698
 	Size: 0xBB
@@ -1295,7 +1295,7 @@ function play_pa_system()
 
 /*
 	Name: play_comp_sounds
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x498869CA
 	Offset: 0x4760
 	Size: 0x6B
@@ -1312,7 +1312,7 @@ function play_comp_sounds()
 
 /*
 	Name: init_level_specific_audio
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xFDA7A9B8
 	Offset: 0x47D8
 	Size: 0xE3
@@ -1329,7 +1329,7 @@ function init_level_specific_audio()
 
 /*
 	Name: delete_mule_kick_clip
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x547C0750
 	Offset: 0x48C8
 	Size: 0xE9
@@ -1350,7 +1350,7 @@ function delete_mule_kick_clip()
 
 /*
 	Name: function_aeabaa98
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x69891438
 	Offset: 0x49C0
 	Size: 0x1ED
@@ -1389,7 +1389,7 @@ function function_aeabaa98(zbarrier)
 
 /*
 	Name: wait_on_teardown
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xFE0F4D9C
 	Offset: 0x4BB8
 	Size: 0x143
@@ -1417,7 +1417,7 @@ function wait_on_teardown(piece_index, zbarrier)
 
 /*
 	Name: function_ee422b5c
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x3973CBB7
 	Offset: 0x4D08
 	Size: 0x12B
@@ -1449,7 +1449,7 @@ function function_ee422b5c(chunk)
 
 /*
 	Name: function_659c2324
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x88056698
 	Offset: 0x4E40
 	Size: 0x16B
@@ -1494,7 +1494,7 @@ function function_659c2324(a_keys)
 
 /*
 	Name: function_bb75f24a
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x8414E85C
 	Offset: 0x4FB8
 	Size: 0x139
@@ -1518,7 +1518,7 @@ function function_bb75f24a()
 
 /*
 	Name: function_db379af2
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x4DED5F24
 	Offset: 0x5100
 	Size: 0x199
@@ -1570,7 +1570,7 @@ function function_db379af2()
 
 /*
 	Name: function_dffe609d
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xB98C4CE4
 	Offset: 0x52A8
 	Size: 0x37
@@ -1592,7 +1592,7 @@ function function_dffe609d(player)
 
 /*
 	Name: function_fa408417
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x9994FC83
 	Offset: 0x52E8
 	Size: 0x19D
@@ -1627,7 +1627,7 @@ function function_fa408417()
 
 /*
 	Name: include_perks_in_random_rotation
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xD92760DE
 	Offset: 0x5490
 	Size: 0x63
@@ -1644,7 +1644,7 @@ function include_perks_in_random_rotation()
 
 /*
 	Name: function_c027d01d
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x5C318AE1
 	Offset: 0x5500
 	Size: 0xA3

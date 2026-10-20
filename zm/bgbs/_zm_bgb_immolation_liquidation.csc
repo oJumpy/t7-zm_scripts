@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_cbb0522a;
+#namespace zm_bgb_immolation_liquidation;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_cbb0522a
+	Namespace: zm_bgb_immolation_liquidation
 	Checksum: 0x128A004C
 	Offset: 0x160
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_cbb0522a
+	Namespace: zm_bgb_immolation_liquidation
 	Checksum: 0xA8C2FCEB
 	Offset: 0x1A0
 	Size: 0x3B

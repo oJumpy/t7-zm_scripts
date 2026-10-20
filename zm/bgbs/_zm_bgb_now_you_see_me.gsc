@@ -10,11 +10,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_62ef2c38;
+#namespace zm_bgb_now_you_see_me;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_62ef2c38
+	Namespace: zm_bgb_now_you_see_me
 	Checksum: 0xB21C2874
 	Offset: 0x280
 	Size: 0x33
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_62ef2c38
+	Namespace: zm_bgb_now_you_see_me
 	Checksum: 0xF98B2AA8
 	Offset: 0x2C0
 	Size: 0x123
@@ -57,7 +57,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_62ef2c38
+	Namespace: zm_bgb_now_you_see_me
 	Checksum: 0xC8DCA0E6
 	Offset: 0x3F0
 	Size: 0x33
@@ -71,7 +71,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_62ef2c38
+	Namespace: zm_bgb_now_you_see_me
 	Checksum: 0x6A0E9869
 	Offset: 0x430
 	Size: 0x1C7

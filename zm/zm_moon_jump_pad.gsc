@@ -706,7 +706,7 @@ function moon_jump_pad_cushion_play_sound()
 }
 
 /*
-	Name: function_d4f0f4fe
+	Name: play_jump_pad_pulse
 	Namespace: zm_moon_jump_pad
 	Checksum: 0x27E8526C
 	Offset: 0x2498
@@ -714,7 +714,7 @@ function moon_jump_pad_cushion_play_sound()
 	Parameters: 0
 	Flags: None
 */
-function function_d4f0f4fe()
+function play_jump_pad_pulse()
 {
 	if(isdefined(self.script_int))
 	{

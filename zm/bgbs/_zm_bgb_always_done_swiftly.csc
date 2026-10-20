@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_d7f1b6c4;
+#namespace zm_bgb_always_done_swiftly;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d7f1b6c4
+	Namespace: zm_bgb_always_done_swiftly
 	Checksum: 0x2503BB5C
 	Offset: 0x158
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d7f1b6c4
+	Namespace: zm_bgb_always_done_swiftly
 	Checksum: 0x23905BD4
 	Offset: 0x198
 	Size: 0x3B

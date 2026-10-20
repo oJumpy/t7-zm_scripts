@@ -530,7 +530,7 @@ function debug_anim_reach()
 		self endon("goal");
 		self endon("new_anim_reach");
 		self endon("new_scripted_anim");
-		self endon("hash_c92e9982");
+		self endon("stop_scripted_anim");
 		while(1)
 		{
 			level flagsys::wait_till("Dev Block strings are not supported");

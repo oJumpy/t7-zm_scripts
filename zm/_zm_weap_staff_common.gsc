@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_spawner;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_c9806b9;
+#namespace zm_weap_staff;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_c9806b9
+	Namespace: zm_weap_staff
 	Checksum: 0xF8A69F56
 	Offset: 0x1B8
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_c9806b9
+	Namespace: zm_weap_staff
 	Checksum: 0x99EC1590
 	Offset: 0x1F8
 	Size: 0x3

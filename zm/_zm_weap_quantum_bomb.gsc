@@ -15,11 +15,11 @@
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_ddd35ff;
+#namespace zm_weap_quantum_bomb;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xDAF2B833
 	Offset: 0x718
 	Size: 0x33
@@ -33,7 +33,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x30E25D27
 	Offset: 0x758
 	Size: 0x7B
@@ -51,7 +51,7 @@ function __init__()
 
 /*
 	Name: init
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x81E73F90
 	Offset: 0x7E0
 	Size: 0x2CB
@@ -86,7 +86,7 @@ function init()
 
 /*
 	Name: quantum_bomb_debug_print_ln
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x8ED76024
 	Offset: 0xAB8
 	Size: 0x43
@@ -106,7 +106,7 @@ function quantum_bomb_debug_print_ln(msg)
 
 /*
 	Name: quantum_bomb_debug_print_bold
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xF8F23A85
 	Offset: 0xB08
 	Size: 0x43
@@ -126,7 +126,7 @@ function quantum_bomb_debug_print_bold(msg)
 
 /*
 	Name: quantum_bomb_debug_print_3d
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x35DD8A68
 	Offset: 0xB58
 	Size: 0x8B
@@ -150,7 +150,7 @@ function quantum_bomb_debug_print_3d(msg, color)
 
 /*
 	Name: quantum_bomb_register_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xEC7E7C30
 	Offset: 0xBF0
 	Size: 0x159
@@ -192,7 +192,7 @@ function quantum_bomb_register_result(name, result_func, chance, validation_func
 
 /*
 	Name: quantum_bomb_deregister_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x2801F3B5
 	Offset: 0xD58
 	Size: 0x6B
@@ -215,7 +215,7 @@ function quantum_bomb_deregister_result(name)
 
 /*
 	Name: quantum_bomb_play_area_effect
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x8CF37F30
 	Offset: 0xDD0
 	Size: 0x33
@@ -229,7 +229,7 @@ function quantum_bomb_play_area_effect(position)
 
 /*
 	Name: quantum_bomb_play_player_effect
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x55443B79
 	Offset: 0xE10
 	Size: 0x33
@@ -243,7 +243,7 @@ function quantum_bomb_play_player_effect()
 
 /*
 	Name: quantum_bomb_play_player_effect_at_position
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x1ED6FF0D
 	Offset: 0xE50
 	Size: 0x33
@@ -257,7 +257,7 @@ function quantum_bomb_play_player_effect_at_position(position)
 
 /*
 	Name: quantum_bomb_play_mystery_effect
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x2CD50A4B
 	Offset: 0xE90
 	Size: 0x33
@@ -271,7 +271,7 @@ function quantum_bomb_play_mystery_effect(position)
 
 /*
 	Name: quantum_bomb_clear_cached_data
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xB9063A63
 	Offset: 0xED0
 	Size: 0x15
@@ -286,7 +286,7 @@ function quantum_bomb_clear_cached_data()
 
 /*
 	Name: quantum_bomb_select_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xDF9BCDC4
 	Offset: 0xEF0
 	Size: 0x197
@@ -319,7 +319,7 @@ function quantum_bomb_select_result(position)
 
 /*
 	Name: player_give_quantum_bomb
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xD32AA7CA
 	Offset: 0x1090
 	Size: 0x5B
@@ -335,7 +335,7 @@ function player_give_quantum_bomb()
 
 /*
 	Name: player_handle_quantum_bomb
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x126E7C45
 	Offset: 0x10F8
 	Size: 0x157
@@ -370,7 +370,7 @@ function player_handle_quantum_bomb()
 
 /*
 	Name: quantum_bomb_exists
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x9AAA88E8
 	Offset: 0x1258
 	Size: 0x15
@@ -384,7 +384,7 @@ function quantum_bomb_exists()
 
 /*
 	Name: get_thrown_quantum_bomb
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x93D0BF86
 	Offset: 0x1278
 	Size: 0x6B
@@ -408,7 +408,7 @@ function get_thrown_quantum_bomb()
 
 /*
 	Name: quantum_bomb_default_validation
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x90E2D0B6
 	Offset: 0x12F0
 	Size: 0xF
@@ -422,7 +422,7 @@ function quantum_bomb_default_validation(position)
 
 /*
 	Name: quantum_bomb_get_cached_closest_zombies
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x590205C6
 	Offset: 0x1308
 	Size: 0x49
@@ -440,7 +440,7 @@ function quantum_bomb_get_cached_closest_zombies(position)
 
 /*
 	Name: quantum_bomb_get_cached_in_playable_area
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x75EED8EE
 	Offset: 0x1360
 	Size: 0x39
@@ -458,7 +458,7 @@ function quantum_bomb_get_cached_in_playable_area(position)
 
 /*
 	Name: quantum_bomb_in_playable_area_validation
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x4F51DF2A
 	Offset: 0x13A8
 	Size: 0x21
@@ -472,7 +472,7 @@ function quantum_bomb_in_playable_area_validation(position)
 
 /*
 	Name: quantum_bomb_lethal_grenade_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xAC5A8A34
 	Offset: 0x13D8
 	Size: 0xA3
@@ -488,7 +488,7 @@ function quantum_bomb_lethal_grenade_result(position)
 
 /*
 	Name: function_29e8b3fc
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x210C017D
 	Offset: 0x1488
 	Size: 0x7F
@@ -514,7 +514,7 @@ function function_29e8b3fc(w_weapon)
 
 /*
 	Name: quantum_bomb_random_weapon_starburst_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xE9AC8C50
 	Offset: 0x1510
 	Size: 0x413
@@ -570,7 +570,7 @@ function quantum_bomb_random_weapon_starburst_result(position)
 
 /*
 	Name: quantum_bomb_pack_or_unpack_current_weapon_validation
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x1B2C46A3
 	Offset: 0x1930
 	Size: 0xE3
@@ -597,7 +597,7 @@ function quantum_bomb_pack_or_unpack_current_weapon_validation(position)
 
 /*
 	Name: quantum_bomb_pack_or_unpack_current_weapon_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x62A3113D
 	Offset: 0x1A20
 	Size: 0x38D
@@ -670,7 +670,7 @@ function quantum_bomb_pack_or_unpack_current_weapon_result(position)
 
 /*
 	Name: quantum_bomb_auto_revive_validation
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xCE50BA47
 	Offset: 0x1DB8
 	Size: 0xAF
@@ -697,7 +697,7 @@ function quantum_bomb_auto_revive_validation(position)
 
 /*
 	Name: quantum_bomb_auto_revive_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x70D4CF2C
 	Offset: 0x1E70
 	Size: 0xDD
@@ -721,7 +721,7 @@ function quantum_bomb_auto_revive_result(position)
 
 /*
 	Name: quantum_bomb_player_teleport_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xE75EF138
 	Offset: 0x1F58
 	Size: 0x195
@@ -760,7 +760,7 @@ function quantum_bomb_player_teleport_result(position)
 
 /*
 	Name: quantum_bomb_teleport_player
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xA277764B
 	Offset: 0x20F8
 	Size: 0x193
@@ -802,7 +802,7 @@ function quantum_bomb_teleport_player(player)
 
 /*
 	Name: quantum_bomb_teleport
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x9664512E
 	Offset: 0x2298
 	Size: 0x283
@@ -853,7 +853,7 @@ function quantum_bomb_teleport(struct_dest)
 
 /*
 	Name: quantum_bomb_slightly_delayed_player_response
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x4EF43EAB
 	Offset: 0x2528
 	Size: 0x2B
@@ -868,7 +868,7 @@ function quantum_bomb_slightly_delayed_player_response()
 
 /*
 	Name: quantum_bomb_zombie_speed_buff_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x78128DC
 	Offset: 0x2560
 	Size: 0x195
@@ -912,7 +912,7 @@ function quantum_bomb_zombie_speed_buff_result(position)
 
 /*
 	Name: quantum_bomb_zombie_fling_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x9A08EB4
 	Offset: 0x2700
 	Size: 0x275
@@ -955,7 +955,7 @@ function quantum_bomb_zombie_fling_result(position)
 
 /*
 	Name: quantum_bomb_fling_zombie
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xAED1575A
 	Offset: 0x2980
 	Size: 0xBB
@@ -978,7 +978,7 @@ function quantum_bomb_fling_zombie(player, fling_vec)
 
 /*
 	Name: quantum_bomb_zombie_add_to_total_validation
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0x87932D93
 	Offset: 0x2A48
 	Size: 0x4F
@@ -997,7 +997,7 @@ function quantum_bomb_zombie_add_to_total_validation(position)
 
 /*
 	Name: quantum_bomb_zombie_add_to_total_result
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xC3E35D6E
 	Offset: 0x2AA0
 	Size: 0x63
@@ -1013,7 +1013,7 @@ function quantum_bomb_zombie_add_to_total_result(position)
 
 /*
 	Name: function_61f28336
-	Namespace: namespace_ddd35ff
+	Namespace: zm_weap_quantum_bomb
 	Checksum: 0xE897A9EA
 	Offset: 0x2B10
 	Size: 0x175

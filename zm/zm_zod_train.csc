@@ -8,11 +8,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_filter;
 
-#namespace namespace_835aa2f1;
+#namespace zm_train;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xBF8AA55D
 	Offset: 0x4A8
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xA426B2D4
 	Offset: 0x4E8
 	Size: 0x2EB
@@ -56,24 +56,24 @@ function __init__()
 	level._effect["callbox_cooldown"] = "light/fx_light_button_yellow_traincar_zod_zmb";
 	level._effect["callbox_offline"] = "light/fx_light_button_red_train_zod_zmb";
 	level._effect["map_light"] = "light/fx_light_button_yellow_traincar_zod_zmb";
-	clientfield::register("vehicle", "train_switch_light", 1, 2, "int", &function_18352dd1, 0, 0);
-	clientfield::register("scriptmover", "train_callbox_light", 1, 2, "int", &function_a07a4f8a, 0, 0);
-	clientfield::register("scriptmover", "train_map_light", 1, 2, "int", &function_103916d7, 0, 0);
-	clientfield::register("vehicle", "train_rain_fx_occluder", 1, 1, "int", &function_2aa2bd33, 0, 0);
-	clientfield::register("world", "sndTrainVox", 1, 4, "int", &function_9fb5567b, 0, 0);
+	clientfield::register("vehicle", "train_switch_light", 1, 2, "int", &train_switch_light, 0, 0);
+	clientfield::register("scriptmover", "train_callbox_light", 1, 2, "int", &train_callbox_light, 0, 0);
+	clientfield::register("scriptmover", "train_map_light", 1, 2, "int", &train_map_light, 0, 0);
+	clientfield::register("vehicle", "train_rain_fx_occluder", 1, 1, "int", &train_rain_fx_occluder, 0, 0);
+	clientfield::register("world", "sndTrainVox", 1, 4, "int", &sndtrainvox, 0, 0);
 	level thread function_1093db4e();
 }
 
 /*
-	Name: function_2aa2bd33
-	Namespace: namespace_835aa2f1
+	Name: train_rain_fx_occluder
+	Namespace: zm_train
 	Checksum: 0x6776114F
 	Offset: 0x7E0
 	Size: 0x15B
 	Parameters: 7
 	Flags: None
 */
-function function_2aa2bd33(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function train_rain_fx_occluder(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsDemoPlaying() && getnumfreeentities(localClientNum) < 100)
 	{
@@ -92,15 +92,15 @@ function function_2aa2bd33(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_18352dd1
-	Namespace: namespace_835aa2f1
+	Name: train_switch_light
+	Namespace: zm_train
 	Checksum: 0x44B67039
 	Offset: 0x948
 	Size: 0x39D
 	Parameters: 7
 	Flags: None
 */
-function function_18352dd1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function train_switch_light(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{
@@ -157,7 +157,7 @@ function function_18352dd1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_3e0f1f7e
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xE2E60EFB
 	Offset: 0xCF0
 	Size: 0x63
@@ -172,15 +172,15 @@ function function_3e0f1f7e(alias, origin1, origin2)
 }
 
 /*
-	Name: function_a07a4f8a
-	Namespace: namespace_835aa2f1
+	Name: train_callbox_light
+	Namespace: zm_train
 	Checksum: 0xFC9DC8EF
 	Offset: 0xD60
 	Size: 0x19D
 	Parameters: 7
 	Flags: None
 */
-function function_a07a4f8a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function train_callbox_light(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{
@@ -215,15 +215,15 @@ function function_a07a4f8a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_103916d7
-	Namespace: namespace_835aa2f1
+	Name: train_map_light
+	Namespace: zm_train
 	Checksum: 0x6D2BCE3E
 	Offset: 0xF08
 	Size: 0x1E5
 	Parameters: 7
 	Flags: None
 */
-function function_103916d7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function train_map_light(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(self.var_66058d50) && newVal != 1)
 	{
@@ -262,7 +262,7 @@ function function_103916d7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_1093db4e
-	Namespace: namespace_835aa2f1
+	Namespace: zm_train
 	Checksum: 0xDA311D1E
 	Offset: 0x10F8
 	Size: 0x8B
@@ -276,15 +276,15 @@ function function_1093db4e()
 }
 
 /*
-	Name: function_9fb5567b
-	Namespace: namespace_835aa2f1
+	Name: sndtrainvox
+	Namespace: zm_train
 	Checksum: 0x4C2504B0
 	Offset: 0x1190
 	Size: 0x16B
 	Parameters: 7
 	Flags: None
 */
-function function_9fb5567b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sndtrainvox(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(level.var_71738ea0))
 	{

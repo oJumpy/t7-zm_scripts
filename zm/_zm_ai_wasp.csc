@@ -16,7 +16,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_ai_wasp
-	Checksum: 0xA7BF911F
+	Checksum: 0xFF10E1BC
 	Offset: 0x2A8
 	Size: 0x33
 	Parameters: 0
@@ -30,7 +30,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_ai_wasp
-	Checksum: 0x82D23EE
+	Checksum: 0x3B03F70E
 	Offset: 0x2E8
 	Size: 0x11D
 	Parameters: 0
@@ -48,7 +48,7 @@ function __init__()
 /*
 	Name: parasite_fog_on
 	Namespace: zm_ai_wasp
-	Checksum: 0x18019250
+	Checksum: 0x7B13D4DE
 	Offset: 0x410
 	Size: 0x115
 	Parameters: 7
@@ -77,7 +77,7 @@ function parasite_fog_on(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, 
 /*
 	Name: parasite_round_fx
 	Namespace: zm_ai_wasp
-	Checksum: 0xE87A776E
+	Checksum: 0xBDA5C7F9
 	Offset: 0x530
 	Size: 0xCB
 	Parameters: 7
@@ -99,7 +99,7 @@ function parasite_round_fx(n_local_client, n_val_old, n_val_new, b_ent_new, b_in
 /*
 	Name: PARASITE_ROUND_RING_FX
 	Namespace: zm_ai_wasp
-	Checksum: 0x393E4C27
+	Checksum: 0xA882BED6
 	Offset: 0x608
 	Size: 0x9B
 	Parameters: 7

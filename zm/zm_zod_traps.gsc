@@ -16,11 +16,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\zm_zod_quest;
 
-#namespace namespace_d8d03071;
+#namespace zm_zod_traps;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0xB414E397
 	Offset: 0x528
 	Size: 0x33
@@ -34,7 +34,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x1B9AB328
 	Offset: 0x568
 	Size: 0x63
@@ -49,7 +49,7 @@ function __init__()
 
 /*
 	Name: init_traps
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x87FFF9BD
 	Offset: 0x5D8
 	Size: 0xAB
@@ -72,7 +72,7 @@ function init_traps()
 
 /*
 	Name: init_trap
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x69AC3FEF
 	Offset: 0x690
 	Size: 0x5B
@@ -91,7 +91,7 @@ function init_trap(str_area_name)
 
 /*
 	Name: function_89303c72
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0xA031D45B
 	Offset: 0x6F8
 	Size: 0x1E3
@@ -120,7 +120,7 @@ function function_89303c72(var_f6caa7fd)
 
 /*
 	Name: function_8144bbbe
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0x887FCCEF
 	Offset: 0x8E8
 	Size: 0xBF
@@ -182,7 +182,7 @@ function init_trap(str_area_name)
 	{
 		for(i = 0; i < var_d186b130.size; i++)
 		{
-			if(var_d186b130[i] == heart.var_47c44e16)
+			if(var_d186b130[i] == heart.prefabname)
 			{
 				heart clientfield::set("trap_chain_location", i);
 			}
@@ -209,7 +209,7 @@ function init_trap(str_area_name)
 */
 function filter_areaname(e_entity, str_area_name)
 {
-	if(e_entity.var_47c44e16 !== str_area_name)
+	if(e_entity.prefabname !== str_area_name)
 	{
 		return 0;
 	}
@@ -790,11 +790,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_d8d03071;
+#namespace zm_zod_traps;
 
 /*
 	Name: ctrap
-	Namespace: namespace_d8d03071
+	Namespace: zm_zod_traps
 	Checksum: 0xB92A6FC4
 	Offset: 0x2290
 	Size: 0x475

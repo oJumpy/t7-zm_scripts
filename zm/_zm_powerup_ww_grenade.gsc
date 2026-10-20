@@ -23,7 +23,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_ww_grenade
-	Checksum: 0x6072768
+	Checksum: 0x470D412A
 	Offset: 0x368
 	Size: 0x33
 	Parameters: 0
@@ -37,7 +37,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_ww_grenade
-	Checksum: 0x3361D814
+	Checksum: 0x8A3D045D
 	Offset: 0x3A8
 	Size: 0xDB
 	Parameters: 0
@@ -59,7 +59,7 @@ function __init__()
 /*
 	Name: grab_ww_grenade
 	Namespace: zm_powerup_ww_grenade
-	Checksum: 0x5CA451F5
+	Checksum: 0x6A09C1E3
 	Offset: 0x490
 	Size: 0x43
 	Parameters: 1
@@ -74,7 +74,7 @@ function grab_ww_grenade(player)
 /*
 	Name: ww_grenade_powerup
 	Namespace: zm_powerup_ww_grenade
-	Checksum: 0x6BD72D27
+	Checksum: 0x55FB1D02
 	Offset: 0x4E0
 	Size: 0x143
 	Parameters: 2
@@ -98,7 +98,7 @@ function ww_grenade_powerup(item, player)
 /*
 	Name: ww_grenade_devgui
 	Namespace: zm_powerup_ww_grenade
-	Checksum: 0x5787EA35
+	Checksum: 0x909AABDD
 	Offset: 0x630
 	Size: 0x7B
 	Parameters: 0
@@ -118,7 +118,7 @@ function ww_grenade_devgui()
 /*
 	Name: detect_reentry
 	Namespace: zm_powerup_ww_grenade
-	Checksum: 0x2F4519CF
+	Checksum: 0xD90921B8
 	Offset: 0x6B8
 	Size: 0x37
 	Parameters: 0
@@ -142,7 +142,7 @@ function detect_reentry()
 /*
 	Name: ww_grenade_devgui_callback
 	Namespace: zm_powerup_ww_grenade
-	Checksum: 0x534E7A40
+	Checksum: 0x3EF104C3
 	Offset: 0x6F8
 	Size: 0x10F
 	Parameters: 1

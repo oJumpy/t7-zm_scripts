@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_d5190444;
+#namespace zm_bgb_idle_eyes;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d5190444
+	Namespace: zm_bgb_idle_eyes
 	Checksum: 0xF41D3D08
 	Offset: 0x228
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d5190444
+	Namespace: zm_bgb_idle_eyes
 	Checksum: 0x694762A0
 	Offset: 0x268
 	Size: 0x143
@@ -55,7 +55,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_d5190444
+	Namespace: zm_bgb_idle_eyes
 	Checksum: 0x1689CC01
 	Offset: 0x3B8
 	Size: 0x33
@@ -69,7 +69,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_d5190444
+	Namespace: zm_bgb_idle_eyes
 	Checksum: 0xD30DE441
 	Offset: 0x3F8
 	Size: 0x29B
@@ -118,7 +118,7 @@ function activation()
 
 /*
 	Name: function_1f57344e
-	Namespace: namespace_d5190444
+	Namespace: zm_bgb_idle_eyes
 	Checksum: 0xBFF2A7B7
 	Offset: 0x6A0
 	Size: 0x43
@@ -134,7 +134,7 @@ function function_1f57344e(e_watch, a_active_players)
 
 /*
 	Name: deactivate
-	Namespace: namespace_d5190444
+	Namespace: zm_bgb_idle_eyes
 	Checksum: 0x709C25E3
 	Offset: 0x6F0
 	Size: 0x8D

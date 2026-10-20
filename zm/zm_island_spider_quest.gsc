@@ -51,7 +51,7 @@ function init()
 	level thread function_83b9f02b();
 	level thread function_2ff7183();
 	level thread function_9c86c1bb();
-	Array::thread_all(GetEntArray("spider_lair_entrance_webs", "targetname"), &function_6ba4184c);
+	Array::thread_all(GetEntArray("spider_lair_entrance_webs", "targetname"), &spider_lair_entrance_webs);
 	/#
 		function_4f46a12();
 	#/
@@ -102,8 +102,8 @@ function function_83b9f02b()
 	var_85683d05 = util::spawn_anim_model("c_zom_dlc2_queen_spider");
 	var_85683d05 clientfield::set("spider_queen_emissive_material", 1);
 	var_85683d05 thread function_2a9d57ae();
-	Array::thread_all(GetEntArray("spider_leg_damage", "targetname"), &function_9d6e8018);
-	Array::thread_all(GetEntArray("spider_spit_damage", "targetname"), &function_1b11ad0);
+	Array::thread_all(GetEntArray("spider_leg_damage", "targetname"), &spider_leg_damage_think);
+	Array::thread_all(GetEntArray("spider_spit_damage", "targetname"), &spider_spit_damage_think);
 	Array::thread_all(GetEntArray("spider_spit_damage", "targetname"), &function_9ee2204c, var_85683d05);
 	var_85683d05 function_c225d3aa();
 	var_85683d05 thread spider_queen_killed();
@@ -146,7 +146,7 @@ function function_9c86c1bb()
 }
 
 /*
-	Name: function_6ba4184c
+	Name: spider_lair_entrance_webs
 	Namespace: namespace_13425205
 	Checksum: 0x1E155D2D
 	Offset: 0x1848
@@ -154,7 +154,7 @@ function function_9c86c1bb()
 	Parameters: 0
 	Flags: None
 */
-function function_6ba4184c()
+function spider_lair_entrance_webs()
 {
 	self SetCanDamage(1);
 	self clientfield::set("set_heavy_web_fade_material", 1);
@@ -177,13 +177,13 @@ function function_6ba4184c()
 */
 function function_83953ff7()
 {
-	level endon("hash_bad89ec5");
+	level endon("spider_lair_webs_destroyed");
 	while(1)
 	{
 		self waittill("damage", damage, attacker, direction_vec, point, type, modelName, tagName, partName, weapon, iDFlags);
-		if(namespace_7cee2b44::is_wonder_weapon(weapon))
+		if(mirg2000::is_wonder_weapon(weapon))
 		{
-			if(namespace_7cee2b44::is_wonder_weapon(weapon, "upgraded"))
+			if(mirg2000::is_wonder_weapon(weapon, "upgraded"))
 			{
 				self thread FX::Play("special_web_dissolve_ug", self.origin, self.angles);
 			}
@@ -666,11 +666,11 @@ function function_5a50e7f()
 		{
 			if(level flag::get("spider_queen_weak_spot_exposed"))
 			{
-				if(namespace_7cee2b44::is_wonder_weapon(weapon, "upgraded"))
+				if(mirg2000::is_wonder_weapon(weapon, "upgraded"))
 				{
 					n_damage = 750;
 				}
-				else if(namespace_7cee2b44::is_wonder_weapon(weapon, "default"))
+				else if(mirg2000::is_wonder_weapon(weapon, "default"))
 				{
 					n_damage = 500;
 				}
@@ -683,7 +683,7 @@ function function_5a50e7f()
 }
 
 /*
-	Name: function_1840ad44
+	Name: spider_queen_weakspot
 	Namespace: namespace_13425205
 	Checksum: 0xB69E6143
 	Offset: 0x2DF0
@@ -691,7 +691,7 @@ function function_5a50e7f()
 	Parameters: 0
 	Flags: None
 */
-function function_1840ad44()
+function spider_queen_weakspot()
 {
 	self clientfield::set("spider_queen_mouth_weakspot", 1);
 	level flag::wait_till_clear("spider_queen_weak_spot_exposed");
@@ -757,7 +757,7 @@ function function_291b262e(var_a857d88e, var_27730eaa)
 		level scene::Play("cin_t7_ai_zm_dlc2_spider_queen_arm_attack_intro", self);
 		level thread scene::Play("cin_t7_ai_zm_dlc2_spider_queen_arm_attack_loop", self);
 		level flag::set("spider_queen_weak_spot_exposed");
-		self thread function_1840ad44();
+		self thread spider_queen_weakspot();
 		if(level.var_4e5986ea == 2)
 		{
 			var_679258c3 = Array::random(var_dc084637);
@@ -781,7 +781,7 @@ function function_291b262e(var_a857d88e, var_27730eaa)
 }
 
 /*
-	Name: function_9d6e8018
+	Name: spider_leg_damage_think
 	Namespace: namespace_13425205
 	Checksum: 0x2B4EEBE0
 	Offset: 0x3368
@@ -789,7 +789,7 @@ function function_291b262e(var_a857d88e, var_27730eaa)
 	Parameters: 0
 	Flags: None
 */
-function function_9d6e8018()
+function spider_leg_damage_think()
 {
 	level endon("hash_2dc546da");
 	while(1)
@@ -855,7 +855,7 @@ function function_e2b5f12f()
 	{
 		level flag::wait_till("spider_queen_perform_spit_attack");
 		level flag::set("spider_queen_weak_spot_exposed");
-		self thread function_1840ad44();
+		self thread spider_queen_weakspot();
 		var_9c85831c = Array::random(level.var_1bf7f6a1);
 		level thread function_29454161(var_9c85831c);
 		level scene::Play(var_9c85831c, self);
@@ -886,7 +886,7 @@ function function_29454161(var_e2556d9e)
 }
 
 /*
-	Name: function_1b11ad0
+	Name: spider_spit_damage_think
 	Namespace: namespace_13425205
 	Checksum: 0x247D0C1
 	Offset: 0x37A8
@@ -894,7 +894,7 @@ function function_29454161(var_e2556d9e)
 	Parameters: 0
 	Flags: None
 */
-function function_1b11ad0()
+function spider_spit_damage_think()
 {
 	level endon("hash_2dc546da");
 	while(1)
@@ -1030,7 +1030,7 @@ function function_b6ea5d0d()
 		level flag::clear("spider_baby_round_done");
 		level flag::clear("spider_baby_round_timeout");
 		level flag::clear("spider_baby_hit_react");
-		self thread function_1840ad44();
+		self thread spider_queen_weakspot();
 		n_count = 0;
 		if(level.players.size > 2)
 		{
@@ -1041,7 +1041,7 @@ function function_b6ea5d0d()
 			n_count = 5;
 		}
 		level thread function_fb907799(n_count);
-		level thread function_5c69a79c(n_count);
+		level thread spider_baby_round_timeout(n_count);
 		level thread function_dd902934();
 		var_cc724e2d = struct::get_array("spider_body_spawn_point");
 		var_4e46d51e = struct::get_array("spider_env_spawn_point");
@@ -1105,8 +1105,8 @@ function function_9a7e7358()
 */
 function function_dd902934()
 {
-	level endon("hash_5c69a79c");
-	level endon("hash_b2debadf");
+	level endon("spider_baby_round_timeout");
+	level endon("spider_baby_round_done");
 	while(1)
 	{
 		level waittill("hash_7e0a837a");
@@ -1131,7 +1131,7 @@ function function_dd902934()
 */
 function function_fb907799(n_count)
 {
-	level endon("hash_5c69a79c");
+	level endon("spider_baby_round_timeout");
 	level endon("hash_c69c8ddc");
 	for(n_destroyed_count = 0; n_destroyed_count != n_count;  = 0)
 	{
@@ -1141,7 +1141,7 @@ function function_fb907799(n_count)
 }
 
 /*
-	Name: function_5c69a79c
+	Name: spider_baby_round_timeout
 	Namespace: namespace_13425205
 	Checksum: 0x943CA725
 	Offset: 0x41F8
@@ -1149,9 +1149,9 @@ function function_fb907799(n_count)
 	Parameters: 1
 	Flags: None
 */
-function function_5c69a79c(n_count)
+function spider_baby_round_timeout(n_count)
 {
-	level endon("hash_b2debadf");
+	level endon("spider_baby_round_done");
 	if(n_count > 5)
 	{
 		wait(15);
@@ -1177,8 +1177,8 @@ function function_3d4c345d()
 	level endon("hash_2dc546da");
 	ai_spider = zombie_utility::spawn_zombie(level.spider_spawners[0], "spider_baby", self);
 	ai_spider thread function_5d1bd65f();
-	ai_spider.favoriteenemy = namespace_27f8b154::get_favorite_enemy();
-	self thread namespace_27f8b154::spider_spawn_fx(ai_spider, self);
+	ai_spider.favoriteenemy = zm_ai_spiders::get_favorite_enemy();
+	self thread zm_ai_spiders::spider_spawn_fx(ai_spider, self);
 	ai_spider thread function_46c109d1();
 	playsoundatposition("zmb_foley_squeen_birth_spider", self.origin);
 	level.var_e18ab0f2++;

@@ -12,7 +12,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_craft_shield
-	Checksum: 0xFA82BB45
+	Checksum: 0xB208D594
 	Offset: 0x240
 	Size: 0x33
 	Parameters: 0
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_craft_shield
-	Checksum: 0x50B1A1E5
+	Checksum: 0xD5318FD2
 	Offset: 0x280
 	Size: 0x183
 	Parameters: 0

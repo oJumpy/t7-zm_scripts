@@ -6,11 +6,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_b73d41a1;
+#namespace zm_stalingrad_audio;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x717361B0
 	Offset: 0x2A8
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x2FCD0A30
 	Offset: 0x2E8
 	Size: 0x101
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: function_a50e0efb
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x95348088
 	Offset: 0x3F8
 	Size: 0x133
@@ -68,7 +68,7 @@ function function_a50e0efb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_41eaf8b8
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x6C8710D3
 	Offset: 0x538
 	Size: 0x10B

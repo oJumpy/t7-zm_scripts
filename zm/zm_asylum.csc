@@ -35,18 +35,18 @@
 #using scripts\zm\zm_asylum_ffotd;
 #using scripts\zm\zm_asylum_fx;
 
-#namespace namespace_f69b3b38;
+#namespace zm_asylum;
 
 /*
-	Name: function_d9af860b
-	Namespace: namespace_f69b3b38
+	Name: level_overrides
+	Namespace: zm_asylum
 	Checksum: 0x19709FFF
 	Offset: 0x6D0
 	Size: 0x1B
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_d9af860b()
+function autoexec level_overrides()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;
@@ -54,7 +54,7 @@ function autoexec function_d9af860b()
 
 /*
 	Name: main
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x2EAA74FD
 	Offset: 0x6F8
 	Size: 0x1BB
@@ -67,7 +67,7 @@ function main()
 	level.default_game_mode = "zclassic";
 	level.default_start_location = "default";
 	start_zombie_stuff();
-	namespace_bf71ff59::main();
+	zm_asylum_fx::main();
 	visionset_mgr::register_visionset_info("zm_showerhead", 21000, 31, undefined, "zm_bloodwash_red");
 	visionset_mgr::register_overlay_info_style_postfx_bundle("zm_showerhead_postfx", 21000, 32, "pstfx_blood_wash", 3);
 	visionset_mgr::register_overlay_info_style_postfx_bundle("zm_waterfall_postfx", 21000, 32, "pstfx_shower_wash", 3);
@@ -88,7 +88,7 @@ function main()
 
 /*
 	Name: init_clientfields
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x217B1330
 	Offset: 0x8C0
 	Size: 0xDB
@@ -97,14 +97,14 @@ function main()
 */
 function init_clientfields()
 {
-	clientfield::register("world", "asylum_trap_fx_north", 21000, 1, "int", &namespace_bf71ff59::function_93f91575, 0, 0);
-	clientfield::register("world", "asylum_trap_fx_south", 21000, 1, "int", &namespace_bf71ff59::function_4c17ba1b, 0, 0);
+	clientfield::register("world", "asylum_trap_fx_north", 21000, 1, "int", &zm_asylum_fx::function_93f91575, 0, 0);
+	clientfield::register("world", "asylum_trap_fx_south", 21000, 1, "int", &zm_asylum_fx::function_4c17ba1b, 0, 0);
 	clientfield::register("world", "asylum_generator_state", 21000, 1, "int", &set_generator_state, 0, 0);
 }
 
 /*
 	Name: start_zombie_stuff
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x7FD86DA
 	Offset: 0x9A8
 	Size: 0x23
@@ -119,7 +119,7 @@ function start_zombie_stuff()
 
 /*
 	Name: include_weapons
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xA780EA69
 	Offset: 0x9D8
 	Size: 0x23
@@ -133,7 +133,7 @@ function include_weapons()
 
 /*
 	Name: watch_for_power
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xBAE1FC32
 	Offset: 0xA08
 	Size: 0xC9
@@ -162,7 +162,7 @@ function watch_for_power()
 
 /*
 	Name: set_generator_state
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x61FE4A2C
 	Offset: 0xAE0
 	Size: 0x87
@@ -184,7 +184,7 @@ function set_generator_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 
 /*
 	Name: play_random_generator_sparks
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x43D15260
 	Offset: 0xB70
 	Size: 0x57
@@ -202,7 +202,7 @@ function play_random_generator_sparks()
 
 /*
 	Name: function_c9207335
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x697CAB3F
 	Offset: 0xBD0
 	Size: 0x73
@@ -219,7 +219,7 @@ function function_c9207335()
 
 /*
 	Name: function_60a32834
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xDAB0934B
 	Offset: 0xC50
 	Size: 0x93
@@ -248,7 +248,7 @@ function function_60a32834()
 
 /*
 	Name: function_d667714e
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x84694B1B
 	Offset: 0xCF0
 	Size: 0xF7
@@ -275,7 +275,7 @@ function function_d667714e()
 
 /*
 	Name: function_b234849
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x3A920E5B
 	Offset: 0xDF0
 	Size: 0x63
@@ -292,7 +292,7 @@ function function_b234849(newmus)
 
 /*
 	Name: startzmbspawnersoundloops
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0xCC7C49F1
 	Offset: 0xE60
 	Size: 0x15B
@@ -334,7 +334,7 @@ function startzmbspawnersoundloops()
 
 /*
 	Name: soundLoopThink
-	Namespace: namespace_f69b3b38
+	Namespace: zm_asylum
 	Checksum: 0x1D058ADC
 	Offset: 0xFC8
 	Size: 0x16B

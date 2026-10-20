@@ -16,11 +16,11 @@
 #using scripts\zm\zm_castle_flingers;
 #using scripts\zm\zm_castle_vo;
 
-#namespace namespace_155a700c;
+#namespace zm_castle_pap_quest;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x663618B
 	Offset: 0x540
 	Size: 0x3B
@@ -34,7 +34,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x5C1626B3
 	Offset: 0x588
 	Size: 0xBB
@@ -54,7 +54,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x1AB23914
 	Offset: 0x650
 	Size: 0x1B
@@ -70,7 +70,7 @@ function __main__()
 
 /*
 	Name: function_c4641d12
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xED75B347
 	Offset: 0x678
 	Size: 0x8DF
@@ -82,7 +82,7 @@ function function_c4641d12(is_powered)
 	level.var_1c602ba8 = struct::get_array("s_pap_tp");
 	level.pap_machine = self;
 	self.zbarrier _zm_pack_a_punch::set_state_hidden();
-	Array::thread_all(level.var_1c602ba8, &function_53bc4f86, self);
+	Array::thread_all(level.var_1c602ba8, &pap_tp_think, self);
 	level.var_164e92cf = 2;
 	level.var_1e4d46e3 = 0;
 	level.var_22ce1993 = [];
@@ -105,7 +105,7 @@ function function_c4641d12(is_powered)
 	pap_machine = GetEnt("pap_prefab", "prefabname");
 	self.zbarrier _zm_pack_a_punch::set_state_initial();
 	self.zbarrier _zm_pack_a_punch::set_state_power_on();
-	level waittill("hash_9d5be202");
+	level waittill("pack_machine_in_use");
 	level.var_9b1767c1 = level.round_number + randomIntRange(2, 4);
 	var_94e7d6ca = undefined;
 	var_3c7c9ebd = undefined;
@@ -180,7 +180,7 @@ function function_c4641d12(is_powered)
 
 /*
 	Name: function_88c193db
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x8001BCB9
 	Offset: 0xF60
 	Size: 0x43
@@ -197,7 +197,7 @@ function function_88c193db()
 
 /*
 	Name: function_2209afdf
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xC540C5CA
 	Offset: 0xFB0
 	Size: 0x63
@@ -214,7 +214,7 @@ function function_2209afdf()
 
 /*
 	Name: function_5f17a55c
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x328E18C0
 	Offset: 0x1020
 	Size: 0x229
@@ -245,15 +245,15 @@ function function_5f17a55c()
 }
 
 /*
-	Name: function_53bc4f86
-	Namespace: namespace_155a700c
+	Name: pap_tp_think
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xE9B286BB
 	Offset: 0x1258
 	Size: 0x4BB
 	Parameters: 1
 	Flags: None
 */
-function function_53bc4f86(pap_machine)
+function pap_tp_think(pap_machine)
 {
 	e_clip = GetEnt(self.script_string, "targetname");
 	e_clip.targetname = "pap_" + self.script_noteworthy + "_clip";
@@ -297,7 +297,7 @@ function function_53bc4f86(pap_machine)
 	}
 	if(level.var_1e4d46e3 < level.var_164e92cf)
 	{
-		e_who thread namespace_97ddfc0d::function_ce6b93fc();
+		e_who thread zm_castle_vo::function_ce6b93fc();
 	}
 	level.var_a8ca2bee = level.var_1c602ba8[0];
 	level.var_1e4d46e3++;
@@ -324,7 +324,7 @@ function function_53bc4f86(pap_machine)
 
 /*
 	Name: function_23193d81
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x94D69835
 	Offset: 0x1720
 	Size: 0x173
@@ -368,7 +368,7 @@ function function_23193d81(str_location)
 
 /*
 	Name: function_b9cca08f
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xD9CA6569
 	Offset: 0x18A0
 	Size: 0x107
@@ -377,15 +377,15 @@ function function_23193d81(str_location)
 */
 function function_b9cca08f()
 {
-	level endon("hash_1c8f2071");
+	level endon("pap_reformed");
 	self endon("death");
 	self endon("disconnect");
 	level flag::wait_till("pap_reform_available");
-	var_4ff1b6c0 = level.var_54cd8d06;
+	s_pap_location = level.var_54cd8d06;
 	while(1)
 	{
-		self util::waittill_player_looking_at(var_4ff1b6c0.origin + VectorScale((0, 0, 1), 50), 90);
-		if(Distance(self.origin, var_4ff1b6c0.origin) < 400)
+		self util::waittill_player_looking_at(s_pap_location.origin + VectorScale((0, 0, 1), 50), 90);
+		if(Distance(self.origin, s_pap_location.origin) < 400)
 		{
 			level thread function_eb56512();
 			level flag::set("pap_reformed");
@@ -396,7 +396,7 @@ function function_b9cca08f()
 
 /*
 	Name: function_eb56512
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xCE6CDD43
 	Offset: 0x19B0
 	Size: 0x5D3
@@ -405,7 +405,7 @@ function function_b9cca08f()
 */
 function function_eb56512()
 {
-	var_4ff1b6c0 = level.var_54cd8d06;
+	s_pap_location = level.var_54cd8d06;
 	var_22ce1993 = [];
 	var_22ce1993["under"] = "fxexp_801";
 	var_22ce1993["rocket"] = "fxexp_802";
@@ -414,9 +414,9 @@ function function_eb56512()
 	var_6eb9e3e5["under"] = "lgt_undercroft_exp";
 	var_6eb9e3e5["rocket"] = "lgt_rocketpad_exp";
 	var_6eb9e3e5["roof"] = "lgt_bastion_exp";
-	var_9e129aa9 = var_22ce1993[var_4ff1b6c0.script_noteworthy];
+	var_9e129aa9 = var_22ce1993[s_pap_location.script_noteworthy];
 	exploder::exploder(var_9e129aa9);
-	PlayRumbleOnPosition("zm_castle_pap_tp", var_4ff1b6c0.origin);
+	PlayRumbleOnPosition("zm_castle_pap_tp", s_pap_location.origin);
 	zm_pap_util::set_interaction_height(256);
 	level.var_94c82bf8 = [];
 	var_aa03df75 = struct::get_array("s_pap_location", "targetname");
@@ -424,8 +424,8 @@ function function_eb56512()
 	{
 		level.var_94c82bf8[var_309749f1.script_int] = var_309749f1;
 	}
-	var_fc5d165 = ArrayGetClosest(var_4ff1b6c0.origin, level.var_94c82bf8);
-	level.var_c9f5f61 = GetEntArray(var_4ff1b6c0.target, "targetname");
+	var_fc5d165 = ArrayGetClosest(s_pap_location.origin, level.var_94c82bf8);
+	level.var_c9f5f61 = GetEntArray(s_pap_location.target, "targetname");
 	scene::add_scene_func("p7_fxanim_zm_castle_pap_complete_reform_bundle", &function_335f66d5, "play");
 	var_fc5d165.origin = var_fc5d165.origin + VectorScale((0, 0, -1), 16);
 	var_fc5d165 scene::Play("p7_fxanim_zm_castle_pap_complete_reform_bundle");
@@ -446,14 +446,14 @@ function function_eb56512()
 	exploder::exploder_stop(var_9e129aa9);
 	level.pap_machine.zbarrier thread function_a8c41b9();
 	level.pap_machine.zbarrier _zm_pack_a_punch::set_state_power_on();
-	e_clip = GetEnt("pap_" + var_4ff1b6c0.script_noteworthy + "_clip", "targetname");
+	e_clip = GetEnt("pap_" + s_pap_location.script_noteworthy + "_clip", "targetname");
 	e_clip notsolid();
-	exploder::exploder(var_6eb9e3e5[var_4ff1b6c0.script_noteworthy]);
+	exploder::exploder(var_6eb9e3e5[s_pap_location.script_noteworthy]);
 }
 
 /*
 	Name: function_566e5eb4
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x8FB752EA
 	Offset: 0x1F90
 	Size: 0x101
@@ -478,7 +478,7 @@ function function_566e5eb4()
 
 /*
 	Name: function_335f66d5
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xE982F39B
 	Offset: 0x20A0
 	Size: 0x91
@@ -496,7 +496,7 @@ function function_335f66d5()
 
 /*
 	Name: function_6591f9c7
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xE1245B86
 	Offset: 0x2140
 	Size: 0x1BB
@@ -514,11 +514,11 @@ function function_6591f9c7(var_b9d22a4b)
 	self.angles = var_5e73f984.angles;
 	str_scenedef = "p7_fxanim_zm_castle_pap_part" + self.script_int + "_arrive_bundle";
 	scene::Play(str_scenedef, self);
-	foreach(var_4ff1b6c0 in level.var_1c602ba8)
+	foreach(s_pap_location in level.var_1c602ba8)
 	{
-		if(var_4ff1b6c0.script_noteworthy == var_b9d22a4b.script_noteworthy)
+		if(s_pap_location.script_noteworthy == var_b9d22a4b.script_noteworthy)
 		{
-			self.targetname = var_4ff1b6c0.target;
+			self.targetname = s_pap_location.target;
 		}
 	}
 	level.var_e1ee8457--;
@@ -526,7 +526,7 @@ function function_6591f9c7(var_b9d22a4b)
 
 /*
 	Name: function_a8c41b9
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xADD30E0E
 	Offset: 0x2308
 	Size: 0x107
@@ -556,7 +556,7 @@ function function_a8c41b9()
 
 /*
 	Name: function_99664e8
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xE508B05D
 	Offset: 0x2418
 	Size: 0x191
@@ -601,7 +601,7 @@ function function_99664e8()
 
 /*
 	Name: detect_reentry
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x9FF21716
 	Offset: 0x25B8
 	Size: 0x37
@@ -625,7 +625,7 @@ function detect_reentry()
 
 /*
 	Name: function_42a3de0d
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xBEF82CE1
 	Offset: 0x25F8
 	Size: 0x63
@@ -644,7 +644,7 @@ function function_42a3de0d()
 
 /*
 	Name: function_f04119b5
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x239F4B1C
 	Offset: 0x2668
 	Size: 0xCD

@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_4a25f1d2;
+#namespace zm_bgb_board_to_death;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4a25f1d2
+	Namespace: zm_bgb_board_to_death
 	Checksum: 0x36DE24E4
 	Offset: 0x170
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4a25f1d2
+	Namespace: zm_bgb_board_to_death
 	Checksum: 0xAD1708BC
 	Offset: 0x1B0
 	Size: 0x5B
@@ -41,7 +41,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_4a25f1d2
+	Namespace: zm_bgb_board_to_death
 	Checksum: 0x283366A0
 	Offset: 0x218
 	Size: 0x1B
@@ -55,7 +55,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_4a25f1d2
+	Namespace: zm_bgb_board_to_death
 	Checksum: 0x99EC1590
 	Offset: 0x240
 	Size: 0x3
@@ -68,7 +68,7 @@ function disable()
 
 /*
 	Name: function_3c61f2df
-	Namespace: namespace_4a25f1d2
+	Namespace: zm_bgb_board_to_death
 	Checksum: 0x1C8C7534
 	Offset: 0x250
 	Size: 0x77
@@ -79,7 +79,7 @@ function function_3c61f2df()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	while(1)
 	{
 		self waittill("boarding_window", s_window);
@@ -90,7 +90,7 @@ function function_3c61f2df()
 
 /*
 	Name: function_64ea6cea
-	Namespace: namespace_4a25f1d2
+	Namespace: zm_bgb_board_to_death
 	Checksum: 0x21A8FC74
 	Offset: 0x2D0
 	Size: 0x165

@@ -62,11 +62,11 @@
 #using scripts\zm\zm_castle_weap_quest;
 #using scripts\zm\zm_castle_weap_quest_upgrade;
 
-#namespace namespace_c491e335;
+#namespace zm_castle;
 
 /*
 	Name: opt_in
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xF0F91C95
 	Offset: 0x1640
 	Size: 0xE9
@@ -89,7 +89,7 @@ function autoexec opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xE3ACF33F
 	Offset: 0x1738
 	Size: 0x27B
@@ -111,21 +111,21 @@ function main()
 	level._uses_taser_knuckles = 1;
 	level.debug_keyline_zombies = 0;
 	register_clientfields();
-	thread namespace_99cb5531::main();
+	thread zm_castle_weap_quest_upgrade::main();
 	include_weapons();
 	namespace_dddf9a25::include_craftables();
 	namespace_dddf9a25::init_craftables();
 	namespace_912a86f7::init();
-	namespace_f2d05c13::main();
+	zm_castle_death_ray_trap::main();
 	namespace_ee5f5b26::main();
 	namespace_4fd1ba2a::main();
-	namespace_8e89abe3::main();
-	level thread namespace_c93e4c32::main();
+	zm_castle_low_grav::main();
+	level thread zm_castle_ee::main();
 	load::main();
-	namespace_35f5e9b2::main();
+	zm_castle_fx::main();
 	_zm_weap_cymbal_monkey::init();
 	level thread namespace_77c14780::main();
-	level thread namespace_2a78f3c::main();
+	level thread zm_castle_weap_quest::main();
 	util::waitforclient(0);
 	thread function_893a7cdd();
 	level thread function_a81bfac6();
@@ -134,7 +134,7 @@ function main()
 
 /*
 	Name: function_a81bfac6
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x25AB684F
 	Offset: 0x19C0
 	Size: 0x53
@@ -152,7 +152,7 @@ function function_a81bfac6()
 
 /*
 	Name: include_weapons
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x9D18D1D4
 	Offset: 0x1A20
 	Size: 0x33
@@ -167,7 +167,7 @@ function include_weapons()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x6B4F313A
 	Offset: 0x1A60
 	Size: 0x183
@@ -180,13 +180,13 @@ function register_clientfields()
 	clientfield::register("clientuimodel", "zmInventory.widget_shield_parts", 1, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.widget_fuses", 1, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.player_crafted_shield", 1, 1, "int", undefined, 0, 0);
-	clientfield::register("world", "snd_low_gravity_state", 5000, 2, "int", &function_467479e8, 0, 0);
-	clientfield::register("world", "castle_fog_bank_switch", 1, 1, "int", &function_91fd87d8, 0, 0);
+	clientfield::register("world", "snd_low_gravity_state", 5000, 2, "int", &snd_low_gravity_state, 0, 0);
+	clientfield::register("world", "castle_fog_bank_switch", 1, 1, "int", &castle_fog_bank_switch, 0, 0);
 }
 
 /*
 	Name: function_893a7cdd
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xAE742AD1
 	Offset: 0x1BF0
 	Size: 0x9B
@@ -206,7 +206,7 @@ function function_893a7cdd()
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0x985CDE5A
 	Offset: 0x1C98
 	Size: 0xE41
@@ -313,7 +313,7 @@ function setup_personality_character_exerts()
 
 /*
 	Name: callback_player_snow_fx_logic
-	Namespace: namespace_c491e335
+	Namespace: zm_castle
 	Checksum: 0xF0E84355
 	Offset: 0x2AE8
 	Size: 0xE3
@@ -332,15 +332,15 @@ function callback_player_snow_fx_logic(localClientNum, oldVal, newVal, bNewEnt, 
 }
 
 /*
-	Name: function_467479e8
-	Namespace: namespace_c491e335
+	Name: snd_low_gravity_state
+	Namespace: zm_castle
 	Checksum: 0x72F91CDD
 	Offset: 0x2BD8
 	Size: 0x14B
 	Parameters: 7
 	Flags: None
 */
-function function_467479e8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function snd_low_gravity_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -360,15 +360,15 @@ function function_467479e8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_91fd87d8
-	Namespace: namespace_c491e335
+	Name: castle_fog_bank_switch
+	Namespace: zm_castle
 	Checksum: 0x47893CA4
 	Offset: 0x2D30
 	Size: 0x10D
 	Parameters: 7
 	Flags: None
 */
-function function_91fd87d8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function castle_fog_bank_switch(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

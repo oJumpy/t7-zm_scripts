@@ -60,13 +60,13 @@ function function_9a03e439()
 	level.initial_quick_revive_power_off = 1;
 	level flag::wait_till("all_players_spawned");
 	level flag::wait_till("zones_initialized");
-	thread function_5508b348();
-	thread function_4a2261fa();
-	thread function_6753e7bb();
-	thread function_55b919e6();
-	thread function_e840e164();
-	thread function_a41cf549();
-	thread function_8b929f79();
+	thread perk_light_quick_revive_on();
+	thread perk_light_widows_wine_on();
+	thread perk_light_mule_kick_on();
+	thread perk_light_staminup_on();
+	thread perk_light_speed_cola_on();
+	thread perk_light_juggernaut_on();
+	thread perk_light_doubletap_on();
 }
 
 /*
@@ -91,7 +91,7 @@ function function_b5c4c30e()
 }
 
 /*
-	Name: function_5508b348
+	Name: perk_light_quick_revive_on
 	Namespace: namespace_912a86f7
 	Checksum: 0x83A9FDD1
 	Offset: 0x718
@@ -99,7 +99,7 @@ function function_b5c4c30e()
 	Parameters: 0
 	Flags: None
 */
-function function_5508b348()
+function perk_light_quick_revive_on()
 {
 	level waittill("revive_on");
 	exploder::exploder("lgt_vending_quick_revive_castle");
@@ -110,7 +110,7 @@ function function_5508b348()
 }
 
 /*
-	Name: function_4a2261fa
+	Name: perk_light_widows_wine_on
 	Namespace: namespace_912a86f7
 	Checksum: 0x788F0AE5
 	Offset: 0x7C0
@@ -118,14 +118,14 @@ function function_5508b348()
 	Parameters: 0
 	Flags: None
 */
-function function_4a2261fa()
+function perk_light_widows_wine_on()
 {
 	level waittill("widows_wine_on");
 	clientfield::set("perk_light_widows_wine", 1);
 }
 
 /*
-	Name: function_6753e7bb
+	Name: perk_light_mule_kick_on
 	Namespace: namespace_912a86f7
 	Checksum: 0x80708ECB
 	Offset: 0x7F8
@@ -133,14 +133,14 @@ function function_4a2261fa()
 	Parameters: 0
 	Flags: None
 */
-function function_6753e7bb()
+function perk_light_mule_kick_on()
 {
 	level waittill("additionalprimaryweapon_on");
 	clientfield::set("perk_light_mule_kick", 1);
 }
 
 /*
-	Name: function_55b919e6
+	Name: perk_light_staminup_on
 	Namespace: namespace_912a86f7
 	Checksum: 0x1847F248
 	Offset: 0x830
@@ -148,14 +148,14 @@ function function_6753e7bb()
 	Parameters: 0
 	Flags: None
 */
-function function_55b919e6()
+function perk_light_staminup_on()
 {
 	level waittill("marathon_on");
 	level clientfield::set("perk_light_staminup", 1);
 }
 
 /*
-	Name: function_e840e164
+	Name: perk_light_speed_cola_on
 	Namespace: namespace_912a86f7
 	Checksum: 0x51E79376
 	Offset: 0x870
@@ -163,14 +163,14 @@ function function_55b919e6()
 	Parameters: 0
 	Flags: None
 */
-function function_e840e164()
+function perk_light_speed_cola_on()
 {
 	level waittill("sleight_on");
 	level clientfield::set("perk_light_speed_cola", 1);
 }
 
 /*
-	Name: function_a41cf549
+	Name: perk_light_juggernaut_on
 	Namespace: namespace_912a86f7
 	Checksum: 0x5510F6A1
 	Offset: 0x8B0
@@ -178,14 +178,14 @@ function function_e840e164()
 	Parameters: 0
 	Flags: None
 */
-function function_a41cf549()
+function perk_light_juggernaut_on()
 {
 	level waittill("juggernog_on");
 	level clientfield::set("perk_light_juggernaut", 1);
 }
 
 /*
-	Name: function_8b929f79
+	Name: perk_light_doubletap_on
 	Namespace: namespace_912a86f7
 	Checksum: 0x789FC7FB
 	Offset: 0x8F0
@@ -193,7 +193,7 @@ function function_a41cf549()
 	Parameters: 0
 	Flags: None
 */
-function function_8b929f79()
+function perk_light_doubletap_on()
 {
 	level waittill("doubletap_on");
 	level clientfield::set("perk_light_doubletap", 1);

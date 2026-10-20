@@ -17,7 +17,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: Spider
-	Checksum: 0xFB465612
+	Checksum: 0xA74609DC
 	Offset: 0x350
 	Size: 0x33
 	Parameters: 0
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: Spider
-	Checksum: 0xAA565A33
+	Checksum: 0xEDFF3F6D
 	Offset: 0x390
 	Size: 0x4B
 	Parameters: 0
@@ -48,7 +48,7 @@ function __init__()
 /*
 	Name: NO_SWITCH_ON
 	Namespace: Spider
-	Checksum: 0x32AB2CBD
+	Checksum: 0x53836053
 	Offset: 0x3E8
 	Size: 0x1F
 	Parameters: 0
@@ -62,7 +62,7 @@ function NO_SWITCH_ON()
 /*
 	Name: spider_initialize
 	Namespace: Spider
-	Checksum: 0x1952E919
+	Checksum: 0xFD7E6885
 	Offset: 0x410
 	Size: 0x20B
 	Parameters: 0
@@ -102,7 +102,7 @@ function spider_initialize()
 /*
 	Name: defaultRole
 	Namespace: Spider
-	Checksum: 0x9B5F24ED
+	Checksum: 0x8394E942
 	Offset: 0x628
 	Size: 0x16B
 	Parameters: 0
@@ -124,7 +124,7 @@ function defaultRole()
 /*
 	Name: state_death_update
 	Namespace: Spider
-	Checksum: 0x61AFD353
+	Checksum: 0xCCB6AE92
 	Offset: 0x7A0
 	Size: 0x83
 	Parameters: 1
@@ -142,7 +142,7 @@ function state_death_update(params)
 /*
 	Name: state_driving_update
 	Namespace: Spider
-	Checksum: 0xDC28D17D
+	Checksum: 0x72E28AA
 	Offset: 0x830
 	Size: 0x3B
 	Parameters: 1
@@ -158,7 +158,7 @@ function state_driving_update(params)
 /*
 	Name: GetNextMovePosition_ranged
 	Namespace: Spider
-	Checksum: 0x69692A0
+	Checksum: 0x76B3F6C9
 	Offset: 0x878
 	Size: 0x651
 	Parameters: 1
@@ -253,7 +253,7 @@ function GetNextMovePosition_ranged(enemy)
 /*
 	Name: state_range_combat_update
 	Namespace: Spider
-	Checksum: 0xE0FACE9A
+	Checksum: 0x1CD3A38F
 	Offset: 0xED8
 	Size: 0x2A7
 	Parameters: 1
@@ -320,7 +320,7 @@ function state_range_combat_update(params)
 /*
 	Name: state_range_combat_attack
 	Namespace: Spider
-	Checksum: 0xD6EFBA40
+	Checksum: 0xBAF6F0DB
 	Offset: 0x1188
 	Size: 0x2C7
 	Parameters: 0
@@ -368,7 +368,7 @@ function state_range_combat_attack()
 /*
 	Name: do_ranged_attack
 	Namespace: Spider
-	Checksum: 0x35ACDA79
+	Checksum: 0xF82D5C3
 	Offset: 0x1458
 	Size: 0x2CD
 	Parameters: 1
@@ -411,7 +411,7 @@ function do_ranged_attack(enemy)
 /*
 	Name: switch_to_melee
 	Namespace: Spider
-	Checksum: 0xD491A878
+	Checksum: 0x19FAC02D
 	Offset: 0x1730
 	Size: 0xF
 	Parameters: 0
@@ -425,7 +425,7 @@ function switch_to_melee()
 /*
 	Name: should_switch_to_melee
 	Namespace: Spider
-	Checksum: 0xEEF46B8B
+	Checksum: 0xD612E025
 	Offset: 0x1748
 	Size: 0x117
 	Parameters: 3
@@ -457,7 +457,7 @@ function should_switch_to_melee(from_state, to_state, connection)
 /*
 	Name: state_melee_combat_update
 	Namespace: Spider
-	Checksum: 0x3983F88B
+	Checksum: 0x7F7BF01B
 	Offset: 0x1868
 	Size: 0x8FB
 	Parameters: 1
@@ -602,7 +602,7 @@ function state_melee_combat_update(params)
 /*
 	Name: state_melee_combat_attack
 	Namespace: Spider
-	Checksum: 0xADCEEDE5
+	Checksum: 0x5EB596AE
 	Offset: 0x2170
 	Size: 0x1F7
 	Parameters: 0
@@ -643,7 +643,7 @@ function state_melee_combat_attack()
 /*
 	Name: do_melee_attack
 	Namespace: Spider
-	Checksum: 0xEC940C78
+	Checksum: 0x2D3D41E8
 	Offset: 0x2370
 	Size: 0x185
 	Parameters: 1
@@ -671,7 +671,7 @@ function do_melee_attack(enemy)
 /*
 	Name: should_switch_to_range
 	Namespace: Spider
-	Checksum: 0x923EA3B9
+	Checksum: 0x77C1F3DD
 	Offset: 0x2500
 	Size: 0xFF
 	Parameters: 3
@@ -707,7 +707,7 @@ function should_switch_to_range(from_state, to_state, connection)
 /*
 	Name: prevent_stuck
 	Namespace: Spider
-	Checksum: 0xCFA6C105
+	Checksum: 0x177167B9
 	Offset: 0x2608
 	Size: 0xF9
 	Parameters: 0
@@ -744,7 +744,7 @@ function prevent_stuck()
 /*
 	Name: spider_get_target_position
 	Namespace: Spider
-	Checksum: 0xB8164971
+	Checksum: 0xDEF7E0B6
 	Offset: 0x2710
 	Size: 0x375
 	Parameters: 0
@@ -827,7 +827,7 @@ function spider_get_target_position()
 /*
 	Name: path_update_interrupt_melee
 	Namespace: Spider
-	Checksum: 0x18AF3342
+	Checksum: 0xA5C3F363
 	Offset: 0x2A90
 	Size: 0x2E3
 	Parameters: 0
@@ -899,7 +899,7 @@ function path_update_interrupt_melee()
 /*
 	Name: nudge_collision
 	Namespace: Spider
-	Checksum: 0xB9B69B7C
+	Checksum: 0x7CA8E1F4
 	Offset: 0x2D80
 	Size: 0x117
 	Parameters: 0
@@ -926,7 +926,7 @@ function nudge_collision()
 /*
 	Name: force_get_enemies
 	Namespace: Spider
-	Checksum: 0xB66F8F33
+	Checksum: 0xF2EF97A5
 	Offset: 0x2EA0
 	Size: 0xBB
 	Parameters: 0
@@ -947,7 +947,7 @@ function force_get_enemies()
 /*
 	Name: spider_callback_damage
 	Namespace: Spider
-	Checksum: 0xCA469211
+	Checksum: 0x3FF0A9EA
 	Offset: 0x2F68
 	Size: 0xB7
 	Parameters: 15

@@ -22,11 +22,11 @@
 #using scripts\zm\craftables\_zm_craftables;
 #using scripts\zm\zm_island_planting;
 
-#namespace namespace_e37c032f;
+#namespace zm_powerup_island_seed;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x8345BCDC
 	Offset: 0x468
 	Size: 0x33
@@ -40,7 +40,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0xCC4D1B10
 	Offset: 0x4A8
 	Size: 0x153
@@ -68,7 +68,7 @@ function __init__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x86FE3BC0
 	Offset: 0x608
 	Size: 0xF3
@@ -86,7 +86,7 @@ function register_clientfields()
 
 /*
 	Name: function_6adb5862
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x41946A61
 	Offset: 0x708
 	Size: 0xA3
@@ -107,7 +107,7 @@ function function_6adb5862(player)
 
 /*
 	Name: function_58b6724f
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x351DFC28
 	Offset: 0x7B8
 	Size: 0xCB
@@ -133,7 +133,7 @@ function function_58b6724f(player)
 
 /*
 	Name: function_735cfef2
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0xA485FAD
 	Offset: 0x890
 	Size: 0x29
@@ -147,7 +147,7 @@ function function_735cfef2(player)
 
 /*
 	Name: function_aeda54f6
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x9F0C26E8
 	Offset: 0x8C8
 	Size: 0x43
@@ -162,7 +162,7 @@ function function_aeda54f6(n_seed_count)
 
 /*
 	Name: function_3968a493
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0xA2610A2E
 	Offset: 0x918
 	Size: 0x233
@@ -215,7 +215,7 @@ function function_3968a493(var_b89973c8)
 
 /*
 	Name: function_f766ae15
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x3DB0A595
 	Offset: 0xB58
 	Size: 0xE7
@@ -242,7 +242,7 @@ function function_f766ae15()
 
 /*
 	Name: function_68329bc5
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x2A0DA4FA
 	Offset: 0xC48
 	Size: 0x27
@@ -260,7 +260,7 @@ function function_68329bc5()
 
 /*
 	Name: function_b2cb89c1
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x88A92149
 	Offset: 0xC78
 	Size: 0x9B
@@ -280,7 +280,7 @@ function function_b2cb89c1()
 
 /*
 	Name: function_7a25b639
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0xD1998637
 	Offset: 0xD20
 	Size: 0xE9
@@ -309,7 +309,7 @@ function function_7a25b639(drop_point)
 
 /*
 	Name: function_1f5d3f75
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x6E529111
 	Offset: 0xE18
 	Size: 0x123
@@ -352,7 +352,7 @@ function function_1f5d3f75(drop_point)
 
 /*
 	Name: function_af95a19e
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x974D9271
 	Offset: 0xF48
 	Size: 0x14B
@@ -388,7 +388,7 @@ function function_af95a19e()
 
 /*
 	Name: function_ca5485fa
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0xE86AC9F5
 	Offset: 0x10A0
 	Size: 0x3F
@@ -407,7 +407,7 @@ function function_ca5485fa(e_powerup)
 
 /*
 	Name: show_infotext_for_duration
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x1C0ED810
 	Offset: 0x10E8
 	Size: 0x53
@@ -423,7 +423,7 @@ function show_infotext_for_duration(str_infotext, n_duration)
 
 /*
 	Name: function_ea405166
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x2B2DDEE8
 	Offset: 0x1148
 	Size: 0xC3
@@ -453,7 +453,7 @@ function function_ea405166(var_1d640f59, str_widget_clientuimodel, b_acquired)
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x99EC1590
 	Offset: 0x1218
 	Size: 0x3
@@ -466,7 +466,7 @@ function on_player_connect()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0xCF44F907
 	Offset: 0x1228
 	Size: 0x23
@@ -480,7 +480,7 @@ function on_player_spawned()
 
 /*
 	Name: function_7b74396f
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0xCC347DCB
 	Offset: 0x1258
 	Size: 0x7B
@@ -500,7 +500,7 @@ function function_7b74396f()
 
 /*
 	Name: function_903fbe7
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x18F95D4E
 	Offset: 0x12E0
 	Size: 0xBF

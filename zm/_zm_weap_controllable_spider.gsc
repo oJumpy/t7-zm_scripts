@@ -15,11 +15,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_7b165194;
+#namespace controllable_spider;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0xE78F4936
 	Offset: 0x3C8
 	Size: 0x33
@@ -33,7 +33,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x3157F87D
 	Offset: 0x408
 	Size: 0xAB
@@ -44,7 +44,7 @@ function __init__()
 {
 	register_clientfields();
 	zm_placeable_mine::add_mine_type("controllable_spider", &"");
-	callback::on_spawned(&function_b2a01f79);
+	callback::on_spawned(&controllable_spider_watcher);
 	level.w_controllable_spider = GetWeapon("controllable_spider");
 	level flag::init("controllable_spider_equipped");
 	/#
@@ -54,7 +54,7 @@ function __init__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x13E990C3
 	Offset: 0x4C0
 	Size: 0x93
@@ -70,7 +70,7 @@ function register_clientfields()
 
 /*
 	Name: function_468b927
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x4BA0B3CC
 	Offset: 0x560
 	Size: 0x83
@@ -89,7 +89,7 @@ function function_468b927()
 
 /*
 	Name: function_160ff11f
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0xDD4C70F8
 	Offset: 0x5F0
 	Size: 0x8B
@@ -108,15 +108,15 @@ function function_160ff11f()
 }
 
 /*
-	Name: function_b2a01f79
-	Namespace: namespace_7b165194
+	Name: controllable_spider_watcher
+	Namespace: controllable_spider
 	Checksum: 0xAFA161F7
 	Offset: 0x688
 	Size: 0x1EB
 	Parameters: 0
 	Flags: None
 */
-function function_b2a01f79()
+function controllable_spider_watcher()
 {
 	self endon("disconnect");
 	var_97cffdb4 = "zone_bunker_interior_elevator";
@@ -154,7 +154,7 @@ function function_b2a01f79()
 
 /*
 	Name: function_40296c9b
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0xB7D4824
 	Offset: 0x880
 	Size: 0x2EB
@@ -163,7 +163,7 @@ function function_b2a01f79()
 */
 function function_40296c9b(w_previous)
 {
-	self notify("hash_a1fe358c");
+	self notify("player_used_controllable_spider");
 	e_cocoon = util::spawn_model("p7_zm_isl_cocoon_standing", self.origin, self.angles);
 	e_cocoon clientfield::set("player_cocooned_fx", 1);
 	self.e_cocoon = e_cocoon;
@@ -196,7 +196,7 @@ function function_40296c9b(w_previous)
 
 /*
 	Name: function_5ce6002e
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x48C09DAC
 	Offset: 0xB78
 	Size: 0x2D3
@@ -246,7 +246,7 @@ function function_5ce6002e(e_player, w_previous)
 
 /*
 	Name: function_5a1c08d0
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x779E8A76
 	Offset: 0xE58
 	Size: 0x33
@@ -262,7 +262,7 @@ function function_5a1c08d0()
 
 /*
 	Name: function_4e8bb77d
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0xC7052B69
 	Offset: 0xE98
 	Size: 0x3B
@@ -278,7 +278,7 @@ function function_4e8bb77d()
 
 /*
 	Name: function_cb196021
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0xDE2055FF
 	Offset: 0xEE0
 	Size: 0x43
@@ -300,7 +300,7 @@ function function_cb196021()
 
 /*
 	Name: function_a21f0b74
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x5A1E50BA
 	Offset: 0xF30
 	Size: 0xCB
@@ -327,7 +327,7 @@ function function_a21f0b74()
 
 /*
 	Name: function_e889b7
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x4B3CE5F6
 	Offset: 0x1008
 	Size: 0x7B
@@ -348,7 +348,7 @@ function function_e889b7()
 
 /*
 	Name: function_84313596
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x5284B66F
 	Offset: 0x1090
 	Size: 0x1A5
@@ -386,7 +386,7 @@ function function_84313596(zone_name)
 
 /*
 	Name: closest_player_targets_override
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0xA4649D13
 	Offset: 0x1240
 	Size: 0x83
@@ -408,7 +408,7 @@ function closest_player_targets_override()
 
 /*
 	Name: function_be10e0f1
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0xE3F94B9
 	Offset: 0x12D0
 	Size: 0x43
@@ -425,7 +425,7 @@ function function_be10e0f1()
 
 /*
 	Name: function_11949f35
-	Namespace: namespace_7b165194
+	Namespace: controllable_spider
 	Checksum: 0x5CD8EFE9
 	Offset: 0x1320
 	Size: 0xB9

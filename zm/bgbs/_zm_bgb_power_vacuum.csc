@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_6cf54cb6;
+#namespace zm_bgb_power_vacuum;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6cf54cb6
+	Namespace: zm_bgb_power_vacuum
 	Checksum: 0x392D3DFD
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6cf54cb6
+	Namespace: zm_bgb_power_vacuum
 	Checksum: 0x21B10EB4
 	Offset: 0x188
 	Size: 0x3B

@@ -13,11 +13,11 @@
 #using scripts\zm\_zm_unitrigger;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_a528e918;
+#namespace zm_challenges_tomb;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xB40E745C
 	Offset: 0x458
 	Size: 0x3B
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xC8210C8D
 	Offset: 0x4A0
 	Size: 0x173
@@ -57,7 +57,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x39A5A152
 	Offset: 0x620
 	Size: 0x63
@@ -73,7 +73,7 @@ function __main__()
 
 /*
 	Name: onPlayerConnect
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x56D4E630
 	Offset: 0x690
 	Size: 0x16F
@@ -96,7 +96,7 @@ function onPlayerConnect()
 
 /*
 	Name: onPlayerSpawned
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xA1F8C61E
 	Offset: 0x808
 	Size: 0x1FF
@@ -140,7 +140,7 @@ function onPlayerSpawned()
 
 /*
 	Name: stats_init
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xCDFAF695
 	Offset: 0xA10
 	Size: 0x13B
@@ -171,7 +171,7 @@ function stats_init()
 
 /*
 	Name: add_stat
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xE1E3A92
 	Offset: 0xB58
 	Size: 0x18F
@@ -210,7 +210,7 @@ function add_stat(str_name, b_team, str_hint, n_goal, str_reward_model, fp_give_
 
 /*
 	Name: player_stats_init
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x6B2B6294
 	Offset: 0xCF0
 	Size: 0x2D7
@@ -254,7 +254,7 @@ function player_stats_init(n_index)
 
 /*
 	Name: team_stats_init
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xA2CA1301
 	Offset: 0xFD0
 	Size: 0x243
@@ -294,7 +294,7 @@ function team_stats_init(n_index)
 
 /*
 	Name: challenge_exists
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xD251B990
 	Offset: 0x1220
 	Size: 0x33
@@ -315,7 +315,7 @@ function challenge_exists(str_name)
 
 /*
 	Name: get_stat
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xC869CBAA
 	Offset: 0x1260
 	Size: 0x125
@@ -344,7 +344,7 @@ function get_stat(str_stat, player)
 
 /*
 	Name: increment_stat
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xC1DA97C
 	Offset: 0x1390
 	Size: 0x9B
@@ -367,7 +367,7 @@ function increment_stat(str_stat, n_increment)
 
 /*
 	Name: set_stat
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xF2625A96
 	Offset: 0x1438
 	Size: 0x73
@@ -386,7 +386,7 @@ function set_stat(str_stat, n_set)
 
 /*
 	Name: function_fbbc8608
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x8CA23E83
 	Offset: 0x14B8
 	Size: 0x43
@@ -400,7 +400,7 @@ function function_fbbc8608(str_hint, num_index)
 
 /*
 	Name: check_stat_complete
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x4EEF580E
 	Offset: 0x1508
 	Size: 0x4CB
@@ -467,7 +467,7 @@ function check_stat_complete(s_stat)
 
 /*
 	Name: stat_reward_available
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x979C8C8F
 	Offset: 0x19E0
 	Size: 0xCB
@@ -501,7 +501,7 @@ function stat_reward_available(stat, player)
 
 /*
 	Name: player_has_unclaimed_team_reward
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x3C2FEF19
 	Offset: 0x1AB8
 	Size: 0xB7
@@ -522,7 +522,7 @@ function player_has_unclaimed_team_reward()
 
 /*
 	Name: board_init
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xFFA1D1F9
 	Offset: 0x1B78
 	Size: 0x5A9
@@ -597,7 +597,7 @@ function board_init(m_board)
 
 /*
 	Name: box_init
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x31CEFC0E
 	Offset: 0x2130
 	Size: 0x2A3
@@ -646,7 +646,7 @@ function box_init()
 
 /*
 	Name: box_prompt_and_visiblity
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x7163C67B
 	Offset: 0x23E0
 	Size: 0x3F
@@ -665,7 +665,7 @@ function box_prompt_and_visiblity(player)
 
 /*
 	Name: update_box_prompt
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x30FB243D
 	Offset: 0x2428
 	Size: 0x543
@@ -761,7 +761,7 @@ function update_box_prompt(player)
 
 /*
 	Name: box_think
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x30FC7C97
 	Offset: 0x2978
 	Size: 0x28F
@@ -812,7 +812,7 @@ function box_think()
 
 /*
 	Name: get_reward_category
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x9B6FBD47
 	Offset: 0x2C10
 	Size: 0xBB
@@ -834,7 +834,7 @@ function get_reward_category(player, s_select_stat)
 
 /*
 	Name: get_reward_stat
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x4C4F0EF1
 	Offset: 0x2CD8
 	Size: 0xE5
@@ -859,7 +859,7 @@ function get_reward_stat(s_category)
 
 /*
 	Name: open_box
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x46EF9A36
 	Offset: 0x2DC8
 	Size: 0x1E1
@@ -900,7 +900,7 @@ function open_box(player, ut_stub, fp_reward_override, param1)
 
 /*
 	Name: spawn_reward
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x31E82253
 	Offset: 0x2FB8
 	Size: 0x253
@@ -951,7 +951,7 @@ function spawn_reward(player, s_select_stat)
 
 /*
 	Name: reward_grab_wait
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x99B65DF1
 	Offset: 0x3218
 	Size: 0xD3
@@ -981,7 +981,7 @@ function reward_grab_wait(n_timeout)
 
 /*
 	Name: reward_sink
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x9465FB9B
 	Offset: 0x32F8
 	Size: 0x53
@@ -1002,7 +1002,7 @@ function reward_sink(n_delay, n_z, n_time)
 
 /*
 	Name: reward_rise_and_grab
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xDE7E3A53
 	Offset: 0x3358
 	Size: 0xC5
@@ -1027,7 +1027,7 @@ function reward_rise_and_grab(m_reward, n_z, n_rise_time, n_delay, n_timeout)
 
 /*
 	Name: reward_points
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x8F6CBCB8
 	Offset: 0x3428
 	Size: 0x2B
@@ -1041,7 +1041,7 @@ function reward_points(player, s_stat)
 
 /*
 	Name: challenges_devgui
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xE58F6653
 	Offset: 0x3460
 	Size: 0x9B
@@ -1062,7 +1062,7 @@ function challenges_devgui()
 
 /*
 	Name: watch_devgui_award_challenges
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x67226673
 	Offset: 0x3508
 	Size: 0x7F
@@ -1087,7 +1087,7 @@ function watch_devgui_award_challenges()
 
 /*
 	Name: devgui_award_challenge
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xA884A870
 	Offset: 0x3590
 	Size: 0x4DF

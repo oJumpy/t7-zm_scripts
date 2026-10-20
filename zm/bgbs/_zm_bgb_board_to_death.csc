@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_4a25f1d2;
+#namespace zm_bgb_board_to_death;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4a25f1d2
+	Namespace: zm_bgb_board_to_death
 	Checksum: 0x1E8BF9F6
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4a25f1d2
+	Namespace: zm_bgb_board_to_death
 	Checksum: 0x630ED191
 	Offset: 0x188
 	Size: 0x3B

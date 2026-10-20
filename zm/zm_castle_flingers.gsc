@@ -24,7 +24,7 @@
 /*
 	Name: function_976c9217
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xC0E2DCA7
+	Checksum: 0xC8E701BF
 	Offset: 0x9D8
 	Size: 0x105
 	Parameters: 0
@@ -45,7 +45,7 @@ function function_976c9217()
 /*
 	Name: register_clientfields
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xE896E1C9
+	Checksum: 0x24973F13
 	Offset: 0xAE8
 	Size: 0xF3
 	Parameters: 0
@@ -63,7 +63,7 @@ function register_clientfields()
 /*
 	Name: function_5ecbd7cb
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x673147E1
+	Checksum: 0xE827C7D6
 	Offset: 0xBE8
 	Size: 0x5DF
 	Parameters: 0
@@ -151,7 +151,7 @@ function function_5ecbd7cb()
 /*
 	Name: function_5205dda3
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xB5909D1F
+	Checksum: 0x3123622E
 	Offset: 0x11D0
 	Size: 0xBB
 	Parameters: 1
@@ -172,7 +172,7 @@ function function_5205dda3(var_df826fd8)
 /*
 	Name: function_21a777b0
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x31739032
+	Checksum: 0x55A3F97F
 	Offset: 0x1298
 	Size: 0xC3
 	Parameters: 0
@@ -193,7 +193,7 @@ function function_21a777b0()
 /*
 	Name: function_52d18d43
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x22F16568
+	Checksum: 0x8B188656
 	Offset: 0x1368
 	Size: 0xAB
 	Parameters: 2
@@ -215,7 +215,7 @@ function function_52d18d43(var_81b99a73, n_cost)
 /*
 	Name: function_e2ae5aa6
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x1FE8350
+	Checksum: 0x9D93AA92
 	Offset: 0x1420
 	Size: 0x63
 	Parameters: 2
@@ -232,7 +232,7 @@ function function_e2ae5aa6(str_message, param1)
 /*
 	Name: unitrigger_think
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x35EF232A
+	Checksum: 0x86F84272
 	Offset: 0x1490
 	Size: 0x5F
 	Parameters: 0
@@ -252,7 +252,7 @@ function unitrigger_think()
 /*
 	Name: unitrigger_refresh_message
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xA5A7E36C
+	Checksum: 0xD76C9D8A
 	Offset: 0x14F8
 	Size: 0x1B
 	Parameters: 0
@@ -266,7 +266,7 @@ function unitrigger_refresh_message()
 /*
 	Name: function_3dcd0982
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x6EECFCAC
+	Checksum: 0xE6C30393
 	Offset: 0x1520
 	Size: 0x41
 	Parameters: 2
@@ -280,7 +280,7 @@ function function_3dcd0982(Array, var_8d88ae81)
 /*
 	Name: function_a78c631a
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x79255892
+	Checksum: 0x26B6305C
 	Offset: 0x1570
 	Size: 0x91
 	Parameters: 2
@@ -294,7 +294,7 @@ function function_a78c631a(VAL, var_8d88ae81)
 /*
 	Name: function_2f34da41
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x69503412
+	Checksum: 0x804B32EE
 	Offset: 0x1610
 	Size: 0x9D
 	Parameters: 0
@@ -330,7 +330,7 @@ function function_2f34da41()
 /*
 	Name: function_cc3a384b
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xF29A0CC5
+	Checksum: 0x4D25E295
 	Offset: 0x16B8
 	Size: 0x2C5
 	Parameters: 1
@@ -410,7 +410,7 @@ function function_cc3a384b(b_active)
 /*
 	Name: function_f7842163
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xEFE61F6B
+	Checksum: 0xE49080A1
 	Offset: 0x1988
 	Size: 0x11F
 	Parameters: 5
@@ -436,7 +436,7 @@ function function_f7842163(var_ca34f349, v_fling, nd_start, var_173065cc, var_df
 /*
 	Name: function_149a5187
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xE45D82B
+	Checksum: 0x23FCE788
 	Offset: 0x1AB0
 	Size: 0x27
 	Parameters: 0
@@ -452,7 +452,7 @@ function function_149a5187()
 /*
 	Name: do_fling
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x3DD19699
+	Checksum: 0xD988A5CC
 	Offset: 0x1AE0
 	Size: 0x955
 	Parameters: 5
@@ -578,7 +578,7 @@ function do_fling(var_ca34f349, v_fling, nd_start, var_173065cc, var_df826fd8)
 /*
 	Name: function_9f131b98
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xF157BA1
+	Checksum: 0xA18F4926
 	Offset: 0x2440
 	Size: 0x2B
 	Parameters: 0
@@ -593,7 +593,7 @@ function function_9f131b98()
 /*
 	Name: function_d1736cb5
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xA453CEAA
+	Checksum: 0x5FE8B4D
 	Offset: 0x2478
 	Size: 0xEF
 	Parameters: 0
@@ -606,11 +606,11 @@ function function_d1736cb5()
 		for(var_323d1645 = RandomInt(5); var_323d1645 === self.var_9a3fa33b;  = RandomInt(5))
 		{
 		}
-		if(namespace_97ddfc0d::function_68ee653())
+		if(zm_castle_vo::function_68ee653())
 		{
 			return;
 		}
-		b_result = self namespace_97ddfc0d::vo_say("vox_plr_" + self.characterindex + "_use_jumpsphere_" + var_323d1645, 1.4);
+		b_result = self zm_castle_vo::vo_say("vox_plr_" + self.characterindex + "_use_jumpsphere_" + var_323d1645, 1.4);
 		if(b_result)
 		{
 			self.var_9a3fa33b = var_323d1645;
@@ -622,7 +622,7 @@ function function_d1736cb5()
 /*
 	Name: function_cbac68fe
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x81C31EF3
+	Checksum: 0x6EC65703
 	Offset: 0x2570
 	Size: 0x147
 	Parameters: 1
@@ -646,7 +646,7 @@ function function_cbac68fe(e_player)
 /*
 	Name: function_74d2bb99
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x146ED390
+	Checksum: 0xDF67541
 	Offset: 0x26C0
 	Size: 0x129
 	Parameters: 1
@@ -679,7 +679,7 @@ function function_74d2bb99(nd_start)
 /*
 	Name: function_c1f1756a
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x7D1572FF
+	Checksum: 0xEC796EC5
 	Offset: 0x27F8
 	Size: 0x47
 	Parameters: 0
@@ -697,7 +697,7 @@ function function_c1f1756a()
 /*
 	Name: function_3298b25f
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x3B6540C5
+	Checksum: 0x9E58B551
 	Offset: 0x2848
 	Size: 0x155
 	Parameters: 1
@@ -724,7 +724,7 @@ function function_3298b25f(nd_start)
 /*
 	Name: achievement_none
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x378E2534
+	Checksum: 0x6F990795
 	Offset: 0x29A8
 	Size: 0x191
 	Parameters: 0
@@ -759,7 +759,7 @@ function achievement_none()
 /*
 	Name: function_53f4df
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x972BAA64
+	Checksum: 0xC45B4042
 	Offset: 0x2B48
 	Size: 0xE5
 	Parameters: 0
@@ -795,7 +795,7 @@ function function_53f4df()
 /*
 	Name: function_44659337
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x28492BC
+	Checksum: 0xF0F6289F
 	Offset: 0x2C38
 	Size: 0xA3
 	Parameters: 3
@@ -811,7 +811,7 @@ function function_44659337(nd_target, var_ca34f349, v_fling)
 /*
 	Name: function_1a4837ab
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x1DA701A7
+	Checksum: 0xA689896C
 	Offset: 0x2CE8
 	Size: 0x203
 	Parameters: 4
@@ -856,7 +856,7 @@ function function_1a4837ab(nd_target, e_target, var_ca34f349, v_fling)
 /*
 	Name: function_29c06608
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x972F7DC7
+	Checksum: 0x51E5147E
 	Offset: 0x2EF8
 	Size: 0x119
 	Parameters: 0
@@ -879,7 +879,7 @@ function function_29c06608()
 /*
 	Name: zombie_slam_direction
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x972D109
+	Checksum: 0xEDC9EC9B
 	Offset: 0x3020
 	Size: 0x28B
 	Parameters: 1
@@ -932,7 +932,7 @@ function zombie_slam_direction(ai_zombie)
 /*
 	Name: function_4b3d145d
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xE3666DCE
+	Checksum: 0x4183DABF
 	Offset: 0x32B8
 	Size: 0x7F
 	Parameters: 11
@@ -953,7 +953,7 @@ function function_4b3d145d(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 /*
 	Name: function_485001bf
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xD6F055D5
+	Checksum: 0x615A0BF8
 	Offset: 0x3340
 	Size: 0x21F
 	Parameters: 0
@@ -995,7 +995,7 @@ function function_485001bf()
 /*
 	Name: function_4029cf56
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x824AFE69
+	Checksum: 0x9DC77CA2
 	Offset: 0x3568
 	Size: 0x5F
 	Parameters: 0
@@ -1015,7 +1015,7 @@ function function_4029cf56()
 /*
 	Name: function_cc8f94df
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x2EDF264B
+	Checksum: 0x2F7CAC9E
 	Offset: 0x35D0
 	Size: 0x253
 	Parameters: 0
@@ -1051,7 +1051,7 @@ function function_cc8f94df()
 /*
 	Name: function_979004a
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xA7DDB693
+	Checksum: 0xD0898110
 	Offset: 0x3830
 	Size: 0xA7
 	Parameters: 0
@@ -1066,22 +1066,22 @@ function function_979004a()
 		var_7d3b9ef4 waittill("trigger", e_player);
 		if(zm_utility::is_player_valid(e_player))
 		{
-			e_player thread function_ab3112dc(var_7d3b9ef4);
+			e_player thread player_well_watcher(var_7d3b9ef4);
 		}
 		wait(0.1);
 	}
 }
 
 /*
-	Name: function_ab3112dc
+	Name: player_well_watcher
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x237BD1F9
+	Checksum: 0x6F5BC2E9
 	Offset: 0x38E0
 	Size: 0x17D
 	Parameters: 1
 	Flags: None
 */
-function function_ab3112dc(t_well)
+function player_well_watcher(t_well)
 {
 	if(!(isdefined(self.var_c7a6615d) && self.var_c7a6615d))
 	{
@@ -1112,7 +1112,7 @@ function function_ab3112dc(t_well)
 /*
 	Name: function_894853cb
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0xD9A5A543
+	Checksum: 0xAFF9E797
 	Offset: 0x3A68
 	Size: 0x6DD
 	Parameters: 1
@@ -1206,7 +1206,7 @@ function function_894853cb(t_well)
 /*
 	Name: function_121c6c1e
 	Namespace: namespace_4fd1ba2a
-	Checksum: 0x13C6C973
+	Checksum: 0x9A86E3DC
 	Offset: 0x4150
 	Size: 0xDB
 	Parameters: 0

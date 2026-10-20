@@ -20,11 +20,11 @@ function init()
 	level._effect["box_closed"] = "zombie/fx_weapon_box_closed_zod_zmb";
 	RegisterClientField("zbarrier", "magicbox_initial_fx", 1, 1, "int", &magicbox_initial_closed_fx);
 	RegisterClientField("zbarrier", "magicbox_amb_sound", 1, 1, "int", &magicbox_ambient_sound);
-	RegisterClientField("zbarrier", "magicbox_open_fx", 1, 2, "int", &function_c8f2b7a1);
+	RegisterClientField("zbarrier", "magicbox_open_fx", 1, 2, "int", &magicbox_open_fx);
 }
 
 /*
-	Name: function_c8f2b7a1
+	Name: magicbox_open_fx
 	Namespace: zm_magicbox_zod
 	Checksum: 0xA0B9E134
 	Offset: 0x2F8
@@ -32,7 +32,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_c8f2b7a1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function magicbox_open_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(self.fx_obj))
 	{

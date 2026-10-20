@@ -118,7 +118,7 @@ function watch_end_game()
 	players = GetPlayers();
 	for(i = 0; i < players.size; i++)
 	{
-		players[i] notify("hash_f0078f48");
+		players[i] notify("altbody_end");
 	}
 }
 
@@ -134,7 +134,7 @@ function watch_end_game()
 function devgui_start_altbody(name)
 {
 	/#
-		self function_b3e2d176(name);
+		self player_altbody(name);
 	#/
 }
 
@@ -262,12 +262,12 @@ function private player_try_altbody(trigger, name)
 	if(self player_can_altbody(trigger, name))
 	{
 		level notify("kiosk_used", trigger.stub.kiosk);
-		self function_b3e2d176(name, trigger);
+		self player_altbody(name, trigger);
 	}
 }
 
 /*
-	Name: function_b3e2d176
+	Name: player_altbody
 	Namespace: zm_altbody
 	Checksum: 0xC68371C3
 	Offset: 0xB48
@@ -275,12 +275,12 @@ function private player_try_altbody(trigger, name)
 	Parameters: 2
 	Flags: Private
 */
-function private function_b3e2d176(name, trigger)
+function private player_altbody(name, trigger)
 {
 	self.altbody = 1;
 	self thread function_1f9554ce();
 	self player_enter_altbody(name, trigger);
-	self waittill("hash_f0078f48");
+	self waittill("altbody_end");
 	self player_exit_altbody(name, trigger);
 	self.altbody = 0;
 }
@@ -334,7 +334,7 @@ function private player_enter_altbody(name, trigger)
 	self.var_b2356a6c = self.origin;
 	self.var_227fe352 = self.angles;
 	self setPerk("specialty_playeriszombie");
-	self thread function_72c3fae0(1);
+	self thread play_cover_fx(1);
 	self SetCharacterBodyType(charIndex);
 	self SetCharacterBodyStyle(0);
 	self SetCharacterHelmetStyle(0);
@@ -449,7 +449,7 @@ function private player_exit_altbody(name, trigger)
 	self thread player_restore_loadout(name);
 	self unsetPerk("specialty_playeriszombie");
 	self DetachAll();
-	self thread function_72c3fae0(0);
+	self thread play_cover_fx(0);
 	self [[level.giveCustomCharacters]]();
 }
 
@@ -485,7 +485,7 @@ function private player_restore_loadout(name, trigger)
 }
 
 /*
-	Name: function_72c3fae0
+	Name: play_cover_fx
 	Namespace: zm_altbody
 	Checksum: 0x3909F48B
 	Offset: 0x1310
@@ -493,7 +493,7 @@ function private player_restore_loadout(name, trigger)
 	Parameters: 1
 	Flags: None
 */
-function function_72c3fae0(washuman)
+function play_cover_fx(washuman)
 {
 	if(washuman)
 	{

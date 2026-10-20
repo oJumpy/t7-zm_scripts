@@ -81,7 +81,7 @@ function main()
 	init_flags();
 	level waittill("start_zombie_round_logic");
 	level thread init_objects();
-	function_70b74a2d();
+	init_threads();
 	function_b8645c20();
 	function_fd2e0e37();
 	function_769b2ff();
@@ -139,7 +139,7 @@ function init_objects()
 }
 
 /*
-	Name: function_70b74a2d
+	Name: init_threads
 	Namespace: namespace_61c0be00
 	Checksum: 0xB5A0AEA7
 	Offset: 0x1120
@@ -147,7 +147,7 @@ function init_objects()
 	Parameters: 0
 	Flags: None
 */
-function function_70b74a2d()
+function init_threads()
 {
 	level thread function_5c600852();
 	level thread function_553b8e23();
@@ -427,7 +427,7 @@ function function_5c351802()
 */
 function function_2f183e13(n_index)
 {
-	level.var_37c0c840[n_index] endon("hash_7a2f636b");
+	level.var_37c0c840[n_index] endon("skull_revealed");
 	if(!isdefined(level.var_37c0c840[n_index]))
 	{
 		return;
@@ -438,7 +438,7 @@ function function_2f183e13(n_index)
 	}
 	while(1)
 	{
-		self waittill("hash_95b677dc");
+		self waittill("bgb_bubble_blow_complete");
 		if(self bgb::is_active("zm_bgb_in_plain_sight"))
 		{
 			level.var_37c0c840[n_index] SetVisibleToPlayer(self);
@@ -512,7 +512,7 @@ function function_44ea752c()
 	playsoundatposition("zmb_ee_skpower_" + level.var_a0554b26, (0, 0, 0));
 	if(level.var_a0554b26 == 3)
 	{
-		level.var_9bf9e084 = 1;
+		level.get_maxis_portal_path_trigger = 1;
 	}
 }
 
@@ -552,12 +552,12 @@ function function_67a47b1c()
 {
 	self namespace_744abc1c::create_unitrigger();
 	self waittill("trigger_activated");
-	if(level.var_9bf9e084 == 0)
+	if(level.get_maxis_portal_path_trigger == 0)
 	{
 		return;
 	}
 	zm_unitrigger::unregister_unitrigger(self.s_unitrigger);
-	level.var_9bf9e084 = 0;
+	level.get_maxis_portal_path_trigger = 0;
 	playsoundatposition("zmb_ee_skpower_deactivate", (0, 0, 0));
 	for(i = 0; i < 3; i++)
 	{
@@ -598,7 +598,7 @@ function function_3c992a71()
 */
 function function_27da29cb()
 {
-	self endon("hash_7a2f636b");
+	self endon("skull_revealed");
 	var_43af6ca7 = self.origin[2];
 	while(1)
 	{
@@ -915,14 +915,14 @@ function function_5d2ff09a()
 */
 function function_c02b51fb(n_index)
 {
-	level.var_23825200[n_index] endon("hash_8a2ede71");
+	level.var_23825200[n_index] endon("mechz_claw_revealed");
 	if(level.var_23825200[n_index] flag::get("mechz_claw_revealed"))
 	{
 		return;
 	}
 	while(1)
 	{
-		self waittill("hash_95b677dc");
+		self waittill("bgb_bubble_blow_complete");
 		if(self bgb::is_active("zm_bgb_in_plain_sight"))
 		{
 			level.var_23825200[n_index] SetVisibleToPlayer(self);
@@ -1851,7 +1851,7 @@ function function_aaacffb2(player, s_dest)
 		}
 	}
 	wait(2);
-	s_dest thread namespace_fa1b0620::teleport_nuke(undefined, 300);
+	s_dest thread zm_castle_teleporter::teleport_nuke(undefined, 300);
 	for(i = 0; i < level.activePlayers.size; i++)
 	{
 		util::setClientSysState("levelNotify", "black_box_end", level.activePlayers[i]);
@@ -1873,7 +1873,7 @@ function function_aaacffb2(player, s_dest)
 	player SetOrigin(s_dest.origin);
 	player SetPlayerAngles(s_dest.angles);
 	player FreezeControls(0);
-	player thread namespace_fa1b0620::teleport_aftereffects();
+	player thread zm_castle_teleporter::teleport_aftereffects();
 	player zm_utility::clear_streamer_hint();
 }
 
@@ -2006,7 +2006,7 @@ function award_plunger()
 {
 	self.widows_wine_knife_override = &function_9ce92341;
 	self zm_melee_weapon::award_melee_weapon("knife_plunger");
-	self thread function_9daec9e3();
+	self thread plunger_fx();
 	self thread plunger_lost();
 }
 
@@ -2040,7 +2040,7 @@ function plunger_lost()
 }
 
 /*
-	Name: function_9daec9e3
+	Name: plunger_fx
 	Namespace: namespace_61c0be00
 	Checksum: 0xD78FFA30
 	Offset: 0x59C0
@@ -2048,7 +2048,7 @@ function plunger_lost()
 	Parameters: 0
 	Flags: None
 */
-function function_9daec9e3()
+function plunger_fx()
 {
 	self endon("disconnect");
 	w_plunger = GetWeapon("knife_plunger");

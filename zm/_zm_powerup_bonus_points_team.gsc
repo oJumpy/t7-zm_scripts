@@ -14,12 +14,12 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_50ac7dd1;
+#namespace zm_powerup_bonus_points_team;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_50ac7dd1
-	Checksum: 0x8625486A
+	Namespace: zm_powerup_bonus_points_team
+	Checksum: 0x46080908
 	Offset: 0x2F0
 	Size: 0x33
 	Parameters: 0
@@ -32,8 +32,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_50ac7dd1
-	Checksum: 0x5BB4F292
+	Namespace: zm_powerup_bonus_points_team
+	Checksum: 0xBA5C7790
 	Offset: 0x330
 	Size: 0x9B
 	Parameters: 0
@@ -50,8 +50,8 @@ function __init__()
 
 /*
 	Name: grab_bonus_points_team
-	Namespace: namespace_50ac7dd1
-	Checksum: 0x5EDE4947
+	Namespace: zm_powerup_bonus_points_team
+	Checksum: 0x9727A310
 	Offset: 0x3D8
 	Size: 0x43
 	Parameters: 1
@@ -65,8 +65,8 @@ function grab_bonus_points_team(player)
 
 /*
 	Name: bonus_points_team_powerup
-	Namespace: namespace_50ac7dd1
-	Checksum: 0x73E3D073
+	Namespace: zm_powerup_bonus_points_team
+	Checksum: 0x7419C9D5
 	Offset: 0x428
 	Size: 0x10D
 	Parameters: 1

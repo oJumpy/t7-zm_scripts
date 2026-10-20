@@ -22,11 +22,11 @@
 #using scripts\zm\craftables\_zm_craftables;
 #using scripts\zm\zm_castle_vo;
 
-#namespace namespace_30db0d4;
+#namespace zm_castle_tram;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x6664CB9E
 	Offset: 0xA10
 	Size: 0x3B
@@ -40,7 +40,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x343136BF
 	Offset: 0xA58
 	Size: 0xC3
@@ -57,7 +57,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x6A5C886E
 	Offset: 0xB28
 	Size: 0x20B
@@ -70,8 +70,8 @@ function __main__()
 	level flag::init("tram_cooldown");
 	level flag::init("tram_docked");
 	level flag::init("player_tram_docked");
-	level thread function_e16148c8();
-	level thread function_3bda7a32();
+	level thread tram_think();
+	level thread player_tram_init();
 	/#
 		level thread function_57f998e3();
 	#/
@@ -85,15 +85,15 @@ function __main__()
 }
 
 /*
-	Name: function_e16148c8
-	Namespace: namespace_30db0d4
+	Name: tram_think
+	Namespace: zm_castle_tram
 	Checksum: 0x735A68E4
 	Offset: 0xD40
 	Size: 0x34F
 	Parameters: 0
 	Flags: None
 */
-function function_e16148c8()
+function tram_think()
 {
 	s_spawn_pos = struct::get("tram_object_spawn_pos", "targetname");
 	level waittill("start_zombie_round_logic");
@@ -105,11 +105,11 @@ function function_e16148c8()
 	level thread function_97f09efd();
 	while(1)
 	{
-		level waittill("hash_b2fa2cac", e_who);
+		level waittill("token_tram_moving", e_who);
 		level flag::set("tram_moving");
 		level thread function_4173be8d("tram_car_02", "tram_docked");
 		level thread function_ccd0cc8e();
-		level function_1ff56fb0("p7_fxanim_zm_castle_tram_car_02_a_bundle");
+		level scene_play_reset("p7_fxanim_zm_castle_tram_car_02_a_bundle");
 		level scene::Play("p7_fxanim_zm_castle_tram_car_02_a_bundle");
 		level flag::set("tram_docked");
 		level flag::clear("tram_moving");
@@ -121,7 +121,7 @@ function function_e16148c8()
 		level flag::set("tram_moving");
 		level flag::clear("tram_docked");
 		playsoundatposition("vox_maxis_gondola_pa_departing_0", (400, 675, 40));
-		level function_1ff56fb0("p7_fxanim_zm_castle_tram_car_02_b_bundle");
+		level scene_play_reset("p7_fxanim_zm_castle_tram_car_02_b_bundle");
 		level scene::Play("p7_fxanim_zm_castle_tram_car_02_b_bundle");
 		level flag::set("tram_cooldown");
 		level flag::clear("tram_moving");
@@ -132,7 +132,7 @@ function function_e16148c8()
 
 /*
 	Name: function_9d4a523c
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x56A3CB29
 	Offset: 0x1098
 	Size: 0x1A3
@@ -162,7 +162,7 @@ function function_9d4a523c(var_24ee4867)
 
 /*
 	Name: function_4173be8d
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x4E968964
 	Offset: 0x1248
 	Size: 0x183
@@ -189,33 +189,33 @@ function function_4173be8d(var_d484b386, str_docked)
 }
 
 /*
-	Name: function_3bda7a32
-	Namespace: namespace_30db0d4
+	Name: player_tram_init
+	Namespace: zm_castle_tram
 	Checksum: 0x2D069808
 	Offset: 0x13D8
 	Size: 0x7B
 	Parameters: 0
 	Flags: None
 */
-function function_3bda7a32()
+function player_tram_init()
 {
 	scene::add_scene_func("p7_fxanim_zm_castle_tram_car_01_start_bundle", &function_350d7037, "init");
 	level.var_f31afb37 = 1;
 	level waittill("start_zombie_round_logic");
 	level thread function_3fb91800();
-	level thread function_427ee40c();
+	level thread player_tram_think();
 }
 
 /*
-	Name: function_427ee40c
-	Namespace: namespace_30db0d4
+	Name: player_tram_think
+	Namespace: zm_castle_tram
 	Checksum: 0xC0A9E84A
 	Offset: 0x1460
 	Size: 0x42F
 	Parameters: 0
 	Flags: None
 */
-function function_427ee40c()
+function player_tram_think()
 {
 	s_spawn_pos = struct::get("player_tram_object_spawn_pos", "targetname");
 	exploder::exploder("lgt_tram_car_01_up");
@@ -236,11 +236,11 @@ function function_427ee40c()
 	exploder::exploder("lgt_tram_car_02_up");
 	while(1)
 	{
-		level waittill("hash_95a2806", e_who);
+		level waittill("player_tram_moving", e_who);
 		level flag::set("tram_moving");
 		level thread function_4173be8d("tram_car_01", "player_tram_docked");
 		level thread function_ccd0cc8e();
-		level function_1ff56fb0("p7_fxanim_zm_castle_tram_car_01_a_bundle");
+		level scene_play_reset("p7_fxanim_zm_castle_tram_car_01_a_bundle");
 		level scene::Play("p7_fxanim_zm_castle_tram_car_01_a_bundle");
 		level flag::set("player_tram_docked");
 		level flag::clear("tram_moving");
@@ -253,7 +253,7 @@ function function_427ee40c()
 		}
 		level flag::set("tram_moving");
 		level flag::clear("player_tram_docked");
-		level function_1ff56fb0("p7_fxanim_zm_castle_tram_car_01_b_bundle");
+		level scene_play_reset("p7_fxanim_zm_castle_tram_car_01_b_bundle");
 		level scene::Play("p7_fxanim_zm_castle_tram_car_01_b_bundle");
 		level flag::set("tram_cooldown");
 		level flag::clear("tram_moving");
@@ -264,7 +264,7 @@ function function_427ee40c()
 
 /*
 	Name: function_38a21d48
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x22DA3496
 	Offset: 0x1898
 	Size: 0xE7
@@ -273,7 +273,7 @@ function function_427ee40c()
 */
 function function_38a21d48()
 {
-	level endon("hash_73653c73");
+	level endon("tram_cooldown");
 	self SetCanDamage(1);
 	self.health = 100000;
 	while(1)
@@ -289,7 +289,7 @@ function function_38a21d48()
 
 /*
 	Name: function_350d7037
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x4A146075
 	Offset: 0x1988
 	Size: 0x123
@@ -313,15 +313,15 @@ function function_350d7037(a_ents)
 }
 
 /*
-	Name: function_1ff56fb0
-	Namespace: namespace_30db0d4
+	Name: scene_play_reset
+	Namespace: zm_castle_tram
 	Checksum: 0xEF7F40
 	Offset: 0x1AB8
 	Size: 0x53
 	Parameters: 1
 	Flags: None
 */
-function function_1ff56fb0(str_scene)
+function scene_play_reset(str_scene)
 {
 	s_scene = struct::get(str_scene, "scriptbundlename");
 	if(isdefined(s_scene))
@@ -332,7 +332,7 @@ function function_1ff56fb0(str_scene)
 
 /*
 	Name: function_3584e778
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x57F4F9AF
 	Offset: 0x1B18
 	Size: 0xFB
@@ -353,7 +353,7 @@ function function_3584e778(a_ents)
 
 /*
 	Name: function_7b56c646
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x12938194
 	Offset: 0x1C20
 	Size: 0x41D
@@ -399,7 +399,7 @@ function function_7b56c646()
 
 /*
 	Name: function_3fb91800
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x430FE8C5
 	Offset: 0x2048
 	Size: 0x44D
@@ -449,7 +449,7 @@ function function_3fb91800()
 
 /*
 	Name: function_1d6e73d0
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x124C83D4
 	Offset: 0x24A0
 	Size: 0x513
@@ -531,7 +531,7 @@ function function_1d6e73d0(e_player, s_spawn_pos, b_special)
 
 /*
 	Name: function_bb44b161
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x9B3A493F
 	Offset: 0x29C0
 	Size: 0xFB
@@ -556,7 +556,7 @@ function function_bb44b161(str_powerup, var_a11baa62)
 
 /*
 	Name: function_b29057c7
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xAB93AE23
 	Offset: 0x2AC8
 	Size: 0xB7
@@ -575,7 +575,7 @@ function function_b29057c7(player)
 
 /*
 	Name: function_b21df67c
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x120F079D
 	Offset: 0x2B88
 	Size: 0x187
@@ -595,20 +595,20 @@ function function_b21df67c(e_player, w_to_spawn)
 	mdl_weapon.trigger = spawn_unitrigger(v_spawnpt, 100);
 	mdl_weapon.trigger.wpn = w_to_spawn;
 	mdl_weapon.trigger.prompt_and_visibility_func = &weapon_trigger_update_prompt;
-	mdl_weapon thread function_cc0d2cc9(w_to_spawn);
+	mdl_weapon thread weapon_pickup_watcher(w_to_spawn);
 	return mdl_weapon;
 }
 
 /*
-	Name: function_cc0d2cc9
-	Namespace: namespace_30db0d4
+	Name: weapon_pickup_watcher
+	Namespace: zm_castle_tram
 	Checksum: 0x3AD5DAB2
 	Offset: 0x2D18
 	Size: 0xD3
 	Parameters: 1
 	Flags: None
 */
-function function_cc0d2cc9(w_to_spawn)
+function weapon_pickup_watcher(w_to_spawn)
 {
 	self.trigger waittill("trigger", e_who);
 	self notify("powerup_grabbed");
@@ -627,7 +627,7 @@ function function_cc0d2cc9(w_to_spawn)
 
 /*
 	Name: timer_til_despawn
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xA0637AB3
 	Offset: 0x2DF8
 	Size: 0x143
@@ -662,7 +662,7 @@ function timer_til_despawn(v_float, n_dist)
 
 /*
 	Name: weapon_trigger_update_prompt
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xBD1E59AD
 	Offset: 0x2F48
 	Size: 0x5F
@@ -678,7 +678,7 @@ function weapon_trigger_update_prompt(player)
 
 /*
 	Name: function_97f09efd
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x36FD365F
 	Offset: 0x2FB0
 	Size: 0x33F
@@ -695,7 +695,7 @@ function function_97f09efd()
 	while(1)
 	{
 		t_use waittill("trigger", e_who);
-		if(namespace_cb5bc243::function_ed4d87a3(e_who))
+		if(zm_powerup_castle_tram_token::function_ed4d87a3(e_who))
 		{
 			if(isdefined(e_who.var_a1ba5103) && e_who.var_a1ba5103)
 			{
@@ -707,13 +707,13 @@ function function_97f09efd()
 			n_randy = RandomInt(100);
 			if(isdefined(e_who.var_a1ba5103) && e_who.var_a1ba5103 && e_who.var_66e0478a >= 5)
 			{
-				level notify("hash_95a2806", e_who);
+				level notify("player_tram_moving", e_who);
 				e_who.var_a1ba5103 = undefined;
 				e_who.var_66e0478a = undefined;
 			}
 			else
 			{
-				level notify("hash_b2fa2cac", e_who);
+				level notify("token_tram_moving", e_who);
 			}
 			util::wait_network_frame();
 			level.var_f0adc88a clientfield::increment("tram_fuse_fx");
@@ -726,14 +726,14 @@ function function_97f09efd()
 		else if(!isdefined(level.var_f6d3c9c0) || GetTime() - level.var_f6d3c9c0 > 12000)
 		{
 			level.var_f6d3c9c0 = GetTime();
-			e_who thread namespace_97ddfc0d::function_b6633a79();
+			e_who thread zm_castle_vo::function_b6633a79();
 		}
 	}
 }
 
 /*
 	Name: function_8f0015e0
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xB0049B40
 	Offset: 0x32F8
 	Size: 0x2E7
@@ -750,23 +750,23 @@ function function_8f0015e0()
 		str_result = level util::waittill_any_return("token_tram_moving", "player_tram_moving");
 		if(str_result === "token_tram_moving")
 		{
-			level function_1ff56fb0("p7_fxanim_zm_castle_tram_car_02_up_bundle");
+			level scene_play_reset("p7_fxanim_zm_castle_tram_car_02_up_bundle");
 			level.var_f0adc88a thread scene::Play("p7_fxanim_zm_castle_tram_car_02_up_bundle", level.var_f0adc88a);
 			level.var_f0adc88a playsound("evt_tram_lever");
 			level flag::wait_till("tram_docked");
 			level flag::wait_till("tram_moving");
-			level function_1ff56fb0("p7_fxanim_zm_castle_tram_car_02_down_bundle");
+			level scene_play_reset("p7_fxanim_zm_castle_tram_car_02_down_bundle");
 			level.var_f0adc88a thread scene::Play("p7_fxanim_zm_castle_tram_car_02_down_bundle", level.var_f0adc88a);
 			level.var_f0adc88a playsound("evt_tram_lever");
 		}
 		else if(str_result === "player_tram_moving")
 		{
-			level function_1ff56fb0("p7_fxanim_zm_castle_tram_car_01_up_bundle");
+			level scene_play_reset("p7_fxanim_zm_castle_tram_car_01_up_bundle");
 			level.var_f0adc88a thread scene::Play("p7_fxanim_zm_castle_tram_car_01_up_bundle", level.var_f0adc88a);
 			level.var_f0adc88a playsound("evt_tram_lever");
 			level flag::wait_till("player_tram_docked");
 			level flag::wait_till("tram_moving");
-			level function_1ff56fb0("p7_fxanim_zm_castle_tram_car_01_down_bundle");
+			level scene_play_reset("p7_fxanim_zm_castle_tram_car_01_down_bundle");
 			level.var_f0adc88a thread scene::Play("p7_fxanim_zm_castle_tram_car_01_down_bundle", level.var_f0adc88a);
 			level.var_f0adc88a playsound("evt_tram_lever");
 		}
@@ -775,7 +775,7 @@ function function_8f0015e0()
 
 /*
 	Name: function_310924ec
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x445E76F7
 	Offset: 0x35E8
 	Size: 0x43
@@ -790,7 +790,7 @@ function function_310924ec(a_ents)
 
 /*
 	Name: function_19b8e1e4
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x118029F3
 	Offset: 0x3638
 	Size: 0x53
@@ -806,7 +806,7 @@ function function_19b8e1e4(str_message, param1)
 
 /*
 	Name: spawn_unitrigger
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xB015D737
 	Offset: 0x3698
 	Size: 0xBF
@@ -827,7 +827,7 @@ function spawn_unitrigger(origin, radius)
 
 /*
 	Name: function_5ea427bf
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xE44AC9B9
 	Offset: 0x3760
 	Size: 0x291
@@ -840,7 +840,7 @@ function function_5ea427bf(player)
 	if(isdefined(self.stub.var_5be78056) && self.stub.var_5be78056)
 	{
 		cursor_hint = "HINT_WEAPON";
-		cursor_hint_weapon = self.stub.var_86ffaca4;
+		cursor_hint_weapon = self.stub.weapon_pickup;
 		self setcursorhint(cursor_hint, cursor_hint_weapon);
 	}
 	else if(level flag::get("tram_docked") || level flag::get("player_tram_docked"))
@@ -861,7 +861,7 @@ function function_5ea427bf(player)
 		self setHintString(self.stub.hint_string);
 		return 0;
 	}
-	else if(namespace_cb5bc243::function_83ef471e(player))
+	else if(zm_powerup_castle_tram_token::function_83ef471e(player))
 	{
 		self.stub.hint_string = &"ZM_CASTLE_TRAM_CALL";
 		self setHintString(self.stub.hint_string);
@@ -877,7 +877,7 @@ function function_5ea427bf(player)
 
 /*
 	Name: unitrigger_think
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x64AC4252
 	Offset: 0x3A00
 	Size: 0x5F
@@ -897,7 +897,7 @@ function unitrigger_think()
 
 /*
 	Name: unitrigger_refresh_message
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xF7F2E08A
 	Offset: 0x3A68
 	Size: 0x1B
@@ -911,7 +911,7 @@ function unitrigger_refresh_message()
 
 /*
 	Name: function_ccc738b1
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x99EC1590
 	Offset: 0x3A90
 	Size: 0x3
@@ -924,7 +924,7 @@ function function_ccc738b1()
 
 /*
 	Name: function_ce881a6
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xE72EB04
 	Offset: 0x3AA0
 	Size: 0xCB
@@ -950,7 +950,7 @@ function function_ce881a6()
 
 /*
 	Name: function_ccd0cc8e
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0x7D9A7F1C
 	Offset: 0x3B78
 	Size: 0x33
@@ -965,7 +965,7 @@ function function_ccd0cc8e()
 
 /*
 	Name: function_57f998e3
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xDE0C8DEF
 	Offset: 0x3BB8
 	Size: 0x3B
@@ -983,7 +983,7 @@ function function_57f998e3()
 
 /*
 	Name: function_72d0fbe3
-	Namespace: namespace_30db0d4
+	Namespace: zm_castle_tram
 	Checksum: 0xF9C64D44
 	Offset: 0x3C00
 	Size: 0xC5

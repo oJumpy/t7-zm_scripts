@@ -819,7 +819,7 @@ function radio_ee_think()
 	while(1)
 	{
 		self waittill("trigger", player);
-		if(!namespace_52adc03e::function_8090042c())
+		if(!zm_audio_zhd::function_8090042c())
 		{
 			continue;
 		}

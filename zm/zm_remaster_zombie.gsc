@@ -24,7 +24,7 @@
 /*
 	Name: init
 	Namespace: namespace_1d57720d
-	Checksum: 0xB755A7DD
+	Checksum: 0xCD2C104F
 	Offset: 0x3F0
 	Size: 0x63
 	Parameters: 0
@@ -42,7 +42,7 @@ function autoexec init()
 /*
 	Name: InitZmBehaviorsAndASM
 	Namespace: namespace_1d57720d
-	Checksum: 0x19CC27F3
+	Checksum: 0x3C3C1E5C
 	Offset: 0x460
 	Size: 0x83
 	Parameters: 0
@@ -58,7 +58,7 @@ function private InitZmBehaviorsAndASM()
 /*
 	Name: teleporttraversalmocompstart
 	Namespace: namespace_1d57720d
-	Checksum: 0x9A389FBF
+	Checksum: 0xF82E7480
 	Offset: 0x4F0
 	Size: 0x19B
 	Parameters: 5
@@ -82,7 +82,7 @@ function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime
 /*
 	Name: shouldmove
 	Namespace: namespace_1d57720d
-	Checksum: 0xDD9B5A6D
+	Checksum: 0x58497503
 	Offset: 0x698
 	Size: 0x189
 	Parameters: 1
@@ -135,7 +135,7 @@ function shouldmove(entity)
 /*
 	Name: function_9fb7c76f
 	Namespace: namespace_1d57720d
-	Checksum: 0x3E43F928
+	Checksum: 0x265905E2
 	Offset: 0x830
 	Size: 0x1B
 	Parameters: 0
@@ -149,7 +149,7 @@ function private function_9fb7c76f()
 /*
 	Name: function_f05a4eb4
 	Namespace: namespace_1d57720d
-	Checksum: 0xF7B55BAC
+	Checksum: 0x69C510E
 	Offset: 0x858
 	Size: 0x2B
 	Parameters: 0
@@ -164,7 +164,7 @@ function private function_f05a4eb4()
 /*
 	Name: remaster_validate_last_closest_player
 	Namespace: namespace_1d57720d
-	Checksum: 0x85EABAFE
+	Checksum: 0x7CDD9B28
 	Offset: 0x890
 	Size: 0xF9
 	Parameters: 1
@@ -191,7 +191,7 @@ function private remaster_validate_last_closest_player(players)
 /*
 	Name: remaster_closest_player
 	Namespace: namespace_1d57720d
-	Checksum: 0x699B5775
+	Checksum: 0x725E3D10
 	Offset: 0x998
 	Size: 0x279
 	Parameters: 2
@@ -270,7 +270,7 @@ function remaster_closest_player(origin, players)
 /*
 	Name: update_closest_player
 	Namespace: namespace_1d57720d
-	Checksum: 0xF5414F61
+	Checksum: 0xF9DA4E34
 	Offset: 0xC20
 	Size: 0x18B
 	Parameters: 0

@@ -99,7 +99,7 @@ function perk_machine_think(str_key, s_custom_perk)
 {
 	str_endon = str_key + "_power_thread_end";
 	level endon(str_endon);
-	var_fb1cd1b2 = s_custom_perk.alias + "_on";
+	str_on = s_custom_perk.alias + "_on";
 	str_off = s_custom_perk.alias + "_off";
 	str_notify = str_key + "_power_on";
 	while(1)
@@ -113,7 +113,7 @@ function perk_machine_think(str_key, s_custom_perk)
 		}
 		level thread do_initial_power_off_callback(machine, str_key);
 		Array::thread_all(machine_triggers, &set_power_on, 0);
-		level waittill(var_fb1cd1b2);
+		level waittill(str_on);
 		for(i = 0; i < machine.size; i++)
 		{
 			machine[i] SetModel(level.machine_assets[str_key].on_model);

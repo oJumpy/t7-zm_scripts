@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_juggernaut
-	Checksum: 0x8E42B9EF
+	Checksum: 0x222B0DD6
 	Offset: 0x198
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_juggernaut
-	Checksum: 0xC167C737
+	Checksum: 0x336A2A0E
 	Offset: 0x1D8
 	Size: 0x83
 	Parameters: 0
@@ -39,7 +39,7 @@ function __init__()
 /*
 	Name: init_juggernaut
 	Namespace: zm_perk_juggernaut
-	Checksum: 0xE64DA626
+	Checksum: 0xE96C59C8
 	Offset: 0x268
 	Size: 0x35
 	Parameters: 0
@@ -56,7 +56,7 @@ function init_juggernaut()
 /*
 	Name: juggernaut_client_field_func
 	Namespace: zm_perk_juggernaut
-	Checksum: 0x3DECC15D
+	Checksum: 0xE2694647
 	Offset: 0x2A8
 	Size: 0x3B
 	Parameters: 0

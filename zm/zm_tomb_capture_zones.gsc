@@ -3053,7 +3053,7 @@ function players_capture_zone()
 */
 function reward_players_in_capture_zone()
 {
-	b_challenge_exists = namespace_a528e918::challenge_exists("zc_zone_captures");
+	b_challenge_exists = zm_challenges_tomb::challenge_exists("zc_zone_captures");
 	if(!self flag::get("player_controlled"))
 	{
 		foreach(player in get_players_in_capture_zone())
@@ -3062,7 +3062,7 @@ function reward_players_in_capture_zone()
 			player zm_score::player_add_points("bonus_points_powerup", 100);
 			if(b_challenge_exists)
 			{
-				player namespace_a528e918::increment_stat("zc_zone_captures");
+				player zm_challenges_tomb::increment_stat("zc_zone_captures");
 			}
 		}
 	}
@@ -3465,7 +3465,7 @@ function set_magic_box_zbarrier_state(State)
 		case "arriving":
 		{
 			self ShowZBarrierPiece(1);
-			self thread namespace_bafc277e::magic_box_arrives();
+			self thread tomb_magicbox::magic_box_arrives();
 			self.State = "arriving";
 			break;
 		}
@@ -3480,21 +3480,21 @@ function set_magic_box_zbarrier_state(State)
 		case "open":
 		{
 			self ShowZBarrierPiece(2);
-			self thread namespace_bafc277e::magic_box_opens();
+			self thread tomb_magicbox::magic_box_opens();
 			self.State = "open";
 			break;
 		}
 		case "close":
 		{
 			self ShowZBarrierPiece(2);
-			self thread namespace_bafc277e::magic_box_closes();
+			self thread tomb_magicbox::magic_box_closes();
 			self.State = "close";
 			break;
 		}
 		case "leaving":
 		{
 			self ShowZBarrierPiece(1);
-			self thread namespace_bafc277e::magic_box_leaves();
+			self thread tomb_magicbox::magic_box_leaves();
 			self.State = "leaving";
 			self.owner.is_locked = 0;
 			break;

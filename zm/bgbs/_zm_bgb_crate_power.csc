@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_4385caec;
+#namespace zm_bgb_crate_power;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4385caec
+	Namespace: zm_bgb_crate_power
 	Checksum: 0x6CF8301D
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4385caec
+	Namespace: zm_bgb_crate_power
 	Checksum: 0x770047BF
 	Offset: 0x188
 	Size: 0x3B

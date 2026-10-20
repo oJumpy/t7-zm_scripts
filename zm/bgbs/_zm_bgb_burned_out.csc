@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_403823cc;
+#namespace zm_bgb_burned_out;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0x1BBDC055
 	Offset: 0x248
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0x3BA5CFBA
 	Offset: 0x288
 	Size: 0x205
@@ -49,7 +49,7 @@ function __init__()
 
 /*
 	Name: zm_bgb_burned_out_1p_toplayer_cb
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0xCD973B6D
 	Offset: 0x498
 	Size: 0x8B
@@ -66,7 +66,7 @@ function zm_bgb_burned_out_1p_toplayer_cb(localClientNum, oldVal, newVal, bNewEn
 
 /*
 	Name: zm_bgb_burned_out_3p_allplayers_cb
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0xBCAB3E15
 	Offset: 0x530
 	Size: 0xC3
@@ -83,7 +83,7 @@ function zm_bgb_burned_out_3p_allplayers_cb(localClientNum, oldVal, newVal, bNew
 
 /*
 	Name: zm_bgb_burned_out_fire_torso_actor_cb
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0x9AEB5676
 	Offset: 0x600
 	Size: 0xB3
@@ -102,7 +102,7 @@ function zm_bgb_burned_out_fire_torso_actor_cb(localClientNum, oldVal, newVal, b
 
 /*
 	Name: zm_bgb_burned_out_fire_torso_vehicle_cb
-	Namespace: namespace_403823cc
+	Namespace: zm_bgb_burned_out
 	Checksum: 0xEF5091D4
 	Offset: 0x6C0
 	Size: 0xB3

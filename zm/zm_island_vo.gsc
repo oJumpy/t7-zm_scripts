@@ -23,11 +23,11 @@
 #using scripts\zm\craftables\_zm_craftables;
 #using scripts\zm\zm_island_util;
 
-#namespace namespace_f333593c;
+#namespace zm_island_vo;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x767AED28
 	Offset: 0x1998
 	Size: 0x33
@@ -41,7 +41,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x7F5FC30B
 	Offset: 0x19D8
 	Size: 0x1EB
@@ -77,7 +77,7 @@ function __init__()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x1836A727
 	Offset: 0x1BD0
 	Size: 0x9C3
@@ -148,7 +148,7 @@ function on_player_spawned()
 
 /*
 	Name: main
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x761138F8
 	Offset: 0x25A0
 	Size: 0x33
@@ -163,7 +163,7 @@ function main()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x99EC1590
 	Offset: 0x25E0
 	Size: 0x3
@@ -176,7 +176,7 @@ function on_player_connect()
 
 /*
 	Name: function_218256bd
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x20571FC8
 	Offset: 0x25F0
 	Size: 0x169
@@ -207,7 +207,7 @@ function function_218256bd(b_dont_speak)
 
 /*
 	Name: function_cf8fccfe
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x6641EC93
 	Offset: 0x2768
 	Size: 0x6F
@@ -229,7 +229,7 @@ function function_cf8fccfe(b_dont_speak)
 
 /*
 	Name: vo_say
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xA390CF39
 	Offset: 0x27E0
 	Size: 0x35F
@@ -316,7 +316,7 @@ function vo_say(str_vo_alias, n_delay, b_wait_if_busy, n_priority, var_d1295208)
 
 /*
 	Name: vo_clear
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x958EDB42
 	Offset: 0x2B48
 	Size: 0xFB
@@ -346,7 +346,7 @@ function vo_clear()
 
 /*
 	Name: vo_stop
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x507C1E94
 	Offset: 0x2C50
 	Size: 0x5B
@@ -365,7 +365,7 @@ function vo_stop()
 
 /*
 	Name: function_2426269b
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x4E10A72C
 	Offset: 0x2CB8
 	Size: 0x231
@@ -416,7 +416,7 @@ function function_2426269b(v_pos, n_range)
 
 /*
 	Name: function_cf763858
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x117596B6
 	Offset: 0x2EF8
 	Size: 0xB3
@@ -440,7 +440,7 @@ function function_cf763858()
 
 /*
 	Name: function_897246e4
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x1261864
 	Offset: 0x2FB8
 	Size: 0x1F3
@@ -499,7 +499,7 @@ function function_897246e4(str_vo_alias, n_wait, b_wait_if_busy, n_priority, var
 
 /*
 	Name: function_63c44c5a
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xACD4376A
 	Offset: 0x31B8
 	Size: 0x14B
@@ -543,7 +543,7 @@ function function_63c44c5a(a_str_vo, var_e21e86b8, b_wait_if_busy, n_priority, v
 
 /*
 	Name: function_7aa5324a
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x9D32D349
 	Offset: 0x3310
 	Size: 0x15B
@@ -587,7 +587,7 @@ function function_7aa5324a(a_str_vo, var_e21e86b8, b_wait_if_busy, n_priority, v
 
 /*
 	Name: custom_get_mod_type
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xC21E8F
 	Offset: 0x3478
 	Size: 0x3C5
@@ -709,7 +709,7 @@ function custom_get_mod_type(impact, mod, weapon, zombie, instakill, dist, playe
 
 /*
 	Name: function_772aa229
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xBF58149C
 	Offset: 0x3848
 	Size: 0xE7
@@ -750,7 +750,7 @@ function function_772aa229()
 
 /*
 	Name: function_54cd030a
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x73B84154
 	Offset: 0x3938
 	Size: 0x83
@@ -769,7 +769,7 @@ function function_54cd030a()
 
 /*
 	Name: function_340dc03
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x16ED1AB0
 	Offset: 0x39C8
 	Size: 0xDB
@@ -796,7 +796,7 @@ function function_340dc03()
 
 /*
 	Name: function_cc4d4a7c
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xEA4ECB1D
 	Offset: 0x3AB0
 	Size: 0x163
@@ -824,7 +824,7 @@ function function_cc4d4a7c()
 
 /*
 	Name: function_7ca05725
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xA48EAA29
 	Offset: 0x3C20
 	Size: 0x16B
@@ -853,7 +853,7 @@ function function_7ca05725()
 
 /*
 	Name: function_b83e53a5
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xB37B4BDB
 	Offset: 0x3D98
 	Size: 0x1C3
@@ -894,7 +894,7 @@ function function_b83e53a5()
 
 /*
 	Name: function_267933e4
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xD4941AB9
 	Offset: 0x3F68
 	Size: 0x7E5
@@ -974,7 +974,7 @@ function function_267933e4()
 
 /*
 	Name: function_3cdbc215
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x3E855167
 	Offset: 0x4758
 	Size: 0x683
@@ -1087,7 +1087,7 @@ function function_3cdbc215()
 
 /*
 	Name: function_3f78fe22
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x801BB56A
 	Offset: 0x4DE8
 	Size: 0x2E3
@@ -1109,7 +1109,7 @@ function function_3f78fe22()
 
 /*
 	Name: function_7fc6d0cd
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x84E37236
 	Offset: 0x50D8
 	Size: 0x1DB
@@ -1170,7 +1170,7 @@ function function_7fc6d0cd(a_str_zones, var_7a4c869a, var_87fad49a, var_142db61a
 
 /*
 	Name: function_35fd7118
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xA3B0EE61
 	Offset: 0x52C0
 	Size: 0x1DB
@@ -1186,11 +1186,11 @@ function function_35fd7118(a_str_zones, var_7a4c869a, var_87fad49a, var_142db61a
 	self endon("death");
 	self endon("hash_56cd6f57");
 	level flag::wait_till_any(var_7a4c869a);
-	var_e45f469a = GetEnt("t_pap_lookat", "targetname");
+	t_pap_lookat = GetEnt("t_pap_lookat", "targetname");
 	var_b24c0d65 = undefined;
 	while(!zm_utility::is_player_valid(var_b24c0d65))
 	{
-		var_e45f469a waittill("trigger", var_b24c0d65);
+		t_pap_lookat waittill("trigger", var_b24c0d65);
 		if(zm_utility::is_player_valid(var_b24c0d65))
 		{
 			foreach(player in level.activePlayers)
@@ -1204,7 +1204,7 @@ function function_35fd7118(a_str_zones, var_7a4c869a, var_87fad49a, var_142db61a
 			{
 				var_b24c0d65 thread function_5ebe7974(var_87fad49a, var_142db61a);
 			}
-			var_e45f469a delete();
+			t_pap_lookat delete();
 		}
 		else
 		{
@@ -1215,7 +1215,7 @@ function function_35fd7118(a_str_zones, var_7a4c869a, var_87fad49a, var_142db61a
 
 /*
 	Name: function_5ebe7974
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x43C9CE99
 	Offset: 0x54A8
 	Size: 0x22B
@@ -1229,7 +1229,7 @@ function function_5ebe7974(var_87fad49a, var_142db61a)
 	{
 		while(isdefined(self.var_7a36438e) && self.var_7a36438e)
 		{
-			self waittill("hash_c40cfd1a");
+			self waittill("sewer_over");
 			wait(3);
 		}
 		var_e1bda0d1 = "vox_plr_" + self.characterindex + "_" + var_87fad49a + "_encounter_0";
@@ -1255,7 +1255,7 @@ function function_5ebe7974(var_87fad49a, var_142db61a)
 
 /*
 	Name: function_d258c672
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x2B15A1ED
 	Offset: 0x56E0
 	Size: 0x10B
@@ -1283,7 +1283,7 @@ function function_d258c672(str_ee)
 
 /*
 	Name: function_6fc10b64
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xB0251A48
 	Offset: 0x57F8
 	Size: 0xAB
@@ -1304,7 +1304,7 @@ function function_6fc10b64()
 
 /*
 	Name: function_97ed7288
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x6FB81AEC
 	Offset: 0x58B0
 	Size: 0x10B
@@ -1329,7 +1329,7 @@ function function_97ed7288()
 
 /*
 	Name: function_9984d8f0
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x2A59B9BF
 	Offset: 0x59C8
 	Size: 0x83
@@ -1348,7 +1348,7 @@ function function_9984d8f0()
 
 /*
 	Name: function_87d97caa
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x61E455E5
 	Offset: 0x5A58
 	Size: 0x83
@@ -1367,7 +1367,7 @@ function function_87d97caa()
 
 /*
 	Name: function_64f4c27
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x90B8F326
 	Offset: 0x5AE8
 	Size: 0xA3
@@ -1387,7 +1387,7 @@ function function_64f4c27()
 
 /*
 	Name: function_5dbba1d3
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x8D6B7641
 	Offset: 0x5B98
 	Size: 0x23
@@ -1401,7 +1401,7 @@ function function_5dbba1d3()
 
 /*
 	Name: function_ab027b72
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x42D66795
 	Offset: 0x5BC8
 	Size: 0x23
@@ -1415,7 +1415,7 @@ function function_ab027b72()
 
 /*
 	Name: function_b2a7853b
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xE970D58B
 	Offset: 0x5BF8
 	Size: 0x23
@@ -1429,7 +1429,7 @@ function function_b2a7853b()
 
 /*
 	Name: function_cdc8a72a
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x41F9E3D1
 	Offset: 0x5C28
 	Size: 0x10B
@@ -1461,7 +1461,7 @@ function function_cdc8a72a(str_base)
 
 /*
 	Name: function_c426b455
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x29D993C
 	Offset: 0x5D40
 	Size: 0x13F
@@ -1495,7 +1495,7 @@ function function_c426b455()
 
 /*
 	Name: function_5943b45
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x5CEA0FB9
 	Offset: 0x5E88
 	Size: 0x213
@@ -1536,7 +1536,7 @@ function function_5943b45()
 
 /*
 	Name: function_c8bcaf11
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x948FB22
 	Offset: 0x60A8
 	Size: 0xEB
@@ -1565,7 +1565,7 @@ function function_c8bcaf11()
 
 /*
 	Name: function_c57ccaa9
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x371321A6
 	Offset: 0x61A0
 	Size: 0x6B
@@ -1588,7 +1588,7 @@ function function_c57ccaa9()
 
 /*
 	Name: function_8eebdc4d
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xBFD372C3
 	Offset: 0x6218
 	Size: 0x317
@@ -1639,7 +1639,7 @@ function function_8eebdc4d()
 
 /*
 	Name: function_5ca4424
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xA02F1836
 	Offset: 0x6538
 	Size: 0x225
@@ -1678,7 +1678,7 @@ function function_5ca4424()
 
 /*
 	Name: function_a5b6f9c0
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x13017C64
 	Offset: 0x6768
 	Size: 0x225
@@ -1719,7 +1719,7 @@ function function_a5b6f9c0()
 
 /*
 	Name: function_b978ce37
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x592874BF
 	Offset: 0x6998
 	Size: 0x67
@@ -1730,13 +1730,13 @@ function function_b978ce37(e_attacker)
 {
 	if(self.archetype === "thrasher" && zm_utility::is_player_valid(e_attacker) && !level flag::get("takeofight_wave_spawning"))
 	{
-		e_attacker notify("hash_d2789392");
+		e_attacker notify("player_killed_thrasher");
 	}
 }
 
 /*
 	Name: function_1e767f71
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xEE4623AA
 	Offset: 0x6A08
 	Size: 0x237
@@ -1793,7 +1793,7 @@ function function_1e767f71(e_target, n_min_dist, str_cat, var_b03cc213, var_a099
 
 /*
 	Name: function_65f8953a
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x9BDA9508
 	Offset: 0x6C48
 	Size: 0x13D
@@ -1833,7 +1833,7 @@ function function_65f8953a(str_event, str_cat, var_b03cc213, var_a099ce87, var_3
 
 /*
 	Name: function_81d644a1
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xF5690BD0
 	Offset: 0x6D90
 	Size: 0x127
@@ -1861,7 +1861,7 @@ function function_81d644a1()
 
 /*
 	Name: function_c261e8aa
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x8CFF18F8
 	Offset: 0x6EC0
 	Size: 0xE7
@@ -1887,7 +1887,7 @@ function function_c261e8aa()
 
 /*
 	Name: function_1881817
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x5422BF17
 	Offset: 0x6FB0
 	Size: 0x197
@@ -1933,7 +1933,7 @@ function function_1881817(str_cat, var_b03cc213, var_a099ce87, var_32802234)
 
 /*
 	Name: function_ecc335b6
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x2DB2BD48
 	Offset: 0x7150
 	Size: 0x3B
@@ -1949,7 +1949,7 @@ function function_ecc335b6(var_346d981, var_a099ce87)
 
 /*
 	Name: function_7f4cb4c
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x315A514B
 	Offset: 0x7198
 	Size: 0xB1
@@ -1976,7 +1976,7 @@ function function_7f4cb4c(str_cat, var_b03cc213, var_41d7d192)
 
 /*
 	Name: function_e4acaa37
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xAEBAB2B4
 	Offset: 0x7258
 	Size: 0x73
@@ -1993,7 +1993,7 @@ function function_e4acaa37(str_vo)
 
 /*
 	Name: function_280223ba
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xE5865865
 	Offset: 0x72D8
 	Size: 0x7B
@@ -2010,7 +2010,7 @@ function function_280223ba(a_str_vos)
 
 /*
 	Name: function_11b41a76
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xD9D63220
 	Offset: 0x7360
 	Size: 0x18D
@@ -2060,7 +2060,7 @@ function function_11b41a76(n_player_index, str_type, var_f73f0bfc, var_69467b37,
 
 /*
 	Name: function_5803cf05
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x7B65682A
 	Offset: 0x74F8
 	Size: 0x81
@@ -2082,7 +2082,7 @@ function function_5803cf05(n_max, var_6e653641)
 
 /*
 	Name: function_574a0ffc
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x76A244B6
 	Offset: 0x7588
 	Size: 0x21
@@ -2096,7 +2096,7 @@ function function_574a0ffc(n_char_index)
 
 /*
 	Name: function_70e6e39e
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x10C84649
 	Offset: 0x75B8
 	Size: 0x91
@@ -2119,7 +2119,7 @@ function function_70e6e39e()
 
 /*
 	Name: function_3bf2d62a
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0xB7483DF6
 	Offset: 0x7658
 	Size: 0x411
@@ -2204,7 +2204,7 @@ function function_3bf2d62a(event_string, var_c57fa913, bunker, var_82860e04)
 
 /*
 	Name: function_5f161c52
-	Namespace: namespace_f333593c
+	Namespace: zm_island_vo
 	Checksum: 0x5B3FB671
 	Offset: 0x7A78
 	Size: 0x2B

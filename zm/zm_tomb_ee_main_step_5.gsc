@@ -95,7 +95,7 @@ function spawn_zombie_blood_plane()
 	s_biplane_pos = struct::get("air_crystal_biplane_pos", "targetname");
 	vh_biplane = SpawnVehicle("biplane_zm", (0, 0, 0), (0, 0, 0), "zombie_blood_biplane");
 	vh_biplane flag::init("biplane_down");
-	vh_biplane namespace_43a18dd5::make_zombie_blood_entity();
+	vh_biplane zm_powerup_zombie_blood::make_zombie_blood_entity();
 	vh_biplane PlayLoopSound("zmb_zombieblood_3rd_plane_loop", 1);
 	vh_biplane.health = 10000;
 	vh_biplane SetCanDamage(1);
@@ -110,7 +110,7 @@ function spawn_zombie_blood_plane()
 	ai_pilot = zombie_utility::spawn_zombie(e_special_zombie, "zombie_blood_pilot");
 	ai_pilot util::magic_bullet_shield();
 	ai_pilot.ignore_enemy_count = 1;
-	ai_pilot namespace_43a18dd5::make_zombie_blood_entity();
+	ai_pilot zm_powerup_zombie_blood::make_zombie_blood_entity();
 	ai_pilot ForceTeleport(vh_biplane.origin, vh_biplane.angles);
 	ai_pilot.sndname = "capzomb";
 	ai_pilot.ignore_nuke = 1;

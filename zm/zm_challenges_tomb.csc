@@ -2,11 +2,11 @@
 #using scripts\shared\system_shared;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_a528e918;
+#namespace zm_challenges_tomb;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x3F5E0D4A
 	Offset: 0x178
 	Size: 0x33
@@ -20,7 +20,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x5A1A0D0E
 	Offset: 0x1B8
 	Size: 0x123
@@ -37,7 +37,7 @@ function __init__()
 
 /*
 	Name: function_2d46c9fd
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x6D8295F5
 	Offset: 0x2E8
 	Size: 0x93

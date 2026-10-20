@@ -1,11 +1,11 @@
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\system_shared;
 
-#namespace namespace_19d9d56d;
+#namespace zm_ai_mechz_claw;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x89E45E09
 	Offset: 0x1B0
 	Size: 0x33
@@ -19,7 +19,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x4C4D1B5D
 	Offset: 0x1F0
 	Size: 0x13B
@@ -29,15 +29,15 @@ function autoexec __init__sytem__()
 function private __init__()
 {
 	clientfield::register("actor", "mechz_fx", 21000, 12, "int", &mechz_handle_fx, 0, 0);
-	clientfield::register("scriptmover", "mechz_claw", 21000, 1, "int", &function_2ad55883, 0, 0);
-	clientfield::register("actor", "mechz_wpn_source", 21000, 1, "int", &function_54ae128d, 0, 0);
-	clientfield::register("toplayer", "mechz_grab", 21000, 1, "int", &function_8dfa08c1, 0, 0);
+	clientfield::register("scriptmover", "mechz_claw", 21000, 1, "int", &mechz_claw_fx, 0, 0);
+	clientfield::register("actor", "mechz_wpn_source", 21000, 1, "int", &mechz_wpn_source_fx, 0, 0);
+	clientfield::register("toplayer", "mechz_grab", 21000, 1, "int", &mechz_grab_callback, 0, 0);
 	level.mechz_detach_claw_override = &mechz_detach_claw_override;
 }
 
 /*
 	Name: __main__
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x99EC1590
 	Offset: 0x338
 	Size: 0x3
@@ -50,7 +50,7 @@ function private __main__()
 
 /*
 	Name: mechz_detach_claw_override
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xF9F83FD2
 	Offset: 0x348
 	Size: 0x173
@@ -70,7 +70,7 @@ function private mechz_detach_claw_override(localClientNum, oldValue, newValue, 
 
 /*
 	Name: mechz_handle_fx
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x9A423DC9
 	Offset: 0x4C8
 	Size: 0x3B
@@ -82,15 +82,15 @@ function private mechz_handle_fx(localClientNum, oldValue, newValue, bNewEnt, bI
 }
 
 /*
-	Name: function_2ad55883
-	Namespace: namespace_19d9d56d
+	Name: mechz_claw_fx
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xC5EF36F3
 	Offset: 0x510
 	Size: 0x73
 	Parameters: 7
 	Flags: Private
 */
-function private function_2ad55883(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
+function private mechz_claw_fx(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
 {
 	if(newValue)
 	{
@@ -99,15 +99,15 @@ function private function_2ad55883(localClientNum, oldValue, newValue, bNewEnt, 
 }
 
 /*
-	Name: function_54ae128d
-	Namespace: namespace_19d9d56d
+	Name: mechz_wpn_source_fx
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x4388791F
 	Offset: 0x590
 	Size: 0xB5
 	Parameters: 7
 	Flags: Private
 */
-function private function_54ae128d(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
+function private mechz_wpn_source_fx(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
 {
 	if(newValue)
 	{
@@ -121,15 +121,15 @@ function private function_54ae128d(localClientNum, oldValue, newValue, bNewEnt, 
 }
 
 /*
-	Name: function_8dfa08c1
-	Namespace: namespace_19d9d56d
+	Name: mechz_grab_callback
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x92ADCC87
 	Offset: 0x650
 	Size: 0x73
 	Parameters: 7
 	Flags: Private
 */
-function private function_8dfa08c1(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
+function private mechz_grab_callback(localClientNum, oldValue, newValue, bNewEnt, bInitialSnap, fieldName, wasDemoJump)
 {
 	if(newValue)
 	{

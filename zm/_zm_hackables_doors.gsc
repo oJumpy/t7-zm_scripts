@@ -73,7 +73,7 @@ function hack_doors(targetname, door_activate_func)
 		struct.door_activate_func = door_activate_func;
 		trace_passed = 0;
 		door thread hide_door_buy_when_hacker_active(struct);
-		namespace_6d813654::register_pooled_hackable_struct(struct, &door_hack);
+		zm_equip_hacker::register_pooled_hackable_struct(struct, &door_hack);
 		door thread watch_door_for_open(struct);
 	}
 }
@@ -92,7 +92,7 @@ function hide_door_buy_when_hacker_active(door_struct)
 	self endon("death");
 	self endon("door_hacked");
 	self endon("door_opened");
-	namespace_6d813654::hide_hint_when_hackers_active();
+	zm_equip_hacker::hide_hint_when_hackers_active();
 }
 
 /*
@@ -151,7 +151,7 @@ function remove_all_door_hackables_that_target_door(door)
 	}
 	for(i = 0; i < candidates.size; i++)
 	{
-		namespace_6d813654::deregister_hackable_struct(candidates[i]);
+		zm_equip_hacker::deregister_hackable_struct(candidates[i]);
 	}
 }
 

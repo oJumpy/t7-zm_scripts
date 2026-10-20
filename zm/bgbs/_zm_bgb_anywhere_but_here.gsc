@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_93b7f03;
+#namespace zm_bgb_anywhere_but_here;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_93b7f03
+	Namespace: zm_bgb_anywhere_but_here
 	Checksum: 0x7458ABDA
 	Offset: 0x310
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_93b7f03
+	Namespace: zm_bgb_anywhere_but_here
 	Checksum: 0x872DF9D7
 	Offset: 0x350
 	Size: 0xD3
@@ -49,7 +49,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_93b7f03
+	Namespace: zm_bgb_anywhere_but_here
 	Checksum: 0x68EE913A
 	Offset: 0x430
 	Size: 0x533
@@ -130,7 +130,7 @@ function activation()
 
 /*
 	Name: validation
-	Namespace: namespace_93b7f03
+	Namespace: zm_bgb_anywhere_but_here
 	Checksum: 0x63F86335
 	Offset: 0x970
 	Size: 0x23
@@ -148,7 +148,7 @@ function validation()
 
 /*
 	Name: function_728dfe3
-	Namespace: namespace_93b7f03
+	Namespace: zm_bgb_anywhere_but_here
 	Checksum: 0x24692623
 	Offset: 0x9A0
 	Size: 0x2EF

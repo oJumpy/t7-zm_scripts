@@ -193,7 +193,7 @@ function waitfor_eightbit_use()
 	while(1)
 	{
 		self waittill("trigger_activated");
-		if(!namespace_52adc03e::function_8090042c())
+		if(!zm_audio_zhd::function_8090042c())
 		{
 			continue;
 		}
@@ -383,7 +383,7 @@ function do_player_playvox_custom(sound_to_play, waitTime, category, type, overr
 	{
 		return;
 	}
-	if(isdefined(self.in_low_gravity) && self.in_low_gravity && !self namespace_11fcf241::gasmask_active())
+	if(isdefined(self.in_low_gravity) && self.in_low_gravity && !self zm_equip_gasmask::gasmask_active())
 	{
 		return;
 	}
@@ -528,7 +528,7 @@ function weapon_type_check_custom(weapon, magic_box)
 */
 function setup_music_egg()
 {
-	level thread namespace_52adc03e::function_e753d4f();
+	level thread zm_audio_zhd::function_e753d4f();
 	level flag::wait_till("snd_song_completed");
 	level thread zm_audio::sndMusicSystem_PlayState("cominghome");
 }
@@ -721,7 +721,7 @@ function play_delayed_first_time_vox()
 {
 	self endon("death");
 	self endon("disconnect");
-	self waittill("hash_237e9e73");
+	self waittill("equip_gasmask_activate");
 	self waittill("weapon_change_complete");
 	self playsoundtoplayer("vox_mcomp_suit_on", self);
 	wait(1.5);
@@ -762,7 +762,7 @@ function play_maskon_vox()
 	self endon("disconnect");
 	while(1)
 	{
-		self waittill("hash_237e9e73");
+		self waittill("equip_gasmask_activate");
 		self waittill("weapon_change_complete");
 		self stopsounds();
 		wait(0.05);
@@ -789,14 +789,14 @@ function play_warning_vox()
 		{
 			wait(0.1);
 		}
-		if(isdefined(self.in_low_gravity && self HasWeapon(level.w_gasmask) && !self namespace_11fcf241::gasmask_active()) && self.in_low_gravity && self HasWeapon(level.w_gasmask) && !self namespace_11fcf241::gasmask_active())
+		if(isdefined(self.in_low_gravity && self HasWeapon(level.w_gasmask) && !self zm_equip_gasmask::gasmask_active()) && self.in_low_gravity && self HasWeapon(level.w_gasmask) && !self zm_equip_gasmask::gasmask_active())
 		{
 			self stopsounds();
 			wait(0.05);
 			self playsoundtoplayer("vox_mcomp_suit_reminder", self);
 			while(self.in_low_gravity)
 			{
-				if(self namespace_11fcf241::gasmask_active())
+				if(self zm_equip_gasmask::gasmask_active())
 				{
 					break;
 				}
@@ -849,7 +849,7 @@ function function_45b4acf2()
 */
 function function_1d6f553d()
 {
-	level endon("hash_f9e823ac");
+	level endon("snd_zhdegg_activate");
 	self zm_unitrigger::create_unitrigger();
 	while(1)
 	{
@@ -871,7 +871,7 @@ function function_1d6f553d()
 */
 function function_e091daa4()
 {
-	level endon("hash_f9e823ac");
+	level endon("snd_zhdegg_activate");
 	var_924a65e5 = spawn("script_origin", (919, -303, -171));
 	while(1)
 	{
@@ -923,8 +923,8 @@ function function_b8227f87()
 	self.mdl_ballerina = util::spawn_model(self.model, self.origin, self.angles);
 	self.mdl_ballerina clientfield::set("snd_zhdegg", 1);
 	self.mdl_ballerina PlayLoopSound("mus_musicbox_lp", 2);
-	self thread namespace_52adc03e::function_9d55fd08();
-	self thread namespace_52adc03e::function_2fdaabf3();
+	self thread zm_audio_zhd::function_9d55fd08();
+	self thread zm_audio_zhd::function_2fdaabf3();
 	self util::waittill_any("ballerina_destroyed");
 	level.n_ballerina_count++;
 	self.mdl_ballerina clientfield::set("snd_zhdegg", 0);

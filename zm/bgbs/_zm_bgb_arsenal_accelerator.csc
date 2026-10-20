@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_3ab5ff91;
+#namespace zm_bgb_arsenal_accelerator;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3ab5ff91
+	Namespace: zm_bgb_arsenal_accelerator
 	Checksum: 0x2FA212E5
 	Offset: 0x150
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3ab5ff91
+	Namespace: zm_bgb_arsenal_accelerator
 	Checksum: 0xF11E229
 	Offset: 0x190
 	Size: 0x3B

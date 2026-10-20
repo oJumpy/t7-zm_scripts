@@ -58,16 +58,16 @@ function init_clientfields()
 	clientfield::register("scriptmover", "dragon_notify_bullet_impact", 12000, 1, "int", &function_d6856592, 0, 0);
 	clientfield::register("scriptmover", "dragon_wound_glow_on", 12000, 2, "int", &function_cb9fb04a, 0, 0);
 	clientfield::register("scriptmover", "dragon_wound_glow_off", 12000, 2, "int", &function_bb6d58d0, 0, 0);
-	clientfield::register("scriptmover", "dragon_mouth_fx", 12000, 1, "int", &function_7893300d, 0, 0);
+	clientfield::register("scriptmover", "dragon_mouth_fx", 12000, 1, "int", &dragon_mouth_fx, 0, 0);
 	n_bits = GetMinBitCountForNum(10);
 	clientfield::register("scriptmover", "dragon_notetracks", 12000, n_bits, "counter", &function_47d133a9, 0, 0);
 	clientfield::register("toplayer", "dragon_fire_burn_tell", 12000, 3, "int", &function_2d57594b, 0, 0);
 	clientfield::register("world", "dragon_hazard_fx_anim_init", 12000, 1, "int", &function_b4311e07, 0, 0);
 	clientfield::register("world", "dragon_hazard_fountain", 12000, 1, "int", &function_50d62870, 0, 0);
 	clientfield::register("world", "dragon_hazard_library", 12000, 1, "counter", &function_6865d0d5, 0, 0);
-	clientfield::register("toplayer", "dragon_transportation_exploders", 12000, 1, "int", &function_9a134512, 0, 0);
+	clientfield::register("toplayer", "dragon_transportation_exploders", 12000, 1, "int", &dragon_transportation_exploders, 0, 0);
 	clientfield::register("allplayers", "dragon_transport_eject", 12000, 1, "int", &function_9f54e892, 0, 0);
-	clientfield::register("world", "dragon_boss_guts", 12000, 2, "int", &function_30d64518, 0, 0);
+	clientfield::register("world", "dragon_boss_guts", 12000, 2, "int", &dragon_boss_guts, 0, 0);
 }
 
 /*
@@ -81,8 +81,8 @@ function init_clientfields()
 */
 function function_d28f5c87(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self notify("hash_e77002d1");
-	self endon("hash_e77002d1");
+	self notify("dragon_body_glow");
+	self endon("dragon_body_glow");
 	self endon("entityshutdown");
 	self thread function_9b0f57cf(localClientNum, newVal);
 	if(newVal)
@@ -147,7 +147,7 @@ function function_9b0f57cf(localClientNum, newVal)
 }
 
 /*
-	Name: function_7893300d
+	Name: dragon_mouth_fx
 	Namespace: dragon
 	Checksum: 0x35236F2E
 	Offset: 0x10E0
@@ -155,7 +155,7 @@ function function_9b0f57cf(localClientNum, newVal)
 	Parameters: 7
 	Flags: None
 */
-function function_7893300d(n_local_client, n_old, n_new, b_new_ent, b_initial_snap, str_field, b_was_time_jump)
+function dragon_mouth_fx(n_local_client, n_old, n_new, b_new_ent, b_initial_snap, str_field, b_was_time_jump)
 {
 	if(n_new)
 	{
@@ -593,7 +593,7 @@ function function_ae0e995e(a_ents)
 }
 
 /*
-	Name: function_9a134512
+	Name: dragon_transportation_exploders
 	Namespace: dragon
 	Checksum: 0x2176542B
 	Offset: 0x22F8
@@ -601,7 +601,7 @@ function function_ae0e995e(a_ents)
 	Parameters: 7
 	Flags: None
 */
-function function_9a134512(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_transportation_exploders(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -648,7 +648,7 @@ function function_9f54e892(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_30d64518
+	Name: dragon_boss_guts
 	Namespace: dragon
 	Checksum: 0x27EFFD77
 	Offset: 0x2528
@@ -656,7 +656,7 @@ function function_9f54e892(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_30d64518(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function dragon_boss_guts(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{

@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_128a1bda;
+#namespace zm_bgb_eye_candy;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xB32C977
 	Offset: 0x418
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0x3A707045
 	Offset: 0x458
 	Size: 0x333
@@ -54,21 +54,21 @@ function __init__()
 	visionset_mgr::register_overlay_info_style_postfx_bundle("zm_bgb_eye_candy_vs_4", 21000, 1, "pstfx_zm_bgb_eye_candy_blue");
 	duplicate_render::set_dr_filter_framebuffer("e_c_4", 35, "eye_candy_4", undefined, 0, "mc/zombie_candy_mode_blue", 0);
 	n_bits = GetMinBitCountForNum(5);
-	clientfield::register("toplayer", "eye_candy_render", 21000, n_bits, "int", &function_7021da92, 0, 0);
+	clientfield::register("toplayer", "eye_candy_render", 21000, n_bits, "int", &set_eye_candy_render, 0, 0);
 	clientfield::register("actor", "eye_candy_active", 21000, 1, "int", &function_697cc62, 0, 0);
 	clientfield::register("vehicle", "eye_candy_active", 21000, 1, "int", &function_697cc62, 0, 0);
 }
 
 /*
-	Name: function_7021da92
-	Namespace: namespace_128a1bda
+	Name: set_eye_candy_render
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0x84AC0683
 	Offset: 0x798
 	Size: 0x93
 	Parameters: 7
 	Flags: None
 */
-function function_7021da92(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function set_eye_candy_render(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal > 0)
 	{
@@ -83,7 +83,7 @@ function function_7021da92(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_a358ec33
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xD4BEE5D
 	Offset: 0x838
 	Size: 0xF9
@@ -104,7 +104,7 @@ function function_a358ec33(localClientNum)
 
 /*
 	Name: function_c1a20a24
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0xB88F3161
 	Offset: 0x940
 	Size: 0xE9
@@ -126,7 +126,7 @@ function function_c1a20a24(localClientNum)
 
 /*
 	Name: function_697cc62
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0x722D2435
 	Offset: 0xA38
 	Size: 0x123
@@ -158,7 +158,7 @@ function function_697cc62(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_56029f33
-	Namespace: namespace_128a1bda
+	Namespace: zm_bgb_eye_candy
 	Checksum: 0x743FDB2F
 	Offset: 0xB68
 	Size: 0xAB

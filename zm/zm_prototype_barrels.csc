@@ -7,11 +7,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_1ed7595f;
+#namespace zm_prototype_barrels;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0x4632A22B
 	Offset: 0x200
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0x5333241A
 	Offset: 0x240
 	Size: 0x93
@@ -40,7 +40,7 @@ function __init__()
 
 /*
 	Name: function_66d46c7d
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0x1E78A8B3
 	Offset: 0x2E0
 	Size: 0x83
@@ -57,7 +57,7 @@ function function_66d46c7d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_b6fe19c5
-	Namespace: namespace_1ed7595f
+	Namespace: zm_prototype_barrels
 	Checksum: 0x3ABEBBD8
 	Offset: 0x370
 	Size: 0xAB

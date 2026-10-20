@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_unitrigger;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_bafc277e;
+#namespace tomb_magicbox;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0xC6DA96E3
 	Offset: 0x248
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0xAEFCF4F1
 	Offset: 0x288
 	Size: 0x1A3
@@ -51,7 +51,7 @@ function __init__()
 
 /*
 	Name: function_61903aae
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x99EC1590
 	Offset: 0x438
 	Size: 0x3
@@ -64,7 +64,7 @@ function function_61903aae()
 
 /*
 	Name: function_e4e60ea
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x99EC1590
 	Offset: 0x448
 	Size: 0x3
@@ -77,7 +77,7 @@ function function_e4e60ea()
 
 /*
 	Name: custom_joker_movement
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0xC3EBAB52
 	Offset: 0x458
 	Size: 0x1DD
@@ -107,7 +107,7 @@ function custom_joker_movement()
 
 /*
 	Name: custom_magic_box_timer_til_despawn
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x64BA8F14
 	Offset: 0x640
 	Size: 0xCB
@@ -129,7 +129,7 @@ function custom_magic_box_timer_til_despawn(magic_box)
 
 /*
 	Name: custom_magic_box_weapon_wait
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x5F337FCE
 	Offset: 0x718
 	Size: 0xB
@@ -143,7 +143,7 @@ function custom_magic_box_weapon_wait()
 
 /*
 	Name: wait_then_create_base_magic_box_fx
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0xFF0846BE
 	Offset: 0x730
 	Size: 0xE9
@@ -168,7 +168,7 @@ function wait_then_create_base_magic_box_fx()
 
 /*
 	Name: set_magic_box_zbarrier_state
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x8DEB4968
 	Offset: 0x828
 	Size: 0x2BD
@@ -241,7 +241,7 @@ function set_magic_box_zbarrier_state(State)
 
 /*
 	Name: magic_box_initial
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x7E4F1856
 	Offset: 0xAF0
 	Size: 0x4B
@@ -257,7 +257,7 @@ function magic_box_initial()
 
 /*
 	Name: magic_box_arrives
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x3F37CB33
 	Offset: 0xB48
 	Size: 0x12B
@@ -290,7 +290,7 @@ function magic_box_arrives()
 
 /*
 	Name: magic_box_leaves
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x64F0EDA5
 	Offset: 0xC80
 	Size: 0x187
@@ -329,7 +329,7 @@ function magic_box_leaves()
 
 /*
 	Name: magic_box_opens
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0xF61D9DC9
 	Offset: 0xE10
 	Size: 0xB3
@@ -351,7 +351,7 @@ function magic_box_opens()
 
 /*
 	Name: magic_box_open_idle
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x4FA48284
 	Offset: 0xED0
 	Size: 0x97
@@ -375,7 +375,7 @@ function magic_box_open_idle()
 
 /*
 	Name: magic_box_closes
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0x4E92E672
 	Offset: 0xF70
 	Size: 0xE1
@@ -399,7 +399,7 @@ function magic_box_closes()
 
 /*
 	Name: custom_magic_box_do_weapon_rise
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0xDD61BD07
 	Offset: 0x1060
 	Size: 0x16B
@@ -429,7 +429,7 @@ function custom_magic_box_do_weapon_rise()
 
 /*
 	Name: handle_fire_sale
-	Namespace: namespace_bafc277e
+	Namespace: tomb_magicbox
 	Checksum: 0xFBF850B3
 	Offset: 0x11D8
 	Size: 0x159

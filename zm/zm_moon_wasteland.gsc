@@ -857,11 +857,11 @@ function perk_machines_hide(cola, jug, moving)
 		level.jugg_ents[1] TriggerEnable(0);
 		if(isdefined(level.speed_cola_ents[1].hackable))
 		{
-			namespace_6d813654::deregister_hackable_struct(level.speed_cola_ents[1].hackable);
+			zm_equip_hacker::deregister_hackable_struct(level.speed_cola_ents[1].hackable);
 		}
 		if(isdefined(level.jugg_ents[1].hackable))
 		{
-			namespace_6d813654::deregister_hackable_struct(level.jugg_ents[1].hackable);
+			zm_equip_hacker::deregister_hackable_struct(level.jugg_ents[1].hackable);
 		}
 	}
 	else
@@ -883,7 +883,7 @@ function perk_machines_hide(cola, jug, moving)
 				hackable = level.speed_cola_ents[1].hackable;
 			}
 		}
-		namespace_6d813654::register_pooled_hackable_struct(hackable, &zm_hackables_perks::perk_hack, &zm_hackables_perks::perk_hack_qualifier);
+		zm_equip_hacker::register_pooled_hackable_struct(hackable, &zm_hackables_perks::perk_hack, &zm_hackables_perks::perk_hack_qualifier);
 	}
 }
 

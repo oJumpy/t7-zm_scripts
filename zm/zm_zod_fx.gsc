@@ -3,11 +3,11 @@
 #using scripts\shared\flag_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_47b9c241;
+#namespace zm_zod_fx;
 
 /*
 	Name: main
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0x688A3529
 	Offset: 0x2C0
 	Size: 0x23
@@ -22,7 +22,7 @@ function main()
 
 /*
 	Name: precache_scripted_fx
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0xD3FC4666
 	Offset: 0x2F0
 	Size: 0xE1
@@ -43,7 +43,7 @@ function precache_scripted_fx()
 
 /*
 	Name: precache_createfx_fx
-	Namespace: namespace_47b9c241
+	Namespace: zm_zod_fx
 	Checksum: 0x99EC1590
 	Offset: 0x3E0
 	Size: 0x3

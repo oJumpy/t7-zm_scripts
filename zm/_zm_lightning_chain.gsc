@@ -22,7 +22,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: lightning_chain
-	Checksum: 0x2DB8B2C1
+	Checksum: 0x4871F71A
 	Offset: 0x538
 	Size: 0x33
 	Parameters: 0
@@ -36,7 +36,7 @@ function autoexec __init__sytem__()
 /*
 	Name: init
 	Namespace: lightning_chain
-	Checksum: 0x146E8F0D
+	Checksum: 0xD637347C
 	Offset: 0x578
 	Size: 0x18B
 	Parameters: 0
@@ -60,7 +60,7 @@ function init()
 /*
 	Name: create_lightning_chain_params
 	Namespace: lightning_chain
-	Checksum: 0x2BB05F0A
+	Checksum: 0xBB63DD2C
 	Offset: 0x710
 	Size: 0x2C3
 	Parameters: 14
@@ -145,7 +145,7 @@ function create_lightning_chain_params(max_arcs, max_enemies_killed, radius_star
 /*
 	Name: on_player_connect
 	Namespace: lightning_chain
-	Checksum: 0x3A5425B0
+	Checksum: 0xF9187A83
 	Offset: 0x9E0
 	Size: 0x5B
 	Parameters: 0
@@ -167,7 +167,7 @@ function private on_player_connect()
 /*
 	Name: arc_damage
 	Namespace: lightning_chain
-	Checksum: 0x150E9BCB
+	Checksum: 0x96876E23
 	Offset: 0xA48
 	Size: 0x2ED
 	Parameters: 4
@@ -220,7 +220,7 @@ function arc_damage(source_enemy, player, arc_num, params)
 /*
 	Name: arc_damage_ent
 	Namespace: lightning_chain
-	Checksum: 0x2E5CB947
+	Checksum: 0x28E723F9
 	Offset: 0xD40
 	Size: 0x6B
 	Parameters: 3
@@ -239,7 +239,7 @@ function arc_damage_ent(player, arc_num, params)
 /*
 	Name: lc_end_arc_damage
 	Namespace: lightning_chain
-	Checksum: 0xA4970AA8
+	Checksum: 0xB170EB56
 	Offset: 0xDB8
 	Size: 0xE3
 	Parameters: 3
@@ -269,7 +269,7 @@ function private lc_end_arc_damage(arc_num, enemies_hit_num, params)
 /*
 	Name: lc_get_enemies_in_area
 	Namespace: lightning_chain
-	Checksum: 0x79F02624
+	Checksum: 0x3368B2ED
 	Offset: 0xEA8
 	Size: 0x28F
 	Parameters: 3
@@ -333,7 +333,7 @@ function private lc_get_enemies_in_area(origin, Distance, player)
 /*
 	Name: lc_flag_hit
 	Namespace: lightning_chain
-	Checksum: 0xC9F7E4CB
+	Checksum: 0x15429E46
 	Offset: 0x1140
 	Size: 0xAB
 	Parameters: 2
@@ -363,7 +363,7 @@ function private lc_flag_hit(enemy, hit)
 /*
 	Name: lc_do_damage
 	Namespace: lightning_chain
-	Checksum: 0x18C16F91
+	Checksum: 0x31911F5F
 	Offset: 0x11F8
 	Size: 0x49B
 	Parameters: 4
@@ -461,7 +461,7 @@ function private lc_do_damage(source_enemy, arc_num, player, params)
 /*
 	Name: lc_play_death_fx
 	Namespace: lightning_chain
-	Checksum: 0xFDC6AC67
+	Checksum: 0x7F46339F
 	Offset: 0x16A0
 	Size: 0x1DF
 	Parameters: 2
@@ -516,7 +516,7 @@ function lc_play_death_fx(arc_num, params)
 /*
 	Name: lc_play_arc_fx
 	Namespace: lightning_chain
-	Checksum: 0x7F6C90CC
+	Checksum: 0x897A29AC
 	Offset: 0x1888
 	Size: 0x2AB
 	Parameters: 2
@@ -569,7 +569,7 @@ function lc_play_arc_fx(target, params)
 /*
 	Name: lc_debug_arc
 	Namespace: lightning_chain
-	Checksum: 0x95031DA7
+	Checksum: 0x1FE307E1
 	Offset: 0x1B40
 	Size: 0x6B
 	Parameters: 2

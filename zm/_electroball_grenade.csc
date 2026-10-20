@@ -7,12 +7,12 @@
 #using scripts\shared\util_shared;
 #using scripts\shared\weapons\_weaponobjects;
 
-#namespace namespace_3df25fcf;
+#namespace electroball_grenade;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3df25fcf
-	Checksum: 0x73C4FF26
+	Namespace: electroball_grenade
+	Checksum: 0xFD18013
 	Offset: 0x3E8
 	Size: 0x33
 	Parameters: 0
@@ -25,8 +25,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3df25fcf
-	Checksum: 0xDB44F2AE
+	Namespace: electroball_grenade
+	Checksum: 0x7758A97B
 	Offset: 0x428
 	Size: 0x223
 	Parameters: 0
@@ -38,7 +38,7 @@ function __init__()
 	clientfield::register("allplayers", "electroball_shock", 1, 1, "int", &function_1619af16, 0, 0);
 	clientfield::register("actor", "electroball_make_sparky", 1, 1, "int", &function_72eeb2e6, 0, 0);
 	clientfield::register("missile", "electroball_stop_trail", 1, 1, "int", &function_bd1f6a88, 0, 0);
-	clientfield::register("missile", "electroball_play_landed_fx", 1, 1, "int", &function_96325d01, 0, 0);
+	clientfield::register("missile", "electroball_play_landed_fx", 1, 1, "int", &electroball_play_landed_fx, 0, 0);
 	level._effect["fx_wpn_115_blob"] = "dlc1/castle/fx_wpn_115_blob";
 	level._effect["fx_wpn_115_bul_trail"] = "dlc1/castle/fx_wpn_115_bul_trail";
 	level._effect["fx_wpn_115_canister"] = "dlc1/castle/fx_wpn_115_canister";
@@ -50,8 +50,8 @@ function __init__()
 
 /*
 	Name: proximity_spawned
-	Namespace: namespace_3df25fcf
-	Checksum: 0xC332E464
+	Namespace: electroball_grenade
+	Checksum: 0x1AC2C6A6
 	Offset: 0x658
 	Size: 0xB3
 	Parameters: 1
@@ -70,8 +70,8 @@ function proximity_spawned(localClientNum)
 
 /*
 	Name: watchForProximityExplosion
-	Namespace: namespace_3df25fcf
-	Checksum: 0x16981BD8
+	Namespace: electroball_grenade
+	Checksum: 0x1A0A9F4E
 	Offset: 0x718
 	Size: 0x197
 	Parameters: 0
@@ -111,8 +111,8 @@ function watchForProximityExplosion()
 
 /*
 	Name: function_72eeb2e6
-	Namespace: namespace_3df25fcf
-	Checksum: 0x5EB9E134
+	Namespace: electroball_grenade
+	Checksum: 0xD7A9E66F
 	Offset: 0x8B8
 	Size: 0x153
 	Parameters: 7
@@ -140,8 +140,8 @@ function function_72eeb2e6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_1619af16
-	Namespace: namespace_3df25fcf
-	Checksum: 0x3C5059AA
+	Namespace: electroball_grenade
+	Checksum: 0x723ACDD3
 	Offset: 0xA18
 	Size: 0x77
 	Parameters: 7
@@ -154,8 +154,8 @@ function function_1619af16(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_bd1f6a88
-	Namespace: namespace_3df25fcf
-	Checksum: 0x281DB941
+	Namespace: electroball_grenade
+	Checksum: 0x38108816
 	Offset: 0xA98
 	Size: 0x123
 	Parameters: 7
@@ -189,8 +189,8 @@ function function_bd1f6a88(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_1d823abf
-	Namespace: namespace_3df25fcf
-	Checksum: 0xBA16B608
+	Namespace: electroball_grenade
+	Checksum: 0xAA9EF4BF
 	Offset: 0xBC8
 	Size: 0x33
 	Parameters: 0
@@ -203,15 +203,15 @@ function function_1d823abf()
 }
 
 /*
-	Name: function_96325d01
-	Namespace: namespace_3df25fcf
-	Checksum: 0xDAD8F922
+	Name: electroball_play_landed_fx
+	Namespace: electroball_grenade
+	Checksum: 0x5E8F2EA5
 	Offset: 0xC08
 	Size: 0xB7
 	Parameters: 7
 	Flags: None
 */
-function function_96325d01(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function electroball_play_landed_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self.var_3b22ba3c = PlayFXOnTag(localClientNum, level._effect["fx_wpn_115_blob"], self, "tag_origin");
 	dynEnt = CreateDynEntAndLaunch(localClientNum, "p7_zm_ctl_115_grenade_broken", self.origin, self.angles, self.origin, (0, 0, 0));

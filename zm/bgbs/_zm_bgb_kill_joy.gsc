@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_969fb372;
+#namespace zm_bgb_kill_joy;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_969fb372
+	Namespace: zm_bgb_kill_joy
 	Checksum: 0x62786FB1
 	Offset: 0x170
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_969fb372
+	Namespace: zm_bgb_kill_joy
 	Checksum: 0x608CB52F
 	Offset: 0x1B0
 	Size: 0x53
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_969fb372
+	Namespace: zm_bgb_kill_joy
 	Checksum: 0x910484
 	Offset: 0x210
 	Size: 0x23

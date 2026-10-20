@@ -18,11 +18,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_2eabe570;
+#namespace zm_castle_masher_trap;
 
 /*
 	Name: main
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x87641CC1
 	Offset: 0x580
 	Size: 0x153
@@ -40,7 +40,7 @@ function main()
 	level thread function_6a74bee8();
 	level thread function_a61df505();
 	level.var_6ac4e9cb = GetEnt("masher_gate", "script_noteworthy");
-	level.var_6ac4e9cb thread function_faccc214();
+	level.var_6ac4e9cb thread masher_gate_init();
 	level thread scene::init("p7_fxanim_zm_castle_gate_smash_lift_bundle");
 	/#
 		level thread function_9087381a();
@@ -49,7 +49,7 @@ function main()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x99EC1590
 	Offset: 0x6E0
 	Size: 0x3
@@ -62,7 +62,7 @@ function register_clientfields()
 
 /*
 	Name: function_a61df505
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x3E290825
 	Offset: 0x6F0
 	Size: 0x63
@@ -81,7 +81,7 @@ function function_a61df505()
 
 /*
 	Name: function_6a74bee8
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x147088A7
 	Offset: 0x760
 	Size: 0x53
@@ -96,7 +96,7 @@ function function_6a74bee8()
 
 /*
 	Name: function_a5062ebd
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x3054FEDB
 	Offset: 0x7C0
 	Size: 0x331
@@ -153,7 +153,7 @@ function function_a5062ebd()
 
 /*
 	Name: function_ef9ad3c0
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x6FA2A879
 	Offset: 0xB00
 	Size: 0x9B
@@ -172,7 +172,7 @@ function function_ef9ad3c0(a_ents)
 
 /*
 	Name: function_df78b782
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x499C3657
 	Offset: 0xBA8
 	Size: 0x7F
@@ -185,13 +185,13 @@ function function_df78b782()
 	while(level flag::get("masher_on"))
 	{
 		level scene::Play("p7_fxanim_zm_castle_gate_smash_lift_bundle");
-		level function_1ff56fb0("p7_fxanim_zm_castle_gate_smash_lift_bundle");
+		level scene_play_reset("p7_fxanim_zm_castle_gate_smash_lift_bundle");
 	}
 }
 
 /*
 	Name: function_994bb49e
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x9092AA
 	Offset: 0xC30
 	Size: 0x97
@@ -210,15 +210,15 @@ function function_994bb49e()
 }
 
 /*
-	Name: function_1ff56fb0
-	Namespace: namespace_2eabe570
+	Name: scene_play_reset
+	Namespace: zm_castle_masher_trap
 	Checksum: 0xF5A2C843
 	Offset: 0xCD0
 	Size: 0x47
 	Parameters: 1
 	Flags: None
 */
-function function_1ff56fb0(str_scene)
+function scene_play_reset(str_scene)
 {
 	s_scene = struct::get(str_scene, "scriptbundlename");
 	s_scene.scene_played = 0;
@@ -226,7 +226,7 @@ function function_1ff56fb0(str_scene)
 
 /*
 	Name: function_aaf2ece7
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0xA5DF5DD3
 	Offset: 0xD20
 	Size: 0x87
@@ -250,7 +250,7 @@ function function_aaf2ece7()
 
 /*
 	Name: function_81b05f08
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x1C5CA8BE
 	Offset: 0xDB0
 	Size: 0x33
@@ -266,7 +266,7 @@ function function_81b05f08()
 
 /*
 	Name: function_5054a970
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0xEC1022AE
 	Offset: 0xDF0
 	Size: 0x4D
@@ -284,7 +284,7 @@ function function_5054a970()
 
 /*
 	Name: function_d7e7dcf9
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0xC3929FE3
 	Offset: 0xE48
 	Size: 0x197
@@ -327,7 +327,7 @@ function function_d7e7dcf9(player)
 
 /*
 	Name: function_b776b443
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x60A93D04
 	Offset: 0xFE8
 	Size: 0x17F
@@ -362,7 +362,7 @@ function function_b776b443()
 
 /*
 	Name: function_aaf7f74d
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x654AF9F9
 	Offset: 0x1170
 	Size: 0x2F7
@@ -406,7 +406,7 @@ function function_aaf7f74d()
 
 /*
 	Name: function_13fd863b
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0xD8C3E079
 	Offset: 0x1470
 	Size: 0x6D
@@ -424,7 +424,7 @@ function function_13fd863b(STR_MODEL)
 
 /*
 	Name: function_d12a18d7
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x4BA1DF7F
 	Offset: 0x14E8
 	Size: 0x10B
@@ -449,7 +449,7 @@ function function_d12a18d7(e_player)
 
 /*
 	Name: masher_trap_think
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x38DBE76C
 	Offset: 0x1600
 	Size: 0x1AB
@@ -476,15 +476,15 @@ function masher_trap_think()
 }
 
 /*
-	Name: function_faccc214
-	Namespace: namespace_2eabe570
+	Name: masher_gate_init
+	Namespace: zm_castle_masher_trap
 	Checksum: 0xB4E389D5
 	Offset: 0x17B8
 	Size: 0x53
 	Parameters: 0
 	Flags: None
 */
-function function_faccc214()
+function masher_gate_init()
 {
 	self.var_beb932f1 = GetEntArray(self.target, "targetname");
 	Array::thread_all(self.var_beb932f1, &function_1a554e00, self);
@@ -492,7 +492,7 @@ function function_faccc214()
 
 /*
 	Name: function_1a554e00
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x87E0AC2E
 	Offset: 0x1818
 	Size: 0xB3
@@ -517,7 +517,7 @@ function function_1a554e00(var_6ac4e9cb, var_8f915eab)
 
 /*
 	Name: trigger_damage
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x6B17049B
 	Offset: 0x18D8
 	Size: 0x173
@@ -555,7 +555,7 @@ function trigger_damage(var_6ac4e9cb)
 
 /*
 	Name: function_e80df8bf
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0xD4C140C6
 	Offset: 0x1A58
 	Size: 0x16B
@@ -592,7 +592,7 @@ function function_e80df8bf(var_ecf98bb6, t_trap)
 
 /*
 	Name: function_9087381a
-	Namespace: namespace_2eabe570
+	Namespace: zm_castle_masher_trap
 	Checksum: 0x39EB0332
 	Offset: 0x1BD0
 	Size: 0xB7

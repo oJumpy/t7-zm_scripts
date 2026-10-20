@@ -9,11 +9,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weap_elemental_bow;
 
-#namespace namespace_efd1ef23;
+#namespace _zm_weap_elemental_bow_demongate;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x75E7AF2
 	Offset: 0x630
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x4848905A
 	Offset: 0x670
 	Size: 0x39D
@@ -37,14 +37,14 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	clientfield::register("toplayer", "elemental_bow_demongate" + "_ambient_bow_fx", 5000, 1, "int", &function_da7a9948, 0, 0);
-	clientfield::register("missile", "elemental_bow_demongate" + "_arrow_impact_fx", 5000, 1, "int", &function_f514bd4b, 0, 0);
+	clientfield::register("missile", "elemental_bow_demongate" + "_arrow_impact_fx", 5000, 1, "int", &demongate_arrow_impact_fx, 0, 0);
 	clientfield::register("missile", "elemental_bow_demongate4" + "_arrow_impact_fx", 5000, 1, "int", &function_3e42c666, 0, 0);
-	clientfield::register("scriptmover", "demongate_portal_fx", 5000, 1, "int", &function_b60106f1, 0, 0);
-	clientfield::register("toplayer", "demongate_portal_rumble", 1, 1, "int", &function_2e7aea94, 0, 0);
-	clientfield::register("scriptmover", "demongate_wander_locomotion_anim", 5000, 1, "int", &function_b463a519, 0, 0);
-	clientfield::register("scriptmover", "demongate_attack_locomotion_anim", 5000, 1, "int", &function_ac6d79d2, 0, 0);
-	clientfield::register("scriptmover", "demongate_chomper_fx", 5000, 1, "int", &function_f763292d, 0, 0);
-	clientfield::register("scriptmover", "demongate_chomper_bite_fx", 5000, 1, "counter", &function_ac9c30de, 0, 0);
+	clientfield::register("scriptmover", "demongate_portal_fx", 5000, 1, "int", &demongate_portal_fx, 0, 0);
+	clientfield::register("toplayer", "demongate_portal_rumble", 1, 1, "int", &demongate_portal_rumble, 0, 0);
+	clientfield::register("scriptmover", "demongate_wander_locomotion_anim", 5000, 1, "int", &demongate_wander_locomotion_anim, 0, 0);
+	clientfield::register("scriptmover", "demongate_attack_locomotion_anim", 5000, 1, "int", &demongate_attack_locomotion_anim, 0, 0);
+	clientfield::register("scriptmover", "demongate_chomper_fx", 5000, 1, "int", &demongate_chomper_fx, 0, 0);
+	clientfield::register("scriptmover", "demongate_chomper_bite_fx", 5000, 1, "counter", &demongate_chomper_bite_fx, 0, 0);
 	level._effect["demongate_ambient_bow"] = "dlc1/zmb_weapon/fx_bow_demongate_ambient_1p_zmb";
 	level._effect["demongate_arrow_impact"] = "dlc1/zmb_weapon/fx_bow_demongate_impact_zmb";
 	level._effect["demongate_arrow_charged_impact"] = "dlc1/zmb_weapon/fx_bow_demongate_impact_ug_zmb";
@@ -58,7 +58,7 @@ function __init__()
 
 /*
 	Name: function_da7a9948
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xE3B3815B
 	Offset: 0xA18
 	Size: 0x63
@@ -71,15 +71,15 @@ function function_da7a9948(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_f514bd4b
-	Namespace: namespace_efd1ef23
+	Name: demongate_arrow_impact_fx
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xE3A53729
 	Offset: 0xA88
 	Size: 0x73
 	Parameters: 7
 	Flags: None
 */
-function function_f514bd4b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function demongate_arrow_impact_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -89,7 +89,7 @@ function function_f514bd4b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_3e42c666
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x7DEAB41F
 	Offset: 0xB08
 	Size: 0x73
@@ -105,15 +105,15 @@ function function_3e42c666(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b60106f1
-	Namespace: namespace_efd1ef23
+	Name: demongate_portal_fx
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0xD0AE3DF6
 	Offset: 0xB88
 	Size: 0x1A3
 	Parameters: 7
 	Flags: None
 */
-function function_b60106f1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function demongate_portal_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -134,15 +134,15 @@ function function_b60106f1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_2e7aea94
-	Namespace: namespace_efd1ef23
+	Name: demongate_portal_rumble
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x55E92D05
 	Offset: 0xD38
 	Size: 0x6D
 	Parameters: 7
 	Flags: None
 */
-function function_2e7aea94(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function demongate_portal_rumble(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -156,7 +156,7 @@ function function_2e7aea94(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_35e3ef91
-	Namespace: namespace_efd1ef23
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x10D6567B
 	Offset: 0xDB0
 	Size: 0x5F
@@ -176,15 +176,15 @@ function function_35e3ef91(localClientNum)
 }
 
 /*
-	Name: function_b463a519
-	Namespace: namespace_efd1ef23
+	Name: demongate_wander_locomotion_anim
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x13859D7E
 	Offset: 0xE18
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_b463a519(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function demongate_wander_locomotion_anim(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!self HasAnimTree())
 	{
@@ -197,15 +197,15 @@ function function_b463a519(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_ac6d79d2
-	Namespace: namespace_efd1ef23
+	Name: demongate_attack_locomotion_anim
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x6FA9C9E1
 	Offset: 0xEC0
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_ac6d79d2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function demongate_attack_locomotion_anim(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!self HasAnimTree())
 	{
@@ -218,15 +218,15 @@ function function_ac6d79d2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_f763292d
-	Namespace: namespace_efd1ef23
+	Name: demongate_chomper_fx
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x8060380D
 	Offset: 0xF68
 	Size: 0x15B
 	Parameters: 7
 	Flags: None
 */
-function function_f763292d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function demongate_chomper_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	if(newVal)
@@ -249,15 +249,15 @@ function function_f763292d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_ac9c30de
-	Namespace: namespace_efd1ef23
+	Name: demongate_chomper_bite_fx
+	Namespace: _zm_weap_elemental_bow_demongate
 	Checksum: 0x95C5F1C
 	Offset: 0x10D0
 	Size: 0xFB
 	Parameters: 7
 	Flags: None
 */
-function function_ac9c30de(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function demongate_chomper_bite_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	if(isdefined(self.var_64b4f506))

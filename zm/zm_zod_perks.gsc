@@ -62,10 +62,10 @@ function function_9a03e439()
 	level.initial_quick_revive_power_off = 1;
 	level flag::wait_till("all_players_spawned");
 	level flag::wait_till("zones_initialized");
-	thread function_5508b348();
-	thread function_4a2261fa();
-	thread function_6753e7bb();
-	thread function_55b919e6();
+	thread perk_light_quick_revive_on();
+	thread perk_light_widows_wine_on();
+	thread perk_light_mule_kick_on();
+	thread perk_light_staminup_on();
 	var_58b16a23 = GetEntArray("random_perk_machine", "script_notify");
 	a_s_random_perk_locs = struct::get_array("perk_random_machine_location", "targetname");
 	foreach(var_5bca5a82 in var_58b16a23)
@@ -104,19 +104,19 @@ function function_9a03e439()
 		{
 			case "speedcola_perk":
 			{
-				thread function_e840e164(n_loc);
+				thread perk_light_speed_cola_on(n_loc);
 				e_bottle thread clientfield::set("perk_bottle_speed_cola_fx", 1);
 				break;
 			}
 			case "jugg_perk":
 			{
-				thread function_588068b3(n_loc);
+				thread perk_light_juggernog_on(n_loc);
 				e_bottle thread clientfield::set("perk_bottle_juggernog_fx", 1);
 				break;
 			}
 			case "tap_perk":
 			{
-				thread function_8b929f79(n_loc);
+				thread perk_light_doubletap_on(n_loc);
 				e_bottle thread clientfield::set("perk_bottle_doubletap_fx", 1);
 				break;
 			}
@@ -125,7 +125,7 @@ function function_9a03e439()
 }
 
 /*
-	Name: function_5508b348
+	Name: perk_light_quick_revive_on
 	Namespace: namespace_bb738c6
 	Checksum: 0xE0FD8DCA
 	Offset: 0xAF0
@@ -133,14 +133,14 @@ function function_9a03e439()
 	Parameters: 0
 	Flags: None
 */
-function function_5508b348()
+function perk_light_quick_revive_on()
 {
 	level waittill("revive_on");
 	clientfield::set("perk_light_quick_revive", 1);
 }
 
 /*
-	Name: function_4a2261fa
+	Name: perk_light_widows_wine_on
 	Namespace: namespace_bb738c6
 	Checksum: 0xB3FB7D4C
 	Offset: 0xB28
@@ -148,14 +148,14 @@ function function_5508b348()
 	Parameters: 0
 	Flags: None
 */
-function function_4a2261fa()
+function perk_light_widows_wine_on()
 {
 	level waittill("widows_wine_on");
 	clientfield::set("perk_light_widows_wine", 1);
 }
 
 /*
-	Name: function_6753e7bb
+	Name: perk_light_mule_kick_on
 	Namespace: namespace_bb738c6
 	Checksum: 0xC7000354
 	Offset: 0xB60
@@ -163,14 +163,14 @@ function function_4a2261fa()
 	Parameters: 0
 	Flags: None
 */
-function function_6753e7bb()
+function perk_light_mule_kick_on()
 {
 	level waittill("additionalprimaryweapon_on");
 	clientfield::set("perk_light_mule_kick", 1);
 }
 
 /*
-	Name: function_55b919e6
+	Name: perk_light_staminup_on
 	Namespace: namespace_bb738c6
 	Checksum: 0xBF64466
 	Offset: 0xB98
@@ -178,14 +178,14 @@ function function_6753e7bb()
 	Parameters: 0
 	Flags: None
 */
-function function_55b919e6()
+function perk_light_staminup_on()
 {
 	level waittill("marathon_on");
 	level clientfield::set("perk_light_staminup", 1);
 }
 
 /*
-	Name: function_e840e164
+	Name: perk_light_speed_cola_on
 	Namespace: namespace_bb738c6
 	Checksum: 0x7B9B9062
 	Offset: 0xBD8
@@ -193,14 +193,14 @@ function function_55b919e6()
 	Parameters: 1
 	Flags: None
 */
-function function_e840e164(n_district)
+function perk_light_speed_cola_on(n_district)
 {
 	level waittill("sleight_on");
 	level clientfield::set("perk_light_speed_cola", n_district);
 }
 
 /*
-	Name: function_588068b3
+	Name: perk_light_juggernog_on
 	Namespace: namespace_bb738c6
 	Checksum: 0x75B15369
 	Offset: 0xC20
@@ -208,14 +208,14 @@ function function_e840e164(n_district)
 	Parameters: 1
 	Flags: None
 */
-function function_588068b3(n_district)
+function perk_light_juggernog_on(n_district)
 {
 	level waittill("juggernog_on");
 	level clientfield::set("perk_light_juggernog", n_district);
 }
 
 /*
-	Name: function_8b929f79
+	Name: perk_light_doubletap_on
 	Namespace: namespace_bb738c6
 	Checksum: 0xD8053F79
 	Offset: 0xC68
@@ -223,7 +223,7 @@ function function_588068b3(n_district)
 	Parameters: 1
 	Flags: None
 */
-function function_8b929f79(n_district)
+function perk_light_doubletap_on(n_district)
 {
 	level waittill("doubletap_on");
 	level clientfield::set("perk_light_doubletap", n_district);

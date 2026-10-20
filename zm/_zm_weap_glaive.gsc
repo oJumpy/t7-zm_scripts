@@ -29,11 +29,11 @@
 #using scripts\zm\_zm_weap_tesla;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_2318f091;
+#namespace zm_weap_glaive;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xC756E12B
 	Offset: 0x700
 	Size: 0x33
@@ -47,7 +47,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x6E9D7651
 	Offset: 0x740
 	Size: 0x423
@@ -90,7 +90,7 @@ function __init__()
 
 /*
 	Name: get_correct_sword_for_player_character_at_level
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x5C4CC332
 	Offset: 0xB70
 	Size: 0x8B
@@ -115,7 +115,7 @@ function get_correct_sword_for_player_character_at_level(n_upgrade_level)
 
 /*
 	Name: function_3f820ba7
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xFD497DEF
 	Offset: 0xC08
 	Size: 0xD7
@@ -146,7 +146,7 @@ function function_3f820ba7(var_9fd9c680)
 
 /*
 	Name: function_762ff0b6
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x56BD8EDF
 	Offset: 0xCE8
 	Size: 0xD7
@@ -172,7 +172,7 @@ function function_762ff0b6(wpn_prev)
 
 /*
 	Name: function_50cf29d
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x2844E7FF
 	Offset: 0xDC8
 	Size: 0x2B
@@ -186,7 +186,7 @@ function function_50cf29d(evt)
 
 /*
 	Name: function_5c998ffc
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x9894F53A
 	Offset: 0xE00
 	Size: 0x42B
@@ -202,7 +202,7 @@ function function_5c998ffc(wpn_excalibur, wpn_autokill, wpn_cur, wpn_prev)
 			self.current_sword = wpn_autokill;
 			self.var_2ef815cf = 0;
 			self disableOffhandWeapons();
-			self notify("hash_f0078f48");
+			self notify("altbody_end");
 			self thread function_3f820ba7(wpn_cur);
 			if(!(isdefined(self.usingsword) && self.usingsword))
 			{
@@ -230,7 +230,7 @@ function function_5c998ffc(wpn_excalibur, wpn_autokill, wpn_cur, wpn_prev)
 			self.current_sword = wpn_excalibur;
 			self.var_2ef815cf = 1;
 			self disableOffhandWeapons();
-			self notify("hash_f0078f48");
+			self notify("altbody_end");
 			self thread function_3f820ba7(wpn_cur);
 			if(!(isdefined(self.usingsword) && self.usingsword))
 			{
@@ -258,7 +258,7 @@ function function_5c998ffc(wpn_excalibur, wpn_autokill, wpn_cur, wpn_prev)
 
 /*
 	Name: watch_sword_equipped
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xD89FBDF
 	Offset: 0x1238
 	Size: 0xC7
@@ -281,7 +281,7 @@ function private watch_sword_equipped()
 
 /*
 	Name: gib_check
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xBFBC337B
 	Offset: 0x1308
 	Size: 0x43
@@ -301,7 +301,7 @@ function private gib_check(damage_percent)
 
 /*
 	Name: gib_head_check
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x437463AF
 	Offset: 0x1358
 	Size: 0x7B
@@ -335,7 +335,7 @@ function private gib_head_check(DAMAGE_LOCATION)
 
 /*
 	Name: excalibur_think
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x584DF384
 	Offset: 0x13E0
 	Size: 0x97
@@ -360,7 +360,7 @@ function private excalibur_think(wpn_excalibur)
 
 /*
 	Name: do_excalibur
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x725BDACF
 	Offset: 0x1480
 	Size: 0x2C1
@@ -417,7 +417,7 @@ function private do_excalibur(wpn_excalibur)
 
 /*
 	Name: electrocute_actor
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xC02AAF17
 	Offset: 0x1750
 	Size: 0xE3
@@ -444,7 +444,7 @@ function electrocute_actor(ai, wpn_excalibur)
 
 /*
 	Name: function_72ca5a88
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x22B7069F
 	Offset: 0x1840
 	Size: 0x5F
@@ -461,7 +461,7 @@ function function_72ca5a88()
 
 /*
 	Name: tesla_death
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x3B880FCF
 	Offset: 0x18A8
 	Size: 0x7B
@@ -479,7 +479,7 @@ function tesla_death(player)
 
 /*
 	Name: arc_damage_init
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xA990EBBD
 	Offset: 0x1930
 	Size: 0x63
@@ -498,7 +498,7 @@ function arc_damage_init(HIT_LOCATION, hit_origin, player)
 
 /*
 	Name: chop_actor
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x755B2ED3
 	Offset: 0x19A0
 	Size: 0x1B3
@@ -537,7 +537,7 @@ function chop_actor(ai, upgraded, leftswing, weapon)
 
 /*
 	Name: zombie_explodes_on_swipe
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x38E1D52D
 	Offset: 0x1B60
 	Size: 0x12B
@@ -569,7 +569,7 @@ function zombie_explodes_on_swipe(random_gibs)
 
 /*
 	Name: blood_death_fx
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xF706AECF
 	Offset: 0x1C98
 	Size: 0xEB
@@ -604,7 +604,7 @@ function private blood_death_fx(var_d98455ab, n_upgraded)
 
 /*
 	Name: chop_zombies
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x8E742C1C
 	Offset: 0x1D90
 	Size: 0x309
@@ -667,7 +667,7 @@ function chop_zombies(first_time, var_10ee11e, leftswing, weapon)
 
 /*
 	Name: swordarc_swipe
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x5B4299FB
 	Offset: 0x20A8
 	Size: 0xD3
@@ -693,7 +693,7 @@ function swordarc_swipe(player, var_10ee11e)
 
 /*
 	Name: arc_attack_think
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x245A67A7
 	Offset: 0x2188
 	Size: 0x87
@@ -714,7 +714,7 @@ function private arc_attack_think(weapon, var_10ee11e)
 
 /*
 	Name: autokill_think
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x224C3688
 	Offset: 0x2218
 	Size: 0x87
@@ -738,7 +738,7 @@ function private autokill_think(wpn_autokill)
 
 /*
 	Name: function_86ee93a8
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x8DC10D32
 	Offset: 0x22A8
 	Size: 0x6B
@@ -759,7 +759,7 @@ function function_86ee93a8()
 
 /*
 	Name: function_729af361
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xAB305DD9
 	Offset: 0x2320
 	Size: 0xE3
@@ -792,7 +792,7 @@ function private function_729af361(vh_glaive)
 
 /*
 	Name: send_autokill_sword
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x777D00D4
 	Offset: 0x2410
 	Size: 0x2D3
@@ -836,7 +836,7 @@ function private send_autokill_sword(wpn_autokill)
 
 /*
 	Name: function_e97f78f0
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x67BDACB7
 	Offset: 0x26F0
 	Size: 0x2C7
@@ -882,7 +882,7 @@ function function_e97f78f0()
 
 /*
 	Name: disabled_sword
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x332E9F18
 	Offset: 0x29C0
 	Size: 0x1B3
@@ -929,7 +929,7 @@ function disabled_sword()
 
 /*
 	Name: sword_power_hud
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x249BE0D
 	Offset: 0x2B80
 	Size: 0x2C1
@@ -993,7 +993,7 @@ function sword_power_hud(slot)
 
 /*
 	Name: sword_power_update
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x443C20E2
 	Offset: 0x2E50
 	Size: 0x1D3
@@ -1026,7 +1026,7 @@ function sword_power_update(player, enemy)
 
 /*
 	Name: function_7855de72
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x62106619
 	Offset: 0x3030
 	Size: 0x23

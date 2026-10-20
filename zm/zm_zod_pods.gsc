@@ -30,11 +30,11 @@
 #using scripts\zm\zm_zod_util;
 #using scripts\zm\zm_zod_vo;
 
-#namespace namespace_81256d2f;
+#namespace zm_zod_pods;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0xEDEF4CC
 	Offset: 0x8C0
 	Size: 0x3B
@@ -48,7 +48,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x827A14BE
 	Offset: 0x908
 	Size: 0x67B
@@ -129,7 +129,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x5C3C873D
 	Offset: 0xF90
 	Size: 0x373
@@ -180,7 +180,7 @@ function __main__()
 
 /*
 	Name: fungus_pods_devgui
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x70F9F283
 	Offset: 0x1310
 	Size: 0x23F
@@ -210,13 +210,13 @@ function fungus_pods_devgui()
 				{
 					case "Dev Block strings are not supported":
 					{
-						level notify("hash_c0150ce6");
+						level notify("debug_pod_spawn");
 						break;
 					}
 					case "Dev Block strings are not supported":
 					{
 						level.debug_pod_spawn_all = 1;
-						level notify("hash_c0150ce6");
+						level notify("debug_pod_spawn");
 						util::wait_network_frame();
 						level.debug_pod_spawn_all = 0;
 						break;
@@ -235,7 +235,7 @@ function fungus_pods_devgui()
 
 /*
 	Name: function_bcc1a076
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x5CDCA32
 	Offset: 0x1558
 	Size: 0x117
@@ -258,7 +258,7 @@ function function_bcc1a076()
 
 /*
 	Name: function_77d7e068
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0xB9F25AFC
 	Offset: 0x1678
 	Size: 0x11F
@@ -282,7 +282,7 @@ function function_77d7e068()
 
 /*
 	Name: pod_sprayer_pickup_msg
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x9D2F7099
 	Offset: 0x17A0
 	Size: 0x43
@@ -303,7 +303,7 @@ function private pod_sprayer_pickup_msg(e_player)
 
 /*
 	Name: pod_sprayer_think
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x695E38B5
 	Offset: 0x17F0
 	Size: 0x21D
@@ -316,7 +316,7 @@ function private pod_sprayer_think()
 	{
 		self.model = util::spawn_model("p7_zm_zod_bug_sprayer", self.origin, self.angles);
 		self.model clientfield::set("pod_sprayer_glint", 1);
-		self.trigger = namespace_8e578893::spawn_trigger_radius(self.origin, 50, 1, &pod_sprayer_pickup_msg);
+		self.trigger = zm_zod_util::spawn_trigger_radius(self.origin, 50, 1, &pod_sprayer_pickup_msg);
 		while(1)
 		{
 			self.trigger waittill("trigger", e_who);
@@ -326,8 +326,8 @@ function private pod_sprayer_think()
 			}
 			e_who thread zm_audio::create_and_play_dialog("sprayer", "pickup");
 			e_who clientfield::set_to_player("pod_sprayer_held", 1);
-			e_who thread namespace_8e578893::function_55f114f9("zmInventory.widget_sprayer", 3.5);
-			e_who thread namespace_8e578893::show_infotext_for_duration("ZM_ZOD_UI_POD_SPRAYER_PICKUP", 3.5);
+			e_who thread zm_zod_util::function_55f114f9("zmInventory.widget_sprayer", 3.5);
+			e_who thread zm_zod_util::show_infotext_for_duration("ZM_ZOD_UI_POD_SPRAYER_PICKUP", 3.5);
 			e_who.var_abe77dc0 = 1;
 			self.model delete();
 			playsoundatposition("zmb_zod_sprayer_pickup", self.origin);
@@ -342,7 +342,7 @@ function private pod_sprayer_think()
 
 /*
 	Name: fungus_pod_think
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x641C8BFA
 	Offset: 0x1A18
 	Size: 0x139
@@ -378,7 +378,7 @@ function private fungus_pod_think()
 
 /*
 	Name: function_8d53a342
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x24C8822E
 	Offset: 0x1B60
 	Size: 0xAB
@@ -398,7 +398,7 @@ function private function_8d53a342(b_success)
 
 /*
 	Name: fungus_pod_clip_init
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x40180597
 	Offset: 0x1C18
 	Size: 0xE9
@@ -417,7 +417,7 @@ function fungus_pod_clip_init()
 
 /*
 	Name: fungus_pod_clip_think
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x3F503035
 	Offset: 0x1D10
 	Size: 0x99
@@ -438,7 +438,7 @@ function fungus_pod_clip_think()
 
 /*
 	Name: fungus_pod_upgrade
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x7FBA9D4
 	Offset: 0x1DB8
 	Size: 0x7B
@@ -467,7 +467,7 @@ function private fungus_pod_upgrade(n_pod_level)
 
 /*
 	Name: function_be2abe
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x1EFD0EFE
 	Offset: 0x1E40
 	Size: 0x99
@@ -484,7 +484,7 @@ function function_be2abe()
 
 /*
 	Name: fungus_pod_upgrade_think
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x9DDE99F0
 	Offset: 0x1EE8
 	Size: 0x181
@@ -534,7 +534,7 @@ function private fungus_pod_upgrade_think()
 
 /*
 	Name: function_42bd572d
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x38BA8A37
 	Offset: 0x2078
 	Size: 0x187
@@ -571,7 +571,7 @@ function private function_42bd572d()
 
 /*
 	Name: respawn_fungus_pods
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x1FA4A4A5
 	Offset: 0x2208
 	Size: 0x25F
@@ -588,7 +588,7 @@ function private respawn_fungus_pods()
 		if(!isdefined(e_pod.zone))
 		{
 			/#
-				println("Dev Block strings are not supported" + namespace_8e578893::vec_to_string(e_pod.origin) + "Dev Block strings are not supported");
+				println("Dev Block strings are not supported" + zm_zod_util::vec_to_string(e_pod.origin) + "Dev Block strings are not supported");
 			#/
 			ArrayRemoveValue(level.fungus_pods.a_e_unspawned, e_pod);
 		}
@@ -613,7 +613,7 @@ function private respawn_fungus_pods()
 
 /*
 	Name: harvest_fungus_pod
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x30955C65
 	Offset: 0x2470
 	Size: 0xAC1
@@ -785,7 +785,7 @@ function harvest_fungus_pod(e_harvester)
 
 /*
 	Name: function_c9466e61
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0xD0F3167
 	Offset: 0x2F40
 	Size: 0xA7
@@ -809,7 +809,7 @@ function function_c9466e61(v_pos, radius)
 
 /*
 	Name: function_92f587b4
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x8B5E488D
 	Offset: 0x2FF0
 	Size: 0xF3
@@ -848,7 +848,7 @@ function function_92f587b4()
 
 /*
 	Name: pod_player_msg
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0xD191EF97
 	Offset: 0x30F0
 	Size: 0x83
@@ -870,7 +870,7 @@ function pod_player_msg(e_player)
 
 /*
 	Name: function_3f5779c4
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x6AFB123
 	Offset: 0x3180
 	Size: 0x53
@@ -887,7 +887,7 @@ function function_3f5779c4()
 
 /*
 	Name: spawn_fungus_pods
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0xEFBAE72F
 	Offset: 0x31E0
 	Size: 0x507
@@ -974,7 +974,7 @@ function spawn_fungus_pods(n_pods)
 
 /*
 	Name: function_e1065706
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0xCBE7DEEC
 	Offset: 0x36F0
 	Size: 0x81
@@ -984,13 +984,13 @@ function spawn_fungus_pods(n_pods)
 function function_e1065706()
 {
 	wait(getanimlength("p7_fxanim_zm_zod_fungus_pod_base_birth_anim"));
-	self.trigger = namespace_8e578893::spawn_trigger_radius(self.origin + anglesToUp(self.angles) * 8, 50, 1, &pod_player_msg);
+	self.trigger = zm_zod_util::spawn_trigger_radius(self.origin + anglesToUp(self.angles) * 8, 50, 1, &pod_player_msg);
 	self notify("hash_e446a51c");
 }
 
 /*
 	Name: weapon_trigger_update_prompt
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0xB5D1FB0A
 	Offset: 0x3780
 	Size: 0xE7
@@ -1011,7 +1011,7 @@ function weapon_trigger_update_prompt(player)
 
 /*
 	Name: function_b0138b1
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x4AA6DBCC
 	Offset: 0x3870
 	Size: 0x10B
@@ -1038,7 +1038,7 @@ function function_b0138b1(w_weapon)
 
 /*
 	Name: dig_up_weapon
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x7E0E5B06
 	Offset: 0x3988
 	Size: 0x24F
@@ -1055,7 +1055,7 @@ function dig_up_weapon(e_digger, wpn_to_spawn)
 	m_weapon.angles = v_angles;
 	m_weapon thread timer_til_despawn(v_spawnpt, 40 * -1);
 	m_weapon endon("dig_up_weapon_timed_out");
-	m_weapon.trigger = namespace_8e578893::spawn_trigger_radius(v_spawnpt, 100, 1);
+	m_weapon.trigger = zm_zod_util::spawn_trigger_radius(v_spawnpt, 100, 1);
 	m_weapon.trigger.wpn = wpn_to_spawn;
 	m_weapon.trigger.prompt_and_visibility_func = &weapon_trigger_update_prompt;
 	m_weapon.trigger waittill("trigger", player);
@@ -1078,7 +1078,7 @@ function dig_up_weapon(e_digger, wpn_to_spawn)
 
 /*
 	Name: swap_weapon
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x6B29BDBA
 	Offset: 0x3BE0
 	Size: 0x113
@@ -1112,7 +1112,7 @@ function swap_weapon(wpn_new, e_player)
 
 /*
 	Name: take_old_weapon_and_give_new
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x1F5A90C4
 	Offset: 0x3D00
 	Size: 0xD3
@@ -1133,7 +1133,7 @@ function take_old_weapon_and_give_new(current_weapon, weapon)
 
 /*
 	Name: timer_til_despawn
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x42F99C7C
 	Offset: 0x3DE0
 	Size: 0xC3
@@ -1160,7 +1160,7 @@ function timer_til_despawn(v_float, n_dist)
 
 /*
 	Name: fungus_pod_bonus_points_override
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x7821053A
 	Offset: 0x3EB0
 	Size: 0x11
@@ -1174,7 +1174,7 @@ function fungus_pod_bonus_points_override()
 
 /*
 	Name: normalize_reward_chances
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0xED998E9F
 	Offset: 0x3ED0
 	Size: 0x1F7
@@ -1208,7 +1208,7 @@ function normalize_reward_chances()
 
 /*
 	Name: function_2947f395
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x4C5A526D
 	Offset: 0x40D0
 	Size: 0x121
@@ -1233,7 +1233,7 @@ function function_2947f395()
 
 /*
 	Name: function_3f95af32
-	Namespace: namespace_81256d2f
+	Namespace: zm_zod_pods
 	Checksum: 0x993E3BFB
 	Offset: 0x4200
 	Size: 0xE9
@@ -1245,7 +1245,7 @@ function function_3f95af32()
 	foreach(player in level.activePlayers)
 	{
 		player clientfield::set_to_player("pod_sprayer_held", 1);
-		player thread namespace_8e578893::function_55f114f9("zmInventory.widget_sprayer", 3.5);
+		player thread zm_zod_util::function_55f114f9("zmInventory.widget_sprayer", 3.5);
 		player.var_abe77dc0 = 1;
 		level flag::set("any_player_has_pod_sprayer");
 	}

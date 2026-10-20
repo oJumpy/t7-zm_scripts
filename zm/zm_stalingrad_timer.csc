@@ -4,11 +4,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_fd6bdadc;
+#namespace zm_stalingrad_timer;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x2EF31405
 	Offset: 0x1D0
 	Size: 0x3B
@@ -22,7 +22,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x99EC1590
 	Offset: 0x218
 	Size: 0x3
@@ -35,7 +35,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0xE39BF422
 	Offset: 0x228
 	Size: 0x63
@@ -44,27 +44,27 @@ function __init__()
 */
 function __main__()
 {
-	clientfield::register("world", "time_attack_reward", 12000, 3, "int", &function_b94ee48a, 0, 0);
+	clientfield::register("world", "time_attack_reward", 12000, 3, "int", &set_time_attack_reward, 0, 0);
 	level.wallbuy_callback_hack_override = &function_3ec869e2;
 }
 
 /*
-	Name: function_b94ee48a
-	Namespace: namespace_fd6bdadc
+	Name: set_time_attack_reward
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x9E44C41C
 	Offset: 0x298
 	Size: 0x47
 	Parameters: 7
 	Flags: None
 */
-function function_b94ee48a(n_local_client, n_old_val, n_new_val, b_new_ent, var_b54312de, str_field_name, b_was_time_jump)
+function set_time_attack_reward(n_local_client, n_old_val, n_new_val, b_new_ent, var_b54312de, str_field_name, b_was_time_jump)
 {
 	level.var_dd724c18 = n_new_val;
 }
 
 /*
 	Name: function_3ec869e2
-	Namespace: namespace_fd6bdadc
+	Namespace: zm_stalingrad_timer
 	Checksum: 0x9C381C10
 	Offset: 0x2E8
 	Size: 0xDD

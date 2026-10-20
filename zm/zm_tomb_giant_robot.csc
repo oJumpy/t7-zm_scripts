@@ -23,7 +23,7 @@
 */
 function init()
 {
-	clientfield::register("scriptmover", "register_giant_robot", 21000, 1, "int", &function_63ccebe9, 0, 0);
+	clientfield::register("scriptmover", "register_giant_robot", 21000, 1, "int", &register_giant_robot, 0, 0);
 	clientfield::register("world", "start_anim_robot_0", 21000, 1, "int", &toggle_robot_warning_lights, 0, 0);
 	clientfield::register("world", "start_anim_robot_1", 21000, 1, "int", &toggle_robot_warning_lights, 0, 0);
 	clientfield::register("world", "start_anim_robot_2", 21000, 1, "int", &toggle_robot_warning_lights, 0, 0);
@@ -38,14 +38,14 @@ function init()
 	clientfield::register("world", "eject_warning_fx_robot_2", 21000, 1, "int", &play_eject_warning_fx, 0, 0);
 	clientfield::register("scriptmover", "light_foot_fx_robot", 21000, 2, "int", &function_98a05ad2, 0, 0);
 	clientfield::register("allplayers", "eject_steam_fx", 21000, 1, "int", &play_eject_steam_fx, 0, 0);
-	clientfield::register("allplayers", "all_tubes_play_eject_steam_fx", 21000, 1, "int", &function_3a627e4d, 0, 0);
-	clientfield::register("allplayers", "gr_eject_player_impact_fx", 21000, 1, "int", &function_5e616b8a, 0, 0);
-	clientfield::register("toplayer", "giant_robot_rumble_and_shake", 21000, 2, "int", &function_c50fd966, 0, 0);
+	clientfield::register("allplayers", "all_tubes_play_eject_steam_fx", 21000, 1, "int", &all_tubes_play_eject_steam_fx, 0, 0);
+	clientfield::register("allplayers", "gr_eject_player_impact_fx", 21000, 1, "int", &gr_eject_player_impact_fx, 0, 0);
+	clientfield::register("toplayer", "giant_robot_rumble_and_shake", 21000, 2, "int", &giant_robot_rumble_and_shake, 0, 0);
 	clientfield::register("world", "church_ceiling_fxanim", 21000, 1, "int", &church_ceiling_fxanim, 0, 0);
 }
 
 /*
-	Name: function_63ccebe9
+	Name: register_giant_robot
 	Namespace: zm_tomb_giant_robot
 	Checksum: 0xA40440CC
 	Offset: 0xBF0
@@ -53,7 +53,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_63ccebe9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function register_giant_robot(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(!isdefined(level.a_giant_robots))
 	{
@@ -221,7 +221,7 @@ function play_eject_steam_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 	}
 	else
 	{
-		self notify("hash_968de603");
+		self notify("stop_eject_steam_fx");
 		if(isdefined(self.fieldName))
 		{
 			stopfx(localClientNum, self.fieldName);
@@ -240,7 +240,7 @@ function play_eject_steam_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 */
 function loop_eject_steam_fx(localClientNum)
 {
-	self endon("hash_968de603");
+	self endon("stop_eject_steam_fx");
 	self endon("player_intermission");
 	a_s_tubes = struct::get_array("giant_robot_eject_tube", "script_noteworthy");
 	s_tube = ArrayGetClosest(self.origin, a_s_tubes);
@@ -254,7 +254,7 @@ function loop_eject_steam_fx(localClientNum)
 }
 
 /*
-	Name: function_3a627e4d
+	Name: all_tubes_play_eject_steam_fx
 	Namespace: zm_tomb_giant_robot
 	Checksum: 0x58EB7369
 	Offset: 0x1788
@@ -262,7 +262,7 @@ function loop_eject_steam_fx(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_3a627e4d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function all_tubes_play_eject_steam_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{
@@ -287,7 +287,7 @@ function function_3a627e4d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		foreach(struct in level.a_s_tubes[localClientNum])
 		{
-			struct notify("hash_e54dfe36");
+			struct notify("stop_all_tubes_eject_steam");
 		}
 	}
 }
@@ -303,7 +303,7 @@ function function_3a627e4d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function loop_all_tube_steam(localClientNum)
 {
-	self endon("hash_e54dfe36");
+	self endon("stop_all_tubes_eject_steam");
 	self thread sndplaysteamfx("stop_all_tubes_eject_steam", self.origin);
 	while(1)
 	{
@@ -330,7 +330,7 @@ function sndplaysteamfx(the_notify, origin)
 }
 
 /*
-	Name: function_5e616b8a
+	Name: gr_eject_player_impact_fx
 	Namespace: zm_tomb_giant_robot
 	Checksum: 0x158A1F04
 	Offset: 0x1B18
@@ -338,7 +338,7 @@ function sndplaysteamfx(the_notify, origin)
 	Parameters: 7
 	Flags: None
 */
-function function_5e616b8a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function gr_eject_player_impact_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{
@@ -605,7 +605,7 @@ function play_warning_lights_in_footprints_fx(localClientNum, oldVal, newVal, bN
 }
 
 /*
-	Name: function_c50fd966
+	Name: giant_robot_rumble_and_shake
 	Namespace: zm_tomb_giant_robot
 	Checksum: 0x72816DDB
 	Offset: 0x2870
@@ -613,7 +613,7 @@ function play_warning_lights_in_footprints_fx(localClientNum, oldVal, newVal, bN
 	Parameters: 7
 	Flags: None
 */
-function function_c50fd966(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function giant_robot_rumble_and_shake(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	self endon("disconnect");
 	if(newVal == 3)

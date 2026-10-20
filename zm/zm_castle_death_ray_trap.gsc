@@ -19,11 +19,11 @@
 #using scripts\zm\_zm_unitrigger;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_f2d05c13;
+#namespace zm_castle_death_ray_trap;
 
 /*
 	Name: main
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xE807C748
 	Offset: 0x648
 	Size: 0x2B
@@ -38,7 +38,7 @@ function main()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x3D019548
 	Offset: 0x680
 	Size: 0x153
@@ -58,7 +58,7 @@ function register_clientfields()
 
 /*
 	Name: function_b8bad181
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x38CCA624
 	Offset: 0x7E0
 	Size: 0x83
@@ -70,19 +70,19 @@ function function_b8bad181()
 	level flag::init("tesla_coil_on");
 	level flag::init("tesla_coil_cooldown");
 	var_144aea6c = GetEnt("tesla_coil_activate", "targetname");
-	var_144aea6c thread function_26dbeb40();
+	var_144aea6c thread tesla_coil_activate();
 }
 
 /*
-	Name: function_26dbeb40
-	Namespace: namespace_f2d05c13
+	Name: tesla_coil_activate
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x6DEC6F65
 	Offset: 0x870
 	Size: 0x163
 	Parameters: 0
 	Flags: None
 */
-function function_26dbeb40()
+function tesla_coil_activate()
 {
 	level waittill("power_on");
 	exploder::exploder("fxexp_710");
@@ -104,7 +104,7 @@ function function_26dbeb40()
 
 /*
 	Name: function_66bab678
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xA84D0188
 	Offset: 0x9E0
 	Size: 0xC7
@@ -126,7 +126,7 @@ function function_66bab678()
 
 /*
 	Name: function_40bac98d
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x1844B06
 	Offset: 0xAB0
 	Size: 0x18F
@@ -154,7 +154,7 @@ function function_40bac98d()
 
 /*
 	Name: function_79ce76bb
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x1ED8ADCA
 	Offset: 0xC48
 	Size: 0x1B
@@ -168,7 +168,7 @@ function function_79ce76bb()
 
 /*
 	Name: function_2f45472d
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xB8C063E5
 	Offset: 0xC70
 	Size: 0x9B
@@ -190,7 +190,7 @@ function function_2f45472d()
 
 /*
 	Name: function_1b068db6
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x6B6A989D
 	Offset: 0xD18
 	Size: 0xE1
@@ -218,7 +218,7 @@ function function_1b068db6(player)
 
 /*
 	Name: function_3d3feaa2
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x6931E360
 	Offset: 0xE08
 	Size: 0x1EF
@@ -261,7 +261,7 @@ function function_3d3feaa2()
 
 /*
 	Name: function_f796bd32
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x8256FE6E
 	Offset: 0x1000
 	Size: 0x16B
@@ -277,22 +277,22 @@ function function_f796bd32(player)
 	var_cb1f7664 = GetEntArray(self.target, "targetname");
 	foreach(var_6ba90bc4 in var_cb1f7664)
 	{
-		var_6ba90bc4 thread function_65680b09(player);
+		var_6ba90bc4 thread death_ray_think(player);
 	}
 	level flag::wait_till_clear("tesla_coil_on");
 	exploder::stop_exploder("fxexp_700");
 }
 
 /*
-	Name: function_65680b09
-	Namespace: namespace_f2d05c13
+	Name: death_ray_think
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xFBC2E72C
 	Offset: 0x1178
 	Size: 0x40B
 	Parameters: 1
 	Flags: None
 */
-function function_65680b09(player)
+function death_ray_think(player)
 {
 	var_9ffdb9e2 = struct::get(self.target, "targetname");
 	n_start_time = GetTime();
@@ -313,7 +313,7 @@ function function_65680b09(player)
 		{
 			if(!(isdefined(ai_enemy.var_1ea49cd7) && ai_enemy.var_1ea49cd7))
 			{
-				ai_enemy thread function_991ffb6c(var_9ffdb9e2);
+				ai_enemy thread play_bolt_fx(var_9ffdb9e2);
 			}
 			if(!(isdefined(ai_enemy.var_bce6e774) && ai_enemy.var_bce6e774))
 			{
@@ -344,7 +344,7 @@ function function_65680b09(player)
 
 /*
 	Name: function_98484afb
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xC7D1841B
 	Offset: 0x1590
 	Size: 0x1B9
@@ -375,7 +375,7 @@ function function_98484afb()
 
 /*
 	Name: function_9eaff330
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xF8310348
 	Offset: 0x1758
 	Size: 0x75
@@ -398,7 +398,7 @@ function function_9eaff330()
 
 /*
 	Name: function_172d425
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x4EE98181
 	Offset: 0x17D8
 	Size: 0x69
@@ -412,7 +412,7 @@ function function_172d425(ai_enemy, var_2c11866b)
 
 /*
 	Name: function_383d6ca4
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xBA8D40B5
 	Offset: 0x1850
 	Size: 0x201
@@ -421,7 +421,7 @@ function function_172d425(ai_enemy, var_2c11866b)
 */
 function function_383d6ca4(var_9ffdb9e2, var_2c11866b)
 {
-	level endon("hash_4b40ae8");
+	level endon("tesla_coil_cooldown");
 	/#
 		if(IsGodMode(self))
 		{
@@ -434,7 +434,7 @@ function function_383d6ca4(var_9ffdb9e2, var_2c11866b)
 		n_cur_time = GetTime();
 		if(!isdefined(self.var_bf3163c8) || n_cur_time - self.var_bf3163c8 > 2000)
 		{
-			self thread function_991ffb6c(var_9ffdb9e2);
+			self thread play_bolt_fx(var_9ffdb9e2);
 			self.var_bf3163c8 = n_cur_time;
 			if(n_damage >= self.health)
 			{
@@ -458,7 +458,7 @@ function function_383d6ca4(var_9ffdb9e2, var_2c11866b)
 
 /*
 	Name: function_55b881b7
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xA90D43DA
 	Offset: 0x1A60
 	Size: 0xB5
@@ -482,7 +482,7 @@ function function_55b881b7(var_2c11866b)
 
 /*
 	Name: function_120a8b07
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x5B0E5259
 	Offset: 0x1B20
 	Size: 0x3A3
@@ -508,7 +508,7 @@ function function_120a8b07(var_ecf98bb6, e_panel)
 			self thread scene::Play("cin_zm_dlc1_mechz_dth_deathray_01", self);
 			level flag::wait_till_clear("tesla_coil_on");
 			self scene::stop("cin_zm_dlc1_mechz_dth_deathray_01");
-			self thread namespace_ef567265::function_bb84a54(self);
+			self thread zm_ai_mechz::function_bb84a54(self);
 			self clientfield::set("death_ray_shock_fx", 0);
 			self clientfield::set("tesla_beam_mechz", 0);
 			self.var_bce6e774 = undefined;
@@ -552,7 +552,7 @@ function function_120a8b07(var_ecf98bb6, e_panel)
 
 /*
 	Name: function_67cc41d
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x10D33B70
 	Offset: 0x1ED0
 	Size: 0xEB
@@ -577,7 +577,7 @@ function function_67cc41d(attacker, e_panel)
 
 /*
 	Name: function_41ecbdf9
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x307C02AC
 	Offset: 0x1FC8
 	Size: 0x63
@@ -600,15 +600,15 @@ function function_41ecbdf9()
 }
 
 /*
-	Name: function_991ffb6c
-	Namespace: namespace_f2d05c13
+	Name: play_bolt_fx
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xD6807F8E
 	Offset: 0x2038
 	Size: 0x6B
 	Parameters: 1
 	Flags: None
 */
-function function_991ffb6c(var_1a8c0e14)
+function play_bolt_fx(var_1a8c0e14)
 {
 	self.var_1ea49cd7 = 1;
 	if(isPlayer(self))
@@ -623,7 +623,7 @@ function function_991ffb6c(var_1a8c0e14)
 
 /*
 	Name: function_43b12d8e
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x9E6A59FA
 	Offset: 0x20B0
 	Size: 0x8B
@@ -640,7 +640,7 @@ function function_43b12d8e(v_position)
 
 /*
 	Name: function_90df19
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xE09EF1EB
 	Offset: 0x2148
 	Size: 0x43
@@ -657,7 +657,7 @@ function function_90df19()
 
 /*
 	Name: debug_line
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xA0FB05B5
 	Offset: 0x2198
 	Size: 0x71

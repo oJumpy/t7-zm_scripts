@@ -16,11 +16,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\zm_theater_magic_box;
 
-#namespace namespace_8847920b;
+#namespace zm_theater_teleporter;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xFE1C64CB
 	Offset: 0x818
 	Size: 0x33
@@ -34,7 +34,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xA7A8D320
 	Offset: 0x858
 	Size: 0x173
@@ -55,7 +55,7 @@ function __init__()
 
 /*
 	Name: teleporter_init
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xAD4926CC
 	Offset: 0x9D8
 	Size: 0x43B
@@ -115,7 +115,7 @@ function teleporter_init()
 
 /*
 	Name: init_player
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xA73B5BC0
 	Offset: 0xE20
 	Size: 0x1B
@@ -130,7 +130,7 @@ function init_player()
 
 /*
 	Name: function_9272aa0
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x82DCDA95
 	Offset: 0xE48
 	Size: 0x2F
@@ -148,7 +148,7 @@ function function_9272aa0()
 
 /*
 	Name: teleport_core_think
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xA8A59323
 	Offset: 0xE80
 	Size: 0x34F
@@ -200,7 +200,7 @@ function teleport_core_think(index)
 
 /*
 	Name: teleport_link_think
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xF19A4BF
 	Offset: 0x11D8
 	Size: 0x167
@@ -230,7 +230,7 @@ function teleport_link_think()
 
 /*
 	Name: teleport_pad_hide_use
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x80C7810E
 	Offset: 0x1348
 	Size: 0x113
@@ -251,7 +251,7 @@ function teleport_pad_hide_use()
 
 /*
 	Name: teleport_pad_think
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xA452162E
 	Offset: 0x1468
 	Size: 0x16F
@@ -280,7 +280,7 @@ function teleport_pad_think()
 
 /*
 	Name: player_teleporting
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xEC8A4772
 	Offset: 0x15E0
 	Size: 0x463
@@ -348,7 +348,7 @@ function player_teleporting(index)
 
 /*
 	Name: teleport_trigger_invisible
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x65D004A2
 	Offset: 0x1A50
 	Size: 0x85
@@ -369,7 +369,7 @@ function teleport_trigger_invisible(enable)
 
 /*
 	Name: player_is_near_pad
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x992A2C38
 	Offset: 0x1AE0
 	Size: 0x2D
@@ -387,7 +387,7 @@ function player_is_near_pad(player)
 
 /*
 	Name: teleport_pad_player_fx
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x9B58CF61
 	Offset: 0x1B18
 	Size: 0xCF
@@ -422,7 +422,7 @@ function teleport_pad_player_fx(players)
 
 /*
 	Name: function_1488cf91
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x24C5A8B1
 	Offset: 0x1BF0
 	Size: 0x81
@@ -437,7 +437,7 @@ function function_1488cf91(e_player)
 
 /*
 	Name: teleport_players
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x6FFEF777
 	Offset: 0x1C80
 	Size: 0xC03
@@ -623,7 +623,7 @@ function teleport_players(var_1bea176e, loc)
 
 /*
 	Name: extra_cam_startup
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x2A208CC6
 	Offset: 0x2890
 	Size: 0xB5
@@ -644,7 +644,7 @@ function extra_cam_startup()
 
 /*
 	Name: get_array_spots
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x7095A11C
 	Offset: 0x2950
 	Size: 0x6B
@@ -662,7 +662,7 @@ function get_array_spots(sName, spots)
 
 /*
 	Name: initialize_occupied_flag
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xC749DBA4
 	Offset: 0x29C8
 	Size: 0x4D
@@ -679,7 +679,7 @@ function initialize_occupied_flag(spots)
 
 /*
 	Name: check_for_occupied_spots
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xBC2E2822
 	Offset: 0x2A20
 	Size: 0x103
@@ -709,7 +709,7 @@ function check_for_occupied_spots(dest, players, PLAYER_RADIUS)
 
 /*
 	Name: teleport_2d_audio
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xCE7F1113
 	Offset: 0x2B30
 	Size: 0xCD
@@ -736,7 +736,7 @@ function teleport_2d_audio()
 
 /*
 	Name: teleport_2d_audio_nopad
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xBAA7F15F
 	Offset: 0x2C08
 	Size: 0x7D
@@ -757,7 +757,7 @@ function teleport_2d_audio_nopad(player)
 
 /*
 	Name: teleport_2d_audio_specialroom_start
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x70C034A1
 	Offset: 0x2C90
 	Size: 0x7D
@@ -778,7 +778,7 @@ function teleport_2d_audio_specialroom_start(player)
 
 /*
 	Name: teleport_2d_audio_specialroom_go
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xC70E6316
 	Offset: 0x2D18
 	Size: 0x7D
@@ -799,7 +799,7 @@ function teleport_2d_audio_specialroom_go(player)
 
 /*
 	Name: teleport_nuke
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xB1159CD4
 	Offset: 0x2DA0
 	Size: 0x1ED
@@ -828,7 +828,7 @@ function teleport_nuke(max_zombies, range)
 
 /*
 	Name: teleporter_vo_play
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x1BD82AF2
 	Offset: 0x2F98
 	Size: 0x93
@@ -849,7 +849,7 @@ function teleporter_vo_play(vox_type, pre_wait)
 
 /*
 	Name: teleport_aftereffects
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xDAA96321
 	Offset: 0x3038
 	Size: 0x31
@@ -863,7 +863,7 @@ function teleport_aftereffects()
 
 /*
 	Name: teleport_aftereffect_shellshock
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xC7378116
 	Offset: 0x3078
 	Size: 0x43
@@ -880,7 +880,7 @@ function teleport_aftereffect_shellshock()
 
 /*
 	Name: teleport_aftereffect_shellshock_electric
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xCCF7912D
 	Offset: 0x30C8
 	Size: 0x43
@@ -897,7 +897,7 @@ function teleport_aftereffect_shellshock_electric()
 
 /*
 	Name: teleport_aftereffect_fov
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x4397C74
 	Offset: 0x3118
 	Size: 0xC1
@@ -921,7 +921,7 @@ function teleport_aftereffect_fov()
 
 /*
 	Name: teleport_aftereffect_bw_vision
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x94F3E28B
 	Offset: 0x31E8
 	Size: 0x73
@@ -940,7 +940,7 @@ function teleport_aftereffect_bw_vision(localClientNum)
 
 /*
 	Name: teleport_aftereffect_red_vision
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x72AE6D8F
 	Offset: 0x3268
 	Size: 0x73
@@ -959,7 +959,7 @@ function teleport_aftereffect_red_vision(localClientNum)
 
 /*
 	Name: teleport_aftereffect_flashy_vision
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x3E990E5
 	Offset: 0x32E8
 	Size: 0xBB
@@ -981,7 +981,7 @@ function teleport_aftereffect_flashy_vision(localClientNum)
 
 /*
 	Name: teleport_aftereffect_flare_vision
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x11A51149
 	Offset: 0x33B0
 	Size: 0x73
@@ -1000,7 +1000,7 @@ function teleport_aftereffect_flare_vision(localClientNum)
 
 /*
 	Name: zombieTheaterTeleporterSeekLogic
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x96CB61B2
 	Offset: 0x3430
 	Size: 0x273
@@ -1051,7 +1051,7 @@ function zombieTheaterTeleporterSeekLogic()
 
 /*
 	Name: zombies_goto_position
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xD3D98C54
 	Offset: 0x36B0
 	Size: 0x11B
@@ -1077,7 +1077,7 @@ function zombies_goto_position(position)
 
 /*
 	Name: start_wall_clock
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x9B922BFA
 	Offset: 0x37D8
 	Size: 0xAB
@@ -1099,7 +1099,7 @@ function start_wall_clock()
 
 /*
 	Name: eeroom_powerup_drop
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x8175714
 	Offset: 0x3890
 	Size: 0x12B
@@ -1124,7 +1124,7 @@ function eeroom_powerup_drop()
 
 /*
 	Name: theater_fly_me_to_the_moon_init
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x6B4E3703
 	Offset: 0x39C8
 	Size: 0x8B
@@ -1141,7 +1141,7 @@ function theater_fly_me_to_the_moon_init()
 
 /*
 	Name: function_2cdd3a26
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x2A4CC46A
 	Offset: 0x3A60
 	Size: 0x11F
@@ -1179,7 +1179,7 @@ function function_2cdd3a26()
 
 /*
 	Name: function_edc40283
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x2C3004D7
 	Offset: 0x3B88
 	Size: 0x8D
@@ -1205,7 +1205,7 @@ function function_edc40283(var_4e54c41)
 
 /*
 	Name: function_bc057378
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xA550D8F4
 	Offset: 0x3C20
 	Size: 0x93
@@ -1230,7 +1230,7 @@ function function_bc057378(var_4e54c41)
 
 /*
 	Name: theater_fly_me_to_the_moon
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x4FC2DB47
 	Offset: 0x3CC0
 	Size: 0xF5
@@ -1260,7 +1260,7 @@ function theater_fly_me_to_the_moon()
 
 /*
 	Name: theater_moon_jump_go
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xDD252F88
 	Offset: 0x3DC0
 	Size: 0x163
@@ -1285,7 +1285,7 @@ function theater_moon_jump_go()
 
 /*
 	Name: function_7e0ed731
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0x45C3250A
 	Offset: 0x3F30
 	Size: 0xFB
@@ -1309,7 +1309,7 @@ function function_7e0ed731(var_f7b84b84, v_offset)
 
 /*
 	Name: function_d11d2c50
-	Namespace: namespace_8847920b
+	Namespace: zm_theater_teleporter
 	Checksum: 0xD95B146F
 	Offset: 0x4038
 	Size: 0x63

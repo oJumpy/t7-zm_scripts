@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_42b119c2;
+#namespace zm_bgb_mind_blown;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0xC885AC39
 	Offset: 0x218
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x1380574B
 	Offset: 0x258
 	Size: 0xCB
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: function_57f7c3a1
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x7CB530B7
 	Offset: 0x330
 	Size: 0xD3
@@ -60,7 +60,7 @@ function function_57f7c3a1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_f10358c6
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x4E4097DE
 	Offset: 0x410
 	Size: 0xB3

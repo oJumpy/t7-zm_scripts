@@ -172,9 +172,9 @@ function box_respin_think(Chest, player)
 	respin_hack.player = player;
 	respin_hack.no_bullet_trace = 1;
 	respin_hack.Chest = Chest;
-	namespace_6d813654::register_pooled_hackable_struct(respin_hack, &respin_box, &hack_box_qualifier);
+	zm_equip_hacker::register_pooled_hackable_struct(respin_hack, &respin_box, &hack_box_qualifier);
 	self.weapon_model util::waittill_either("death", "kill_respin_think_thread");
-	namespace_6d813654::deregister_hackable_struct(respin_hack);
+	zm_equip_hacker::deregister_hackable_struct(respin_hack);
 }
 
 /*
@@ -275,9 +275,9 @@ function box_respin_respin_think(Chest, player)
 	respin_hack.player = player;
 	respin_hack.no_bullet_trace = 1;
 	respin_hack.Chest = Chest;
-	namespace_6d813654::register_pooled_hackable_struct(respin_hack, &respin_respin_box, &hack_box_qualifier);
+	zm_equip_hacker::register_pooled_hackable_struct(respin_hack, &respin_respin_box, &hack_box_qualifier);
 	self.weapon_model util::waittill_either("death", "kill_respin_respin_think_thread");
-	namespace_6d813654::deregister_hackable_struct(respin_hack);
+	zm_equip_hacker::deregister_hackable_struct(respin_hack);
 }
 
 /*
@@ -434,7 +434,7 @@ function init_summon_box(create)
 	{
 		if(isdefined(self._summon_hack_struct))
 		{
-			namespace_6d813654::deregister_hackable_struct(self._summon_hack_struct);
+			zm_equip_hacker::deregister_hackable_struct(self._summon_hack_struct);
 			self._summon_hack_struct = undefined;
 		}
 		struct = spawnstruct();
@@ -446,11 +446,11 @@ function init_summon_box(create)
 		struct.no_bullet_trace = 1;
 		struct.Chest = self;
 		self._summon_hack_struct = struct;
-		namespace_6d813654::register_pooled_hackable_struct(struct, &summon_box, &summon_box_qualifier);
+		zm_equip_hacker::register_pooled_hackable_struct(struct, &summon_box, &summon_box_qualifier);
 	}
 	else if(isdefined(self._summon_hack_struct))
 	{
-		namespace_6d813654::deregister_hackable_struct(self._summon_hack_struct);
+		zm_equip_hacker::deregister_hackable_struct(self._summon_hack_struct);
 		self._summon_hack_struct = undefined;
 	}
 }
@@ -467,7 +467,7 @@ function init_summon_box(create)
 function summon_box_thread(hacker)
 {
 	self.Chest.last_hacked_round = level.round_number + randomIntRange(2, 5);
-	namespace_6d813654::deregister_hackable_struct(self);
+	zm_equip_hacker::deregister_hackable_struct(self);
 	self.Chest thread zm_magicbox::show_chest();
 	self.Chest notify("kill_chest_think");
 	self.Chest.auto_open = 1;

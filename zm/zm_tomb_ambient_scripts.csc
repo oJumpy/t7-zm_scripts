@@ -17,11 +17,11 @@
 */
 function main()
 {
-	clientfield::register("scriptmover", "zeppelin_fx", 21000, 1, "int", &function_3f9c04ed, 0, 0);
+	clientfield::register("scriptmover", "zeppelin_fx", 21000, 1, "int", &zeppelin_fx, 0, 0);
 }
 
 /*
-	Name: function_3f9c04ed
+	Name: zeppelin_fx
 	Namespace: zm_tomb_ambient_scripts
 	Checksum: 0xC1BC4B49
 	Offset: 0x1A8
@@ -29,7 +29,7 @@ function main()
 	Parameters: 7
 	Flags: None
 */
-function function_3f9c04ed(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function zeppelin_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{

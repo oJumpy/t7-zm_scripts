@@ -21,7 +21,7 @@
 */
 function init()
 {
-	clientfield::register("world", "play_dogfight_scenes", 9000, 3, "int", &function_546d70b6, 0, 0);
+	clientfield::register("world", "play_dogfight_scenes", 9000, 3, "int", &play_dogfight_scenes, 0, 0);
 	scene::add_scene_func("p7_fxanim_zm_island_plane_teleport_chase1_bundle", &function_618223cc, "play");
 	scene::add_scene_func("p7_fxanim_zm_island_plane_teleport_chase2_bundle", &function_618223cc, "play");
 	scene::add_scene_func("p7_fxanim_zm_island_plane_teleport_chase3_bundle", &function_618223cc, "play");
@@ -52,7 +52,7 @@ function function_618223cc(a_ents)
 }
 
 /*
-	Name: function_546d70b6
+	Name: play_dogfight_scenes
 	Namespace: namespace_14c8b75c
 	Checksum: 0x3143B5B4
 	Offset: 0x600
@@ -60,7 +60,7 @@ function function_618223cc(a_ents)
 	Parameters: 7
 	Flags: None
 */
-function function_546d70b6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_dogfight_scenes(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{

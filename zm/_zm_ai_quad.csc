@@ -2,11 +2,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\visionset_mgr_shared;
 
-#namespace namespace_1d58b607;
+#namespace zm_ai_quad;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1d58b607
+	Namespace: zm_ai_quad
 	Checksum: 0xF29379B0
 	Offset: 0xF0
 	Size: 0x33
@@ -20,7 +20,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1d58b607
+	Namespace: zm_ai_quad
 	Checksum: 0x658CEB5B
 	Offset: 0x130
 	Size: 0x3B

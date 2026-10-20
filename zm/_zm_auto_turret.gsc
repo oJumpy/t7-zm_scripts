@@ -11,12 +11,12 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_d1591a8d;
+#namespace zm_auto_turret;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d1591a8d
-	Checksum: 0xBCA9EF29
+	Namespace: zm_auto_turret
+	Checksum: 0xD52AFD09
 	Offset: 0x368
 	Size: 0x3B
 	Parameters: 0
@@ -29,8 +29,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d1591a8d
-	Checksum: 0x26E38224
+	Namespace: zm_auto_turret
+	Checksum: 0xB14C68A4
 	Offset: 0x3B0
 	Size: 0x3B
 	Parameters: 0
@@ -44,8 +44,8 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_d1591a8d
-	Checksum: 0xA1F67B7E
+	Namespace: zm_auto_turret
+	Checksum: 0x9CD934A0
 	Offset: 0x3F8
 	Size: 0x17D
 	Parameters: 0
@@ -84,8 +84,8 @@ function __main__()
 
 /*
 	Name: auto_turret_think
-	Namespace: namespace_d1591a8d
-	Checksum: 0x7717F804
+	Namespace: zm_auto_turret
+	Checksum: 0x30377ACF
 	Offset: 0x580
 	Size: 0x3F7
 	Parameters: 0
@@ -167,8 +167,8 @@ function auto_turret_think()
 
 /*
 	Name: activate_move_handle
-	Namespace: namespace_d1591a8d
-	Checksum: 0x1C8EC4B3
+	Namespace: zm_auto_turret
+	Checksum: 0xC4DD1CA6
 	Offset: 0x980
 	Size: 0xA3
 	Parameters: 0
@@ -189,8 +189,8 @@ function activate_move_handle()
 
 /*
 	Name: play_no_money_turret_dialog
-	Namespace: namespace_d1591a8d
-	Checksum: 0x66943774
+	Namespace: zm_auto_turret
+	Checksum: 0xBC3E1A80
 	Offset: 0xA30
 	Size: 0x2B
 	Parameters: 0
@@ -203,8 +203,8 @@ function play_no_money_turret_dialog()
 
 /*
 	Name: auto_turret_activate
-	Namespace: namespace_d1591a8d
-	Checksum: 0x930E354
+	Namespace: zm_auto_turret
+	Checksum: 0x676ABEEE
 	Offset: 0xA68
 	Size: 0x29B
 	Parameters: 0
@@ -264,8 +264,8 @@ function auto_turret_activate()
 
 /*
 	Name: auto_turret_deactivate
-	Namespace: namespace_d1591a8d
-	Checksum: 0xE2B63765
+	Namespace: zm_auto_turret
+	Checksum: 0x17F6601C
 	Offset: 0xD10
 	Size: 0x71
 	Parameters: 0
@@ -283,8 +283,8 @@ function auto_turret_deactivate()
 
 /*
 	Name: auto_turret_update_timeout
-	Namespace: namespace_d1591a8d
-	Checksum: 0x8569EE95
+	Namespace: zm_auto_turret
+	Checksum: 0xF9BAF30A
 	Offset: 0xD90
 	Size: 0x2F
 	Parameters: 0
@@ -302,8 +302,8 @@ function auto_turret_update_timeout()
 
 /*
 	Name: death_check_for_challenge_updates
-	Namespace: namespace_d1591a8d
-	Checksum: 0xCED52821
+	Namespace: zm_auto_turret
+	Checksum: 0x4CD5DEEE
 	Offset: 0xDC8
 	Size: 0x6B
 	Parameters: 1

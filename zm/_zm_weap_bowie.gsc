@@ -8,7 +8,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: _zm_weap_bowie
-	Checksum: 0xF8EDECAC
+	Checksum: 0x94EF8F62
 	Offset: 0x198
 	Size: 0x3B
 	Parameters: 0
@@ -35,7 +35,7 @@ function private __init__()
 /*
 	Name: __main__
 	Namespace: _zm_weap_bowie
-	Checksum: 0x2DF01F44
+	Checksum: 0xF06B7CC3
 	Offset: 0x1F0
 	Size: 0x103
 	Parameters: 0

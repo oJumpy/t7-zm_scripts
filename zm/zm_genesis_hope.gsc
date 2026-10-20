@@ -1,0 +1,468 @@
+#using scripts\codescripts\struct;
+#using scripts\shared\animation_shared;
+#using scripts\shared\array_shared;
+#using scripts\shared\clientfield_shared;
+#using scripts\shared\exploder_shared;
+#using scripts\shared\flag_shared;
+#using scripts\shared\system_shared;
+#using scripts\shared\util_shared;
+#using scripts\zm\_zm_bgb;
+#using scripts\zm\_zm_devgui;
+#using scripts\zm\_zm_powerups;
+#using scripts\zm\_zm_stats;
+#using scripts\zm\_zm_unitrigger;
+#using scripts\zm\_zm_utility;
+#using scripts\zm\_zm_weapons;
+#using scripts\zm\_zm_zonemgr;
+#using scripts\zm\zm_genesis_timer;
+#using scripts\zm\zm_genesis_util;
+
+#namespace zm_genesis_hope;
+
+/*
+	Name: __init__sytem__
+	Namespace: zm_genesis_hope
+	Checksum: 0x531D19BF
+	Offset: 0x430
+	Size: 0x3B
+	Parameters: 0
+	Flags: AutoExec
+*/
+function autoexec __init__sytem__()
+{
+	system::register("zm_genesis_hope", &__init__, &__main__, undefined);
+}
+
+/*
+	Name: __init__
+	Namespace: zm_genesis_hope
+	Checksum: 0xF78E035D
+	Offset: 0x478
+	Size: 0x133
+	Parameters: 0
+	Flags: None
+*/
+function __init__()
+{
+	clientfield::register("world", "hope_state", 15000, GetMinBitCountForNum(4), "int");
+	clientfield::register("clientuimodel", "zmInventory.super_ee", 15000, 1, "int");
+	clientfield::register("toplayer", "hope_spark", 15000, 1, "int");
+	clientfield::register("scriptmover", "hope_spark", 15000, 1, "int");
+	level flag::init("hope_done");
+	level.var_fa9755d7 = 0;
+	/#
+		if(GetDvarInt("Dev Block strings are not supported") > 0)
+		{
+			level thread function_dfd4e9f8();
+		}
+	#/
+}
+
+/*
+	Name: __main__
+	Namespace: zm_genesis_hope
+	Checksum: 0xF73896C0
+	Offset: 0x5B8
+	Size: 0xB
+	Parameters: 0
+	Flags: None
+*/
+function __main__()
+{
+	wait(0.1);
+}
+
+/*
+	Name: start
+	Namespace: zm_genesis_hope
+	Checksum: 0x9B872365
+	Offset: 0x5D0
+	Size: 0x2A3
+	Parameters: 0
+	Flags: None
+*/
+function start()
+{
+	level waittill("start_zombie_round_logic");
+	if(GetDvarInt("splitscreen_playerCount") > 2)
+	{
+		return;
+	}
+	a_str_quests = Array("ZOD", "FACTORY", "CASTLE", "ISLAND", "STALINGRAD");
+	var_61d59a5a = [];
+	foreach(player in level.players)
+	{
+		foreach(str_quest in a_str_quests)
+		{
+			b_quest_completed = player zm_stats::get_global_stat("DARKOPS_" + str_quest + "_SUPER_EE") > 0;
+			var_9d5e869 = IsInArray(var_61d59a5a, str_quest);
+			if(b_quest_completed && !var_9d5e869)
+			{
+				if(!isdefined(var_61d59a5a))
+				{
+					var_61d59a5a = [];
+				}
+				else if(!IsArray(var_61d59a5a))
+				{
+					var_61d59a5a = Array(var_61d59a5a);
+				}
+				var_61d59a5a[var_61d59a5a.size] = str_quest;
+			}
+		}
+	}
+	/#
+		IPrintLnBold("Dev Block strings are not supported" + var_61d59a5a.size + "Dev Block strings are not supported");
+	#/
+	if(var_61d59a5a.size == a_str_quests.size)
+	{
+		level clientfield::set("hope_state", 1);
+		level thread function_bb1fbc7f();
+	}
+}
+
+/*
+	Name: function_bb1fbc7f
+	Namespace: zm_genesis_hope
+	Checksum: 0x9BB66CA9
+	Offset: 0x880
+	Size: 0x11B
+	Parameters: 0
+	Flags: None
+*/
+function function_bb1fbc7f()
+{
+	if(isdefined(level.var_e8bba4d1) && level.var_e8bba4d1)
+	{
+		return;
+	}
+	level.var_e8bba4d1 = 1;
+	var_4ea80194 = struct::get("hope_spark", "targetname");
+	var_4ea80194 zm_unitrigger::create_unitrigger("", 64, &function_4903bec6, &function_ed25d0f2, "unitrigger_radius_use");
+	var_8dc2ea89 = struct::get("special_box", "targetname");
+	var_8dc2ea89 zm_unitrigger::create_unitrigger("", 64, &function_2650d73f, &function_46cfcb01, "unitrigger_radius_use");
+}
+
+/*
+	Name: function_4903bec6
+	Namespace: zm_genesis_hope
+	Checksum: 0xDA506515
+	Offset: 0x9A8
+	Size: 0x6B
+	Parameters: 1
+	Flags: None
+*/
+function function_4903bec6(player)
+{
+	var_5d0b57e4 = level clientfield::get("hope_state");
+	if(var_5d0b57e4 == 1)
+	{
+		self setHintString("");
+		return 1;
+	}
+	return 0;
+}
+
+/*
+	Name: function_ed25d0f2
+	Namespace: zm_genesis_hope
+	Checksum: 0xF713338A
+	Offset: 0xA20
+	Size: 0xBF
+	Parameters: 0
+	Flags: None
+*/
+function function_ed25d0f2()
+{
+	while(1)
+	{
+		self waittill("trigger", e_triggerer);
+		if(e_triggerer zm_utility::in_revive_trigger())
+		{
+			continue;
+		}
+		if(!zm_utility::is_player_valid(e_triggerer, 1, 1))
+		{
+			continue;
+		}
+		var_5d0b57e4 = level clientfield::get("hope_state");
+		if(var_5d0b57e4 != 1)
+		{
+			continue;
+		}
+		level thread function_b38baf01(e_triggerer);
+	}
+}
+
+/*
+	Name: function_b38baf01
+	Namespace: zm_genesis_hope
+	Checksum: 0x58F2FE43
+	Offset: 0xAE8
+	Size: 0x63
+	Parameters: 1
+	Flags: None
+*/
+function function_b38baf01(e_triggerer)
+{
+	level clientfield::set("hope_state", 2);
+	e_triggerer thread function_ba9b0148();
+	e_triggerer playsound("zmb_overachiever_spark_pickup");
+}
+
+/*
+	Name: function_ba9b0148
+	Namespace: zm_genesis_hope
+	Checksum: 0x76A7FBF3
+	Offset: 0xB58
+	Size: 0xD3
+	Parameters: 0
+	Flags: None
+*/
+function function_ba9b0148()
+{
+	level endon("hope_done");
+	self clientfield::set_to_player("hope_spark", 1);
+	self clientfield::set_player_uimodel("zmInventory.super_ee", 1);
+	self waittill("damage");
+	self clientfield::set_to_player("hope_spark", 0);
+	self clientfield::set_player_uimodel("zmInventory.super_ee", 0);
+	self playsound("zmb_overachiever_spark_lose");
+	/#
+		IPrintLnBold("Dev Block strings are not supported");
+	#/
+}
+
+/*
+	Name: function_2650d73f
+	Namespace: zm_genesis_hope
+	Checksum: 0x50A964C9
+	Offset: 0xC38
+	Size: 0xD3
+	Parameters: 1
+	Flags: None
+*/
+function function_2650d73f(player)
+{
+	var_5d0b57e4 = level clientfield::get("hope_state");
+	b_has_spark = player clientfield::get_to_player("hope_spark");
+	if(!b_has_spark)
+	{
+		return 0;
+	}
+	if(var_5d0b57e4 == 2)
+	{
+		self setHintString("");
+		return 1;
+	}
+	else if(var_5d0b57e4 == 3)
+	{
+		self setHintString("");
+		return 1;
+	}
+	return 0;
+}
+
+/*
+	Name: function_46cfcb01
+	Namespace: zm_genesis_hope
+	Checksum: 0xC61D6B27
+	Offset: 0xD18
+	Size: 0xF7
+	Parameters: 0
+	Flags: None
+*/
+function function_46cfcb01()
+{
+	while(1)
+	{
+		self waittill("trigger", e_triggerer);
+		if(e_triggerer zm_utility::in_revive_trigger())
+		{
+			continue;
+		}
+		if(!zm_utility::is_player_valid(e_triggerer, 1, 1))
+		{
+			continue;
+		}
+		b_has_spark = e_triggerer clientfield::get_to_player("hope_spark");
+		if(!b_has_spark)
+		{
+			continue;
+		}
+		var_5d0b57e4 = level clientfield::get("hope_state");
+		if(var_5d0b57e4 != 2)
+		{
+			continue;
+		}
+		level thread function_6143b210(e_triggerer);
+	}
+}
+
+/*
+	Name: function_6143b210
+	Namespace: zm_genesis_hope
+	Checksum: 0x39521246
+	Offset: 0xE18
+	Size: 0x2B3
+	Parameters: 1
+	Flags: None
+*/
+function function_6143b210(e_triggerer)
+{
+	e_triggerer clientfield::set_to_player("hope_spark", 0);
+	e_triggerer clientfield::set_player_uimodel("zmInventory.super_ee", 0);
+	s_start = struct::get("hope_origin");
+	mdl_hope = util::spawn_model("tag_origin", s_start.origin, s_start.angles);
+	util::wait_network_frame();
+	mdl_hope playsound("zmb_overachiever_spark_spawn");
+	mdl_hope clientfield::set("hope_spark", 1);
+	wait(2);
+	s_target = struct::get(s_start.target);
+	mdl_hope moveto(s_target.origin, 2);
+	wait(3);
+	s_target = struct::get(s_target.target);
+	mdl_hope moveto(s_target.origin, 2);
+	mdl_hope waittill("movedone");
+	level clientfield::set("hope_state", 3);
+	level flag::set("hope_done");
+	playsoundatposition("zmb_overachiever_spark_success", (0, 0, 0));
+	level.wallbuy_should_upgrade_weapon_override = &function_afddb902;
+	level.magicbox_should_upgrade_weapon_override = &function_7e7eb906;
+	zm_genesis_timer::award_item(200);
+	level thread bgb::function_93da425("zm_bgb_crate_power", &function_f648c43);
+	level thread bgb::function_93da425("zm_bgb_wall_power", &function_f648c43);
+}
+
+/*
+	Name: function_7e7eb906
+	Namespace: zm_genesis_hope
+	Checksum: 0xEC32BBAB
+	Offset: 0x10D8
+	Size: 0x17
+	Parameters: 2
+	Flags: None
+*/
+function function_7e7eb906(e_player, w_weapon)
+{
+	return 1;
+}
+
+/*
+	Name: function_afddb902
+	Namespace: zm_genesis_hope
+	Checksum: 0x987B40F3
+	Offset: 0x10F8
+	Size: 0x7
+	Parameters: 0
+	Flags: None
+*/
+function function_afddb902()
+{
+	return 1;
+}
+
+/*
+	Name: function_f648c43
+	Namespace: zm_genesis_hope
+	Checksum: 0xE9909B22
+	Offset: 0x1108
+	Size: 0x5
+	Parameters: 0
+	Flags: None
+*/
+function function_f648c43()
+{
+	return 0;
+}
+
+/*
+	Name: function_dfd4e9f8
+	Namespace: zm_genesis_hope
+	Checksum: 0x2BAB5DCA
+	Offset: 0x1118
+	Size: 0xEB
+	Parameters: 0
+	Flags: None
+*/
+function function_dfd4e9f8()
+{
+	/#
+		level thread zm_genesis_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_7ecb414e);
+		level thread zm_genesis_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_3246e71d);
+		level thread zm_genesis_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_3ff1131a);
+		level thread zm_genesis_util::setup_devgui_func("Dev Block strings are not supported", "Dev Block strings are not supported", 1, &function_8070468);
+	#/
+}
+
+/*
+	Name: function_3246e71d
+	Namespace: zm_genesis_hope
+	Checksum: 0xB1E1CCFC
+	Offset: 0x1210
+	Size: 0x4B
+	Parameters: 1
+	Flags: None
+*/
+function function_3246e71d(n_val)
+{
+	/#
+		level clientfield::set("Dev Block strings are not supported", 1);
+		level thread function_bb1fbc7f();
+	#/
+}
+
+/*
+	Name: function_3ff1131a
+	Namespace: zm_genesis_hope
+	Checksum: 0xD74B28BE
+	Offset: 0x1268
+	Size: 0x4B
+	Parameters: 1
+	Flags: None
+*/
+function function_3ff1131a(n_val)
+{
+	/#
+		level clientfield::set("Dev Block strings are not supported", 2);
+		level thread function_bb1fbc7f();
+	#/
+}
+
+/*
+	Name: function_8070468
+	Namespace: zm_genesis_hope
+	Checksum: 0xB8A5BB70
+	Offset: 0x12C0
+	Size: 0x6B
+	Parameters: 1
+	Flags: None
+*/
+function function_8070468(n_val)
+{
+	/#
+		level clientfield::set("Dev Block strings are not supported", 3);
+		level thread function_bb1fbc7f();
+		level flag::set("Dev Block strings are not supported");
+	#/
+}
+
+/*
+	Name: function_7ecb414e
+	Namespace: zm_genesis_hope
+	Checksum: 0x18277B2F
+	Offset: 0x1338
+	Size: 0x6B
+	Parameters: 1
+	Flags: None
+*/
+function function_7ecb414e(n_val)
+{
+	/#
+		level clientfield::set("Dev Block strings are not supported", 1);
+		level thread function_bb1fbc7f();
+		/#
+			IPrintLnBold("Dev Block strings are not supported");
+		#/
+	#/
+}
+

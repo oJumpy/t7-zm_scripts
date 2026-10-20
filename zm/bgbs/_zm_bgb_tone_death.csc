@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_66043662;
+#namespace zm_bgb_tone_death;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_66043662
+	Namespace: zm_bgb_tone_death
 	Checksum: 0x1FF411DC
 	Offset: 0x140
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_66043662
+	Namespace: zm_bgb_tone_death
 	Checksum: 0x543D2E8B
 	Offset: 0x180
 	Size: 0x3B

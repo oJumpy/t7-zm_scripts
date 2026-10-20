@@ -18,12 +18,12 @@
 */
 function init()
 {
-	clientfield::register("world", "reveal_golden_bucket_planting_location", 9000, 1, "int", &function_86f0587, 0, 0);
-	clientfield::register("scriptmover", "golden_bucket_glow_fx", 9000, 1, "int", &function_7e9820e6, 0, 0);
+	clientfield::register("world", "reveal_golden_bucket_planting_location", 9000, 1, "int", &reveal_golden_bucket_planting_location, 0, 0);
+	clientfield::register("scriptmover", "golden_bucket_glow_fx", 9000, 1, "int", &golden_bucket_glow_fx, 0, 0);
 }
 
 /*
-	Name: function_86f0587
+	Name: reveal_golden_bucket_planting_location
 	Namespace: namespace_79fcd4bc
 	Checksum: 0xACD85009
 	Offset: 0x268
@@ -31,7 +31,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_86f0587(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function reveal_golden_bucket_planting_location(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -44,7 +44,7 @@ function function_86f0587(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_7e9820e6
+	Name: golden_bucket_glow_fx
 	Namespace: namespace_79fcd4bc
 	Checksum: 0xF6678922
 	Offset: 0x378
@@ -52,7 +52,7 @@ function function_86f0587(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	Parameters: 7
 	Flags: None
 */
-function function_7e9820e6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function golden_bucket_glow_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

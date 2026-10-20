@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_8438ffb3;
+#namespace zm_bgb_undead_man_walking;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8438ffb3
+	Namespace: zm_bgb_undead_man_walking
 	Checksum: 0xC6A02DED
 	Offset: 0x200
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8438ffb3
+	Namespace: zm_bgb_undead_man_walking
 	Checksum: 0x9ED3E659
 	Offset: 0x240
 	Size: 0x53
@@ -45,7 +45,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_8438ffb3
+	Namespace: zm_bgb_undead_man_walking
 	Checksum: 0x6E43E7E
 	Offset: 0x2A0
 	Size: 0x93
@@ -56,7 +56,7 @@ function enable()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self thread function_40e95c74();
 	if(bgb::increment_ref_count("zm_bgb_undead_man_walking"))
 	{
@@ -68,7 +68,7 @@ function enable()
 
 /*
 	Name: function_40e95c74
-	Namespace: namespace_8438ffb3
+	Namespace: zm_bgb_undead_man_walking
 	Checksum: 0x5523CDD
 	Offset: 0x340
 	Size: 0x93
@@ -88,7 +88,7 @@ function function_40e95c74()
 
 /*
 	Name: function_b41dc007
-	Namespace: namespace_8438ffb3
+	Namespace: zm_bgb_undead_man_walking
 	Checksum: 0xBBA95475
 	Offset: 0x3E0
 	Size: 0x165
@@ -127,7 +127,7 @@ function function_b41dc007(b_walk)
 
 /*
 	Name: function_f3d5076d
-	Namespace: namespace_8438ffb3
+	Namespace: zm_bgb_undead_man_walking
 	Checksum: 0x3DEFF811
 	Offset: 0x550
 	Size: 0xA3

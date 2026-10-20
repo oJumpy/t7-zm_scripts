@@ -2358,7 +2358,7 @@ function flamethrower_damage_zombies(n_flamethrower_id, str_tag)
 				}
 				else
 				{
-					ai_zombie thread namespace_ecdcc148::flame_damage_fx(self.w_flamethrower, self);
+					ai_zombie thread zm_weap_staff_fire::flame_damage_fx(self.w_flamethrower, self);
 				}
 				wait(0.05);
 			}

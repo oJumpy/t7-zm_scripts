@@ -5,11 +5,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_c5d72679;
+#namespace zm_stalingrad_ee_main;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xD950B922
 	Offset: 0x670
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xBF6C8032
 	Offset: 0x6B0
 	Size: 0x633
@@ -63,7 +63,7 @@ function __init__()
 
 /*
 	Name: function_f5deabb1
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0x94C430C7
 	Offset: 0xCF0
 	Size: 0x73
@@ -80,7 +80,7 @@ function function_f5deabb1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_d1216748
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0x8D7E4071
 	Offset: 0xD70
 	Size: 0x16B
@@ -108,7 +108,7 @@ function function_d1216748(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_9a9410ac
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xFB53C5F5
 	Offset: 0xEE8
 	Size: 0x73
@@ -125,7 +125,7 @@ function function_9a9410ac(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_5bdec411
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0x80122B44
 	Offset: 0xF68
 	Size: 0x14D
@@ -160,7 +160,7 @@ function function_5bdec411(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_2a4222fe
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0x1475D7E0
 	Offset: 0x10C0
 	Size: 0x103
@@ -182,7 +182,7 @@ function function_2a4222fe(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_3a96f955
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0x927A044A
 	Offset: 0x11D0
 	Size: 0x61
@@ -203,7 +203,7 @@ function function_3a96f955(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_ee9d73b7
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xDC55E5F2
 	Offset: 0x1240
 	Size: 0x5B
@@ -217,7 +217,7 @@ function function_ee9d73b7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_7c96047c
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xE5283CC6
 	Offset: 0x12A8
 	Size: 0x5B
@@ -231,7 +231,7 @@ function function_7c96047c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_a2987ee5
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xBDF2A043
 	Offset: 0x1310
 	Size: 0x5B
@@ -245,7 +245,7 @@ function function_a2987ee5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_30910faa
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0x88C02C66
 	Offset: 0x1378
 	Size: 0x5B
@@ -259,7 +259,7 @@ function function_30910faa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_b1ffcb5c
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xEE444E37
 	Offset: 0x13E0
 	Size: 0x159
@@ -296,7 +296,7 @@ function function_b1ffcb5c(localClientNum, n_light, newVal)
 
 /*
 	Name: function_1616098c
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xF4E1E49D
 	Offset: 0x1548
 	Size: 0xBB
@@ -319,7 +319,7 @@ function function_1616098c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_17268d90
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xB9414636
 	Offset: 0x1610
 	Size: 0xD1
@@ -343,7 +343,7 @@ function function_17268d90(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_f1804aa5
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0x5999BFF8
 	Offset: 0x16F0
 	Size: 0x7B
@@ -360,7 +360,7 @@ function function_f1804aa5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_ae73f9d5
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xD062AC1C
 	Offset: 0x1778
 	Size: 0x9B
@@ -378,7 +378,7 @@ function function_ae73f9d5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_fb18b2da
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xDB1071F1
 	Offset: 0x1820
 	Size: 0x8B
@@ -399,7 +399,7 @@ function function_fb18b2da(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_ebc93656
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0x465C545A
 	Offset: 0x18B8
 	Size: 0x6B
@@ -416,7 +416,7 @@ function function_ebc93656(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_61ba3846
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xB9151C28
 	Offset: 0x1930
 	Size: 0x6B
@@ -433,7 +433,7 @@ function function_61ba3846(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_fa9a5ecf
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xD7C69494
 	Offset: 0x19A8
 	Size: 0x6B
@@ -450,7 +450,7 @@ function function_fa9a5ecf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_725d353b
-	Namespace: namespace_c5d72679
+	Namespace: zm_stalingrad_ee_main
 	Checksum: 0xD745BA0F
 	Offset: 0x1A20
 	Size: 0x73

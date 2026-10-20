@@ -3,11 +3,11 @@
 #using scripts\shared\system_shared;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_a528e918;
+#namespace zm_challenges_tomb;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0x316AF679
 	Offset: 0x140
 	Size: 0x33
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a528e918
+	Namespace: zm_challenges_tomb
 	Checksum: 0xE27B5683
 	Offset: 0x180
 	Size: 0x4B
@@ -30,19 +30,19 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "divider_fx", 21000, 1, "counter", &function_fa586bee, 0, 0);
+	clientfield::register("scriptmover", "divider_fx", 21000, 1, "counter", &play_divider_fx, 0, 0);
 }
 
 /*
-	Name: function_fa586bee
-	Namespace: namespace_a528e918
+	Name: play_divider_fx
+	Namespace: zm_challenges_tomb
 	Checksum: 0x68ECC20C
 	Offset: 0x1D8
 	Size: 0xA5
 	Parameters: 7
 	Flags: None
 */
-function function_fa586bee(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function play_divider_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{

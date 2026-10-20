@@ -128,7 +128,7 @@ function private function_52dbea8c()
 	{
 		self.var_c2d95bad = 1;
 		self globallogic_score::initPersStat("bgb_tokens_gained_this_game", 0);
-		self.var_f191a1fc = 0;
+		self.bgb_tokens_gained_this_game = 0;
 	}
 }
 
@@ -191,7 +191,7 @@ function private bgb_end_game()
 	self waittill("report_bgb_consumption");
 	self thread take();
 	self __protected__reportnotedloot();
-	self zm_stats::set_global_stat("bgb_tokens_gained_this_game", self.var_f191a1fc);
+	self zm_stats::set_global_stat("bgb_tokens_gained_this_game", self.bgb_tokens_gained_this_game);
 	foreach(bgb in self.bgb_pack)
 	{
 		if(!isdefined(self.bgb_stats[bgb]) || !self.bgb_stats[bgb].bgb_used_this_game)
@@ -607,7 +607,7 @@ function bgb_gumball_anim(bgb, activating)
 		{
 			return 0;
 		}
-		self notify("hash_fcbbef99", bgb);
+		self notify("bgb_gumball_anim_give", bgb);
 		self thread give(bgb);
 		self zm_stats::increment_client_stat("bgbs_chewed");
 		self zm_stats::increment_player_stat("bgbs_chewed");
@@ -643,7 +643,7 @@ function private run_activation_func(bgb)
 	self endon("disconnect");
 	self set_active(1);
 	self do_one_shot_use();
-	self notify("hash_95b677dc");
+	self notify("bgb_bubble_blow_complete");
 	self [[level.bgb[bgb].activation_func]]();
 	self set_active(0);
 	self activation_complete();
@@ -775,7 +775,7 @@ function private bgb_clear_monitors_and_clientfields()
 function private bgb_limit_monitor()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self notify("bgb_limit_monitor");
 	self endon("bgb_limit_monitor");
 	self clientfield::set_player_uimodel("bgb_display", 1);
@@ -865,11 +865,11 @@ function private bgb_limit_monitor()
 function private bgb_bled_out_monitor()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self notify("bgb_bled_out_monitor");
 	self endon("bgb_bled_out_monitor");
 	self waittill("bled_out");
-	self notify("hash_eecacfa5");
+	self notify("bgb_about_to_take_on_bled_out");
 	wait(0.1);
 	self thread take();
 }
@@ -945,7 +945,7 @@ function private function_5fc6d844(bgb)
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	if(isdefined(level.bgb[bgb].is_cancellable) && level.bgb[bgb].is_cancellable)
 	{
 		function_650ca64(6);
@@ -1565,7 +1565,7 @@ function give(name)
 	/#
 		Assert(isdefined(level.bgb[name]), "Dev Block strings are not supported" + name + "Dev Block strings are not supported");
 	#/
-	self notify("hash_994d5e9e", name, self.bgb);
+	self notify("bgb_update", name, self.bgb);
 	self notify("bgb_update_give_" + name);
 	self.bgb = name;
 	self clientfield::set_player_uimodel("bgb_current", level.bgb[name].item_index);
@@ -1604,7 +1604,7 @@ function take()
 		self thread [[level.bgb[self.bgb].disable_func]]();
 	}
 	self bgb_clear_monitors_and_clientfields();
-	self notify("hash_994d5e9e", "none", self.bgb);
+	self notify("bgb_update", "none", self.bgb);
 	self notify("bgb_update_take_" + self.bgb);
 	self.bgb = "none";
 }
@@ -1968,7 +1968,7 @@ function function_d51db887()
 }
 
 /*
-	Name: function_4ed517b9
+	Name: player_proximity_watcher
 	Namespace: bgb
 	Checksum: 0x23D70B86
 	Offset: 0x52A8
@@ -1976,11 +1976,11 @@ function function_d51db887()
 	Parameters: 3
 	Flags: None
 */
-function function_4ed517b9(n_max_distance, var_98a3e738, var_287a7adb)
+function player_proximity_watcher(n_max_distance, var_98a3e738, var_287a7adb)
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self.var_6638f10b = [];
 	while(1)
 	{
@@ -2111,7 +2111,7 @@ function function_378bff5d()
 }
 
 /*
-	Name: function_41ed378b
+	Name: revive_and_return_perk_on_bgb_activation
 	Namespace: bgb
 	Checksum: 0x8ADBAAE7
 	Offset: 0x5698
@@ -2119,7 +2119,7 @@ function function_378bff5d()
 	Parameters: 1
 	Flags: None
 */
-function function_41ed378b(perk)
+function revive_and_return_perk_on_bgb_activation(perk)
 {
 	self notify("revive_and_return_perk_on_bgb_activation" + perk);
 	self endon("revive_and_return_perk_on_bgb_activation" + perk);

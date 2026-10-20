@@ -40,11 +40,11 @@
 #using scripts\zm\zm_cosmodrome_ffotd;
 #using scripts\zm\zm_cosmodrome_fx;
 
-#namespace namespace_670cb61;
+#namespace zm_cosmodrome;
 
 /*
 	Name: opt_in
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xBC6FD27B
 	Offset: 0x1E08
 	Size: 0x1B
@@ -59,7 +59,7 @@ function autoexec opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x1D5A3D1A
 	Offset: 0x1E30
 	Size: 0x28B
@@ -79,7 +79,7 @@ function main()
 	include_weapons();
 	callback::on_localclient_connect(&function_82a94b2c);
 	register_client_fields();
-	namespace_eb3fb2b6::main();
+	zm_cosmodrome_fx::main();
 	level thread namespace_9dd378ec::main();
 	level.setupCustomCharacterExerts = &setup_personality_character_exerts;
 	visionset_mgr::register_visionset_info("zm_cosmodrome_no_power", 21000, 31, undefined, "zombie_cosmodrome_nopower");
@@ -100,7 +100,7 @@ function main()
 
 /*
 	Name: function_82a94b2c
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x1BF86409
 	Offset: 0x20C8
 	Size: 0x43
@@ -115,7 +115,7 @@ function function_82a94b2c(localClientNum)
 
 /*
 	Name: function_85c8e13c
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x5DACB551
 	Offset: 0x2118
 	Size: 0xA31
@@ -280,7 +280,7 @@ function function_85c8e13c(localClientNum)
 
 /*
 	Name: init_fog_vol_to_visionset
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x3AD0C86
 	Offset: 0x2B58
 	Size: 0x5B
@@ -296,7 +296,7 @@ function init_fog_vol_to_visionset()
 
 /*
 	Name: function_c07d3f2c
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x713CFB03
 	Offset: 0x2BC0
 	Size: 0xCF
@@ -317,7 +317,7 @@ function function_c07d3f2c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_d0429093
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC240C67A
 	Offset: 0x2C98
 	Size: 0xEB
@@ -342,7 +342,7 @@ function function_d0429093(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_e470dce
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC71C2EAD
 	Offset: 0x2D90
 	Size: 0x16B
@@ -370,7 +370,7 @@ function function_e470dce(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_87f08b47
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xAE75706D
 	Offset: 0x2F08
 	Size: 0x135
@@ -398,7 +398,7 @@ function function_87f08b47(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_2f143630
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x88099171
 	Offset: 0x3048
 	Size: 0xA3
@@ -416,7 +416,7 @@ function function_2f143630(var_54168c72, var_f8308617, n_wait, var_2e141209, var
 
 /*
 	Name: function_ea758913
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x79FA4513
 	Offset: 0x30F8
 	Size: 0x87
@@ -435,7 +435,7 @@ function function_ea758913()
 
 /*
 	Name: register_client_fields
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x85555357
 	Offset: 0x3188
 	Size: 0x753
@@ -474,7 +474,7 @@ function register_client_fields()
 
 /*
 	Name: watch_for_power
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC4372349
 	Offset: 0x38E8
 	Size: 0x169
@@ -509,7 +509,7 @@ function watch_for_power()
 
 /*
 	Name: include_weapons
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x6BD479AB
 	Offset: 0x3A60
 	Size: 0x23
@@ -523,7 +523,7 @@ function include_weapons()
 
 /*
 	Name: radar_dish_init
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x43888848
 	Offset: 0x3A90
 	Size: 0x85
@@ -544,7 +544,7 @@ function radar_dish_init()
 
 /*
 	Name: radar_dish_rotate
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xFF82D4B5
 	Offset: 0x3B20
 	Size: 0x43
@@ -563,7 +563,7 @@ function radar_dish_rotate()
 
 /*
 	Name: perk_wire_fx_client
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x1B4BD602
 	Offset: 0x3B70
 	Size: 0x20D
@@ -607,7 +607,7 @@ function perk_wire_fx_client(client_num, done_notify)
 
 /*
 	Name: tele_spark_audio_mover
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x2AD100BD
 	Offset: 0x3D88
 	Size: 0x2B
@@ -625,7 +625,7 @@ function tele_spark_audio_mover(fake_ent)
 
 /*
 	Name: actor_flag_soulpull_handler
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xE15CC649
 	Offset: 0x3DC0
 	Size: 0x5B
@@ -642,7 +642,7 @@ function actor_flag_soulpull_handler(localClientNum, oldVal, newVal, bNewEnt, bI
 
 /*
 	Name: soul_pull
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xF1EC976F
 	Offset: 0x3E28
 	Size: 0x133
@@ -665,7 +665,7 @@ function soul_pull(client_num)
 
 /*
 	Name: init_cosmodrome_box_screens
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xBB09FE26
 	Offset: 0x3F68
 	Size: 0x1FB
@@ -692,7 +692,7 @@ function init_cosmodrome_box_screens()
 
 /*
 	Name: cosmodrome_screen_switch
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x42D04C78
 	Offset: 0x4170
 	Size: 0x185
@@ -735,7 +735,7 @@ function cosmodrome_screen_switch(client_num, State, oldState)
 
 /*
 	Name: cosmodrome_tv_init
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xBD2C2496
 	Offset: 0x4300
 	Size: 0xE5
@@ -763,7 +763,7 @@ function cosmodrome_tv_init(client_num)
 
 /*
 	Name: magic_box_screen_swap
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC3B74BFB
 	Offset: 0x43F0
 	Size: 0xEF
@@ -791,7 +791,7 @@ function magic_box_screen_swap(model_array, endon_notify)
 
 /*
 	Name: play_magic_box_tv_audio
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xDD23B5A4
 	Offset: 0x44E8
 	Size: 0xB3
@@ -830,7 +830,7 @@ function play_magic_box_tv_audio(State)
 
 /*
 	Name: function_89e03497
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xA80DDED4
 	Offset: 0x45A8
 	Size: 0x63
@@ -844,7 +844,7 @@ function function_89e03497(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_429d7872
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xF82369D3
 	Offset: 0x4618
 	Size: 0x63
@@ -858,7 +858,7 @@ function function_429d7872(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_7eaa1812
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x75A39D3E
 	Offset: 0x4688
 	Size: 0x63
@@ -872,7 +872,7 @@ function function_7eaa1812(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_686d40af
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x9E4F3075
 	Offset: 0x46F8
 	Size: 0x63
@@ -886,7 +886,7 @@ function function_686d40af(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_18769931
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x929F070A
 	Offset: 0x4768
 	Size: 0x18B
@@ -916,7 +916,7 @@ function function_18769931(localClientNum, n_state, door_name)
 
 /*
 	Name: function_b2c64ce4
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xD7589C4C
 	Offset: 0x4900
 	Size: 0x7D
@@ -962,7 +962,7 @@ function function_b2c64ce4(n_state)
 
 /*
 	Name: function_b27e98c0
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x9C4D7931
 	Offset: 0x4988
 	Size: 0xCF
@@ -996,7 +996,7 @@ function function_b27e98c0(var_2291984a)
 
 /*
 	Name: function_53c16d30
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xBECAF23C
 	Offset: 0x4A60
 	Size: 0x29
@@ -1017,7 +1017,7 @@ function function_53c16d30(v_pos)
 
 /*
 	Name: rocket_fx
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x476904E8
 	Offset: 0x4A98
 	Size: 0xAB
@@ -1038,7 +1038,7 @@ function rocket_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldN
 
 /*
 	Name: lander_engine_fx
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xBE5A646
 	Offset: 0x4B50
 	Size: 0x3CB
@@ -1082,7 +1082,7 @@ function lander_engine_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: start_ground_sounds
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xA3CFF149
 	Offset: 0x4F28
 	Size: 0x247
@@ -1132,7 +1132,7 @@ function start_ground_sounds()
 
 /*
 	Name: function_fb377b79
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x91F5669C
 	Offset: 0x5178
 	Size: 0x33
@@ -1148,7 +1148,7 @@ function function_fb377b79()
 
 /*
 	Name: end_ground_sounds
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x87EF6250
 	Offset: 0x51B8
 	Size: 0x53
@@ -1168,7 +1168,7 @@ function end_ground_sounds()
 
 /*
 	Name: get_random_spot_in_player_view
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC2265FA3
 	Offset: 0x5218
 	Size: 0x1CB
@@ -1197,7 +1197,7 @@ function get_random_spot_in_player_view(fwd_min, fwd_max, side_min, side_max)
 
 /*
 	Name: debris_crash_and_burn
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC6274AA4
 	Offset: 0x53F0
 	Size: 0x183
@@ -1222,7 +1222,7 @@ function debris_crash_and_burn(spot, client, player)
 
 /*
 	Name: setup_lander_screens
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x5EEE3233
 	Offset: 0x5580
 	Size: 0xA5
@@ -1243,7 +1243,7 @@ function setup_lander_screens(clientNum)
 
 /*
 	Name: lander_at_station
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xFA38BB0E
 	Offset: 0x5630
 	Size: 0x365
@@ -1300,7 +1300,7 @@ function lander_at_station(station, clientNum)
 
 /*
 	Name: lander_move_fx
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x36A6B08F
 	Offset: 0x59A0
 	Size: 0x83
@@ -1318,7 +1318,7 @@ function lander_move_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, f
 
 /*
 	Name: lander_station_move_lander_marker
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x7938D34E
 	Offset: 0x5A30
 	Size: 0x305
@@ -1378,7 +1378,7 @@ function lander_station_move_lander_marker(localClientNum)
 
 /*
 	Name: function_446c53e5
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xD10401BB
 	Offset: 0x5D40
 	Size: 0xBD
@@ -1396,7 +1396,7 @@ function function_446c53e5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_32db5393
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xBB11744C
 	Offset: 0x5E08
 	Size: 0x9B
@@ -1407,17 +1407,17 @@ function function_32db5393(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 {
 	if(newVal == 1)
 	{
-		level namespace_eb3fb2b6::toggle_lander_lights("red", localClientNum);
+		level zm_cosmodrome_fx::toggle_lander_lights("red", localClientNum);
 	}
 	else if(newVal == 2)
 	{
-		level namespace_eb3fb2b6::toggle_lander_lights("green", localClientNum);
+		level zm_cosmodrome_fx::toggle_lander_lights("green", localClientNum);
 	}
 }
 
 /*
 	Name: function_f6ffc831
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xA7C6A36F
 	Offset: 0x5EB0
 	Size: 0xBD
@@ -1453,7 +1453,7 @@ function function_f6ffc831(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: launch_panel_centrifuge_status
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x259F582C
 	Offset: 0x5F78
 	Size: 0x14B
@@ -1481,7 +1481,7 @@ function launch_panel_centrifuge_status(localClientNum, oldVal, newVal, bNewEnt,
 
 /*
 	Name: launch_panel_storage_status
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xD9A399A
 	Offset: 0x60D0
 	Size: 0x73
@@ -1502,7 +1502,7 @@ function launch_panel_storage_status(localClientNum, oldVal, newVal, bNewEnt, bI
 
 /*
 	Name: launch_panel_baseentry_status
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x760147DC
 	Offset: 0x6150
 	Size: 0x73
@@ -1523,7 +1523,7 @@ function launch_panel_baseentry_status(localClientNum, oldVal, newVal, bNewEnt, 
 
 /*
 	Name: launch_panel_catwalk_status
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xD33B1D3B
 	Offset: 0x61D0
 	Size: 0x73
@@ -1544,7 +1544,7 @@ function launch_panel_catwalk_status(localClientNum, oldVal, newVal, bNewEnt, bI
 
 /*
 	Name: rocket_launch_display
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xECFF03A
 	Offset: 0x6250
 	Size: 0xEB
@@ -1579,7 +1579,7 @@ function rocket_launch_display(localClientNum)
 
 /*
 	Name: update_rocket_display
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x1409F8E6
 	Offset: 0x6348
 	Size: 0x9B
@@ -1601,7 +1601,7 @@ function update_rocket_display(on_model)
 
 /*
 	Name: lander_rumble_and_quake
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xA55E390
 	Offset: 0x63F0
 	Size: 0x231
@@ -1638,7 +1638,7 @@ function lander_rumble_and_quake(localClientNum, oldVal, newVal, bNewEnt, bIniti
 
 /*
 	Name: do_lander_rumble_quake
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x7BD758C6
 	Offset: 0x6630
 	Size: 0x217
@@ -1681,7 +1681,7 @@ function do_lander_rumble_quake(localClientNum)
 
 /*
 	Name: centrifuge_rumble_control
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xC654BEE3
 	Offset: 0x6850
 	Size: 0xCD
@@ -1710,7 +1710,7 @@ function centrifuge_rumble_control(local_client_num, oldVal, newVal, bNewEnt, bI
 
 /*
 	Name: centrifuge_rumble_when_close
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x38B7CA80
 	Offset: 0x6928
 	Size: 0x12F
@@ -1748,7 +1748,7 @@ function centrifuge_rumble_when_close(ent_centrifuge, int_client_num)
 
 /*
 	Name: centrifuge_clean_rumble
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x45B603F
 	Offset: 0x6A60
 	Size: 0x43
@@ -1764,7 +1764,7 @@ function centrifuge_clean_rumble(int_client_num)
 
 /*
 	Name: centrifuge_warning_lights_init
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x989AF7C1
 	Offset: 0x6AB0
 	Size: 0x14D
@@ -1799,7 +1799,7 @@ function centrifuge_warning_lights_init(local_client_num, oldVal, newVal, bNewEn
 
 /*
 	Name: monkey_lander_fx_on
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x620C3B69
 	Offset: 0x6C08
 	Size: 0x1C5
@@ -1836,7 +1836,7 @@ function monkey_lander_fx_on()
 
 /*
 	Name: monkey_lander_fx_off
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xCBFA65BB
 	Offset: 0x6DD8
 	Size: 0x13B
@@ -1859,7 +1859,7 @@ function monkey_lander_fx_off()
 
 /*
 	Name: monkey_lander_fx
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x88624C57
 	Offset: 0x6F20
 	Size: 0xC3
@@ -1889,7 +1889,7 @@ function monkey_lander_fx(local_client_num, oldVal, newVal, bNewEnt, bInitialSna
 
 /*
 	Name: samantha_is_angry
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x16AE9243
 	Offset: 0x6FF0
 	Size: 0x5B
@@ -1906,7 +1906,7 @@ function samantha_is_angry(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: centrifuge_fx_spot_init
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xEAB403BA
 	Offset: 0x7058
 	Size: 0x21F
@@ -1932,7 +1932,7 @@ function centrifuge_fx_spot_init(int_client_num)
 
 /*
 	Name: centrifuge_warning_lights_on
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xAE25F620
 	Offset: 0x7280
 	Size: 0x34B
@@ -1968,7 +1968,7 @@ function centrifuge_warning_lights_on(client_num)
 
 /*
 	Name: centrifuge_steam_warning
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xFC9C33CB
 	Offset: 0x75D8
 	Size: 0x8D
@@ -1987,7 +1987,7 @@ function centrifuge_steam_warning(client_num)
 
 /*
 	Name: centrifuge_warning_lights_off
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x60F8A9E3
 	Offset: 0x7670
 	Size: 0xC5
@@ -2014,7 +2014,7 @@ function centrifuge_warning_lights_off(client_num)
 
 /*
 	Name: fog_apply
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x2884C846
 	Offset: 0x7740
 	Size: 0x1DB
@@ -2062,7 +2062,7 @@ function fog_apply(str_fog, int_priority)
 
 /*
 	Name: fog_remove
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x730742D1
 	Offset: 0x7928
 	Size: 0x173
@@ -2106,7 +2106,7 @@ function fog_remove(str_fog)
 
 /*
 	Name: get_fog_by_priority
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x555917E8
 	Offset: 0x7AA8
 	Size: 0xD9
@@ -2134,7 +2134,7 @@ function get_fog_by_priority()
 
 /*
 	Name: setup_fog
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xA0A37002
 	Offset: 0x7B90
 	Size: 0x95
@@ -2154,7 +2154,7 @@ function setup_fog()
 
 /*
 	Name: set_fog
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x8BFD1CF6
 	Offset: 0x7C30
 	Size: 0xB9
@@ -2189,7 +2189,7 @@ function set_fog(fog_type)
 
 /*
 	Name: player_lander_fog
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0x312BACC1
 	Offset: 0x7CF8
 	Size: 0xAB
@@ -2211,7 +2211,7 @@ function player_lander_fog(local_client_num, oldVal, newVal, bNewEnt, bInitialSn
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_670cb61
+	Namespace: zm_cosmodrome
 	Checksum: 0xD318A0FF
 	Offset: 0x7DB0
 	Size: 0x1481

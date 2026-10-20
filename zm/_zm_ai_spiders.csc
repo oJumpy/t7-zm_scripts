@@ -7,11 +7,11 @@
 #using scripts\shared\visionset_mgr_shared;
 #using scripts\zm\_zm;
 
-#namespace namespace_27f8b154;
+#namespace zm_ai_spiders;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_27f8b154
+	Namespace: zm_ai_spiders
 	Checksum: 0x74AC68A9
 	Offset: 0x580
 	Size: 0x3B
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_27f8b154
+	Namespace: zm_ai_spiders
 	Checksum: 0x9231C098
 	Offset: 0x5C8
 	Size: 0x163
@@ -50,7 +50,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_27f8b154
+	Namespace: zm_ai_spiders
 	Checksum: 0x99EC1590
 	Offset: 0x738
 	Size: 0x3
@@ -63,7 +63,7 @@ function __main__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_27f8b154
+	Namespace: zm_ai_spiders
 	Checksum: 0xF282ED5A
 	Offset: 0x748
 	Size: 0x263
@@ -72,19 +72,19 @@ function __main__()
 */
 function register_clientfields()
 {
-	clientfield::register("toplayer", "spider_round_fx", 9000, 1, "counter", &function_cf314378, 0, 0);
-	clientfield::register("toplayer", "spider_round_ring_fx", 9000, 1, "counter", &function_ea4a561d, 0, 0);
-	clientfield::register("toplayer", "spider_end_of_round_reset", 9000, 1, "counter", &function_5a0b8305, 0, 0);
-	clientfield::register("scriptmover", "set_fade_material", 9000, 1, "int", &function_4ff90290, 0, 0);
-	clientfield::register("scriptmover", "web_fade_material", 9000, 3, "float", &function_50dc34c6, 0, 0);
-	clientfield::register("missile", "play_grenade_stuck_in_web_fx", 9000, 1, "int", &function_adde492f, 0, 0);
-	clientfield::register("scriptmover", "play_spider_web_tear_fx", 9000, GetMinBitCountForNum(4), "int", &function_bcbf0bf6, 0, 0);
-	clientfield::register("scriptmover", "play_spider_web_tear_complete_fx", 9000, GetMinBitCountForNum(4), "int", &function_25ccb29e, 0, 0);
+	clientfield::register("toplayer", "spider_round_fx", 9000, 1, "counter", &spider_round_fx, 0, 0);
+	clientfield::register("toplayer", "spider_round_ring_fx", 9000, 1, "counter", &spider_round_ring_fx, 0, 0);
+	clientfield::register("toplayer", "spider_end_of_round_reset", 9000, 1, "counter", &spider_end_of_round_reset, 0, 0);
+	clientfield::register("scriptmover", "set_fade_material", 9000, 1, "int", &set_fade_material, 0, 0);
+	clientfield::register("scriptmover", "web_fade_material", 9000, 3, "float", &web_fade_material, 0, 0);
+	clientfield::register("missile", "play_grenade_stuck_in_web_fx", 9000, 1, "int", &play_grenade_stuck_in_web_fx, 0, 0);
+	clientfield::register("scriptmover", "play_spider_web_tear_fx", 9000, GetMinBitCountForNum(4), "int", &play_spider_web_tear_fx, 0, 0);
+	clientfield::register("scriptmover", "play_spider_web_tear_complete_fx", 9000, GetMinBitCountForNum(4), "int", &play_spider_web_tear_complete_fx, 0, 0);
 }
 
 /*
 	Name: spider_init
-	Namespace: namespace_27f8b154
+	Namespace: zm_ai_spiders
 	Checksum: 0x5FC1C07B
 	Offset: 0x9B8
 	Size: 0x2B
@@ -98,15 +98,15 @@ function spider_init(localClientNum)
 }
 
 /*
-	Name: function_cf314378
-	Namespace: namespace_27f8b154
+	Name: spider_round_fx
+	Namespace: zm_ai_spiders
 	Checksum: 0xD917F427
 	Offset: 0x9F0
 	Size: 0x123
 	Parameters: 7
 	Flags: None
 */
-function function_cf314378(n_local_client, n_val_old, n_val_new, b_ent_new, b_initial_snap, str_field, b_demo_jump)
+function spider_round_fx(n_local_client, n_val_old, n_val_new, b_ent_new, b_initial_snap, str_field, b_demo_jump)
 {
 	self endon("disconnect");
 	SetWorldFogActiveBank(n_local_client, 8);
@@ -123,15 +123,15 @@ function function_cf314378(n_local_client, n_val_old, n_val_new, b_ent_new, b_in
 }
 
 /*
-	Name: function_5a0b8305
-	Namespace: namespace_27f8b154
+	Name: spider_end_of_round_reset
+	Namespace: zm_ai_spiders
 	Checksum: 0x3DBFB6EE
 	Offset: 0xB20
 	Size: 0x63
 	Parameters: 7
 	Flags: None
 */
-function function_5a0b8305(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spider_end_of_round_reset(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -140,15 +140,15 @@ function function_5a0b8305(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_ea4a561d
-	Namespace: namespace_27f8b154
+	Name: spider_round_ring_fx
+	Namespace: zm_ai_spiders
 	Checksum: 0xA444230F
 	Offset: 0xB90
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_ea4a561d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spider_round_ring_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("disconnect");
 	if(IsSpectating(localClientNum))
@@ -162,7 +162,7 @@ function function_ea4a561d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_bea149a5
-	Namespace: namespace_27f8b154
+	Namespace: zm_ai_spiders
 	Checksum: 0xEA21B61B
 	Offset: 0xC38
 	Size: 0x2D3
@@ -254,7 +254,7 @@ function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_a
 
 /*
 	Name: transition_shader
-	Namespace: namespace_27f8b154
+	Namespace: zm_ai_spiders
 	Checksum: 0x2589E5E
 	Offset: 0xF18
 	Size: 0x53
@@ -267,29 +267,29 @@ function transition_shader(localClientNum, n_value, var_afc7cc94)
 }
 
 /*
-	Name: function_4ff90290
-	Namespace: namespace_27f8b154
+	Name: set_fade_material
+	Namespace: zm_ai_spiders
 	Checksum: 0xD6855BC2
 	Offset: 0xF78
 	Size: 0x63
 	Parameters: 7
 	Flags: None
 */
-function function_4ff90290(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function set_fade_material(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self MapShaderConstant(localClientNum, 0, "scriptVector0", newVal, 0, 0, 0);
 }
 
 /*
-	Name: function_50dc34c6
-	Namespace: namespace_27f8b154
+	Name: web_fade_material
+	Namespace: zm_ai_spiders
 	Checksum: 0x7168E1F
 	Offset: 0xFE8
 	Size: 0xB3
 	Parameters: 7
 	Flags: None
 */
-function function_50dc34c6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function web_fade_material(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_f2efc20a = 0;
 	if(newVal <= 0)
@@ -306,15 +306,15 @@ function function_50dc34c6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_adde492f
-	Namespace: namespace_27f8b154
+	Name: play_grenade_stuck_in_web_fx
+	Namespace: zm_ai_spiders
 	Checksum: 0x735967E2
 	Offset: 0x10A8
 	Size: 0x73
 	Parameters: 7
 	Flags: None
 */
-function function_adde492f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_grenade_stuck_in_web_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(isdefined(self))
 	{
@@ -323,15 +323,15 @@ function function_adde492f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_bcbf0bf6
-	Namespace: namespace_27f8b154
+	Name: play_spider_web_tear_fx
+	Namespace: zm_ai_spiders
 	Checksum: 0xEDEEA937
 	Offset: 0x1128
 	Size: 0x223
 	Parameters: 7
 	Flags: None
 */
-function function_bcbf0bf6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_spider_web_tear_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{
@@ -382,15 +382,15 @@ function function_bcbf0bf6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_25ccb29e
-	Namespace: namespace_27f8b154
+	Name: play_spider_web_tear_complete_fx
+	Namespace: zm_ai_spiders
 	Checksum: 0xBE7A484F
 	Offset: 0x1358
 	Size: 0x11B
 	Parameters: 7
 	Flags: None
 */
-function function_25ccb29e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function play_spider_web_tear_complete_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{

@@ -187,7 +187,7 @@ function create_robot_head_trigger(unitrigger_stub)
 			break;
 		}
 	}
-	m_sign namespace_43a18dd5::make_zombie_blood_entity();
+	m_sign zm_powerup_zombie_blood::make_zombie_blood_entity();
 	unitrigger_stub.m_sign = m_sign;
 	unitrigger_stub.origin = unitrigger_stub.origin + VectorScale((0, 0, 1), 30);
 	zm_unitrigger::register_static_unitrigger(unitrigger_stub, &robot_head_trigger_think);

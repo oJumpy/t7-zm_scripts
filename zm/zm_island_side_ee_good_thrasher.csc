@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_f777c489;
+#namespace zm_island_side_ee_good_thrasher;
 
 /*
 	Name: init
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xBD4BE237
 	Offset: 0x2D8
 	Size: 0x1AB
@@ -20,23 +20,23 @@ function init()
 {
 	var_b20c97f = GetMinBitCountForNum(7);
 	var_1b7d5552 = GetMinBitCountForNum(3);
-	clientfield::register("scriptmover", "side_ee_gt_spore_glow_fx", 9000, 1, "int", &function_f72d6a5e, 0, 0);
-	clientfield::register("scriptmover", "side_ee_gt_spore_cloud_fx", 9000, var_b20c97f, "int", &function_7583072e, 0, 0);
-	clientfield::register("actor", "side_ee_gt_spore_trail_enemy_fx", 9000, 1, "int", &function_f68bb4e3, 0, 0);
-	clientfield::register("allplayers", "side_ee_gt_spore_trail_player_fx", 9000, var_1b7d5552, "int", &function_f68bb4e3, 0, 0);
-	clientfield::register("actor", "good_thrasher_fx", 9000, 1, "int", &function_9993f1d3, 0, 0);
+	clientfield::register("scriptmover", "side_ee_gt_spore_glow_fx", 9000, 1, "int", &side_ee_gt_spore_glow_fx, 0, 0);
+	clientfield::register("scriptmover", "side_ee_gt_spore_cloud_fx", 9000, var_b20c97f, "int", &side_ee_gt_spore_cloud_fx, 0, 0);
+	clientfield::register("actor", "side_ee_gt_spore_trail_enemy_fx", 9000, 1, "int", &side_ee_gt_spore_trail_fx, 0, 0);
+	clientfield::register("allplayers", "side_ee_gt_spore_trail_player_fx", 9000, var_1b7d5552, "int", &side_ee_gt_spore_trail_fx, 0, 0);
+	clientfield::register("actor", "good_thrasher_fx", 9000, 1, "int", &good_thrasher_fx, 0, 0);
 }
 
 /*
-	Name: function_f72d6a5e
-	Namespace: namespace_f777c489
+	Name: side_ee_gt_spore_glow_fx
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x87EEA4DE
 	Offset: 0x490
 	Size: 0x115
 	Parameters: 7
 	Flags: None
 */
-function function_f72d6a5e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function side_ee_gt_spore_glow_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -54,15 +54,15 @@ function function_f72d6a5e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_7583072e
-	Namespace: namespace_f777c489
+	Name: side_ee_gt_spore_cloud_fx
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x5ECC3137
 	Offset: 0x5B0
 	Size: 0x19D
 	Parameters: 7
 	Flags: None
 */
-function function_7583072e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function side_ee_gt_spore_cloud_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal >= 1)
 	{
@@ -81,15 +81,15 @@ function function_7583072e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_f68bb4e3
-	Namespace: namespace_f777c489
+	Name: side_ee_gt_spore_trail_fx
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xB0BECB6B
 	Offset: 0x758
 	Size: 0xED
 	Parameters: 7
 	Flags: None
 */
-function function_f68bb4e3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function side_ee_gt_spore_trail_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal > 0)
 	{
@@ -108,15 +108,15 @@ function function_f68bb4e3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_9993f1d3
-	Namespace: namespace_f777c489
+	Name: good_thrasher_fx
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x960BC75
 	Offset: 0x850
 	Size: 0x289
 	Parameters: 7
 	Flags: None
 */
-function function_9993f1d3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function good_thrasher_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

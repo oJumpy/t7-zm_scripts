@@ -14,12 +14,12 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_8e2647d0;
+#namespace zm_zod_portals;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8e2647d0
-	Checksum: 0xDF0B9BB6
+	Namespace: zm_zod_portals
+	Checksum: 0x92F345A3
 	Offset: 0x6C8
 	Size: 0x33
 	Parameters: 0
@@ -32,8 +32,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8e2647d0
-	Checksum: 0x82D2D98F
+	Namespace: zm_zod_portals
+	Checksum: 0xD35FA7B8
 	Offset: 0x708
 	Size: 0x423
 	Parameters: 0
@@ -50,11 +50,11 @@ function __init__()
 	level._effect["portal_shortcut_closed_base"] = "zombie/fx_quest_portal_closed_zod_zmb";
 	level._effect["portal_shortcut_ending"] = "zombie/fx_quest_portal_close_igc_zod_zmb";
 	n_bits = GetMinBitCountForNum(3);
-	clientfield::register("toplayer", "player_stargate_fx", 1, 1, "int", &function_2396c469, 0, 0);
-	clientfield::register("world", "portal_state_canal", 1, n_bits, "int", &function_b3ee6c81, 0, 1);
-	clientfield::register("world", "portal_state_slums", 1, n_bits, "int", &function_8e86ff36, 0, 1);
-	clientfield::register("world", "portal_state_theater", 1, n_bits, "int", &function_ec77bf, 0, 1);
-	clientfield::register("world", "portal_state_ending", 1, 1, "int", &function_2876d055, 0, 0);
+	clientfield::register("toplayer", "player_stargate_fx", 1, 1, "int", &player_stargate_fx, 0, 0);
+	clientfield::register("world", "portal_state_canal", 1, n_bits, "int", &portal_state_canal, 0, 1);
+	clientfield::register("world", "portal_state_slums", 1, n_bits, "int", &portal_state_slums, 0, 1);
+	clientfield::register("world", "portal_state_theater", 1, n_bits, "int", &portal_state_theater, 0, 1);
+	clientfield::register("world", "portal_state_ending", 1, 1, "int", &portal_state_ending, 0, 0);
 	clientfield::register("world", "pulse_canal_portal_top", 1, 1, "counter", &function_4bc7c0a1, 0, 0);
 	clientfield::register("world", "pulse_canal_portal_bottom", 1, 1, "counter", &function_bd6fa919, 0, 0);
 	clientfield::register("world", "pulse_slums_portal_top", 1, 1, "counter", &function_e66eb44e, 0, 0);
@@ -64,18 +64,18 @@ function __init__()
 }
 
 /*
-	Name: function_2396c469
-	Namespace: namespace_8e2647d0
-	Checksum: 0x584E3D2F
+	Name: player_stargate_fx
+	Namespace: zm_zod_portals
+	Checksum: 0x40EC73EA
 	Offset: 0xB38
 	Size: 0xDD
 	Parameters: 7
 	Flags: None
 */
-function function_2396c469(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_stargate_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self notify("hash_2396c469");
-	self endon("hash_2396c469");
+	self notify("player_stargate_fx");
+	self endon("player_stargate_fx");
 	if(newVal == 1)
 	{
 		if(IsDemoPlaying() && DemoIsAnyFreeMoveCamera())
@@ -87,14 +87,14 @@ function function_2396c469(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		self notify("hash_ee477153");
+		self notify("player_portal_complete");
 	}
 }
 
 /*
 	Name: function_e7a8756e
-	Namespace: namespace_8e2647d0
-	Checksum: 0x13CA61A2
+	Namespace: zm_zod_portals
+	Checksum: 0x40A309D
 	Offset: 0xC20
 	Size: 0x4B
 	Parameters: 1
@@ -107,15 +107,15 @@ function function_e7a8756e(localClientNum)
 }
 
 /*
-	Name: function_dcfb71f
-	Namespace: namespace_8e2647d0
-	Checksum: 0x3B5EC4AD
+	Name: portal_3p
+	Namespace: zm_zod_portals
+	Checksum: 0x7F005DC4
 	Offset: 0xC78
 	Size: 0xAB
 	Parameters: 7
 	Flags: None
 */
-function function_dcfb71f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_3p(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("death");
 	if(newVal == 1)
@@ -129,51 +129,51 @@ function function_dcfb71f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_b3ee6c81
-	Namespace: namespace_8e2647d0
-	Checksum: 0x4B357997
+	Name: portal_state_canal
+	Namespace: zm_zod_portals
+	Checksum: 0xEF329B2D
 	Offset: 0xD30
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_b3ee6c81(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_state_canal(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	portal_state_internal(localClientNum, "canal", newVal);
 }
 
 /*
-	Name: function_8e86ff36
-	Namespace: namespace_8e2647d0
-	Checksum: 0x8244DD64
+	Name: portal_state_slums
+	Namespace: zm_zod_portals
+	Checksum: 0x53303E56
 	Offset: 0xD98
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_8e86ff36(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_state_slums(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	portal_state_internal(localClientNum, "slums", newVal);
 }
 
 /*
-	Name: function_ec77bf
-	Namespace: namespace_8e2647d0
-	Checksum: 0xB3B5EF43
+	Name: portal_state_theater
+	Namespace: zm_zod_portals
+	Checksum: 0xC7E76287
 	Offset: 0xE00
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_ec77bf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_state_theater(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	portal_state_internal(localClientNum, "theater", newVal);
 }
 
 /*
 	Name: portal_state_internal
-	Namespace: namespace_8e2647d0
-	Checksum: 0x241E96EF
+	Namespace: zm_zod_portals
+	Checksum: 0x55790FD6
 	Offset: 0xE68
 	Size: 0x2AD
 	Parameters: 3
@@ -213,15 +213,15 @@ function portal_state_internal(localClientNum, str_areaname, newVal)
 }
 
 /*
-	Name: function_2876d055
-	Namespace: namespace_8e2647d0
-	Checksum: 0x5665C2D9
+	Name: portal_state_ending
+	Namespace: zm_zod_portals
+	Checksum: 0xE3F5E50A
 	Offset: 0x1120
 	Size: 0x333
 	Parameters: 7
 	Flags: None
 */
-function function_2876d055(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function portal_state_ending(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	s_loc = struct::get("ending_igc_portal", "targetname");
 	v_fwd = AnglesToForward(s_loc.angles);
@@ -260,8 +260,8 @@ function function_2876d055(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_4bc7c0a1
-	Namespace: namespace_8e2647d0
-	Checksum: 0x7C78EF5C
+	Namespace: zm_zod_portals
+	Checksum: 0x4BF9CA9A
 	Offset: 0x1460
 	Size: 0x5B
 	Parameters: 7
@@ -274,8 +274,8 @@ function function_4bc7c0a1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_bd6fa919
-	Namespace: namespace_8e2647d0
-	Checksum: 0xEDE0996A
+	Namespace: zm_zod_portals
+	Checksum: 0x5F4F27F5
 	Offset: 0x14C8
 	Size: 0x5B
 	Parameters: 7
@@ -288,8 +288,8 @@ function function_bd6fa919(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_e66eb44e
-	Namespace: namespace_8e2647d0
-	Checksum: 0x6366097D
+	Namespace: zm_zod_portals
+	Checksum: 0xF05ED988
 	Offset: 0x1530
 	Size: 0x5B
 	Parameters: 7
@@ -302,8 +302,8 @@ function function_e66eb44e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_9be42b84
-	Namespace: namespace_8e2647d0
-	Checksum: 0x6FFF9F4F
+	Namespace: zm_zod_portals
+	Checksum: 0xC61C7511
 	Offset: 0x1598
 	Size: 0x5B
 	Parameters: 7
@@ -316,8 +316,8 @@ function function_9be42b84(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_7acc82f
-	Namespace: namespace_8e2647d0
-	Checksum: 0x2DB0B5A
+	Namespace: zm_zod_portals
+	Checksum: 0xF06EF5D0
 	Offset: 0x1600
 	Size: 0x5B
 	Parameters: 7
@@ -330,8 +330,8 @@ function function_7acc82f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_8fbd3c13
-	Namespace: namespace_8e2647d0
-	Checksum: 0x62B501C8
+	Namespace: zm_zod_portals
+	Checksum: 0x70B01F5F
 	Offset: 0x1668
 	Size: 0x5B
 	Parameters: 7
@@ -344,8 +344,8 @@ function function_8fbd3c13(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_11ac3c33
-	Namespace: namespace_8e2647d0
-	Checksum: 0xE0374E4E
+	Namespace: zm_zod_portals
+	Checksum: 0x433AA3AC
 	Offset: 0x16D0
 	Size: 0xE5
 	Parameters: 3
@@ -366,8 +366,8 @@ function function_11ac3c33(localClientNum, str_areaname, b_is_top)
 
 /*
 	Name: function_c0c1771a
-	Namespace: namespace_8e2647d0
-	Checksum: 0x86AD7E6D
+	Namespace: zm_zod_portals
+	Checksum: 0xF11F38CE
 	Offset: 0x17C0
 	Size: 0x3C5
 	Parameters: 4
@@ -430,8 +430,8 @@ function function_c0c1771a(localClientNum, s_loc, b_open, b_is_subway)
 
 /*
 	Name: function_86743484
-	Namespace: namespace_8e2647d0
-	Checksum: 0xAF1F3B38
+	Namespace: zm_zod_portals
+	Checksum: 0xD73FD268
 	Offset: 0x1B90
 	Size: 0x24D
 	Parameters: 2
@@ -464,8 +464,8 @@ function function_86743484(localClientNum, s_loc)
 
 /*
 	Name: get_portal_fx_loc
-	Namespace: namespace_8e2647d0
-	Checksum: 0x904FDAEF
+	Namespace: zm_zod_portals
+	Checksum: 0x55B9DDD4
 	Offset: 0x1DE8
 	Size: 0x13B
 	Parameters: 3
@@ -496,8 +496,8 @@ function get_portal_fx_loc(str_targetname, str_areaname, b_is_top)
 
 /*
 	Name: stop_fx_if_defined
-	Namespace: namespace_8e2647d0
-	Checksum: 0xF0426A88
+	Namespace: zm_zod_portals
+	Checksum: 0x5BE78A7A
 	Offset: 0x1F30
 	Size: 0x3B
 	Parameters: 2
@@ -513,8 +513,8 @@ function stop_fx_if_defined(localClientNum, fx_reference)
 
 /*
 	Name: sndportal
-	Namespace: namespace_8e2647d0
-	Checksum: 0x703BCBC
+	Namespace: zm_zod_portals
+	Checksum: 0x985783EE
 	Offset: 0x1F78
 	Size: 0xE3
 	Parameters: 5
@@ -539,8 +539,8 @@ function sndportal(origin1, origin2, onloop, var_2978dbc6, activation)
 
 /*
 	Name: function_c968dcbc
-	Namespace: namespace_8e2647d0
-	Checksum: 0xDE250584
+	Namespace: zm_zod_portals
+	Checksum: 0xB0537FC8
 	Offset: 0x2068
 	Size: 0xA3
 	Parameters: 4

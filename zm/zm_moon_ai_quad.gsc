@@ -49,10 +49,10 @@ function autoexec init()
 */
 function private initzmmoonbehaviorsandasm()
 {
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("quadPhasingService", &function_22590b59);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldPhase", &function_3293af29);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("phaseActionStart", &function_a4506abc);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("phaseActionTerminate", &function_ef291bc5);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("quadPhasingService", &quadphasingservice);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldPhase", &shouldphase);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("phaseActionStart", &phaseactionstart);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("phaseActionTerminate", &phaseactionterminate);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonQuadKilledByMicrowaveGunDw", &killedbymicrowavegundw);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("moonQuadKilledByMicrowaveGun", &killedbymicrowavegun);
 	AnimationStateNetwork::RegisterNotetrackHandlerFunction("phase_start", &quadphasestart);
@@ -61,7 +61,7 @@ function private initzmmoonbehaviorsandasm()
 }
 
 /*
-	Name: function_22590b59
+	Name: quadphasingservice
 	Namespace: zm_moon_ai_quad
 	Checksum: 0x500B30F7
 	Offset: 0x7E8
@@ -69,7 +69,7 @@ function private initzmmoonbehaviorsandasm()
 	Parameters: 1
 	Flags: Private
 */
-function private function_22590b59(entity)
+function private quadphasingservice(entity)
 {
 	if(isdefined(entity.is_phasing) && entity.is_phasing)
 	{
@@ -137,7 +137,7 @@ function private function_22590b59(entity)
 }
 
 /*
-	Name: function_3293af29
+	Name: shouldphase
 	Namespace: zm_moon_ai_quad
 	Checksum: 0xB53C5092
 	Offset: 0xB90
@@ -145,7 +145,7 @@ function private function_22590b59(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_3293af29(entity)
+function private shouldphase(entity)
 {
 	if(!(isdefined(entity.can_phase) && entity.can_phase))
 	{
@@ -196,7 +196,7 @@ function private function_3293af29(entity)
 }
 
 /*
-	Name: function_a4506abc
+	Name: phaseactionstart
 	Namespace: zm_moon_ai_quad
 	Checksum: 0x7BC2833C
 	Offset: 0xDC8
@@ -204,7 +204,7 @@ function private function_3293af29(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_a4506abc(entity)
+function private phaseactionstart(entity)
 {
 	entity.is_phasing = 1;
 	if(entity.phase_dir == "quad_phase_left")
@@ -218,7 +218,7 @@ function private function_a4506abc(entity)
 }
 
 /*
-	Name: function_ef291bc5
+	Name: phaseactionterminate
 	Namespace: zm_moon_ai_quad
 	Checksum: 0x682F8065
 	Offset: 0xE50
@@ -226,7 +226,7 @@ function private function_a4506abc(entity)
 	Parameters: 1
 	Flags: Private
 */
-function private function_ef291bc5(entity)
+function private phaseactionterminate(entity)
 {
 	entity.last_phase_time = GetTime();
 	entity.is_phasing = 0;

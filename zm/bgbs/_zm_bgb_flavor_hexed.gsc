@@ -11,11 +11,11 @@
 #using scripts\zm\_zm_unitrigger;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_3ecfcb30;
+#namespace zm_bgb_flavor_hexed;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3ecfcb30
+	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0xD8BFB07
 	Offset: 0x240
 	Size: 0x33
@@ -29,7 +29,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3ecfcb30
+	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0x85B9D166
 	Offset: 0x280
 	Size: 0x53
@@ -47,7 +47,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_3ecfcb30
+	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0x1C0336DD
 	Offset: 0x2E0
 	Size: 0x1C3
@@ -87,7 +87,7 @@ function event()
 
 /*
 	Name: function_9a45adfb
-	Namespace: namespace_3ecfcb30
+	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0x82B521A0
 	Offset: 0x4B0
 	Size: 0x83
@@ -105,7 +105,7 @@ function function_9a45adfb(var_50f0f8bb)
 
 /*
 	Name: function_655e0571
-	Namespace: namespace_3ecfcb30
+	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0x218D34AA
 	Offset: 0x540
 	Size: 0x103
@@ -116,10 +116,10 @@ function function_655e0571(var_50f0f8bb)
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_fcbbef99");
+	self endon("bgb_gumball_anim_give");
 	self waittill("bgb_update_give_" + var_50f0f8bb);
 	self notify("bgb_flavor_hexed_give_" + var_50f0f8bb);
-	self waittill("hash_994d5e9e", var_1531e8c4, var_9a4acf7);
+	self waittill("bgb_update", var_1531e8c4, var_9a4acf7);
 	if(var_9a4acf7 === var_50f0f8bb && self.var_c3a5a8.size)
 	{
 		var_df8558a0 = Array::random(self.var_c3a5a8);
@@ -131,7 +131,7 @@ function function_655e0571(var_50f0f8bb)
 
 /*
 	Name: function_21f6c6f5
-	Namespace: namespace_3ecfcb30
+	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0x8ED1A3AD
 	Offset: 0x650
 	Size: 0x47

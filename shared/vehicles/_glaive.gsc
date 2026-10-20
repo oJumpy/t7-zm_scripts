@@ -20,7 +20,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: glaive
-	Checksum: 0xA11527FC
+	Checksum: 0xC65501A6
 	Offset: 0x490
 	Size: 0x33
 	Parameters: 0
@@ -34,7 +34,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: glaive
-	Checksum: 0xB691AEEA
+	Checksum: 0x69361AE6
 	Offset: 0x4D0
 	Size: 0x5B
 	Parameters: 0
@@ -49,7 +49,7 @@ function __init__()
 /*
 	Name: glaive_initialize
 	Namespace: glaive
-	Checksum: 0xD0DB9DAC
+	Checksum: 0x7CB1107B
 	Offset: 0x538
 	Size: 0x1FB
 	Parameters: 0
@@ -89,7 +89,7 @@ function glaive_initialize()
 /*
 	Name: defaultRole
 	Namespace: glaive
-	Checksum: 0x858D585F
+	Checksum: 0xC67725D3
 	Offset: 0x740
 	Size: 0x107
 	Parameters: 0
@@ -112,7 +112,7 @@ function defaultRole()
 /*
 	Name: is_enemy_valid
 	Namespace: glaive
-	Checksum: 0xA618D061
+	Checksum: 0x76EA15BD
 	Offset: 0x850
 	Size: 0x205
 	Parameters: 1
@@ -169,7 +169,7 @@ function private is_enemy_valid(target)
 /*
 	Name: get_glaive_enemy
 	Namespace: glaive
-	Checksum: 0xF317B23F
+	Checksum: 0xB97E2BA5
 	Offset: 0xA60
 	Size: 0xD9
 	Parameters: 0
@@ -191,7 +191,7 @@ function private get_glaive_enemy()
 /*
 	Name: glaive_target_selection
 	Namespace: glaive
-	Checksum: 0xE2AE9D0D
+	Checksum: 0x23481364
 	Offset: 0xB48
 	Size: 0x157
 	Parameters: 0
@@ -247,7 +247,7 @@ function private glaive_target_selection()
 /*
 	Name: should_go_to_owner
 	Namespace: glaive
-	Checksum: 0xF33A2D4
+	Checksum: 0x9E73DEBC
 	Offset: 0xCA8
 	Size: 0x67
 	Parameters: 0
@@ -270,7 +270,7 @@ function should_go_to_owner()
 /*
 	Name: should_go_to_near_owner
 	Namespace: glaive
-	Checksum: 0x7F033140
+	Checksum: 0xE1E666D2
 	Offset: 0xD18
 	Size: 0x135
 	Parameters: 0
@@ -299,7 +299,7 @@ function should_go_to_near_owner()
 /*
 	Name: state_combat_enter
 	Namespace: glaive
-	Checksum: 0xF8620B6E
+	Checksum: 0xAAB219E8
 	Offset: 0xE58
 	Size: 0x2B
 	Parameters: 1
@@ -313,7 +313,7 @@ function state_combat_enter(params)
 /*
 	Name: state_combat_update
 	Namespace: glaive
-	Checksum: 0x4D8510A7
+	Checksum: 0xADA6E9D5
 	Offset: 0xE90
 	Size: 0x663
 	Parameters: 1
@@ -428,7 +428,7 @@ function state_combat_update(params)
 /*
 	Name: check_glaive_playable_area_conditions
 	Namespace: glaive
-	Checksum: 0x928FA15F
+	Checksum: 0x5DC2D6B9
 	Offset: 0x1500
 	Size: 0x9D
 	Parameters: 0
@@ -450,7 +450,7 @@ function check_glaive_playable_area_conditions()
 /*
 	Name: go_back_on_navvolume
 	Namespace: glaive
-	Checksum: 0xA42902E4
+	Checksum: 0xB576A5B1
 	Offset: 0x15A8
 	Size: 0x2A3
 	Parameters: 0
@@ -496,7 +496,7 @@ function go_back_on_navvolume()
 /*
 	Name: chooseSwordAnim
 	Namespace: glaive
-	Checksum: 0xEF9A546C
+	Checksum: 0xAB0F88E
 	Offset: 0x1858
 	Size: 0xD5
 	Parameters: 1
@@ -536,7 +536,7 @@ function chooseSwordAnim(enemy)
 /*
 	Name: state_slash_update
 	Namespace: glaive
-	Checksum: 0x2BFD094C
+	Checksum: 0x1902385B
 	Offset: 0x1938
 	Size: 0x46B
 	Parameters: 1
@@ -599,7 +599,7 @@ function state_slash_update(params)
 /*
 	Name: glaive_ignore_cooldown
 	Namespace: glaive
-	Checksum: 0x3A1F0CB2
+	Checksum: 0xCEF14AE6
 	Offset: 0x1DB0
 	Size: 0x25
 	Parameters: 1
@@ -615,7 +615,7 @@ function glaive_ignore_cooldown(duration)
 /*
 	Name: go_to_near_owner
 	Namespace: glaive
-	Checksum: 0x8F9968F4
+	Checksum: 0xF61AA770
 	Offset: 0x1DE0
 	Size: 0x3FB
 	Parameters: 0
@@ -674,7 +674,7 @@ function go_to_near_owner()
 /*
 	Name: go_to_owner
 	Namespace: glaive
-	Checksum: 0x6B31F08F
+	Checksum: 0x6A191CEC
 	Offset: 0x21E8
 	Size: 0x363
 	Parameters: 0
@@ -743,7 +743,7 @@ function go_to_owner()
 /*
 	Name: back_to_owner_check
 	Namespace: glaive
-	Checksum: 0x373944F1
+	Checksum: 0xE7F1298F
 	Offset: 0x2558
 	Size: 0xB5
 	Parameters: 0
@@ -762,7 +762,7 @@ function back_to_owner_check()
 /*
 	Name: back_to_near_owner_check
 	Namespace: glaive
-	Checksum: 0xE937D992
+	Checksum: 0x6CE0F1CC
 	Offset: 0x2618
 	Size: 0x129
 	Parameters: 0
@@ -782,7 +782,7 @@ function back_to_near_owner_check()
 /*
 	Name: glaive_AllowFriendlyFireDamage
 	Namespace: glaive
-	Checksum: 0x72C20D9D
+	Checksum: 0xB795B7DA
 	Offset: 0x2750
 	Size: 0x25
 	Parameters: 4
@@ -796,7 +796,7 @@ function glaive_AllowFriendlyFireDamage(eInflictor, eAttacker, sMeansOfDeath, we
 /*
 	Name: glaive_callback_damage
 	Namespace: glaive
-	Checksum: 0x28D9CD22
+	Checksum: 0x29ABDA7D
 	Offset: 0x2780
 	Size: 0x7F
 	Parameters: 15

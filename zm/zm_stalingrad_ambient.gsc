@@ -7,11 +7,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_c71bfefb;
+#namespace zm_stalingrad_ambient;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_c71bfefb
+	Namespace: zm_stalingrad_ambient
 	Checksum: 0x5D309F37
 	Offset: 0x298
 	Size: 0x3B
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_c71bfefb
+	Namespace: zm_stalingrad_ambient
 	Checksum: 0xD151ED8E
 	Offset: 0x2E0
 	Size: 0xCB
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_c71bfefb
+	Namespace: zm_stalingrad_ambient
 	Checksum: 0x45CE0EF6
 	Offset: 0x3B8
 	Size: 0x1B
@@ -57,7 +57,7 @@ function __main__()
 
 /*
 	Name: function_46a16b31
-	Namespace: namespace_c71bfefb
+	Namespace: zm_stalingrad_ambient
 	Checksum: 0xB4CB2B8F
 	Offset: 0x3E0
 	Size: 0x1FD
@@ -95,7 +95,7 @@ function function_46a16b31()
 
 /*
 	Name: function_8c898920
-	Namespace: namespace_c71bfefb
+	Namespace: zm_stalingrad_ambient
 	Checksum: 0xD6ED29EC
 	Offset: 0x5E8
 	Size: 0x347
@@ -169,7 +169,7 @@ function function_8c898920()
 
 /*
 	Name: function_20bdb71
-	Namespace: namespace_c71bfefb
+	Namespace: zm_stalingrad_ambient
 	Checksum: 0xB1812FCE
 	Offset: 0x938
 	Size: 0x41
@@ -178,7 +178,7 @@ function function_8c898920()
 */
 function function_20bdb71()
 {
-	level endon("hash_cb701c27");
+	level endon("nikolai_start");
 	for(i = 0; i < 2; i++)
 	{
 		level waittill("start_of_round");
@@ -187,7 +187,7 @@ function function_20bdb71()
 
 /*
 	Name: function_7af373ba
-	Namespace: namespace_c71bfefb
+	Namespace: zm_stalingrad_ambient
 	Checksum: 0xE2D1A99F
 	Offset: 0x988
 	Size: 0x16B
@@ -224,7 +224,7 @@ function function_7af373ba(str_zone)
 
 /*
 	Name: function_8affee60
-	Namespace: namespace_c71bfefb
+	Namespace: zm_stalingrad_ambient
 	Checksum: 0x3B6A51C1
 	Offset: 0xB00
 	Size: 0x15F
@@ -262,7 +262,7 @@ function function_8affee60(b_is_mortars)
 
 /*
 	Name: wait_for_power
-	Namespace: namespace_c71bfefb
+	Namespace: zm_stalingrad_ambient
 	Checksum: 0x57B82CD3
 	Offset: 0xC68
 	Size: 0x43

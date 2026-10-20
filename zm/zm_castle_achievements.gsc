@@ -63,7 +63,7 @@ function on_player_connect()
 	self thread function_a54c1d45();
 	self thread function_abd6b408();
 	self thread function_2ac65a0e();
-	self thread function_2aca0270();
+	self thread electrocutioner();
 	self thread function_763e50f3();
 	self thread function_ed9679c1();
 	self thread function_fd055c44();
@@ -175,7 +175,7 @@ function function_2ac65a0e()
 }
 
 /*
-	Name: function_2aca0270
+	Name: electrocutioner
 	Namespace: castle_achievements
 	Checksum: 0xDB3E7BFD
 	Offset: 0x890
@@ -183,7 +183,7 @@ function function_2ac65a0e()
 	Parameters: 0
 	Flags: None
 */
-function function_2aca0270()
+function electrocutioner()
 {
 	level endon("end_game");
 	self endon("disconnect");

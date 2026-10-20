@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\craftables\_zm_craftables;
 
-#namespace namespace_b57650e4;
+#namespace zm_stalingrad_pap;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x3B47F26A
 	Offset: 0x3B0
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x2654E314
 	Offset: 0x3F0
 	Size: 0xDB
@@ -36,21 +36,21 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("world", "lockdown_lights_west", 12000, 1, "int", &function_a7cac48a, 0, 0);
-	clientfield::register("world", "lockdown_lights_north", 12000, 1, "int", &function_2a0966c, 0, 0);
-	clientfield::register("world", "lockdown_lights_east", 12000, 1, "int", &function_5355114, 0, 0);
+	clientfield::register("world", "lockdown_lights_west", 12000, 1, "int", &lockdown_lights_west, 0, 0);
+	clientfield::register("world", "lockdown_lights_north", 12000, 1, "int", &lockdown_lights_north, 0, 0);
+	clientfield::register("world", "lockdown_lights_east", 12000, 1, "int", &lockdown_lights_east, 0, 0);
 }
 
 /*
-	Name: function_a7cac48a
-	Namespace: namespace_b57650e4
+	Name: lockdown_lights_west
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xFAE82931
 	Offset: 0x4D8
 	Size: 0x93
 	Parameters: 7
 	Flags: None
 */
-function function_a7cac48a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function lockdown_lights_west(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(level.var_ff3f0000))
 	{
@@ -60,15 +60,15 @@ function function_a7cac48a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_2a0966c
-	Namespace: namespace_b57650e4
+	Name: lockdown_lights_north
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x1E28A8F4
 	Offset: 0x578
 	Size: 0x93
 	Parameters: 7
 	Flags: None
 */
-function function_2a0966c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function lockdown_lights_north(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(level.var_80d95152))
 	{
@@ -78,15 +78,15 @@ function function_2a0966c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_5355114
-	Namespace: namespace_b57650e4
+	Name: lockdown_lights_east
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x6FE00291
 	Offset: 0x618
 	Size: 0x93
 	Parameters: 7
 	Flags: None
 */
-function function_5355114(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function lockdown_lights_east(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(level.var_4f41d366))
 	{
@@ -97,7 +97,7 @@ function function_5355114(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_4ec66a83
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x91A87783
 	Offset: 0x6B8
 	Size: 0x17F
@@ -125,15 +125,15 @@ function function_4ec66a83(localClientNum, newVal, a_s_lights)
 }
 
 /*
-	Name: function_7a72544b
-	Namespace: namespace_b57650e4
+	Name: drop_pod_streaming
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x55E864DE
 	Offset: 0x840
 	Size: 0xDB
 	Parameters: 7
 	Flags: None
 */
-function function_7a72544b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function drop_pod_streaming(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -151,7 +151,7 @@ function function_7a72544b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_5858bdaf
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x84A61CCF
 	Offset: 0x928
 	Size: 0x63
@@ -166,7 +166,7 @@ function function_5858bdaf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_ca87037d
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xB45E610F
 	Offset: 0x998
 	Size: 0x47
@@ -185,7 +185,7 @@ function function_ca87037d(localClientNum)
 
 /*
 	Name: function_c86c0cdd
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x7F702726
 	Offset: 0x9E8
 	Size: 0x10B
@@ -202,7 +202,7 @@ function function_c86c0cdd(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_1d3ab9dd
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x1469CCC5
 	Offset: 0xB00
 	Size: 0xE3
@@ -222,7 +222,7 @@ function function_1d3ab9dd(mdl_target)
 
 /*
 	Name: function_5e369bd2
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x2500BC66
 	Offset: 0xBF0
 	Size: 0x1CD

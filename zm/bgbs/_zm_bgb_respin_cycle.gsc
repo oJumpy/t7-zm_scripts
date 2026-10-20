@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_unitrigger;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_ddb9c921;
+#namespace zm_bgb_respin_cycle;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ddb9c921
+	Namespace: zm_bgb_respin_cycle
 	Checksum: 0x303AC2B3
 	Offset: 0x200
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ddb9c921
+	Namespace: zm_bgb_respin_cycle
 	Checksum: 0x9CFF218C
 	Offset: 0x240
 	Size: 0x93
@@ -45,7 +45,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_ddb9c921
+	Namespace: zm_bgb_respin_cycle
 	Checksum: 0x98B25939
 	Offset: 0x2E0
 	Size: 0x95
@@ -67,7 +67,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_ddb9c921
+	Namespace: zm_bgb_respin_cycle
 	Checksum: 0xB4E0655
 	Offset: 0x380
 	Size: 0xB5
@@ -89,7 +89,7 @@ function activation()
 
 /*
 	Name: respin_chest_thread
-	Namespace: namespace_ddb9c921
+	Namespace: zm_bgb_respin_cycle
 	Checksum: 0x898A9EDB
 	Offset: 0x440
 	Size: 0x1CB

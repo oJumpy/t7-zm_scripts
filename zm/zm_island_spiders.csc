@@ -3,11 +3,11 @@
 #using scripts\shared\system_shared;
 #using scripts\zm\_zm;
 
-#namespace namespace_af029029;
+#namespace zm_island_spiders;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_af029029
+	Namespace: zm_island_spiders
 	Checksum: 0x3B24078B
 	Offset: 0x100
 	Size: 0x3B
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_af029029
+	Namespace: zm_island_spiders
 	Checksum: 0x99EC1590
 	Offset: 0x148
 	Size: 0x3
@@ -34,7 +34,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_af029029
+	Namespace: zm_island_spiders
 	Checksum: 0x2BFA4382
 	Offset: 0x158
 	Size: 0x13
@@ -48,7 +48,7 @@ function __main__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_af029029
+	Namespace: zm_island_spiders
 	Checksum: 0x99EC1590
 	Offset: 0x178
 	Size: 0x3

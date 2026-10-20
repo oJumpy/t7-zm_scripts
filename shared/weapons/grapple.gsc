@@ -97,7 +97,7 @@ function watch_for_grapple()
 	self thread translate_notify_1("weapon_change_complete", "grapple_weapon_change");
 	while(1)
 	{
-		self waittill("hash_17cf4048", event, weapon);
+		self waittill("grapple_weapon_change", event, weapon);
 		if(isdefined(weapon.grappleWeapon) && weapon.grappleWeapon)
 		{
 			self thread watch_lockon(weapon);

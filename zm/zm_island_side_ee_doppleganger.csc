@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_28a54cd6;
+#namespace zm_island_side_ee_doppleganger;
 
 /*
 	Name: init
-	Namespace: namespace_28a54cd6
+	Namespace: zm_island_side_ee_doppleganger
 	Checksum: 0x99EC1590
 	Offset: 0x148
 	Size: 0x3

@@ -3,11 +3,11 @@
 #using scripts\shared\postfx_shared;
 #using scripts\zm\_zm_pack_a_punch;
 
-#namespace namespace_155a700c;
+#namespace zm_castle_pap_quest;
 
 /*
 	Name: main
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x72592320
 	Offset: 0x140
 	Size: 0x2D
@@ -22,7 +22,7 @@ function autoexec main()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_155a700c
+	Namespace: zm_castle_pap_quest
 	Checksum: 0x3F56612B
 	Offset: 0x178
 	Size: 0x4B
@@ -31,19 +31,19 @@ function autoexec main()
 */
 function register_clientfields()
 {
-	clientfield::register("scriptmover", "pap_tp_fx", 5000, 1, "counter", &function_58d6b2a0, 0, 0);
+	clientfield::register("scriptmover", "pap_tp_fx", 5000, 1, "counter", &pap_tp_fx, 0, 0);
 }
 
 /*
-	Name: function_58d6b2a0
-	Namespace: namespace_155a700c
+	Name: pap_tp_fx
+	Namespace: zm_castle_pap_quest
 	Checksum: 0xB5FAD7C4
 	Offset: 0x1D0
 	Size: 0x6B
 	Parameters: 7
 	Flags: None
 */
-function function_58d6b2a0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pap_tp_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	playFX(localClientNum, level._effect["pap_tp"], self.origin);
 }

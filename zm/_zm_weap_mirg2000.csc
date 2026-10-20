@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_7cee2b44;
+#namespace mirg2000;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xEA92BE10
 	Offset: 0x4D8
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0x536A33D7
 	Offset: 0x518
 	Size: 0x2D9
@@ -32,12 +32,12 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "plant_killer", 9000, GetMinBitCountForNum(4), "int", &function_23a70949, 0, 0);
+	clientfield::register("scriptmover", "plant_killer", 9000, GetMinBitCountForNum(4), "int", &zombie_plant_killer, 0, 0);
 	clientfield::register("vehicle", "mirg2000_spider_death_fx", 9000, 2, "int", &function_1d3d9723, 0, 0);
 	clientfield::register("actor", "mirg2000_enemy_impact_fx", 9000, 2, "int", &function_15ad909d, 0, 0);
 	clientfield::register("vehicle", "mirg2000_enemy_impact_fx", 9000, 2, "int", &function_15ad909d, 0, 0);
-	clientfield::register("allplayers", "mirg2000_fire_button_held_sound", 9000, 1, "int", &function_4c2164f8, 0, 0);
-	clientfield::register("toplayer", "mirg2000_charge_glow", 9000, 2, "int", &function_877c3ed1, 0, 0);
+	clientfield::register("allplayers", "mirg2000_fire_button_held_sound", 9000, 1, "int", &mirg2000_fire_button_held_sound, 0, 0);
+	clientfield::register("toplayer", "mirg2000_charge_glow", 9000, 2, "int", &mirg2000_charge_glow, 0, 0);
 	level._effect["mirg2000_charged_shot_1"] = "dlc2/zmb_weapon/fx_mirg_impact_aoe_chrg2";
 	level._effect["mirg2000_charged_shot_2"] = "dlc2/zmb_weapon/fx_mirg_impact_aoe_chrg3";
 	level._effect["mirg2000_charged_shot_1_up"] = "dlc2/zmb_weapon/fx_mirg_impact_aoe_chrg2_ug";
@@ -51,15 +51,15 @@ function __init__()
 }
 
 /*
-	Name: function_23a70949
-	Namespace: namespace_7cee2b44
+	Name: zombie_plant_killer
+	Namespace: mirg2000
 	Checksum: 0x5F993857
 	Offset: 0x800
 	Size: 0x1DD
 	Parameters: 7
 	Flags: None
 */
-function function_23a70949(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zombie_plant_killer(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{
@@ -104,7 +104,7 @@ function function_23a70949(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_15ad909d
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xA6E33B24
 	Offset: 0x9E8
 	Size: 0xBB
@@ -125,7 +125,7 @@ function function_15ad909d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_1d3d9723
-	Namespace: namespace_7cee2b44
+	Namespace: mirg2000
 	Checksum: 0xFE84FCFF
 	Offset: 0xAB0
 	Size: 0xBB
@@ -145,15 +145,15 @@ function function_1d3d9723(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4c2164f8
-	Namespace: namespace_7cee2b44
+	Name: mirg2000_fire_button_held_sound
+	Namespace: mirg2000
 	Checksum: 0xE0F014D9
 	Offset: 0xB78
 	Size: 0xCD
 	Parameters: 7
 	Flags: None
 */
-function function_4c2164f8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function mirg2000_fire_button_held_sound(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -173,15 +173,15 @@ function function_4c2164f8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_877c3ed1
-	Namespace: namespace_7cee2b44
+	Name: mirg2000_charge_glow
+	Namespace: mirg2000
 	Checksum: 0xF8D3E9CE
 	Offset: 0xC50
 	Size: 0x1B5
 	Parameters: 7
 	Flags: None
 */
-function function_877c3ed1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function mirg2000_charge_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	w_current = GetCurrentWeapon(localClientNum);
 	str_weapon_name = w_current.name;

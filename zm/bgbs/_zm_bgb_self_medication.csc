@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_a7758d0b;
+#namespace zm_bgb_self_medication;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0xD9C11178
 	Offset: 0x150
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0xA168CEBA
 	Offset: 0x190
 	Size: 0x3B

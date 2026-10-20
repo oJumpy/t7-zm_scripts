@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_906c7034;
+#namespace zm_bgb_temporal_gift;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_906c7034
+	Namespace: zm_bgb_temporal_gift
 	Checksum: 0xEC834B91
 	Offset: 0x150
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_906c7034
+	Namespace: zm_bgb_temporal_gift
 	Checksum: 0xB7C1473F
 	Offset: 0x190
 	Size: 0x5B
@@ -41,7 +41,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_906c7034
+	Namespace: zm_bgb_temporal_gift
 	Checksum: 0x99EC1590
 	Offset: 0x1F8
 	Size: 0x3
@@ -54,7 +54,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_906c7034
+	Namespace: zm_bgb_temporal_gift
 	Checksum: 0x99EC1590
 	Offset: 0x208
 	Size: 0x3

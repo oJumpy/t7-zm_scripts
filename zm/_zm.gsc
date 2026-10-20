@@ -473,7 +473,7 @@ function set_round_number(new_round)
 	{
 		new_round = 255;
 	}
-	world.var_48b0db18 = new_round ^ 115;
+	world.roundnumber = new_round ^ 115;
 }
 
 /*
@@ -487,7 +487,7 @@ function set_round_number(new_round)
 */
 function get_round_number()
 {
-	return world.var_48b0db18 ^ 115;
+	return world.roundnumber ^ 115;
 }
 
 /*

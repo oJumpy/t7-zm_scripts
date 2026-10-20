@@ -18,11 +18,11 @@
 #using scripts\zm\zm_castle_mechz;
 #using scripts\zm\zm_castle_vo;
 
-#namespace namespace_fa1b0620;
+#namespace zm_castle_teleporter;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x56CAFF5B
 	Offset: 0x6A0
 	Size: 0x3B
@@ -36,7 +36,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x65DCB24
 	Offset: 0x6E8
 	Size: 0x1F3
@@ -71,7 +71,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xE27615D9
 	Offset: 0x8E8
 	Size: 0x1D5
@@ -102,7 +102,7 @@ function __main__()
 
 /*
 	Name: pad_manager
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x2B01A53E
 	Offset: 0xAC8
 	Size: 0x201
@@ -138,7 +138,7 @@ function pad_manager()
 
 /*
 	Name: function_68ebacd3
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xB9923B19
 	Offset: 0xCD8
 	Size: 0xFB
@@ -171,7 +171,7 @@ function function_68ebacd3()
 
 /*
 	Name: function_798f36c
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xE1B81D01
 	Offset: 0xDE0
 	Size: 0x14B
@@ -205,7 +205,7 @@ function function_798f36c()
 
 /*
 	Name: function_ee24bc2e
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x524A40CD
 	Offset: 0xF38
 	Size: 0x109
@@ -232,7 +232,7 @@ function function_ee24bc2e()
 
 /*
 	Name: update_trigger_visibility
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x9161DDC4
 	Offset: 0x1050
 	Size: 0xFB
@@ -262,7 +262,7 @@ function private update_trigger_visibility()
 
 /*
 	Name: teleport_pad_think
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xAA5E7C0E
 	Offset: 0x1158
 	Size: 0x93
@@ -280,7 +280,7 @@ function teleport_pad_think()
 
 /*
 	Name: teleport_pad_active_think
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xB2481B61
 	Offset: 0x11F8
 	Size: 0x1FF
@@ -323,7 +323,7 @@ function teleport_pad_active_think()
 
 /*
 	Name: function_ad16f13c
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x2314DB02
 	Offset: 0x1400
 	Size: 0xCB
@@ -358,7 +358,7 @@ function function_ad16f13c(e_who)
 
 /*
 	Name: function_6b3344b4
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x794F4920
 	Offset: 0x14D8
 	Size: 0x19B
@@ -390,7 +390,7 @@ function function_6b3344b4()
 
 /*
 	Name: function_264f93ff
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xCEA68181
 	Offset: 0x1680
 	Size: 0x593
@@ -412,7 +412,7 @@ function function_264f93ff(var_edc2ee2a, var_66f7e6b9)
 	{
 		level.disable_nuke_delay_spawning = 1;
 		level flag::clear("spawn_zombies");
-		namespace_c93e4c32::function_5db6ba34();
+		zm_castle_ee::clear_zombies();
 	}
 	time_since_last_teleport = GetTime() - level.n_teleport_time;
 	exploder::exploder("fxexp_101");
@@ -423,7 +423,7 @@ function function_264f93ff(var_edc2ee2a, var_66f7e6b9)
 	}
 	if(var_edc2ee2a && !var_66f7e6b9)
 	{
-		level thread namespace_c93e4c32::function_2c1aa78f();
+		level thread zm_castle_ee::function_2c1aa78f();
 	}
 	foreach(player in level.players)
 	{
@@ -447,7 +447,7 @@ function function_264f93ff(var_edc2ee2a, var_66f7e6b9)
 	{
 		if(!level flag::get("dimension_set"))
 		{
-			namespace_c93e4c32::function_3918d831("safe_code_past");
+			zm_castle_ee::function_3918d831("safe_code_past");
 		}
 	}
 	self teleport_players(var_edc2ee2a, var_66f7e6b9);
@@ -493,14 +493,14 @@ function function_264f93ff(var_edc2ee2a, var_66f7e6b9)
 		level flag::clear("time_travel_teleporter_ready");
 		wait(33);
 		self function_264f93ff(1, 1);
-		level thread namespace_97ddfc0d::function_8b0b26a6();
-		namespace_c93e4c32::function_71152937();
+		level thread zm_castle_vo::function_8b0b26a6();
+		zm_castle_ee::function_71152937();
 	}
 }
 
 /*
 	Name: function_e421dd3f
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x513F3FD4
 	Offset: 0x1C20
 	Size: 0x123
@@ -525,7 +525,7 @@ function function_e421dd3f()
 
 /*
 	Name: teleport_trigger_invisible
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xD87939AF
 	Offset: 0x1D50
 	Size: 0xB1
@@ -543,7 +543,7 @@ function teleport_trigger_invisible(enable)
 
 /*
 	Name: player_is_near_pad
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x353C1B13
 	Offset: 0x1E10
 	Size: 0x5D
@@ -562,7 +562,7 @@ function player_is_near_pad(player)
 
 /*
 	Name: function_f5a06c
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xF4620AD
 	Offset: 0x1E78
 	Size: 0x3B
@@ -576,7 +576,7 @@ function function_f5a06c(n_duration)
 
 /*
 	Name: teleport_pad_player_fx
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x5D0C1E7E
 	Offset: 0x1EC0
 	Size: 0x16F
@@ -610,7 +610,7 @@ function teleport_pad_player_fx(t_teleporter, n_duration)
 
 /*
 	Name: teleport_players
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x4B1697DF
 	Offset: 0x2038
 	Size: 0x93B
@@ -767,7 +767,7 @@ function teleport_players(var_edc2ee2a, var_66f7e6b9)
 
 /*
 	Name: function_4a0d1595
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x69A7D862
 	Offset: 0x2980
 	Size: 0x67
@@ -785,7 +785,7 @@ function function_4a0d1595()
 
 /*
 	Name: teleport_2d_audio
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xF46083C3
 	Offset: 0x29F0
 	Size: 0xC9
@@ -814,7 +814,7 @@ function teleport_2d_audio()
 
 /*
 	Name: teleport_nuke
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x882E209F
 	Offset: 0x2AC8
 	Size: 0x1A5
@@ -851,7 +851,7 @@ function teleport_nuke(max_zombies, range)
 
 /*
 	Name: teleporter_wire_wait
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x903F5298
 	Offset: 0x2C78
 	Size: 0xBD
@@ -882,7 +882,7 @@ function teleporter_wire_wait(index)
 
 /*
 	Name: teleport_aftereffects
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xDA80D117
 	Offset: 0x2D40
 	Size: 0xA9
@@ -903,7 +903,7 @@ function teleport_aftereffects(var_edc2ee2a, var_66f7e6b9)
 
 /*
 	Name: teleport_aftereffect_shellshock
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x8A0C923E
 	Offset: 0x2DF8
 	Size: 0x43
@@ -920,7 +920,7 @@ function teleport_aftereffect_shellshock()
 
 /*
 	Name: teleport_aftereffect_shellshock_electric
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xA484BE94
 	Offset: 0x2E48
 	Size: 0x43
@@ -937,7 +937,7 @@ function teleport_aftereffect_shellshock_electric()
 
 /*
 	Name: teleport_aftereffect_fov
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xFDE4BF05
 	Offset: 0x2E98
 	Size: 0x23
@@ -951,7 +951,7 @@ function teleport_aftereffect_fov()
 
 /*
 	Name: teleport_aftereffect_bw_vision
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x725114C2
 	Offset: 0x2EC8
 	Size: 0x2B
@@ -965,7 +965,7 @@ function teleport_aftereffect_bw_vision(localClientNum)
 
 /*
 	Name: teleport_aftereffect_red_vision
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xFDD97E9E
 	Offset: 0x2F00
 	Size: 0x2B
@@ -979,7 +979,7 @@ function teleport_aftereffect_red_vision(localClientNum)
 
 /*
 	Name: teleport_aftereffect_flashy_vision
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0x9BF752C0
 	Offset: 0x2F38
 	Size: 0x2B
@@ -993,7 +993,7 @@ function teleport_aftereffect_flashy_vision(localClientNum)
 
 /*
 	Name: teleport_aftereffect_flare_vision
-	Namespace: namespace_fa1b0620
+	Namespace: zm_castle_teleporter
 	Checksum: 0xFEE3D8ED
 	Offset: 0x2F70
 	Size: 0x2B

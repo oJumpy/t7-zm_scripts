@@ -159,11 +159,11 @@ function function_bab3ea62()
 	level thread function_610a705b();
 	level thread function_53b9afad();
 	var_29085ef = GetEntArray(0, "sndMusicTrig", "targetname");
-	Array::thread_all(var_29085ef, &function_95d61fc1);
+	Array::thread_all(var_29085ef, &sndmusictrig);
 }
 
 /*
-	Name: function_95d61fc1
+	Name: sndmusictrig
 	Namespace: namespace_f67badb7
 	Checksum: 0x51B0DF74
 	Offset: 0x780
@@ -171,7 +171,7 @@ function function_bab3ea62()
 	Parameters: 0
 	Flags: None
 */
-function function_95d61fc1()
+function sndmusictrig()
 {
 	while(1)
 	{
@@ -256,7 +256,7 @@ function function_51d7bc7c(newmus)
 */
 function function_ab8dfbdf()
 {
-	level waittill("hash_30cde396");
+	level waittill("sndlair");
 	level.var_65d981dd = "spider_lair_inactive";
 	if(level.var_b6342abd == "mus_island_underscore_spider_lair_active")
 	{
@@ -275,8 +275,8 @@ function function_ab8dfbdf()
 */
 function takeowatcher()
 {
-	level endon("hash_c535f9f1");
-	level waittill("hash_b0bea12a");
+	level endon("sndtakeoend");
+	level waittill("sndtakeo");
 	level.var_2d9f200e = "takeo_battle_active";
 	if(level.var_b6342abd == "mus_island_underscore_takeo_battle_inactive")
 	{
@@ -295,7 +295,7 @@ function takeowatcher()
 */
 function function_7a83b09a()
 {
-	level waittill("hash_c535f9f1");
+	level waittill("sndtakeoend");
 	level.var_2d9f200e = "takeo_battle_over";
 	if(level.var_b6342abd == "mus_island_underscore_takeo_battle_active")
 	{
@@ -316,7 +316,7 @@ function function_610a705b()
 {
 	while(1)
 	{
-		level waittill("hash_9c487e8b");
+		level waittill("sndfbm");
 		level notify("hash_51d7bc7c", level.var_2d9f200e);
 	}
 }

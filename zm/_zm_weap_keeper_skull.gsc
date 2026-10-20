@@ -28,11 +28,11 @@
 #using scripts\zm\_zm_weap_annihilator;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_f55b6585;
+#namespace keeper_skull;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x6A13479B
 	Offset: 0x598
 	Size: 0x3B
@@ -46,7 +46,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x1436F9D2
 	Offset: 0x5E0
 	Size: 0x223
@@ -72,7 +72,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x2FEFDB02
 	Offset: 0x810
 	Size: 0x23
@@ -86,7 +86,7 @@ function __main__()
 
 /*
 	Name: function_3028b9ff
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xA3F1B38E
 	Offset: 0x840
 	Size: 0x113
@@ -112,7 +112,7 @@ function function_3028b9ff()
 
 /*
 	Name: watch_player_death
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x604AEE1C
 	Offset: 0x960
 	Size: 0x67
@@ -134,7 +134,7 @@ function watch_player_death()
 
 /*
 	Name: function_6b7bd037
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xDB6173D4
 	Offset: 0x9D0
 	Size: 0x8F
@@ -160,7 +160,7 @@ function function_6b7bd037()
 
 /*
 	Name: function_2dda41f5
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x5088D8A1
 	Offset: 0xA68
 	Size: 0xED
@@ -182,7 +182,7 @@ function function_2dda41f5()
 		{
 			if(!self laststand::player_is_in_laststand())
 			{
-				self notify("hash_dcf8ab17");
+				self notify("skull_weapon_fully_charged");
 				var_18e42304 = 1;
 				wait(30);
 			}
@@ -197,7 +197,7 @@ function function_2dda41f5()
 
 /*
 	Name: function_de235a27
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x530B3081
 	Offset: 0xB60
 	Size: 0x1F7
@@ -225,7 +225,7 @@ function function_de235a27()
 				{
 					if(!self.var_9adfaccf)
 					{
-						self thread function_23e997f4();
+						self thread play_beam_fx();
 					}
 					self function_123162a2();
 					wait(0.05);
@@ -236,20 +236,20 @@ function function_de235a27()
 			}
 		}
 		wait(0.05);
-		self thread function_e00bc70a();
+		self thread check_skull_fx();
 	}
 }
 
 /*
-	Name: function_23e997f4
-	Namespace: namespace_f55b6585
+	Name: play_beam_fx
+	Namespace: keeper_skull
 	Checksum: 0x2FF4797D
 	Offset: 0xD60
 	Size: 0x8B
 	Parameters: 0
 	Flags: None
 */
-function function_23e997f4()
+function play_beam_fx()
 {
 	self endon("disconnect");
 	self.var_9adfaccf = 1;
@@ -263,7 +263,7 @@ function function_23e997f4()
 
 /*
 	Name: function_123162a2
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x3C5F3C21
 	Offset: 0xDF8
 	Size: 0x17D
@@ -290,7 +290,7 @@ function function_123162a2()
 
 /*
 	Name: function_f51dbd0a
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xE31EFD8B
 	Offset: 0xF80
 	Size: 0x233
@@ -333,7 +333,7 @@ function function_f51dbd0a()
 
 /*
 	Name: function_32afe89a
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xC1314E25
 	Offset: 0x11C0
 	Size: 0x62B
@@ -383,7 +383,7 @@ function function_32afe89a(ai_zombie)
 			if(ai_zombie.archetype === "zombie")
 			{
 				ai_zombie clientfield::set("death_ray_shock_eye_fx", 0);
-				self notify("hash_f93e3181");
+				self notify("skullweapon_killed_zombie");
 				ai_zombie zombie_utility::zombie_head_gib(self);
 				ai_zombie playsound("evt_zombie_skull_breathe");
 			}
@@ -432,7 +432,7 @@ function function_32afe89a(ai_zombie)
 
 /*
 	Name: function_e31d6184
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x2AE805A3
 	Offset: 0x17F8
 	Size: 0xCB
@@ -466,7 +466,7 @@ function function_e31d6184()
 
 /*
 	Name: function_e703c25f
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xEE4EC7E2
 	Offset: 0x18D0
 	Size: 0x44F
@@ -499,7 +499,7 @@ function function_e703c25f()
 					self clientfield::set_to_player("skull_torch_fx", 1);
 					self clientfield::set("skull_torch_3p_fx", 1);
 					self clientfield::set("skull_emissive", 1);
-					self thread function_993fa661();
+					self thread play_torch_fx();
 				}
 				a_zombies = GetAITeamArray(level.zombie_team);
 				a_targets = util::get_array_of_closest(self.origin, a_zombies, undefined, undefined, 500);
@@ -508,7 +508,7 @@ function function_e703c25f()
 					if(ai_zombie.var_9b59d7f8 !== 1 && self function_5fa274c1(ai_zombie) && ai_zombie.completed_emerging_into_playable_area === 1 && (!isdefined(ai_zombie.thrasherConsumed) && ai_zombie.thrasherConsumed) && (!isdefined(ai_zombie.var_3f6ea790) && ai_zombie.var_3f6ea790))
 					{
 						self thread function_c2e953fb(ai_zombie);
-						self notify("hash_54bb0e43");
+						self notify("skullweapon_mesmerized_zombie");
 					}
 				}
 				wait(0.05);
@@ -542,15 +542,15 @@ function function_e703c25f()
 }
 
 /*
-	Name: function_993fa661
-	Namespace: namespace_f55b6585
+	Name: play_torch_fx
+	Namespace: keeper_skull
 	Checksum: 0x55FECCA4
 	Offset: 0x1D28
 	Size: 0x8B
 	Parameters: 0
 	Flags: None
 */
-function function_993fa661()
+function play_torch_fx()
 {
 	self endon("disconnect");
 	self endon("weapon_change");
@@ -564,7 +564,7 @@ function function_993fa661()
 
 /*
 	Name: function_c2e953fb
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xC74EE972
 	Offset: 0x1DC0
 	Size: 0x33B
@@ -584,7 +584,7 @@ function function_c2e953fb(ai_zombie)
 			{
 				ai_zombie thread zombie_utility::zombie_eye_glow_stop();
 				ai_zombie clientfield::set("entranced", 1);
-				ai_zombie thread function_3fca87eb();
+				ai_zombie thread zombie_mesmerized();
 			}
 			else if(isdefined(ai_zombie.var_b4e06d32) && ai_zombie.var_b4e06d32)
 			{
@@ -622,15 +622,15 @@ function function_c2e953fb(ai_zombie)
 }
 
 /*
-	Name: function_3fca87eb
-	Namespace: namespace_f55b6585
+	Name: zombie_mesmerized
+	Namespace: keeper_skull
 	Checksum: 0x491CBC43
 	Offset: 0x2108
 	Size: 0x8F
 	Parameters: 0
 	Flags: None
 */
-function function_3fca87eb()
+function zombie_mesmerized()
 {
 	self endon("death");
 	self endon("stop_mes");
@@ -644,7 +644,7 @@ function function_3fca87eb()
 
 /*
 	Name: function_5fa274c1
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xF9E2B8EB
 	Offset: 0x21A0
 	Size: 0x47
@@ -662,7 +662,7 @@ function function_5fa274c1(ai_zombie)
 
 /*
 	Name: function_fb77a973
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xB8A93A
 	Offset: 0x21F0
 	Size: 0x85
@@ -685,7 +685,7 @@ function function_fb77a973(ai_zombie)
 
 /*
 	Name: function_3f3f64e9
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xCA8620CF
 	Offset: 0x2280
 	Size: 0x75
@@ -707,7 +707,7 @@ function function_3f3f64e9(e_prop)
 
 /*
 	Name: function_6a46a0e0
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xFD60FB63
 	Offset: 0x2300
 	Size: 0x20B
@@ -760,7 +760,7 @@ function function_6a46a0e0()
 
 /*
 	Name: function_79e34741
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xD706CA31
 	Offset: 0x2518
 	Size: 0xAB
@@ -786,7 +786,7 @@ function function_79e34741()
 
 /*
 	Name: function_97d08b97
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0xE7665754
 	Offset: 0x25D0
 	Size: 0x4F
@@ -805,7 +805,7 @@ function function_97d08b97()
 
 /*
 	Name: watch_weapon_change
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x6841EDB4
 	Offset: 0x2628
 	Size: 0x5F
@@ -819,7 +819,7 @@ function watch_weapon_change()
 	{
 		if(self WeaponSwitchButtonPressed() || self.var_118ab24e < 1)
 		{
-			self function_e00bc70a();
+			self check_skull_fx();
 		}
 		wait(0.05);
 	}
@@ -827,7 +827,7 @@ function watch_weapon_change()
 
 /*
 	Name: function_eadaeb18
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x97AACB83
 	Offset: 0x2690
 	Size: 0x3F
@@ -840,20 +840,20 @@ function function_eadaeb18()
 	while(1)
 	{
 		self waittill("weapon_change_complete");
-		self function_e00bc70a();
+		self check_skull_fx();
 	}
 }
 
 /*
-	Name: function_e00bc70a
-	Namespace: namespace_f55b6585
+	Name: check_skull_fx
+	Namespace: keeper_skull
 	Checksum: 0x77462E92
 	Offset: 0x26D8
 	Size: 0x143
 	Parameters: 0
 	Flags: None
 */
-function function_e00bc70a()
+function check_skull_fx()
 {
 	if(self clientfield::get_to_player("skull_beam_fx"))
 	{
@@ -877,7 +877,7 @@ function function_e00bc70a()
 
 /*
 	Name: function_4aedb20b
-	Namespace: namespace_f55b6585
+	Namespace: keeper_skull
 	Checksum: 0x2BC66AD9
 	Offset: 0x2828
 	Size: 0x6F

@@ -19,7 +19,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0x786DD918
+	Checksum: 0x2629631C
 	Offset: 0x3F8
 	Size: 0x33
 	Parameters: 0
@@ -33,7 +33,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0xB675CFD1
+	Checksum: 0x71AAE210
 	Offset: 0x438
 	Size: 0x5B
 	Parameters: 0
@@ -50,7 +50,7 @@ function __init__()
 /*
 	Name: enable_additional_primary_weapon_perk_for_level
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0xE20B6915
+	Checksum: 0x95FB6334
 	Offset: 0x4A0
 	Size: 0x12B
 	Parameters: 0
@@ -69,7 +69,7 @@ function enable_additional_primary_weapon_perk_for_level()
 /*
 	Name: additional_primary_weapon_precache
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0xEACD55A6
+	Checksum: 0x1130D492
 	Offset: 0x5D8
 	Size: 0xDF
 	Parameters: 0
@@ -92,7 +92,7 @@ function additional_primary_weapon_precache()
 /*
 	Name: additional_primary_weapon_register_clientfield
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0xEB234B9F
+	Checksum: 0x830B7A48
 	Offset: 0x6C0
 	Size: 0x33
 	Parameters: 0
@@ -106,7 +106,7 @@ function additional_primary_weapon_register_clientfield()
 /*
 	Name: additional_primary_weapon_set_clientfield
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0x8B943970
+	Checksum: 0x950A928A
 	Offset: 0x700
 	Size: 0x2B
 	Parameters: 1
@@ -120,7 +120,7 @@ function additional_primary_weapon_set_clientfield(State)
 /*
 	Name: additional_primary_weapon_perk_machine_setup
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0x97DFE0FA
+	Checksum: 0xC55332D
 	Offset: 0x738
 	Size: 0xBB
 	Parameters: 4
@@ -156,7 +156,7 @@ function give_additional_primary_weapon_perk()
 /*
 	Name: take_additional_primary_weapon_perk
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0xB40091F4
+	Checksum: 0x9355DB44
 	Offset: 0x810
 	Size: 0x43
 	Parameters: 3
@@ -173,7 +173,7 @@ function take_additional_primary_weapon_perk(b_pause, str_perk, str_result)
 /*
 	Name: take_additionalprimaryweapon
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0x52556200
+	Checksum: 0x145BA262
 	Offset: 0x860
 	Size: 0x1EB
 	Parameters: 0
@@ -214,7 +214,7 @@ function take_additionalprimaryweapon()
 /*
 	Name: on_laststand
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0x5188EBD1
+	Checksum: 0x5861C7CA
 	Offset: 0xA58
 	Size: 0x43
 	Parameters: 0
@@ -231,7 +231,7 @@ function on_laststand()
 /*
 	Name: return_additionalprimaryweapon
 	Namespace: zm_perk_additionalprimaryweapon
-	Checksum: 0xE552B3DF
+	Checksum: 0xDB125C6C
 	Offset: 0xAA8
 	Size: 0x5B
 	Parameters: 1

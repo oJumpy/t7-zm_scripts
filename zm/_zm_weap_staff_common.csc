@@ -3,11 +3,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_c9806b9;
+#namespace zm_weap_staff;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_c9806b9
+	Namespace: zm_weap_staff
 	Checksum: 0xD504E4EF
 	Offset: 0x120
 	Size: 0x33
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_c9806b9
+	Namespace: zm_weap_staff
 	Checksum: 0x22C0E03F
 	Offset: 0x160
 	Size: 0x33
@@ -31,12 +31,12 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	level.var_27b5be99 = [];
-	callback::on_localplayer_spawned(&function_d10163c2);
+	callback::on_localplayer_spawned(&watch_staff_fx);
 }
 
 /*
 	Name: function_4be5e665
-	Namespace: namespace_c9806b9
+	Namespace: zm_weap_staff
 	Checksum: 0x2CD8922
 	Offset: 0x1A0
 	Size: 0x25
@@ -49,18 +49,18 @@ function function_4be5e665(w_weapon, FX)
 }
 
 /*
-	Name: function_d10163c2
-	Namespace: namespace_c9806b9
+	Name: watch_staff_fx
+	Namespace: zm_weap_staff
 	Checksum: 0xC7652C7A
 	Offset: 0x1D0
 	Size: 0xB7
 	Parameters: 1
 	Flags: None
 */
-function function_d10163c2(localClientNum)
+function watch_staff_fx(localClientNum)
 {
-	self notify("hash_d10163c2");
-	self endon("hash_d10163c2");
+	self notify("watch_staff_fx");
+	self endon("watch_staff_fx");
 	self endon("entityshutdown");
 	while(isdefined(self))
 	{
@@ -76,7 +76,7 @@ function function_d10163c2(localClientNum)
 
 /*
 	Name: function_2b18ce1b
-	Namespace: namespace_c9806b9
+	Namespace: zm_weap_staff
 	Checksum: 0x207FDC2B
 	Offset: 0x290
 	Size: 0xAF
@@ -106,7 +106,7 @@ function function_2b18ce1b(localClientNum, FX)
 
 /*
 	Name: function_d4c51f0
-	Namespace: namespace_c9806b9
+	Namespace: zm_weap_staff
 	Checksum: 0x1854DE80
 	Offset: 0x348
 	Size: 0x3D

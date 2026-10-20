@@ -4,11 +4,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_1a0051d2;
+#namespace zm_weap_microwavegun;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xE4DC6790
 	Offset: 0x2E8
 	Size: 0x33
@@ -22,7 +22,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xB583057F
 	Offset: 0x328
 	Size: 0x16B
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: player_init
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x852BA97
 	Offset: 0x4A0
 	Size: 0x79
@@ -62,7 +62,7 @@ function player_init()
 
 /*
 	Name: microwavegun_create_hit_response_fx
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xDCAF4BA2
 	Offset: 0x528
 	Size: 0x67
@@ -79,7 +79,7 @@ function microwavegun_create_hit_response_fx(localClientNum, tag, effect)
 
 /*
 	Name: microwavegun_delete_hit_response_fx
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x30D3C6F4
 	Offset: 0x598
 	Size: 0x65
@@ -97,7 +97,7 @@ function microwavegun_delete_hit_response_fx(localClientNum, tag)
 
 /*
 	Name: microwavegun_bloat
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xBF90A093
 	Offset: 0x608
 	Size: 0x17B
@@ -139,7 +139,7 @@ function microwavegun_bloat(localClientNum)
 
 /*
 	Name: microwavegun_zombie_initial_hit_response
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x1EFA0C2
 	Offset: 0x790
 	Size: 0x165
@@ -179,7 +179,7 @@ function microwavegun_zombie_initial_hit_response(localClientNum, oldVal, newVal
 
 /*
 	Name: microwavegun_zombie_expand_response
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xFC4397FE
 	Offset: 0x900
 	Size: 0x30D

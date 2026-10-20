@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_51278ff7;
+#namespace zm_bgb_head_drama;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_51278ff7
+	Namespace: zm_bgb_head_drama
 	Checksum: 0x9FE15EBA
 	Offset: 0x188
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_51278ff7
+	Namespace: zm_bgb_head_drama
 	Checksum: 0xB61B5B28
 	Offset: 0x1C8
 	Size: 0x5B
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_51278ff7
+	Namespace: zm_bgb_head_drama
 	Checksum: 0x292EE1E3
 	Offset: 0x230
 	Size: 0x23
@@ -56,7 +56,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_51278ff7
+	Namespace: zm_bgb_head_drama
 	Checksum: 0x12CC76E3
 	Offset: 0x260
 	Size: 0x23

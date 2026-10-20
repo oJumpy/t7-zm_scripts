@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_3f74549;
+#namespace zm_bgb_whos_keeping_score;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3f74549
+	Namespace: zm_bgb_whos_keeping_score
 	Checksum: 0x4ED93B92
 	Offset: 0x188
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3f74549
+	Namespace: zm_bgb_whos_keeping_score
 	Checksum: 0x85D0F2AF
 	Offset: 0x1C8
 	Size: 0x53
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_3f74549
+	Namespace: zm_bgb_whos_keeping_score
 	Checksum: 0xB5ABCE3D
 	Offset: 0x228
 	Size: 0x23

@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_2f4bd124;
+#namespace zm_bgb_licensed_contractor;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2f4bd124
+	Namespace: zm_bgb_licensed_contractor
 	Checksum: 0xE47F214B
 	Offset: 0x180
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2f4bd124
+	Namespace: zm_bgb_licensed_contractor
 	Checksum: 0x2F25E1EA
 	Offset: 0x1C0
 	Size: 0x53
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_2f4bd124
+	Namespace: zm_bgb_licensed_contractor
 	Checksum: 0xD0C39E03
 	Offset: 0x220
 	Size: 0x23

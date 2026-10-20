@@ -10,11 +10,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_a7758d0b;
+#namespace zm_bgb_self_medication;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0xD39F7AA2
 	Offset: 0x250
 	Size: 0x33
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0x99DFF58A
 	Offset: 0x290
 	Size: 0xAB
@@ -48,7 +48,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0x94DE5BAE
 	Offset: 0x348
 	Size: 0xC7
@@ -58,8 +58,8 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
-	self endon("hash_1c39189f");
+	self endon("bgb_update");
+	self endon("bgb_self_medication_complete");
 	self.var_25b88da = 3;
 	self.w_min_last_stand_pistol_override = GetWeapon("ray_gun");
 	level zm_utility::increment_no_end_game_check();
@@ -74,7 +74,7 @@ function event()
 
 /*
 	Name: validation
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0x898C956D
 	Offset: 0x418
 	Size: 0x21
@@ -92,7 +92,7 @@ function validation()
 
 /*
 	Name: function_5816d71a
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0x20389A43
 	Offset: 0x448
 	Size: 0x63
@@ -112,7 +112,7 @@ function function_5816d71a()
 
 /*
 	Name: actor_death_override
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0xDE13F5F
 	Offset: 0x4B8
 	Size: 0x73
@@ -130,7 +130,7 @@ function actor_death_override(e_attacker)
 
 /*
 	Name: function_cfc2c8d5
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0x7CA72261
 	Offset: 0x538
 	Size: 0x1A3
@@ -140,7 +140,7 @@ function actor_death_override(e_attacker)
 function function_cfc2c8d5()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	while(1)
 	{
 		self waittill("hash_935cc366");
@@ -164,7 +164,7 @@ function function_cfc2c8d5()
 		self bgb::set_timer(self.var_25b88da, 3);
 		if(self.var_25b88da == 0)
 		{
-			self notify("hash_1c39189f");
+			self notify("bgb_self_medication_complete");
 			return;
 		}
 	}
@@ -172,7 +172,7 @@ function function_cfc2c8d5()
 
 /*
 	Name: function_a8fd61f4
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0xAFF20DE
 	Offset: 0x6E8
 	Size: 0x5B
@@ -190,7 +190,7 @@ function function_a8fd61f4()
 
 /*
 	Name: lost_perk_override
-	Namespace: namespace_a7758d0b
+	Namespace: zm_bgb_self_medication
 	Checksum: 0x51CBB794
 	Offset: 0x750
 	Size: 0x7D
@@ -209,7 +209,7 @@ function lost_perk_override(perk, var_2488e46a, var_24df4040)
 	}
 	if(isdefined(var_2488e46a) && isdefined(var_24df4040) && var_2488e46a == var_24df4040)
 	{
-		self thread bgb::function_41ed378b(perk);
+		self thread bgb::revive_and_return_perk_on_bgb_activation(perk);
 	}
 	return 0;
 }

@@ -34,7 +34,7 @@ function autoexec init()
 	function_dd3133f7();
 	level flag::init("can_spawn_mechz", 1);
 	spawner::add_archetype_spawn_function("mechz", &function_d8d01032);
-	level thread function_76e7495b();
+	level thread set_electric_trap();
 	level.mechz_should_stun_override = &function_f517cdd6;
 	level.mechz_faceplate_damage_override = &function_bddef31c;
 	level.var_7f2a926d = &mechz_health_increases;
@@ -64,7 +64,7 @@ function private function_dd3133f7()
 }
 
 /*
-	Name: function_76e7495b
+	Name: set_electric_trap
 	Namespace: namespace_48131a3f
 	Checksum: 0x6D594467
 	Offset: 0x790
@@ -72,7 +72,7 @@ function private function_dd3133f7()
 	Parameters: 0
 	Flags: Private
 */
-function private function_76e7495b()
+function private set_electric_trap()
 {
 	wait(0.5);
 	traps = GetEntArray("zombie_trap", "targetname");
@@ -266,7 +266,7 @@ function function_7c295452(entity)
 		}
 		else
 		{
-			level.electric_trap notify("hash_6acbb429");
+			level.electric_trap notify("trap_deactivate");
 		}
 	}
 	MechzBehavior::mechzTargetService(entity);
@@ -459,8 +459,8 @@ function function_6592b947()
 		if(isdefined(ai_mechz))
 		{
 			var_b29defde--;
-			ai_mechz thread namespace_97ddfc0d::function_5e426b67();
-			ai_mechz thread namespace_97ddfc0d::function_e8a09e6e();
+			ai_mechz thread zm_castle_vo::function_5e426b67();
+			ai_mechz thread zm_castle_vo::function_e8a09e6e();
 		}
 		if(var_b29defde > 0)
 		{
@@ -632,9 +632,9 @@ function function_314d744b(var_2533389a, s_loc, var_4211ee1f)
 			s_loc = Array::random(level.zm_loc_types["mechz_location"]);
 		}
 	}
-	level thread namespace_97ddfc0d::function_894d806e(s_loc);
+	level thread zm_castle_vo::function_894d806e(s_loc);
 	mechz_health_increases();
-	ai_mechz = namespace_ef567265::spawn_mechz(s_loc, var_4211ee1f);
+	ai_mechz = zm_ai_mechz::spawn_mechz(s_loc, var_4211ee1f);
 	level.var_9618f5be = ai_mechz;
 	level notify("hash_b4c3cb33");
 	if(isdefined(ai_mechz))

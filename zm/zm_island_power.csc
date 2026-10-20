@@ -19,15 +19,15 @@
 */
 function init()
 {
-	clientfield::register("scriptmover", "bucket_fx", 9000, 1, "int", &function_9865d978, 0, 0);
-	clientfield::register("world", "power_switch_1_fx", 9000, 1, "int", &function_41da9a24, 0, 0);
-	clientfield::register("world", "power_switch_2_fx", 9000, 1, "int", &function_11d41051, 0, 0);
+	clientfield::register("scriptmover", "bucket_fx", 9000, 1, "int", &bucket_fx, 0, 0);
+	clientfield::register("world", "power_switch_1_fx", 9000, 1, "int", &power_switch_1_fx, 0, 0);
+	clientfield::register("world", "power_switch_2_fx", 9000, 1, "int", &power_switch_2_fx, 0, 0);
 	clientfield::register("world", "penstock_fx_anim", 9000, 1, "int", &function_8816d2aa, 0, 0);
-	clientfield::register("scriptmover", "power_plant_glow", 9000, 1, "int", &function_884da1ce, 0, 0);
+	clientfield::register("scriptmover", "power_plant_glow", 9000, 1, "int", &power_plant_glow, 0, 0);
 }
 
 /*
-	Name: function_9865d978
+	Name: bucket_fx
 	Namespace: namespace_f3e3de78
 	Checksum: 0x5C8CEBD
 	Offset: 0x3D0
@@ -35,7 +35,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_9865d978(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function bucket_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self util::waittill_dobj(localClientNum);
 	if(!isdefined(self))
@@ -54,7 +54,7 @@ function function_9865d978(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_41da9a24
+	Name: power_switch_1_fx
 	Namespace: namespace_f3e3de78
 	Checksum: 0xB2C01677
 	Offset: 0x4B8
@@ -62,7 +62,7 @@ function function_9865d978(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_41da9a24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function power_switch_1_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	a_s_fx = struct::get_array("power_switch_1_fx", "targetname");
 	foreach(s_fx in a_s_fx)
@@ -78,8 +78,8 @@ function function_41da9a24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	if(newVal == 1)
 	{
-		var_92ee343f = GetEnt(localClientNum, "power_wires_lab_a", "targetname");
-		var_92ee343f thread function_5ae9f178(localClientNum, 0);
+		clear_growth_think = GetEnt(localClientNum, "power_wires_lab_a", "targetname");
+		clear_growth_think thread function_5ae9f178(localClientNum, 0);
 		foreach(s_fx in a_s_fx)
 		{
 			if(!isdefined(s_fx.a_fx_id))
@@ -90,8 +90,8 @@ function function_41da9a24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		}
 		break;
 	}
-	var_92ee343f = GetEnt(localClientNum, "power_wires_lab_a", "targetname");
-	var_92ee343f thread function_5ae9f178(localClientNum, 1);
+	clear_growth_think = GetEnt(localClientNum, "power_wires_lab_a", "targetname");
+	clear_growth_think thread function_5ae9f178(localClientNum, 1);
 	foreach(s_fx in a_s_fx)
 	{
 		if(!isdefined(s_fx.a_fx_id))
@@ -103,7 +103,7 @@ function function_41da9a24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_11d41051
+	Name: power_switch_2_fx
 	Namespace: namespace_f3e3de78
 	Checksum: 0x8315189E
 	Offset: 0x868
@@ -111,7 +111,7 @@ function function_41da9a24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_11d41051(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function power_switch_2_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	a_s_fx = struct::get_array("power_switch_2_fx", "targetname");
 	foreach(s_fx in a_s_fx)
@@ -127,8 +127,8 @@ function function_11d41051(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	if(newVal == 1)
 	{
-		var_92ee343f = GetEnt(localClientNum, "power_wires_lab_b", "targetname");
-		var_92ee343f thread function_5ae9f178(localClientNum, 0);
+		clear_growth_think = GetEnt(localClientNum, "power_wires_lab_b", "targetname");
+		clear_growth_think thread function_5ae9f178(localClientNum, 0);
 		foreach(s_fx in a_s_fx)
 		{
 			if(!isdefined(s_fx.a_fx_id))
@@ -139,8 +139,8 @@ function function_11d41051(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		}
 		break;
 	}
-	var_92ee343f = GetEnt(localClientNum, "power_wires_lab_b", "targetname");
-	var_92ee343f thread function_5ae9f178(localClientNum, 1);
+	clear_growth_think = GetEnt(localClientNum, "power_wires_lab_b", "targetname");
+	clear_growth_think thread function_5ae9f178(localClientNum, 1);
 	foreach(s_fx in a_s_fx)
 	{
 		if(!isdefined(s_fx.a_fx_id))
@@ -219,7 +219,7 @@ function function_8816d2aa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_884da1ce
+	Name: power_plant_glow
 	Namespace: namespace_f3e3de78
 	Checksum: 0x114B2009
 	Offset: 0xE70
@@ -227,7 +227,7 @@ function function_8816d2aa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_884da1ce(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function power_plant_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

@@ -23,7 +23,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0x11E28EF8
+	Checksum: 0xF846A600
 	Offset: 0x3A0
 	Size: 0x33
 	Parameters: 0
@@ -37,7 +37,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0xC93CD9A9
+	Checksum: 0xC169DD7B
 	Offset: 0x3E0
 	Size: 0xD3
 	Parameters: 0
@@ -59,7 +59,7 @@ function __init__()
 /*
 	Name: func_drop_when_players_own
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0x88A8188A
+	Checksum: 0xE1BA5085
 	Offset: 0x4C0
 	Size: 0x5
 	Parameters: 0
@@ -73,7 +73,7 @@ function func_drop_when_players_own()
 /*
 	Name: grab_shield_charge
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0xFA7A3EFD
+	Checksum: 0xD5A7F62C
 	Offset: 0x4D0
 	Size: 0x43
 	Parameters: 1
@@ -88,7 +88,7 @@ function grab_shield_charge(player)
 /*
 	Name: shield_charge_powerup
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0xFDA8D266
+	Checksum: 0x750CB52F
 	Offset: 0x520
 	Size: 0x83
 	Parameters: 2
@@ -106,7 +106,7 @@ function shield_charge_powerup(item, player)
 /*
 	Name: shield_on_hud
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0x62901095
+	Checksum: 0x846CF053
 	Offset: 0x5B0
 	Size: 0x123
 	Parameters: 2
@@ -131,7 +131,7 @@ function shield_on_hud(drop_item, player_team)
 /*
 	Name: full_ammo_move_hud
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0x235C03E6
+	Checksum: 0xFCFE90E1
 	Offset: 0x6E0
 	Size: 0xD3
 	Parameters: 1
@@ -154,7 +154,7 @@ function full_ammo_move_hud(player_team)
 /*
 	Name: shield_devgui
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0xEB04E2DF
+	Checksum: 0xB06CB57E
 	Offset: 0x7C0
 	Size: 0x7B
 	Parameters: 0
@@ -174,7 +174,7 @@ function shield_devgui()
 /*
 	Name: shield_devgui_callback
 	Namespace: zm_powerup_shield_charge
-	Checksum: 0x20C58BDA
+	Checksum: 0x80A6680E
 	Offset: 0x848
 	Size: 0xB3
 	Parameters: 1

@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_3ecfcb30;
+#namespace zm_bgb_flavor_hexed;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_3ecfcb30
+	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0xD48D2F3E
 	Offset: 0x170
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_3ecfcb30
+	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0x156DDA0C
 	Offset: 0x1B0
 	Size: 0x3B

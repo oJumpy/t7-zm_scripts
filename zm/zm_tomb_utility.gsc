@@ -120,7 +120,7 @@ function setup_devgui()
 		level thread function_d88b52e6();
 		level thread watch_for_upgraded_staffs();
 		level thread function_6f935c89();
-		level thread function_23eb2509();
+		level thread watch_capture_zones();
 	#/
 }
 
@@ -169,7 +169,7 @@ function zombie_devgui_tomb(cmd)
 }
 
 /*
-	Name: function_23eb2509
+	Name: watch_capture_zones
 	Namespace: zm_tomb_utility
 	Checksum: 0xCF051245
 	Offset: 0x13B8
@@ -177,7 +177,7 @@ function zombie_devgui_tomb(cmd)
 	Parameters: 0
 	Flags: None
 */
-function function_23eb2509()
+function watch_capture_zones()
 {
 	/#
 		while(1)
@@ -2467,11 +2467,11 @@ function zone_capture_powerup()
 					{
 						if(level.players.size == 1)
 						{
-							level thread namespace_a528e918::open_box(undefined, uts_box, &zm_tomb_challenges::reward_powerup_double_points, -1);
+							level thread zm_challenges_tomb::open_box(undefined, uts_box, &zm_tomb_challenges::reward_powerup_double_points, -1);
 						}
 						else
 						{
-							level thread namespace_a528e918::open_box(undefined, uts_box, &zm_tomb_challenges::reward_powerup_zombie_blood, -1);
+							level thread zm_challenges_tomb::open_box(undefined, uts_box, &zm_tomb_challenges::reward_powerup_zombie_blood, -1);
 						}
 						return;
 					}

@@ -47,7 +47,7 @@ function __init__()
 	clientfield::register("clientuimodel", "bgb_activations_remaining", 1, 3, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "bgb_invalid_use", 1, 1, "counter", undefined, 0, 0);
 	clientfield::register("clientuimodel", "bgb_one_shot_use", 1, 1, "counter", undefined, 0, 0);
-	clientfield::register("toplayer", "bgb_blow_bubble", 1, 1, "counter", &function_f5d066f6, 0, 0);
+	clientfield::register("toplayer", "bgb_blow_bubble", 1, 1, "counter", &bgb_blow_bubble, 0, 0);
 	level._effect["bgb_blow_bubble"] = "zombie/fx_bgb_bubble_blow_zmb";
 }
 
@@ -266,7 +266,7 @@ function private bgb_play_fx_on_camera(localClientNum, FX)
 }
 
 /*
-	Name: function_f5d066f6
+	Name: bgb_blow_bubble
 	Namespace: bgb
 	Checksum: 0x66C74291
 	Offset: 0xD50
@@ -274,7 +274,7 @@ function private bgb_play_fx_on_camera(localClientNum, FX)
 	Parameters: 7
 	Flags: Private
 */
-function private function_f5d066f6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function private bgb_blow_bubble(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	bgb_play_fx_on_camera(localClientNum, level._effect["bgb_blow_bubble"]);
 	self thread function_78c4bfa(localClientNum, 0.5);

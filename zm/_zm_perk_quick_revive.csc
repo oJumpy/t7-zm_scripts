@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x8C742804
+	Checksum: 0x5025AB81
 	Offset: 0x1A8
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_quick_revive
-	Checksum: 0xD75B83C7
+	Checksum: 0x2F17D010
 	Offset: 0x1E8
 	Size: 0x13
 	Parameters: 0
@@ -37,7 +37,7 @@ function __init__()
 /*
 	Name: enable_quick_revive_perk_for_level
 	Namespace: zm_perk_quick_revive
-	Checksum: 0xA207372
+	Checksum: 0xCD510298
 	Offset: 0x208
 	Size: 0x83
 	Parameters: 0
@@ -53,7 +53,7 @@ function enable_quick_revive_perk_for_level()
 /*
 	Name: init_quick_revive
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x3C566F20
+	Checksum: 0x7E0DEF18
 	Offset: 0x298
 	Size: 0x35
 	Parameters: 0
@@ -70,7 +70,7 @@ function init_quick_revive()
 /*
 	Name: quick_revive_client_field_func
 	Namespace: zm_perk_quick_revive
-	Checksum: 0x699B66A3
+	Checksum: 0x122D04BC
 	Offset: 0x2D8
 	Size: 0x3B
 	Parameters: 0

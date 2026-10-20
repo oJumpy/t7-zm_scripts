@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_ddb9c921;
+#namespace zm_bgb_respin_cycle;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ddb9c921
+	Namespace: zm_bgb_respin_cycle
 	Checksum: 0x2517BB27
 	Offset: 0x1A8
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ddb9c921
+	Namespace: zm_bgb_respin_cycle
 	Checksum: 0x8680F337
 	Offset: 0x1E8
 	Size: 0x9D
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: zm_bgb_respin_cycle_cb
-	Namespace: namespace_ddb9c921
+	Namespace: zm_bgb_respin_cycle
 	Checksum: 0xB7059D5C
 	Offset: 0x290
 	Size: 0x9B

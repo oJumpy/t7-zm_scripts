@@ -182,7 +182,7 @@ function function_17d8768b(cmd)
 			}
 			case "Dev Block strings are not supported":
 			{
-				level thread dragon::function_16734812();
+				level thread dragon::dragon_hazard_start();
 				return 1;
 			}
 			case "Dev Block strings are not supported":
@@ -207,7 +207,7 @@ function function_17d8768b(cmd)
 			}
 			case "Dev Block strings are not supported":
 			{
-				level thread dragon::function_8bf8d33b();
+				level thread dragon::dragon_hazard_library();
 				return 1;
 			}
 			case "Dev Block strings are not supported":
@@ -312,12 +312,12 @@ function function_17d8768b(cmd)
 			}
 			case "Dev Block strings are not supported":
 			{
-				level thread namespace_b205ff9c::function_ddb9991b();
+				level thread zm_stalingrad_finger_trap::function_ddb9991b();
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
-				level thread namespace_b205ff9c::function_fc99caf5();
+				level thread zm_stalingrad_finger_trap::function_fc99caf5();
 				return 1;
 			}
 			case "Dev Block strings are not supported":
@@ -373,7 +373,7 @@ function function_17d8768b(cmd)
 			}
 			case "Dev Block strings are not supported":
 			{
-				function_b221d46();
+				zombie_takeoff_power_off();
 				return 1;
 			}
 			case default:
@@ -397,12 +397,12 @@ function function_2b22d1f9()
 {
 	/#
 		level flag::set("Dev Block strings are not supported");
-		var_b80ee5b5 = struct::get_array("Dev Block strings are not supported", "Dev Block strings are not supported");
+		s_pavlov_player = struct::get_array("Dev Block strings are not supported", "Dev Block strings are not supported");
 		var_9544a498 = 0;
 		foreach(player in level.activePlayers)
 		{
-			player SetOrigin(var_b80ee5b5[var_9544a498].origin);
-			player SetPlayerAngles(var_b80ee5b5[var_9544a498].angles);
+			player SetOrigin(s_pavlov_player[var_9544a498].origin);
+			player SetPlayerAngles(s_pavlov_player[var_9544a498].angles);
 		}
 		level flag::set("Dev Block strings are not supported");
 	#/
@@ -425,7 +425,7 @@ function function_cc40b263()
 			IPrintLnBold("Dev Block strings are not supported");
 			return 0;
 		}
-		level namespace_b57650e4::function_809fbbff();
+		level zm_stalingrad_pap::function_809fbbff();
 	#/
 }
 
@@ -554,20 +554,20 @@ function function_31f1d173(n_direction)
 				break;
 			}
 		}
-		level thread namespace_b57650e4::function_187a933f(var_e0320b0b);
-		level thread namespace_b57650e4::function_187a933f(var_6e2a9bd0);
+		level thread zm_stalingrad_pap::function_187a933f(var_e0320b0b);
+		level thread zm_stalingrad_pap::function_187a933f(var_6e2a9bd0);
 		if(isdefined(var_942d1639))
 		{
-			level thread namespace_b57650e4::function_187a933f(var_942d1639);
+			level thread zm_stalingrad_pap::function_187a933f(var_942d1639);
 		}
 		exploder::exploder("Dev Block strings are not supported");
 		exploder::exploder("Dev Block strings are not supported" + n_exploder);
 		level util::waittill_any_timeout(20, "Dev Block strings are not supported");
-		level thread namespace_b57650e4::function_a71517e1(var_e0320b0b);
-		level thread namespace_b57650e4::function_a71517e1(var_6e2a9bd0);
+		level thread zm_stalingrad_pap::function_a71517e1(var_e0320b0b);
+		level thread zm_stalingrad_pap::function_a71517e1(var_6e2a9bd0);
 		if(isdefined(var_942d1639))
 		{
-			level thread namespace_b57650e4::function_a71517e1(var_942d1639);
+			level thread zm_stalingrad_pap::function_a71517e1(var_942d1639);
 		}
 		exploder::kill_exploder("Dev Block strings are not supported" + n_exploder);
 		exploder::kill_exploder("Dev Block strings are not supported");
@@ -765,7 +765,7 @@ function function_f0aaa402()
 }
 
 /*
-	Name: function_b221d46
+	Name: zombie_takeoff_power_off
 	Namespace: namespace_bde177cb
 	Checksum: 0x27E7B5A8
 	Offset: 0x21F0
@@ -773,7 +773,7 @@ function function_f0aaa402()
 	Parameters: 0
 	Flags: None
 */
-function function_b221d46()
+function zombie_takeoff_power_off()
 {
 	/#
 		level clientfield::set("Dev Block strings are not supported", Int(level.time - level.n_gameplay_start_time + 500 / 1000));

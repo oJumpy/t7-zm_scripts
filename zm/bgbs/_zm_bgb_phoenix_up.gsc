@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_7ffac71e;
+#namespace zm_bgb_phoenix_up;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_7ffac71e
+	Namespace: zm_bgb_phoenix_up
 	Checksum: 0x1A7644A8
 	Offset: 0x1E8
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_7ffac71e
+	Namespace: zm_bgb_phoenix_up
 	Checksum: 0x74FCAAC7
 	Offset: 0x228
 	Size: 0x93
@@ -46,7 +46,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_7ffac71e
+	Namespace: zm_bgb_phoenix_up
 	Checksum: 0xCC00651F
 	Offset: 0x2C8
 	Size: 0x113
@@ -78,7 +78,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_7ffac71e
+	Namespace: zm_bgb_phoenix_up
 	Checksum: 0xB1AA846B
 	Offset: 0x3E8
 	Size: 0x171
@@ -111,7 +111,7 @@ function activation()
 
 /*
 	Name: lost_perk_override
-	Namespace: namespace_7ffac71e
+	Namespace: zm_bgb_phoenix_up
 	Checksum: 0xD209B7EB
 	Offset: 0x568
 	Size: 0x5D
@@ -128,7 +128,7 @@ function lost_perk_override(perk, var_2488e46a, var_24df4040)
 	{
 		var_24df4040 = undefined;
 	}
-	self thread bgb::function_41ed378b(perk);
+	self thread bgb::revive_and_return_perk_on_bgb_activation(perk);
 	return 0;
 }
 

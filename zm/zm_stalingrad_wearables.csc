@@ -15,7 +15,7 @@
 */
 function function_ad78a144()
 {
-	clientfield::register("scriptmover", "show_wearable", 12000, 1, "int", &function_1d8d6ac0, 0, 0);
+	clientfield::register("scriptmover", "show_wearable", 12000, 1, "int", &show_wearable, 0, 0);
 	for(i = 0; i < 4; i++)
 	{
 		RegisterClientField("world", "player" + i + "wearableItem", 12000, 2, "int", &zm_utility::setSharedInventoryUIModels, 0);
@@ -23,7 +23,7 @@ function function_ad78a144()
 }
 
 /*
-	Name: function_1d8d6ac0
+	Name: show_wearable
 	Namespace: namespace_23c72813
 	Checksum: 0x7BAFACF6
 	Offset: 0x1D8
@@ -31,7 +31,7 @@ function function_ad78a144()
 	Parameters: 3
 	Flags: None
 */
-function function_1d8d6ac0(localClientNum, oldVal, newVal)
+function show_wearable(localClientNum, oldVal, newVal)
 {
 	if(newVal)
 	{

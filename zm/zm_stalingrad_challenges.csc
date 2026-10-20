@@ -5,11 +5,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_e0675efb;
+#namespace zm_stalingrad_challenges;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0x3B5AD3F9
 	Offset: 0x3B0
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0x8A3D9FC6
 	Offset: 0x3F0
 	Size: 0x3E3
@@ -55,7 +55,7 @@ function __init__()
 
 /*
 	Name: function_5d17d17c
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0xE83B2096
 	Offset: 0x7E0
 	Size: 0x165
@@ -79,7 +79,7 @@ function function_5d17d17c()
 
 /*
 	Name: function_6f749a23
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0x8774C0A6
 	Offset: 0x950
 	Size: 0x1F5
@@ -110,7 +110,7 @@ function function_6f749a23(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_87a462eb
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0x2AF06309
 	Offset: 0xB50
 	Size: 0xA3
@@ -128,7 +128,7 @@ function function_87a462eb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_93efc4ef
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0x8EB9F25B
 	Offset: 0xC00
 	Size: 0x259
@@ -168,7 +168,7 @@ function function_93efc4ef(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_553225f
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0x3F4A4969
 	Offset: 0xE68
 	Size: 0x379
@@ -225,7 +225,7 @@ function function_553225f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_20880e24
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0x568E291A
 	Offset: 0x11F0
 	Size: 0x1FB
@@ -255,7 +255,7 @@ function function_20880e24(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_e28f1c4a
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0xC5947C59
 	Offset: 0x13F8
 	Size: 0xBB
@@ -274,7 +274,7 @@ function function_e28f1c4a(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_d4db02b2
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0x7D99140A
 	Offset: 0x14C0
 	Size: 0xAB
@@ -295,7 +295,7 @@ function function_d4db02b2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_4ff59189
-	Namespace: namespace_e0675efb
+	Namespace: zm_stalingrad_challenges
 	Checksum: 0x5C5B9777
 	Offset: 0x1578
 	Size: 0xBB

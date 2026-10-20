@@ -23,18 +23,18 @@ function init()
 	n_spore_cloud_bits = GetMinBitCountForNum(7);
 	n_spore_trail_bits = GetMinBitCountForNum(3);
 	n_spore_grows_bits = GetMinBitCountForNum(5);
-	clientfield::register("scriptmover", "spore_glow_fx", 9000, 1, "int", &function_4d352e71, 0, 0);
-	clientfield::register("scriptmover", "spore_cloud_fx", 9000, n_spore_cloud_bits, "int", &function_63a5615b, 0, 0);
+	clientfield::register("scriptmover", "spore_glow_fx", 9000, 1, "int", &spore_glow_fx, 0, 0);
+	clientfield::register("scriptmover", "spore_cloud_fx", 9000, n_spore_cloud_bits, "int", &spore_cloud_fx, 0, 0);
 	clientfield::register("actor", "spore_trail_enemy_fx", 9000, n_spore_trail_bits, "int", &spore_trail_fx, 0, 0);
 	clientfield::register("allplayers", "spore_trail_player_fx", 9000, n_spore_trail_bits, "int", &spore_trail_fx, 0, 0);
-	clientfield::register("scriptmover", "spore_grows", 9000, n_spore_grows_bits, "int", &function_36be307d, 0, 0);
+	clientfield::register("scriptmover", "spore_grows", 9000, n_spore_grows_bits, "int", &spore_grows, 0, 0);
 	clientfield::register("toplayer", "play_spore_bubbles", 9000, 1, "int", &function_6225657f, 0, 0);
-	clientfield::register("toplayer", "spore_camera_fx", 9000, n_spore_trail_bits, "int", &function_194bfed3, 0, 0);
+	clientfield::register("toplayer", "spore_camera_fx", 9000, n_spore_trail_bits, "int", &spore_camera_fx, 0, 0);
 	level.b_thrasher_custom_spore_fx = 1;
 }
 
 /*
-	Name: function_4d352e71
+	Name: spore_glow_fx
 	Namespace: namespace_7a07aa2f
 	Checksum: 0xAD508920
 	Offset: 0x7F0
@@ -42,7 +42,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_4d352e71(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spore_glow_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(self.var_b5a2b77f))
 	{
@@ -64,7 +64,7 @@ function function_4d352e71(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_63a5615b
+	Name: spore_cloud_fx
 	Namespace: namespace_7a07aa2f
 	Checksum: 0x43A789FD
 	Offset: 0x978
@@ -72,7 +72,7 @@ function function_4d352e71(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_63a5615b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spore_cloud_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{
@@ -186,7 +186,7 @@ function spore_trail_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, f
 }
 
 /*
-	Name: function_36be307d
+	Name: spore_grows
 	Namespace: namespace_7a07aa2f
 	Checksum: 0xF8F0141B
 	Offset: 0x1308
@@ -194,7 +194,7 @@ function spore_trail_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, f
 	Parameters: 7
 	Flags: None
 */
-function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spore_grows(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(self.var_baeb5712))
 	{
@@ -220,12 +220,12 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 				self scene::stop(1);
 				if(self.var_baeb5712)
 				{
-					self scene::add_scene_func("p7_fxanim_zm_island_spores_wall_stage_01_bundle", &function_dd0015d, "play");
+					self scene::add_scene_func("p7_fxanim_zm_island_spores_wall_stage_01_bundle", &spore_cleanup, "play");
 					self thread scene_play("p7_fxanim_zm_island_spores_wall_stage_01_bundle");
 				}
 				else
 				{
-					self scene::add_scene_func("p7_fxanim_zm_island_spores_rock_stage_01_bundle", &function_dd0015d, "play");
+					self scene::add_scene_func("p7_fxanim_zm_island_spores_rock_stage_01_bundle", &spore_cleanup, "play");
 					self thread scene_play("p7_fxanim_zm_island_spores_rock_stage_01_bundle");
 				}
 				break;
@@ -254,12 +254,12 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 				self scene::stop(1);
 				if(self.var_baeb5712)
 				{
-					self scene::add_scene_func("p7_fxanim_zm_island_spores_wall_stage_02_rapid_bundle", &function_dd0015d, "play");
+					self scene::add_scene_func("p7_fxanim_zm_island_spores_wall_stage_02_rapid_bundle", &spore_cleanup, "play");
 					self thread scene_play("p7_fxanim_zm_island_spores_wall_stage_02_rapid_bundle");
 				}
 				else
 				{
-					self scene::add_scene_func("p7_fxanim_zm_island_spores_rock_stage_02_rapid_bundle", &function_dd0015d, "play");
+					self scene::add_scene_func("p7_fxanim_zm_island_spores_rock_stage_02_rapid_bundle", &spore_cleanup, "play");
 					self thread scene_play("p7_fxanim_zm_island_spores_rock_stage_02_rapid_bundle");
 				}
 				break;
@@ -302,12 +302,12 @@ function function_36be307d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 		self scene::stop(1);
 		if(self.var_baeb5712)
 		{
-			self scene::add_scene_func("p7_fxanim_zm_island_spores_wall_stage_03_bundle", &function_dd0015d, "play");
+			self scene::add_scene_func("p7_fxanim_zm_island_spores_wall_stage_03_bundle", &spore_cleanup, "play");
 			self scene_play("p7_fxanim_zm_island_spores_wall_stage_03_bundle");
 		}
 		else
 		{
-			self scene::add_scene_func("p7_fxanim_zm_island_spores_rock_stage_03_bundle", &function_dd0015d, "play");
+			self scene::add_scene_func("p7_fxanim_zm_island_spores_rock_stage_03_bundle", &spore_cleanup, "play");
 			self scene_play("p7_fxanim_zm_island_spores_rock_stage_03_bundle");
 		}
 		if(isdefined(self.var_4df7e11b) && self.var_4df7e11b.size > 0)
@@ -361,7 +361,7 @@ function function_6221b6b9(scene, mdl_pod)
 }
 
 /*
-	Name: function_dd0015d
+	Name: spore_cleanup
 	Namespace: namespace_7a07aa2f
 	Checksum: 0x2B6675A4
 	Offset: 0x19D8
@@ -369,7 +369,7 @@ function function_6221b6b9(scene, mdl_pod)
 	Parameters: 1
 	Flags: None
 */
-function function_dd0015d(a_ents)
+function spore_cleanup(a_ents)
 {
 	if(!isdefined(self.var_4df7e11b))
 	{
@@ -458,7 +458,7 @@ function function_9067dab6(localClientNum)
 }
 
 /*
-	Name: function_194bfed3
+	Name: spore_camera_fx
 	Namespace: namespace_7a07aa2f
 	Checksum: 0x87175BB5
 	Offset: 0x1C08
@@ -466,7 +466,7 @@ function function_9067dab6(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_194bfed3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function spore_camera_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(IsSpectating(localClientNum))
 	{

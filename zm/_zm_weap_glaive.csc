@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_2318f091;
+#namespace zm_weap_glaive;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xB0BF3911
 	Offset: 0x3D8
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xD86598C6
 	Offset: 0x418
 	Size: 0x2AD
@@ -52,7 +52,7 @@ function __init__()
 
 /*
 	Name: do_swipe_fx
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x14C14BCE
 	Offset: 0x6D0
 	Size: 0xEB
@@ -64,15 +64,15 @@ function do_swipe_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fiel
 	owner = self GetOwner(localClientNum);
 	if(isdefined(owner) && owner == GetLocalPlayer(localClientNum))
 	{
-		var_a0bb60fa = PlayViewmodelFX(localClientNum, level._effect["sword_swipe_1p"], "tag_flash");
+		swipe_fx = PlayViewmodelFX(localClientNum, level._effect["sword_swipe_1p"], "tag_flash");
 		wait(3);
-		deletefx(localClientNum, var_a0bb60fa, 1);
+		deletefx(localClientNum, swipe_fx, 1);
 	}
 }
 
 /*
 	Name: function_647dc27d
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x84B7450A
 	Offset: 0x7C8
 	Size: 0xEB
@@ -84,15 +84,15 @@ function function_647dc27d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	owner = self GetOwner(localClientNum);
 	if(isdefined(owner) && owner == GetLocalPlayer(localClientNum))
 	{
-		var_f2f7c3ad = PlayViewmodelFX(localClientNum, level._effect["sword_swipe_lv2_1p"], "tag_flash");
+		swipe_lv2_fx = PlayViewmodelFX(localClientNum, level._effect["sword_swipe_lv2_1p"], "tag_flash");
 		wait(3);
-		deletefx(localClientNum, var_f2f7c3ad, 1);
+		deletefx(localClientNum, swipe_lv2_fx, 1);
 	}
 }
 
 /*
 	Name: function_bbeb4c2c
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0xE4CC7B1C
 	Offset: 0x8C0
 	Size: 0x103
@@ -117,7 +117,7 @@ function function_bbeb4c2c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_38924d95
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x69290AD2
 	Offset: 0x9D0
 	Size: 0x103
@@ -142,7 +142,7 @@ function function_38924d95(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: do_slam_fx
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x639F2132
 	Offset: 0xAE0
 	Size: 0x5B
@@ -156,7 +156,7 @@ function do_slam_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, field
 
 /*
 	Name: function_6b6e650c
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x3A70CC4D
 	Offset: 0xB48
 	Size: 0xEB
@@ -176,7 +176,7 @@ function function_6b6e650c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: do_gravity_spike_fx
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x1E70591A
 	Offset: 0xC40
 	Size: 0x19B
@@ -209,7 +209,7 @@ function do_gravity_spike_fx(localClientNum, owner, position)
 
 /*
 	Name: getIdealLocationForFX
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x5E85FB25
 	Offset: 0xDE8
 	Size: 0xB5
@@ -226,7 +226,7 @@ function getIdealLocationForFX(startPos, fxIndex, fxCount, defaultDistance, rota
 
 /*
 	Name: randomizeLocation
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x75A51745
 	Offset: 0xEA8
 	Size: 0xE1
@@ -244,7 +244,7 @@ function randomizeLocation(startPos, max_x_offset, max_y_offset)
 
 /*
 	Name: ground_trace
-	Namespace: namespace_2318f091
+	Namespace: zm_weap_glaive
 	Checksum: 0x4FD5A9D4
 	Offset: 0xF98
 	Size: 0x71

@@ -27,7 +27,7 @@ function main()
 {
 	register_clientfields();
 	function_34ad16fc();
-	level thread function_6827f93b();
+	level thread rocket_blast_think();
 	level.grenade_planted = &function_ff1f70cd;
 	/#
 		level thread function_65b37e40();
@@ -52,7 +52,7 @@ function register_clientfields()
 }
 
 /*
-	Name: function_6827f93b
+	Name: rocket_blast_think
 	Namespace: namespace_ee5f5b26
 	Checksum: 0x4AACD98C
 	Offset: 0x7C8
@@ -60,10 +60,10 @@ function register_clientfields()
 	Parameters: 0
 	Flags: None
 */
-function function_6827f93b()
+function rocket_blast_think()
 {
 	n_timeout = randomIntRange(30, 240);
-	level waittill("hash_7b91560c");
+	level waittill("castle_teleporter_used");
 	level thread function_79ce76bb();
 	level.zones["zone_v10_pad_exterior"].is_spawning_allowed = 1;
 	level.zones["zone_v10_pad_door"].is_spawning_allowed = 1;
@@ -102,7 +102,7 @@ function function_713600fe(var_44f606ad)
 	var_1b5666fb = GetEntArray("rocket_tunnel_door_l", "targetname");
 	var_1b5666fb Array::thread_all(var_1b5666fb, &function_e52f317f, 1, 10);
 	level flag::set("rocket_firing");
-	namespace_fa1b0620::function_ee24bc2e();
+	zm_castle_teleporter::function_ee24bc2e();
 	level thread function_563e8bc8();
 	level clientfield::set("sndRocketAlarm", 1);
 	exploder::exploder("fx_rocket_trap_01");
@@ -144,7 +144,7 @@ function function_713600fe(var_44f606ad)
 	level.zones["zone_v10_pad_exterior"].is_spawning_allowed = 1;
 	level.zones["zone_v10_pad_door"].is_spawning_allowed = 1;
 	level.zones["zone_v10_pad"].adjacent_zones["zone_v10_pad_door"].is_connected = 1;
-	level notify("hash_c3c346b0");
+	level notify("open_a10_doors");
 	if(isdefined(level.var_c62829c7) && !level flag::get("rune_prison_obelisk"))
 	{
 		level thread flag::set_for_time(7.5, "rune_prison_obelisk_magma_enabled");
@@ -155,7 +155,7 @@ function function_713600fe(var_44f606ad)
 	}
 	level waittill("hash_c009e96d");
 	level flag::clear("rocket_firing");
-	namespace_fa1b0620::function_ee24bc2e();
+	zm_castle_teleporter::function_ee24bc2e();
 	if(!(isdefined(var_44f606ad) && var_44f606ad))
 	{
 		wait(120);
@@ -190,7 +190,7 @@ function function_e52f317f(is_left_door, n_time)
 	{
 		level waittill("hash_d6ba1e76");
 		self moveto(self.origin + (n_move_x, n_move_y, 0), n_time);
-		level waittill("hash_c3c346b0");
+		level waittill("open_a10_doors");
 		self moveto(v_original_origin, n_time * 0.75);
 	}
 }
@@ -267,7 +267,7 @@ function function_447a5d62()
 		/#
 			IPrintLnBold("Dev Block strings are not supported");
 		#/
-		e_vo_player thread namespace_97ddfc0d::vo_say("vox_plr_" + e_vo_player.characterindex + "_rocket_start_" + RandomInt(5), 1, 1);
+		e_vo_player thread zm_castle_vo::vo_say("vox_plr_" + e_vo_player.characterindex + "_rocket_start_" + RandomInt(5), 1, 1);
 	}
 }
 
@@ -600,7 +600,7 @@ function function_343a73a4()
 	level.var_f363d488 = undefined;
 	self StopLoopSound();
 	self playsound("evt_rocket_door_stop");
-	level waittill("hash_c3c346b0");
+	level waittill("open_a10_doors");
 	self playsound("evt_rocket_door_start");
 	self PlayLoopSound("evt_rocket_door_lp");
 	self waittill("movedone");

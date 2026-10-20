@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_8438ffb3;
+#namespace zm_bgb_undead_man_walking;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8438ffb3
+	Namespace: zm_bgb_undead_man_walking
 	Checksum: 0xBA2DB1D1
 	Offset: 0x150
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8438ffb3
+	Namespace: zm_bgb_undead_man_walking
 	Checksum: 0x17FB5B72
 	Offset: 0x190
 	Size: 0x3B

@@ -41,11 +41,11 @@
 #using scripts\zm\zm_theater_fx;
 #using scripts\zm\zm_theater_teleporter;
 
-#namespace namespace_aed37ba8;
+#namespace zm_theater;
 
 /*
 	Name: opt_in
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x341B7D08
 	Offset: 0x920
 	Size: 0x1B
@@ -60,7 +60,7 @@ function autoexec opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x795593A6
 	Offset: 0x948
 	Size: 0x22B
@@ -78,9 +78,9 @@ function main()
 	visionset_mgr::register_visionset_info("cheat_bw_invert_contrast", 21000, 1, "cheat_bw_invert_contrast", "cheat_bw_invert_contrast");
 	visionset_mgr::register_visionset_info("zombie_turned", 21000, 1, "zombie_turned", "zombie_turned");
 	register_clientfields();
-	namespace_8847920b::main();
-	namespace_265ae7e9::main();
-	namespace_6d4f3e39::main();
+	zm_theater_teleporter::main();
+	zm_theater_fx::main();
+	zm_theater_amb::main();
 	level._BOX_INDICATOR_FLASH_LIGHTS_FIRE_SALE = 98;
 	init_theater_box_indicator();
 	load::main();
@@ -97,7 +97,7 @@ function main()
 
 /*
 	Name: init_fog_vol_to_visionset
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x248FCAE
 	Offset: 0xB80
 	Size: 0xD3
@@ -117,7 +117,7 @@ function init_fog_vol_to_visionset()
 
 /*
 	Name: watch_for_power
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x5CC94BDC
 	Offset: 0xC60
 	Size: 0xE1
@@ -150,7 +150,7 @@ function watch_for_power()
 
 /*
 	Name: include_weapons
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xB0A4E944
 	Offset: 0xD50
 	Size: 0x23
@@ -164,7 +164,7 @@ function include_weapons()
 
 /*
 	Name: init_theater_box_indicator
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x18683985
 	Offset: 0xD80
 	Size: 0x9B
@@ -180,7 +180,7 @@ function init_theater_box_indicator()
 
 /*
 	Name: init_board_lights
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x872138A
 	Offset: 0xE28
 	Size: 0x1A7
@@ -213,7 +213,7 @@ function init_board_lights(clientNum)
 
 /*
 	Name: get_lights
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x1D0AF62B
 	Offset: 0xFD8
 	Size: 0xF5
@@ -237,7 +237,7 @@ function get_lights(clientNum, name)
 
 /*
 	Name: turn_off_all_box_lights
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x4351C4A7
 	Offset: 0x10D8
 	Size: 0x65
@@ -255,7 +255,7 @@ function turn_off_all_box_lights(clientNum)
 
 /*
 	Name: flash_lights
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xA118788A
 	Offset: 0x1148
 	Size: 0xD9
@@ -283,7 +283,7 @@ function flash_lights(clientNum, period)
 
 /*
 	Name: turn_light_green
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xCB63C5
 	Offset: 0x1230
 	Size: 0x7B
@@ -306,7 +306,7 @@ function turn_light_green(clientNum, light_num, play_fx)
 
 /*
 	Name: turn_off_light
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xDC3FB92A
 	Offset: 0x12B8
 	Size: 0x83
@@ -329,7 +329,7 @@ function turn_off_light(clientNum, light_num, dont_kill_threads)
 
 /*
 	Name: theater_box_monitor
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xEA5B77C0
 	Offset: 0x1348
 	Size: 0x16B
@@ -366,7 +366,7 @@ function theater_box_monitor(clientNum, State, oldState)
 
 /*
 	Name: theatre_ZPO_listener
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x735B9AFC
 	Offset: 0x14C0
 	Size: 0xDF
@@ -398,7 +398,7 @@ function theatre_ZPO_listener()
 
 /*
 	Name: theater_light_model_swap_init
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xFD275F47
 	Offset: 0x15A8
 	Size: 0xBD
@@ -421,7 +421,7 @@ function theater_light_model_swap_init()
 
 /*
 	Name: theater_light_model_swap
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x23D312CE
 	Offset: 0x1670
 	Size: 0xA3
@@ -447,7 +447,7 @@ function theater_light_model_swap()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x218C80BA
 	Offset: 0x1720
 	Size: 0xFB
@@ -458,13 +458,13 @@ function register_clientfields()
 {
 	clientfield::register("world", "zm_theater_screen_in_place", 21000, 1, "int", &function_17e9c62f, 0, 0);
 	clientfield::register("scriptmover", "zombie_has_eyes", 21000, 1, "int", &zm::zombie_eyes_clientfield_cb, 0, 0);
-	clientfield::register("world", "zm_theater_movie_reel_playing", 21000, 2, "int", &namespace_265ae7e9::function_e4b3e1ca, 0, 0);
+	clientfield::register("world", "zm_theater_movie_reel_playing", 21000, 2, "int", &zm_theater_fx::function_e4b3e1ca, 0, 0);
 	zm_sidequests::register_sidequest_icon("movieReel", 21000);
 }
 
 /*
 	Name: theater_open_curtains
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xA483AD33
 	Offset: 0x1828
 	Size: 0x3B
@@ -477,7 +477,7 @@ function theater_open_curtains(localClientNum, oldVal, newVal, bNewEnt, bInitial
 
 /*
 	Name: function_17e9c62f
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xE04BABDF
 	Offset: 0x1870
 	Size: 0x3B
@@ -490,7 +490,7 @@ function function_17e9c62f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: startzmbspawnersoundloops
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x84187B56
 	Offset: 0x18B8
 	Size: 0x15B
@@ -532,7 +532,7 @@ function startzmbspawnersoundloops()
 
 /*
 	Name: soundLoopThink
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x1CFD44DB
 	Offset: 0x1A20
 	Size: 0x16B

@@ -38,13 +38,13 @@ function include_craftables()
 	var_67638a1e.client_field_state = undefined;
 	var_a4054f7d.client_field_state = undefined;
 	var_a9ad06c5.client_field_state = undefined;
-	var_5f03fea6 = spawnstruct();
-	var_5f03fea6.name = craftable_name;
-	var_5f03fea6 zm_craftables::add_craftable_piece(var_a4054f7d, "tag_dragon_network_console_part01_socket");
-	var_5f03fea6 zm_craftables::add_craftable_piece(var_67638a1e, "tag_dragon_network_console_part02_socket");
-	var_5f03fea6 zm_craftables::add_craftable_piece(var_a9ad06c5, "tag_dragon_network_console_part03_socket");
-	var_5f03fea6.triggerThink = &function_16bbd78d;
-	zm_craftables::include_zombie_craftable(var_5f03fea6);
+	dragonride = spawnstruct();
+	dragonride.name = craftable_name;
+	dragonride zm_craftables::add_craftable_piece(var_a4054f7d, "tag_dragon_network_console_part01_socket");
+	dragonride zm_craftables::add_craftable_piece(var_67638a1e, "tag_dragon_network_console_part02_socket");
+	dragonride zm_craftables::add_craftable_piece(var_a9ad06c5, "tag_dragon_network_console_part03_socket");
+	dragonride.triggerThink = &function_16bbd78d;
+	zm_craftables::include_zombie_craftable(dragonride);
 	level flag::init(craftable_name + "_" + "part_transmitter" + "_found");
 	level flag::init(craftable_name + "_" + "part_codes" + "_found");
 	level flag::init(craftable_name + "_" + "part_map" + "_found");
@@ -143,7 +143,7 @@ function function_6545e739(player)
 			}
 		}
 	}
-	player thread namespace_dcf9c464::function_5adc22c7();
+	player thread zm_stalingrad_vo::function_5adc22c7();
 }
 
 /*
@@ -180,7 +180,7 @@ function function_39c3c699()
 	var_a21e2a98 = GetEnt("dragonride_fuse_box", "targetname");
 	var_a21e2a98 HidePart("tag_dragon_network_console_screen_red");
 	var_a21e2a98 ShowPart("tag_dragon_network_console_screen_green");
-	level thread namespace_dcf9c464::function_6576bb4b();
+	level thread zm_stalingrad_vo::function_6576bb4b();
 	return 1;
 }
 
@@ -281,7 +281,7 @@ function function_d7eb8f21()
 			n_lines = 5;
 		}
 		str_vo_line = "vox_plr_" + e_who.characterindex + "_dragon_shield_acquire_" + RandomInt(n_lines);
-		e_who namespace_dcf9c464::function_897246e4(str_vo_line);
+		e_who zm_stalingrad_vo::function_897246e4(str_vo_line);
 	}
 }
 

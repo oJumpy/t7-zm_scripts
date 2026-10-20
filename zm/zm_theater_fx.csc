@@ -4,11 +4,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_perks;
 
-#namespace namespace_265ae7e9;
+#namespace zm_theater_fx;
 
 /*
 	Name: main
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0xD7417BC
 	Offset: 0x15D0
 	Size: 0x18B
@@ -33,7 +33,7 @@ function main()
 
 /*
 	Name: precache_scripted_fx
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x779924EF
 	Offset: 0x1768
 	Size: 0x285
@@ -69,7 +69,7 @@ function precache_scripted_fx()
 
 /*
 	Name: precache_createfx_fx
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0xD2504200
 	Offset: 0x19F8
 	Size: 0x6E5
@@ -145,7 +145,7 @@ function precache_createfx_fx()
 
 /*
 	Name: trap_fx_monitor
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x7F2C747A
 	Offset: 0x20E8
 	Size: 0x119
@@ -175,7 +175,7 @@ function trap_fx_monitor(name, loc, trap_type)
 
 /*
 	Name: trap_play_fx
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0xDC301033
 	Offset: 0x2210
 	Size: 0x25F
@@ -235,7 +235,7 @@ function trap_play_fx(loc, trap_type)
 
 /*
 	Name: light_model_swap
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x11BB608B
 	Offset: 0x2478
 	Size: 0xE7
@@ -258,7 +258,7 @@ function light_model_swap(name, model)
 
 /*
 	Name: projector_screen_fx
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x2051BED1
 	Offset: 0x2568
 	Size: 0x373
@@ -306,7 +306,7 @@ function projector_screen_fx()
 
 /*
 	Name: projector_reel_change_init
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x4FEF4CAA
 	Offset: 0x28E8
 	Size: 0x6B
@@ -322,7 +322,7 @@ function projector_reel_change_init(struct_projector)
 
 /*
 	Name: projector_reel_swap
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x9BE687E2
 	Offset: 0x2960
 	Size: 0x117
@@ -349,7 +349,7 @@ function projector_reel_swap(struct_screen, str_clientnotify)
 
 /*
 	Name: function_e4b3e1ca
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x57412156
 	Offset: 0x2A80
 	Size: 0x95
@@ -362,12 +362,12 @@ function function_e4b3e1ca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	{
 		case 1:
 		{
-			level notify("hash_90645a63");
+			level notify("ps1");
 			break;
 		}
 		case 2:
 		{
-			level notify("hash_1e5ceb28");
+			level notify("ps2");
 			break;
 		}
 		case 3:
@@ -380,7 +380,7 @@ function function_e4b3e1ca(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: dog_start_monitor
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0xE4D4A6D6
 	Offset: 0x2B20
 	Size: 0x81
@@ -402,7 +402,7 @@ function dog_start_monitor()
 
 /*
 	Name: dog_stop_monitor
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x78281AB3
 	Offset: 0x2BB0
 	Size: 0x81

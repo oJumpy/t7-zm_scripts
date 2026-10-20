@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_350615e2;
+#namespace zm_bgb_unquenchable;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_350615e2
+	Namespace: zm_bgb_unquenchable
 	Checksum: 0xCD21A7A
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_350615e2
+	Namespace: zm_bgb_unquenchable
 	Checksum: 0xFFD3B59D
 	Offset: 0x188
 	Size: 0x3B

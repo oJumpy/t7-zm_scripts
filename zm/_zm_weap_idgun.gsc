@@ -25,7 +25,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: idgun
-	Checksum: 0x1FD0E74C
+	Checksum: 0xFAD59313
 	Offset: 0x2F8
 	Size: 0x3B
 	Parameters: 0
@@ -39,7 +39,7 @@ function autoexec __init__sytem__()
 /*
 	Name: init
 	Namespace: idgun
-	Checksum: 0x3788B2AE
+	Checksum: 0x74E324F9
 	Offset: 0x340
 	Size: 0x43
 	Parameters: 0
@@ -54,7 +54,7 @@ function init()
 /*
 	Name: main
 	Namespace: idgun
-	Checksum: 0x40CDF142
+	Checksum: 0x67009005
 	Offset: 0x390
 	Size: 0xAB
 	Parameters: 0
@@ -80,7 +80,7 @@ function main()
 /*
 	Name: is_idgun_damage
 	Namespace: idgun
-	Checksum: 0x57B54C66
+	Checksum: 0xDD04D39A
 	Offset: 0x448
 	Size: 0x3D
 	Parameters: 1
@@ -101,7 +101,7 @@ function is_idgun_damage(weapon)
 /*
 	Name: function_9b7ac6a9
 	Namespace: idgun
-	Checksum: 0x43CBFD0E
+	Checksum: 0x5E7EBEB
 	Offset: 0x490
 	Size: 0x45
 	Parameters: 1
@@ -119,7 +119,7 @@ function function_9b7ac6a9(weapon)
 /*
 	Name: function_6fbe2b2c
 	Namespace: idgun
-	Checksum: 0xAEEF9597
+	Checksum: 0x4DA0A6DF
 	Offset: 0x4E0
 	Size: 0x93
 	Parameters: 1
@@ -142,7 +142,7 @@ function function_6fbe2b2c(v_vortex_origin)
 /*
 	Name: function_2bd571b9
 	Namespace: idgun
-	Checksum: 0x24EEF596
+	Checksum: 0xD7829532
 	Offset: 0x580
 	Size: 0x16F
 	Parameters: 0
@@ -175,7 +175,7 @@ function function_2bd571b9()
 /*
 	Name: function_b618ee82
 	Namespace: idgun
-	Checksum: 0x67F7E07C
+	Checksum: 0x2CDA0760
 	Offset: 0x6F8
 	Size: 0x75
 	Parameters: 10
@@ -193,7 +193,7 @@ function function_b618ee82(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeat
 /*
 	Name: idgun_apply_vehicle_damage
 	Namespace: idgun
-	Checksum: 0xECE36CF9
+	Checksum: 0xA6C1FE18
 	Offset: 0x778
 	Size: 0xC3
 	Parameters: 15

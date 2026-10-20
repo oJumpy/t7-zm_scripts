@@ -2296,7 +2296,7 @@ function sndRadioWait(origin, radio, is_sequential, num)
 {
 	temp_ent = spawn("script_origin", origin);
 	temp_ent thread secretUse("sndRadioHit", VectorScale((0, 0, 1), 255), &sndRadio_Override, radio);
-	temp_ent waittill("hash_678c47ee", player);
+	temp_ent waittill("sndradiohit", player);
 	if(!(isdefined(is_sequential) && is_sequential))
 	{
 		radionum = num;

@@ -66,11 +66,11 @@
 #using scripts\zm\zm_theater_zombie;
 #using scripts\zm\zm_zmhd_cleanup_mgr;
 
-#namespace namespace_aed37ba8;
+#namespace zm_theater;
 
 /*
 	Name: opt_in
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x4930BDC2
 	Offset: 0x13D0
 	Size: 0x27
@@ -86,7 +86,7 @@ function autoexec opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xB87B9925
 	Offset: 0x1400
 	Size: 0x5B3
@@ -98,7 +98,7 @@ function main()
 	namespace_16a77fe2::main_start();
 	level.default_game_mode = "zclassic";
 	level.default_start_location = "default";
-	namespace_265ae7e9::main();
+	zm_theater_fx::main();
 	init_clientfields();
 	zm::init_fx();
 	level.zombiemode = 1;
@@ -115,7 +115,7 @@ function main()
 	level._zombie_custom_add_weapons = &custom_add_weapons;
 	include_perks_in_random_rotation();
 	load::main();
-	namespace_6d4f3e39::main();
+	zm_theater_amb::main();
 	level.default_laststandpistol = GetWeapon("pistol_m1911");
 	level.default_solo_laststandpistol = GetWeapon("pistol_m1911_upgraded");
 	level.laststandpistol = level.default_laststandpistol;
@@ -160,22 +160,22 @@ function main()
 	#/
 	chandelier = GetEntArray("theater_chandelier", "targetname");
 	Array::thread_all(chandelier, &theater_chandelier_model_scale);
-	level thread namespace_8847920b::teleport_pad_hide_use();
+	level thread zm_theater_teleporter::teleport_pad_hide_use();
 	level thread zm_perks::spare_change();
-	scene::add_scene_func("cin_zmhd_sizzle_theater_cam", &function_8d0bd61d, "play");
+	scene::add_scene_func("cin_zmhd_sizzle_theater_cam", &cin_zmhd_sizzle_theater_cam, "play");
 	namespace_16a77fe2::main_end();
 }
 
 /*
-	Name: function_8d0bd61d
-	Namespace: namespace_aed37ba8
+	Name: cin_zmhd_sizzle_theater_cam
+	Namespace: zm_theater
 	Checksum: 0x552CC4A2
 	Offset: 0x19C0
 	Size: 0x193
 	Parameters: 1
 	Flags: None
 */
-function function_8d0bd61d(a_ents)
+function cin_zmhd_sizzle_theater_cam(a_ents)
 {
 	level.disable_print3d_ent = 1;
 	exploder::kill_exploder("teleporter_light_red");
@@ -197,7 +197,7 @@ function function_8d0bd61d(a_ents)
 
 /*
 	Name: init_clientfields
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xACF489A3
 	Offset: 0x1B60
 	Size: 0xE3
@@ -215,7 +215,7 @@ function init_clientfields()
 
 /*
 	Name: zm_theater_init_done
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x3A18AF7A
 	Offset: 0x1C50
 	Size: 0xF
@@ -229,7 +229,7 @@ function zm_theater_init_done()
 
 /*
 	Name: anywhere_but_here_validation_override
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x9C118035
 	Offset: 0x1C68
 	Size: 0x27
@@ -238,7 +238,7 @@ function zm_theater_init_done()
 */
 function anywhere_but_here_validation_override()
 {
-	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
+	if(!isdefined(self zm_bgb_anywhere_but_here::function_728dfe3()))
 	{
 		return 0;
 	}
@@ -247,7 +247,7 @@ function anywhere_but_here_validation_override()
 
 /*
 	Name: function_823705c7
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x50477AD2
 	Offset: 0x1C98
 	Size: 0x89
@@ -274,7 +274,7 @@ function function_823705c7()
 
 /*
 	Name: function_6452fa9d
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x58D9C7C5
 	Offset: 0x1D30
 	Size: 0x123
@@ -294,7 +294,7 @@ function function_6452fa9d()
 
 /*
 	Name: zm_theater_zone_monitor_callback
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xF707A806
 	Offset: 0x1E60
 	Size: 0x3F
@@ -313,7 +313,7 @@ function zm_theater_zone_monitor_callback()
 
 /*
 	Name: precacheCustomCharacters
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x99EC1590
 	Offset: 0x1EA8
 	Size: 0x3
@@ -326,7 +326,7 @@ function precacheCustomCharacters()
 
 /*
 	Name: initCharacterStartIndex
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xA1396B2C
 	Offset: 0x1EB8
 	Size: 0x23
@@ -340,7 +340,7 @@ function initCharacterStartIndex()
 
 /*
 	Name: selectCharacterIndexToUse
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xED3B6B
 	Offset: 0x1EE8
 	Size: 0x3D
@@ -360,7 +360,7 @@ function selectCharacterIndexToUse()
 
 /*
 	Name: giveCustomCharacters
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x8B58EDF0
 	Offset: 0x1F30
 	Size: 0x303
@@ -423,12 +423,12 @@ function giveCustomCharacters()
 	self setMoveSpeedScale(1);
 	self SetSprintDuration(4);
 	self SetSprintCooldown(0);
-	self thread namespace_52adc03e::set_exert_id();
+	self thread zm_audio_zhd::set_exert_id();
 }
 
 /*
 	Name: assign_lowest_unused_character_index
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xA3AFDC9C
 	Offset: 0x2240
 	Size: 0x15B
@@ -467,7 +467,7 @@ function assign_lowest_unused_character_index()
 
 /*
 	Name: offhand_weapon_overrride
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xF4AE0892
 	Offset: 0x23A8
 	Size: 0xBD
@@ -488,7 +488,7 @@ function offhand_weapon_overrride()
 
 /*
 	Name: theater_open_curtains
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xC2C93E0D
 	Offset: 0x2470
 	Size: 0xAB
@@ -505,7 +505,7 @@ function theater_open_curtains()
 
 /*
 	Name: function_9a38ad2c
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xDA371CB3
 	Offset: 0x2528
 	Size: 0x3B
@@ -520,7 +520,7 @@ function function_9a38ad2c(a_ents)
 
 /*
 	Name: custom_add_weapons
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xFE162E6
 	Offset: 0x2570
 	Size: 0x23
@@ -534,7 +534,7 @@ function custom_add_weapons()
 
 /*
 	Name: custom_add_vox
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x157CCA68
 	Offset: 0x25A0
 	Size: 0x33
@@ -549,7 +549,7 @@ function custom_add_vox()
 
 /*
 	Name: add_powerups_after_round_1
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xB651750C
 	Offset: 0x25E0
 	Size: 0x14B
@@ -590,7 +590,7 @@ function add_powerups_after_round_1()
 
 /*
 	Name: init_zombie_theater
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xCAE9A78D
 	Offset: 0x2738
 	Size: 0xF3
@@ -612,7 +612,7 @@ function init_zombie_theater()
 
 /*
 	Name: teleporter_intro
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xDBC59519
 	Offset: 0x2838
 	Size: 0x6B
@@ -629,7 +629,7 @@ function teleporter_intro()
 
 /*
 	Name: electric_switch
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x1922A6C2
 	Offset: 0x28B0
 	Size: 0x1B
@@ -643,7 +643,7 @@ function electric_switch()
 
 /*
 	Name: wait_for_power
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x3E2A2C55
 	Offset: 0x28D8
 	Size: 0x11B
@@ -659,7 +659,7 @@ function wait_for_power()
 	exploder::exploder("lgt_exploder_teleporter_on");
 	exploder::exploder("lgt_exploder_projector_on");
 	exploder::exploder("lgt_exploder_ceiling_holes");
-	namespace_8847920b::teleporter_init();
+	zm_theater_teleporter::teleporter_init();
 	players = level.players;
 	level.quads_per_round = 4 * players.size;
 	level notify("quad_round_can_end");
@@ -669,7 +669,7 @@ function wait_for_power()
 
 /*
 	Name: init_sounds
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xF2FF2842
 	Offset: 0x2A00
 	Size: 0x9F
@@ -688,7 +688,7 @@ function init_sounds()
 
 /*
 	Name: setupMusic
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xB2481FB2
 	Offset: 0x2AA8
 	Size: 0x1AB
@@ -711,7 +711,7 @@ function setupMusic()
 
 /*
 	Name: theater_zone_init
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xB5C0EC21
 	Offset: 0x2C60
 	Size: 0x223
@@ -738,7 +738,7 @@ function theater_zone_init()
 
 /*
 	Name: theater_ignore_spawner
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x7CF5B9C9
 	Offset: 0x2E90
 	Size: 0x143
@@ -780,7 +780,7 @@ function theater_ignore_spawner(spawner)
 
 /*
 	Name: quad_wave_init
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x2F9D48DB
 	Offset: 0x2FE0
 	Size: 0xAB
@@ -799,7 +799,7 @@ function quad_wave_init()
 
 /*
 	Name: time_for_quad_wave
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xFE502DDD
 	Offset: 0x3098
 	Size: 0x2AB
@@ -858,7 +858,7 @@ function time_for_quad_wave(zone_name)
 
 /*
 	Name: theater_chandelier_model_scale
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xE574029A
 	Offset: 0x3350
 	Size: 0x8B
@@ -880,7 +880,7 @@ function theater_chandelier_model_scale()
 
 /*
 	Name: display_traversals
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x9D448B91
 	Offset: 0x33E8
 	Size: 0xBD
@@ -908,7 +908,7 @@ function display_traversals()
 
 /*
 	Name: debug_display
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x2859DD00
 	Offset: 0x34B0
 	Size: 0x4F
@@ -928,7 +928,7 @@ function debug_display()
 
 /*
 	Name: init_level_specific_audio
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xD3AA1EA1
 	Offset: 0x3508
 	Size: 0x34B
@@ -956,7 +956,7 @@ function init_level_specific_audio()
 
 /*
 	Name: custom_get_mod_type
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xC1C76D52
 	Offset: 0x3860
 	Size: 0x3DD
@@ -1078,7 +1078,7 @@ function custom_get_mod_type(impact, mod, weapon, zombie, instakill, dist, playe
 
 /*
 	Name: include_perks_in_random_rotation
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0x5287A3F0
 	Offset: 0x3C48
 	Size: 0x63
@@ -1095,7 +1095,7 @@ function include_perks_in_random_rotation()
 
 /*
 	Name: function_c027d01d
-	Namespace: namespace_aed37ba8
+	Namespace: zm_theater
 	Checksum: 0xE25DA84C
 	Offset: 0x3CB8
 	Size: 0xA3

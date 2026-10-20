@@ -10,7 +10,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x517EEDFB
+	Checksum: 0x985A7DDB
 	Offset: 0x4D0
 	Size: 0x3B
 	Parameters: 0
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x6EE8CE99
+	Checksum: 0x58926304
 	Offset: 0x518
 	Size: 0x25B
 	Parameters: 0
@@ -46,7 +46,7 @@ function __init__()
 /*
 	Name: __main__
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x3267A05E
+	Checksum: 0x7C903E32
 	Offset: 0x780
 	Size: 0x161
 	Parameters: 0
@@ -74,7 +74,7 @@ function __main__()
 /*
 	Name: octobomb_tentacle_hit_fx
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x8D171363
+	Checksum: 0xF3095520
 	Offset: 0x8F0
 	Size: 0xB5
 	Parameters: 7
@@ -96,7 +96,7 @@ function octobomb_tentacle_hit_fx(localClientNum, oldVal, newVal, bNewEnt, bInit
 /*
 	Name: octobomb_fx
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x7B8B94C4
+	Checksum: 0xCE09D5E3
 	Offset: 0x9B0
 	Size: 0x13D
 	Parameters: 7
@@ -129,7 +129,7 @@ function octobomb_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fiel
 /*
 	Name: octobomb_spores_fx
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xC4A9F8A2
+	Checksum: 0xA859BDF8
 	Offset: 0xAF8
 	Size: 0x63
 	Parameters: 7
@@ -146,7 +146,7 @@ function octobomb_spores_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSna
 /*
 	Name: octobomb_spore_fx_on
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x3066F8BE
+	Checksum: 0x51E4C726
 	Offset: 0xB68
 	Size: 0x19B
 	Parameters: 2
@@ -178,7 +178,7 @@ function octobomb_spore_fx_on(localClientNum, n_fx_type)
 /*
 	Name: octobomb_zombie_explode_fx
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xF54CA7DF
+	Checksum: 0x638D76F9
 	Offset: 0xD10
 	Size: 0x9B
 	Parameters: 7
@@ -195,7 +195,7 @@ function octobomb_zombie_explode_fx(localClientNum, oldVal, newVal, bNewEnt, bIn
 /*
 	Name: octobomb_spit_fx
 	Namespace: _zm_weap_octobomb
-	Checksum: 0x4F11CF14
+	Checksum: 0x5563010
 	Offset: 0xDB8
 	Size: 0xB3
 	Parameters: 7
@@ -217,7 +217,7 @@ function octobomb_spit_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 /*
 	Name: octobomb_spit_fx_and_cleanup
 	Namespace: _zm_weap_octobomb
-	Checksum: 0xA2293D04
+	Checksum: 0xF284848B
 	Offset: 0xE78
 	Size: 0x83
 	Parameters: 4

@@ -10,11 +10,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_59f1b581;
+#namespace zm_bgb_bullet_boost;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_59f1b581
+	Namespace: zm_bgb_bullet_boost
 	Checksum: 0xB4D0182E
 	Offset: 0x220
 	Size: 0x33
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_59f1b581
+	Namespace: zm_bgb_bullet_boost
 	Checksum: 0x1BB414A6
 	Offset: 0x260
 	Size: 0x7B
@@ -47,7 +47,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_59f1b581
+	Namespace: zm_bgb_bullet_boost
 	Checksum: 0x2C0F609C
 	Offset: 0x2E8
 	Size: 0x12F
@@ -79,7 +79,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_59f1b581
+	Namespace: zm_bgb_bullet_boost
 	Checksum: 0x3FD0E64C
 	Offset: 0x420
 	Size: 0x16B

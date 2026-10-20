@@ -55,7 +55,7 @@ function enable()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	bgb::function_650ca64(7);
 	while(1)
 	{
@@ -93,7 +93,7 @@ function function_127dc5ca(player)
 	self endon("hash_127dc5ca");
 	self endon("kill_trigger");
 	self endon("hash_a09e2c64");
-	player endon("hash_994d5e9e");
+	player endon("bgb_update");
 	while(1)
 	{
 		player waittill("bgb_activation_request");

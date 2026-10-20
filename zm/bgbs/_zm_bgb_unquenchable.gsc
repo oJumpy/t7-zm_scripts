@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_350615e2;
+#namespace zm_bgb_unquenchable;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_350615e2
+	Namespace: zm_bgb_unquenchable
 	Checksum: 0xC9AAF7E7
 	Offset: 0x148
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_350615e2
+	Namespace: zm_bgb_unquenchable
 	Checksum: 0x98F6E7AC
 	Offset: 0x188
 	Size: 0x53
@@ -41,7 +41,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_350615e2
+	Namespace: zm_bgb_unquenchable
 	Checksum: 0x23D1DECD
 	Offset: 0x1E8
 	Size: 0x63
@@ -51,7 +51,7 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	do
 	{
 		self waittill("perk_purchased");

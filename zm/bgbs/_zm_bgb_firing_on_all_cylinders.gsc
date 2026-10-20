@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_ef480314;
+#namespace zm_bgb_firing_on_all_cylinders;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ef480314
+	Namespace: zm_bgb_firing_on_all_cylinders
 	Checksum: 0xDB373B32
 	Offset: 0x190
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ef480314
+	Namespace: zm_bgb_firing_on_all_cylinders
 	Checksum: 0xC1659A96
 	Offset: 0x1D0
 	Size: 0x5B
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_ef480314
+	Namespace: zm_bgb_firing_on_all_cylinders
 	Checksum: 0x88718F4C
 	Offset: 0x238
 	Size: 0x23
@@ -56,7 +56,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_ef480314
+	Namespace: zm_bgb_firing_on_all_cylinders
 	Checksum: 0xDD5C5348
 	Offset: 0x268
 	Size: 0x23

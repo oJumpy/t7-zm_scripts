@@ -7,12 +7,12 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_52adc03e;
+#namespace zm_audio_zhd;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_52adc03e
-	Checksum: 0xB5103422
+	Namespace: zm_audio_zhd
+	Checksum: 0x5F973982
 	Offset: 0x5F0
 	Size: 0x33
 	Parameters: 0
@@ -25,8 +25,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_52adc03e
-	Checksum: 0x839BD7D2
+	Namespace: zm_audio_zhd
+	Checksum: 0xA45FB73A
 	Offset: 0x630
 	Size: 0xFB
 	Parameters: 0
@@ -44,8 +44,8 @@ function __init__()
 
 /*
 	Name: function_97d247be
-	Namespace: namespace_52adc03e
-	Checksum: 0xF6F1245
+	Namespace: zm_audio_zhd
+	Checksum: 0x5639DABE
 	Offset: 0x738
 	Size: 0x10B
 	Parameters: 7
@@ -70,8 +70,8 @@ function function_97d247be(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_e312f684
-	Namespace: namespace_52adc03e
-	Checksum: 0x4D78CB81
+	Namespace: zm_audio_zhd
+	Checksum: 0x5312A3E4
 	Offset: 0x850
 	Size: 0x7B
 	Parameters: 7
@@ -87,8 +87,8 @@ function function_e312f684(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_52adc03e
-	Checksum: 0x43DC65DD
+	Namespace: zm_audio_zhd
+	Checksum: 0xEE8E5EAA
 	Offset: 0x8D8
 	Size: 0x4D9
 	Parameters: 0

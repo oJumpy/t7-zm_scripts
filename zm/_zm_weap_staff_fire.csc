@@ -3,11 +3,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weap_staff_common;
 
-#namespace namespace_ecdcc148;
+#namespace zm_weap_staff_fire;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xEE7A82F6
 	Offset: 0x280
 	Size: 0x33
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xBC361AEC
 	Offset: 0x2C0
 	Size: 0xFB
@@ -31,22 +31,22 @@ function autoexec __init__sytem__()
 function __init__()
 {
 	clientfield::register("actor", "fire_char_fx", 21000, 1, "int", &zombie_fire_fx, 0, 0);
-	clientfield::register("toplayer", "fire_muzzle_fx", 21000, 1, "counter", &function_d6107b2c, 0, 0);
+	clientfield::register("toplayer", "fire_muzzle_fx", 21000, 1, "counter", &fire_muzzle_fx, 0, 0);
 	level._effect["fire_muzzle"] = "dlc5/zmb_weapon/fx_staff_fire_muz_flash_1p";
 	level._effect["fire_muzzle_ug"] = "dlc5/zmb_weapon/fx_staff_fire_muz_flash_1p_ug";
-	namespace_c9806b9::function_4be5e665(GetWeapon("staff_fire_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_fire_lv1");
+	zm_weap_staff::function_4be5e665(GetWeapon("staff_fire_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_fire_lv1");
 }
 
 /*
-	Name: function_d6107b2c
-	Namespace: namespace_ecdcc148
+	Name: fire_muzzle_fx
+	Namespace: zm_weap_staff_fire
 	Checksum: 0xF6DDD742
 	Offset: 0x3C8
 	Size: 0xFB
 	Parameters: 7
 	Flags: None
 */
-function function_d6107b2c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function fire_muzzle_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{
@@ -64,7 +64,7 @@ function function_d6107b2c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: zombie_fire_fx
-	Namespace: namespace_ecdcc148
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x685522FD
 	Offset: 0x4D0
 	Size: 0x41F
@@ -98,7 +98,7 @@ function zombie_fire_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, f
 		self.sndent = spawn(0, self.origin, "script_origin");
 		self.sndent LinkTo(self);
 		self.sndent PlayLoopSound("zmb_fire_loop", 0.5);
-		self.sndent thread function_613e39fa(self);
+		self.sndent thread snddeleteent(self);
 		if(!(isdefined(self.has_charred) && self.has_charred))
 		{
 			self.has_charred = 1;
@@ -127,15 +127,15 @@ function zombie_fire_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, f
 }
 
 /*
-	Name: function_613e39fa
-	Namespace: namespace_ecdcc148
+	Name: snddeleteent
+	Namespace: zm_weap_staff_fire
 	Checksum: 0x277627D2
 	Offset: 0x8F8
 	Size: 0x3B
 	Parameters: 1
 	Flags: None
 */
-function function_613e39fa(zomb)
+function snddeleteent(zomb)
 {
 	self endon("sndDeleting");
 	zomb waittill("entityshutdown");

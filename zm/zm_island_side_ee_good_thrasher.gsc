@@ -31,11 +31,11 @@
 #using scripts\zm\zm_island_spores;
 #using scripts\zm\zm_island_util;
 
-#namespace namespace_f777c489;
+#namespace zm_island_side_ee_good_thrasher;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x41CB140A
 	Offset: 0x788
 	Size: 0x33
@@ -49,7 +49,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x20EE8F39
 	Offset: 0x7C8
 	Size: 0x383
@@ -82,7 +82,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x8E165141
 	Offset: 0xB58
 	Size: 0xCB
@@ -94,8 +94,8 @@ function main()
 	/#
 		level thread function_a0e0b4c2();
 	#/
-	var_895c0fb2 = GetEnt("mdl_goodthrasher_wall_decal", "targetname");
-	var_895c0fb2 clientfield::set("do_fade_material", 0.5);
+	mdl_goodthrasher_wall_decal = GetEnt("mdl_goodthrasher_wall_decal", "targetname");
+	mdl_goodthrasher_wall_decal clientfield::set("do_fade_material", 0.5);
 	var_199cfb62 = GetEntArray("mdl_good_thrasher_wall", "targetname");
 	var_c047302 = var_199cfb62[0];
 	var_c047302 clientfield::set("do_fade_material", 1);
@@ -103,7 +103,7 @@ function main()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x43F17568
 	Offset: 0xC30
 	Size: 0x1B
@@ -117,7 +117,7 @@ function on_player_spawned()
 
 /*
 	Name: on_player_connected
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x99EC1590
 	Offset: 0xC58
 	Size: 0x3
@@ -130,7 +130,7 @@ function on_player_connected()
 
 /*
 	Name: function_4aee2763
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xF4C8DB3F
 	Offset: 0xC68
 	Size: 0x93
@@ -150,7 +150,7 @@ function function_4aee2763()
 
 /*
 	Name: function_ad9a2050
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xE80FCFDA
 	Offset: 0xD08
 	Size: 0x17B
@@ -166,13 +166,13 @@ function function_ad9a2050()
 	if(isdefined(var_c047302))
 	{
 		exploder::exploder("fxexp_506");
-		var_895c0fb2 = GetEnt("mdl_goodthrasher_wall_decal", "targetname");
+		mdl_goodthrasher_wall_decal = GetEnt("mdl_goodthrasher_wall_decal", "targetname");
 		var_c047302 clientfield::set("do_fade_material", 0);
 		wait(0.25);
-		var_895c0fb2 clientfield::set("do_fade_material", 0);
+		mdl_goodthrasher_wall_decal clientfield::set("do_fade_material", 0);
 		wait(0.25);
 		var_c047302 delete();
-		var_895c0fb2 delete();
+		mdl_goodthrasher_wall_decal delete();
 		exploder::exploder("ex_goodthrasher");
 		level.var_564761a3.mdl_vine_clip thread function_f3ed4502();
 	}
@@ -180,7 +180,7 @@ function function_ad9a2050()
 
 /*
 	Name: function_f3ed4502
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xF6D34B68
 	Offset: 0xE90
 	Size: 0x12F
@@ -206,7 +206,7 @@ function function_f3ed4502()
 
 /*
 	Name: function_302fe6aa
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xC2F1CDC4
 	Offset: 0xFC8
 	Size: 0xFB
@@ -231,7 +231,7 @@ function function_302fe6aa()
 
 /*
 	Name: function_95caef47
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x844C81C7
 	Offset: 0x10D0
 	Size: 0x23
@@ -245,7 +245,7 @@ function function_95caef47()
 
 /*
 	Name: function_4724011d
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x21D58BF4
 	Offset: 0x1100
 	Size: 0xC5
@@ -281,7 +281,7 @@ function function_4724011d(str_state)
 
 /*
 	Name: function_c8310977
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x330C5244
 	Offset: 0x11D0
 	Size: 0x1F3
@@ -300,16 +300,16 @@ function function_c8310977()
 		self waittill("movedone");
 	}
 	level.var_564761a3.var_480b39a3 clientfield::set("spore_grows", 3);
-	var_1811ea40 = GetEnt("mdl_mushroom_clip", "targetname");
-	var_1811ea40 SetCanDamage(1);
-	var_1811ea40 thread function_ecaf0cc6();
+	mdl_mushroom_clip = GetEnt("mdl_mushroom_clip", "targetname");
+	mdl_mushroom_clip SetCanDamage(1);
+	mdl_mushroom_clip thread function_ecaf0cc6();
 	while(1)
 	{
-		var_1811ea40.health = 10000;
-		var_1811ea40 waittill("damage", n_damage, e_attacker, v_vector, v_point, str_means_of_death, str_string_1, str_string_2, str_string_3, w_weapon);
+		mdl_mushroom_clip.health = 10000;
+		mdl_mushroom_clip waittill("damage", n_damage, e_attacker, v_vector, v_point, str_means_of_death, str_string_1, str_string_2, str_string_3, w_weapon);
 		if(zm_utility::is_player_valid(e_attacker))
 		{
-			var_1811ea40 SetCanDamage(0);
+			mdl_mushroom_clip SetCanDamage(0);
 			level thread function_4724011d("exploded");
 			break;
 		}
@@ -318,7 +318,7 @@ function function_c8310977()
 
 /*
 	Name: function_ecaf0cc6
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xC2B8384F
 	Offset: 0x13D0
 	Size: 0x12F
@@ -348,7 +348,7 @@ function function_ecaf0cc6()
 
 /*
 	Name: function_19f54a6f
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xB738836C
 	Offset: 0x1508
 	Size: 0xA3
@@ -368,7 +368,7 @@ function function_19f54a6f()
 
 /*
 	Name: function_784ed421
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xC90B3CCB
 	Offset: 0x15B8
 	Size: 0x133
@@ -405,7 +405,7 @@ function function_784ed421()
 
 /*
 	Name: spore_cloud
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xF48B5FD4
 	Offset: 0x16F8
 	Size: 0x299
@@ -435,7 +435,7 @@ function spore_cloud(var_f9f788a6, b_hero_weapon, e_attacker)
 		self.var_66bbb0c0 = 76;
 	}
 	s_org = level.var_564761a3.var_11c98268;
-	self thread function_63a5615b(b_hero_weapon, s_org, var_f9f788a6);
+	self thread spore_cloud_fx(b_hero_weapon, s_org, var_f9f788a6);
 	playsoundatposition("zmb_spore_eject", self.origin);
 	var_88c0f006 = self function_cc07e4ad(self.var_66bbb0c0, s_org);
 	while(self.var_d7bb540a > 0 && (!isdefined(level.var_564761a3.var_1cd02afb) || !isalive(level.var_564761a3.var_1cd02afb)))
@@ -453,15 +453,15 @@ function spore_cloud(var_f9f788a6, b_hero_weapon, e_attacker)
 }
 
 /*
-	Name: function_63a5615b
-	Namespace: namespace_f777c489
+	Name: spore_cloud_fx
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x8F515C99
 	Offset: 0x19A0
 	Size: 0x133
 	Parameters: 3
 	Flags: None
 */
-function function_63a5615b(b_hero_weapon, s_org, var_f9f788a6)
+function spore_cloud_fx(b_hero_weapon, s_org, var_f9f788a6)
 {
 	if(b_hero_weapon)
 	{
@@ -494,7 +494,7 @@ function function_63a5615b(b_hero_weapon, s_org, var_f9f788a6)
 
 /*
 	Name: function_cc07e4ad
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x451E8327
 	Offset: 0x1AE0
 	Size: 0x7F
@@ -511,7 +511,7 @@ function function_cc07e4ad(var_66bbb0c0, s_org)
 
 /*
 	Name: function_c6cec92d
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xA0237CEE
 	Offset: 0x1B68
 	Size: 0x4EB
@@ -568,7 +568,7 @@ function function_c6cec92d(is_enemy, b_hero_weapon, e_attacker)
 				self.var_d07c64b6 = 1;
 				if(isdefined(e_attacker))
 				{
-					e_attacker notify("hash_2e126bd2");
+					e_attacker notify("update_challenge_3_1");
 				}
 				if(b_hero_weapon)
 				{
@@ -620,7 +620,7 @@ function function_c6cec92d(is_enemy, b_hero_weapon, e_attacker)
 			{
 				self thread function_36f14fa1();
 				self thread function_7fa4a0dd();
-				self waittill("hash_59bc7047");
+				self waittill("coughing_complete");
 			}
 			else
 			{
@@ -635,7 +635,7 @@ function function_c6cec92d(is_enemy, b_hero_weapon, e_attacker)
 
 /*
 	Name: function_5115d0a7
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xACCEBBF3
 	Offset: 0x2060
 	Size: 0x2B3
@@ -647,7 +647,7 @@ function function_5115d0a7()
 	if(!isdefined(level.var_564761a3.var_2d3405bf) && level.var_564761a3.var_2d3405bf && !isalive(level.var_564761a3.var_1cd02afb))
 	{
 		level.var_564761a3.var_2d3405bf = 1;
-		level.var_564761a3.var_1cd02afb = namespace_756d2c3d::function_8b323113(self, 0, 0);
+		level.var_564761a3.var_1cd02afb = zm_ai_thrasher::function_8b323113(self, 0, 0);
 		for(n_wait = 5; n_wait > 0 && !isdefined(level.var_564761a3.var_1cd02afb); n_wait--)
 		{
 			wait(1);
@@ -665,7 +665,7 @@ function function_5115d0a7()
 			{
 				level flag::init("side_ee_good_thrasher_seen");
 				level flag::set("side_ee_good_thrasher_seen");
-				var_ab3b4634 notify("hash_a4a48b98");
+				var_ab3b4634 notify("player_saw_good_thrasher_creation");
 			}
 			level.var_564761a3.var_ff07b157.var_d7bb540a = 0;
 		}
@@ -675,7 +675,7 @@ function function_5115d0a7()
 
 /*
 	Name: function_8870fa6e
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xB97A7BF2
 	Offset: 0x2320
 	Size: 0x133
@@ -692,7 +692,7 @@ function function_8870fa6e()
 	var_3cec36e5 = ArrayGetClosest(self.origin, level.activePlayers);
 	if(zm_utility::is_player_valid(var_3cec36e5))
 	{
-		var_3cec36e5 notify("hash_52449593");
+		var_3cec36e5 notify("player_saw_good_thrasher_death");
 	}
 	if(isalive(self))
 	{
@@ -703,7 +703,7 @@ function function_8870fa6e()
 
 /*
 	Name: function_2b2a9b70
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x8BEC53C2
 	Offset: 0x2460
 	Size: 0x45
@@ -720,7 +720,7 @@ function function_2b2a9b70()
 
 /*
 	Name: function_d3e5e5f4
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xD9220A20
 	Offset: 0x24B0
 	Size: 0x6F
@@ -744,7 +744,7 @@ function function_d3e5e5f4()
 
 /*
 	Name: function_365b46bb
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x2F7C7E10
 	Offset: 0x2528
 	Size: 0x14B
@@ -770,7 +770,7 @@ function function_365b46bb()
 
 /*
 	Name: function_97e9942
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x62D7ED9F
 	Offset: 0x2680
 	Size: 0x47
@@ -790,7 +790,7 @@ function function_97e9942()
 
 /*
 	Name: function_6001fb15
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x73F4D10C
 	Offset: 0x26D0
 	Size: 0x93
@@ -811,7 +811,7 @@ function function_6001fb15()
 
 /*
 	Name: function_703ef5e8
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x46925DF1
 	Offset: 0x2770
 	Size: 0x5B
@@ -820,7 +820,7 @@ function function_6001fb15()
 */
 function function_703ef5e8()
 {
-	self notify("hash_337fabcf");
+	self notify("update_challenge_1_2");
 	self.drownStage = 0;
 	self clientfield::set_to_player("drown_stage", 0);
 	self.lastWaterDamageTime = GetTime();
@@ -829,7 +829,7 @@ function function_703ef5e8()
 
 /*
 	Name: function_20ca7e14
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x9631C9BA
 	Offset: 0x27D8
 	Size: 0x55
@@ -849,7 +849,7 @@ function function_20ca7e14()
 
 /*
 	Name: function_36f14fa1
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xA6FF9FEC
 	Offset: 0x2838
 	Size: 0x65
@@ -873,7 +873,7 @@ function function_36f14fa1()
 
 /*
 	Name: function_7fa4a0dd
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x6529DE3A
 	Offset: 0x28A8
 	Size: 0x99
@@ -889,13 +889,13 @@ function function_7fa4a0dd()
 	}
 	self function_2ce1c95f();
 	self util::waittill_any("fake_death", "death", "player_downed", "weapon_change_complete");
-	self function_909c515f();
-	self notify("hash_59bc7047");
+	self player_cough_end();
+	self notify("coughing_complete");
 }
 
 /*
 	Name: function_2ce1c95f
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x93FC057F
 	Offset: 0x2950
 	Size: 0x103
@@ -921,15 +921,15 @@ function function_2ce1c95f()
 }
 
 /*
-	Name: function_909c515f
-	Namespace: namespace_f777c489
+	Name: player_cough_end
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x5CE2FE98
 	Offset: 0x2A60
 	Size: 0x1AB
 	Parameters: 0
 	Flags: None
 */
-function function_909c515f()
+function player_cough_end()
 {
 	self zm_utility::enable_player_move_states();
 	weapon = GetWeapon("zombie_cough");
@@ -965,7 +965,7 @@ function function_909c515f()
 
 /*
 	Name: function_a0e0b4c2
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0x2734E4D
 	Offset: 0x2C18
 	Size: 0x5B
@@ -983,7 +983,7 @@ function function_a0e0b4c2()
 
 /*
 	Name: function_9eaf14a2
-	Namespace: namespace_f777c489
+	Namespace: zm_island_side_ee_good_thrasher
 	Checksum: 0xD50D729A
 	Offset: 0x2C80
 	Size: 0x75

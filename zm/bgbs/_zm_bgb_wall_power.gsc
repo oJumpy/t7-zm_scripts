@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_df65c2a7;
+#namespace zm_bgb_wall_power;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_df65c2a7
+	Namespace: zm_bgb_wall_power
 	Checksum: 0xCB3DE2E1
 	Offset: 0x188
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_df65c2a7
+	Namespace: zm_bgb_wall_power
 	Checksum: 0x740B41F8
 	Offset: 0x1C8
 	Size: 0x53
@@ -42,7 +42,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_df65c2a7
+	Namespace: zm_bgb_wall_power
 	Checksum: 0x2DB4A56C
 	Offset: 0x228
 	Size: 0x7B
@@ -52,7 +52,7 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self waittill("zm_bgb_wall_power_used");
 	self playsoundtoplayer("zmb_bgb_wall_power", self);
 	self zm_stats::increment_challenge_stat("GUM_GOBBLER_WALL_POWER");

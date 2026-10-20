@@ -251,17 +251,17 @@ function init()
 		}
 		level.struct_class_names["scriptbundlename"][self.scriptbundlename][level.struct_class_names["scriptbundlename"][self.scriptbundlename].size] = self;
 	}
-	if(isdefined(self.var_47c44e16))
+	if(isdefined(self.prefabname))
 	{
-		if(!isdefined(level.struct_class_names["prefabname"][self.var_47c44e16]))
+		if(!isdefined(level.struct_class_names["prefabname"][self.prefabname]))
 		{
-			level.struct_class_names["prefabname"][self.var_47c44e16] = [];
+			level.struct_class_names["prefabname"][self.prefabname] = [];
 		}
-		else if(!IsArray(level.struct_class_names["prefabname"][self.var_47c44e16]))
+		else if(!IsArray(level.struct_class_names["prefabname"][self.prefabname]))
 		{
-			level.struct_class_names["prefabname"][self.var_47c44e16] = Array(level.struct_class_names["prefabname"][self.var_47c44e16]);
+			level.struct_class_names["prefabname"][self.prefabname] = Array(level.struct_class_names["prefabname"][self.prefabname]);
 		}
-		level.struct_class_names["prefabname"][self.var_47c44e16][level.struct_class_names["prefabname"][self.var_47c44e16].size] = self;
+		level.struct_class_names["prefabname"][self.prefabname][level.struct_class_names["prefabname"][self.prefabname].size] = self;
 	}
 }
 
@@ -385,9 +385,9 @@ function delete()
 	{
 		ArrayRemoveValue(level.struct_class_names["scriptbundlename"][self.scriptbundlename], self);
 	}
-	if(isdefined(self.var_47c44e16))
+	if(isdefined(self.prefabname))
 	{
-		ArrayRemoveValue(level.struct_class_names["prefabname"][self.var_47c44e16], self);
+		ArrayRemoveValue(level.struct_class_names["prefabname"][self.prefabname], self);
 	}
 }
 

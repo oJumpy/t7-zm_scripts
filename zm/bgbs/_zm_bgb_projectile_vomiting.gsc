@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_a5a0319c;
+#namespace zm_bgb_projectile_vomiting;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a5a0319c
+	Namespace: zm_bgb_projectile_vomiting
 	Checksum: 0xF631C93
 	Offset: 0x210
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a5a0319c
+	Namespace: zm_bgb_projectile_vomiting
 	Checksum: 0x34D7B1E0
 	Offset: 0x250
 	Size: 0xB3
@@ -45,7 +45,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_a5a0319c
+	Namespace: zm_bgb_projectile_vomiting
 	Checksum: 0x99EC1590
 	Offset: 0x310
 	Size: 0x3
@@ -58,7 +58,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_a5a0319c
+	Namespace: zm_bgb_projectile_vomiting
 	Checksum: 0x99EC1590
 	Offset: 0x320
 	Size: 0x3
@@ -71,7 +71,7 @@ function disable()
 
 /*
 	Name: actor_death_override
-	Namespace: namespace_a5a0319c
+	Namespace: zm_bgb_projectile_vomiting
 	Checksum: 0xAD3199E8
 	Offset: 0x330
 	Size: 0x75

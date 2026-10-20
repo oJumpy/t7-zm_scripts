@@ -15,11 +15,11 @@
 #using scripts\zm\zm_cosmodrome_amb;
 #using scripts\zm\zm_cosmodrome_eggs;
 
-#namespace namespace_9d4ce396;
+#namespace zm_cosmodrome_lander;
 
 /*
 	Name: init
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xC3AAA2F3
 	Offset: 0xA38
 	Size: 0x4FB
@@ -77,7 +77,7 @@ function init()
 
 /*
 	Name: setup_hotjoin_player
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x21100C3D
 	Offset: 0xF40
 	Size: 0x2F
@@ -94,7 +94,7 @@ function setup_hotjoin_player()
 
 /*
 	Name: setup_initial_lander_states
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xE3CFF25E
 	Offset: 0xF78
 	Size: 0x63
@@ -110,7 +110,7 @@ function setup_initial_lander_states()
 
 /*
 	Name: lander_poi_init
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x106BD433
 	Offset: 0xFE8
 	Size: 0xA5
@@ -129,7 +129,7 @@ function lander_poi_init()
 
 /*
 	Name: activate_lander_poi
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xB0380FD
 	Offset: 0x1098
 	Size: 0x103
@@ -159,7 +159,7 @@ function activate_lander_poi(station)
 
 /*
 	Name: init_lander_screen
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xBB854883
 	Offset: 0x11A8
 	Size: 0x23
@@ -173,7 +173,7 @@ function init_lander_screen()
 
 /*
 	Name: link_pieces
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xAEFAD0B3
 	Offset: 0x11D8
 	Size: 0x135
@@ -206,7 +206,7 @@ function link_pieces(piece, no_cull)
 
 /*
 	Name: close_lander_door
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xAA458ABC
 	Offset: 0x1318
 	Size: 0xAB
@@ -228,7 +228,7 @@ function close_lander_door(time)
 
 /*
 	Name: open_lander_door
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x818A7461
 	Offset: 0x13D0
 	Size: 0x67
@@ -246,7 +246,7 @@ function open_lander_door(time)
 
 /*
 	Name: open_lander_gate
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xE667ACB7
 	Offset: 0x1440
 	Size: 0xDB
@@ -264,7 +264,7 @@ function open_lander_gate()
 
 /*
 	Name: close_lander_gate
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xD4F7C597
 	Offset: 0x1528
 	Size: 0x11B
@@ -283,7 +283,7 @@ function close_lander_gate(time)
 
 /*
 	Name: move_gate
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xD77989ED
 	Offset: 0x1650
 	Size: 0x23B
@@ -335,7 +335,7 @@ function move_gate(pos, lower, time)
 
 /*
 	Name: init_buy
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x5A0DD003
 	Offset: 0x1898
 	Size: 0x43
@@ -350,7 +350,7 @@ function init_buy()
 
 /*
 	Name: init_call_boxes
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xB6D8348
 	Offset: 0x18E8
 	Size: 0xA5
@@ -370,7 +370,7 @@ function init_call_boxes()
 
 /*
 	Name: call_box_think
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x4E4A52C
 	Offset: 0x1998
 	Size: 0x337
@@ -446,7 +446,7 @@ function call_box_think()
 
 /*
 	Name: lander_buy_think
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xDB5BFFD8
 	Offset: 0x1CD8
 	Size: 0x77B
@@ -575,7 +575,7 @@ function lander_buy_think()
 
 /*
 	Name: function_bd6e70fe
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x8C9F29C4
 	Offset: 0x2460
 	Size: 0x11B
@@ -616,7 +616,7 @@ function function_bd6e70fe()
 
 /*
 	Name: enable_callboxes
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xE60414
 	Offset: 0x2588
 	Size: 0x16D
@@ -643,7 +643,7 @@ function enable_callboxes()
 
 /*
 	Name: new_lander_intro
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x4B25C1D0
 	Offset: 0x2700
 	Size: 0x443
@@ -695,7 +695,7 @@ function new_lander_intro()
 
 /*
 	Name: lander_intro_think
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xE67263CA
 	Offset: 0x2B50
 	Size: 0x83
@@ -713,7 +713,7 @@ function lander_intro_think()
 
 /*
 	Name: lander_take_off
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x488991A6
 	Offset: 0x2BE0
 	Size: 0x753
@@ -812,7 +812,7 @@ function lander_take_off(dest)
 
 /*
 	Name: function_5f5d494f
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xC6A57975
 	Offset: 0x3340
 	Size: 0x103
@@ -842,7 +842,7 @@ function function_5f5d494f()
 
 /*
 	Name: lander_hover_idle
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xFD8AF888
 	Offset: 0x3450
 	Size: 0x10B
@@ -860,7 +860,7 @@ function lander_hover_idle()
 
 /*
 	Name: player_blocking_lander
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x72609DD6
 	Offset: 0x3568
 	Size: 0x307
@@ -904,7 +904,7 @@ function player_blocking_lander()
 
 /*
 	Name: lock_players
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x41D67280
 	Offset: 0x3878
 	Size: 0x61F
@@ -987,7 +987,7 @@ function lock_players(destination)
 
 /*
 	Name: function_e323fa97
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x238E2495
 	Offset: 0x3EA0
 	Size: 0xE3
@@ -1013,7 +1013,7 @@ function function_e323fa97()
 
 /*
 	Name: lock_players_intro
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xD7A73AB1
 	Offset: 0x3F90
 	Size: 0x235
@@ -1050,7 +1050,7 @@ function lock_players_intro()
 
 /*
 	Name: unlock_players
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x51C79B78
 	Offset: 0x41D0
 	Size: 0x1D1
@@ -1084,7 +1084,7 @@ function unlock_players()
 
 /*
 	Name: lander_goto_dest
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x637C4718
 	Offset: 0x43B0
 	Size: 0x9CB
@@ -1230,7 +1230,7 @@ function lander_goto_dest()
 
 /*
 	Name: lander_engine_fx
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x75D067E9
 	Offset: 0x4D88
 	Size: 0x10B
@@ -1251,7 +1251,7 @@ function lander_engine_fx()
 
 /*
 	Name: takeoff_nuke
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x4AB8F159
 	Offset: 0x4EA0
 	Size: 0x12B
@@ -1281,7 +1281,7 @@ function takeoff_nuke(max_zombies, range, delay, trig)
 
 /*
 	Name: zombie_burst
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x2B146BC3
 	Offset: 0x4FD8
 	Size: 0xB3
@@ -1304,7 +1304,7 @@ function zombie_burst()
 
 /*
 	Name: takeoff_knockdown
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x24C74AF2
 	Offset: 0x5098
 	Size: 0xDD
@@ -1326,7 +1326,7 @@ function takeoff_knockdown(min_range, max_range)
 
 /*
 	Name: zombie_knockdown
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xB3380A79
 	Offset: 0x5180
 	Size: 0x8B
@@ -1348,7 +1348,7 @@ function zombie_knockdown()
 
 /*
 	Name: lander_clean_up_corpses
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x8459BA80
 	Offset: 0x5218
 	Size: 0xB5
@@ -1372,7 +1372,7 @@ function lander_clean_up_corpses(spot, range)
 
 /*
 	Name: lander_remove_corpses
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xEFDF9C8F
 	Offset: 0x52D8
 	Size: 0x73
@@ -1392,7 +1392,7 @@ function lander_remove_corpses()
 
 /*
 	Name: lander_flight_wobble
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x118C00CE
 	Offset: 0x5358
 	Size: 0x3FD
@@ -1450,7 +1450,7 @@ function lander_flight_wobble(lander, final_dest)
 
 /*
 	Name: lander_takeoff_wobble
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x2510ACE8
 	Offset: 0x5760
 	Size: 0x6F
@@ -1469,7 +1469,7 @@ function lander_takeoff_wobble()
 
 /*
 	Name: lander_landing_wobble
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x7FB51AD2
 	Offset: 0x57D8
 	Size: 0xCB
@@ -1490,7 +1490,7 @@ function lander_landing_wobble(moveTime)
 
 /*
 	Name: lander_flight_stop_wobble
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0xBB66EDDB
 	Offset: 0x58B0
 	Size: 0xC3
@@ -1510,7 +1510,7 @@ function lander_flight_stop_wobble()
 
 /*
 	Name: lander_cooldown_think
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x8FD287B1
 	Offset: 0x5980
 	Size: 0x697
@@ -1617,7 +1617,7 @@ function lander_cooldown_think()
 
 /*
 	Name: play_launch_unlock_vox
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x54871D5
 	Offset: 0x6020
 	Size: 0xBB
@@ -1640,7 +1640,7 @@ function play_launch_unlock_vox()
 
 /*
 	Name: force_wait_for_gersh_line
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x72F10BD4
 	Offset: 0x60E8
 	Size: 0x2B
@@ -1655,7 +1655,7 @@ function force_wait_for_gersh_line()
 
 /*
 	Name: put_players_back_on_lander
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x78712DFD
 	Offset: 0x6120
 	Size: 0x14D
@@ -1684,7 +1684,7 @@ function put_players_back_on_lander()
 
 /*
 	Name: is_player_on_lander
-	Namespace: namespace_9d4ce396
+	Namespace: zm_cosmodrome_lander
 	Checksum: 0x5DB606B8
 	Offset: 0x6278
 	Size: 0x13B

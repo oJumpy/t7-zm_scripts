@@ -58,11 +58,11 @@
 #using scripts\zm\zm_stalingrad_timer;
 #using scripts\zm\zm_stalingrad_wearables;
 
-#namespace namespace_320a344e;
+#namespace zm_stalingrad;
 
 /*
 	Name: opt_in
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x6F6F64C6
 	Offset: 0x1B98
 	Size: 0x1B
@@ -77,7 +77,7 @@ function autoexec opt_in()
 
 /*
 	Name: init_gamemodes
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x99EC1590
 	Offset: 0x1BC0
 	Size: 0x3
@@ -90,7 +90,7 @@ function init_gamemodes()
 
 /*
 	Name: main
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x31D930
 	Offset: 0x1BD0
 	Size: 0x213
@@ -118,7 +118,7 @@ function main()
 	namespace_23c72813::function_ad78a144();
 	include_weapons();
 	load::main();
-	namespace_c49c3ddb::init();
+	zm_stalingrad_fx::init();
 	init_gamemodes();
 	level thread function_3a429aee();
 	thread namespace_db83306f::main();
@@ -129,7 +129,7 @@ function main()
 
 /*
 	Name: function_1c53c4e1
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x6DF4BF3E
 	Offset: 0x1DF0
 	Size: 0xC7
@@ -156,7 +156,7 @@ function function_1c53c4e1(a_ents)
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x8B40FD1F
 	Offset: 0x1EC0
 	Size: 0x6A3
@@ -173,10 +173,10 @@ function register_clientfields()
 	clientfield::register("clientuimodel", "zmInventory.widget_egg", 12000, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.piece_egg", 12000, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.progress_egg", 12000, 4, "float", undefined, 0, 0);
-	clientfield::register("actor", "drop_pod_score_beam_fx", 12000, 1, "counter", &namespace_b57650e4::function_c86c0cdd, 0, 0);
-	clientfield::register("scriptmover", "drop_pod_active", 12000, 1, "int", &namespace_b57650e4::function_5858bdaf, 0, 0);
-	clientfield::register("scriptmover", "drop_pod_hp_light", 12000, 2, "int", &namespace_b57650e4::function_5e369bd2, 0, 0);
-	clientfield::register("world", "drop_pod_streaming", 12000, 1, "int", &namespace_b57650e4::function_7a72544b, 0, 0);
+	clientfield::register("actor", "drop_pod_score_beam_fx", 12000, 1, "counter", &zm_stalingrad_pap::function_c86c0cdd, 0, 0);
+	clientfield::register("scriptmover", "drop_pod_active", 12000, 1, "int", &zm_stalingrad_pap::function_5858bdaf, 0, 0);
+	clientfield::register("scriptmover", "drop_pod_hp_light", 12000, 2, "int", &zm_stalingrad_pap::function_5e369bd2, 0, 0);
+	clientfield::register("world", "drop_pod_streaming", 12000, 1, "int", &zm_stalingrad_pap::drop_pod_streaming, 0, 0);
 	clientfield::register("toplayer", "tp_water_sheeting", 12000, 1, "int", &water_sheeting_toggle, 0, 0);
 	clientfield::register("toplayer", "sewer_landing_rumble", 12000, 1, "counter", &function_931fa0e1, 0, 0);
 	clientfield::register("scriptmover", "dragon_egg_heat_fx", 12000, 1, "int", &function_3931d3fe, 0, 0);
@@ -184,19 +184,19 @@ function register_clientfields()
 	clientfield::register("actor", "dragon_egg_score_beam_fx", 12000, 1, "counter", &function_bfdc67e3, 0, 0);
 	clientfield::register("world", "force_stream_dragon_egg", 12000, 1, "int", &function_b116183d, 0, 0);
 	clientfield::register("scriptmover", "ethereal_audio_log_fx", 12000, 1, "int", &function_a96968f2, 0, 0);
-	clientfield::register("world", "deactivate_ai_vox", 12000, 1, "int", &function_27fb11e6, 0, 0);
+	clientfield::register("world", "deactivate_ai_vox", 12000, 1, "int", &deactivate_ai_vox, 0, 0);
 	clientfield::register("world", "sophia_intro_outro", 12000, 1, "int", &function_21deab84, 0, 0);
 	clientfield::register("allplayers", "sophia_follow", 12000, 3, "int", &function_a431bec5, 0, 0);
 	clientfield::register("scriptmover", "sophia_eye_shader", 12000, 1, "int", &function_70b3b237, 0, 0);
 	clientfield::register("world", "sophia_main_waveform", 12000, 1, "int", &function_6cfcd54d, 0, 0);
-	clientfield::register("toplayer", "interact_rumble", 12000, 1, "counter", &function_bbbdcfd5, 0, 0);
+	clientfield::register("toplayer", "interact_rumble", 12000, 1, "counter", &interact_rumble_callback, 0, 0);
 	level.var_6ca4d0f2 = [];
 	level.var_48c1095e = [];
 }
 
 /*
 	Name: include_weapons
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0xBE52B7C9
 	Offset: 0x2570
 	Size: 0x33
@@ -211,7 +211,7 @@ function include_weapons()
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x5C4870ED
 	Offset: 0x25B0
 	Size: 0x1071
@@ -332,7 +332,7 @@ function setup_personality_character_exerts()
 
 /*
 	Name: function_3a429aee
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x1D7AAB7E
 	Offset: 0x3630
 	Size: 0x19B
@@ -362,7 +362,7 @@ function function_3a429aee()
 
 /*
 	Name: function_38b57afd
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x1F8F77C
 	Offset: 0x37D8
 	Size: 0x1A3
@@ -392,7 +392,7 @@ function function_38b57afd()
 
 /*
 	Name: water_sheeting_toggle
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x9400E8C7
 	Offset: 0x3988
 	Size: 0x1B1
@@ -422,7 +422,7 @@ function water_sheeting_toggle(localClientNum, oldVal, newVal, bNewEnt, bInitial
 
 /*
 	Name: function_da4ab728
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x92E8458C
 	Offset: 0x3B48
 	Size: 0xD9
@@ -448,7 +448,7 @@ function function_da4ab728(localClientNum, var_b81de649)
 
 /*
 	Name: function_931fa0e1
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0xAE0AD506
 	Offset: 0x3C30
 	Size: 0x63
@@ -465,7 +465,7 @@ function function_931fa0e1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_4b1f1b87
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0xD9E1B74
 	Offset: 0x3CA0
 	Size: 0x4D
@@ -479,7 +479,7 @@ function function_4b1f1b87(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_bfdc67e3
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x2622D9D1
 	Offset: 0x3CF8
 	Size: 0x113
@@ -496,7 +496,7 @@ function function_bfdc67e3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_10e7e603
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x98980533
 	Offset: 0x3E18
 	Size: 0xE3
@@ -516,7 +516,7 @@ function function_10e7e603(mdl_target)
 
 /*
 	Name: function_3931d3fe
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x60A02A77
 	Offset: 0x3F08
 	Size: 0xB3
@@ -537,7 +537,7 @@ function function_3931d3fe(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_b116183d
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x11B68F70
 	Offset: 0x3FC8
 	Size: 0x7B
@@ -558,7 +558,7 @@ function function_b116183d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_a96968f2
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x93761C2F
 	Offset: 0x4050
 	Size: 0xB3
@@ -579,7 +579,7 @@ function function_a96968f2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_21deab84
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x2B52DF5C
 	Offset: 0x4110
 	Size: 0x143
@@ -610,7 +610,7 @@ function function_21deab84(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_a431bec5
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0xADDE615E
 	Offset: 0x4260
 	Size: 0xFB
@@ -644,7 +644,7 @@ function function_a431bec5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_36666e11
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0x82463136
 	Offset: 0x4368
 	Size: 0x1D7
@@ -683,7 +683,7 @@ function function_36666e11(e_player)
 
 /*
 	Name: function_70b3b237
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0xA17D2129
 	Offset: 0x4548
 	Size: 0x63
@@ -697,7 +697,7 @@ function function_70b3b237(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_6cfcd54d
-	Namespace: namespace_320a344e
+	Namespace: zm_stalingrad
 	Checksum: 0xE13581C6
 	Offset: 0x45B8
 	Size: 0x10B
@@ -724,15 +724,15 @@ function function_6cfcd54d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_bbbdcfd5
-	Namespace: namespace_320a344e
+	Name: interact_rumble_callback
+	Namespace: zm_stalingrad
 	Checksum: 0xD54E9199
 	Offset: 0x46D0
 	Size: 0x63
 	Parameters: 7
 	Flags: None
 */
-function function_bbbdcfd5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function interact_rumble_callback(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -741,15 +741,15 @@ function function_bbbdcfd5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_27fb11e6
-	Namespace: namespace_320a344e
+	Name: deactivate_ai_vox
+	Namespace: zm_stalingrad
 	Checksum: 0xEFB38616
 	Offset: 0x4740
 	Size: 0x71
 	Parameters: 7
 	Flags: None
 */
-function function_27fb11e6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function deactivate_ai_vox(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{

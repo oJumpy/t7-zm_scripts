@@ -60,7 +60,7 @@ function function_fa778ca4()
 	}
 	else
 	{
-		s_respawn_point = self namespace_93b7f03::function_728dfe3();
+		s_respawn_point = self zm_bgb_anywhere_but_here::function_728dfe3();
 	}
 	return s_respawn_point;
 }

@@ -18,11 +18,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_e581e076;
+#namespace zm_powerup_demonic_rune;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0x2AFDEAAB
 	Offset: 0x4A8
 	Size: 0x33
@@ -36,7 +36,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0x9CBD3652
 	Offset: 0x4E8
 	Size: 0x57B
@@ -96,7 +96,7 @@ function __init__()
 
 /*
 	Name: grab_demonic_rune
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0xA6FDB452
 	Offset: 0xA70
 	Size: 0x53
@@ -106,13 +106,13 @@ function __init__()
 function grab_demonic_rune(player)
 {
 	level flag::clear("demonic_rune_dropped");
-	level notify("hash_968008cb");
+	level notify("demonic_rune_grabbed");
 	player thread zm_powerups::powerup_vo("bonus_points_solo");
 }
 
 /*
 	Name: function_5b767c2
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0xC4640AE2
 	Offset: 0xAD0
 	Size: 0x1B3
@@ -164,14 +164,14 @@ function function_5b767c2()
 	}
 	level.var_923a3c95 = undefined;
 	level flag::clear("demonic_rune_dropped");
-	level notify("hash_a4e87164");
+	level notify("demonic_rune_timed_out");
 	self notify("powerup_timedout");
 	self zm_powerups::powerup_delete();
 }
 
 /*
 	Name: function_15732f56
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0x53E08A60
 	Offset: 0xC90
 	Size: 0xDB
@@ -195,7 +195,7 @@ function function_15732f56()
 
 /*
 	Name: detect_reentry
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0xB0634DD7
 	Offset: 0xD78
 	Size: 0x37
@@ -219,7 +219,7 @@ function detect_reentry()
 
 /*
 	Name: function_a4207c70
-	Namespace: namespace_e581e076
+	Namespace: zm_powerup_demonic_rune
 	Checksum: 0xB687FD05
 	Offset: 0xDB8
 	Size: 0x297

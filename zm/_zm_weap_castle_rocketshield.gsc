@@ -102,12 +102,12 @@ function __main__()
 */
 function on_player_connect()
 {
-	self thread function_e8141489();
+	self thread watch_first_use();
 	self thread function_bbf98b84();
 }
 
 /*
-	Name: function_e8141489
+	Name: watch_first_use
 	Namespace: castle_rocketshield
 	Checksum: 0xEEB34BCD
 	Offset: 0xA00
@@ -115,7 +115,7 @@ function on_player_connect()
 	Parameters: 0
 	Flags: None
 */
-function function_e8141489()
+function watch_first_use()
 {
 	self endon("disconnect");
 	while(isdefined(self))
@@ -316,7 +316,7 @@ function riotshield_melee_juke(weapon)
 			shield_damage = shield_damage + level.zombie_vars["riotshield_juke_damage_shield"];
 			if(!var_27e95375)
 			{
-				self thread namespace_97ddfc0d::function_c166f48();
+				self thread zm_castle_vo::function_c166f48();
 				var_27e95375 = 1;
 			}
 		}

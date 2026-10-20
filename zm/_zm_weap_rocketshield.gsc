@@ -26,7 +26,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: rocketshield
-	Checksum: 0x5EBB0EB6
+	Checksum: 0xA78A4AFD
 	Offset: 0x5E8
 	Size: 0x3B
 	Parameters: 0
@@ -40,7 +40,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: rocketshield
-	Checksum: 0x6578F4D3
+	Checksum: 0x5DE274D2
 	Offset: 0x630
 	Size: 0x13B
 	Parameters: 0
@@ -61,7 +61,7 @@ function __init__()
 /*
 	Name: __main__
 	Namespace: rocketshield
-	Checksum: 0xBDC6F950
+	Checksum: 0x3882807
 	Offset: 0x778
 	Size: 0x203
 	Parameters: 0
@@ -93,7 +93,7 @@ function __main__()
 /*
 	Name: on_player_connect
 	Namespace: rocketshield
-	Checksum: 0x74EB4738
+	Checksum: 0xD2839D5A
 	Offset: 0x988
 	Size: 0x1B
 	Parameters: 0
@@ -107,7 +107,7 @@ function on_player_connect()
 /*
 	Name: watchFirstUse
 	Namespace: rocketshield
-	Checksum: 0x9AB2C854
+	Checksum: 0x52ABDB12
 	Offset: 0x9B0
 	Size: 0x73
 	Parameters: 0
@@ -131,7 +131,7 @@ function watchFirstUse()
 /*
 	Name: on_player_spawned
 	Namespace: rocketshield
-	Checksum: 0x5B41CF3
+	Checksum: 0xB31433B
 	Offset: 0xA30
 	Size: 0x7B
 	Parameters: 0
@@ -149,7 +149,7 @@ function on_player_spawned()
 /*
 	Name: player_watch_ammo_change
 	Namespace: rocketshield
-	Checksum: 0x61922CFC
+	Checksum: 0x5AB57114
 	Offset: 0xAB8
 	Size: 0xC7
 	Parameters: 0
@@ -176,7 +176,7 @@ function player_watch_ammo_change()
 /*
 	Name: player_watch_max_ammo
 	Namespace: rocketshield
-	Checksum: 0xAEF9370F
+	Checksum: 0xBE09EBB0
 	Offset: 0xB88
 	Size: 0x67
 	Parameters: 0
@@ -200,7 +200,7 @@ function player_watch_max_ammo()
 /*
 	Name: check_weapon_ammo
 	Namespace: rocketshield
-	Checksum: 0xE4D5AD46
+	Checksum: 0xFAEFE32
 	Offset: 0xBF8
 	Size: 0x63
 	Parameters: 1
@@ -219,7 +219,7 @@ function check_weapon_ammo(weapon)
 /*
 	Name: player_watch_upgraded_pickup_from_table
 	Namespace: rocketshield
-	Checksum: 0x7D2560A5
+	Checksum: 0x6635A515
 	Offset: 0xC68
 	Size: 0x97
 	Parameters: 0
@@ -244,7 +244,7 @@ function player_watch_upgraded_pickup_from_table()
 /*
 	Name: player_damage_rocketshield
 	Namespace: rocketshield
-	Checksum: 0x60F60AA1
+	Checksum: 0x943CD4E3
 	Offset: 0xD08
 	Size: 0xAB
 	Parameters: 4
@@ -271,7 +271,7 @@ function player_damage_rocketshield(iDamage, bHeld, fromCode, smod)
 /*
 	Name: player_watch_shield_juke
 	Namespace: rocketshield
-	Checksum: 0xFDB3CC6C
+	Checksum: 0x97BED975
 	Offset: 0xDC0
 	Size: 0xF5
 	Parameters: 0
@@ -300,7 +300,7 @@ function player_watch_shield_juke()
 /*
 	Name: riotshield_melee_juke
 	Namespace: rocketshield
-	Checksum: 0x7BF29D9D
+	Checksum: 0xA1649C5
 	Offset: 0xEC0
 	Size: 0x297
 	Parameters: 1
@@ -359,7 +359,7 @@ function riotshield_melee_juke(weapon)
 /*
 	Name: function_92debe0a
 	Namespace: rocketshield
-	Checksum: 0x39335E27
+	Checksum: 0x11EE1A1A
 	Offset: 0x1160
 	Size: 0x15D
 	Parameters: 0
@@ -389,7 +389,7 @@ function function_92debe0a()
 /*
 	Name: riotshield_get_juke_enemies_in_range
 	Namespace: rocketshield
-	Checksum: 0xF69AA1EC
+	Checksum: 0x41461638
 	Offset: 0x12C8
 	Size: 0x355
 	Parameters: 0
@@ -444,7 +444,7 @@ function riotshield_get_juke_enemies_in_range()
 /*
 	Name: spawn_recharge_tanks
 	Namespace: rocketshield
-	Checksum: 0xE02F32FE
+	Checksum: 0x5D2D26EB
 	Offset: 0x1628
 	Size: 0x23B
 	Parameters: 0
@@ -486,7 +486,7 @@ function spawn_recharge_tanks()
 /*
 	Name: create_bottle_unitrigger
 	Namespace: rocketshield
-	Checksum: 0x16FC392E
+	Checksum: 0xECA19CEF
 	Offset: 0x1870
 	Size: 0x28F
 	Parameters: 2
@@ -531,7 +531,7 @@ function create_bottle_unitrigger(v_origin, v_angles)
 /*
 	Name: function_fc8bb1d
 	Namespace: rocketshield
-	Checksum: 0x9200654E
+	Checksum: 0xDE55FB4A
 	Offset: 0x1B08
 	Size: 0x165
 	Parameters: 1
@@ -565,7 +565,7 @@ function function_fc8bb1d(a_spawnpoints)
 /*
 	Name: bottle_trigger_visibility
 	Namespace: rocketshield
-	Checksum: 0xD5E1899F
+	Checksum: 0xFDA6651F
 	Offset: 0x1C78
 	Size: 0xC9
 	Parameters: 1
@@ -589,7 +589,7 @@ function bottle_trigger_visibility(player)
 /*
 	Name: shield_recharge_trigger_think
 	Namespace: rocketshield
-	Checksum: 0x5D633CBE
+	Checksum: 0x8D7A6C7F
 	Offset: 0x1D50
 	Size: 0xA3
 	Parameters: 0
@@ -620,7 +620,7 @@ function shield_recharge_trigger_think()
 /*
 	Name: bottle_trigger_activate
 	Namespace: rocketshield
-	Checksum: 0x2BD29AD1
+	Checksum: 0xB483111D
 	Offset: 0x1E00
 	Size: 0x109
 	Parameters: 2
@@ -643,7 +643,7 @@ function bottle_trigger_activate(trig_stub, player)
 /*
 	Name: function_3f94d6cf
 	Namespace: rocketshield
-	Checksum: 0xE1052499
+	Checksum: 0x42383766
 	Offset: 0x1F18
 	Size: 0xF1
 	Parameters: 0
@@ -669,7 +669,7 @@ function function_3f94d6cf()
 /*
 	Name: function_e2f5a93
 	Namespace: rocketshield
-	Checksum: 0x79860136
+	Checksum: 0x871A157B
 	Offset: 0x2018
 	Size: 0x107
 	Parameters: 1
@@ -708,7 +708,7 @@ function function_e2f5a93(cmd)
 /*
 	Name: detect_reentry
 	Namespace: rocketshield
-	Checksum: 0xE6E7E36E
+	Checksum: 0xA50542D
 	Offset: 0x2128
 	Size: 0x37
 	Parameters: 0
@@ -732,7 +732,7 @@ function detect_reentry()
 /*
 	Name: function_e7c51939
 	Namespace: rocketshield
-	Checksum: 0x6E7525B4
+	Checksum: 0x7C2019A
 	Offset: 0x2168
 	Size: 0x2F
 	Parameters: 0
@@ -749,7 +749,7 @@ function function_e7c51939()
 /*
 	Name: function_3796f8bc
 	Namespace: rocketshield
-	Checksum: 0x882BDD1
+	Checksum: 0xECC3E738
 	Offset: 0x21A0
 	Size: 0x153
 	Parameters: 0

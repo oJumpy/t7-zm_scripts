@@ -305,7 +305,7 @@ function fx_overrides()
 */
 function function_e0500062()
 {
-	level waittill("hash_e61d99fd");
+	level waittill("sndsb");
 	playsound(0, "zmb_robothead_laser", (-434, 706, 439));
 	playsound(0, "zmb_robothead_reflection_laser", (-451, -397, 294));
 }

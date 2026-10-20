@@ -20,11 +20,11 @@
 #using scripts\zm\_zm_weap_elemental_bow;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_d37f1c72;
+#namespace _zm_weap_elemental_bow_wolf_howl;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x9F8A924C
 	Offset: 0x538
 	Size: 0x3B
@@ -38,7 +38,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xE30D834C
 	Offset: 0x580
 	Size: 0x24B
@@ -64,7 +64,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x99EC1590
 	Offset: 0x7D8
 	Size: 0x3
@@ -77,7 +77,7 @@ function __main__()
 
 /*
 	Name: function_b1b2ffc8
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xCD829A50
 	Offset: 0x7E8
 	Size: 0xE3
@@ -103,7 +103,7 @@ function function_b1b2ffc8()
 
 /*
 	Name: function_9b74f1f4
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x379C3ABE
 	Offset: 0x8D8
 	Size: 0xA3
@@ -122,7 +122,7 @@ function function_9b74f1f4(projectile, weapon)
 
 /*
 	Name: function_dd4f7cba
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xEA519A23
 	Offset: 0x988
 	Size: 0x73
@@ -139,7 +139,7 @@ function function_dd4f7cba(weapon, position, radius, attacker, normal)
 
 /*
 	Name: function_f9c890ed
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x1BD750AD
 	Offset: 0xA08
 	Size: 0x3B
@@ -155,7 +155,7 @@ function function_f9c890ed()
 
 /*
 	Name: function_27bcaea1
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x9E37D88C
 	Offset: 0xA50
 	Size: 0x19B
@@ -185,7 +185,7 @@ function function_27bcaea1(var_307bab92)
 
 /*
 	Name: function_a2209df2
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x18C161FD
 	Offset: 0xBF8
 	Size: 0x3FB
@@ -239,7 +239,7 @@ function function_a2209df2(e_player, var_307bab92, var_c807e383, v_up, var_5c447
 				level thread function_a6220124(var_8f0f462c);
 				if(var_5c44718b)
 				{
-					level thread function_b7d621a1(e_player, var_8f0f462c);
+					level thread wolf_howl_charge_trail_fx(e_player, var_8f0f462c);
 				}
 				str_return = var_28388a90 util::waittill_any_return("movedone", "mechz_impact");
 			}
@@ -262,7 +262,7 @@ function function_a2209df2(e_player, var_307bab92, var_c807e383, v_up, var_5c447
 
 /*
 	Name: function_71ad33d4
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xA1269AAF
 	Offset: 0x1000
 	Size: 0x1D5
@@ -294,7 +294,7 @@ function function_71ad33d4()
 
 /*
 	Name: function_4f87899e
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x14ECD4E4
 	Offset: 0x11E0
 	Size: 0x275
@@ -342,7 +342,7 @@ function function_4f87899e(var_307bab92, var_c807e383, v_up, var_5c44718b)
 
 /*
 	Name: function_2abb74b7
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x28BC6429
 	Offset: 0x1460
 	Size: 0x5C7
@@ -353,7 +353,7 @@ function function_2abb74b7(e_player, var_8f0f462c, var_c807e383)
 {
 	var_28388a90 = var_8f0f462c[0];
 	var_28388a90 endon("movedone");
-	var_28388a90 endon("hash_b850f1f5");
+	var_28388a90 endon("mechz_impact");
 	var_7839cab3 = 409600;
 	var_a90ad319 = VectorToAngles(var_c807e383);
 	var_200ee8c9 = 1920 * 0.1 * 2;
@@ -432,7 +432,7 @@ function function_2abb74b7(e_player, var_8f0f462c, var_c807e383)
 
 /*
 	Name: function_e02cfeee
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x2C28CA6C
 	Offset: 0x1A30
 	Size: 0x2F
@@ -446,7 +446,7 @@ function function_e02cfeee(ai_enemy)
 
 /*
 	Name: function_3af108ec
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xA0B9D275
 	Offset: 0x1A68
 	Size: 0x15B
@@ -472,7 +472,7 @@ function function_3af108ec(e_player, ai_enemy, v_launch)
 
 /*
 	Name: function_49dba034
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xBAEF14CE
 	Offset: 0x1BD0
 	Size: 0x63
@@ -490,7 +490,7 @@ function function_49dba034()
 
 /*
 	Name: function_7f218268
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x6DD377BD
 	Offset: 0x1C40
 	Size: 0x3B
@@ -506,7 +506,7 @@ function function_7f218268()
 
 /*
 	Name: do_zombie_explode
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x4DDF7999
 	Offset: 0x1C88
 	Size: 0x7B
@@ -523,7 +523,7 @@ function do_zombie_explode()
 
 /*
 	Name: function_720f6454
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xCC030D25
 	Offset: 0x1D10
 	Size: 0xEF
@@ -556,7 +556,7 @@ function function_720f6454(var_63f884ec)
 
 /*
 	Name: function_cd61021a
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x461AE8E7
 	Offset: 0x1E08
 	Size: 0x183
@@ -578,14 +578,14 @@ function function_cd61021a(e_player, ai_mechz, var_28388a90)
 		var_e1664ef3 = ai_mechz GetCentroid() - AnglesToForward(var_28388a90.angles) * 96;
 		var_28388a90.origin = var_e1664ef3;
 		wait(0.05);
-		var_28388a90 notify("hash_b850f1f5");
+		var_28388a90 notify("mechz_impact");
 		ai_mechz.var_a4557598 = 0;
 	}
 }
 
 /*
 	Name: function_6b3aa15a
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x64759F6
 	Offset: 0x1F98
 	Size: 0x293
@@ -618,7 +618,7 @@ function function_6b3aa15a(v_hit_pos, var_8f0f462c)
 
 /*
 	Name: function_cc1bf02e
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xD7AF7F8F
 	Offset: 0x2238
 	Size: 0x63
@@ -639,7 +639,7 @@ function function_cc1bf02e(var_8f0f462c, b_show)
 
 /*
 	Name: function_a6220124
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0xEB3AB9D0
 	Offset: 0x22A8
 	Size: 0xE7
@@ -652,7 +652,7 @@ function function_a6220124(var_8f0f462c)
 	var_9259c91b = var_8f0f462c[1];
 	var_205259e0 = var_8f0f462c[2];
 	var_28388a90 endon("movedone");
-	var_28388a90 endon("hash_b850f1f5");
+	var_28388a90 endon("mechz_impact");
 	var_28388a90 thread function_81703066(var_9259c91b, 1);
 	var_28388a90 thread function_81703066(var_205259e0, -1);
 	while(1)
@@ -664,7 +664,7 @@ function function_a6220124(var_8f0f462c)
 
 /*
 	Name: function_81703066
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x7FD53E88
 	Offset: 0x2398
 	Size: 0x9F
@@ -674,7 +674,7 @@ function function_a6220124(var_8f0f462c)
 function function_81703066(var_ea1975a2, var_dad28a75)
 {
 	self endon("movedone");
-	self endon("hash_b850f1f5");
+	self endon("mechz_impact");
 	while(1)
 	{
 		v_up = anglesToUp(self.angles);
@@ -685,15 +685,15 @@ function function_81703066(var_ea1975a2, var_dad28a75)
 }
 
 /*
-	Name: function_b7d621a1
-	Namespace: namespace_d37f1c72
+	Name: wolf_howl_charge_trail_fx
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x44DDDB0C
 	Offset: 0x2440
 	Size: 0xFB
 	Parameters: 2
 	Flags: None
 */
-function function_b7d621a1(e_player, var_8f0f462c)
+function wolf_howl_charge_trail_fx(e_player, var_8f0f462c)
 {
 	var_3c5572a7 = var_8f0f462c[0];
 	var_9259c91b = var_8f0f462c[1];
@@ -710,7 +710,7 @@ function function_b7d621a1(e_player, var_8f0f462c)
 
 /*
 	Name: function_5fded2aa
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x97EDC913
 	Offset: 0x2548
 	Size: 0x131
@@ -736,7 +736,7 @@ function function_5fded2aa(mod, HIT_LOCATION, hit_origin, e_player, amount, weap
 
 /*
 	Name: function_88bf0c4e
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x96E4A222
 	Offset: 0x2688
 	Size: 0x3A3
@@ -813,7 +813,7 @@ function function_88bf0c4e(e_player, n_damage, v_hit_origin, weapon)
 
 /*
 	Name: function_f4397d8f
-	Namespace: namespace_d37f1c72
+	Namespace: _zm_weap_elemental_bow_wolf_howl
 	Checksum: 0x91CCFBA6
 	Offset: 0x2A38
 	Size: 0x33

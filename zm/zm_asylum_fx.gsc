@@ -1,11 +1,11 @@
 #using scripts\shared\flagsys_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_bf71ff59;
+#namespace zm_asylum_fx;
 
 /*
 	Name: main
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0x56C7900A
 	Offset: 0x10C8
 	Size: 0x3B
@@ -21,7 +21,7 @@ function main()
 
 /*
 	Name: precache_createfx_fx
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0x686713E2
 	Offset: 0x1110
 	Size: 0x621
@@ -90,7 +90,7 @@ function precache_createfx_fx()
 
 /*
 	Name: precache_scripted_fx
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0xDAC18E90
 	Offset: 0x1740
 	Size: 0x1DD
@@ -120,7 +120,7 @@ function precache_scripted_fx()
 
 /*
 	Name: fx_overrides
-	Namespace: namespace_bf71ff59
+	Namespace: zm_asylum_fx
 	Checksum: 0xE545C443
 	Offset: 0x1928
 	Size: 0xAD

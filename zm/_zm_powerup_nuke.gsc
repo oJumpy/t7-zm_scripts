@@ -18,7 +18,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_nuke
-	Checksum: 0x5FA4C4D
+	Checksum: 0x92AED04D
 	Offset: 0x2E0
 	Size: 0x33
 	Parameters: 0
@@ -32,7 +32,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_nuke
-	Checksum: 0x65C01DF5
+	Checksum: 0xFCDD3023
 	Offset: 0x320
 	Size: 0xD3
 	Parameters: 0
@@ -49,7 +49,7 @@ function __init__()
 /*
 	Name: grab_nuke
 	Namespace: zm_powerup_nuke
-	Checksum: 0xE716715B
+	Checksum: 0x2500C7A2
 	Offset: 0x400
 	Size: 0xA7
 	Parameters: 1
@@ -67,7 +67,7 @@ function grab_nuke(player)
 /*
 	Name: nuke_powerup
 	Namespace: zm_powerup_nuke
-	Checksum: 0x89AE85F8
+	Checksum: 0x97226E2B
 	Offset: 0x4B0
 	Size: 0x49D
 	Parameters: 2
@@ -146,7 +146,7 @@ function nuke_powerup(drop_item, player_team)
 /*
 	Name: nuke_flash
 	Namespace: zm_powerup_nuke
-	Checksum: 0x1528E590
+	Checksum: 0x5608AEF9
 	Offset: 0x958
 	Size: 0xAB
 	Parameters: 1
@@ -168,7 +168,7 @@ function nuke_flash(team)
 /*
 	Name: nuke_delay_spawning
 	Namespace: zm_powerup_nuke
-	Checksum: 0xB1F12522
+	Checksum: 0xD83EA7F6
 	Offset: 0xA10
 	Size: 0xC3
 	Parameters: 1

@@ -6,11 +6,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_f2d05c13;
+#namespace zm_castle_death_ray_trap;
 
 /*
 	Name: main
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xE332F20F
 	Offset: 0x3D8
 	Size: 0x263
@@ -23,27 +23,27 @@ function main()
 	level._effect["console_red_light"] = "dlc1/castle/fx_glow_panel_red_castle";
 	level._effect["tesla_zombie_shock"] = "dlc1/castle/fx_tesla_trap_body_shock";
 	level._effect["tesla_zombie_explode"] = "dlc1/castle/fx_tesla_trap_body_exp";
-	clientfield::register("actor", "death_ray_shock_fx", 5000, 1, "int", &function_3852b0a4, 0, 0);
-	clientfield::register("actor", "death_ray_shock_eye_fx", 5000, 1, "int", &function_4513798e, 0, 0);
-	clientfield::register("actor", "death_ray_explode_fx", 5000, 1, "counter", &function_499e2d1f, 0, 0);
-	clientfield::register("scriptmover", "death_ray_status_light", 5000, 2, "int", &function_7939244, 0, 0);
+	clientfield::register("actor", "death_ray_shock_fx", 5000, 1, "int", &death_ray_shock_fx, 0, 0);
+	clientfield::register("actor", "death_ray_shock_eye_fx", 5000, 1, "int", &death_ray_shock_eye_fx, 0, 0);
+	clientfield::register("actor", "death_ray_explode_fx", 5000, 1, "counter", &death_ray_explode_fx, 0, 0);
+	clientfield::register("scriptmover", "death_ray_status_light", 5000, 2, "int", &death_ray_status_light, 0, 0);
 	clientfield::register("actor", "tesla_beam_fx", 5000, 1, "counter", &function_200eea36, 0, 0);
 	clientfield::register("toplayer", "tesla_beam_fx", 5000, 1, "counter", &function_200eea36, 0, 0);
-	clientfield::register("actor", "tesla_beam_mechz", 5000, 1, "int", &function_1dc0fcb2, 0, 0);
+	clientfield::register("actor", "tesla_beam_mechz", 5000, 1, "int", &tesla_beam_mechz, 0, 0);
 }
 
 /*
-	Name: function_3852b0a4
-	Namespace: namespace_f2d05c13
+	Name: death_ray_shock_fx
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x7E36BEDB
 	Offset: 0x648
 	Size: 0x123
 	Parameters: 7
 	Flags: None
 */
-function function_3852b0a4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function death_ray_shock_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
-	self function_51adc559(localClientNum);
+	self stop_death_ray_shock_fx(localClientNum);
 	if(newVal)
 	{
 		if(!isdefined(self.tesla_shock_fx))
@@ -65,7 +65,7 @@ function function_3852b0a4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_7772592b
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xDC26AB0D
 	Offset: 0x778
 	Size: 0x4B
@@ -74,41 +74,41 @@ function function_3852b0a4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_7772592b(localClientNum)
 {
-	self notify("hash_51adc559");
-	self endon("hash_51adc559");
+	self notify("stop_death_ray_shock_fx");
+	self endon("stop_death_ray_shock_fx");
 	level waittill("demo_jump");
-	self function_51adc559(localClientNum);
+	self stop_death_ray_shock_fx(localClientNum);
 }
 
 /*
-	Name: function_51adc559
-	Namespace: namespace_f2d05c13
+	Name: stop_death_ray_shock_fx
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xB62D7854
 	Offset: 0x7D0
 	Size: 0x51
 	Parameters: 1
 	Flags: None
 */
-function function_51adc559(localClientNum)
+function stop_death_ray_shock_fx(localClientNum)
 {
 	if(isdefined(self.tesla_shock_fx))
 	{
 		deletefx(localClientNum, self.tesla_shock_fx, 1);
 		self.tesla_shock_fx = undefined;
 	}
-	self notify("hash_51adc559");
+	self notify("stop_death_ray_shock_fx");
 }
 
 /*
-	Name: function_4513798e
-	Namespace: namespace_f2d05c13
+	Name: death_ray_shock_eye_fx
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x68D17467
 	Offset: 0x830
 	Size: 0xC5
 	Parameters: 7
 	Flags: None
 */
-function function_4513798e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function death_ray_shock_eye_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -125,37 +125,37 @@ function function_4513798e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_499e2d1f
-	Namespace: namespace_f2d05c13
+	Name: death_ray_explode_fx
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xC097A2B8
 	Offset: 0x900
 	Size: 0x6B
 	Parameters: 7
 	Flags: None
 */
-function function_499e2d1f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function death_ray_explode_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	PlayFXOnTag(localClientNum, level._effect["tesla_zombie_explode"], self, "j_spine4");
 }
 
 /*
-	Name: function_7939244
-	Namespace: namespace_f2d05c13
+	Name: death_ray_status_light
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x2CC74244
 	Offset: 0x978
 	Size: 0x17B
 	Parameters: 7
 	Flags: None
 */
-function function_7939244(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function death_ray_status_light(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	v_forward = AnglesToRight(self.angles);
 	v_forward = v_forward * -1;
 	v_up = anglesToUp(self.angles);
-	if(isdefined(self.var_b99efa04))
+	if(isdefined(self.status_fx))
 	{
-		deletefx(localClientNum, self.var_b99efa04, 1);
-		self.var_b99efa04 = undefined;
+		deletefx(localClientNum, self.status_fx, 1);
+		self.status_fx = undefined;
 	}
 	switch(newVal)
 	{
@@ -176,12 +176,12 @@ function function_7939244(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 			break;
 		}
 	}
-	self.var_b99efa04 = PlayFXOnTag(localClientNum, level._effect[str_fx_name], self, tag);
+	self.status_fx = PlayFXOnTag(localClientNum, level._effect[str_fx_name], self, tag);
 }
 
 /*
 	Name: function_200eea36
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x1ABB6518
 	Offset: 0xB00
 	Size: 0x13B
@@ -207,7 +207,7 @@ function function_200eea36(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_ec4ecaed
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x4E3EE856
 	Offset: 0xC48
 	Size: 0xFB
@@ -224,15 +224,15 @@ function function_ec4ecaed(localClientNum, s_source, str_beam)
 }
 
 /*
-	Name: function_1dc0fcb2
-	Namespace: namespace_f2d05c13
+	Name: tesla_beam_mechz
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x8E946630
 	Offset: 0xD50
 	Size: 0x1D3
 	Parameters: 7
 	Flags: None
 */
-function function_1dc0fcb2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function tesla_beam_mechz(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -257,13 +257,13 @@ function function_1dc0fcb2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		function_1139a457(localClientNum);
+		stop_tesla_beam_mechz(localClientNum);
 	}
 }
 
 /*
 	Name: function_3c5fc735
-	Namespace: namespace_f2d05c13
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0xA92B0A90
 	Offset: 0xF30
 	Size: 0x4B
@@ -272,29 +272,29 @@ function function_1dc0fcb2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 */
 function function_3c5fc735(localClientNum)
 {
-	self notify("hash_1139a457");
-	self endon("hash_1139a457");
+	self notify("stop_tesla_beam_mechz");
+	self endon("stop_tesla_beam_mechz");
 	level waittill("demo_jump");
-	function_1139a457(localClientNum);
+	stop_tesla_beam_mechz(localClientNum);
 }
 
 /*
-	Name: function_1139a457
-	Namespace: namespace_f2d05c13
+	Name: stop_tesla_beam_mechz
+	Namespace: zm_castle_death_ray_trap
 	Checksum: 0x6EC0DC46
 	Offset: 0xF88
 	Size: 0x89
 	Parameters: 1
 	Flags: None
 */
-function function_1139a457(localClientNum)
+function stop_tesla_beam_mechz(localClientNum)
 {
 	if(isdefined(self.mdl_source) && isdefined(self.str_beam))
 	{
 		level beam::kill(self.mdl_source, "tag_origin", self, "j_spinelower", self.str_beam);
 		self.mdl_source delete();
 		self.str_beam = undefined;
-		self notify("hash_1139a457");
+		self notify("stop_tesla_beam_mechz");
 	}
 }
 

@@ -565,7 +565,7 @@ function stargate_teleport_player(str_teleport_to, player, n_teleport_time_sec, 
 	}
 	player.teleporting = 0;
 	player clientfield::increment("teleport_arrival_departure_fx");
-	player notify("hash_327f029");
+	player notify("teleport_finished");
 }
 
 /*

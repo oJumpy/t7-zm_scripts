@@ -5,11 +5,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_14b4d4ab;
+#namespace zm_island_traps;
 
 /*
 	Name: init
-	Namespace: namespace_14b4d4ab
+	Namespace: zm_island_traps
 	Checksum: 0xDF5D7F41
 	Offset: 0x218
 	Size: 0x123
@@ -18,22 +18,22 @@
 */
 function init()
 {
-	clientfield::register("world", "proptrap_downdraft_rumble", 9000, 1, "int", &function_a9e415bd, 0, 0);
-	clientfield::register("toplayer", "proptrap_downdraft_blur", 9000, 1, "int", &function_fb8158d9, 0, 0);
-	clientfield::register("world", "walltrap_draft_rumble", 9000, 1, "int", &function_4736704, 0, 0);
-	clientfield::register("toplayer", "walltrap_draft_blur", 9000, 1, "int", &function_3abeaee0, 0, 0);
+	clientfield::register("world", "proptrap_downdraft_rumble", 9000, 1, "int", &proptrap_downdraft_rumble, 0, 0);
+	clientfield::register("toplayer", "proptrap_downdraft_blur", 9000, 1, "int", &proptrap_downdraft_blur, 0, 0);
+	clientfield::register("world", "walltrap_draft_rumble", 9000, 1, "int", &walltrap_draft_rumble, 0, 0);
+	clientfield::register("toplayer", "walltrap_draft_blur", 9000, 1, "int", &walltrap_draft_blur, 0, 0);
 }
 
 /*
-	Name: function_a9e415bd
-	Namespace: namespace_14b4d4ab
+	Name: proptrap_downdraft_rumble
+	Namespace: zm_island_traps
 	Checksum: 0xC9D4DB6D
 	Offset: 0x348
 	Size: 0x2ED
 	Parameters: 7
 	Flags: None
 */
-function function_a9e415bd(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function proptrap_downdraft_rumble(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	player = GetLocalPlayer(localClientNum);
 	if(isdefined(newVal) && newVal)
@@ -65,15 +65,15 @@ function function_a9e415bd(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_fb8158d9
-	Namespace: namespace_14b4d4ab
+	Name: proptrap_downdraft_blur
+	Namespace: zm_island_traps
 	Checksum: 0xA8BEFD82
 	Offset: 0x640
 	Size: 0x8B
 	Parameters: 7
 	Flags: None
 */
-function function_fb8158d9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function proptrap_downdraft_blur(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -87,15 +87,15 @@ function function_fb8158d9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4736704
-	Namespace: namespace_14b4d4ab
+	Name: walltrap_draft_rumble
+	Namespace: zm_island_traps
 	Checksum: 0x27DAF088
 	Offset: 0x6D8
 	Size: 0x2ED
 	Parameters: 7
 	Flags: None
 */
-function function_4736704(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function walltrap_draft_rumble(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	player = GetLocalPlayer(localClientNum);
 	if(isdefined(newVal) && newVal)
@@ -127,15 +127,15 @@ function function_4736704(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 }
 
 /*
-	Name: function_3abeaee0
-	Namespace: namespace_14b4d4ab
+	Name: walltrap_draft_blur
+	Namespace: zm_island_traps
 	Checksum: 0x82EAEB21
 	Offset: 0x9D0
 	Size: 0x8B
 	Parameters: 7
 	Flags: None
 */
-function function_3abeaee0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function walltrap_draft_blur(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -150,7 +150,7 @@ function function_3abeaee0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_24f1be38
-	Namespace: namespace_14b4d4ab
+	Namespace: zm_island_traps
 	Checksum: 0x81875FD7
 	Offset: 0xA68
 	Size: 0x14F

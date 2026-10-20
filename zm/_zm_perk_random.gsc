@@ -18,7 +18,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_random
-	Checksum: 0x4D68262A
+	Checksum: 0xB7AD8442
 	Offset: 0x6D0
 	Size: 0x3B
 	Parameters: 0
@@ -32,7 +32,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_random
-	Checksum: 0x206AEDE0
+	Checksum: 0xB925EB8B
 	Offset: 0x718
 	Size: 0x24B
 	Parameters: 0
@@ -60,7 +60,7 @@ function __init__()
 /*
 	Name: __main__
 	Namespace: zm_perk_random
-	Checksum: 0x6D3D518B
+	Checksum: 0x66600C8C
 	Offset: 0x970
 	Size: 0x6B
 	Parameters: 0
@@ -85,7 +85,7 @@ function __main__()
 /*
 	Name: setup_perk_random_machines
 	Namespace: zm_perk_random
-	Checksum: 0x29725061
+	Checksum: 0x9288DC70
 	Offset: 0x9E8
 	Size: 0x7B
 	Parameters: 0
@@ -103,7 +103,7 @@ function private setup_perk_random_machines()
 /*
 	Name: perk_random_machine_init
 	Namespace: zm_perk_random
-	Checksum: 0xFF6F285F
+	Checksum: 0x2DBD806F
 	Offset: 0xA70
 	Size: 0x14B
 	Parameters: 0
@@ -131,7 +131,7 @@ function perk_random_machine_init()
 /*
 	Name: init_starting_perk_random_machine_location
 	Namespace: zm_perk_random
-	Checksum: 0x5368A774
+	Checksum: 0x5F342C73
 	Offset: 0xBC8
 	Size: 0x13D
 	Parameters: 0
@@ -157,7 +157,7 @@ function private init_starting_perk_random_machine_location()
 /*
 	Name: create_perk_random_machine_unitrigger_stub
 	Namespace: zm_perk_random
-	Checksum: 0x9EEC7698
+	Checksum: 0x7D0582BF
 	Offset: 0xD10
 	Size: 0x183
 	Parameters: 0
@@ -182,7 +182,7 @@ function create_perk_random_machine_unitrigger_stub()
 /*
 	Name: perk_random_machine_trigger_update_prompt
 	Namespace: zm_perk_random
-	Checksum: 0xD97EBDEA
+	Checksum: 0x716D8030
 	Offset: 0xEA0
 	Size: 0x8F
 	Parameters: 1
@@ -208,7 +208,7 @@ function perk_random_machine_trigger_update_prompt(player)
 /*
 	Name: perk_random_machine_stub_update_prompt
 	Namespace: zm_perk_random
-	Checksum: 0xC8E560F2
+	Checksum: 0x3FBD6F53
 	Offset: 0xF38
 	Size: 0x277
 	Parameters: 1
@@ -283,7 +283,7 @@ function perk_random_machine_stub_update_prompt(player)
 /*
 	Name: trigger_visible_to_player
 	Namespace: zm_perk_random
-	Checksum: 0x94D5F785
+	Checksum: 0xE11CBFD5
 	Offset: 0x11B8
 	Size: 0x127
 	Parameters: 1
@@ -319,7 +319,7 @@ function trigger_visible_to_player(player)
 /*
 	Name: player_has_all_available_perks
 	Namespace: zm_perk_random
-	Checksum: 0x562888AF
+	Checksum: 0xACE15D04
 	Offset: 0x12E8
 	Size: 0x57
 	Parameters: 0
@@ -340,7 +340,7 @@ function player_has_all_available_perks()
 /*
 	Name: can_buy_perk
 	Namespace: zm_perk_random
-	Checksum: 0xEB038D85
+	Checksum: 0x75D1C177
 	Offset: 0x1348
 	Size: 0xA3
 	Parameters: 0
@@ -371,7 +371,7 @@ function can_buy_perk()
 /*
 	Name: perk_random_unitrigger_think
 	Namespace: zm_perk_random
-	Checksum: 0xAE8BBD88
+	Checksum: 0xADB532A2
 	Offset: 0x13F8
 	Size: 0x53
 	Parameters: 1
@@ -390,7 +390,7 @@ function perk_random_unitrigger_think(player)
 /*
 	Name: machine_think
 	Namespace: zm_perk_random
-	Checksum: 0x731ED4DD
+	Checksum: 0x743FDDC0
 	Offset: 0x1458
 	Size: 0x66F
 	Parameters: 0
@@ -495,7 +495,7 @@ function machine_think()
 /*
 	Name: grab_check
 	Namespace: zm_perk_random
-	Checksum: 0x55E29FC7
+	Checksum: 0x5F4C4060
 	Offset: 0x1AD0
 	Size: 0x263
 	Parameters: 2
@@ -549,7 +549,7 @@ function grab_check(player, random_perk)
 /*
 	Name: monitor_when_player_acquires_perk
 	Namespace: zm_perk_random
-	Checksum: 0xDD421CC
+	Checksum: 0xA17A8478
 	Offset: 0x1D40
 	Size: 0x53
 	Parameters: 0
@@ -564,7 +564,7 @@ function monitor_when_player_acquires_perk()
 /*
 	Name: time_out_check
 	Namespace: zm_perk_random
-	Checksum: 0x12DE3CA4
+	Checksum: 0x5A2CA737
 	Offset: 0x1DA0
 	Size: 0x43
 	Parameters: 0
@@ -581,7 +581,7 @@ function time_out_check()
 /*
 	Name: wait_for_power
 	Namespace: zm_perk_random
-	Checksum: 0x8046828
+	Checksum: 0x91447581
 	Offset: 0x1DF0
 	Size: 0xB3
 	Parameters: 0
@@ -608,7 +608,7 @@ function wait_for_power()
 /*
 	Name: machine_selector
 	Namespace: zm_perk_random
-	Checksum: 0xFAB2B03E
+	Checksum: 0xFCC1DD61
 	Offset: 0x1EB0
 	Size: 0xC3
 	Parameters: 0
@@ -638,7 +638,7 @@ function machine_selector()
 /*
 	Name: include_perk_in_random_rotation
 	Namespace: zm_perk_random
-	Checksum: 0x4C75A994
+	Checksum: 0xD33C1E36
 	Offset: 0x1F80
 	Size: 0x91
 	Parameters: 1
@@ -664,7 +664,7 @@ function include_perk_in_random_rotation(perk)
 /*
 	Name: get_weighted_random_perk
 	Namespace: zm_perk_random
-	Checksum: 0x16337B5B
+	Checksum: 0xA0402282
 	Offset: 0x2020
 	Size: 0x14B
 	Parameters: 1
@@ -699,7 +699,7 @@ function get_weighted_random_perk(player)
 /*
 	Name: perk_bottle_motion
 	Namespace: zm_perk_random
-	Checksum: 0xE0A1D78C
+	Checksum: 0x16AAED41
 	Offset: 0x2178
 	Size: 0x203
 	Parameters: 0
@@ -725,7 +725,7 @@ function perk_bottle_motion()
 /*
 	Name: start_perk_bottle_cycling
 	Namespace: zm_perk_random
-	Checksum: 0x960585FD
+	Checksum: 0x2E2A3537
 	Offset: 0x2388
 	Size: 0x131
 	Parameters: 0
@@ -757,7 +757,7 @@ function start_perk_bottle_cycling()
 /*
 	Name: get_perk_weapon_model
 	Namespace: zm_perk_random
-	Checksum: 0x9E78A539
+	Checksum: 0xF9136C84
 	Offset: 0x24C8
 	Size: 0x91
 	Parameters: 1
@@ -776,7 +776,7 @@ function get_perk_weapon_model(perk)
 /*
 	Name: perk_random_vending
 	Namespace: zm_perk_random
-	Checksum: 0x56780C85
+	Checksum: 0xE0DBE065
 	Offset: 0x2568
 	Size: 0xCB
 	Parameters: 0
@@ -796,7 +796,7 @@ function perk_random_vending()
 /*
 	Name: perk_random_loop_anim
 	Namespace: zm_perk_random
-	Checksum: 0xAEE353E3
+	Checksum: 0x7084A613
 	Offset: 0x2640
 	Size: 0xE3
 	Parameters: 3
@@ -824,7 +824,7 @@ function perk_random_loop_anim(n_piece, s_anim_1, s_anim_2)
 /*
 	Name: perk_random_vend_sfx
 	Namespace: zm_perk_random
-	Checksum: 0xD893ACD1
+	Checksum: 0xD81F35BA
 	Offset: 0x2730
 	Size: 0x7B
 	Parameters: 0
@@ -842,7 +842,7 @@ function perk_random_vend_sfx()
 /*
 	Name: perk_random_initial
 	Namespace: zm_perk_random
-	Checksum: 0x5710D19
+	Checksum: 0xF960E2D3
 	Offset: 0x27B8
 	Size: 0x23
 	Parameters: 0
@@ -856,7 +856,7 @@ function perk_random_initial()
 /*
 	Name: perk_random_idle
 	Namespace: zm_perk_random
-	Checksum: 0x6B4E25AD
+	Checksum: 0x814200DE
 	Offset: 0x27E8
 	Size: 0xA3
 	Parameters: 0
@@ -883,7 +883,7 @@ function perk_random_idle()
 /*
 	Name: perk_random_arrive
 	Namespace: zm_perk_random
-	Checksum: 0xAF77B5B
+	Checksum: 0x7F775C4A
 	Offset: 0x2898
 	Size: 0x41
 	Parameters: 0
@@ -901,7 +901,7 @@ function perk_random_arrive()
 /*
 	Name: perk_random_leaving
 	Namespace: zm_perk_random
-	Checksum: 0xCBE865E
+	Checksum: 0xCCEE8675
 	Offset: 0x28E8
 	Size: 0x5B
 	Parameters: 0
@@ -920,7 +920,7 @@ function perk_random_leaving()
 /*
 	Name: set_perk_random_machine_state
 	Namespace: zm_perk_random
-	Checksum: 0x4C476DE6
+	Checksum: 0x29BB5E4F
 	Offset: 0x2950
 	Size: 0x87
 	Parameters: 1
@@ -940,7 +940,7 @@ function set_perk_random_machine_state(State)
 /*
 	Name: process_perk_random_machine_state
 	Namespace: zm_perk_random
-	Checksum: 0x9E554A56
+	Checksum: 0x9BFDEE5E
 	Offset: 0x29E0
 	Size: 0x499
 	Parameters: 1
@@ -1031,7 +1031,7 @@ function process_perk_random_machine_state(State)
 /*
 	Name: machine_sounds
 	Namespace: zm_perk_random
-	Checksum: 0x7B4656CF
+	Checksum: 0x2ABBD8D0
 	Offset: 0x2E88
 	Size: 0xE7
 	Parameters: 0
@@ -1057,7 +1057,7 @@ function machine_sounds()
 /*
 	Name: GetWeaponModel
 	Namespace: zm_perk_random
-	Checksum: 0xBBB789E8
+	Checksum: 0xDDD3EF09
 	Offset: 0x2F78
 	Size: 0x19
 	Parameters: 1
@@ -1071,7 +1071,7 @@ function GetWeaponModel(weapon)
 /*
 	Name: is_power_on
 	Namespace: zm_perk_random
-	Checksum: 0x1C2EFD0A
+	Checksum: 0x8B046F65
 	Offset: 0x2FA0
 	Size: 0xB3
 	Parameters: 1
@@ -1098,7 +1098,7 @@ function is_power_on(n_power_index)
 /*
 	Name: setup_devgui
 	Namespace: zm_perk_random
-	Checksum: 0x596226E0
+	Checksum: 0x8AF16108
 	Offset: 0x3060
 	Size: 0x1B
 	Parameters: 0
@@ -1114,7 +1114,7 @@ function setup_devgui()
 /*
 	Name: wunderfizz_devgui_callback
 	Namespace: zm_perk_random
-	Checksum: 0xAF975650
+	Checksum: 0x505C0B03
 	Offset: 0x3088
 	Size: 0x1D5
 	Parameters: 1

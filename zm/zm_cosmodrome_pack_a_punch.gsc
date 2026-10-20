@@ -182,7 +182,7 @@ function launch_rocket()
 	self setHintString(&"ZM_COSMODROME_LAUNCH_AVAILABLE");
 	panel SetModel("p7_zm_asc_console_launch_key_full_green");
 	/#
-		self thread namespace_670cb61::debug_display_at_pos(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
+		self thread zm_cosmodrome::debug_display_at_pos(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
 	#/
 	self waittill("trigger", who);
 	panel playsound("zmb_comp_activate");

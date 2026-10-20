@@ -2,11 +2,11 @@
 #using scripts\shared\system_shared;
 #using scripts\zm\_zm_powerups;
 
-#namespace namespace_f633c4d9;
+#namespace zm_powerup_bonus_points_player;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f633c4d9
+	Namespace: zm_powerup_bonus_points_player
 	Checksum: 0xF22CB0EE
 	Offset: 0x110
 	Size: 0x33
@@ -20,7 +20,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_f633c4d9
+	Namespace: zm_powerup_bonus_points_player
 	Checksum: 0x2932E133
 	Offset: 0x150
 	Size: 0x33

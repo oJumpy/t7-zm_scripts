@@ -211,7 +211,7 @@ function function_60b06e98(var_c6cad973)
 	self clientfield::set("spider_drinks_fx", var_c6cad973);
 	loop_snd_ent = spawn("script_origin", self.origin);
 	loop_snd_ent PlayLoopSound("zmb_spider_drinking", 0.5);
-	level thread namespace_f333593c::function_1e767f71(self, 600, "ee", "spider_lure", 10, 1, 3);
+	level thread zm_island_vo::function_1e767f71(self, 600, "ee", "spider_lure", 10, 1, 3);
 	wait(3);
 	self clientfield::set("spider_drinks_fx", 0);
 	self vehicle_ai::set_state("combat");
@@ -305,7 +305,7 @@ function function_89826011()
 		}
 		if(w_weapon.name === "island_riotshield" && (isdefined(e_attacker.var_36c3d64a) && e_attacker.var_36c3d64a) && (!isdefined(level.var_1deeff56) && level.var_1deeff56) && (!isdefined(level.b_cage_down) && level.b_cage_down) && (!isdefined(level.var_48762d0c) && level.var_48762d0c))
 		{
-			e_attacker notify("hash_6bef9736");
+			e_attacker notify("riotshield_lost_lightning");
 			level.var_1deeff56 = 1;
 			var_a2176993 clientfield::set("jungle_cage_charged_fx", 1);
 			level waittill("hash_59a385d1");
@@ -332,7 +332,7 @@ function function_69f5a9c5(str_control)
 	{
 		level.var_335f95e4.allowdeath = 1;
 		level.var_335f95e4 DoDamage(level.var_335f95e4.health, level.var_335f95e4.origin);
-		function_edf712e5();
+		spiders_from_mars_round();
 	}
 	else if(!level flag::get("charged_spider_cage_powerup"))
 	{
@@ -408,7 +408,7 @@ function function_49fac1ac()
 }
 
 /*
-	Name: function_edf712e5
+	Name: spiders_from_mars_round
 	Namespace: spider_ee_quest
 	Checksum: 0xFF8E8D7F
 	Offset: 0x1408
@@ -416,9 +416,9 @@ function function_49fac1ac()
 	Parameters: 0
 	Flags: None
 */
-function function_edf712e5()
+function spiders_from_mars_round()
 {
-	function_7855f232();
+	spiders_from_mars_spawner_init();
 	if(level flag::get("spider_round_in_progress"))
 	{
 		level flag::wait_till_clear("spider_round_in_progress");
@@ -441,7 +441,7 @@ function function_edf712e5()
 }
 
 /*
-	Name: function_7855f232
+	Name: spiders_from_mars_spawner_init
 	Namespace: spider_ee_quest
 	Checksum: 0xFE6CC327
 	Offset: 0x1540
@@ -449,7 +449,7 @@ function function_edf712e5()
 	Parameters: 0
 	Flags: None
 */
-function function_7855f232()
+function spiders_from_mars_spawner_init()
 {
 	level.var_39b24700 = GetEntArray("spiders_from_mars_spawner", "script_noteworthy");
 	if(level.var_39b24700.size == 0)
@@ -469,7 +469,7 @@ function function_7855f232()
 	/#
 		Assert(level.var_39b24700.size > 0);
 	#/
-	Array::thread_all(level.var_39b24700, &spawner::add_spawn_function, &namespace_27f8b154::spider_init);
+	Array::thread_all(level.var_39b24700, &spawner::add_spawn_function, &zm_ai_spiders::spider_init);
 }
 
 /*
@@ -563,8 +563,8 @@ function function_2818665b()
 		{
 			continue;
 		}
-		e_who notify("hash_2f64f5cf");
-		e_who thread namespace_7b165194::function_468b927();
+		e_who notify("aquired_spider_equipment");
+		e_who thread controllable_spider::function_468b927();
 	}
 }
 
@@ -615,12 +615,12 @@ function function_acbe4aed(cmd)
 				}
 				if(!isdefined(ai_spider))
 				{
-					e_favorite_enemy = namespace_27f8b154::get_favorite_enemy();
-					s_spawn_point = namespace_27f8b154::spider_spawn_logic(e_favorite_enemy);
+					e_favorite_enemy = zm_ai_spiders::get_favorite_enemy();
+					s_spawn_point = zm_ai_spiders::spider_spawn_logic(e_favorite_enemy);
 					ai_spider = zombie_utility::spawn_zombie(level.spider_spawners[0]);
 					if(isdefined(ai_spider))
 					{
-						s_spawn_point thread namespace_27f8b154::spider_spawn_fx(ai_spider, s_spawn_point);
+						s_spawn_point thread zm_ai_spiders::spider_spawn_fx(ai_spider, s_spawn_point);
 					}
 				}
 				ai_spider clientfield::set("Dev Block strings are not supported", 1);
@@ -629,19 +629,19 @@ function function_acbe4aed(cmd)
 			}
 			case "Dev Block strings are not supported":
 			{
-				level thread function_edf712e5();
+				level thread spiders_from_mars_round();
 				return 1;
 			}
 			case "Dev Block strings are not supported":
 			{
 				if(!isdefined(ai_spider))
 				{
-					e_favorite_enemy = namespace_27f8b154::get_favorite_enemy();
-					s_spawn_point = namespace_27f8b154::spider_spawn_logic(e_favorite_enemy);
+					e_favorite_enemy = zm_ai_spiders::get_favorite_enemy();
+					s_spawn_point = zm_ai_spiders::spider_spawn_logic(e_favorite_enemy);
 					ai_spider = zombie_utility::spawn_zombie(level.spider_spawners[0]);
 					if(isdefined(ai_spider))
 					{
-						s_spawn_point thread namespace_27f8b154::spider_spawn_fx(ai_spider, s_spawn_point);
+						s_spawn_point thread zm_ai_spiders::spider_spawn_fx(ai_spider, s_spawn_point);
 					}
 				}
 				ai_spider clientfield::set("Dev Block strings are not supported", 1);

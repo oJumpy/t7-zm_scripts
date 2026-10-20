@@ -21,11 +21,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_island_util;
 
-#namespace namespace_6c640490;
+#namespace zm_island_side_ee_distant_monster;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6c640490
+	Namespace: zm_island_side_ee_distant_monster
 	Checksum: 0x8031D76C
 	Offset: 0x3A8
 	Size: 0x33
@@ -39,7 +39,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6c640490
+	Namespace: zm_island_side_ee_distant_monster
 	Checksum: 0x99EC1590
 	Offset: 0x3E8
 	Size: 0x3
@@ -52,7 +52,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_6c640490
+	Namespace: zm_island_side_ee_distant_monster
 	Checksum: 0xBE0B4F08
 	Offset: 0x3F8
 	Size: 0x5B
@@ -70,7 +70,7 @@ function main()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_6c640490
+	Namespace: zm_island_side_ee_distant_monster
 	Checksum: 0x99EC1590
 	Offset: 0x460
 	Size: 0x3
@@ -83,7 +83,7 @@ function on_player_spawned()
 
 /*
 	Name: function_e94b80b9
-	Namespace: namespace_6c640490
+	Namespace: zm_island_side_ee_distant_monster
 	Checksum: 0xA4956A7D
 	Offset: 0x470
 	Size: 0x113
@@ -114,7 +114,7 @@ function function_e94b80b9()
 
 /*
 	Name: function_549b07cb
-	Namespace: namespace_6c640490
+	Namespace: zm_island_side_ee_distant_monster
 	Checksum: 0x25E29879
 	Offset: 0x590
 	Size: 0x1D3
@@ -146,7 +146,7 @@ function function_549b07cb()
 
 /*
 	Name: function_abe01b4d
-	Namespace: namespace_6c640490
+	Namespace: zm_island_side_ee_distant_monster
 	Checksum: 0xEF872461
 	Offset: 0x770
 	Size: 0x6B
@@ -165,7 +165,7 @@ function function_abe01b4d()
 
 /*
 	Name: function_603ad7e1
-	Namespace: namespace_6c640490
+	Namespace: zm_island_side_ee_distant_monster
 	Checksum: 0xBF55FBE2
 	Offset: 0x7E8
 	Size: 0x65

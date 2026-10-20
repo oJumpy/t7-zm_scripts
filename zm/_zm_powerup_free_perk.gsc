@@ -20,7 +20,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_free_perk
-	Checksum: 0xFF24FB40
+	Checksum: 0xEF39B50B
 	Offset: 0x310
 	Size: 0x33
 	Parameters: 0
@@ -34,7 +34,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_free_perk
-	Checksum: 0xBA19622E
+	Checksum: 0x2BFA1A0F
 	Offset: 0x350
 	Size: 0x9B
 	Parameters: 0
@@ -52,7 +52,7 @@ function __init__()
 /*
 	Name: grab_free_perk
 	Namespace: zm_powerup_free_perk
-	Checksum: 0x96523314
+	Checksum: 0x91C94707
 	Offset: 0x3F8
 	Size: 0x23
 	Parameters: 1
@@ -66,7 +66,7 @@ function grab_free_perk(player)
 /*
 	Name: free_perk_powerup
 	Namespace: zm_powerup_free_perk
-	Checksum: 0xF3252F3
+	Checksum: 0x6435EEF0
 	Offset: 0x428
 	Size: 0x195
 	Parameters: 1
@@ -102,7 +102,7 @@ function free_perk_powerup(item)
 /*
 	Name: disable_perk_before_power
 	Namespace: zm_powerup_free_perk
-	Checksum: 0xCDF32E41
+	Checksum: 0x6F3810FC
 	Offset: 0x5C8
 	Size: 0xE3
 	Parameters: 1

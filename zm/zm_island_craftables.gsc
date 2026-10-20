@@ -170,7 +170,7 @@ function function_aef4c63(player)
 	str_piece = self.craftablename + "_" + self.pieceName;
 	level flag::set(str_piece + "_found");
 	player thread function_9708cb71(self.pieceName);
-	player notify("hash_a15b4609");
+	player notify("player_got_gasmask_part");
 	level thread function_f34bd805(str_piece);
 }
 
@@ -359,7 +359,7 @@ function function_272fcc74()
 function function_b4c30297(trig_stub, player)
 {
 	player.has_gasmask = 1;
-	player notify("hash_b5ecf1dd");
+	player notify("player_has_gasmask");
 }
 
 /*

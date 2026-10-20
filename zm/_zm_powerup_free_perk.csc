@@ -7,7 +7,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_free_perk
-	Checksum: 0xE57FF11C
+	Checksum: 0x1FD4758F
 	Offset: 0xF0
 	Size: 0x33
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_free_perk
-	Checksum: 0xEAFA8A4E
+	Checksum: 0xA40E384F
 	Offset: 0x130
 	Size: 0x33
 	Parameters: 0

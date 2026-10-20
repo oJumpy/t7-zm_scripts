@@ -57,10 +57,10 @@ function tomb_challenges_add_stats()
 			n_boxes_filled = 1;
 		}
 	#/
-	namespace_a528e918::add_stat("zc_headshots", 0, &"ZM_TOMB_CH1", n_kills, undefined, &reward_packed_weapon);
-	namespace_a528e918::add_stat("zc_zone_captures", 0, &"ZM_TOMB_CH2", n_zone_caps, undefined, &reward_powerup_max_ammo);
-	namespace_a528e918::add_stat("zc_points_spent", 0, &"ZM_TOMB_CH3", N_POINTS_SPENT, undefined, &reward_double_tap, &track_points_spent);
-	namespace_a528e918::add_stat("zc_boxes_filled", 1, &"ZM_TOMB_CHT", n_boxes_filled, undefined, &reward_one_inch_punch, &init_box_footprints);
+	zm_challenges_tomb::add_stat("zc_headshots", 0, &"ZM_TOMB_CH1", n_kills, undefined, &reward_packed_weapon);
+	zm_challenges_tomb::add_stat("zc_zone_captures", 0, &"ZM_TOMB_CH2", n_zone_caps, undefined, &reward_powerup_max_ammo);
+	zm_challenges_tomb::add_stat("zc_points_spent", 0, &"ZM_TOMB_CH3", N_POINTS_SPENT, undefined, &reward_double_tap, &track_points_spent);
+	zm_challenges_tomb::add_stat("zc_boxes_filled", 1, &"ZM_TOMB_CHT", n_boxes_filled, undefined, &reward_one_inch_punch, &init_box_footprints);
 }
 
 /*
@@ -77,7 +77,7 @@ function track_points_spent()
 	while(1)
 	{
 		level waittill("spent_points", player, points);
-		player namespace_a528e918::increment_stat("zc_points_spent", points);
+		player zm_challenges_tomb::increment_stat("zc_points_spent", points);
 	}
 }
 
@@ -186,7 +186,7 @@ function box_footprint_think()
 	fx_trace = bullettrace(trace_start, trace_end, 0, self);
 	playFX(level._effect["mech_booster_landing"], fx_trace["position"], AnglesToForward(self.angles), anglesToUp(self.angles));
 	self waittill("movedone");
-	level namespace_a528e918::increment_stat("zc_boxes_filled");
+	level zm_challenges_tomb::increment_stat("zc_boxes_filled");
 	if(isdefined(player))
 	{
 		if(level.n_soul_boxes_completed == 1)
@@ -275,7 +275,7 @@ function reward_packed_weapon(player, s_stat)
 	options = player zm_weapons::get_pack_a_punch_weapon_options(s_stat.w_reward);
 	m_weapon UseWeaponModel(s_stat.w_reward, STR_MODEL, options);
 	util::wait_network_frame();
-	if(!namespace_a528e918::reward_rise_and_grab(m_weapon, 50, 2, 2, 10))
+	if(!zm_challenges_tomb::reward_rise_and_grab(m_weapon, 50, 2, 2, 10))
 	{
 		return 0;
 	}
@@ -365,7 +365,7 @@ function reward_powerup(player, str_powerup, n_timeout)
 	m_reward playsound("zmb_spawn_powerup");
 	m_reward PlayLoopSound("zmb_spawn_powerup_loop", 0.5);
 	util::wait_network_frame();
-	if(!namespace_a528e918::reward_rise_and_grab(m_reward, 50, 2, 2, n_timeout))
+	if(!zm_challenges_tomb::reward_rise_and_grab(m_reward, 50, 2, 2, n_timeout))
 	{
 		return 0;
 	}
@@ -390,7 +390,7 @@ function reward_powerup(player, str_powerup, n_timeout)
 		}
 		case "zombie_blood":
 		{
-			level thread namespace_43a18dd5::zombie_blood_powerup(m_reward, player);
+			level thread zm_powerup_zombie_blood::zombie_blood_powerup(m_reward, player);
 			break;
 		}
 	}
@@ -419,7 +419,7 @@ function reward_double_tap(player, s_stat)
 	m_reward playsound("zmb_spawn_powerup");
 	m_reward PlayLoopSound("zmb_spawn_powerup_loop", 0.5);
 	util::wait_network_frame();
-	if(!namespace_a528e918::reward_rise_and_grab(m_reward, 50, 2, 2, 10))
+	if(!zm_challenges_tomb::reward_rise_and_grab(m_reward, 50, 2, 2, 10))
 	{
 		return 0;
 	}
@@ -451,7 +451,7 @@ function bottle_reject_sink(player)
 {
 	n_time = 1;
 	player playlocalsound(level.zmb_laugh_alias);
-	self thread namespace_a528e918::reward_sink(0, 61, n_time);
+	self thread zm_challenges_tomb::reward_sink(0, 61, n_time);
 	wait(n_time);
 	self delete();
 }
@@ -474,7 +474,7 @@ function reward_one_inch_punch(player, s_stat)
 	m_reward playsound("zmb_spawn_powerup");
 	m_reward PlayLoopSound("zmb_spawn_powerup_loop", 0.5);
 	util::wait_network_frame();
-	if(!namespace_a528e918::reward_rise_and_grab(m_reward, 50, 2, 2, 10))
+	if(!zm_challenges_tomb::reward_rise_and_grab(m_reward, 50, 2, 2, 10))
 	{
 		return 0;
 	}
@@ -524,7 +524,7 @@ function reward_beacon(player, s_stat)
 	m_reward playsound("zmb_spawn_powerup");
 	m_reward PlayLoopSound("zmb_spawn_powerup_loop", 0.5);
 	util::wait_network_frame();
-	if(!namespace_a528e918::reward_rise_and_grab(m_reward, 50, 2, 2, 10))
+	if(!zm_challenges_tomb::reward_rise_and_grab(m_reward, 50, 2, 2, 10))
 	{
 		return 0;
 	}

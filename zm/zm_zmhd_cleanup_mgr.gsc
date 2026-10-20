@@ -8,12 +8,12 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_2d028ffb;
+#namespace zmhd_cleanup;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2d028ffb
-	Checksum: 0x5C046E5F
+	Namespace: zmhd_cleanup
+	Checksum: 0xDCF0CBC0
 	Offset: 0x1D8
 	Size: 0x3B
 	Parameters: 0
@@ -26,8 +26,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2d028ffb
-	Checksum: 0x32C7AE08
+	Namespace: zmhd_cleanup
+	Checksum: 0x2DE7CC31
 	Offset: 0x220
 	Size: 0x23
 	Parameters: 0
@@ -41,8 +41,8 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_2d028ffb
-	Checksum: 0xD2AC0899
+	Namespace: zmhd_cleanup
+	Checksum: 0x1916D4D3
 	Offset: 0x250
 	Size: 0x1B
 	Parameters: 0
@@ -55,8 +55,8 @@ function __main__()
 
 /*
 	Name: force_check_now
-	Namespace: namespace_2d028ffb
-	Checksum: 0x5A67A09
+	Namespace: zmhd_cleanup
+	Checksum: 0xDA84A502
 	Offset: 0x278
 	Size: 0x11
 	Parameters: 0
@@ -69,8 +69,8 @@ function force_check_now()
 
 /*
 	Name: cleanup_main
-	Namespace: namespace_2d028ffb
-	Checksum: 0x342D51CB
+	Namespace: zmhd_cleanup
+	Checksum: 0xF3AA546A
 	Offset: 0x298
 	Size: 0x295
 	Parameters: 0
@@ -134,8 +134,8 @@ function private cleanup_main()
 
 /*
 	Name: do_cleanup_check
-	Namespace: namespace_2d028ffb
-	Checksum: 0x8A0F97E9
+	Namespace: zmhd_cleanup
+	Checksum: 0x39CCF6C0
 	Offset: 0x538
 	Size: 0x277
 	Parameters: 1
@@ -203,8 +203,8 @@ function do_cleanup_check(n_override_cleanup_dist)
 
 /*
 	Name: delete_zombie_noone_looking
-	Namespace: namespace_2d028ffb
-	Checksum: 0x5C4A0E24
+	Namespace: zmhd_cleanup
+	Checksum: 0xC52AEEE2
 	Offset: 0x7B8
 	Size: 0x27B
 	Parameters: 0
@@ -265,8 +265,8 @@ function private delete_zombie_noone_looking()
 
 /*
 	Name: player_can_see_me
-	Namespace: namespace_2d028ffb
-	Checksum: 0x2A883C21
+	Namespace: zmhd_cleanup
+	Checksum: 0xABAD71A9
 	Offset: 0xA40
 	Size: 0xD7
 	Parameters: 1
@@ -288,8 +288,8 @@ function player_can_see_me(player)
 
 /*
 	Name: player_ahead_of_me
-	Namespace: namespace_2d028ffb
-	Checksum: 0xE95A3161
+	Namespace: zmhd_cleanup
+	Checksum: 0x15CB2A94
 	Offset: 0xB20
 	Size: 0xB3
 	Parameters: 1
@@ -310,8 +310,8 @@ function private player_ahead_of_me(player)
 
 /*
 	Name: get_adjacencies_to_zone
-	Namespace: namespace_2d028ffb
-	Checksum: 0x79BDDD68
+	Namespace: zmhd_cleanup
+	Checksum: 0xE17262D5
 	Offset: 0xBE0
 	Size: 0x11D
 	Parameters: 1
@@ -342,8 +342,8 @@ function get_adjacencies_to_zone(str_zone)
 
 /*
 	Name: no_target_override
-	Namespace: namespace_2d028ffb
-	Checksum: 0xAD2FFA60
+	Namespace: zmhd_cleanup
+	Checksum: 0x165A44D0
 	Offset: 0xD08
 	Size: 0x63
 	Parameters: 1
@@ -361,8 +361,8 @@ function no_target_override(ai_zombie)
 
 /*
 	Name: get_escape_position
-	Namespace: namespace_2d028ffb
-	Checksum: 0xB67F6263
+	Namespace: zmhd_cleanup
+	Checksum: 0x26A978CA
 	Offset: 0xD78
 	Size: 0x14D
 	Parameters: 0
@@ -395,8 +395,8 @@ function private get_escape_position()
 
 /*
 	Name: function_dc683d01
-	Namespace: namespace_2d028ffb
-	Checksum: 0x7A9B5BB9
+	Namespace: zmhd_cleanup
+	Checksum: 0x547B1DDA
 	Offset: 0xED0
 	Size: 0xC1
 	Parameters: 1
@@ -419,8 +419,8 @@ function private function_dc683d01(var_b52b26b9)
 
 /*
 	Name: check_player_available
-	Namespace: namespace_2d028ffb
-	Checksum: 0xB322FBFA
+	Namespace: zmhd_cleanup
+	Checksum: 0x969E2833
 	Offset: 0xFA0
 	Size: 0x77
 	Parameters: 0
@@ -443,8 +443,8 @@ function private check_player_available()
 
 /*
 	Name: can_zombie_see_any_player
-	Namespace: namespace_2d028ffb
-	Checksum: 0x59AE8574
+	Namespace: zmhd_cleanup
+	Checksum: 0x171FC965
 	Offset: 0x1020
 	Size: 0xED
 	Parameters: 0
@@ -473,8 +473,8 @@ function private can_zombie_see_any_player()
 
 /*
 	Name: get_wait_locations_in_zones
-	Namespace: namespace_2d028ffb
-	Checksum: 0x14EA3943
+	Namespace: zmhd_cleanup
+	Checksum: 0x94DC72D8
 	Offset: 0x1118
 	Size: 0x11D
 	Parameters: 1
@@ -499,8 +499,8 @@ function private get_wait_locations_in_zones(a_zones)
 
 /*
 	Name: function_eadbcbdb
-	Namespace: namespace_2d028ffb
-	Checksum: 0x4657CCB2
+	Namespace: zmhd_cleanup
+	Checksum: 0x67FF8118
 	Offset: 0x1240
 	Size: 0x5D
 	Parameters: 0

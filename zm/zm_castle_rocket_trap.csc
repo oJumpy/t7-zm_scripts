@@ -29,14 +29,14 @@ function main()
 */
 function register_clientfields()
 {
-	clientfield::register("world", "rocket_trap_warning_smoke", 1, 1, "int", &function_9fc6fce2, 0, 0);
-	clientfield::register("world", "rocket_trap_warning_fire", 1, 1, "int", &function_455f796b, 0, 0);
-	clientfield::register("world", "sndRocketAlarm", 5000, 2, "int", &function_b50ae7c1, 0, 0);
-	clientfield::register("world", "sndRocketTrap", 5000, 3, "int", &function_f38bdbaf, 0, 0);
+	clientfield::register("world", "rocket_trap_warning_smoke", 1, 1, "int", &rocket_trap_warning_smoke, 0, 0);
+	clientfield::register("world", "rocket_trap_warning_fire", 1, 1, "int", &rocket_trap_warning_fire, 0, 0);
+	clientfield::register("world", "sndRocketAlarm", 5000, 2, "int", &sndrocketalarm, 0, 0);
+	clientfield::register("world", "sndRocketTrap", 5000, 3, "int", &sndrockettrap, 0, 0);
 }
 
 /*
-	Name: function_9fc6fce2
+	Name: rocket_trap_warning_smoke
 	Namespace: namespace_ee5f5b26
 	Checksum: 0xBC4E0B2E
 	Offset: 0x3C0
@@ -44,7 +44,7 @@ function register_clientfields()
 	Parameters: 7
 	Flags: None
 */
-function function_9fc6fce2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function rocket_trap_warning_smoke(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_52d911b7 = struct::get("rocket_trap_warning_smoke", "targetname");
 	v_forward = AnglesToForward(var_52d911b7.angles);
@@ -68,7 +68,7 @@ function function_9fc6fce2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_455f796b
+	Name: rocket_trap_warning_fire
 	Namespace: namespace_ee5f5b26
 	Checksum: 0x3D4737CD
 	Offset: 0x588
@@ -76,7 +76,7 @@ function function_9fc6fce2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_455f796b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function rocket_trap_warning_fire(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_52d911b7 = struct::get("rocket_trap_warning_fire", "targetname");
 	v_forward = AnglesToForward(var_52d911b7.angles);
@@ -99,12 +99,12 @@ function function_455f796b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		function_bdb5a3e2(localClientNum);
+		rocket_trap_blast(localClientNum);
 	}
 }
 
 /*
-	Name: function_bdb5a3e2
+	Name: rocket_trap_blast
 	Namespace: namespace_ee5f5b26
 	Checksum: 0xFE04F401
 	Offset: 0x770
@@ -112,7 +112,7 @@ function function_455f796b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_bdb5a3e2(localClientNum)
+function rocket_trap_blast(localClientNum)
 {
 	var_52d911b7 = struct::get("rocket_trap_blast", "targetname");
 	v_forward = AnglesToForward(var_52d911b7.angles);
@@ -122,14 +122,14 @@ function function_bdb5a3e2(localClientNum)
 	var_a62b9cd7 = struct::get_array("rocket_trap_side_blast", "targetname");
 	foreach(var_b25c0a2d in var_a62b9cd7)
 	{
-		var_b25c0a2d thread function_c1e8be(localClientNum);
+		var_b25c0a2d thread rocket_trap_side_blast(localClientNum);
 	}
 	wait(20);
 	deletefx(localClientNum, n_fx_id, 0);
 }
 
 /*
-	Name: function_c1e8be
+	Name: rocket_trap_side_blast
 	Namespace: namespace_ee5f5b26
 	Checksum: 0xFA2D34A0
 	Offset: 0x938
@@ -137,7 +137,7 @@ function function_bdb5a3e2(localClientNum)
 	Parameters: 1
 	Flags: None
 */
-function function_c1e8be(localClientNum)
+function rocket_trap_side_blast(localClientNum)
 {
 	v_forward = AnglesToForward(self.angles);
 	v_up = anglesToUp(self.angles);
@@ -148,7 +148,7 @@ function function_c1e8be(localClientNum)
 }
 
 /*
-	Name: function_b50ae7c1
+	Name: sndrocketalarm
 	Namespace: namespace_ee5f5b26
 	Checksum: 0xBEA0761D
 	Offset: 0xA20
@@ -156,7 +156,7 @@ function function_c1e8be(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_b50ae7c1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sndrocketalarm(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -174,7 +174,7 @@ function function_b50ae7c1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_f38bdbaf
+	Name: sndrockettrap
 	Namespace: namespace_ee5f5b26
 	Checksum: 0x65B9E015
 	Offset: 0xB30
@@ -182,7 +182,7 @@ function function_b50ae7c1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_f38bdbaf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sndrockettrap(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_dc3c5ca7 = (4202, -2249, -2127);
 	if(newVal)

@@ -22,11 +22,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_stalingrad_dragon;
 
-#namespace namespace_b73d41a1;
+#namespace zm_stalingrad_audio;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x7AFF6E3C
 	Offset: 0x600
 	Size: 0x33
@@ -40,7 +40,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x72913155
 	Offset: 0x640
 	Size: 0xB3
@@ -59,7 +59,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x3366125F
 	Offset: 0x700
 	Size: 0x93
@@ -78,7 +78,7 @@ function main()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x99EC1590
 	Offset: 0x7A0
 	Size: 0x3
@@ -91,7 +91,7 @@ function on_player_spawned()
 
 /*
 	Name: function_af4c67d
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xD965837F
 	Offset: 0x7B0
 	Size: 0xB3
@@ -116,7 +116,7 @@ function function_af4c67d()
 
 /*
 	Name: function_5583a127
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x8026E513
 	Offset: 0x870
 	Size: 0x163
@@ -146,7 +146,7 @@ function function_5583a127()
 
 /*
 	Name: function_81b46338
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x55C80692
 	Offset: 0x9E0
 	Size: 0x7B
@@ -167,7 +167,7 @@ function function_81b46338()
 
 /*
 	Name: function_41f49ee8
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x830AAAA4
 	Offset: 0xA68
 	Size: 0xB3
@@ -192,7 +192,7 @@ function function_41f49ee8()
 
 /*
 	Name: function_f021c688
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x5C9A900A
 	Offset: 0xB28
 	Size: 0x11B
@@ -222,7 +222,7 @@ function function_f021c688()
 
 /*
 	Name: function_8faf1d24
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x566FD8DD
 	Offset: 0xC50
 	Size: 0x107
@@ -267,7 +267,7 @@ function function_8faf1d24(v_color, str_print, n_scale, str_endon)
 
 /*
 	Name: function_ae93bb6d
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xC396D92E
 	Offset: 0xD60
 	Size: 0x5B
@@ -286,7 +286,7 @@ function function_ae93bb6d()
 
 /*
 	Name: function_d75eac4e
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xC29EAA49
 	Offset: 0xDC8
 	Size: 0x5D
@@ -306,7 +306,7 @@ function function_d75eac4e()
 
 /*
 	Name: function_e01c1b04
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x1371CEDF
 	Offset: 0xE30
 	Size: 0xED
@@ -332,7 +332,7 @@ function function_e01c1b04(var_99ad39b9)
 
 /*
 	Name: function_5c7f73da
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x2662E74E
 	Offset: 0xF28
 	Size: 0x19D
@@ -365,7 +365,7 @@ function function_5c7f73da()
 
 /*
 	Name: function_ab32c346
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xBB3FC38
 	Offset: 0x10D0
 	Size: 0xDF
@@ -390,7 +390,7 @@ function function_ab32c346(a_s_reels, var_bee8e45)
 
 /*
 	Name: function_8c75c164
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x58FBBAAA
 	Offset: 0x11B8
 	Size: 0x17F
@@ -416,7 +416,7 @@ function function_8c75c164(a_s_reels, var_bee8e45)
 
 /*
 	Name: function_8e130ce5
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xE4BDF452
 	Offset: 0x1340
 	Size: 0x67
@@ -435,7 +435,7 @@ function function_8e130ce5(var_bee8e45)
 
 /*
 	Name: function_ccdb680e
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xF25FDBE1
 	Offset: 0x13B0
 	Size: 0xB1
@@ -455,7 +455,7 @@ function function_ccdb680e(a_s_reels, b_on)
 
 /*
 	Name: function_e464aa51
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xF8C30B1A
 	Offset: 0x1470
 	Size: 0x4F
@@ -476,7 +476,7 @@ function function_e464aa51()
 
 /*
 	Name: function_7584d453
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x95EA34CB
 	Offset: 0x14C8
 	Size: 0x9B
@@ -495,7 +495,7 @@ function function_7584d453()
 
 /*
 	Name: function_f1ce2a9a
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xD231F800
 	Offset: 0x1570
 	Size: 0x151
@@ -543,7 +543,7 @@ function function_f1ce2a9a(State)
 
 /*
 	Name: function_61c5cb4e
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x915AE2EB
 	Offset: 0x16D0
 	Size: 0xFB
@@ -566,7 +566,7 @@ function function_61c5cb4e()
 
 /*
 	Name: function_3b8ba4e9
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xCADCEC43
 	Offset: 0x17D8
 	Size: 0x209
@@ -603,7 +603,7 @@ function function_3b8ba4e9()
 
 /*
 	Name: function_9fa22cf7
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x425D82AF
 	Offset: 0x19F0
 	Size: 0x127
@@ -628,7 +628,7 @@ function function_9fa22cf7()
 
 /*
 	Name: function_d0e8b85d
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x5C143296
 	Offset: 0x1B20
 	Size: 0x3B
@@ -645,7 +645,7 @@ function function_d0e8b85d()
 
 /*
 	Name: function_663128e3
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x5073DE6B
 	Offset: 0x1B68
 	Size: 0xD3
@@ -673,7 +673,7 @@ function function_663128e3()
 
 /*
 	Name: function_6b495bd6
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x1238579D
 	Offset: 0x1C48
 	Size: 0x23B
@@ -686,24 +686,24 @@ function function_6b495bd6(restart)
 	{
 		restart = 0;
 	}
-	var_6175d76c = struct::get("s_ballerina_start", "targetname");
+	s_ballerina_start = struct::get("s_ballerina_start", "targetname");
 	if(!(isdefined(restart) && restart))
 	{
 		playsoundatposition("zmb_sam_egg_success", (0, 0, 0));
-		mdl_ballerina = util::spawn_model(var_6175d76c.model, var_6175d76c.origin - VectorScale((0, 0, 1), 20), var_6175d76c.angles);
+		mdl_ballerina = util::spawn_model(s_ballerina_start.model, s_ballerina_start.origin - VectorScale((0, 0, 1), 20), s_ballerina_start.angles);
 		mdl_ballerina clientfield::set("ee_ballerina", 2);
-		mdl_ballerina moveto(var_6175d76c.origin, 2);
+		mdl_ballerina moveto(s_ballerina_start.origin, 2);
 		mdl_ballerina waittill("movedone");
 	}
 	else
 	{
 		playsoundatposition("zmb_sam_egg_fail", (0, 0, 0));
-		mdl_ballerina = util::spawn_model(var_6175d76c.model, var_6175d76c.origin, var_6175d76c.angles);
+		mdl_ballerina = util::spawn_model(s_ballerina_start.model, s_ballerina_start.origin, s_ballerina_start.angles);
 		mdl_ballerina clientfield::set("ee_ballerina", 1);
 	}
-	var_6175d76c zm_unitrigger::create_unitrigger(undefined, 24);
-	var_6175d76c waittill("trigger_activated");
-	zm_unitrigger::unregister_unitrigger(var_6175d76c.unitrigger);
+	s_ballerina_start zm_unitrigger::create_unitrigger(undefined, 24);
+	s_ballerina_start waittill("trigger_activated");
+	zm_unitrigger::unregister_unitrigger(s_ballerina_start.unitrigger);
 	mdl_ballerina clientfield::set("ee_ballerina", 0);
 	util::wait_network_frame();
 	mdl_ballerina delete();
@@ -711,7 +711,7 @@ function function_6b495bd6(restart)
 
 /*
 	Name: function_4c503dc7
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xAB83C220
 	Offset: 0x1E90
 	Size: 0xB3
@@ -735,7 +735,7 @@ function function_4c503dc7()
 
 /*
 	Name: function_dc391fc3
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x5121DEC4
 	Offset: 0x1F50
 	Size: 0x199
@@ -766,7 +766,7 @@ function function_dc391fc3()
 
 /*
 	Name: function_631d8c1
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x19790812
 	Offset: 0x20F8
 	Size: 0x65
@@ -777,8 +777,8 @@ function function_631d8c1()
 {
 	self.mdl_ballerina endon("death");
 	self endon("hash_636d801f");
-	self endon("hash_72624b2b");
-	self endon("hash_874b5073");
+	self endon("ballerina_destroyed");
+	self endon("ballerina_timeout");
 	while(1)
 	{
 		self.mdl_ballerina RotateYaw(360, 4);
@@ -788,7 +788,7 @@ function function_631d8c1()
 
 /*
 	Name: function_75442852
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x2A5EA599
 	Offset: 0x2168
 	Size: 0x125
@@ -797,7 +797,7 @@ function function_631d8c1()
 */
 function function_75442852()
 {
-	self endon("hash_874b5073");
+	self endon("ballerina_timeout");
 	self.mdl_ballerina SetCanDamage(1);
 	self.mdl_ballerina.health = 1000000;
 	while(1)
@@ -808,14 +808,14 @@ function function_75442852()
 			continue;
 		}
 		self.success = 1;
-		self notify("hash_72624b2b");
+		self notify("ballerina_destroyed");
 		break;
 	}
 }
 
 /*
 	Name: function_db914e
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xCF26EF3F
 	Offset: 0x2298
 	Size: 0x51
@@ -824,7 +824,7 @@ function function_75442852()
 */
 function function_db914e()
 {
-	self endon("hash_72624b2b");
+	self endon("ballerina_destroyed");
 	if(level.players.size > 1)
 	{
 		wait(90 - 15 * level.players.size);
@@ -833,12 +833,12 @@ function function_db914e()
 	{
 		wait(90);
 	}
-	self notify("hash_874b5073");
+	self notify("ballerina_timeout");
 }
 
 /*
 	Name: function_d64d6d35
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0xFEBB029
 	Offset: 0x22F8
 	Size: 0x533
@@ -848,46 +848,46 @@ function function_db914e()
 function function_d64d6d35()
 {
 	playsoundatposition("zmb_sam_egg_success", (0, 0, 0));
-	var_2ba18547 = struct::get("s_ballerina_end", "targetname");
-	var_2ba18547.mdl_ballerina = util::spawn_model(var_2ba18547.model, var_2ba18547.origin, var_2ba18547.angles);
-	var_2ba18547.mdl_ballerina clientfield::set("ee_ballerina", 1);
-	var_2ba18547.mdl_ballerina PlayLoopSound("mus_stalingrad_musicbox_lp", 2);
-	var_2ba18547 thread function_631d8c1();
-	var_2ba18547 zm_unitrigger::create_unitrigger(undefined, 65);
-	var_2ba18547 waittill("trigger_activated");
-	zm_unitrigger::unregister_unitrigger(var_2ba18547.unitrigger);
-	var_2ba18547 notify("hash_636d801f");
-	var_2ba18547.mdl_ballerina StopLoopSound(0.5);
-	var_2ba18547.mdl_ballerina playsound("zmb_challenge_skel_arm_up");
+	s_ballerina_end = struct::get("s_ballerina_end", "targetname");
+	s_ballerina_end.mdl_ballerina = util::spawn_model(s_ballerina_end.model, s_ballerina_end.origin, s_ballerina_end.angles);
+	s_ballerina_end.mdl_ballerina clientfield::set("ee_ballerina", 1);
+	s_ballerina_end.mdl_ballerina PlayLoopSound("mus_stalingrad_musicbox_lp", 2);
+	s_ballerina_end thread function_631d8c1();
+	s_ballerina_end zm_unitrigger::create_unitrigger(undefined, 65);
+	s_ballerina_end waittill("trigger_activated");
+	zm_unitrigger::unregister_unitrigger(s_ballerina_end.unitrigger);
+	s_ballerina_end notify("hash_636d801f");
+	s_ballerina_end.mdl_ballerina StopLoopSound(0.5);
+	s_ballerina_end.mdl_ballerina playsound("zmb_challenge_skel_arm_up");
 	var_f6c28cea = (2, 0, -6.5);
 	var_e97ebb83 = (3.5, 0, -18.5);
-	var_2ba18547.mdl_hand = util::spawn_model("c_zom_dlc1_skeleton_zombie_body_s_rarm", var_2ba18547.origin, var_2ba18547.angles);
-	var_2ba18547.var_2a9b65c7 = util::spawn_model("p7_skulls_bones_arm_lower", var_2ba18547.origin + var_f6c28cea, VectorScale((1, 0, 0), 180));
-	var_2ba18547.var_79dc7980 = util::spawn_model("p7_skulls_bones_arm_lower", var_2ba18547.origin + var_e97ebb83, VectorScale((1, 0, 0), 180));
-	var_2ba18547.mdl_ballerina MoveZ(20, 0.5);
-	var_2ba18547.mdl_hand MoveZ(20, 0.5);
-	var_2ba18547.var_2a9b65c7 MoveZ(20, 0.5);
-	var_2ba18547.var_79dc7980 MoveZ(20, 0.5);
+	s_ballerina_end.mdl_hand = util::spawn_model("c_zom_dlc1_skeleton_zombie_body_s_rarm", s_ballerina_end.origin, s_ballerina_end.angles);
+	s_ballerina_end.var_2a9b65c7 = util::spawn_model("p7_skulls_bones_arm_lower", s_ballerina_end.origin + var_f6c28cea, VectorScale((1, 0, 0), 180));
+	s_ballerina_end.var_79dc7980 = util::spawn_model("p7_skulls_bones_arm_lower", s_ballerina_end.origin + var_e97ebb83, VectorScale((1, 0, 0), 180));
+	s_ballerina_end.mdl_ballerina MoveZ(20, 0.5);
+	s_ballerina_end.mdl_hand MoveZ(20, 0.5);
+	s_ballerina_end.var_2a9b65c7 MoveZ(20, 0.5);
+	s_ballerina_end.var_79dc7980 MoveZ(20, 0.5);
 	wait(0.05);
-	var_2ba18547.mdl_hand clientfield::increment("challenge_arm_reveal");
-	var_2ba18547.mdl_hand waittill("movedone");
+	s_ballerina_end.mdl_hand clientfield::increment("challenge_arm_reveal");
+	s_ballerina_end.mdl_hand waittill("movedone");
 	wait(1);
-	var_2ba18547.mdl_ballerina PlayLoopSound("zmb_challenge_skel_arm_lp", 0.25);
-	var_2ba18547.mdl_ballerina MoveZ(-30, 1.5);
-	var_2ba18547.mdl_hand MoveZ(-30, 1.5);
-	var_2ba18547.var_2a9b65c7 MoveZ(-30, 1.5);
-	var_2ba18547.var_79dc7980 MoveZ(-30, 1.5);
-	var_2ba18547.mdl_ballerina waittill("movedone");
-	zm_powerups::specific_powerup_drop("full_ammo", var_2ba18547.origin);
-	var_2ba18547.mdl_ballerina delete();
-	var_2ba18547.mdl_hand delete();
-	var_2ba18547.var_2a9b65c7 delete();
-	var_2ba18547.var_79dc7980 delete();
+	s_ballerina_end.mdl_ballerina PlayLoopSound("zmb_challenge_skel_arm_lp", 0.25);
+	s_ballerina_end.mdl_ballerina MoveZ(-30, 1.5);
+	s_ballerina_end.mdl_hand MoveZ(-30, 1.5);
+	s_ballerina_end.var_2a9b65c7 MoveZ(-30, 1.5);
+	s_ballerina_end.var_79dc7980 MoveZ(-30, 1.5);
+	s_ballerina_end.mdl_ballerina waittill("movedone");
+	zm_powerups::specific_powerup_drop("full_ammo", s_ballerina_end.origin);
+	s_ballerina_end.mdl_ballerina delete();
+	s_ballerina_end.mdl_hand delete();
+	s_ballerina_end.var_2a9b65c7 delete();
+	s_ballerina_end.var_79dc7980 delete();
 }
 
 /*
 	Name: function_24ff7a78
-	Namespace: namespace_b73d41a1
+	Namespace: zm_stalingrad_audio
 	Checksum: 0x842C09E2
 	Offset: 0x2838
 	Size: 0x13B

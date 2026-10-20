@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_score;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_98efd7b6;
+#namespace zm_bgb_round_robbin;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_98efd7b6
+	Namespace: zm_bgb_round_robbin
 	Checksum: 0x23F7AA0A
 	Offset: 0x1C8
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_98efd7b6
+	Namespace: zm_bgb_round_robbin
 	Checksum: 0x25FAEC89
 	Offset: 0x208
 	Size: 0x63
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_98efd7b6
+	Namespace: zm_bgb_round_robbin
 	Checksum: 0x8B874073
 	Offset: 0x278
 	Size: 0xB1
@@ -78,7 +78,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_98efd7b6
+	Namespace: zm_bgb_round_robbin
 	Checksum: 0xFA8FA683
 	Offset: 0x338
 	Size: 0x101
@@ -101,7 +101,7 @@ function activation()
 
 /*
 	Name: can_kill
-	Namespace: namespace_98efd7b6
+	Namespace: zm_bgb_round_robbin
 	Checksum: 0x5ADE134F
 	Offset: 0x448
 	Size: 0x85
@@ -123,7 +123,7 @@ function can_kill(zombie)
 
 /*
 	Name: goto_round
-	Namespace: namespace_98efd7b6
+	Namespace: zm_bgb_round_robbin
 	Checksum: 0x4ADBD36B
 	Offset: 0x4D8
 	Size: 0x2E1

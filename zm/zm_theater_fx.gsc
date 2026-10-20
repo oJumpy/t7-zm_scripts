@@ -1,10 +1,10 @@
 #using scripts\shared\flagsys_shared;
 
-#namespace namespace_265ae7e9;
+#namespace zm_theater_fx;
 
 /*
 	Name: main
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x192968B2
 	Offset: 0x1690
 	Size: 0x3B
@@ -20,7 +20,7 @@ function main()
 
 /*
 	Name: fx_overrides
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0x4404D4E6
 	Offset: 0x16D8
 	Size: 0xAD
@@ -39,7 +39,7 @@ function fx_overrides()
 
 /*
 	Name: scriptedFX
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0xE4B9AC2F
 	Offset: 0x1790
 	Size: 0x2A1
@@ -76,7 +76,7 @@ function scriptedFX()
 
 /*
 	Name: precachefx
-	Namespace: namespace_265ae7e9
+	Namespace: zm_theater_fx
 	Checksum: 0xA45B0CBA
 	Offset: 0x1A40
 	Size: 0x755

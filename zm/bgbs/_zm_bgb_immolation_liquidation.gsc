@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_cbb0522a;
+#namespace zm_bgb_immolation_liquidation;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_cbb0522a
+	Namespace: zm_bgb_immolation_liquidation
 	Checksum: 0x691467CC
 	Offset: 0x188
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_cbb0522a
+	Namespace: zm_bgb_immolation_liquidation
 	Checksum: 0x4C05325F
 	Offset: 0x1C8
 	Size: 0x63
@@ -41,7 +41,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_cbb0522a
+	Namespace: zm_bgb_immolation_liquidation
 	Checksum: 0x33C4332E
 	Offset: 0x238
 	Size: 0x23
@@ -55,7 +55,7 @@ function activation()
 
 /*
 	Name: function_3d1f600e
-	Namespace: namespace_cbb0522a
+	Namespace: zm_bgb_immolation_liquidation
 	Checksum: 0xD54D9F7B
 	Offset: 0x268
 	Size: 0x3D

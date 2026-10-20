@@ -4,11 +4,11 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_734d511;
+#namespace zm_stalingrad_achievements;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0x585FCE64
 	Offset: 0x238
 	Size: 0x33
@@ -22,7 +22,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xEA67B9D9
 	Offset: 0x278
 	Size: 0x53
@@ -38,7 +38,7 @@ function __init__()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xA6044A79
 	Offset: 0x2D8
 	Size: 0xC3
@@ -59,7 +59,7 @@ function on_player_connect()
 
 /*
 	Name: function_73d8758f
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xA321952E
 	Offset: 0x3A8
 	Size: 0x43
@@ -74,7 +74,7 @@ function function_73d8758f()
 
 /*
 	Name: function_69021ea7
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xBEB66235
 	Offset: 0x3F8
 	Size: 0x3B
@@ -90,7 +90,7 @@ function function_69021ea7()
 
 /*
 	Name: function_42b2ae41
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0x367D7C03
 	Offset: 0x440
 	Size: 0x43
@@ -105,7 +105,7 @@ function function_42b2ae41()
 
 /*
 	Name: function_35e5c39b
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0x3C8FA777
 	Offset: 0x490
 	Size: 0x3B
@@ -121,7 +121,7 @@ function function_35e5c39b()
 
 /*
 	Name: function_68cad44c
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xDC7C9333
 	Offset: 0x4D8
 	Size: 0x3B
@@ -137,7 +137,7 @@ function function_68cad44c()
 
 /*
 	Name: function_77f84ddb
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xBC007367
 	Offset: 0x520
 	Size: 0x3B
@@ -147,13 +147,13 @@ function function_68cad44c()
 function function_77f84ddb()
 {
 	self endon("death");
-	self waittill("hash_41370469");
+	self waittill("player_all_challenges_completed");
 	self GiveAchievement("ZM_STALINGRAD_SOLO_TRIALS");
 }
 
 /*
 	Name: function_3a3c9cc6
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xBC451B59
 	Offset: 0x568
 	Size: 0x69
@@ -176,7 +176,7 @@ function function_3a3c9cc6()
 
 /*
 	Name: function_b6e817dd
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0x45CCA3B4
 	Offset: 0x5E0
 	Size: 0x69
@@ -199,7 +199,7 @@ function function_b6e817dd()
 
 /*
 	Name: function_bdcf8e90
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0x8B84FE90
 	Offset: 0x658
 	Size: 0x69
@@ -222,7 +222,7 @@ function function_bdcf8e90()
 
 /*
 	Name: function_54dbe534
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xB2E9EACD
 	Offset: 0x6D0
 	Size: 0x3B
@@ -237,7 +237,7 @@ function function_54dbe534()
 
 /*
 	Name: function_99a5ed1a
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xB42D02C0
 	Offset: 0x718
 	Size: 0x7D
@@ -261,7 +261,7 @@ function function_99a5ed1a(n_target_kills)
 
 /*
 	Name: function_60593db9
-	Namespace: namespace_734d511
+	Namespace: zm_stalingrad_achievements
 	Checksum: 0xF2CC378B
 	Offset: 0x7A0
 	Size: 0x7D

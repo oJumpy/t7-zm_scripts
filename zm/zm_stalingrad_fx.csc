@@ -1,10 +1,10 @@
 #using scripts\codescripts\struct;
 
-#namespace namespace_c49c3ddb;
+#namespace zm_stalingrad_fx;
 
 /*
 	Name: init
-	Namespace: namespace_c49c3ddb
+	Namespace: zm_stalingrad_fx
 	Checksum: 0xF930F3AA
 	Offset: 0x880
 	Size: 0x13
@@ -18,7 +18,7 @@ function init()
 
 /*
 	Name: precache_scripted_fx
-	Namespace: namespace_c49c3ddb
+	Namespace: zm_stalingrad_fx
 	Checksum: 0xE46F271A
 	Offset: 0x8A0
 	Size: 0x39D

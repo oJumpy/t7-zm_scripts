@@ -7,7 +7,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_ww_grenade
-	Checksum: 0xAB281D26
+	Checksum: 0x63575C53
 	Offset: 0xF8
 	Size: 0x33
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_ww_grenade
-	Checksum: 0x78FE77DE
+	Checksum: 0x6545D748
 	Offset: 0x138
 	Size: 0x33
 	Parameters: 0

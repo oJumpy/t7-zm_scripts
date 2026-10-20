@@ -13,11 +13,11 @@
 #using scripts\zm\_zm_weap_staff_common;
 #using scripts\zm\zm_tomb_utility;
 
-#namespace namespace_42f5ba79;
+#namespace zm_weap_staff_water;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xA6809FFF
 	Offset: 0x4E0
 	Size: 0x33
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x25C708A2
 	Offset: 0x520
 	Size: 0x1BB
@@ -57,7 +57,7 @@ function __init__()
 
 /*
 	Name: init_tag_array
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xA3C2D227
 	Offset: 0x6E8
 	Size: 0xB1
@@ -78,7 +78,7 @@ function init_tag_array()
 
 /*
 	Name: water_dart_cleanup
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x2DAED048
 	Offset: 0x7A8
 	Size: 0x127
@@ -107,7 +107,7 @@ function water_dart_cleanup()
 
 /*
 	Name: onPlayerSpawned
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xFF122F09
 	Offset: 0x8D8
 	Size: 0x53
@@ -124,7 +124,7 @@ function onPlayerSpawned()
 
 /*
 	Name: watch_staff_water_fired
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xEDDC2381
 	Offset: 0x938
 	Size: 0xEF
@@ -151,7 +151,7 @@ function watch_staff_water_fired()
 
 /*
 	Name: watch_staff_water_impact
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x95D559A5
 	Offset: 0xA30
 	Size: 0xF7
@@ -178,7 +178,7 @@ function watch_staff_water_impact()
 
 /*
 	Name: staff_water_kill_zombie
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x4CDA01EA
 	Offset: 0xB30
 	Size: 0xCB
@@ -202,7 +202,7 @@ function staff_water_kill_zombie(player, str_weapon)
 
 /*
 	Name: freeze_zombie
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xE4BE0919
 	Offset: 0xC08
 	Size: 0x27
@@ -220,7 +220,7 @@ function freeze_zombie()
 
 /*
 	Name: _network_safe_play_fx
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xF3657466
 	Offset: 0xC38
 	Size: 0x33
@@ -234,7 +234,7 @@ function _network_safe_play_fx(FX, v_origin)
 
 /*
 	Name: network_safe_play_fx
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x2A996FD4
 	Offset: 0xC78
 	Size: 0x63
@@ -249,7 +249,7 @@ function network_safe_play_fx(id, max, FX, v_origin)
 
 /*
 	Name: frozen_zombie_shatter
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xCF59B722
 	Offset: 0xCE8
 	Size: 0xC3
@@ -279,7 +279,7 @@ function frozen_zombie_shatter()
 
 /*
 	Name: frozen_zombie_gib
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xC5E8FF03
 	Offset: 0xDB8
 	Size: 0x8B
@@ -301,7 +301,7 @@ function frozen_zombie_gib(gib_type)
 
 /*
 	Name: staff_water_position_source
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xFE5293D9
 	Offset: 0xE50
 	Size: 0x1EB
@@ -336,7 +336,7 @@ function staff_water_position_source(v_detonate, n_lifetime_sec, str_weapon)
 
 /*
 	Name: ice_staff_blizzard_do_kills
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xC1437CE4
 	Offset: 0x1048
 	Size: 0x1A7
@@ -374,7 +374,7 @@ function ice_staff_blizzard_do_kills(player, str_weapon)
 
 /*
 	Name: ice_staff_blizzard_timeout
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x7607E544
 	Offset: 0x11F8
 	Size: 0x35
@@ -391,7 +391,7 @@ function ice_staff_blizzard_timeout(n_time)
 
 /*
 	Name: ice_staff_blizzard_off
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x71A531C0
 	Offset: 0x1238
 	Size: 0x35
@@ -408,7 +408,7 @@ function ice_staff_blizzard_off()
 
 /*
 	Name: get_ice_blast_range
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xC943B665
 	Offset: 0x1278
 	Size: 0x79
@@ -441,7 +441,7 @@ function get_ice_blast_range(n_charge)
 
 /*
 	Name: staff_water_zombie_range
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x29E8DE8F
 	Offset: 0x1300
 	Size: 0x16B
@@ -481,7 +481,7 @@ function staff_water_zombie_range(v_source, n_range)
 
 /*
 	Name: is_staff_water_damage
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x2B0D4B32
 	Offset: 0x1478
 	Size: 0x7B
@@ -495,7 +495,7 @@ function is_staff_water_damage(weapon)
 
 /*
 	Name: ice_affect_mechz
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x3C21A1D9
 	Offset: 0x1500
 	Size: 0xAF
@@ -523,7 +523,7 @@ function ice_affect_mechz(e_player, is_upgraded)
 
 /*
 	Name: ice_affect_zombie
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x4EBA9401
 	Offset: 0x15B8
 	Size: 0x357
@@ -598,7 +598,7 @@ function ice_affect_zombie(str_weapon, e_player, always_kill, n_mod)
 
 /*
 	Name: set_anim_rate
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xD299AF7E
 	Offset: 0x1918
 	Size: 0x107
@@ -629,7 +629,7 @@ function set_anim_rate(n_speed)
 
 /*
 	Name: staff_water_on_zombie_spawned
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x87550CC
 	Offset: 0x1A28
 	Size: 0x6B
@@ -645,7 +645,7 @@ function staff_water_on_zombie_spawned()
 
 /*
 	Name: staff_water_death_event
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x5B2BCC29
 	Offset: 0x1AA0
 	Size: 0xA3
@@ -669,7 +669,7 @@ function staff_water_death_event(attacker)
 
 /*
 	Name: _icicle_locate_target
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x60C23C50
 	Offset: 0x1B50
 	Size: 0x33B
@@ -722,7 +722,7 @@ function _icicle_locate_target(str_weapon)
 
 /*
 	Name: _icicle_get_spread
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x4928F32D
 	Offset: 0x1E98
 	Size: 0xA5
@@ -739,7 +739,7 @@ function _icicle_get_spread(n_spread)
 
 /*
 	Name: function_de3654ba
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xE3310B6
 	Offset: 0x1F48
 	Size: 0x2E5

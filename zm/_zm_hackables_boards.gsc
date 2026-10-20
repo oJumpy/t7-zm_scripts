@@ -53,7 +53,7 @@ function hack_boards()
 		struct.no_touch_check = 1;
 		struct.last_hacked_round = 0;
 		struct.num_hacks = 0;
-		namespace_6d813654::register_pooled_hackable_struct(struct, &board_hack, &board_qualifier);
+		zm_equip_hacker::register_pooled_hackable_struct(struct, &board_hack, &board_qualifier);
 	}
 }
 
@@ -68,7 +68,7 @@ function hack_boards()
 */
 function board_hack(hacker)
 {
-	namespace_6d813654::deregister_hackable_struct(self);
+	zm_equip_hacker::deregister_hackable_struct(self);
 	num_chunks_checked = 0;
 	last_repaired_chunk = undefined;
 	if(self.last_hacked_round != level.round_number)
@@ -131,7 +131,7 @@ function board_hack(hacker)
 	{
 		wait(0.05);
 	}
-	namespace_6d813654::register_pooled_hackable_struct(self, &board_hack, &board_qualifier);
+	zm_equip_hacker::register_pooled_hackable_struct(self, &board_hack, &board_qualifier);
 	self.window notify("blocker_hacked");
 	self.window notify("no valid boards");
 }

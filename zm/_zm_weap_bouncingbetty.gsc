@@ -12,7 +12,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: bouncingbetty
-	Checksum: 0x43C5DE25
+	Checksum: 0xAFE7D180
 	Offset: 0x1B0
 	Size: 0x33
 	Parameters: 0
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: bouncingbetty
-	Checksum: 0x6C2E6E41
+	Checksum: 0x8DEC98FF
 	Offset: 0x1F0
 	Size: 0xE3
 	Parameters: 0
@@ -51,7 +51,7 @@ function __init__()
 /*
 	Name: proximityWeaponObjectDetonation_override
 	Namespace: bouncingbetty
-	Checksum: 0x7D73C82A
+	Checksum: 0x18281274
 	Offset: 0x2E0
 	Size: 0x177
 	Parameters: 1

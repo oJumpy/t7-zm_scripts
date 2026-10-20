@@ -7588,7 +7588,7 @@ function private function_8eb96012(IsHost, var_95597467, issolo)
 	else
 	{
 	}
-	path.var_b1135a10 = "PLAYED";
+	path.hosted = "PLAYED";
 	if(var_95597467)
 	{
 	}
@@ -7617,7 +7617,7 @@ function private function_8eb96012(IsHost, var_95597467, issolo)
 */
 function private function_9878c818(statpath, statName)
 {
-	return self GetDStat("dashboardingTrackingHistory", "gameSizeHistory", statpath.var_c0cf8114, "consumablesHistory", statpath.var_95597467, "periodHistory", statpath.var_b1135a10, statName);
+	return self GetDStat("dashboardingTrackingHistory", "gameSizeHistory", statpath.var_c0cf8114, "consumablesHistory", statpath.var_95597467, "periodHistory", statpath.hosted, statName);
 }
 
 /*
@@ -7631,7 +7631,7 @@ function private function_9878c818(statpath, statName)
 */
 function private function_96c1b925(statpath, statName, value)
 {
-	self AddDStat("dashboardingTrackingHistory", "gameSizeHistory", statpath.var_c0cf8114, "consumablesHistory", statpath.var_95597467, "periodHistory", statpath.var_b1135a10, statName, value);
+	self AddDStat("dashboardingTrackingHistory", "gameSizeHistory", statpath.var_c0cf8114, "consumablesHistory", statpath.var_95597467, "periodHistory", statpath.hosted, statName, value);
 	self AddDStat("dashboardingTrackingHistory", "statsSinceLastComscoreEvent", statName, value);
 }
 

@@ -31,7 +31,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x5BA4D10F
+	Checksum: 0xC4564AA2
 	Offset: 0x680
 	Size: 0x33
 	Parameters: 0
@@ -45,7 +45,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_widows_wine
-	Checksum: 0xA3F493AA
+	Checksum: 0xCD5A1874
 	Offset: 0x6C0
 	Size: 0x13
 	Parameters: 0
@@ -59,7 +59,7 @@ function __init__()
 /*
 	Name: enable_widows_wine_perk_for_level
 	Namespace: zm_perk_widows_wine
-	Checksum: 0xD716AED5
+	Checksum: 0x10617903
 	Offset: 0x6E0
 	Size: 0x193
 	Parameters: 0
@@ -84,7 +84,7 @@ function enable_widows_wine_perk_for_level()
 /*
 	Name: widows_wine_precache
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x772FD362
+	Checksum: 0x8F4DE5DF
 	Offset: 0x880
 	Size: 0xF7
 	Parameters: 0
@@ -108,7 +108,7 @@ function widows_wine_precache()
 /*
 	Name: widows_wine_register_clientfield
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x41D50848
+	Checksum: 0x2DC6298A
 	Offset: 0x980
 	Size: 0x93
 	Parameters: 0
@@ -124,7 +124,7 @@ function widows_wine_register_clientfield()
 /*
 	Name: widows_wine_set_clientfield
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x28255F82
+	Checksum: 0x8FEBB644
 	Offset: 0xA20
 	Size: 0x2B
 	Parameters: 1
@@ -138,7 +138,7 @@ function widows_wine_set_clientfield(State)
 /*
 	Name: widows_wine_perk_machine_setup
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x1F6A9D8C
+	Checksum: 0xCDB322CB
 	Offset: 0xA58
 	Size: 0xBB
 	Parameters: 4
@@ -161,7 +161,7 @@ function widows_wine_perk_machine_setup(use_trigger, perk_machine, bump_trigger,
 /*
 	Name: init_widows_wine
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x832F7AB
+	Checksum: 0x9C9D42D5
 	Offset: 0xB20
 	Size: 0x163
 	Parameters: 0
@@ -186,7 +186,7 @@ function init_widows_wine()
 /*
 	Name: widows_wine_perk_activate
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x78727F82
+	Checksum: 0xCEEB71E2
 	Offset: 0xC90
 	Size: 0x2BB
 	Parameters: 0
@@ -240,7 +240,7 @@ function widows_wine_perk_activate()
 /*
 	Name: widows_wine_contact_explosion
 	Namespace: zm_perk_widows_wine
-	Checksum: 0xC808322
+	Checksum: 0x2208EE92
 	Offset: 0xF58
 	Size: 0xA3
 	Parameters: 0
@@ -256,7 +256,7 @@ function widows_wine_contact_explosion()
 /*
 	Name: widows_wine_zombie_damage_response
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x563D7EA2
+	Checksum: 0xFEEC9360
 	Offset: 0x1008
 	Size: 0x20B
 	Parameters: 13
@@ -292,7 +292,7 @@ function widows_wine_zombie_damage_response(str_mod, str_hit_location, v_hit_ori
 /*
 	Name: widows_wine_vehicle_damage_response
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x9566775F
+	Checksum: 0xE40ACCF4
 	Offset: 0x1220
 	Size: 0x163
 	Parameters: 15
@@ -320,7 +320,7 @@ function widows_wine_vehicle_damage_response(eInflictor, eAttacker, iDamage, iDF
 /*
 	Name: widows_wine_damage_callback
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x7B715809
+	Checksum: 0x66C82F51
 	Offset: 0x1390
 	Size: 0x129
 	Parameters: 10
@@ -345,7 +345,7 @@ function widows_wine_damage_callback(eInflictor, eAttacker, iDamage, iDFlags, sM
 /*
 	Name: widows_wine_zombie_death_watch
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x4789DAE1
+	Checksum: 0xAE550CFE
 	Offset: 0x14C8
 	Size: 0x1B5
 	Parameters: 1
@@ -380,7 +380,7 @@ function widows_wine_zombie_death_watch(attacker)
 /*
 	Name: powerup_widows_wine_timeout
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x46F072A5
+	Checksum: 0x3790F166
 	Offset: 0x1688
 	Size: 0x17B
 	Parameters: 0
@@ -436,7 +436,7 @@ function powerup_widows_wine_timeout()
 /*
 	Name: widows_wine_cocoon_zombie_score
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x9B857FC4
+	Checksum: 0x9987E692
 	Offset: 0x1810
 	Size: 0xD3
 	Parameters: 3
@@ -463,7 +463,7 @@ function widows_wine_cocoon_zombie_score(e_player, duration, max_score)
 /*
 	Name: widows_wine_cocoon_zombie
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x2CC2B6EB
+	Checksum: 0xA3CAC968
 	Offset: 0x18F0
 	Size: 0x1B7
 	Parameters: 1
@@ -512,7 +512,7 @@ function widows_wine_cocoon_zombie(e_player)
 /*
 	Name: widows_wine_slow_zombie
 	Namespace: zm_perk_widows_wine
-	Checksum: 0xA0E74523
+	Checksum: 0x1FD3A4C7
 	Offset: 0x1AB0
 	Size: 0x1AF
 	Parameters: 1
@@ -561,7 +561,7 @@ function widows_wine_slow_zombie(e_player)
 /*
 	Name: vehicle_stuck_grenade_monitor
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x31177FF2
+	Checksum: 0xC9B0DC2A
 	Offset: 0x1C68
 	Size: 0x3B
 	Parameters: 0
@@ -577,7 +577,7 @@ function vehicle_stuck_grenade_monitor()
 /*
 	Name: grenade_bounce_monitor
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x7462C44E
+	Checksum: 0xD0409A52
 	Offset: 0x1CB0
 	Size: 0x57
 	Parameters: 0
@@ -597,7 +597,7 @@ function grenade_bounce_monitor()
 /*
 	Name: grenade_bounces
 	Namespace: zm_perk_widows_wine
-	Checksum: 0xEB500D49
+	Checksum: 0x7EB9D538
 	Offset: 0x1D10
 	Size: 0x93
 	Parameters: 0
@@ -619,7 +619,7 @@ function grenade_bounces()
 /*
 	Name: widows_wine_vehicle_behavior
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x66246D5E
+	Checksum: 0xCD7036E7
 	Offset: 0x1DB0
 	Size: 0x10B
 	Parameters: 2
@@ -649,7 +649,7 @@ function widows_wine_vehicle_behavior(attacker, weapon)
 /*
 	Name: widows_wine_perk_lost
 	Namespace: zm_perk_widows_wine
-	Checksum: 0xDD26221D
+	Checksum: 0xFEC7A124
 	Offset: 0x1EC8
 	Size: 0x29B
 	Parameters: 3
@@ -711,7 +711,7 @@ function widows_wine_perk_lost(b_pause, str_perk, str_result)
 /*
 	Name: widows_wine_override_wallbuy_purchase
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x4F1D1247
+	Checksum: 0xA6714F77
 	Offset: 0x2170
 	Size: 0x9B
 	Parameters: 2
@@ -738,7 +738,7 @@ function widows_wine_override_wallbuy_purchase(weapon, wallbuy)
 /*
 	Name: widows_wine_override_melee_wallbuy_purchase
 	Namespace: zm_perk_widows_wine
-	Checksum: 0x95130EBF
+	Checksum: 0xA3D99E83
 	Offset: 0x2218
 	Size: 0x2EB
 	Parameters: 7

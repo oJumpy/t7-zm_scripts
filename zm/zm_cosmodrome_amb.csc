@@ -22,7 +22,7 @@ function main()
 	level thread alarm_b_timer();
 	level thread spawn_fx_loopers();
 	level thread play_minigun_loop();
-	level thread function_be596677();
+	level thread amb_power_up();
 	level thread startzmbspawnersoundloops();
 	level thread function_c9207335();
 }
@@ -326,7 +326,7 @@ function function_b234849(newmus)
 }
 
 /*
-	Name: function_be596677
+	Name: amb_power_up
 	Namespace: namespace_9dd378ec
 	Checksum: 0xECBACCD2
 	Offset: 0xE50
@@ -334,7 +334,7 @@ function function_b234849(newmus)
 	Parameters: 0
 	Flags: None
 */
-function function_be596677()
+function amb_power_up()
 {
 	wait(2);
 	level.var_41176517 = struct::get_array("amb_computer", "targetname");
@@ -353,7 +353,7 @@ function function_be596677()
 			playsound(0, level.var_41176517[i].script_soundalias, level.var_41176517[i].origin);
 		}
 	}
-	level notify("hash_562bd5c4");
+	level notify("snd_power_on");
 	level thread play_hum();
 	if(isdefined(level.power_struct))
 	{

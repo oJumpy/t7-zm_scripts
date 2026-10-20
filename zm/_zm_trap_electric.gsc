@@ -15,7 +15,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_trap_electric
-	Checksum: 0x8775E1B2
+	Checksum: 0xCCBDBF67
 	Offset: 0x340
 	Size: 0x33
 	Parameters: 0
@@ -29,7 +29,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_trap_electric
-	Checksum: 0xDAA0C762
+	Checksum: 0x45EE33E8
 	Offset: 0x380
 	Size: 0x1A9
 	Parameters: 0
@@ -55,7 +55,7 @@ function __init__()
 /*
 	Name: trap_activate_electric
 	Namespace: zm_trap_electric
-	Checksum: 0xDA4F5EE
+	Checksum: 0x46335108
 	Offset: 0x538
 	Size: 0x173
 	Parameters: 0
@@ -87,7 +87,7 @@ function trap_activate_electric()
 /*
 	Name: trap_audio
 	Namespace: zm_trap_electric
-	Checksum: 0x22312074
+	Checksum: 0x292C81D9
 	Offset: 0x6B8
 	Size: 0x11B
 	Parameters: 1
@@ -112,7 +112,7 @@ function trap_audio(trap)
 /*
 	Name: play_electrical_sound
 	Namespace: zm_trap_electric
-	Checksum: 0xF109B28B
+	Checksum: 0xF9BFFA6
 	Offset: 0x7E0
 	Size: 0x67
 	Parameters: 1
@@ -131,7 +131,7 @@ function play_electrical_sound(trap)
 /*
 	Name: player_damage
 	Namespace: zm_trap_electric
-	Checksum: 0xB0D8EEA8
+	Checksum: 0xD752971D
 	Offset: 0x850
 	Size: 0x2B
 	Parameters: 0
@@ -148,7 +148,7 @@ function player_damage()
 /*
 	Name: damage
 	Namespace: zm_trap_electric
-	Checksum: 0x7AE2FB48
+	Checksum: 0x8E730648
 	Offset: 0x888
 	Size: 0x3AB
 	Parameters: 1

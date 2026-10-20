@@ -18,7 +18,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_juggernaut
-	Checksum: 0xE44B6D1F
+	Checksum: 0xF37D6287
 	Offset: 0x3A8
 	Size: 0x33
 	Parameters: 0
@@ -32,7 +32,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_juggernaut
-	Checksum: 0x30BB4274
+	Checksum: 0xC197AEBE
 	Offset: 0x3E8
 	Size: 0x13
 	Parameters: 0
@@ -46,7 +46,7 @@ function __init__()
 /*
 	Name: enable_juggernaut_perk_for_level
 	Namespace: zm_perk_juggernaut
-	Checksum: 0xE08C117B
+	Checksum: 0x1F4EDDF8
 	Offset: 0x408
 	Size: 0x13B
 	Parameters: 0
@@ -65,7 +65,7 @@ function enable_juggernaut_perk_for_level()
 /*
 	Name: init_juggernaut
 	Namespace: zm_perk_juggernaut
-	Checksum: 0xE55E9C63
+	Checksum: 0x639A6A2E
 	Offset: 0x550
 	Size: 0x43
 	Parameters: 0
@@ -80,7 +80,7 @@ function init_juggernaut()
 /*
 	Name: juggernaut_precache
 	Namespace: zm_perk_juggernaut
-	Checksum: 0xC7AB15D2
+	Checksum: 0x9284BE5B
 	Offset: 0x5A0
 	Size: 0xDF
 	Parameters: 0
@@ -103,7 +103,7 @@ function juggernaut_precache()
 /*
 	Name: juggernaut_register_clientfield
 	Namespace: zm_perk_juggernaut
-	Checksum: 0xA76A22BA
+	Checksum: 0xADC9002E
 	Offset: 0x688
 	Size: 0x33
 	Parameters: 0
@@ -117,7 +117,7 @@ function juggernaut_register_clientfield()
 /*
 	Name: juggernaut_set_clientfield
 	Namespace: zm_perk_juggernaut
-	Checksum: 0x571E18F0
+	Checksum: 0xA208798
 	Offset: 0x6C8
 	Size: 0x2B
 	Parameters: 1
@@ -131,7 +131,7 @@ function juggernaut_set_clientfield(State)
 /*
 	Name: juggernaut_perk_machine_setup
 	Namespace: zm_perk_juggernaut
-	Checksum: 0x6D167924
+	Checksum: 0xE05061A
 	Offset: 0x700
 	Size: 0xCF
 	Parameters: 4
@@ -155,7 +155,7 @@ function juggernaut_perk_machine_setup(use_trigger, perk_machine, bump_trigger, 
 /*
 	Name: give_juggernaut_perk
 	Namespace: zm_perk_juggernaut
-	Checksum: 0xDBBF2EF
+	Checksum: 0xA3CA8BB1
 	Offset: 0x7D8
 	Size: 0x23
 	Parameters: 0
@@ -169,7 +169,7 @@ function give_juggernaut_perk()
 /*
 	Name: take_juggernaut_perk
 	Namespace: zm_perk_juggernaut
-	Checksum: 0xAFA819FE
+	Checksum: 0xD742D790
 	Offset: 0x808
 	Size: 0x43
 	Parameters: 3

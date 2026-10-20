@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_castle;
 
-#namespace namespace_f59aa2e8;
+#namespace castle_cleanup;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x59C529C0
 	Offset: 0x200
 	Size: 0x3B
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0xD105A493
 	Offset: 0x248
 	Size: 0xF
@@ -40,7 +40,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x9181AF12
 	Offset: 0x260
 	Size: 0x1B
@@ -54,7 +54,7 @@ function __main__()
 
 /*
 	Name: force_check_now
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x46DEDDD3
 	Offset: 0x288
 	Size: 0x11
@@ -68,7 +68,7 @@ function force_check_now()
 
 /*
 	Name: cleanup_main
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x80062234
 	Offset: 0x2A8
 	Size: 0x245
@@ -126,7 +126,7 @@ function private cleanup_main()
 
 /*
 	Name: do_cleanup_check
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x18D0973E
 	Offset: 0x4F8
 	Size: 0x465
@@ -225,7 +225,7 @@ function do_cleanup_check(n_override_cleanup_dist)
 
 /*
 	Name: delete_zombie_noone_looking
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x70956E0C
 	Offset: 0x968
 	Size: 0x27B
@@ -287,7 +287,7 @@ function private delete_zombie_noone_looking()
 
 /*
 	Name: player_can_see_me
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x976D3A0A
 	Offset: 0xBF0
 	Size: 0xD7
@@ -310,7 +310,7 @@ function private player_can_see_me(player)
 
 /*
 	Name: player_ahead_of_me
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x3005962D
 	Offset: 0xCD0
 	Size: 0xB3
@@ -332,7 +332,7 @@ function private player_ahead_of_me(player)
 
 /*
 	Name: get_escape_position
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x31D8B278
 	Offset: 0xD90
 	Size: 0xCB
@@ -358,7 +358,7 @@ function get_escape_position()
 
 /*
 	Name: get_adjacencies_to_zone
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0xB56D72DC
 	Offset: 0xE68
 	Size: 0x11D
@@ -390,7 +390,7 @@ function get_adjacencies_to_zone(str_zone)
 
 /*
 	Name: get_wait_locations_in_zones
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0xC71F7F1
 	Offset: 0xF90
 	Size: 0xD1
@@ -409,7 +409,7 @@ function private get_wait_locations_in_zones(a_zones)
 
 /*
 	Name: get_farthest_wait_location
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x20AADEA4
 	Offset: 0x1070
 	Size: 0xD5
@@ -438,7 +438,7 @@ function private get_farthest_wait_location(a_wait_locations)
 
 /*
 	Name: get_wait_locations_in_zone
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x8F4960D2
 	Offset: 0x1150
 	Size: 0x87
@@ -458,7 +458,7 @@ function private get_wait_locations_in_zone(zone)
 
 /*
 	Name: get_escape_position_in_current_zone
-	Namespace: namespace_f59aa2e8
+	Namespace: castle_cleanup
 	Checksum: 0x143ECF8C
 	Offset: 0x11E0
 	Size: 0xB3

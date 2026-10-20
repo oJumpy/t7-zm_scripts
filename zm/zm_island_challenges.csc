@@ -22,23 +22,23 @@
 function init()
 {
 	var_850da4c5 = GetMinBitCountForNum(4);
-	clientfield::register("world", "pillar_challenge_0_1", 9000, var_850da4c5, "int", &function_bb9aac12, 0, 0);
-	clientfield::register("world", "pillar_challenge_0_2", 9000, var_850da4c5, "int", &function_959831a9, 0, 0);
-	clientfield::register("world", "pillar_challenge_0_3", 9000, var_850da4c5, "int", &function_6f95b740, 0, 0);
-	clientfield::register("world", "pillar_challenge_1_1", 9000, var_850da4c5, "int", &function_6f81a273, 0, 0);
-	clientfield::register("world", "pillar_challenge_1_2", 9000, var_850da4c5, "int", &function_fd7a3338, 0, 0);
-	clientfield::register("world", "pillar_challenge_1_3", 9000, var_850da4c5, "int", &function_237cada1, 0, 0);
-	clientfield::register("world", "pillar_challenge_2_1", 9000, var_850da4c5, "int", &function_4f007cd4, 0, 0);
-	clientfield::register("world", "pillar_challenge_2_2", 9000, var_850da4c5, "int", &function_c107ec0f, 0, 0);
-	clientfield::register("world", "pillar_challenge_2_3", 9000, var_850da4c5, "int", &function_9b0571a6, 0, 0);
-	clientfield::register("world", "pillar_challenge_3_1", 9000, var_850da4c5, "int", &function_8e509935, 0, 0);
-	clientfield::register("world", "pillar_challenge_3_2", 9000, var_850da4c5, "int", &function_b453139e, 0, 0);
-	clientfield::register("world", "pillar_challenge_3_3", 9000, var_850da4c5, "int", &function_da558e07, 0, 0);
-	clientfield::register("scriptmover", "challenge_glow_fx", 9000, 2, "int", &function_7dcb8f25, 0, 0);
+	clientfield::register("world", "pillar_challenge_0_1", 9000, var_850da4c5, "int", &pillar_challenge_0_1, 0, 0);
+	clientfield::register("world", "pillar_challenge_0_2", 9000, var_850da4c5, "int", &pillar_challenge_0_2, 0, 0);
+	clientfield::register("world", "pillar_challenge_0_3", 9000, var_850da4c5, "int", &pillar_challenge_0_3, 0, 0);
+	clientfield::register("world", "pillar_challenge_1_1", 9000, var_850da4c5, "int", &pillar_challenge_1_1, 0, 0);
+	clientfield::register("world", "pillar_challenge_1_2", 9000, var_850da4c5, "int", &pillar_challenge_1_2, 0, 0);
+	clientfield::register("world", "pillar_challenge_1_3", 9000, var_850da4c5, "int", &pillar_challenge_1_3, 0, 0);
+	clientfield::register("world", "pillar_challenge_2_1", 9000, var_850da4c5, "int", &pillar_challenge_2_1, 0, 0);
+	clientfield::register("world", "pillar_challenge_2_2", 9000, var_850da4c5, "int", &pillar_challenge_2_2, 0, 0);
+	clientfield::register("world", "pillar_challenge_2_3", 9000, var_850da4c5, "int", &pillar_challenge_2_3, 0, 0);
+	clientfield::register("world", "pillar_challenge_3_1", 9000, var_850da4c5, "int", &pillar_challenge_3_1, 0, 0);
+	clientfield::register("world", "pillar_challenge_3_2", 9000, var_850da4c5, "int", &pillar_challenge_3_2, 0, 0);
+	clientfield::register("world", "pillar_challenge_3_3", 9000, var_850da4c5, "int", &pillar_challenge_3_3, 0, 0);
+	clientfield::register("scriptmover", "challenge_glow_fx", 9000, 2, "int", &challenge_glow_fx, 0, 0);
 }
 
 /*
-	Name: function_bb9aac12
+	Name: pillar_challenge_0_1
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x4E5F7FDC
 	Offset: 0x7A0
@@ -46,7 +46,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_bb9aac12(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_0_1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_0", "targetname");
 	var_2ca030e2 = 0;
@@ -59,7 +59,7 @@ function function_bb9aac12(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_959831a9
+	Name: pillar_challenge_0_2
 	Namespace: namespace_bbfc4da3
 	Checksum: 0xC016F565
 	Offset: 0x8A8
@@ -67,7 +67,7 @@ function function_bb9aac12(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_959831a9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_0_2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_0", "targetname");
 	var_2ca030e2 = 0;
@@ -80,7 +80,7 @@ function function_959831a9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_6f95b740
+	Name: pillar_challenge_0_3
 	Namespace: namespace_bbfc4da3
 	Checksum: 0xF1448737
 	Offset: 0x9B0
@@ -88,7 +88,7 @@ function function_959831a9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_6f95b740(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_0_3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_0", "targetname");
 	var_2ca030e2 = 0;
@@ -101,7 +101,7 @@ function function_6f95b740(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_6f81a273
+	Name: pillar_challenge_1_1
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x8D043E1B
 	Offset: 0xAB8
@@ -109,7 +109,7 @@ function function_6f95b740(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_6f81a273(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_1_1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_1", "targetname");
 	var_2ca030e2 = 0;
@@ -122,7 +122,7 @@ function function_6f81a273(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_fd7a3338
+	Name: pillar_challenge_1_2
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x67B770FF
 	Offset: 0xBC0
@@ -130,7 +130,7 @@ function function_6f81a273(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_fd7a3338(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_1_2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_1", "targetname");
 	var_2ca030e2 = 0;
@@ -143,7 +143,7 @@ function function_fd7a3338(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_237cada1
+	Name: pillar_challenge_1_3
 	Namespace: namespace_bbfc4da3
 	Checksum: 0xE617369C
 	Offset: 0xCC8
@@ -151,7 +151,7 @@ function function_fd7a3338(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_237cada1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_1_3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_1", "targetname");
 	var_2ca030e2 = 0;
@@ -164,7 +164,7 @@ function function_237cada1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_4f007cd4
+	Name: pillar_challenge_2_1
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x75AB2C3B
 	Offset: 0xDD0
@@ -172,7 +172,7 @@ function function_237cada1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_4f007cd4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_2_1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_2", "targetname");
 	var_2ca030e2 = 0;
@@ -185,7 +185,7 @@ function function_4f007cd4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c107ec0f
+	Name: pillar_challenge_2_2
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x6C85C18B
 	Offset: 0xED8
@@ -193,7 +193,7 @@ function function_4f007cd4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_c107ec0f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_2_2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_2", "targetname");
 	var_2ca030e2 = 0;
@@ -206,7 +206,7 @@ function function_c107ec0f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_9b0571a6
+	Name: pillar_challenge_2_3
 	Namespace: namespace_bbfc4da3
 	Checksum: 0xC4C01CC8
 	Offset: 0xFE0
@@ -214,7 +214,7 @@ function function_c107ec0f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_9b0571a6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_2_3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_2", "targetname");
 	var_2ca030e2 = 0;
@@ -227,7 +227,7 @@ function function_9b0571a6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_8e509935
+	Name: pillar_challenge_3_1
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x7277989B
 	Offset: 0x10E8
@@ -235,7 +235,7 @@ function function_9b0571a6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_8e509935(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_3_1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_3", "targetname");
 	var_2ca030e2 = 0;
@@ -248,7 +248,7 @@ function function_8e509935(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b453139e
+	Name: pillar_challenge_3_2
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x513ED6BC
 	Offset: 0x11F0
@@ -256,7 +256,7 @@ function function_8e509935(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b453139e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_3_2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_3", "targetname");
 	var_2ca030e2 = 0;
@@ -269,7 +269,7 @@ function function_b453139e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_da558e07
+	Name: pillar_challenge_3_3
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x5622176D
 	Offset: 0x12F8
@@ -277,7 +277,7 @@ function function_b453139e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_da558e07(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function pillar_challenge_3_3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_4c6172ff = GetEnt(localClientNum, "challenge_pillar_3", "targetname");
 	var_2ca030e2 = 0;
@@ -415,7 +415,7 @@ function function_72573d3d(localClientNum, n_challenge, var_2ca030e2)
 }
 
 /*
-	Name: function_7dcb8f25
+	Name: challenge_glow_fx
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x2FD8ABCA
 	Offset: 0x18A8
@@ -423,7 +423,7 @@ function function_72573d3d(localClientNum, n_challenge, var_2ca030e2)
 	Parameters: 7
 	Flags: None
 */
-function function_7dcb8f25(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function challenge_glow_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

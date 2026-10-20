@@ -19,11 +19,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_cb5bc243;
+#namespace zm_powerup_castle_tram_token;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0x2E501CF0
 	Offset: 0x4A8
 	Size: 0x33
@@ -37,7 +37,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0xAB69CEF7
 	Offset: 0x4E8
 	Size: 0x123
@@ -62,7 +62,7 @@ function __init__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0x78D66C26
 	Offset: 0x618
 	Size: 0x153
@@ -84,7 +84,7 @@ function register_clientfields()
 
 /*
 	Name: function_bcb6924e
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0x798B76E6
 	Offset: 0x778
 	Size: 0x147
@@ -111,7 +111,7 @@ function function_bcb6924e(player)
 
 /*
 	Name: function_ed4d87a3
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0xB4525982
 	Offset: 0x8C8
 	Size: 0x43
@@ -122,7 +122,7 @@ function function_ed4d87a3(player)
 {
 	if(player clientfield::get_to_player("has_castle_tram_token"))
 	{
-		player notify("hash_52136095");
+		player notify("tram_token_used");
 		return 1;
 	}
 	return 0;
@@ -130,7 +130,7 @@ function function_ed4d87a3(player)
 
 /*
 	Name: function_83ef471e
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0xF8FBFFF0
 	Offset: 0x918
 	Size: 0x29
@@ -144,7 +144,7 @@ function function_83ef471e(player)
 
 /*
 	Name: function_56739ab1
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0xC1B84E3C
 	Offset: 0x950
 	Size: 0x8D
@@ -163,7 +163,7 @@ function function_56739ab1()
 
 /*
 	Name: function_4c1f0ef2
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0x63E22053
 	Offset: 0x9E8
 	Size: 0x25
@@ -179,7 +179,7 @@ function function_4c1f0ef2()
 
 /*
 	Name: show_infotext_for_duration
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0x6C63C548
 	Offset: 0xA18
 	Size: 0x53
@@ -195,7 +195,7 @@ function show_infotext_for_duration(str_infotext, n_duration)
 
 /*
 	Name: function_1cb39173
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0x7F685EC3
 	Offset: 0xA78
 	Size: 0xE3
@@ -204,7 +204,7 @@ function show_infotext_for_duration(str_infotext, n_duration)
 */
 function private function_1cb39173(var_1d640f59, str_widget_clientuimodel, b_acquired)
 {
-	level notify("hash_28a4818d");
+	level notify("widget_ui_override");
 	self endon("disconnect");
 	if(b_acquired)
 	{
@@ -225,7 +225,7 @@ function private function_1cb39173(var_1d640f59, str_widget_clientuimodel, b_acq
 
 /*
 	Name: function_a52da515
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0xBBE942A8
 	Offset: 0xB68
 	Size: 0xDB
@@ -246,7 +246,7 @@ function function_a52da515(player)
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0x9DABE6F2
 	Offset: 0xC50
 	Size: 0xF
@@ -260,7 +260,7 @@ function on_player_connect()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0xE9FF3AE7
 	Offset: 0xC68
 	Size: 0x25
@@ -273,7 +273,7 @@ function on_player_spawned()
 
 /*
 	Name: function_6dd86f90
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0xDC3EC1FF
 	Offset: 0xC98
 	Size: 0x7B
@@ -293,7 +293,7 @@ function function_6dd86f90()
 
 /*
 	Name: function_9293606a
-	Namespace: namespace_cb5bc243
+	Namespace: zm_powerup_castle_tram_token
 	Checksum: 0x4238E20D
 	Offset: 0xD20
 	Size: 0xB3

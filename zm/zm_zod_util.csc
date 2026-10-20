@@ -5,18 +5,18 @@
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_8e578893;
+#namespace zm_zod_util;
 
 /*
-	Name: function_f118a0e7
-	Namespace: namespace_8e578893
+	Name: player_rumble_and_shake
+	Namespace: zm_zod_util
 	Checksum: 0x7873F0D8
 	Offset: 0x180
 	Size: 0x275
 	Parameters: 7
 	Flags: None
 */
-function function_f118a0e7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_rumble_and_shake(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("disconnect");
 	if(newVal == 5)
@@ -60,7 +60,7 @@ function function_f118a0e7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: player_continuous_rumble
-	Namespace: namespace_8e578893
+	Namespace: zm_zod_util
 	Checksum: 0xDAF0A5D6
 	Offset: 0x400
 	Size: 0x17F

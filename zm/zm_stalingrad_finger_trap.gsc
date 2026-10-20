@@ -13,11 +13,11 @@
 #using scripts\zm\zm_stalingrad_util;
 #using scripts\zm\zm_stalingrad_vo;
 
-#namespace namespace_b205ff9c;
+#namespace zm_stalingrad_finger_trap;
 
 /*
 	Name: main
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0xD62C8D92
 	Offset: 0x3C0
 	Size: 0x63
@@ -34,7 +34,7 @@ function main()
 
 /*
 	Name: function_7715178d
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0x5A7B180B
 	Offset: 0x430
 	Size: 0xB3
@@ -52,7 +52,7 @@ function function_7715178d()
 
 /*
 	Name: function_2d729696
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0x232797B3
 	Offset: 0x4F0
 	Size: 0x123
@@ -74,7 +74,7 @@ function function_2d729696(a_ents)
 
 /*
 	Name: function_eeb24547
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0x7D967A72
 	Offset: 0x620
 	Size: 0x73
@@ -91,7 +91,7 @@ function function_eeb24547()
 
 /*
 	Name: function_512d92f4
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0xF6D0E464
 	Offset: 0x6A0
 	Size: 0x14F
@@ -129,7 +129,7 @@ function function_512d92f4(e_player)
 
 /*
 	Name: function_891da2d8
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0xB1DF054E
 	Offset: 0x7F8
 	Size: 0x1BF
@@ -159,7 +159,7 @@ function function_891da2d8()
 				e_who notify("hash_ad9aba38");
 				e_who zm_score::minus_to_player_score(1500);
 				self namespace_48c05c81::function_903f6b36(1);
-				level function_ec450f14(e_who);
+				level finger_trap_activate(e_who);
 				self namespace_48c05c81::function_903f6b36(0);
 			}
 		}
@@ -167,17 +167,17 @@ function function_891da2d8()
 }
 
 /*
-	Name: function_ec450f14
-	Namespace: namespace_b205ff9c
+	Name: finger_trap_activate
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0xE368B4F4
 	Offset: 0x9C0
 	Size: 0x13B
 	Parameters: 1
 	Flags: None
 */
-function function_ec450f14(var_3778532a)
+function finger_trap_activate(var_3778532a)
 {
-	var_3778532a thread namespace_dcf9c464::function_c0914f1b();
+	var_3778532a thread zm_stalingrad_vo::function_c0914f1b();
 	Array::run_all(level.var_79dbe0dd, &TriggerEnable, 1);
 	Array::thread_all(level.var_79dbe0dd, &function_f5af37c6, var_3778532a);
 	level function_88a65f39();
@@ -193,7 +193,7 @@ function function_ec450f14(var_3778532a)
 
 /*
 	Name: function_88a65f39
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0x749C5D48
 	Offset: 0xB08
 	Size: 0x6B
@@ -211,7 +211,7 @@ function function_88a65f39()
 
 /*
 	Name: function_f5af37c6
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0x93EA2543
 	Offset: 0xB80
 	Size: 0x1AF
@@ -220,7 +220,7 @@ function function_88a65f39()
 */
 function function_f5af37c6(var_3778532a)
 {
-	level endon("hash_46e86024");
+	level endon("finger_trap_cooldown");
 	while(1)
 	{
 		self waittill("trigger", e_who);
@@ -254,7 +254,7 @@ function function_f5af37c6(var_3778532a)
 
 /*
 	Name: function_fe885d6b
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0x19714132
 	Offset: 0xD38
 	Size: 0x21
@@ -270,7 +270,7 @@ function function_fe885d6b()
 
 /*
 	Name: function_ddb9991b
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0x4F86FD8A
 	Offset: 0xD68
 	Size: 0x93
@@ -285,14 +285,14 @@ function function_ddb9991b()
 			level flag::set("Dev Block strings are not supported");
 			level flag::clear("Dev Block strings are not supported");
 			level notify("hash_f8b849b9");
-			level function_ec450f14(level.players[0]);
+			level finger_trap_activate(level.players[0]);
 		}
 	#/
 }
 
 /*
 	Name: function_fc99caf5
-	Namespace: namespace_b205ff9c
+	Namespace: zm_stalingrad_finger_trap
 	Checksum: 0xA66C5527
 	Offset: 0xE08
 	Size: 0x51

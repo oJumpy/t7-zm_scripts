@@ -20,11 +20,11 @@
 #using scripts\zm\_zm_weap_elemental_bow;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_2d73d751;
+#namespace _zm_weap_elemental_bow_rune_prison;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xD8499016
 	Offset: 0x580
 	Size: 0x3B
@@ -38,7 +38,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xB1D54156
 	Offset: 0x5C8
 	Size: 0x22B
@@ -63,7 +63,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x99EC1590
 	Offset: 0x800
 	Size: 0x3
@@ -76,7 +76,7 @@ function __main__()
 
 /*
 	Name: function_4d344d97
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x32A563FB
 	Offset: 0x810
 	Size: 0x7B
@@ -92,7 +92,7 @@ function function_4d344d97()
 
 /*
 	Name: function_c8b11b89
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x9726569D
 	Offset: 0x898
 	Size: 0xB3
@@ -113,7 +113,7 @@ function function_c8b11b89(weapon, position, radius, attacker, normal)
 
 /*
 	Name: function_94ba3a15
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xC35E50AC
 	Offset: 0x958
 	Size: 0x8B3
@@ -238,7 +238,7 @@ function function_94ba3a15(e_player, v_hit_origin, str_weapon_name, e_arrow, var
 
 /*
 	Name: function_378db90d
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xBF9E88A6
 	Offset: 0x1218
 	Size: 0x159
@@ -260,7 +260,7 @@ function function_378db90d(v_pos)
 
 /*
 	Name: function_62837b3a
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xE7A48D4F
 	Offset: 0x1380
 	Size: 0x2B
@@ -277,7 +277,7 @@ function function_62837b3a()
 
 /*
 	Name: function_71c4b12e
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x7EA1A1B9
 	Offset: 0x13B8
 	Size: 0xA9
@@ -291,7 +291,7 @@ function function_71c4b12e(ai_enemy, var_289e02fc)
 
 /*
 	Name: function_cece5ffb
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x5C3FBD6A
 	Offset: 0x1470
 	Size: 0x7F
@@ -305,7 +305,7 @@ function function_cece5ffb(ai_enemy)
 
 /*
 	Name: function_e381ab3a
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x56896156
 	Offset: 0x14F8
 	Size: 0x2F
@@ -319,7 +319,7 @@ function function_e381ab3a(ai_enemy)
 
 /*
 	Name: function_5c74632
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xCF2A4F25
 	Offset: 0x1530
 	Size: 0xF3
@@ -346,7 +346,7 @@ function function_5c74632()
 
 /*
 	Name: function_48899f7
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x14517AA7
 	Offset: 0x1630
 	Size: 0x1F3
@@ -379,7 +379,7 @@ function function_48899f7(e_player, v_hit_origin, str_weapon_name, e_arrow)
 
 /*
 	Name: function_6a1a0b32
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x98CA8260
 	Offset: 0x1830
 	Size: 0x37
@@ -393,7 +393,7 @@ function function_6a1a0b32(ai_enemy, var_3c817f0d)
 
 /*
 	Name: function_e7abbbb8
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xE323869C
 	Offset: 0x1870
 	Size: 0x25F
@@ -441,7 +441,7 @@ function function_e7abbbb8(var_3c817f0d, e_player)
 
 /*
 	Name: function_46a00a8e
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x55141CBB
 	Offset: 0x1AD8
 	Size: 0x16B
@@ -469,7 +469,7 @@ function function_46a00a8e(ai_enemy)
 
 /*
 	Name: function_1ed3d96d
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x843AB344
 	Offset: 0x1C50
 	Size: 0x7B

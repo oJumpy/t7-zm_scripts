@@ -37,7 +37,7 @@ function autoexec init()
 */
 function function_9f8cfcf5()
 {
-	self thread namespace_8e89abe3::function_f4766f6();
+	self thread zm_castle_low_grav::function_f4766f6();
 }
 
 /*

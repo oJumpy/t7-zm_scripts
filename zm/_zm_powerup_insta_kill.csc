@@ -7,7 +7,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_insta_kill
-	Checksum: 0x9C94A492
+	Checksum: 0x4CD72D70
 	Offset: 0x120
 	Size: 0x33
 	Parameters: 0
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_insta_kill
-	Checksum: 0x97362A4D
+	Checksum: 0x46FC899E
 	Offset: 0x160
 	Size: 0x73
 	Parameters: 0

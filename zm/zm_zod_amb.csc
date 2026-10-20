@@ -36,11 +36,11 @@ function function_bab3ea62()
 {
 	level thread function_53b9afad();
 	var_29085ef = GetEntArray(0, "sndMusicTrig", "targetname");
-	Array::thread_all(var_29085ef, &function_95d61fc1);
+	Array::thread_all(var_29085ef, &sndmusictrig);
 }
 
 /*
-	Name: function_95d61fc1
+	Name: sndmusictrig
 	Namespace: namespace_c3257ae1
 	Checksum: 0xB9F418FE
 	Offset: 0x278
@@ -48,7 +48,7 @@ function function_bab3ea62()
 	Parameters: 0
 	Flags: None
 */
-function function_95d61fc1()
+function sndmusictrig()
 {
 	while(1)
 	{

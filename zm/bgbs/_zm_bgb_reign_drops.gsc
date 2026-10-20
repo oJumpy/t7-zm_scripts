@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\bgbs\_zm_bgb_extra_credit;
 
-#namespace namespace_7084af67;
+#namespace zm_bgb_reign_drops;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_7084af67
+	Namespace: zm_bgb_reign_drops
 	Checksum: 0xDED1DE76
 	Offset: 0x1E0
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_7084af67
+	Namespace: zm_bgb_reign_drops
 	Checksum: 0xEFAB241D
 	Offset: 0x220
 	Size: 0x63
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_7084af67
+	Namespace: zm_bgb_reign_drops
 	Checksum: 0x7F3D91FE
 	Offset: 0x290
 	Size: 0x21
@@ -61,7 +61,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_7084af67
+	Namespace: zm_bgb_reign_drops
 	Checksum: 0x1CC28CDD
 	Offset: 0x2C0
 	Size: 0x1E3
@@ -73,7 +73,7 @@ function activation()
 	self endon("disconnect");
 	self endon("bled_out");
 	level thread bgb::function_dea74fb0("minigun", self function_ed573cc2(1));
-	self thread namespace_828507ab::function_b18c3b2d(self function_ed573cc2(2));
+	self thread zm_bgb_extra_credit::function_b18c3b2d(self function_ed573cc2(2));
 	level thread bgb::function_dea74fb0("nuke", self function_ed573cc2(3));
 	level thread bgb::function_dea74fb0("carpenter", self function_ed573cc2(4));
 	level thread bgb::function_dea74fb0("free_perk", self function_ed573cc2(5));
@@ -87,7 +87,7 @@ function activation()
 
 /*
 	Name: function_7892610e
-	Namespace: namespace_7084af67
+	Namespace: zm_bgb_reign_drops
 	Checksum: 0x495E79A9
 	Offset: 0x4B0
 	Size: 0x91
@@ -114,7 +114,7 @@ function function_7892610e()
 
 /*
 	Name: function_ed573cc2
-	Namespace: namespace_7084af67
+	Namespace: zm_bgb_reign_drops
 	Checksum: 0xAB8C78BA
 	Offset: 0x550
 	Size: 0x281

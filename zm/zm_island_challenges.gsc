@@ -76,7 +76,7 @@ function main()
 		zm_spawner::register_zombie_death_event_callback(&function_682e6fc4);
 		zm_spawner::register_zombie_death_event_callback(&function_5a2a9ef9);
 		zm_spawner::register_zombie_death_event_callback(&function_fe94c179);
-		level thread function_89d8e005();
+		level thread all_challenges_completed();
 		level flag::set("flag_init_player_challenges");
 		/#
 			function_b9b4ce34();
@@ -470,7 +470,7 @@ function function_a00e23d0()
 				{
 					if(e_who flag::get("flag_player_completed_challenge_" + self.stub.a_n_challenge[i]) && !e_who flag::get("flag_player_collected_reward_" + self.stub.a_n_challenge[i]) && !level flag::get("flag_player_initialized_reward"))
 					{
-						e_who thread function_8675d6ed(self.stub.a_n_challenge[i]);
+						e_who thread player_reward_think(self.stub.a_n_challenge[i]);
 					}
 				}
 			}
@@ -541,7 +541,7 @@ function function_e43d4636(var_a879fa43, n_challenge)
 }
 
 /*
-	Name: function_8675d6ed
+	Name: player_reward_think
 	Namespace: namespace_bbfc4da3
 	Checksum: 0x3FB05F9A
 	Offset: 0x2BB0
@@ -549,7 +549,7 @@ function function_e43d4636(var_a879fa43, n_challenge)
 	Parameters: 1
 	Flags: None
 */
-function function_8675d6ed(n_challenge)
+function player_reward_think(n_challenge)
 {
 	self endon("disconnect");
 	var_a879fa43 = self GetEntityNumber();
@@ -601,7 +601,7 @@ function function_8675d6ed(n_challenge)
 	if(e_who == self)
 	{
 		self playsoundtoplayer("zmb_trial_unlock_reward", self);
-		mdl_reward.trigger notify("hash_6e68aec2");
+		mdl_reward.trigger notify("reward_grabbed");
 		self player_give_reward(n_challenge, s_altar, var_c9d33fc4);
 		if(isdefined(mdl_reward.trigger))
 		{
@@ -642,7 +642,7 @@ function spawn_reward_model(var_c9d33fc4, v_origin, v_angles)
 function timer_til_despawn(player, n_challenge, v_float, n_dist)
 {
 	player endon("disconnect");
-	self endon("hash_6e68aec2");
+	self endon("reward_grabbed");
 	self MoveZ(n_dist, 12, 6);
 	self waittill("movedone");
 	self notify("hash_59e0fa55");
@@ -712,7 +712,7 @@ function player_give_reward(n_challenge, s_altar, var_c9d33fc4)
 	}
 	self flag::set("flag_player_collected_reward_" + n_challenge);
 	level flag::clear("flag_player_initialized_reward");
-	self notify("hash_6e68aec2");
+	self notify("reward_grabbed");
 }
 
 /*
@@ -881,7 +881,7 @@ function function_2dbc7cd3()
 	while(!self flag::get("flag_player_completed_challenge_1"))
 	{
 		self waittill("hash_7ae66b0a");
-		self notify("hash_296e52f0");
+		self notify("update_challenge_1_5");
 	}
 }
 
@@ -898,7 +898,7 @@ function function_fe94c179(e_attacker)
 {
 	if(isPlayer(e_attacker) && (isdefined(self.b_is_thrasher) && self.b_is_thrasher) && (!isdefined(self.thrasherHasTurnedBerserk) && self.thrasherHasTurnedBerserk))
 	{
-		e_attacker notify("hash_fb461733");
+		e_attacker notify("update_challenge_2_1");
 	}
 }
 
@@ -917,7 +917,7 @@ function function_25c1bab7()
 	while(!self flag::get("flag_player_completed_challenge_2"))
 	{
 		self waittill("hash_61bbe625");
-		self notify("hash_893ea7f8");
+		self notify("update_challenge_2_2");
 	}
 }
 
@@ -936,7 +936,7 @@ function function_5a2a9ef9(e_attacker)
 	{
 		if(self.attackable.scriptbundlename == "zm_island_trap_plant_attackable" || self.attackable.scriptbundlename == "zm_island_trap_plant_upgraded_attackable")
 		{
-			e_attacker notify("hash_af412261");
+			e_attacker notify("update_challenge_2_3");
 		}
 	}
 }
@@ -954,7 +954,7 @@ function function_682e6fc4(e_attacker)
 {
 	if(isPlayer(e_attacker) && self.archetype === "zombie" && (isdefined(self.var_34d00e7) && self.var_34d00e7))
 	{
-		e_attacker notify("hash_80ff169");
+		e_attacker notify("update_challenge_3_2");
 	}
 }
 
@@ -973,7 +973,7 @@ function function_5a96677a()
 	while(!self flag::get("flag_player_completed_challenge_3"))
 	{
 		self waittill("hash_3e1e1a8");
-		self notify("hash_e20d7700");
+		self notify("update_challenge_3_3");
 	}
 }
 
@@ -994,12 +994,12 @@ function function_905d9544(e_attacker)
 		{
 			if(isdefined(self.damagelocation) && self.damagelocation == "head" || self.damagelocation == "helmet")
 			{
-				e_attacker notify("hash_6d4d866e");
+				e_attacker notify("update_challenge_2_4");
 			}
 		}
 		if(!e_attacker flag::get("flag_player_completed_challenge_2") && self.archetype === "zombie" && e_attacker IsPlayerUnderwater())
 		{
-			e_attacker notify("hash_935000d7");
+			e_attacker notify("update_challenge_2_5");
 		}
 	}
 }
@@ -1019,7 +1019,7 @@ function function_26c58398()
 	while(1)
 	{
 		self waittill("destroyed_thrasher_head");
-		self notify("hash_c61c5576");
+		self notify("update_challenge_3_5");
 	}
 }
 
@@ -1071,11 +1071,11 @@ function function_974d5f1d()
 	self endon("disconnect");
 	a_flags = Array("flag_player_completed_challenge_1", "flag_player_completed_challenge_2", "flag_player_completed_challenge_3");
 	self flag::wait_till_all(a_flags);
-	level notify("hash_41370469");
+	level notify("player_all_challenges_completed");
 }
 
 /*
-	Name: function_89d8e005
+	Name: all_challenges_completed
 	Namespace: namespace_bbfc4da3
 	Checksum: 0xA05DB97B
 	Offset: 0x3DC0
@@ -1083,13 +1083,13 @@ function function_974d5f1d()
 	Parameters: 0
 	Flags: None
 */
-function function_89d8e005()
+function all_challenges_completed()
 {
 	level.var_c28313cd = 0;
 	callback::on_disconnect(&function_b1cd865a);
 	while(1)
 	{
-		level waittill("hash_41370469");
+		level waittill("player_all_challenges_completed");
 		level.var_c28313cd++;
 		if(level.var_c28313cd >= level.players.size)
 		{

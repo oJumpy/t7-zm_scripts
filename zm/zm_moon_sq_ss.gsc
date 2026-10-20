@@ -203,7 +203,7 @@ function stage_logic()
 	{
 		for(i = 0; i < level._ss_hacks.size; i++)
 		{
-			namespace_6d813654::deregister_hackable_struct(level._ss_hacks[i]);
+			zm_equip_hacker::deregister_hackable_struct(level._ss_hacks[i]);
 		}
 	}
 	level thread ss_debug();

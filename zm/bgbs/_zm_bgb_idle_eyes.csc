@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_d5190444;
+#namespace zm_bgb_idle_eyes;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_d5190444
+	Namespace: zm_bgb_idle_eyes
 	Checksum: 0xE49A8223
 	Offset: 0x190
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_d5190444
+	Namespace: zm_bgb_idle_eyes
 	Checksum: 0xE555F6DE
 	Offset: 0x1D0
 	Size: 0x8B

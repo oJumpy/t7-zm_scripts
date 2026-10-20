@@ -107,7 +107,7 @@ function play_line_if_player_can_see()
 	{
 		if(DistanceSquared(self.origin, players[i].origin) <= 640000)
 		{
-			cansee = self namespace_2d028ffb::player_can_see_me(players[i]);
+			cansee = self zmhd_cleanup::player_can_see_me(players[i]);
 			if(cansee)
 			{
 				players[i] thread zm_audio::create_and_play_dialog("general", "astro_spawn");

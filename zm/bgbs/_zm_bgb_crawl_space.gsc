@@ -8,11 +8,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_66b3c421;
+#namespace zm_bgb_crawl_space;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_66b3c421
+	Namespace: zm_bgb_crawl_space
 	Checksum: 0x97F9BE4A
 	Offset: 0x1B0
 	Size: 0x33
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_66b3c421
+	Namespace: zm_bgb_crawl_space
 	Checksum: 0x83252F4C
 	Offset: 0x1F0
 	Size: 0x53
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: activation
-	Namespace: namespace_66b3c421
+	Namespace: zm_bgb_crawl_space
 	Checksum: 0xBB425F2F
 	Offset: 0x250
 	Size: 0x115

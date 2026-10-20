@@ -3,11 +3,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weap_staff_common;
 
-#namespace namespace_42f5ba79;
+#namespace zm_weap_staff_water;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x19AF50FB
 	Offset: 0x2E0
 	Size: 0x33
@@ -21,7 +21,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x25546EB0
 	Offset: 0x320
 	Size: 0x1BB
@@ -30,20 +30,20 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "staff_blizzard_fx", 21000, 1, "int", &function_968ecc77, 1, 0);
+	clientfield::register("scriptmover", "staff_blizzard_fx", 21000, 1, "int", &staff_blizzard_fx, 1, 0);
 	clientfield::register("actor", "attach_bullet_model", 21000, 1, "int", &attach_model, 0, 0);
-	clientfield::register("actor", "staff_shatter_fx", 21000, 1, "int", &function_e6e6eaf8, 0, 0);
+	clientfield::register("actor", "staff_shatter_fx", 21000, 1, "int", &staff_shatter_fx, 0, 0);
 	level._effect["staff_water_blizzard"] = "dlc5/zmb_weapon/fx_staff_ice_impact_ug_hit";
 	level._effect["staff_water_ice_shard"] = "dlc5/zmb_weapon/fx_staff_ice_trail_bolt";
 	level._effect["staff_water_shatter"] = "dlc5/zmb_weapon/fx_staff_ice_exp";
 	clientfield::register("actor", "anim_rate", 21000, 2, "float", undefined, 0, 0);
 	setupclientfieldanimspeedcallbacks("actor", 1, "anim_rate");
-	namespace_c9806b9::function_4be5e665(GetWeapon("staff_water_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_ice_lv1");
+	zm_weap_staff::function_4be5e665(GetWeapon("staff_water_upgraded"), "dlc5/zmb_weapon/fx_staff_charge_ice_lv1");
 }
 
 /*
 	Name: attach_model
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0xE02FC1BB
 	Offset: 0x4E8
 	Size: 0x133
@@ -72,7 +72,7 @@ function attach_model(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fie
 
 /*
 	Name: ice_freeze_fx
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x68303D64
 	Offset: 0x628
 	Size: 0xE9
@@ -94,7 +94,7 @@ function ice_freeze_fx(localClientNum)
 
 /*
 	Name: ice_unfreeze
-	Namespace: namespace_42f5ba79
+	Namespace: zm_weap_staff_water
 	Checksum: 0x8199D85B
 	Offset: 0x720
 	Size: 0xC3
@@ -114,15 +114,15 @@ function ice_unfreeze(localClientNum)
 }
 
 /*
-	Name: function_968ecc77
-	Namespace: namespace_42f5ba79
+	Name: staff_blizzard_fx
+	Namespace: zm_weap_staff_water
 	Checksum: 0x5FAD75C0
 	Offset: 0x7F0
 	Size: 0x19D
 	Parameters: 7
 	Flags: None
 */
-function function_968ecc77(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function staff_blizzard_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{
@@ -147,19 +147,19 @@ function function_968ecc77(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_e6e6eaf8
-	Namespace: namespace_42f5ba79
+	Name: staff_shatter_fx
+	Namespace: zm_weap_staff_water
 	Checksum: 0xD8C475FD
 	Offset: 0x998
 	Size: 0x83
 	Parameters: 7
 	Flags: None
 */
-function function_e6e6eaf8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function staff_shatter_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal == 1)
 	{
-		self.var_5d11d365 = PlayFXOnTag(localClientNum, level._effect["staff_water_shatter"], self, "J_SpineLower");
+		self.shatter_fx = PlayFXOnTag(localClientNum, level._effect["staff_water_shatter"], self, "J_SpineLower");
 	}
 }
 

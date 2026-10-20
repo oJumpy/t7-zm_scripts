@@ -18,11 +18,11 @@
 */
 function init()
 {
-	clientfield::register("vehicle", "sewer_current_fx", 9000, 1, "int", &function_1647aec4, 0, 0);
+	clientfield::register("vehicle", "sewer_current_fx", 9000, 1, "int", &sewer_current_fx, 0, 0);
 }
 
 /*
-	Name: function_1647aec4
+	Name: sewer_current_fx
 	Namespace: namespace_34c58dc
 	Checksum: 0xD740AD0A
 	Offset: 0x1C8
@@ -30,7 +30,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_1647aec4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sewer_current_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

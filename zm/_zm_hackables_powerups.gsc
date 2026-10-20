@@ -59,7 +59,7 @@ function hack_powerups()
 			struct.script_int = 5000;
 			struct.powerup = powerup;
 			powerup thread powerup_pickup_watcher(struct);
-			namespace_6d813654::register_pooled_hackable_struct(struct, &powerup_hack);
+			zm_equip_hacker::register_pooled_hackable_struct(struct, &powerup_hack);
 		}
 	}
 }
@@ -77,7 +77,7 @@ function powerup_pickup_watcher(powerup_struct)
 {
 	self endon("hacked");
 	self waittill("death");
-	namespace_6d813654::deregister_hackable_struct(powerup_struct);
+	zm_equip_hacker::deregister_hackable_struct(powerup_struct);
 }
 
 /*
@@ -114,6 +114,6 @@ function powerup_hack(hacker)
 	{
 		self.powerup zm_powerups::powerup_setup("full_ammo");
 	}
-	namespace_6d813654::deregister_hackable_struct(self);
+	zm_equip_hacker::deregister_hackable_struct(self);
 }
 

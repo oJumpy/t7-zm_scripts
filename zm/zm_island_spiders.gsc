@@ -21,11 +21,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_af029029;
+#namespace zm_island_spiders;
 
 /*
 	Name: function_8e89793a
-	Namespace: namespace_af029029
+	Namespace: zm_island_spiders
 	Checksum: 0xF7CCA825
 	Offset: 0x3E0
 	Size: 0x3B
@@ -41,7 +41,7 @@ function function_8e89793a()
 
 /*
 	Name: function_c102a998
-	Namespace: namespace_af029029
+	Namespace: zm_island_spiders
 	Checksum: 0x89BDFC37
 	Offset: 0x428
 	Size: 0x179
@@ -76,7 +76,7 @@ function function_c102a998()
 
 /*
 	Name: function_33aa4940
-	Namespace: namespace_af029029
+	Namespace: zm_island_spiders
 	Checksum: 0x89677D46
 	Offset: 0x5B0
 	Size: 0x397
@@ -147,12 +147,12 @@ function function_33aa4940()
 					a_spider_spawners[a_spider_spawners.size] = s_spawner;
 				}
 			}
-			namespace_27f8b154::special_spider_spawn(1, Array::random(a_spider_spawners));
+			zm_ai_spiders::special_spider_spawn(1, Array::random(a_spider_spawners));
 			level.var_ab7eb3d4++;
 		}
 		else
 		{
-			namespace_27f8b154::special_spider_spawn(1);
+			zm_ai_spiders::special_spider_spawn(1);
 		}
 		level.zombie_total--;
 	}
@@ -161,7 +161,7 @@ function function_33aa4940()
 
 /*
 	Name: function_419bf2ad
-	Namespace: namespace_af029029
+	Namespace: zm_island_spiders
 	Checksum: 0xBC786D21
 	Offset: 0x950
 	Size: 0x33

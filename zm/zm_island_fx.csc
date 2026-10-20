@@ -5,11 +5,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_1a868593;
+#namespace zm_island_fx;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1a868593
+	Namespace: zm_island_fx
 	Checksum: 0x6AB58937
 	Offset: 0x1E18
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1a868593
+	Namespace: zm_island_fx
 	Checksum: 0xFCEED3B0
 	Offset: 0x1E58
 	Size: 0x16B
@@ -32,16 +32,16 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "do_fade_material", 9000, 3, "float", &function_7fd2fc4d, 0, 0);
-	clientfield::register("scriptmover", "do_fade_material_slow", 9000, 3, "float", &function_c695b05f, 0, 0);
-	clientfield::register("scriptmover", "do_fade_material_direct", 9000, 3, "float", &function_bf0a57f3, 0, 0);
-	clientfield::register("scriptmover", "do_emissive_material", 9000, 3, "float", &function_e14a2d54, 0, 0);
-	clientfield::register("scriptmover", "do_emissive_material_direct", 9000, 3, "float", &function_23fc09c8, 0, 0);
+	clientfield::register("scriptmover", "do_fade_material", 9000, 3, "float", &do_fade_material, 0, 0);
+	clientfield::register("scriptmover", "do_fade_material_slow", 9000, 3, "float", &do_fade_material_slow, 0, 0);
+	clientfield::register("scriptmover", "do_fade_material_direct", 9000, 3, "float", &do_fade_material_direct, 0, 0);
+	clientfield::register("scriptmover", "do_emissive_material", 9000, 3, "float", &do_emissive_material, 0, 0);
+	clientfield::register("scriptmover", "do_emissive_material_direct", 9000, 3, "float", &do_emissive_material_direct, 0, 0);
 }
 
 /*
 	Name: main
-	Namespace: namespace_1a868593
+	Namespace: zm_island_fx
 	Checksum: 0xCF57D351
 	Offset: 0x1FD0
 	Size: 0xEA9
@@ -187,15 +187,15 @@ function main()
 }
 
 /*
-	Name: function_7fd2fc4d
-	Namespace: namespace_1a868593
+	Name: do_fade_material
+	Namespace: zm_island_fx
 	Checksum: 0xC64E0097
 	Offset: 0x2E88
 	Size: 0xAB
 	Parameters: 7
 	Flags: None
 */
-function function_7fd2fc4d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function do_fade_material(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	b_on = 0;
 	if(newVal <= 0)
@@ -211,15 +211,15 @@ function function_7fd2fc4d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_c695b05f
-	Namespace: namespace_1a868593
+	Name: do_fade_material_slow
+	Namespace: zm_island_fx
 	Checksum: 0xBD8CFE3E
 	Offset: 0x2F40
 	Size: 0xAB
 	Parameters: 7
 	Flags: None
 */
-function function_c695b05f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function do_fade_material_slow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	b_on = 0;
 	if(newVal <= 0)
@@ -235,29 +235,29 @@ function function_c695b05f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_bf0a57f3
-	Namespace: namespace_1a868593
+	Name: do_fade_material_direct
+	Namespace: zm_island_fx
 	Checksum: 0xABFC713C
 	Offset: 0x2FF8
 	Size: 0x5B
 	Parameters: 7
 	Flags: None
 */
-function function_bf0a57f3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function do_fade_material_direct(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self transition_shader(localClientNum, newVal, 0, 1);
 }
 
 /*
-	Name: function_e14a2d54
-	Namespace: namespace_1a868593
+	Name: do_emissive_material
+	Namespace: zm_island_fx
 	Checksum: 0xFEFE8769
 	Offset: 0x3060
 	Size: 0xB3
 	Parameters: 7
 	Flags: None
 */
-function function_e14a2d54(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function do_emissive_material(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	b_on = 0;
 	if(newVal <= 0)
@@ -273,22 +273,22 @@ function function_e14a2d54(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_23fc09c8
-	Namespace: namespace_1a868593
+	Name: do_emissive_material_direct
+	Namespace: zm_island_fx
 	Checksum: 0x6A7A582F
 	Offset: 0x3120
 	Size: 0x63
 	Parameters: 7
 	Flags: None
 */
-function function_23fc09c8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function do_emissive_material_direct(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self transition_shader(localClientNum, newVal, 2, 1);
 }
 
 /*
 	Name: function_bea149a5
-	Namespace: namespace_1a868593
+	Namespace: zm_island_fx
 	Checksum: 0x1E003576
 	Offset: 0x3190
 	Size: 0x2EB
@@ -384,7 +384,7 @@ function function_bea149a5(localClientNum, var_afc7cc94, var_b05b3457, b_on, n_a
 
 /*
 	Name: transition_shader
-	Namespace: namespace_1a868593
+	Namespace: zm_island_fx
 	Checksum: 0x9C99D191
 	Offset: 0x3488
 	Size: 0x93
@@ -409,15 +409,15 @@ function transition_shader(localClientNum, n_value, var_afc7cc94, var_519aaca5)
 }
 
 /*
-	Name: function_4ff90290
-	Namespace: namespace_1a868593
+	Name: set_fade_material
+	Namespace: zm_island_fx
 	Checksum: 0xF500CCC8
 	Offset: 0x3528
 	Size: 0x63
 	Parameters: 7
 	Flags: None
 */
-function function_4ff90290(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function set_fade_material(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self MapShaderConstant(localClientNum, 0, "scriptVector0", newVal, 0, 0, 0);
 }

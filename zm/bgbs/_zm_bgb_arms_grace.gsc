@@ -10,11 +10,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_fec23565;
+#namespace zm_bgb_arms_grace;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_fec23565
+	Namespace: zm_bgb_arms_grace
 	Checksum: 0xA0B58439
 	Offset: 0x1E8
 	Size: 0x33
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_fec23565
+	Namespace: zm_bgb_arms_grace
 	Checksum: 0x6FAA7CB9
 	Offset: 0x228
 	Size: 0x6B
@@ -47,7 +47,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_fec23565
+	Namespace: zm_bgb_arms_grace
 	Checksum: 0x38795B6C
 	Offset: 0x2A0
 	Size: 0x4F
@@ -57,15 +57,15 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
-	self waittill("hash_eecacfa5");
+	self endon("bgb_update");
+	self waittill("bgb_about_to_take_on_bled_out");
 	self bgb::do_one_shot_use(1);
 	self.var_e445bfc6 = 1;
 }
 
 /*
 	Name: giveStartLoadout
-	Namespace: namespace_fec23565
+	Namespace: zm_bgb_arms_grace
 	Checksum: 0x43BEADFE
 	Offset: 0x2F8
 	Size: 0x5B
@@ -87,7 +87,7 @@ function giveStartLoadout()
 
 /*
 	Name: return_weapons_to_player
-	Namespace: namespace_fec23565
+	Namespace: zm_bgb_arms_grace
 	Checksum: 0x9C90067D
 	Offset: 0x360
 	Size: 0x35B

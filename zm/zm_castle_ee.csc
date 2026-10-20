@@ -4,11 +4,11 @@
 #using scripts\shared\duplicaterender_mgr;
 #using scripts\shared\postfx_shared;
 
-#namespace namespace_c93e4c32;
+#namespace zm_castle_ee;
 
 /*
 	Name: main
-	Namespace: namespace_c93e4c32
+	Namespace: zm_castle_ee
 	Checksum: 0x865B57D3
 	Offset: 0x340
 	Size: 0x79
@@ -25,7 +25,7 @@ function main()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_c93e4c32
+	Namespace: zm_castle_ee
 	Checksum: 0x12D87735
 	Offset: 0x3C8
 	Size: 0x263
@@ -36,25 +36,25 @@ function register_clientfields()
 {
 	n_bits = GetMinBitCountForNum(4);
 	clientfield::register("toplayer", "player_ee_cs_circle", 5000, n_bits, "int", &function_2a1f20f9, 0, 0);
-	clientfield::register("actor", "ghost_actor", 1, 1, "int", &function_b48f294, 0, 0);
-	clientfield::register("scriptmover", "channeling_stone_glow", 5000, 2, "int", &function_e23bc630, 0, 0);
-	clientfield::register("world", "flip_skybox", 5000, 1, "int", &function_3965d72d, 0, 0);
+	clientfield::register("actor", "ghost_actor", 1, 1, "int", &ghost_actor, 0, 0);
+	clientfield::register("scriptmover", "channeling_stone_glow", 5000, 2, "int", &channeling_stone_glow, 0, 0);
+	clientfield::register("world", "flip_skybox", 5000, 1, "int", &flip_skybox, 0, 0);
 	clientfield::register("scriptmover", "pod_monitor_enable", 5000, 1, "int", &pod_monitor_disable, 0, 0);
-	clientfield::register("world", "sndDeathRayToMoon", 5000, 1, "int", &function_2145e814, 0, 0);
-	clientfield::register("toplayer", "outro_lighting_banks", 5000, 1, "int", &function_12c888d5, 0, 0);
-	clientfield::register("toplayer", "moon_explosion_bank", 5000, 1, "int", &function_890770df, 0, 0);
+	clientfield::register("world", "sndDeathRayToMoon", 5000, 1, "int", &snddeathraytomoon, 0, 0);
+	clientfield::register("toplayer", "outro_lighting_banks", 5000, 1, "int", &outro_lighting_banks, 0, 0);
+	clientfield::register("toplayer", "moon_explosion_bank", 5000, 1, "int", &moon_explosion_bank, 0, 0);
 }
 
 /*
-	Name: function_b48f294
-	Namespace: namespace_c93e4c32
+	Name: ghost_actor
+	Namespace: zm_castle_ee
 	Checksum: 0xFF6CA0C8
 	Offset: 0x638
 	Size: 0x73
 	Parameters: 7
 	Flags: None
 */
-function function_b48f294(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ghost_actor(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self duplicate_render::set_dr_flag("zod_ghost", newVal);
 	self duplicate_render::update_dr_filters(localClientNum);
@@ -62,7 +62,7 @@ function function_b48f294(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_2a1f20f9
-	Namespace: namespace_c93e4c32
+	Namespace: zm_castle_ee
 	Checksum: 0x3C4C1426
 	Offset: 0x6B8
 	Size: 0x1AB
@@ -99,15 +99,15 @@ function function_2a1f20f9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_e23bc630
-	Namespace: namespace_c93e4c32
+	Name: channeling_stone_glow
+	Namespace: zm_castle_ee
 	Checksum: 0xDCF41DCB
 	Offset: 0x870
 	Size: 0x23B
 	Parameters: 7
 	Flags: None
 */
-function function_e23bc630(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function channeling_stone_glow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	self notify("hash_a1e4f5f1");
@@ -152,7 +152,7 @@ function function_e23bc630(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: pod_monitor_disable
-	Namespace: namespace_c93e4c32
+	Namespace: zm_castle_ee
 	Checksum: 0x3386FE12
 	Offset: 0xAB8
 	Size: 0x63
@@ -165,15 +165,15 @@ function pod_monitor_disable(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 }
 
 /*
-	Name: function_3965d72d
-	Namespace: namespace_c93e4c32
+	Name: flip_skybox
+	Namespace: zm_castle_ee
 	Checksum: 0xAD443D69
 	Offset: 0xB28
 	Size: 0x63
 	Parameters: 7
 	Flags: None
 */
-function function_3965d72d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function flip_skybox(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -182,15 +182,15 @@ function function_3965d72d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_2145e814
-	Namespace: namespace_c93e4c32
+	Name: snddeathraytomoon
+	Namespace: zm_castle_ee
 	Checksum: 0x72FDFAD2
 	Offset: 0xB98
 	Size: 0xFB
 	Parameters: 7
 	Flags: None
 */
-function function_2145e814(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function snddeathraytomoon(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -207,15 +207,15 @@ function function_2145e814(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_12c888d5
-	Namespace: namespace_c93e4c32
+	Name: outro_lighting_banks
+	Namespace: zm_castle_ee
 	Checksum: 0x9518B936
 	Offset: 0xCA0
 	Size: 0xB3
 	Parameters: 7
 	Flags: None
 */
-function function_12c888d5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function outro_lighting_banks(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -230,15 +230,15 @@ function function_12c888d5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_890770df
-	Namespace: namespace_c93e4c32
+	Name: moon_explosion_bank
+	Namespace: zm_castle_ee
 	Checksum: 0xDA5E6685
 	Offset: 0xD60
 	Size: 0x83
 	Parameters: 7
 	Flags: None
 */
-function function_890770df(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function moon_explosion_bank(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

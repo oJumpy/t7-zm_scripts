@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_nuke
-	Checksum: 0x73611491
+	Checksum: 0xC96E9225
 	Offset: 0x150
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_nuke
-	Checksum: 0x730244FA
+	Checksum: 0xF157305C
 	Offset: 0x190
 	Size: 0xC3
 	Parameters: 0
@@ -40,7 +40,7 @@ function __init__()
 /*
 	Name: zombie_nuked
 	Namespace: zm_powerup_nuke
-	Checksum: 0xED743393
+	Checksum: 0x961BDE9A
 	Offset: 0x260
 	Size: 0x53
 	Parameters: 7

@@ -20,21 +20,21 @@
 */
 function init()
 {
-	clientfield::register("scriptmover", "plant_growth_siege_anims", 9000, 2, "int", &function_4539a4cd, 0, 0);
+	clientfield::register("scriptmover", "plant_growth_siege_anims", 9000, 2, "int", &plant_growth_siege_anims, 0, 0);
 	clientfield::register("scriptmover", "cache_plant_interact_fx", 9000, 1, "int", &function_d6804e46, 0, 0);
-	clientfield::register("scriptmover", "plant_hit_with_ww_fx", 9000, 1, "int", &function_c2c4b7be, 0, 0);
-	clientfield::register("scriptmover", "plant_watered_fx", 9000, 1, "int", &function_8fcaa237, 0, 0);
-	clientfield::register("scriptmover", "planter_model_watered", 9000, 1, "int", &function_a7073474, 0, 0);
-	clientfield::register("scriptmover", "babysitter_plant_fx", 9000, 1, "int", &function_b8cf2db, 0, 0);
-	clientfield::register("scriptmover", "trap_plant_fx", 9000, 1, "int", &function_22008d73, 0, 0);
-	clientfield::register("toplayer", "player_spawned_from_clone_plant", 9000, 1, "int", &function_316f5fd4, 0, 0);
-	clientfield::register("toplayer", "player_cloned_fx", 9000, 1, "int", &function_60a2a795, 0, 0);
-	clientfield::register("scriptmover", "zombie_or_grenade_spawned_from_minor_cache_plant", 9000, 2, "int", &function_6acdc163, 0, 0);
-	clientfield::register("allplayers", "player_vomit_fx", 9000, 1, "int", &function_f244344b, 0, 0);
+	clientfield::register("scriptmover", "plant_hit_with_ww_fx", 9000, 1, "int", &plant_hit_with_ww, 0, 0);
+	clientfield::register("scriptmover", "plant_watered_fx", 9000, 1, "int", &plant_watered, 0, 0);
+	clientfield::register("scriptmover", "planter_model_watered", 9000, 1, "int", &planter_model_watered, 0, 0);
+	clientfield::register("scriptmover", "babysitter_plant_fx", 9000, 1, "int", &babysitter_plant_fx, 0, 0);
+	clientfield::register("scriptmover", "trap_plant_fx", 9000, 1, "int", &trap_plant_fx, 0, 0);
+	clientfield::register("toplayer", "player_spawned_from_clone_plant", 9000, 1, "int", &player_spawned_from_clone_plant, 0, 0);
+	clientfield::register("toplayer", "player_cloned_fx", 9000, 1, "int", &player_cloned_fx, 0, 0);
+	clientfield::register("scriptmover", "zombie_or_grenade_spawned_from_minor_cache_plant", 9000, 2, "int", &zombie_or_grenade_spawned_from_minor_cache_plant, 0, 0);
+	clientfield::register("allplayers", "player_vomit_fx", 9000, 1, "int", &player_vomit_fx, 0, 0);
 }
 
 /*
-	Name: function_4539a4cd
+	Name: plant_growth_siege_anims
 	Namespace: namespace_7550a904
 	Checksum: 0x6F02F9EB
 	Offset: 0x938
@@ -42,7 +42,7 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_4539a4cd(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function plant_growth_siege_anims(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(!isdefined(self.var_600eec00))
 	{
@@ -108,7 +108,7 @@ function function_d6804e46(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b8cf2db
+	Name: babysitter_plant_fx
 	Namespace: namespace_7550a904
 	Checksum: 0xCA083F16
 	Offset: 0xD88
@@ -116,21 +116,21 @@ function function_d6804e46(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_b8cf2db(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function babysitter_plant_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
-		self.var_b8cf2db = PlayFXOnTag(localClientNum, level._effect["babysitter_plant"], self, "tag_origin");
+		self.babysitter_plant_fx = PlayFXOnTag(localClientNum, level._effect["babysitter_plant"], self, "tag_origin");
 	}
-	else if(isdefined(self.var_b8cf2db))
+	else if(isdefined(self.babysitter_plant_fx))
 	{
-		deletefx(localClientNum, self.var_b8cf2db, 0);
-		self.var_b8cf2db = undefined;
+		deletefx(localClientNum, self.babysitter_plant_fx, 0);
+		self.babysitter_plant_fx = undefined;
 	}
 }
 
 /*
-	Name: function_22008d73
+	Name: trap_plant_fx
 	Namespace: namespace_7550a904
 	Checksum: 0x4C0965DB
 	Offset: 0xE50
@@ -138,21 +138,21 @@ function function_b8cf2db(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	Parameters: 7
 	Flags: None
 */
-function function_22008d73(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function trap_plant_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
-		self.var_22008d73 = PlayFXOnTag(localClientNum, level._effect["trap_plant"], self, "tag_origin");
+		self.trap_plant_fx = PlayFXOnTag(localClientNum, level._effect["trap_plant"], self, "tag_origin");
 	}
-	else if(isdefined(self.var_22008d73))
+	else if(isdefined(self.trap_plant_fx))
 	{
-		deletefx(localClientNum, self.var_22008d73, 0);
-		self.var_22008d73 = undefined;
+		deletefx(localClientNum, self.trap_plant_fx, 0);
+		self.trap_plant_fx = undefined;
 	}
 }
 
 /*
-	Name: function_c2c4b7be
+	Name: plant_hit_with_ww
 	Namespace: namespace_7550a904
 	Checksum: 0x966FDA38
 	Offset: 0xF18
@@ -160,7 +160,7 @@ function function_22008d73(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_c2c4b7be(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function plant_hit_with_ww(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -174,7 +174,7 @@ function function_c2c4b7be(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_8fcaa237
+	Name: plant_watered
 	Namespace: namespace_7550a904
 	Checksum: 0xE84E4693
 	Offset: 0xFF0
@@ -182,7 +182,7 @@ function function_c2c4b7be(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_8fcaa237(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function plant_watered(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self notify("hash_15110cf6");
 	if(isdefined(self.var_5257f4ba))
@@ -192,12 +192,12 @@ function function_8fcaa237(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	if(newVal == 1)
 	{
-		self thread function_2179698b(localClientNum);
+		self thread play_plant_watered_fx(localClientNum);
 	}
 }
 
 /*
-	Name: function_2179698b
+	Name: play_plant_watered_fx
 	Namespace: namespace_7550a904
 	Checksum: 0xC0DCFC71
 	Offset: 0x10A0
@@ -205,7 +205,7 @@ function function_8fcaa237(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 1
 	Flags: None
 */
-function function_2179698b(localClientNum)
+function play_plant_watered_fx(localClientNum)
 {
 	level endon("demo_jump");
 	self endon("hash_15110cf6");
@@ -218,7 +218,7 @@ function function_2179698b(localClientNum)
 }
 
 /*
-	Name: function_a7073474
+	Name: planter_model_watered
 	Namespace: namespace_7550a904
 	Checksum: 0xC2BC7107
 	Offset: 0x1170
@@ -226,7 +226,7 @@ function function_2179698b(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_a7073474(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function planter_model_watered(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -286,7 +286,7 @@ function function_b8ba462e(localClientNum, b_on)
 }
 
 /*
-	Name: function_316f5fd4
+	Name: player_spawned_from_clone_plant
 	Namespace: namespace_7550a904
 	Checksum: 0x9FE6B0BA
 	Offset: 0x13D8
@@ -294,7 +294,7 @@ function function_b8ba462e(localClientNum, b_on)
 	Parameters: 7
 	Flags: None
 */
-function function_316f5fd4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_spawned_from_clone_plant(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -307,7 +307,7 @@ function function_316f5fd4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_60a2a795
+	Name: player_cloned_fx
 	Namespace: namespace_7550a904
 	Checksum: 0x6FB72D5C
 	Offset: 0x1470
@@ -315,7 +315,7 @@ function function_316f5fd4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_60a2a795(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_cloned_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -329,7 +329,7 @@ function function_60a2a795(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_6acdc163
+	Name: zombie_or_grenade_spawned_from_minor_cache_plant
 	Namespace: namespace_7550a904
 	Checksum: 0x70305D3A
 	Offset: 0x1538
@@ -337,7 +337,7 @@ function function_60a2a795(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_6acdc163(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zombie_or_grenade_spawned_from_minor_cache_plant(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
@@ -355,7 +355,7 @@ function function_6acdc163(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_f244344b
+	Name: player_vomit_fx
 	Namespace: namespace_7550a904
 	Checksum: 0xDDB6B668
 	Offset: 0x1648
@@ -363,7 +363,7 @@ function function_6acdc163(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_f244344b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function player_vomit_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

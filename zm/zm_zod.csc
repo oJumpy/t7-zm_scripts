@@ -107,7 +107,7 @@ function main()
 	register_clientfields();
 	level.setupCustomCharacterExerts = &setup_personality_character_exerts;
 	level.debug_keyline_zombies = 0;
-	namespace_47b9c241::main();
+	zm_zod_fx::main();
 	level._effect["eye_glow"] = "zombie/fx_glow_eye_orange_zod";
 	level._effect["headshot"] = "zombie/fx_bul_flesh_head_fatal_zmb";
 	level._effect["headshot_nochunks"] = "zombie/fx_bul_flesh_head_nochunks_zmb";
@@ -146,11 +146,11 @@ function register_clientfields()
 {
 	clientfield::register("toplayer", "fullscreen_rain_fx", 1, 1, "int", &toggle_rain_overlay, 0, 1);
 	clientfield::register("world", "rain_state", 1, 1, "int", undefined, 0, 0);
-	clientfield::register("world", "junction_crane_state", 1, 1, "int", &function_b339a5f5, 0, 1);
-	clientfield::register("toplayer", "devgui_lightning_test", 1, 1, "counter", &function_2cf3dd37, 0, 0);
+	clientfield::register("world", "junction_crane_state", 1, 1, "int", &junction_crane_state, 0, 1);
+	clientfield::register("toplayer", "devgui_lightning_test", 1, 1, "counter", &devgui_lightning_test, 0, 0);
 	n_bits = GetMinBitCountForNum(8);
-	clientfield::register("toplayer", "player_rumble_and_shake", 1, n_bits, "int", &namespace_8e578893::function_f118a0e7, 0, 0);
-	clientfield::register("actor", "ghost_actor", 1, 1, "int", &function_b48f294, 0, 0);
+	clientfield::register("toplayer", "player_rumble_and_shake", 1, n_bits, "int", &zm_zod_util::player_rumble_and_shake, 0, 0);
+	clientfield::register("actor", "ghost_actor", 1, 1, "int", &ghost_actor, 0, 0);
 	n_bits = GetMinBitCountForNum(4);
 	clientfield::register("clientuimodel", "zmInventory.player_character_identity", 1, n_bits, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.player_using_sprayer", 1, 1, "int", undefined, 0, 0);
@@ -166,7 +166,7 @@ function register_clientfields()
 	clientfield::register("clientuimodel", "zmInventory.widget_fuses", 1, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.widget_egg", 1, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmInventory.widget_sprayer", 1, 1, "int", undefined, 0, 0);
-	clientfield::register("world", "hide_perf_static_models", 1, 1, "int", &function_f8cdd387, 0, 1);
+	clientfield::register("world", "hide_perf_static_models", 1, 1, "int", &hide_perf_static_models, 0, 1);
 	clientfield::register("world", "breakable_show", 1, 3, "int", &function_66fdd0a3, 0, 1);
 	clientfield::register("world", "breakable_hide", 1, 3, "int", &function_5a6fb328, 0, 1);
 	visionset_mgr::register_visionset_info("zombie_noire", 1, 1, undefined, "zombie_noire");
@@ -256,7 +256,7 @@ function player_rain_thread(localClientNum)
 }
 
 /*
-	Name: function_b339a5f5
+	Name: junction_crane_state
 	Namespace: zm_zod
 	Checksum: 0x87889480
 	Offset: 0x23E0
@@ -264,7 +264,7 @@ function player_rain_thread(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_b339a5f5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function junction_crane_state(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	wait(0.016);
 	e_phrase = GetEnt(localClientNum, "junction_crane_crate_phrase", "targetname");
@@ -481,7 +481,7 @@ function show_hide_pap_weed(localClientNum, oldVal, newVal, bNewEnt, bInitialSna
 }
 
 /*
-	Name: function_2cf3dd37
+	Name: devgui_lightning_test
 	Namespace: zm_zod
 	Checksum: 0xC24E7569
 	Offset: 0x3940
@@ -489,7 +489,7 @@ function show_hide_pap_weed(localClientNum, oldVal, newVal, bNewEnt, bInitialSna
 	Parameters: 7
 	Flags: None
 */
-function function_2cf3dd37(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function devgui_lightning_test(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	SetUkkoScriptIndex(localClientNum, 2, 1);
 	exploder::exploder("fx_exploder_lightning_dock");
@@ -531,7 +531,7 @@ function ghost_player(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fie
 }
 
 /*
-	Name: function_b48f294
+	Name: ghost_actor
 	Namespace: zm_zod
 	Checksum: 0x8EDE04D
 	Offset: 0x3BD8
@@ -539,14 +539,14 @@ function ghost_player(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fie
 	Parameters: 7
 	Flags: None
 */
-function function_b48f294(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function ghost_actor(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self duplicate_render::set_dr_flag("zod_ghost", newVal);
 	self duplicate_render::update_dr_filters(localClientNum);
 }
 
 /*
-	Name: function_f8cdd387
+	Name: hide_perf_static_models
 	Namespace: zm_zod
 	Checksum: 0x43FDA5A5
 	Offset: 0x3C58
@@ -554,7 +554,7 @@ function function_b48f294(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 	Parameters: 7
 	Flags: None
 */
-function function_f8cdd387(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function hide_perf_static_models(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	var_bc94ac00 = findstaticmodelindexarray("fxanim_crate_waterfront_break_static");
 	var_90dba62a = findstaticmodelindexarray("fxanim_crate_canal_static");

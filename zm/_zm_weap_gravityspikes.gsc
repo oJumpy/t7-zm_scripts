@@ -34,7 +34,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xFCE55695
+	Checksum: 0x9EF5452A
 	Offset: 0x8A0
 	Size: 0x33
 	Parameters: 0
@@ -48,7 +48,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x88ADDDED
+	Checksum: 0xB6F0C845
 	Offset: 0x8E0
 	Size: 0x1BB
 	Parameters: 0
@@ -80,7 +80,7 @@ function __init__()
 /*
 	Name: register_clientfields
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xB1FE7F5A
+	Checksum: 0xDB3E254D
 	Offset: 0xAA8
 	Size: 0x273
 	Parameters: 0
@@ -106,7 +106,7 @@ function register_clientfields()
 /*
 	Name: on_connect_func_for_gravityspikes
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x9DBBBED
+	Checksum: 0xE4775326
 	Offset: 0xD28
 	Size: 0x203
 	Parameters: 0
@@ -155,7 +155,7 @@ function private on_connect_func_for_gravityspikes()
 /*
 	Name: reset_after_bleeding_out
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xC8E5C485
+	Checksum: 0xAED6B8EB
 	Offset: 0xF38
 	Size: 0x193
 	Parameters: 0
@@ -194,7 +194,7 @@ function reset_after_bleeding_out()
 /*
 	Name: gravityspikes_power_override
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xAE2952D0
+	Checksum: 0x15CC7355
 	Offset: 0x10D8
 	Size: 0x353
 	Parameters: 2
@@ -247,7 +247,7 @@ function gravityspikes_power_override(e_player, ai_enemy)
 /*
 	Name: wield_gravityspikes
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xBB8D4D8F
+	Checksum: 0x615BF360
 	Offset: 0x1438
 	Size: 0x12B
 	Parameters: 1
@@ -276,7 +276,7 @@ function wield_gravityspikes(wpn_gravityspikes)
 /*
 	Name: unwield_gravityspikes
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x915CE0E4
+	Checksum: 0x95E60846
 	Offset: 0x1570
 	Size: 0x93
 	Parameters: 1
@@ -297,7 +297,7 @@ function unwield_gravityspikes(wpn_gravityspikes)
 /*
 	Name: weapon_drop_watcher
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x2029D220
+	Checksum: 0x46AF0972
 	Offset: 0x1610
 	Size: 0x67
 	Parameters: 0
@@ -319,7 +319,7 @@ function weapon_drop_watcher()
 /*
 	Name: weapon_change_watcher
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xF7851EBF
+	Checksum: 0x2CD55
 	Offset: 0x1680
 	Size: 0x6F
 	Parameters: 0
@@ -341,7 +341,7 @@ function weapon_change_watcher()
 /*
 	Name: gravityspikes_attack_watcher
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x35F3567B
+	Checksum: 0x805EDBA7
 	Offset: 0x16F8
 	Size: 0xC7
 	Parameters: 1
@@ -369,7 +369,7 @@ function gravityspikes_attack_watcher(wpn_gravityspikes)
 /*
 	Name: gravityspikes_stuck_above_zombie_watcher
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x40AD9621
+	Checksum: 0xDD2886B6
 	Offset: 0x17C8
 	Size: 0x4EF
 	Parameters: 1
@@ -451,7 +451,7 @@ function gravityspikes_stuck_above_zombie_watcher(wpn_gravityspikes)
 /*
 	Name: gravityspikes_altfire_watcher
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x6D9C2068
+	Checksum: 0x165DB7F1
 	Offset: 0x1CC0
 	Size: 0xA7
 	Parameters: 1
@@ -477,7 +477,7 @@ function gravityspikes_altfire_watcher(wpn_gravityspikes)
 /*
 	Name: gravity_spike_position_valid
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xC64AD22D
+	Checksum: 0xC5DC9315
 	Offset: 0x1D70
 	Size: 0x43
 	Parameters: 0
@@ -498,7 +498,7 @@ function gravity_spike_position_valid()
 /*
 	Name: chop_actor
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x3BD8F82A
+	Checksum: 0x3EABA3A0
 	Offset: 0x1DC0
 	Size: 0xFB
 	Parameters: 3
@@ -527,7 +527,7 @@ function chop_actor(ai, leftswing, weapon)
 /*
 	Name: chop_zombies
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x2C30A235
+	Checksum: 0x749F776C
 	Offset: 0x1EC8
 	Size: 0x2F1
 	Parameters: 3
@@ -586,7 +586,7 @@ function chop_zombies(first_time, leftswing, weapon)
 /*
 	Name: spikesarc_swipe
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xFAFC149
+	Checksum: 0x7DC03813
 	Offset: 0x21C8
 	Size: 0x7B
 	Parameters: 1
@@ -604,7 +604,7 @@ function spikesarc_swipe(player)
 /*
 	Name: gravityspikes_swipe_watcher
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x579C0FC8
+	Checksum: 0xE628E136
 	Offset: 0x2250
 	Size: 0x87
 	Parameters: 1
@@ -627,7 +627,7 @@ function gravityspikes_swipe_watcher(wpn_gravityspikes)
 /*
 	Name: gravityspikes_power_update
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xEC742FBB
+	Checksum: 0x5A80143
 	Offset: 0x22E0
 	Size: 0x63
 	Parameters: 1
@@ -645,7 +645,7 @@ function gravityspikes_power_update(player)
 /*
 	Name: gravityspikes_power_expired
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x48C19739
+	Checksum: 0x1767B038
 	Offset: 0x2350
 	Size: 0x3D
 	Parameters: 1
@@ -661,7 +661,7 @@ function gravityspikes_power_expired(weapon)
 /*
 	Name: player_invulnerable_during_gravityspike_slam
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x4C1DBD
+	Checksum: 0xFC5653C5
 	Offset: 0x2398
 	Size: 0xAB
 	Parameters: 11
@@ -682,7 +682,7 @@ function player_invulnerable_during_gravityspike_slam(eInflictor, eAttacker, iDa
 /*
 	Name: no_damage_gravityspikes_slam
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xD80F1E8
+	Checksum: 0xD76275E9
 	Offset: 0x2450
 	Size: 0x23
 	Parameters: 0
@@ -698,7 +698,7 @@ function no_damage_gravityspikes_slam()
 /*
 	Name: player_near_gravity_vortex
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x9C6DEC69
+	Checksum: 0x2F26F535
 	Offset: 0x2480
 	Size: 0x19F
 	Parameters: 1
@@ -732,7 +732,7 @@ function player_near_gravity_vortex(v_vortex_origin)
 /*
 	Name: player_vortex_rumble
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x5F02671F
+	Checksum: 0x5BE604F5
 	Offset: 0x2628
 	Size: 0xF1
 	Parameters: 2
@@ -756,7 +756,7 @@ function player_vortex_rumble(e_player, v_vortex_origin)
 /*
 	Name: plant_gravity_trap
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x531865B6
+	Checksum: 0x4D34D67A
 	Offset: 0x2728
 	Size: 0x3A1
 	Parameters: 1
@@ -807,7 +807,7 @@ function plant_gravity_trap(wpn_gravityspikes)
 /*
 	Name: gravity_trap_loop
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x4BCA5C95
+	Checksum: 0x6A783CB0
 	Offset: 0x2AD8
 	Size: 0x1AB
 	Parameters: 2
@@ -848,7 +848,7 @@ function gravity_trap_loop(v_gravity_trap_pos, wpn_gravityspikes)
 /*
 	Name: gravity_trap_check
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x4C37855B
+	Checksum: 0x64F4091E
 	Offset: 0x2C90
 	Size: 0x1AB
 	Parameters: 1
@@ -890,7 +890,7 @@ function gravity_trap_check(player)
 /*
 	Name: create_gravity_trap_spikes_in_ground
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xB3FFF473
+	Checksum: 0xEDA43306
 	Offset: 0x2E48
 	Size: 0x175
 	Parameters: 1
@@ -924,7 +924,7 @@ function create_gravity_trap_spikes_in_ground(a_v_spawn_pos)
 /*
 	Name: gravity_spike_planted_play
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x67648C38
+	Checksum: 0xFCCA3BB1
 	Offset: 0x2FC8
 	Size: 0x33
 	Parameters: 0
@@ -939,7 +939,7 @@ function gravity_spike_planted_play()
 /*
 	Name: destroy_gravity_trap_spikes_in_ground
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xCCC94C93
+	Checksum: 0x7B59E6BE
 	Offset: 0x3008
 	Size: 0x185
 	Parameters: 0
@@ -978,7 +978,7 @@ function destroy_gravity_trap_spikes_in_ground()
 /*
 	Name: gravity_trap_fx_on
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xDB09CEDF
+	Checksum: 0x1A4C2838
 	Offset: 0x3198
 	Size: 0x9B
 	Parameters: 1
@@ -999,7 +999,7 @@ function gravity_trap_fx_on(v_spawn_pos)
 /*
 	Name: gravity_trap_fx_off
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xAC3BB5FD
+	Checksum: 0x276531A1
 	Offset: 0x3240
 	Size: 0x5B
 	Parameters: 0
@@ -1018,7 +1018,7 @@ function gravity_trap_fx_off()
 /*
 	Name: create_gravity_trap_unitrigger
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x30348375
+	Checksum: 0xF7DA4D32
 	Offset: 0x32A8
 	Size: 0x12B
 	Parameters: 2
@@ -1047,7 +1047,7 @@ function create_gravity_trap_unitrigger(v_origin, wpn_gravityspikes)
 /*
 	Name: gravity_trap_trigger_visibility
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xDE5EC8B2
+	Checksum: 0x5B1051F8
 	Offset: 0x33E0
 	Size: 0x67
 	Parameters: 1
@@ -1070,7 +1070,7 @@ function gravity_trap_trigger_visibility(player)
 /*
 	Name: gravity_trap_trigger_think
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xB48D58C5
+	Checksum: 0x1CB5CE6B
 	Offset: 0x3450
 	Size: 0xA3
 	Parameters: 0
@@ -1101,7 +1101,7 @@ function gravity_trap_trigger_think()
 /*
 	Name: gravity_trap_trigger_activate
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xFC7CDF3A
+	Checksum: 0xB7CC22E0
 	Offset: 0x3500
 	Size: 0x159
 	Parameters: 2
@@ -1129,7 +1129,7 @@ function gravity_trap_trigger_activate(trig_stub, player)
 /*
 	Name: update_gravityspikes_state
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x6EF92CF8
+	Checksum: 0x3C25E438
 	Offset: 0x3668
 	Size: 0x17
 	Parameters: 1
@@ -1143,7 +1143,7 @@ function update_gravityspikes_state(n_gravityspikes_state)
 /*
 	Name: update_gravityspikes_energy
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xACEB333D
+	Checksum: 0x5A168CB8
 	Offset: 0x3688
 	Size: 0x3B
 	Parameters: 1
@@ -1158,7 +1158,7 @@ function update_gravityspikes_energy(n_gravityspikes_power)
 /*
 	Name: check_for_range_and_los
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x1ECF38C1
+	Checksum: 0x97D98EF6
 	Offset: 0x36D0
 	Size: 0xF5
 	Parameters: 3
@@ -1187,7 +1187,7 @@ function check_for_range_and_los(v_attack_source, n_allowed_z_diff, n_radius_sq)
 /*
 	Name: gravityspikes_target_filtering
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xED2EB59
+	Checksum: 0xED3BD535
 	Offset: 0x37D0
 	Size: 0x47
 	Parameters: 1
@@ -1206,7 +1206,7 @@ function gravityspikes_target_filtering(ai_enemy)
 /*
 	Name: zombie_lift
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x5A7BE68B
+	Checksum: 0xBF01CD7D
 	Offset: 0x3820
 	Size: 0x79B
 	Parameters: 6
@@ -1305,7 +1305,7 @@ function zombie_lift(player, v_attack_source, n_push_away, n_lift_height, v_lift
 /*
 	Name: gravity_trap_notify_watcher
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x2BB1638C
+	Checksum: 0x107E8A0
 	Offset: 0x3FC8
 	Size: 0x89
 	Parameters: 1
@@ -1322,7 +1322,7 @@ function gravity_trap_notify_watcher(player)
 /*
 	Name: gravity_trap_timeout_watcher
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x7F565127
+	Checksum: 0x41563F55
 	Offset: 0x4060
 	Size: 0xA1
 	Parameters: 0
@@ -1342,7 +1342,7 @@ function gravity_trap_timeout_watcher()
 /*
 	Name: zombie_lift_wacky_rotate
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x841913C5
+	Checksum: 0x9659B636
 	Offset: 0x4110
 	Size: 0x151
 	Parameters: 2
@@ -1382,7 +1382,7 @@ function zombie_lift_wacky_rotate(n_lift_time, player)
 /*
 	Name: zombie_kill_and_gib
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xF0322887
+	Checksum: 0x194824B0
 	Offset: 0x4270
 	Size: 0xCB
 	Parameters: 1
@@ -1406,7 +1406,7 @@ function zombie_kill_and_gib(player)
 /*
 	Name: track_lifted_for_ragdoll_count
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xA87E4AF
+	Checksum: 0x48910D37
 	Offset: 0x4348
 	Size: 0x1F
 	Parameters: 0
@@ -1422,7 +1422,7 @@ function track_lifted_for_ragdoll_count()
 /*
 	Name: corpse_off_navmesh_watcher
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x55DAF6AE
+	Checksum: 0xD682D666
 	Offset: 0x4370
 	Size: 0x93
 	Parameters: 0
@@ -1441,7 +1441,7 @@ function corpse_off_navmesh_watcher()
 /*
 	Name: do_zombie_explode
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x2E603FB8
+	Checksum: 0xA6AC0223
 	Offset: 0x4410
 	Size: 0x93
 	Parameters: 0
@@ -1462,7 +1462,7 @@ function private do_zombie_explode()
 /*
 	Name: gravity_spike_melee_kill
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x53966D6E
+	Checksum: 0x8C13AA57
 	Offset: 0x44B0
 	Size: 0xB3
 	Parameters: 2
@@ -1481,7 +1481,7 @@ function gravity_spike_melee_kill(v_position, player)
 /*
 	Name: knockdown_zombies_slam
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xDC353DD9
+	Checksum: 0x78CD4A15
 	Offset: 0x4570
 	Size: 0x17B
 	Parameters: 0
@@ -1503,7 +1503,7 @@ function knockdown_zombies_slam()
 /*
 	Name: play_slam_fx
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xC288D700
+	Checksum: 0x53001A3F
 	Offset: 0x46F8
 	Size: 0xAB
 	Parameters: 1
@@ -1522,7 +1522,7 @@ function play_slam_fx(v_pos)
 /*
 	Name: zombie_slam_direction
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0x9CDA29E
+	Checksum: 0x22B6F5F2
 	Offset: 0x47B0
 	Size: 0x28B
 	Parameters: 1
@@ -1581,7 +1581,7 @@ function zombie_slam_direction(v_position)
 /*
 	Name: function_81889ac5
 	Namespace: zm_weap_gravityspikes
-	Checksum: 0xE226DAFF
+	Checksum: 0x6D63CDD7
 	Offset: 0x4A48
 	Size: 0x5CF
 	Parameters: 0

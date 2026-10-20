@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_93b7f03;
+#namespace zm_bgb_anywhere_but_here;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_93b7f03
+	Namespace: zm_bgb_anywhere_but_here
 	Checksum: 0xDEF78A3B
 	Offset: 0x158
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_93b7f03
+	Namespace: zm_bgb_anywhere_but_here
 	Checksum: 0xD8BAF0F8
 	Offset: 0x198
 	Size: 0x3B

@@ -24,11 +24,11 @@
 #using scripts\zm\craftables\_zm_craftables;
 #using scripts\zm\zm_stalingrad_util;
 
-#namespace namespace_dcf9c464;
+#namespace zm_stalingrad_vo;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xF00DE908
 	Offset: 0x1C78
 	Size: 0x33
@@ -42,7 +42,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x7C3B7367
 	Offset: 0x1CB8
 	Size: 0x193
@@ -75,7 +75,7 @@ function __init__()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x9BF31300
 	Offset: 0x1E58
 	Size: 0xB3
@@ -101,7 +101,7 @@ function on_player_spawned()
 
 /*
 	Name: main
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xE633199F
 	Offset: 0x1F18
 	Size: 0x4B
@@ -117,7 +117,7 @@ function main()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x840570CF
 	Offset: 0x1F70
 	Size: 0x1B
@@ -131,7 +131,7 @@ function on_player_connect()
 
 /*
 	Name: function_99a382c3
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xBB6EBEB4
 	Offset: 0x1F98
 	Size: 0x63
@@ -149,7 +149,7 @@ function function_99a382c3()
 
 /*
 	Name: function_218256bd
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x35A60362
 	Offset: 0x2008
 	Size: 0x169
@@ -180,7 +180,7 @@ function function_218256bd(b_dont_speak)
 
 /*
 	Name: function_cf8fccfe
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xB21F8DA7
 	Offset: 0x2180
 	Size: 0x6F
@@ -202,7 +202,7 @@ function function_cf8fccfe(b_dont_speak)
 
 /*
 	Name: function_8ac5430
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xCB16FD62
 	Offset: 0x21F8
 	Size: 0xAF
@@ -234,7 +234,7 @@ function function_8ac5430(var_b20e186c, v_position)
 
 /*
 	Name: function_5eded46b
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x7B6DE540
 	Offset: 0x22B0
 	Size: 0x117
@@ -263,7 +263,7 @@ function function_5eded46b(str_vo_line, n_wait, b_wait_if_busy, n_priority)
 
 /*
 	Name: vo_say
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x6668EFF3
 	Offset: 0x23D0
 	Size: 0x42F
@@ -352,7 +352,7 @@ function vo_say(str_vo_alias, n_delay, b_wait_if_busy, n_priority, var_d1295208)
 
 /*
 	Name: function_b3baa665
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x502E2526
 	Offset: 0x2808
 	Size: 0x3F
@@ -368,7 +368,7 @@ function function_b3baa665()
 
 /*
 	Name: vo_clear
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x1B9670C
 	Offset: 0x2850
 	Size: 0x10B
@@ -399,7 +399,7 @@ function vo_clear()
 
 /*
 	Name: vo_stop
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x45AF691
 	Offset: 0x2968
 	Size: 0x5B
@@ -418,7 +418,7 @@ function vo_stop()
 
 /*
 	Name: function_2426269b
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x95BBDF5A
 	Offset: 0x29D0
 	Size: 0x239
@@ -470,7 +470,7 @@ function function_2426269b(v_pos, n_range)
 
 /*
 	Name: function_cf763858
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD11482F2
 	Offset: 0x2C18
 	Size: 0xB3
@@ -494,7 +494,7 @@ function function_cf763858()
 
 /*
 	Name: function_897246e4
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xBCCB65EA
 	Offset: 0x2CD8
 	Size: 0x273
@@ -556,7 +556,7 @@ function function_897246e4(str_vo_alias, n_wait, b_wait_if_busy, n_priority, var
 
 /*
 	Name: function_63c44c5a
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x1B800079
 	Offset: 0x2F58
 	Size: 0x14B
@@ -600,7 +600,7 @@ function function_63c44c5a(a_str_vo, var_e21e86b8, b_wait_if_busy, n_priority, v
 
 /*
 	Name: function_7aa5324a
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x54F0E094
 	Offset: 0x30B0
 	Size: 0x1F3
@@ -651,7 +651,7 @@ function function_7aa5324a(a_str_vo, var_e21e86b8, b_wait_if_busy, n_priority, v
 
 /*
 	Name: function_e4acaa37
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x16CC1A0E
 	Offset: 0x32B0
 	Size: 0x14B
@@ -701,7 +701,7 @@ function function_e4acaa37(str_vo, n_delay, b_wait_if_busy, n_priority, var_d129
 
 /*
 	Name: function_280223ba
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD77D8E37
 	Offset: 0x3408
 	Size: 0x133
@@ -744,7 +744,7 @@ function function_280223ba(a_str_vos, var_12fe9129, b_wait_if_busy, n_priority, 
 
 /*
 	Name: function_6f2aecbd
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x4D3B7FCC
 	Offset: 0x3548
 	Size: 0x23
@@ -761,7 +761,7 @@ function function_6f2aecbd()
 
 /*
 	Name: custom_get_mod_type
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x38789A7C
 	Offset: 0x3578
 	Size: 0x4E5
@@ -912,7 +912,7 @@ function custom_get_mod_type(impact, mod, weapon, zombie, instakill, dist, playe
 
 /*
 	Name: function_f3477ddd
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xBD038B87
 	Offset: 0x3A68
 	Size: 0xAF
@@ -933,7 +933,7 @@ function function_f3477ddd(str_vo_alias, n_wait, b_wait_if_busy, n_priority)
 
 /*
 	Name: function_8e20db7c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xC5B35DC3
 	Offset: 0x3B20
 	Size: 0x173
@@ -969,7 +969,7 @@ function function_8e20db7c(b_speaking)
 
 /*
 	Name: function_a80e8dfb
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x484DA2E4
 	Offset: 0x3CA0
 	Size: 0x103
@@ -1013,7 +1013,7 @@ function function_a80e8dfb(b_speaking)
 
 /*
 	Name: function_84afa6c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xE16BA05F
 	Offset: 0x3DB0
 	Size: 0x93
@@ -1035,7 +1035,7 @@ function function_84afa6c(str_vo_alias, n_wait, b_wait_if_busy, n_priority)
 
 /*
 	Name: function_772aa229
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xF6818CD3
 	Offset: 0x3E50
 	Size: 0xAF
@@ -1070,7 +1070,7 @@ function function_772aa229()
 
 /*
 	Name: function_54cd030a
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xB2499C2B
 	Offset: 0x3F08
 	Size: 0x273
@@ -1129,7 +1129,7 @@ function function_54cd030a()
 
 /*
 	Name: function_340dc03
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x30603CA1
 	Offset: 0x4188
 	Size: 0xFD
@@ -1166,7 +1166,7 @@ function function_340dc03()
 
 /*
 	Name: function_548ee78b
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xF2EEAA2C
 	Offset: 0x4290
 	Size: 0x1E3
@@ -1215,7 +1215,7 @@ function function_548ee78b()
 
 /*
 	Name: function_9430edac
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x93FBDE6
 	Offset: 0x4480
 	Size: 0x17B
@@ -1260,7 +1260,7 @@ function function_9430edac()
 
 /*
 	Name: function_cc4d4a7c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xDE40FAFB
 	Offset: 0x4608
 	Size: 0x483
@@ -1364,7 +1364,7 @@ function function_cc4d4a7c()
 
 /*
 	Name: function_7ca05725
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xBBF910E4
 	Offset: 0x4A98
 	Size: 0x40B
@@ -1470,7 +1470,7 @@ function function_7ca05725()
 
 /*
 	Name: function_267933e4
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x22371D04
 	Offset: 0x4EB0
 	Size: 0x7E5
@@ -1550,7 +1550,7 @@ function function_267933e4()
 
 /*
 	Name: function_3cdbc215
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x89C96D94
 	Offset: 0x56A0
 	Size: 0x683
@@ -1663,7 +1663,7 @@ function function_3cdbc215()
 
 /*
 	Name: function_3a92f7f
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x91E0681D
 	Offset: 0x5D30
 	Size: 0x4B
@@ -1678,7 +1678,7 @@ function function_3a92f7f()
 
 /*
 	Name: function_90ce0342
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x4B9BBEE7
 	Offset: 0x5D88
 	Size: 0x4B
@@ -1693,7 +1693,7 @@ function function_90ce0342()
 
 /*
 	Name: function_2b34512a
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x9005A3FE
 	Offset: 0x5DE0
 	Size: 0x6B
@@ -1710,7 +1710,7 @@ function function_2b34512a(var_be294ae5)
 
 /*
 	Name: function_eaf2cef3
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x934259AD
 	Offset: 0x5E58
 	Size: 0x73
@@ -1730,7 +1730,7 @@ function function_eaf2cef3()
 
 /*
 	Name: function_c0135bef
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xEE5CD5BB
 	Offset: 0x5ED8
 	Size: 0x73
@@ -1750,7 +1750,7 @@ function function_c0135bef()
 
 /*
 	Name: function_cfb82bef
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x57E7BCCA
 	Offset: 0x5F58
 	Size: 0xEB
@@ -1779,7 +1779,7 @@ function function_cfb82bef()
 
 /*
 	Name: function_6576bb4b
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xB32930A9
 	Offset: 0x6050
 	Size: 0x23
@@ -1793,7 +1793,7 @@ function function_6576bb4b()
 
 /*
 	Name: function_902b2a27
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x7D3E4139
 	Offset: 0x6080
 	Size: 0xEB
@@ -1822,7 +1822,7 @@ function function_902b2a27()
 
 /*
 	Name: function_4311e03d
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD7B3B7D4
 	Offset: 0x6178
 	Size: 0x4B
@@ -1837,7 +1837,7 @@ function function_4311e03d()
 
 /*
 	Name: function_c9fde593
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x1FD26E12
 	Offset: 0x61D0
 	Size: 0x4B
@@ -1852,7 +1852,7 @@ function function_c9fde593()
 
 /*
 	Name: function_3800b6e0
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x5B753989
 	Offset: 0x6228
 	Size: 0x53
@@ -1867,7 +1867,7 @@ function function_3800b6e0()
 
 /*
 	Name: function_d2ea8c30
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x1CBDB725
 	Offset: 0x6288
 	Size: 0x3B
@@ -1882,7 +1882,7 @@ function function_d2ea8c30()
 
 /*
 	Name: function_b86ec8c9
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x3AA2F7ED
 	Offset: 0x62D0
 	Size: 0x1EB
@@ -1891,38 +1891,38 @@ function function_d2ea8c30()
 */
 function function_b86ec8c9()
 {
-	if(!isdefined(self.var_22e4c94d))
+	if(!isdefined(self.init_zm_powerup_free_perk_trigger))
 	{
-		self.var_22e4c94d = [];
+		self.init_zm_powerup_free_perk_trigger = [];
 		for(i = 0; i < 4; i++)
 		{
-			if(!isdefined(self.var_22e4c94d))
+			if(!isdefined(self.init_zm_powerup_free_perk_trigger))
 			{
-				self.var_22e4c94d = [];
+				self.init_zm_powerup_free_perk_trigger = [];
 			}
-			else if(!IsArray(self.var_22e4c94d))
+			else if(!IsArray(self.init_zm_powerup_free_perk_trigger))
 			{
-				self.var_22e4c94d = Array(self.var_22e4c94d);
+				self.init_zm_powerup_free_perk_trigger = Array(self.init_zm_powerup_free_perk_trigger);
 			}
-			self.var_22e4c94d[self.var_22e4c94d.size] = i;
+			self.init_zm_powerup_free_perk_trigger[self.init_zm_powerup_free_perk_trigger.size] = i;
 		}
 		if(self.characterindex != 0)
 		{
-			if(!isdefined(self.var_22e4c94d))
+			if(!isdefined(self.init_zm_powerup_free_perk_trigger))
 			{
-				self.var_22e4c94d = [];
+				self.init_zm_powerup_free_perk_trigger = [];
 			}
-			else if(!IsArray(self.var_22e4c94d))
+			else if(!IsArray(self.init_zm_powerup_free_perk_trigger))
 			{
-				self.var_22e4c94d = Array(self.var_22e4c94d);
+				self.init_zm_powerup_free_perk_trigger = Array(self.init_zm_powerup_free_perk_trigger);
 			}
-			self.var_22e4c94d[self.var_22e4c94d.size] = 4;
+			self.init_zm_powerup_free_perk_trigger[self.init_zm_powerup_free_perk_trigger.size] = 4;
 		}
 	}
 	if(isalive(self) && !self laststand::player_is_in_laststand())
 	{
-		n_line = Array::random(self.var_22e4c94d);
-		ArrayRemoveValue(self.var_22e4c94d, n_line);
+		n_line = Array::random(self.init_zm_powerup_free_perk_trigger);
+		ArrayRemoveValue(self.init_zm_powerup_free_perk_trigger, n_line);
 		str_vo = "vox_plr_" + self.characterindex + "_dragon_attack_" + n_line;
 		self thread function_897246e4(str_vo);
 	}
@@ -1930,7 +1930,7 @@ function function_b86ec8c9()
 
 /*
 	Name: function_44c4e12c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x3B57FA2A
 	Offset: 0x64C8
 	Size: 0x4B
@@ -1945,7 +1945,7 @@ function function_44c4e12c()
 
 /*
 	Name: function_591500ac
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD95C86D9
 	Offset: 0x6520
 	Size: 0x143
@@ -1967,7 +1967,7 @@ function function_591500ac()
 
 /*
 	Name: function_e068138
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD0CE494B
 	Offset: 0x6670
 	Size: 0x73
@@ -1983,7 +1983,7 @@ function function_e068138()
 
 /*
 	Name: function_9bdbe3a4
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xB174FB45
 	Offset: 0x66F0
 	Size: 0x73
@@ -2006,7 +2006,7 @@ function function_9bdbe3a4()
 
 /*
 	Name: function_8141c730
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xA43D54D2
 	Offset: 0x6770
 	Size: 0x8B
@@ -2024,7 +2024,7 @@ function function_8141c730()
 
 /*
 	Name: function_1f1e411c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x244510D1
 	Offset: 0x6808
 	Size: 0x28B
@@ -2089,7 +2089,7 @@ function function_1f1e411c()
 
 /*
 	Name: function_19d97b43
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xDB750994
 	Offset: 0x6AA0
 	Size: 0x24B
@@ -2152,7 +2152,7 @@ function function_19d97b43()
 
 /*
 	Name: function_85b7d5f1
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x7E59F1CF
 	Offset: 0x6CF8
 	Size: 0x163
@@ -2190,7 +2190,7 @@ function function_85b7d5f1()
 
 /*
 	Name: function_38bc572f
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x452DA7F
 	Offset: 0x6E68
 	Size: 0x103
@@ -2219,7 +2219,7 @@ function function_38bc572f()
 
 /*
 	Name: function_931a3024
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xB6EDE2F4
 	Offset: 0x6F78
 	Size: 0xF3
@@ -2248,7 +2248,7 @@ function function_931a3024()
 
 /*
 	Name: function_3a7b7b7b
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x2B890439
 	Offset: 0x7078
 	Size: 0x103
@@ -2277,7 +2277,7 @@ function function_3a7b7b7b()
 
 /*
 	Name: function_460341f9
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x24982451
 	Offset: 0x7188
 	Size: 0x1F3
@@ -2327,7 +2327,7 @@ function function_460341f9()
 
 /*
 	Name: function_7c3ff8b2
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xB9170C9A
 	Offset: 0x7388
 	Size: 0x11B
@@ -2356,7 +2356,7 @@ function function_7c3ff8b2()
 
 /*
 	Name: function_ececbc4b
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xC6C39796
 	Offset: 0x74B0
 	Size: 0x103
@@ -2385,7 +2385,7 @@ function function_ececbc4b()
 
 /*
 	Name: function_732b874f
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x9B0552F0
 	Offset: 0x75C0
 	Size: 0x4B
@@ -2401,7 +2401,7 @@ function function_732b874f()
 
 /*
 	Name: function_ea234d37
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x1F671BD1
 	Offset: 0x7618
 	Size: 0x273
@@ -2461,7 +2461,7 @@ function function_ea234d37()
 
 /*
 	Name: function_e8e9cba8
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD4EF153C
 	Offset: 0x7898
 	Size: 0x14B
@@ -2499,7 +2499,7 @@ function function_e8e9cba8()
 
 /*
 	Name: function_dd5e5b43
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x4E36713
 	Offset: 0x79F0
 	Size: 0x363
@@ -2559,7 +2559,7 @@ function function_dd5e5b43(var_47f85056, var_fd6599b7)
 
 /*
 	Name: function_b120c9e8
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x4F3E6CE3
 	Offset: 0x7D60
 	Size: 0x93
@@ -2581,7 +2581,7 @@ function function_b120c9e8(str_vo_alias, n_wait, b_wait_if_busy, n_priority)
 
 /*
 	Name: function_8c6e04dc
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xE2F334FF
 	Offset: 0x7E00
 	Size: 0x1A3
@@ -2629,7 +2629,7 @@ function function_8c6e04dc(var_30874640, n_lines, b_wait_if_busy)
 
 /*
 	Name: function_fffcd12a
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x843A603B
 	Offset: 0x7FB0
 	Size: 0x23
@@ -2643,7 +2643,7 @@ function function_fffcd12a(var_30874640)
 
 /*
 	Name: function_1033e5c6
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xC1C3C385
 	Offset: 0x7FE0
 	Size: 0x113
@@ -2665,7 +2665,7 @@ function function_1033e5c6(var_30874640, n_lines)
 
 /*
 	Name: function_ffc15961
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xCF7802E
 	Offset: 0x8100
 	Size: 0x153
@@ -2688,7 +2688,7 @@ function function_ffc15961(var_30874640, n_lines)
 
 /*
 	Name: function_e84d923f
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x1666FE98
 	Offset: 0x8260
 	Size: 0x18B
@@ -2718,7 +2718,7 @@ function function_e84d923f()
 
 /*
 	Name: function_13ea746c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xC0CA21A3
 	Offset: 0x83F8
 	Size: 0xA1
@@ -2751,7 +2751,7 @@ function function_13ea746c()
 
 /*
 	Name: function_d5f6780
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xA037ED7A
 	Offset: 0x84A8
 	Size: 0xA9
@@ -2782,7 +2782,7 @@ function function_d5f6780()
 
 /*
 	Name: function_74602567
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x63BE4FB4
 	Offset: 0x8560
 	Size: 0x83
@@ -2801,7 +2801,7 @@ function function_74602567()
 
 /*
 	Name: function_258b62c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x50D85675
 	Offset: 0x85F0
 	Size: 0x83
@@ -2820,7 +2820,7 @@ function function_258b62c()
 
 /*
 	Name: function_285b3095
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x3620F3CF
 	Offset: 0x8680
 	Size: 0x83
@@ -2839,7 +2839,7 @@ function function_285b3095()
 
 /*
 	Name: function_ea43145d
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x4800BD33
 	Offset: 0x8710
 	Size: 0x6B
@@ -2857,7 +2857,7 @@ function function_ea43145d()
 
 /*
 	Name: function_7e60bca8
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x5143AFD7
 	Offset: 0x8788
 	Size: 0x83
@@ -2876,7 +2876,7 @@ function function_7e60bca8()
 
 /*
 	Name: function_55eb82ac
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x5B906C75
 	Offset: 0x8818
 	Size: 0x83
@@ -2895,7 +2895,7 @@ function function_55eb82ac()
 
 /*
 	Name: function_c7f2f1e7
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x8600C513
 	Offset: 0x88A8
 	Size: 0x83
@@ -2914,7 +2914,7 @@ function function_c7f2f1e7()
 
 /*
 	Name: function_a1f0777e
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xA6DF1998
 	Offset: 0x8938
 	Size: 0x83
@@ -2933,7 +2933,7 @@ function function_a1f0777e()
 
 /*
 	Name: function_890ad0cd
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xBEE26CB4
 	Offset: 0x89C8
 	Size: 0x83
@@ -2952,7 +2952,7 @@ function function_890ad0cd()
 
 /*
 	Name: function_af0d4b36
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x10ADC610
 	Offset: 0x8A58
 	Size: 0x83
@@ -2971,7 +2971,7 @@ function function_af0d4b36()
 
 /*
 	Name: function_e12b1498
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xF706A67E
 	Offset: 0x8AE8
 	Size: 0x32D
@@ -3051,7 +3051,7 @@ function function_e12b1498()
 
 /*
 	Name: function_4534864d
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x5F9D641C
 	Offset: 0x8E20
 	Size: 0x1B
@@ -3065,7 +3065,7 @@ function function_4534864d()
 
 /*
 	Name: function_568549ce
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x5C09752C
 	Offset: 0x8E48
 	Size: 0x1E5
@@ -3112,7 +3112,7 @@ function function_568549ce()
 
 /*
 	Name: function_8eafdf30
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xC4E1FEC0
 	Offset: 0x9038
 	Size: 0x169
@@ -3145,7 +3145,7 @@ function function_8eafdf30(n_lines)
 
 /*
 	Name: function_df1536ac
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x6F2D496D
 	Offset: 0x91B0
 	Size: 0x1A3
@@ -3182,7 +3182,7 @@ function function_df1536ac()
 
 /*
 	Name: function_2854be75
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x2A953749
 	Offset: 0x9360
 	Size: 0x103
@@ -3211,7 +3211,7 @@ function function_2854be75()
 
 /*
 	Name: function_999cab02
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD144A2B9
 	Offset: 0x9470
 	Size: 0xDB
@@ -3238,7 +3238,7 @@ function function_999cab02()
 
 /*
 	Name: function_bd5c5b53
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x3654A501
 	Offset: 0x9558
 	Size: 0x10B
@@ -3266,7 +3266,7 @@ function function_bd5c5b53()
 
 /*
 	Name: function_90f2084c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x3853587F
 	Offset: 0x9670
 	Size: 0x26B
@@ -3323,7 +3323,7 @@ function function_90f2084c()
 
 /*
 	Name: function_6d6eb04e
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x89E83A34
 	Offset: 0x98E8
 	Size: 0x23
@@ -3337,7 +3337,7 @@ function function_6d6eb04e()
 
 /*
 	Name: function_cd0b1f13
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x364929BE
 	Offset: 0x9918
 	Size: 0x283
@@ -3364,14 +3364,14 @@ function function_cd0b1f13()
 	}
 	for(i = 0; i < 2; i++)
 	{
-		self waittill("hash_d4ba4cd");
+		self waittill("nikolai_weakpoint_destroyed");
 		str_vo_line = Array::random(self.var_b5cc11cd);
 		self.var_fa4643fb thread function_897246e4(str_vo_line, 1);
 		ArrayRemoveValue(self.var_b5cc11cd, str_vo_line);
 	}
 	for(i = 0; i < 2; i++)
 	{
-		self waittill("hash_d4ba4cd");
+		self waittill("nikolai_weakpoint_destroyed");
 		str_vo_line = Array::random(self.var_dbce8c36);
 		self.var_fa4643fb thread function_897246e4(str_vo_line, 1);
 		ArrayRemoveValue(self.var_dbce8c36, str_vo_line);
@@ -3383,7 +3383,7 @@ function function_cd0b1f13()
 
 /*
 	Name: function_176ac3fa
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xCF8DB343
 	Offset: 0x9BA8
 	Size: 0x103
@@ -3414,7 +3414,7 @@ function function_176ac3fa()
 
 /*
 	Name: function_c0914f1b
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x315376A2
 	Offset: 0x9CB8
 	Size: 0x103
@@ -3445,7 +3445,7 @@ function function_c0914f1b()
 
 /*
 	Name: function_96153834
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x60243488
 	Offset: 0x9DC8
 	Size: 0x103
@@ -3476,7 +3476,7 @@ function function_96153834()
 
 /*
 	Name: function_643d8310
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x403BFB8F
 	Offset: 0x9ED8
 	Size: 0x163
@@ -3512,7 +3512,7 @@ function function_643d8310(e_trap, n_stage)
 
 /*
 	Name: function_32f35525
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x811C5A22
 	Offset: 0xA048
 	Size: 0x103
@@ -3543,7 +3543,7 @@ function function_32f35525()
 
 /*
 	Name: function_5adc22c7
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x690F03D8
 	Offset: 0xA158
 	Size: 0x1D3
@@ -3591,7 +3591,7 @@ function function_5adc22c7(v_source)
 
 /*
 	Name: function_73928e79
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xEB128574
 	Offset: 0xA338
 	Size: 0x1D3
@@ -3639,7 +3639,7 @@ function function_73928e79(v_source)
 
 /*
 	Name: function_233dcc5d
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x6B54283A
 	Offset: 0xA518
 	Size: 0x1D3
@@ -3687,7 +3687,7 @@ function function_233dcc5d(v_source)
 
 /*
 	Name: function_1e767f71
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x1778305A
 	Offset: 0xA6F8
 	Size: 0x237
@@ -3744,7 +3744,7 @@ function function_1e767f71(e_target, n_min_dist, str_cat, var_b03cc213, var_a099
 
 /*
 	Name: function_65f8953a
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD86D5FD5
 	Offset: 0xA938
 	Size: 0x13D
@@ -3784,7 +3784,7 @@ function function_65f8953a(str_event, str_cat, var_b03cc213, var_a099ce87, var_3
 
 /*
 	Name: function_81d644a1
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x47EEE74E
 	Offset: 0xAA80
 	Size: 0x127
@@ -3812,7 +3812,7 @@ function function_81d644a1()
 
 /*
 	Name: function_c261e8aa
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xA958E4D6
 	Offset: 0xABB0
 	Size: 0xE7
@@ -3838,7 +3838,7 @@ function function_c261e8aa()
 
 /*
 	Name: function_1881817
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x6C12FFDD
 	Offset: 0xACA0
 	Size: 0x197
@@ -3884,7 +3884,7 @@ function function_1881817(str_cat, var_b03cc213, var_a099ce87, var_32802234)
 
 /*
 	Name: function_ecc335b6
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xA6ABB78A
 	Offset: 0xAE40
 	Size: 0x3B
@@ -3900,7 +3900,7 @@ function function_ecc335b6(var_346d981, var_a099ce87)
 
 /*
 	Name: function_7f4cb4c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x48C1BF80
 	Offset: 0xAE88
 	Size: 0xB1
@@ -3927,7 +3927,7 @@ function function_7f4cb4c(str_cat, var_b03cc213, var_41d7d192)
 
 /*
 	Name: function_11b41a76
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x5E8411A7
 	Offset: 0xAF48
 	Size: 0x211
@@ -3992,7 +3992,7 @@ function function_11b41a76(n_player_index, str_type, var_f73f0bfc, var_69467b37,
 
 /*
 	Name: function_5803cf05
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD66F1E6D
 	Offset: 0xB168
 	Size: 0x81
@@ -4014,7 +4014,7 @@ function function_5803cf05(n_max, var_6e653641)
 
 /*
 	Name: function_53a5b746
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x345343EF
 	Offset: 0xB1F8
 	Size: 0x21
@@ -4028,7 +4028,7 @@ function function_53a5b746(n_char_index)
 
 /*
 	Name: function_1cbd9399
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x95AEEED
 	Offset: 0xB228
 	Size: 0x79
@@ -4055,7 +4055,7 @@ function function_1cbd9399(v_location, var_7b2f88c6)
 
 /*
 	Name: function_4bf4ac40
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xD72CD7CF
 	Offset: 0xB2B0
 	Size: 0x1D1
@@ -4105,7 +4105,7 @@ function function_4bf4ac40(v_location, var_7b2f88c6)
 
 /*
 	Name: function_fcea1c5c
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xE58E3F9A
 	Offset: 0xB490
 	Size: 0xAB
@@ -4126,7 +4126,7 @@ function function_fcea1c5c()
 
 /*
 	Name: function_2d942575
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0xC534B08E
 	Offset: 0xB548
 	Size: 0xD3
@@ -4147,7 +4147,7 @@ function function_2d942575(var_47db2fcf, var_72259a3d)
 
 /*
 	Name: function_e9a29b5
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x717E7C2F
 	Offset: 0xB628
 	Size: 0x29
@@ -4168,7 +4168,7 @@ function function_e9a29b5(var_d7e21dec)
 
 /*
 	Name: function_2889c0e9
-	Namespace: namespace_dcf9c464
+	Namespace: zm_stalingrad_vo
 	Checksum: 0x732ABF25
 	Offset: 0xB660
 	Size: 0x79

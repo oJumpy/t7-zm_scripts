@@ -8,7 +8,7 @@
 /*
 	Name: init
 	Namespace: _zm_weap_tesla
-	Checksum: 0x8B3BDCA7
+	Checksum: 0xFDFA62
 	Offset: 0x340
 	Size: 0x183
 	Parameters: 0
@@ -37,7 +37,7 @@ function init()
 /*
 	Name: player_init
 	Namespace: _zm_weap_tesla
-	Checksum: 0x15C5CAF0
+	Checksum: 0xA1415BFA
 	Offset: 0x4D0
 	Size: 0x10D
 	Parameters: 0
@@ -62,7 +62,7 @@ function player_init()
 /*
 	Name: tesla_fx_rail
 	Namespace: _zm_weap_tesla
-	Checksum: 0x504717F5
+	Checksum: 0xABAB22DB
 	Offset: 0x5E8
 	Size: 0x1B7
 	Parameters: 1
@@ -109,7 +109,7 @@ function tesla_fx_rail(localClientNum)
 /*
 	Name: tesla_fx_tube
 	Namespace: _zm_weap_tesla
-	Checksum: 0x993616FD
+	Checksum: 0xA8810114
 	Offset: 0x7A8
 	Size: 0x34F
 	Parameters: 1
@@ -208,7 +208,7 @@ function tesla_fx_tube(localClientNum)
 /*
 	Name: tesla_notetrack_think
 	Namespace: _zm_weap_tesla
-	Checksum: 0xAB3D9D4
+	Checksum: 0xA3F85978
 	Offset: 0xB00
 	Size: 0x79
 	Parameters: 0
@@ -238,7 +238,7 @@ function tesla_notetrack_think()
 /*
 	Name: tesla_happy
 	Namespace: _zm_weap_tesla
-	Checksum: 0x9B862F2B
+	Checksum: 0xC8406CB8
 	Offset: 0xB88
 	Size: 0x9F
 	Parameters: 1
@@ -263,7 +263,7 @@ function tesla_happy(localClientNum)
 /*
 	Name: tesla_change_watcher
 	Namespace: _zm_weap_tesla
-	Checksum: 0x7F2F6DCE
+	Checksum: 0xE73641AB
 	Offset: 0xC30
 	Size: 0x47
 	Parameters: 1
@@ -282,7 +282,7 @@ function tesla_change_watcher(localClientNum)
 /*
 	Name: clear_tesla_tube_effect
 	Namespace: _zm_weap_tesla
-	Checksum: 0xCB9E7778
+	Checksum: 0xB189CB83
 	Offset: 0xC80
 	Size: 0x7B
 	Parameters: 1

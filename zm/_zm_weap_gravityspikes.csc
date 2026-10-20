@@ -10,7 +10,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0xE822E63C
+	Checksum: 0xCE31D842
 	Offset: 0x600
 	Size: 0x33
 	Parameters: 0
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0xE12EB5A0
+	Checksum: 0x915F8B33
 	Offset: 0x640
 	Size: 0x169
 	Parameters: 1
@@ -50,7 +50,7 @@ function __init__(localClientNum)
 /*
 	Name: register_clientfields
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x6346DC69
+	Checksum: 0xC6FCA6E6
 	Offset: 0x7B8
 	Size: 0x3AB
 	Parameters: 0
@@ -76,7 +76,7 @@ function register_clientfields()
 /*
 	Name: gravity_slam_down
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x591A9428
+	Checksum: 0x875F40A
 	Offset: 0xB70
 	Size: 0x63
 	Parameters: 7
@@ -93,7 +93,7 @@ function gravity_slam_down(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 /*
 	Name: gravity_slam_fx
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x6218FF3E
+	Checksum: 0x70B89C88
 	Offset: 0xBE0
 	Size: 0xA3
 	Parameters: 7
@@ -114,7 +114,7 @@ function gravity_slam_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, 
 /*
 	Name: gravity_slam_player_fx
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x7DB97C2D
+	Checksum: 0xFBCD0719
 	Offset: 0xC90
 	Size: 0x63
 	Parameters: 7
@@ -128,7 +128,7 @@ function gravity_slam_player_fx(localClientNum, oldVal, newVal, bNewEnt, bInitia
 /*
 	Name: gravity_trap_fx
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0xCA8DD46C
+	Checksum: 0x81E2B595
 	Offset: 0xD00
 	Size: 0x21B
 	Parameters: 7
@@ -178,7 +178,7 @@ function gravity_trap_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, 
 /*
 	Name: gravity_trap_spike_spark
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x48C09B13
+	Checksum: 0xC720C606
 	Offset: 0xF28
 	Size: 0xAB
 	Parameters: 7
@@ -199,7 +199,7 @@ function gravity_trap_spike_spark(localClientNum, oldVal, newVal, bNewEnt, bInit
 /*
 	Name: gravity_trap_location
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x2CCD10B
+	Checksum: 0xE05E49C4
 	Offset: 0xFE0
 	Size: 0xBD
 	Parameters: 7
@@ -221,7 +221,7 @@ function gravity_trap_location(localClientNum, oldVal, newVal, bNewEnt, bInitial
 /*
 	Name: gravity_trap_destroy
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0xEA3B047A
+	Checksum: 0x4FED8C59
 	Offset: 0x10A8
 	Size: 0x6B
 	Parameters: 7
@@ -235,7 +235,7 @@ function gravity_trap_destroy(localClientNum, oldVal, newVal, bNewEnt, bInitialS
 /*
 	Name: ragdoll_impact_watch_start
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x934A3215
+	Checksum: 0xB83210BB
 	Offset: 0x1120
 	Size: 0x63
 	Parameters: 7
@@ -252,7 +252,7 @@ function ragdoll_impact_watch_start(localClientNum, oldVal, newVal, bNewEnt, bIn
 /*
 	Name: ragdoll_impact_watch
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x5BC9D5E4
+	Checksum: 0x4E8973F
 	Offset: 0x1190
 	Size: 0x21F
 	Parameters: 1
@@ -297,7 +297,7 @@ function ragdoll_impact_watch(localClientNum)
 /*
 	Name: gravity_trap_rumble_callback
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x315BE581
+	Checksum: 0x26B93F54
 	Offset: 0x13B8
 	Size: 0x75
 	Parameters: 7
@@ -318,7 +318,7 @@ function gravity_trap_rumble_callback(localClientNum, oldVal, newVal, bNewEnt, b
 /*
 	Name: gravity_trap_rumble
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x4D44DF4A
+	Checksum: 0x71002509
 	Offset: 0x1438
 	Size: 0x5F
 	Parameters: 1
@@ -339,7 +339,7 @@ function gravity_trap_rumble(localClientNum)
 /*
 	Name: play_sparky_beam_fx
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x8AC5C11C
+	Checksum: 0x8E135540
 	Offset: 0x14A0
 	Size: 0x15B
 	Parameters: 7
@@ -370,7 +370,7 @@ function play_sparky_beam_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 /*
 	Name: sparky_zombie_fx_cb
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0x7E4983FC
+	Checksum: 0x5D99E91A
 	Offset: 0x1608
 	Size: 0x16D
 	Parameters: 7
@@ -399,7 +399,7 @@ function sparky_zombie_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 /*
 	Name: sparky_zombie_trail_fx_cb
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0xCF7CB4AF
+	Checksum: 0xA3BF1FBB
 	Offset: 0x1780
 	Size: 0xDD
 	Parameters: 7
@@ -422,7 +422,7 @@ function sparky_zombie_trail_fx_cb(localClientNum, oldVal, newVal, bNewEnt, bIni
 /*
 	Name: gravity_spike_zombie_explode
 	Namespace: _zm_weap_gravityspikes
-	Checksum: 0xCBEFB715
+	Checksum: 0xC43E3A6
 	Offset: 0x1868
 	Size: 0x8B
 	Parameters: 7

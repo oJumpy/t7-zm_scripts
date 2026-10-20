@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_weap_thundergun
-	Checksum: 0x21395030
+	Checksum: 0xF681EF31
 	Offset: 0x168
 	Size: 0x3B
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_weap_thundergun
-	Checksum: 0x76EB7421
+	Checksum: 0x60C22CBE
 	Offset: 0x1B0
 	Size: 0x43
 	Parameters: 0
@@ -38,7 +38,7 @@ function __init__()
 /*
 	Name: __main__
 	Namespace: zm_weap_thundergun
-	Checksum: 0x87CA0449
+	Checksum: 0xEA008CFD
 	Offset: 0x200
 	Size: 0x23
 	Parameters: 0
@@ -52,7 +52,7 @@ function __main__()
 /*
 	Name: localplayer_spawned
 	Namespace: zm_weap_thundergun
-	Checksum: 0xFF77320E
+	Checksum: 0x358669E2
 	Offset: 0x230
 	Size: 0x23
 	Parameters: 1
@@ -66,7 +66,7 @@ function localplayer_spawned(localClientNum)
 /*
 	Name: watch_for_thunderguns
 	Namespace: zm_weap_thundergun
-	Checksum: 0xB3A14413
+	Checksum: 0x998364CB
 	Offset: 0x260
 	Size: 0x9F
 	Parameters: 1
@@ -90,7 +90,7 @@ function watch_for_thunderguns(localClientNum)
 /*
 	Name: thundergun_fx_power_cell
 	Namespace: zm_weap_thundergun
-	Checksum: 0x51D84B88
+	Checksum: 0xA4D347A0
 	Offset: 0x308
 	Size: 0x157
 	Parameters: 2
@@ -131,7 +131,7 @@ function thundergun_fx_power_cell(localClientNum, w_weapon)
 /*
 	Name: thundergun_fx_fire
 	Namespace: zm_weap_thundergun
-	Checksum: 0xF7F6709C
+	Checksum: 0x9B09BEE2
 	Offset: 0x468
 	Size: 0x2B
 	Parameters: 1

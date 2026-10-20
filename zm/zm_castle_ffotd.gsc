@@ -235,7 +235,7 @@ function private get_escape_position()
 	}
 	if(isdefined(str_zone))
 	{
-		a_zones = namespace_f59aa2e8::get_adjacencies_to_zone(str_zone);
+		a_zones = castle_cleanup::get_adjacencies_to_zone(str_zone);
 		a_wait_locations = get_wait_locations_in_zones(a_zones);
 		ArraySortClosest(a_wait_locations, self.origin);
 		a_wait_locations = Array::reverse(a_wait_locations);

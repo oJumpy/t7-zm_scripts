@@ -22,11 +22,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_castle_zombie;
 
-#namespace namespace_8e89abe3;
+#namespace zm_castle_low_grav;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x77231B43
 	Offset: 0xBA0
 	Size: 0x3B
@@ -40,7 +40,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x59A673A3
 	Offset: 0xBE8
 	Size: 0x16D
@@ -61,7 +61,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x926FE976
 	Offset: 0xD60
 	Size: 0x1D3
@@ -92,7 +92,7 @@ function __main__()
 
 /*
 	Name: function_3fa7f11a
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x3A9F449D
 	Offset: 0xF40
 	Size: 0x243
@@ -101,13 +101,13 @@ function __main__()
 */
 function function_3fa7f11a()
 {
-	level endon("hash_854ff4f5");
+	level endon("pressure_pads_activated");
 	var_15ed352b = GetEntArray("grav_pad_trigger", "targetname");
 	level.var_d19d5236 = 0;
 	level.var_cddeb078 = [];
 	foreach(t_pad_trigger in var_15ed352b)
 	{
-		t_pad_trigger thread function_e49e9c09();
+		t_pad_trigger thread grav_pad_trigger_think();
 		var_8ecbce0a = GetEnt(t_pad_trigger.target, "targetname");
 		var_4f15c74f = GetEnt(var_8ecbce0a.target, "targetname");
 		Array::add(level.var_cddeb078, var_4f15c74f);
@@ -126,7 +126,7 @@ function function_3fa7f11a()
 
 /*
 	Name: function_ed0d48ca
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x5EA78B1B
 	Offset: 0x1190
 	Size: 0x6B
@@ -143,15 +143,15 @@ function function_ed0d48ca()
 }
 
 /*
-	Name: function_e49e9c09
-	Namespace: namespace_8e89abe3
+	Name: grav_pad_trigger_think
+	Namespace: zm_castle_low_grav
 	Checksum: 0x51B22
 	Offset: 0x1208
 	Size: 0x2F7
 	Parameters: 0
 	Flags: None
 */
-function function_e49e9c09()
+function grav_pad_trigger_think()
 {
 	var_8ecbce0a = GetEnt(self.target, "targetname");
 	var_8ecbce0a EnableLinkTo();
@@ -191,7 +191,7 @@ function function_e49e9c09()
 
 /*
 	Name: function_554db684
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xA78BCF0B
 	Offset: 0x1508
 	Size: 0x11B
@@ -213,7 +213,7 @@ function function_554db684()
 
 /*
 	Name: function_fceff7eb
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x3A60BA2
 	Offset: 0x1630
 	Size: 0x1AD
@@ -253,7 +253,7 @@ function function_fceff7eb(n_duration)
 
 /*
 	Name: function_e1998cb5
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x2FEE2F8E
 	Offset: 0x17E8
 	Size: 0x10B
@@ -277,7 +277,7 @@ function function_e1998cb5()
 
 /*
 	Name: function_3ccd9604
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x9AF2F114
 	Offset: 0x1900
 	Size: 0x10B
@@ -305,7 +305,7 @@ function function_3ccd9604()
 
 /*
 	Name: function_f4766f6
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x85FEB71A
 	Offset: 0x1A18
 	Size: 0x123
@@ -333,7 +333,7 @@ function function_f4766f6()
 
 /*
 	Name: function_c3f6aa22
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x25E3C7D6
 	Offset: 0x1B48
 	Size: 0x2B3
@@ -378,7 +378,7 @@ function function_c3f6aa22()
 				self unsetPerk("specialty_lowgravity");
 				self clientfield::set_to_player("player_screen_fx", 0);
 				self clientfield::set_to_player("player_postfx", 0);
-				self notify("hash_eb16fe00");
+				self notify("low_grav_off");
 				self.var_7dd18a0 = 0;
 			}
 			wait(0.1);
@@ -389,7 +389,7 @@ function function_c3f6aa22()
 
 /*
 	Name: function_e997f73a
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x4D40ADD7
 	Offset: 0x1E08
 	Size: 0x7F
@@ -400,7 +400,7 @@ function function_e997f73a()
 {
 	self endon("death");
 	self endon("disconnect");
-	self endon("hash_eb16fe00");
+	self endon("low_grav_off");
 	while(1)
 	{
 		if(self IsOnGround() || self IsWallRunning())
@@ -413,7 +413,7 @@ function function_e997f73a()
 
 /*
 	Name: function_573a448e
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x4AFFB723
 	Offset: 0x1E90
 	Size: 0x16F
@@ -443,7 +443,7 @@ function function_573a448e()
 
 /*
 	Name: function_767bba0
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x3E802C8C
 	Offset: 0x2008
 	Size: 0x47F
@@ -502,7 +502,7 @@ function function_767bba0()
 
 /*
 	Name: function_2f712e07
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x4D70BBE8
 	Offset: 0x2490
 	Size: 0x201
@@ -544,7 +544,7 @@ function function_2f712e07()
 
 /*
 	Name: function_5f2da053
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xC0D5B972
 	Offset: 0x26A0
 	Size: 0x16B
@@ -597,7 +597,7 @@ function function_5f2da053()
 
 /*
 	Name: function_8b18e3ce
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x157637A5
 	Offset: 0x2818
 	Size: 0x303
@@ -650,7 +650,7 @@ function function_8b18e3ce()
 
 /*
 	Name: floater_timer
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xF34F77C4
 	Offset: 0x2B28
 	Size: 0x21
@@ -666,7 +666,7 @@ function floater_timer()
 
 /*
 	Name: function_7f2caa5
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x9AC0E36F
 	Offset: 0x2B58
 	Size: 0x199
@@ -704,7 +704,7 @@ function function_7f2caa5(n_num, str_weap)
 
 /*
 	Name: function_644bd455
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xD9C13D75
 	Offset: 0x2D00
 	Size: 0x53
@@ -719,7 +719,7 @@ function function_644bd455()
 
 /*
 	Name: function_d09bda12
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x8FD43386
 	Offset: 0x2D60
 	Size: 0x21F
@@ -754,7 +754,7 @@ function function_d09bda12()
 
 /*
 	Name: function_e7a4bc31
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xCF7B07E8
 	Offset: 0x2F88
 	Size: 0x40B
@@ -809,7 +809,7 @@ function function_e7a4bc31(e_player)
 
 /*
 	Name: function_d04113df
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x716B7BFD
 	Offset: 0x33A0
 	Size: 0x5B
@@ -829,7 +829,7 @@ function function_d04113df(n_wait_time)
 
 /*
 	Name: function_30b0d4ab
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x19149DA5
 	Offset: 0x3408
 	Size: 0x43
@@ -847,7 +847,7 @@ function function_30b0d4ab(n_wait_time)
 
 /*
 	Name: trigger_damage
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x23A93E23
 	Offset: 0x3458
 	Size: 0xCF
@@ -871,7 +871,7 @@ function trigger_damage()
 
 /*
 	Name: function_266e5562
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xDE5884A7
 	Offset: 0x3530
 	Size: 0x2F
@@ -888,7 +888,7 @@ function function_266e5562()
 
 /*
 	Name: function_f7d8fe24
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x6261AFBA
 	Offset: 0x3568
 	Size: 0x6B
@@ -907,7 +907,7 @@ function function_f7d8fe24(var_6b2a60d)
 
 /*
 	Name: function_2cb9125b
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x6CCDC9D9
 	Offset: 0x35E0
 	Size: 0x19B
@@ -936,7 +936,7 @@ function function_2cb9125b()
 
 /*
 	Name: function_94073af5
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x84492584
 	Offset: 0x3788
 	Size: 0x2D
@@ -957,7 +957,7 @@ function function_94073af5(player)
 
 /*
 	Name: function_81be0b2f
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x2C5B346B
 	Offset: 0x37C0
 	Size: 0x1CB
@@ -984,7 +984,7 @@ function function_81be0b2f()
 
 /*
 	Name: powerup_spawn
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xEFE7059E
 	Offset: 0x3998
 	Size: 0xB3
@@ -995,20 +995,20 @@ function powerup_spawn(var_7c68b1e)
 {
 	var_c21c2ac2 = struct::get("low_grav_powerup_spawn", "targetname");
 	powerup = zm_powerups::specific_powerup_drop("minigun", var_c21c2ac2.origin);
-	level thread function_42dee8e(var_7c68b1e, powerup, self.stub);
+	level thread powerup_think(var_7c68b1e, powerup, self.stub);
 	level thread powerup_timer(var_7c68b1e, powerup, self.stub);
 }
 
 /*
-	Name: function_42dee8e
-	Namespace: namespace_8e89abe3
+	Name: powerup_think
+	Namespace: zm_castle_low_grav
 	Checksum: 0x2B99500
 	Offset: 0x3A58
 	Size: 0x83
 	Parameters: 3
 	Flags: None
 */
-function function_42dee8e(var_7c68b1e, powerup, unitrigger_stub)
+function powerup_think(var_7c68b1e, powerup, unitrigger_stub)
 {
 	level endon("hash_558a2606");
 	powerup waittill("powerup_grabbed");
@@ -1018,7 +1018,7 @@ function function_42dee8e(var_7c68b1e, powerup, unitrigger_stub)
 
 /*
 	Name: function_34029460
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x1CBD848C
 	Offset: 0x3AE8
 	Size: 0x8B
@@ -1041,7 +1041,7 @@ function function_34029460(var_7c68b1e, unitrigger_stub)
 
 /*
 	Name: powerup_timer
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x6F8195C8
 	Offset: 0x3B80
 	Size: 0xA3
@@ -1061,7 +1061,7 @@ function powerup_timer(var_7c68b1e, powerup, unitrigger_stub)
 
 /*
 	Name: function_8a1f0208
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xED2A5865
 	Offset: 0x3C30
 	Size: 0x85
@@ -1074,20 +1074,20 @@ function function_8a1f0208()
 	var_15ed352b = struct::get_array("wall_buy_trigger", "targetname");
 	for(i = 0; i < var_15ed352b.size; i++)
 	{
-		var_15ed352b[i] thread function_20c76956();
+		var_15ed352b[i] thread wall_buy_trigger_init();
 	}
 }
 
 /*
-	Name: function_20c76956
-	Namespace: namespace_8e89abe3
+	Name: wall_buy_trigger_init
+	Namespace: zm_castle_low_grav
 	Checksum: 0xD27EC534
 	Offset: 0x3CC0
 	Size: 0x103
 	Parameters: 0
 	Flags: None
 */
-function function_20c76956()
+function wall_buy_trigger_init()
 {
 	s_unitrigger_stub = spawnstruct();
 	s_unitrigger_stub.origin = self.origin;
@@ -1100,19 +1100,19 @@ function function_20c76956()
 	s_unitrigger_stub.script_height = 64;
 	s_unitrigger_stub.owner_struct = self;
 	s_unitrigger_stub.owner_struct.activated = 0;
-	thread zm_unitrigger::register_static_unitrigger(s_unitrigger_stub, &function_147f328);
+	thread zm_unitrigger::register_static_unitrigger(s_unitrigger_stub, &wall_buy_trigger_think);
 }
 
 /*
-	Name: function_147f328
-	Namespace: namespace_8e89abe3
+	Name: wall_buy_trigger_think
+	Namespace: zm_castle_low_grav
 	Checksum: 0xA4501EB
 	Offset: 0x3DD0
 	Size: 0x1B3
 	Parameters: 1
 	Flags: None
 */
-function function_147f328(var_607fccfa)
+function wall_buy_trigger_think(var_607fccfa)
 {
 	e_player = self.parent_player;
 	if(e_player IsWallRunning() && self.stub.owner_struct.activated == 0)
@@ -1134,7 +1134,7 @@ function function_147f328(var_607fccfa)
 
 /*
 	Name: function_efa3deb8
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xEF298C9A
 	Offset: 0x3F90
 	Size: 0xEB
@@ -1164,7 +1164,7 @@ function function_efa3deb8(e_player)
 
 /*
 	Name: detect_reentry
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xF1FDBA37
 	Offset: 0x4088
 	Size: 0x37
@@ -1188,7 +1188,7 @@ function detect_reentry()
 
 /*
 	Name: function_ab786717
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0xABEF71B8
 	Offset: 0x40C8
 	Size: 0x63
@@ -1207,7 +1207,7 @@ function function_ab786717()
 
 /*
 	Name: function_e41a2453
-	Namespace: namespace_8e89abe3
+	Namespace: zm_castle_low_grav
 	Checksum: 0x5C1DBFBC
 	Offset: 0x4138
 	Size: 0x75

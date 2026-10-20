@@ -22,7 +22,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x1998692B
+	Checksum: 0x19632369
 	Offset: 0x5C8
 	Size: 0x33
 	Parameters: 0
@@ -36,7 +36,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x7B7C9358
+	Checksum: 0x8CD5173F
 	Offset: 0x608
 	Size: 0x13
 	Parameters: 0
@@ -50,7 +50,7 @@ function __init__()
 /*
 	Name: enable_electric_cherry_perk_for_level
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xDD4D310C
+	Checksum: 0xB9D55ED5
 	Offset: 0x628
 	Size: 0x163
 	Parameters: 0
@@ -74,7 +74,7 @@ function enable_electric_cherry_perk_for_level()
 /*
 	Name: electric_cherry_precache
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x3E6723F2
+	Checksum: 0xEF1674F7
 	Offset: 0x798
 	Size: 0xDF
 	Parameters: 0
@@ -97,7 +97,7 @@ function electric_cherry_precache()
 /*
 	Name: electric_cherry_register_clientfield
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xAF5FAF
+	Checksum: 0x4E9957DF
 	Offset: 0x880
 	Size: 0x33
 	Parameters: 0
@@ -111,7 +111,7 @@ function electric_cherry_register_clientfield()
 /*
 	Name: electric_cherry_set_clientfield
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x91B5A8AD
+	Checksum: 0xC4CD211C
 	Offset: 0x8C0
 	Size: 0x2B
 	Parameters: 1
@@ -125,7 +125,7 @@ function electric_cherry_set_clientfield(State)
 /*
 	Name: electric_cherry_perk_machine_setup
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xE2A8C5B8
+	Checksum: 0xEABB132
 	Offset: 0x8F8
 	Size: 0xBB
 	Parameters: 4
@@ -148,7 +148,7 @@ function electric_cherry_perk_machine_setup(use_trigger, perk_machine, bump_trig
 /*
 	Name: init_electric_cherry
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x6261C9EE
+	Checksum: 0xFAD1AAF1
 	Offset: 0x9C0
 	Size: 0x143
 	Parameters: 0
@@ -169,7 +169,7 @@ function init_electric_cherry()
 /*
 	Name: electric_cherry_perk_machine_think
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x3F1485B6
+	Checksum: 0x9B51AD3B
 	Offset: 0xB10
 	Size: 0x267
 	Parameters: 0
@@ -207,7 +207,7 @@ function electric_cherry_perk_machine_think()
 /*
 	Name: electric_cherry_host_migration_func
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xE7163A6C
+	Checksum: 0x4C1A64FD
 	Offset: 0xD80
 	Size: 0x109
 	Parameters: 0
@@ -229,7 +229,7 @@ function electric_cherry_host_migration_func()
 /*
 	Name: electric_cherry_laststand
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x76437D95
+	Checksum: 0xDDFCC5A2
 	Offset: 0xE98
 	Size: 0x231
 	Parameters: 0
@@ -275,7 +275,7 @@ function electric_cherry_laststand()
 /*
 	Name: electric_cherry_death_fx
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x366F3C4
+	Checksum: 0x622AD087
 	Offset: 0x10D8
 	Size: 0xFB
 	Parameters: 0
@@ -309,7 +309,7 @@ function electric_cherry_death_fx()
 /*
 	Name: electric_cherry_shock_fx
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x6AE0D783
+	Checksum: 0x144460A5
 	Offset: 0x11E0
 	Size: 0xEB
 	Parameters: 0
@@ -341,7 +341,7 @@ function electric_cherry_shock_fx()
 /*
 	Name: electric_cherry_stun
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xA1142538
+	Checksum: 0xFE7F1A06
 	Offset: 0x12D8
 	Size: 0xB9
 	Parameters: 0
@@ -377,7 +377,7 @@ function electric_cherry_stun()
 /*
 	Name: electric_cherry_reload_attack
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xBB48159B
+	Checksum: 0xB98D4D03
 	Offset: 0x13A0
 	Size: 0x4A5
 	Parameters: 0
@@ -491,7 +491,7 @@ function electric_cherry_reload_attack()
 /*
 	Name: electric_cherry_cooldown_timer
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x54069C5A
+	Checksum: 0xC8EBE9B9
 	Offset: 0x1850
 	Size: 0xC3
 	Parameters: 1
@@ -516,7 +516,7 @@ function electric_cherry_cooldown_timer(current_weapon)
 /*
 	Name: check_for_reload_complete
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x5B60CB14
+	Checksum: 0xDB3FA79F
 	Offset: 0x1920
 	Size: 0xD7
 	Parameters: 1
@@ -544,7 +544,7 @@ function check_for_reload_complete(weapon)
 /*
 	Name: weapon_replaced_monitor
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xC1289B2
+	Checksum: 0xDC774C37
 	Offset: 0x1A00
 	Size: 0xCB
 	Parameters: 1
@@ -571,7 +571,7 @@ function weapon_replaced_monitor(weapon)
 /*
 	Name: electric_cherry_reload_fx
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0x70B5F166
+	Checksum: 0x58ACA54A
 	Offset: 0x1AD8
 	Size: 0xD3
 	Parameters: 1
@@ -598,7 +598,7 @@ function electric_cherry_reload_fx(n_fraction)
 /*
 	Name: electric_cherry_perk_lost
 	Namespace: zm_perk_electric_cherry
-	Checksum: 0xADCF3F34
+	Checksum: 0x37A0D0A4
 	Offset: 0x1BB8
 	Size: 0x33
 	Parameters: 3

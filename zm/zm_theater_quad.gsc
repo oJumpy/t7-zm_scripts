@@ -41,19 +41,19 @@ function autoexec init()
 */
 function private initzmtheaterbehaviorsandasm()
 {
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeAction("traverseWallCrawlAction", &function_2b4dc5b6, &traversewallcrawlactionupdate, undefined);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldWallTraverse", &function_61ee6c82);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldWallCrawl", &function_36178109);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("traverseWallIntro", &function_df42db1b);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("traverseWallJumpOff", &function_631f2f0e);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("quadCollisionService", &function_f2b3a201);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeAction("traverseWallCrawlAction", &traversewallcrawlaction, &traversewallcrawlactionupdate, undefined);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldWallTraverse", &shouldwalltraverse);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldWallCrawl", &shouldwallcrawl);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("traverseWallIntro", &traversewallintro);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("traverseWallJumpOff", &traversewalljumpoff);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("quadCollisionService", &quadcollisionservice);
 	AnimationStateNetwork::RegisterAnimationMocomp("quad_wall_traversal", &mocompquadwalltraversalinit, undefined, undefined);
 	AnimationStateNetwork::RegisterAnimationMocomp("quad_wall_jump_off", &function_5d8b540c, undefined, &function_18650281);
 	AnimationStateNetwork::RegisterAnimationMocomp("quad_move_strict_traversal", &mocompquadmovestricttraversalinit, undefined, &mocompquadmovestricttraversalterminate);
 }
 
 /*
-	Name: function_2b4dc5b6
+	Name: traversewallcrawlaction
 	Namespace: namespace_1e94246a
 	Checksum: 0x56FC6E99
 	Offset: 0x820
@@ -61,7 +61,7 @@ function private initzmtheaterbehaviorsandasm()
 	Parameters: 2
 	Flags: None
 */
-function function_2b4dc5b6(entity, asmStateName)
+function traversewallcrawlaction(entity, asmStateName)
 {
 	AnimationStateNetworkUtility::RequestState(entity, asmStateName);
 	return 5;
@@ -78,7 +78,7 @@ function function_2b4dc5b6(entity, asmStateName)
 */
 function traversewallcrawlactionupdate(entity, asmStateName)
 {
-	if(!function_36178109(entity))
+	if(!shouldwallcrawl(entity))
 	{
 		return 4;
 	}
@@ -86,7 +86,7 @@ function traversewallcrawlactionupdate(entity, asmStateName)
 }
 
 /*
-	Name: function_61ee6c82
+	Name: shouldwalltraverse
 	Namespace: namespace_1e94246a
 	Checksum: 0x35FF4FDE
 	Offset: 0x898
@@ -94,7 +94,7 @@ function traversewallcrawlactionupdate(entity, asmStateName)
 	Parameters: 1
 	Flags: None
 */
-function function_61ee6c82(entity)
+function shouldwalltraverse(entity)
 {
 	if(isdefined(entity.traverseStartNode))
 	{
@@ -107,7 +107,7 @@ function function_61ee6c82(entity)
 }
 
 /*
-	Name: function_36178109
+	Name: shouldwallcrawl
 	Namespace: namespace_1e94246a
 	Checksum: 0x97E9290B
 	Offset: 0x8F8
@@ -115,7 +115,7 @@ function function_61ee6c82(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_36178109(entity)
+function shouldwallcrawl(entity)
 {
 	if(isdefined(self.var_2826ab5d))
 	{
@@ -128,7 +128,7 @@ function function_36178109(entity)
 }
 
 /*
-	Name: function_df42db1b
+	Name: traversewallintro
 	Namespace: namespace_1e94246a
 	Checksum: 0x411A7AAB
 	Offset: 0x930
@@ -136,14 +136,14 @@ function function_36178109(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_df42db1b(entity)
+function traversewallintro(entity)
 {
 	entity AllowPitchAngle(0);
 	entity.clampToNavMesh = 0;
 	if(isdefined(entity.traverseStartNode))
 	{
-		entity.var_1bb3c5d0 = entity.traverseStartNode;
-		entity.var_7531a5e3 = entity.traverseEndNode;
+		entity.wall_start = entity.traverseStartNode;
+		entity.wall_end = entity.traverseEndNode;
 		if(entity.traverseStartNode.animscript == "zm_wall_crawl_drop")
 		{
 			blackboard::SetBlackBoardAttribute(self, "_quad_wall_crawl", "quad_wall_crawl_theater");
@@ -156,7 +156,7 @@ function function_df42db1b(entity)
 }
 
 /*
-	Name: function_631f2f0e
+	Name: traversewalljumpoff
 	Namespace: namespace_1e94246a
 	Checksum: 0xEF2F813A
 	Offset: 0xA30
@@ -164,13 +164,13 @@ function function_df42db1b(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_631f2f0e(entity)
+function traversewalljumpoff(entity)
 {
 	self.var_2826ab5d = undefined;
 }
 
 /*
-	Name: function_f2b3a201
+	Name: quadcollisionservice
 	Namespace: namespace_1e94246a
 	Checksum: 0x3334F975
 	Offset: 0xA50
@@ -178,7 +178,7 @@ function function_631f2f0e(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_f2b3a201(behaviorTreeEntity)
+function quadcollisionservice(behaviorTreeEntity)
 {
 	if(isdefined(behaviorTreeEntity.dontPushTime))
 	{
@@ -240,7 +240,7 @@ function function_77876867()
 function private mocompquadwalltraversalinit(entity, mocompAnim, mocompAnimBlendOutTime, mocompAnimFlag, mocompDuration)
 {
 	animDist = Abs(GetMoveDelta(mocompAnim, 0, 1)[2]);
-	self.ground_pos = bullettrace(self.var_7531a5e3.origin, self.var_7531a5e3.origin + VectorScale((0, 0, -1), 100000), 0, self)["position"];
+	self.ground_pos = bullettrace(self.wall_end.origin, self.wall_end.origin + VectorScale((0, 0, -1), 100000), 0, self)["position"];
 	physDist = Abs(self.origin[2] - self.ground_pos[2] - 60);
 	cycles = physDist / animDist;
 	time = cycles * getanimlength(mocompAnim);
@@ -896,7 +896,7 @@ function quad_stage_roof_break()
 	quad_stage_roof_break_single(13);
 	wait(0.35);
 	quad_stage_roof_break_single(14);
-	namespace_1d58b607::activate_quad_spawners();
+	zm_ai_quad::activate_quad_spawners();
 }
 
 /*

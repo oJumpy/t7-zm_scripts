@@ -11,11 +11,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_42b119c2;
+#namespace zm_bgb_mind_blown;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x50AEDD93
 	Offset: 0x260
 	Size: 0x33
@@ -29,7 +29,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x1648F2DF
 	Offset: 0x2A0
 	Size: 0x113
@@ -50,7 +50,7 @@ function __init__()
 
 /*
 	Name: validation
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x407677EF
 	Offset: 0x3C0
 	Size: 0x21
@@ -68,7 +68,7 @@ function validation()
 
 /*
 	Name: activation
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x91F886D3
 	Offset: 0x3F0
 	Size: 0x3B
@@ -84,7 +84,7 @@ function activation()
 
 /*
 	Name: function_80e37569
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x8898C747
 	Offset: 0x438
 	Size: 0x1F
@@ -100,7 +100,7 @@ function function_80e37569()
 
 /*
 	Name: function_2a8862aa
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x138B871
 	Offset: 0x460
 	Size: 0x303
@@ -146,7 +146,7 @@ function function_2a8862aa()
 
 /*
 	Name: function_2ca71d8b
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x8D63B5E0
 	Offset: 0x770
 	Size: 0x151
@@ -175,7 +175,7 @@ function private function_2ca71d8b(allai, trace, degree)
 
 /*
 	Name: function_1bb7ee0
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0xCC76E78F
 	Offset: 0x8D0
 	Size: 0xA3
@@ -194,7 +194,7 @@ function function_1bb7ee0(ai)
 
 /*
 	Name: zombie_head_gib
-	Namespace: namespace_42b119c2
+	Namespace: zm_bgb_mind_blown
 	Checksum: 0x74BBAFEA
 	Offset: 0x980
 	Size: 0xAB

@@ -4,11 +4,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_e37c032f;
+#namespace zm_powerup_island_seed;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x4A0F53F6
 	Offset: 0x1B0
 	Size: 0x33
@@ -22,7 +22,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0x7F371EBF
 	Offset: 0x1F0
 	Size: 0x43
@@ -38,7 +38,7 @@ function __init__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_e37c032f
+	Namespace: zm_powerup_island_seed
 	Checksum: 0xA130375C
 	Offset: 0x240
 	Size: 0x14B

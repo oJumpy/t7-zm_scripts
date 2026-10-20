@@ -895,7 +895,7 @@ function ee_zombie_blood_dig()
 	self.t_zombie_blood_dig TriggerIgnoreTeam();
 	self.t_zombie_blood_dig setcursorhint("HINT_NOICON");
 	self.t_zombie_blood_dig setHintString(&"ZM_TOMB_X2D");
-	self.t_zombie_blood_dig namespace_43a18dd5::make_zombie_blood_entity();
+	self.t_zombie_blood_dig zm_powerup_zombie_blood::make_zombie_blood_entity();
 	while(n_z_spots_found < 4)
 	{
 		a_randomized = Array::randomize(a_z_spots);
@@ -964,7 +964,7 @@ function create_zombie_blood_dig_spot(e_player)
 	self.m_dig = spawn("script_model", self.origin + VectorScale((0, 0, -1), 40));
 	self.m_dig.angles = self.angles;
 	self.m_dig SetModel("p7_zm_ori_dig_mound_blood");
-	self.m_dig namespace_43a18dd5::make_zombie_blood_entity();
+	self.m_dig zm_powerup_zombie_blood::make_zombie_blood_entity();
 	self.m_dig moveto(self.origin, 3, 0, 1);
 	self.m_dig waittill("movedone");
 	self.m_dig.e_unique_player = e_player;

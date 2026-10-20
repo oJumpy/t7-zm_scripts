@@ -27,7 +27,7 @@
 /*
 	Name: init
 	Namespace: zm_ai_raps
-	Checksum: 0x4BD3A778
+	Checksum: 0x6C2C62C3
 	Offset: 0x810
 	Size: 0x32B
 	Parameters: 0
@@ -68,7 +68,7 @@ function init()
 /*
 	Name: enable_raps_rounds
 	Namespace: zm_ai_raps
-	Checksum: 0x7C4DCE95
+	Checksum: 0xFD95145B
 	Offset: 0xB48
 	Size: 0x43
 	Parameters: 0
@@ -87,7 +87,7 @@ function enable_raps_rounds()
 /*
 	Name: raps_spawner_init
 	Namespace: zm_ai_raps
-	Checksum: 0x327C756C
+	Checksum: 0x9FC93947
 	Offset: 0xB98
 	Size: 0x19B
 	Parameters: 0
@@ -122,7 +122,7 @@ function raps_spawner_init()
 /*
 	Name: raps_round_tracker
 	Namespace: zm_ai_raps
-	Checksum: 0x69D60CC0
+	Checksum: 0x8C951F3B
 	Offset: 0xD40
 	Size: 0x217
 	Parameters: 0
@@ -176,7 +176,7 @@ function raps_round_tracker()
 /*
 	Name: raps_round_start
 	Namespace: zm_ai_raps
-	Checksum: 0xE0B3725
+	Checksum: 0xFBD44935
 	Offset: 0xF60
 	Size: 0xE3
 	Parameters: 0
@@ -206,7 +206,7 @@ function raps_round_start()
 /*
 	Name: raps_round_stop
 	Namespace: zm_ai_raps
-	Checksum: 0xFECBF569
+	Checksum: 0xCEE835B7
 	Offset: 0x1050
 	Size: 0xD3
 	Parameters: 0
@@ -230,7 +230,7 @@ function raps_round_stop()
 /*
 	Name: raps_round_spawning
 	Namespace: zm_ai_raps
-	Checksum: 0xDB049945
+	Checksum: 0xA875A308
 	Offset: 0x1130
 	Size: 0x347
 	Parameters: 0
@@ -303,7 +303,7 @@ function raps_round_spawning()
 /*
 	Name: spawn_raps
 	Namespace: zm_ai_raps
-	Checksum: 0x25A9C577
+	Checksum: 0xF0956D72
 	Offset: 0x1480
 	Size: 0x183
 	Parameters: 0
@@ -349,7 +349,7 @@ function spawn_raps()
 /*
 	Name: get_raps_spawn_total
 	Namespace: zm_ai_raps
-	Checksum: 0xF94CFA32
+	Checksum: 0x8895CACE
 	Offset: 0x1610
 	Size: 0x85
 	Parameters: 0
@@ -387,7 +387,7 @@ function get_raps_spawn_total()
 /*
 	Name: raps_round_wait_func
 	Namespace: zm_ai_raps
-	Checksum: 0x513F4B82
+	Checksum: 0x15F29129
 	Offset: 0x16A0
 	Size: 0x7F
 	Parameters: 0
@@ -408,7 +408,7 @@ function raps_round_wait_func()
 /*
 	Name: get_current_raps_count
 	Namespace: zm_ai_raps
-	Checksum: 0xFDE31456
+	Checksum: 0xCEF90D98
 	Offset: 0x1728
 	Size: 0xD5
 	Parameters: 0
@@ -431,7 +431,7 @@ function get_current_raps_count()
 /*
 	Name: elemental_round_fx
 	Namespace: zm_ai_raps
-	Checksum: 0x840C649D
+	Checksum: 0x6DE4AC00
 	Offset: 0x1808
 	Size: 0xB1
 	Parameters: 0
@@ -449,7 +449,7 @@ function elemental_round_fx()
 /*
 	Name: show_hit_marker
 	Namespace: zm_ai_raps
-	Checksum: 0x676C3403
+	Checksum: 0xE8964BB6
 	Offset: 0x18C8
 	Size: 0x87
 	Parameters: 0
@@ -469,7 +469,7 @@ function show_hit_marker()
 /*
 	Name: rapsDamage
 	Namespace: zm_ai_raps
-	Checksum: 0xDCCAFA59
+	Checksum: 0x33A004F4
 	Offset: 0x1958
 	Size: 0x87
 	Parameters: 12
@@ -487,7 +487,7 @@ function rapsDamage(inflictor, attacker, damage, dFlags, mod, weapon, point, dir
 /*
 	Name: can_we_spawn_raps
 	Namespace: zm_ai_raps
-	Checksum: 0xA9908A29
+	Checksum: 0x13E4FF16
 	Offset: 0x19E8
 	Size: 0x8F
 	Parameters: 0
@@ -508,7 +508,7 @@ function can_we_spawn_raps()
 /*
 	Name: waiting_for_next_raps_spawn
 	Namespace: zm_ai_raps
-	Checksum: 0xE7E6ECE5
+	Checksum: 0xB879FF61
 	Offset: 0x1A80
 	Size: 0x87
 	Parameters: 0
@@ -545,7 +545,7 @@ function waiting_for_next_raps_spawn()
 /*
 	Name: raps_round_aftermath
 	Namespace: zm_ai_raps
-	Checksum: 0xB0BCD98A
+	Checksum: 0x6CCA7E17
 	Offset: 0x1B10
 	Size: 0x133
 	Parameters: 0
@@ -578,7 +578,7 @@ function raps_round_aftermath()
 /*
 	Name: raps_spawn_fx
 	Namespace: zm_ai_raps
-	Checksum: 0x817CC08E
+	Checksum: 0xC19C348
 	Offset: 0x1C50
 	Size: 0x68B
 	Parameters: 2
@@ -658,7 +658,7 @@ function raps_spawn_fx(ai, ent)
 /*
 	Name: cleanup_meteor
 	Namespace: zm_ai_raps
-	Checksum: 0xBFB50DF7
+	Checksum: 0xD667E70D
 	Offset: 0x22E8
 	Size: 0x33
 	Parameters: 0
@@ -674,7 +674,7 @@ function cleanup_meteor()
 /*
 	Name: cleanup_meteor_fx
 	Namespace: zm_ai_raps
-	Checksum: 0x6BFF1A35
+	Checksum: 0xBB561483
 	Offset: 0x2328
 	Size: 0x63
 	Parameters: 2
@@ -696,7 +696,7 @@ function cleanup_meteor_fx(portal_fx, ground_tell)
 /*
 	Name: create_global_raps_spawn_locations_list
 	Namespace: zm_ai_raps
-	Checksum: 0xD7A24360
+	Checksum: 0xB5849964
 	Offset: 0x2398
 	Size: 0x179
 	Parameters: 0
@@ -730,7 +730,7 @@ function create_global_raps_spawn_locations_list()
 /*
 	Name: raps_find_closest_in_global_pool
 	Namespace: zm_ai_raps
-	Checksum: 0x6201BEED
+	Checksum: 0xC1ACC1BE
 	Offset: 0x2520
 	Size: 0x117
 	Parameters: 1
@@ -758,7 +758,7 @@ function raps_find_closest_in_global_pool(favorite_enemy)
 /*
 	Name: calculate_spawn_position
 	Namespace: zm_ai_raps
-	Checksum: 0xE6FDFD52
+	Checksum: 0x9AFD7A01
 	Offset: 0x2640
 	Size: 0x235
 	Parameters: 1
@@ -813,7 +813,7 @@ function calculate_spawn_position(favorite_enemy)
 /*
 	Name: get_favorite_enemy
 	Namespace: zm_ai_raps
-	Checksum: 0x6FA74D4B
+	Checksum: 0xF0646D4C
 	Offset: 0x2880
 	Size: 0x123
 	Parameters: 0
@@ -854,7 +854,7 @@ function get_favorite_enemy()
 /*
 	Name: raps_health_increase
 	Namespace: zm_ai_raps
-	Checksum: 0x24379CDE
+	Checksum: 0xC9FC147E
 	Offset: 0x29B0
 	Size: 0x4F
 	Parameters: 0
@@ -873,7 +873,7 @@ function raps_health_increase()
 /*
 	Name: play_raps_round
 	Namespace: zm_ai_raps
-	Checksum: 0x35E036CA
+	Checksum: 0xDDEF4989
 	Offset: 0x2A08
 	Size: 0xB3
 	Parameters: 0
@@ -892,7 +892,7 @@ function play_raps_round()
 /*
 	Name: raps_init
 	Namespace: zm_ai_raps
-	Checksum: 0x897A9816
+	Checksum: 0xE0118EA8
 	Offset: 0x2AC8
 	Size: 0x3FF
 	Parameters: 0
@@ -967,7 +967,7 @@ function raps_init()
 /*
 	Name: raps_timeout_after_xsec
 	Namespace: zm_ai_raps
-	Checksum: 0x86747A49
+	Checksum: 0x44E7196
 	Offset: 0x2ED0
 	Size: 0x5B
 	Parameters: 1
@@ -983,7 +983,7 @@ function raps_timeout_after_xsec(timeout)
 /*
 	Name: raps_death
 	Namespace: zm_ai_raps
-	Checksum: 0x1CAA791B
+	Checksum: 0xC9D28211
 	Offset: 0x2F38
 	Size: 0x1EB
 	Parameters: 0
@@ -1031,7 +1031,7 @@ function raps_death()
 /*
 	Name: raps_custom_player_shellshock
 	Namespace: zm_ai_raps
-	Checksum: 0x66022051
+	Checksum: 0x5D55E2DF
 	Offset: 0x3130
 	Size: 0x53
 	Parameters: 5
@@ -1048,7 +1048,7 @@ function raps_custom_player_shellshock(damage, attacker, direction_vec, point, m
 /*
 	Name: player_watch_shellshock_accumulation
 	Namespace: zm_ai_raps
-	Checksum: 0x8F004457
+	Checksum: 0xC58AA36
 	Offset: 0x3190
 	Size: 0x8B
 	Parameters: 0
@@ -1073,7 +1073,7 @@ function player_watch_shellshock_accumulation()
 /*
 	Name: raps_explode_fx
 	Namespace: zm_ai_raps
-	Checksum: 0x5D6E9B2A
+	Checksum: 0x5B7C5FAE
 	Offset: 0x3228
 	Size: 0x33
 	Parameters: 1
@@ -1087,7 +1087,7 @@ function raps_explode_fx(origin)
 /*
 	Name: zombie_setup_attack_properties_raps
 	Namespace: zm_ai_raps
-	Checksum: 0x9C4746F6
+	Checksum: 0xF20030CD
 	Offset: 0x3268
 	Size: 0x53
 	Parameters: 0
@@ -1105,7 +1105,7 @@ function zombie_setup_attack_properties_raps()
 /*
 	Name: stop_raps_sound_on_death
 	Namespace: zm_ai_raps
-	Checksum: 0xBF0AB4DD
+	Checksum: 0xCF7CC83C
 	Offset: 0x32C8
 	Size: 0x23
 	Parameters: 0
@@ -1120,7 +1120,7 @@ function stop_raps_sound_on_death()
 /*
 	Name: special_raps_spawn
 	Namespace: zm_ai_raps
-	Checksum: 0x78196DE0
+	Checksum: 0xFF9F9FE2
 	Offset: 0x32F8
 	Size: 0x22B
 	Parameters: 3
@@ -1180,7 +1180,7 @@ function special_raps_spawn(n_to_spawn, s_spawn_loc, fn_on_spawned)
 /*
 	Name: raps_run_think
 	Namespace: zm_ai_raps
-	Checksum: 0x1F01FC3B
+	Checksum: 0x3E529835
 	Offset: 0x3530
 	Size: 0x117
 	Parameters: 0
@@ -1218,7 +1218,7 @@ function raps_run_think()
 /*
 	Name: should_raps_giveup_inaccessible_player
 	Namespace: zm_ai_raps
-	Checksum: 0x35C12652
+	Checksum: 0xC9244C05
 	Offset: 0x3650
 	Size: 0x5B
 	Parameters: 1
@@ -1240,7 +1240,7 @@ function should_raps_giveup_inaccessible_player(player)
 /*
 	Name: raps_stalk_audio
 	Namespace: zm_ai_raps
-	Checksum: 0x656C9E53
+	Checksum: 0x53AC9673
 	Offset: 0x36B8
 	Size: 0x4F
 	Parameters: 0
@@ -1259,7 +1259,7 @@ function raps_stalk_audio()
 /*
 	Name: raps_thundergun_knockdown
 	Namespace: zm_ai_raps
-	Checksum: 0x3DAA0154
+	Checksum: 0xC9765C0A
 	Offset: 0x3710
 	Size: 0x8B
 	Parameters: 2

@@ -81,7 +81,7 @@ function spawn_unitrigger()
 	{
 		unitrigger_stub.hint_parm1 = 250;
 		unitrigger_stub.prompt_and_visibility_func = &function_1388fe2d;
-		zm_unitrigger::register_static_unitrigger(unitrigger_stub, &function_727b0365);
+		zm_unitrigger::register_static_unitrigger(unitrigger_stub, &zipline_think);
 	}
 	else
 	{
@@ -163,7 +163,7 @@ function function_b708e2f9(str_transport, var_7afe5e99)
 }
 
 /*
-	Name: function_727b0365
+	Name: zipline_think
 	Namespace: namespace_34c58dc
 	Checksum: 0xE74C4FC1
 	Offset: 0x1120
@@ -171,7 +171,7 @@ function function_b708e2f9(str_transport, var_7afe5e99)
 	Parameters: 0
 	Flags: None
 */
-function function_727b0365()
+function zipline_think()
 {
 	var_ff0e60dd = ArrayGetClosest(self.origin, struct::get_array("transport_zip_line", "targetname"));
 	while(1)
@@ -424,12 +424,12 @@ function player_rail_sequence(var_b4b1932b)
 	{
 		self.var_53539670 thread play_current_fx();
 		self clientfield::set_to_player("tp_water_sheeting", 1);
-		level thread namespace_f333593c::function_3bf2d62a("sewer", 1, 1, 1);
+		level thread zm_island_vo::function_3bf2d62a("sewer", 1, 1, 1);
 		self.var_7a36438e = 1;
 	}
 	else
 	{
-		self notify("hash_912d72b1");
+		self notify("zipline_start");
 		self clientfield::set_to_player("wind_blur", 1);
 		self playsound("evt_zipline_attach");
 		self PlayLoopSound("evt_zipline_move", 0.3);
@@ -453,7 +453,7 @@ function player_rail_sequence(var_b4b1932b)
 	{
 		self zm_utility::clear_streamer_hint();
 		self clientfield::set_to_player("tp_water_sheeting", 0);
-		self notify("hash_c40cfd1a");
+		self notify("sewer_over");
 	}
 	else
 	{

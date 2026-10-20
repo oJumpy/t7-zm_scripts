@@ -64,12 +64,12 @@ function enable()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	if(!isdefined(level.var_81ca70ba))
 	{
 		level.var_81ca70ba = 0;
 	}
-	self thread bgb::function_4ed517b9(240, &function_ff41ae2d, &function_3c1690be);
+	self thread bgb::player_proximity_watcher(240, &proximity_start, &proximity_end);
 	self thread function_1a31df5b();
 	self thread revive_override();
 }
@@ -256,12 +256,12 @@ function lost_perk_override(perk, var_2488e46a, var_24df4040)
 	{
 		var_24df4040 = undefined;
 	}
-	self thread bgb::function_41ed378b(perk);
+	self thread bgb::revive_and_return_perk_on_bgb_activation(perk);
 	return 0;
 }
 
 /*
-	Name: function_ff41ae2d
+	Name: proximity_start
 	Namespace: zm_bgb_near_death_experience
 	Checksum: 0x9769D7B9
 	Offset: 0xB48
@@ -269,7 +269,7 @@ function lost_perk_override(perk, var_2488e46a, var_24df4040)
 	Parameters: 1
 	Flags: None
 */
-function function_ff41ae2d(e_player)
+function proximity_start(e_player)
 {
 	var_5b3c4fd2 = "zm_bgb_near_death_experience_proximity_end_" + self GetEntityNumber();
 	e_player endon(var_5b3c4fd2);
@@ -362,7 +362,7 @@ function function_c8cee225(e_player, str_notify)
 }
 
 /*
-	Name: function_3c1690be
+	Name: proximity_end
 	Namespace: zm_bgb_near_death_experience
 	Checksum: 0xB2D36609
 	Offset: 0xEA8
@@ -370,7 +370,7 @@ function function_c8cee225(e_player, str_notify)
 	Parameters: 1
 	Flags: None
 */
-function function_3c1690be(e_player)
+function proximity_end(e_player)
 {
 	str_notify = "zm_bgb_near_death_experience_proximity_end_" + self GetEntityNumber();
 	e_player notify(str_notify);

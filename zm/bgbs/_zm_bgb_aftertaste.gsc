@@ -9,11 +9,11 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_a2aa0712;
+#namespace zm_bgb_aftertaste;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a2aa0712
+	Namespace: zm_bgb_aftertaste
 	Checksum: 0xCF8D4385
 	Offset: 0x1D8
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a2aa0712
+	Namespace: zm_bgb_aftertaste
 	Checksum: 0xE0ECA87A
 	Offset: 0x218
 	Size: 0x7B
@@ -46,7 +46,7 @@ function __init__()
 
 /*
 	Name: lost_perk_override
-	Namespace: namespace_a2aa0712
+	Namespace: zm_bgb_aftertaste
 	Checksum: 0x259233DE
 	Offset: 0x2A0
 	Size: 0x9B
@@ -79,7 +79,7 @@ function lost_perk_override(perk, var_2488e46a, var_24df4040)
 
 /*
 	Name: event
-	Namespace: namespace_a2aa0712
+	Namespace: zm_bgb_aftertaste
 	Checksum: 0x7705807E
 	Offset: 0x348
 	Size: 0x57
@@ -90,7 +90,7 @@ function event()
 {
 	self endon("disconnect");
 	self endon("bled_out");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	while(1)
 	{
 		self waittill("player_downed");

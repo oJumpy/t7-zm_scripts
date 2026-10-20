@@ -734,7 +734,7 @@ function digger_think_panel(blocker_name, trig_name, start_flag, hacked_flag, ha
 	struct.no_sight_check = 1;
 	trig UseTriggerRequireLookAt();
 	trig setcursorhint("HINT_NOICON");
-	trig thread namespace_6d813654::hide_hint_when_hackers_active();
+	trig thread zm_equip_hacker::hide_hint_when_hackers_active();
 	trig setHintString(&"ZM_MOON_NO_HACK");
 	trig thread set_hint_on_digger_trig(start_flag, hacked_flag, struct);
 }
@@ -754,13 +754,13 @@ function set_hint_on_digger_trig(start_flag, hacked_flag, struct)
 	{
 		if(!level flag::get(start_flag))
 		{
-			namespace_6d813654::deregister_hackable_struct(struct);
+			zm_equip_hacker::deregister_hackable_struct(struct);
 			self setHintString(&"ZM_MOON_NO_HACK");
 		}
 		level flag::wait_till(start_flag);
 		if(!level flag::get(hacked_flag))
 		{
-			namespace_6d813654::register_pooled_hackable_struct(struct, &digger_hack_func, &digger_hack_qualifer);
+			zm_equip_hacker::register_pooled_hackable_struct(struct, &digger_hack_func, &digger_hack_qualifer);
 			self setHintString(&"ZM_MOON_SYSTEM_ONLINE");
 			switch(struct.digger_name)
 			{
@@ -782,7 +782,7 @@ function set_hint_on_digger_trig(start_flag, hacked_flag, struct)
 			}
 		}
 		level flag::wait_till(hacked_flag);
-		namespace_6d813654::deregister_hackable_struct(struct);
+		zm_equip_hacker::deregister_hackable_struct(struct);
 		self setHintString(&"ZM_MOON_NO_HACK");
 		switch(struct.digger_name)
 		{

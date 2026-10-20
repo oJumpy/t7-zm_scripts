@@ -148,7 +148,7 @@ function player_stats_init()
 	self.score = self.pers["score"];
 	self IncrementPlayerStat("score", self.score);
 	self add_map_stat("score", self.score);
-	self.var_f191a1fc = 0;
+	self.bgb_tokens_gained_this_game = 0;
 	self globallogic_score::initPersStat("zteam", 0);
 	if(isdefined(level.level_specific_stats_init))
 	{
@@ -224,7 +224,7 @@ function update_players_stats_at_match_end(players)
 		}
 		player set_global_stat("total_points", player.score_total);
 		player set_global_stat("rounds", level.round_number);
-		player set_global_stat("bgb_tokens_gained_this_game", player.var_f191a1fc);
+		player set_global_stat("bgb_tokens_gained_this_game", player.bgb_tokens_gained_this_game);
 		if(level.onlineGame)
 		{
 			player highwater_global_stat("HIGHEST_ROUND_REACHED", level.round_number);

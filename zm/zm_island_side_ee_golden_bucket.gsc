@@ -151,7 +151,7 @@ function function_e6cfa209()
 			}
 			else if(self getammocount(level.var_c003f5b))
 			{
-				if(self namespace_f55b6585::function_3f3f64e9(e_clip) && self namespace_f55b6585::function_5fa274c1(e_clip))
+				if(self keeper_skull::function_3f3f64e9(e_clip) && self keeper_skull::function_5fa274c1(e_clip))
 				{
 					break;
 				}
@@ -730,7 +730,7 @@ function function_da9c118b()
 		if(!(isdefined(player.var_b6a244f9) && player.var_b6a244f9))
 		{
 			player thread function_bbd146a7();
-			player notify("hash_875764cb");
+			player notify("player_got_gold_bucket");
 		}
 	}
 }

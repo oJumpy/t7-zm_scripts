@@ -14,11 +14,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_1a0051d2;
+#namespace zm_weap_microwavegun;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x85F96191
 	Offset: 0x650
 	Size: 0x33
@@ -32,7 +32,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x908C6F5
 	Offset: 0x690
 	Size: 0x303
@@ -68,7 +68,7 @@ function __init__()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xC3E82734
 	Offset: 0x9A0
 	Size: 0x1B
@@ -82,7 +82,7 @@ function on_player_spawned()
 
 /*
 	Name: function_8f95fde5
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x6A5FFFE7
 	Offset: 0x9C8
 	Size: 0x15D
@@ -116,7 +116,7 @@ function function_8f95fde5()
 
 /*
 	Name: function_1402f75f
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xC0A7A079
 	Offset: 0xB30
 	Size: 0xFF
@@ -154,7 +154,7 @@ function function_1402f75f()
 
 /*
 	Name: add_microwaveable_object
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xB021D907
 	Offset: 0xC38
 	Size: 0x2B
@@ -168,7 +168,7 @@ function add_microwaveable_object(ent)
 
 /*
 	Name: remove_microwaveable_object
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xBF5EB938
 	Offset: 0xC70
 	Size: 0x2B
@@ -182,7 +182,7 @@ function remove_microwaveable_object(ent)
 
 /*
 	Name: microwavegun_on_player_connect
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xA4222416
 	Offset: 0xCA8
 	Size: 0x37
@@ -200,7 +200,7 @@ function microwavegun_on_player_connect()
 
 /*
 	Name: wait_for_microwavegun_fired
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x3BF57649
 	Offset: 0xCE8
 	Size: 0x8F
@@ -224,7 +224,7 @@ function wait_for_microwavegun_fired()
 
 /*
 	Name: microwavegun_network_choke
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x7C31E53D
 	Offset: 0xD80
 	Size: 0x4B
@@ -244,7 +244,7 @@ function microwavegun_network_choke()
 
 /*
 	Name: microwavegun_fired
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x7368DE20
 	Offset: 0xDD8
 	Size: 0x103
@@ -272,7 +272,7 @@ function microwavegun_fired(upgraded)
 
 /*
 	Name: microwavegun_get_enemies_in_range
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x2F821297
 	Offset: 0xEE8
 	Size: 0x5D3
@@ -364,7 +364,7 @@ function microwavegun_get_enemies_in_range(upgraded, microwaveable_objects)
 
 /*
 	Name: microwavegun_debug_print
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xBD766163
 	Offset: 0x14C8
 	Size: 0x8B
@@ -388,7 +388,7 @@ function microwavegun_debug_print(msg, color)
 
 /*
 	Name: microwavegun_sizzle_zombie
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x83D8D031
 	Offset: 0x1560
 	Size: 0x2B3
@@ -455,7 +455,7 @@ function microwavegun_sizzle_zombie(player, sizzle_vec, index)
 
 /*
 	Name: microwavegun_handle_death_notetracks
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x6B8CC7FB
 	Offset: 0x1820
 	Size: 0x83
@@ -477,7 +477,7 @@ function microwavegun_handle_death_notetracks(note)
 
 /*
 	Name: microwavegun_sizzle_death_ending
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x5F0D0FE8
 	Offset: 0x18B0
 	Size: 0x43
@@ -497,7 +497,7 @@ function microwavegun_sizzle_death_ending()
 
 /*
 	Name: microwavegun_dw_zombie_hit_response_internal
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xE1161BE3
 	Offset: 0x1900
 	Size: 0x183
@@ -540,7 +540,7 @@ function microwavegun_dw_zombie_hit_response_internal(mod, damageWeapon, player)
 
 /*
 	Name: microwavegun_zap_get_shock_fx
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xE3157613
 	Offset: 0x1A90
 	Size: 0x91
@@ -565,7 +565,7 @@ function microwavegun_zap_get_shock_fx(weapon)
 
 /*
 	Name: microwavegun_zap_get_shock_eyes_fx
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xC9AE30FF
 	Offset: 0x1B30
 	Size: 0x91
@@ -590,7 +590,7 @@ function microwavegun_zap_get_shock_eyes_fx(weapon)
 
 /*
 	Name: microwavegun_zap_head_gib
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x3D5487C7
 	Offset: 0x1BD0
 	Size: 0x4B
@@ -605,7 +605,7 @@ function microwavegun_zap_head_gib(weapon)
 
 /*
 	Name: microwavegun_zap_death_fx
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xACD041FA
 	Offset: 0x1C28
 	Size: 0xF3
@@ -637,7 +637,7 @@ function microwavegun_zap_death_fx(weapon)
 
 /*
 	Name: microwavegun_zombie_damage_response
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x6B7E186
 	Offset: 0x1D28
 	Size: 0xB3
@@ -656,7 +656,7 @@ function microwavegun_zombie_damage_response(str_mod, str_hit_location, v_hit_or
 
 /*
 	Name: microwavegun_zombie_death_response
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x88726FCA
 	Offset: 0x1DE8
 	Size: 0xA7
@@ -686,7 +686,7 @@ function microwavegun_zombie_death_response()
 
 /*
 	Name: is_microwavegun_dw_damage
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x853F8321
 	Offset: 0x1E98
 	Size: 0x9F
@@ -700,7 +700,7 @@ function is_microwavegun_dw_damage()
 
 /*
 	Name: enemy_killed_by_dw_microwavegun
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xA7AC0D97
 	Offset: 0x1F40
 	Size: 0x15
@@ -714,7 +714,7 @@ function enemy_killed_by_dw_microwavegun()
 
 /*
 	Name: is_microwavegun_damage
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xF1972CEE
 	Offset: 0x1F60
 	Size: 0x5B
@@ -728,7 +728,7 @@ function is_microwavegun_damage()
 
 /*
 	Name: enemy_killed_by_microwavegun
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x5124E6F8
 	Offset: 0x1FC8
 	Size: 0x15
@@ -742,7 +742,7 @@ function enemy_killed_by_microwavegun()
 
 /*
 	Name: microwavegun_sound_thread
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xBC2B4748
 	Offset: 0x1FE8
 	Size: 0x10F
@@ -772,7 +772,7 @@ function microwavegun_sound_thread()
 
 /*
 	Name: setup_microwavegun_vox
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0x83826AE9
 	Offset: 0x2100
 	Size: 0x9B
@@ -796,7 +796,7 @@ function setup_microwavegun_vox(player, waitTime)
 
 /*
 	Name: function_5c6b11a6
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xBA4713C1
 	Offset: 0x21A8
 	Size: 0x2B
@@ -810,7 +810,7 @@ function function_5c6b11a6(entity)
 
 /*
 	Name: function_f8d8850f
-	Namespace: namespace_1a0051d2
+	Namespace: zm_weap_microwavegun
 	Checksum: 0xBCF33DC7
 	Offset: 0x21E0
 	Size: 0x43

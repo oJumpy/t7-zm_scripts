@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_19b2be8a;
+#namespace zm_bgb_profit_sharing;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x7FA579B3
 	Offset: 0x1F8
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x8CF3600F
 	Offset: 0x238
 	Size: 0xD7
@@ -45,7 +45,7 @@ function __init__()
 
 /*
 	Name: function_df72a623
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x8A6BB27D
 	Offset: 0x318
 	Size: 0x127
@@ -79,7 +79,7 @@ function function_df72a623(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_f683a0e1
-	Namespace: namespace_19b2be8a
+	Namespace: zm_bgb_profit_sharing
 	Checksum: 0x6B98415E
 	Offset: 0x448
 	Size: 0xF7

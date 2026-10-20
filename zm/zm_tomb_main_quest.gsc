@@ -1145,7 +1145,7 @@ function staff_unlock_with_zone_capture(s_staff_piece)
 		if(uts_box.str_location == "church_capture")
 		{
 			uts_box.s_staff_piece = s_staff_piece;
-			level thread namespace_a528e918::open_box(undefined, uts_box, &reward_staff_piece);
+			level thread zm_challenges_tomb::open_box(undefined, uts_box, &reward_staff_piece);
 			return;
 		}
 	}
@@ -1169,7 +1169,7 @@ function reward_staff_piece(player, s_stat)
 	m_piece.angles = self.angles + VectorScale((0, 1, 0), 90);
 	m_piece clientfield::set("element_glow_fx", 1);
 	util::wait_network_frame();
-	if(!namespace_a528e918::reward_rise_and_grab(m_piece, 50, 2, 2, -1))
+	if(!zm_challenges_tomb::reward_rise_and_grab(m_piece, 50, 2, 2, -1))
 	{
 		return 0;
 	}

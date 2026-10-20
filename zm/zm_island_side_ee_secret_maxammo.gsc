@@ -22,11 +22,11 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\zm_island_util;
 
-#namespace namespace_5a453011;
+#namespace zm_island_side_ee_secret_maxammo;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0x8EC3DDD7
 	Offset: 0x430
 	Size: 0x33
@@ -40,7 +40,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0x763F90C3
 	Offset: 0x470
 	Size: 0x16B
@@ -62,7 +62,7 @@ function __init__()
 
 /*
 	Name: main
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0xBE1D8FA5
 	Offset: 0x5E8
 	Size: 0x7B
@@ -80,7 +80,7 @@ function main()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0x12185FEE
 	Offset: 0x670
 	Size: 0x2B
@@ -94,7 +94,7 @@ function on_player_spawned()
 
 /*
 	Name: on_player_connected
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0x99EC1590
 	Offset: 0x6A8
 	Size: 0x3
@@ -107,7 +107,7 @@ function on_player_connected()
 
 /*
 	Name: function_1c4fc4a7
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0xC03C180A
 	Offset: 0x6B8
 	Size: 0xBB
@@ -136,7 +136,7 @@ function function_1c4fc4a7(mdl_target)
 
 /*
 	Name: function_8ae0d6df
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0xEA5BA053
 	Offset: 0x780
 	Size: 0x16B
@@ -164,7 +164,7 @@ function function_8ae0d6df()
 
 /*
 	Name: function_35b46d1a
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0x89AC6280
 	Offset: 0x8F8
 	Size: 0x43
@@ -181,7 +181,7 @@ function function_35b46d1a()
 
 /*
 	Name: function_41601624
-	Namespace: namespace_5a453011
+	Namespace: zm_island_side_ee_secret_maxammo
 	Checksum: 0xE807F219
 	Offset: 0x948
 	Size: 0x45

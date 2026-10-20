@@ -21,12 +21,12 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_devgui;
 
-#namespace namespace_57695b4d;
+#namespace zm_elemental_zombie;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_57695b4d
-	Checksum: 0xF6606F2D
+	Namespace: zm_elemental_zombie
+	Checksum: 0x5E054EFE
 	Offset: 0x5B0
 	Size: 0x33
 	Parameters: 0
@@ -39,8 +39,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_57695b4d
-	Checksum: 0x808DD511
+	Namespace: zm_elemental_zombie
+	Checksum: 0x874EEAD6
 	Offset: 0x5F0
 	Size: 0x43
 	Parameters: 0
@@ -57,8 +57,8 @@ function __init__()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_57695b4d
-	Checksum: 0xC472F74B
+	Namespace: zm_elemental_zombie
+	Checksum: 0x18BBEF7
 	Offset: 0x640
 	Size: 0x123
 	Parameters: 0
@@ -76,8 +76,8 @@ function private register_clientfields()
 
 /*
 	Name: function_1b1bb1b
-	Namespace: namespace_57695b4d
-	Checksum: 0xBD503723
+	Namespace: zm_elemental_zombie
+	Checksum: 0x5EC6F2DF
 	Offset: 0x770
 	Size: 0x263
 	Parameters: 0
@@ -119,38 +119,41 @@ function function_1b1bb1b()
 
 /*
 	Name: function_f4defbc2
-	Namespace: namespace_57695b4d
-	Checksum: 0xE871125C
+	Namespace: zm_elemental_zombie
+	Checksum: 0xC047D8EA
 	Offset: 0x9E0
-	Size: 0x16B
+	Size: 0x173
 	Parameters: 0
 	Flags: None
 */
 function function_f4defbc2()
 {
-	ai_zombie = self;
-	var_ac4641b = function_4aeed0a5("napalm");
-	if(!isdefined(level.var_bd64e31e) || var_ac4641b < level.var_bd64e31e)
+	if(isdefined(self))
 	{
-		if(!isdefined(ai_zombie.is_elemental_zombie) || ai_zombie.is_elemental_zombie == 0)
+		ai_zombie = self;
+		var_ac4641b = function_4aeed0a5("napalm");
+		if(!isdefined(level.var_bd64e31e) || var_ac4641b < level.var_bd64e31e)
 		{
-			ai_zombie.is_elemental_zombie = 1;
-			ai_zombie.var_9a02a614 = "napalm";
-			ai_zombie clientfield::set("arch_actor_fire_fx", 1);
-			ai_zombie clientfield::set("napalm_sfx", 1);
-			ai_zombie.health = Int(ai_zombie.health * 0.75);
-			ai_zombie thread napalm_zombie_death();
-			ai_zombie thread function_d070bfba();
-			ai_zombie zombie_utility::set_zombie_run_cycle("sprint");
+			if(!isdefined(ai_zombie.is_elemental_zombie) || ai_zombie.is_elemental_zombie == 0)
+			{
+				ai_zombie.is_elemental_zombie = 1;
+				ai_zombie.var_9a02a614 = "napalm";
+				ai_zombie clientfield::set("arch_actor_fire_fx", 1);
+				ai_zombie clientfield::set("napalm_sfx", 1);
+				ai_zombie.health = Int(ai_zombie.health * 0.75);
+				ai_zombie thread napalm_zombie_death();
+				ai_zombie thread function_d070bfba();
+				ai_zombie zombie_utility::set_zombie_run_cycle("sprint");
+			}
 		}
 	}
 }
 
 /*
 	Name: function_2987b6dc
-	Namespace: namespace_57695b4d
-	Checksum: 0x4D2C7D70
-	Offset: 0xB58
+	Namespace: zm_elemental_zombie
+	Checksum: 0x27BF7B6C
+	Offset: 0xB60
 	Size: 0x77
 	Parameters: 0
 	Flags: None
@@ -172,9 +175,9 @@ function function_2987b6dc()
 
 /*
 	Name: function_d070bfba
-	Namespace: namespace_57695b4d
-	Checksum: 0x2661A187
-	Offset: 0xBD8
+	Namespace: zm_elemental_zombie
+	Checksum: 0x75AA2EB1
+	Offset: 0xBE0
 	Size: 0x77
 	Parameters: 0
 	Flags: None
@@ -196,9 +199,9 @@ function function_d070bfba()
 
 /*
 	Name: function_d9226011
-	Namespace: namespace_57695b4d
-	Checksum: 0xBE1C9929
-	Offset: 0xC58
+	Namespace: zm_elemental_zombie
+	Checksum: 0xE479942B
+	Offset: 0xC60
 	Size: 0xEB
 	Parameters: 0
 	Flags: None
@@ -219,9 +222,9 @@ function function_d9226011()
 
 /*
 	Name: napalm_zombie_death
-	Namespace: namespace_57695b4d
-	Checksum: 0x1D33F10E
-	Offset: 0xD50
+	Namespace: zm_elemental_zombie
+	Checksum: 0x8A63DB4F
+	Offset: 0xD58
 	Size: 0x13B
 	Parameters: 0
 	Flags: None
@@ -246,9 +249,9 @@ function napalm_zombie_death()
 
 /*
 	Name: function_e6cd7e78
-	Namespace: namespace_57695b4d
-	Checksum: 0xDE6943A2
-	Offset: 0xE98
+	Namespace: zm_elemental_zombie
+	Checksum: 0x93CF4833
+	Offset: 0xEA0
 	Size: 0x73
 	Parameters: 5
 	Flags: None
@@ -263,9 +266,9 @@ function function_e6cd7e78(damage, attacker, direction_vec, point, mod)
 
 /*
 	Name: function_d41418b8
-	Namespace: namespace_57695b4d
-	Checksum: 0x84312204
-	Offset: 0xF18
+	Namespace: zm_elemental_zombie
+	Checksum: 0xA9CB2F3A
+	Offset: 0xF20
 	Size: 0x63
 	Parameters: 0
 	Flags: None
@@ -279,9 +282,9 @@ function function_d41418b8()
 
 /*
 	Name: function_c50e890f
-	Namespace: namespace_57695b4d
-	Checksum: 0xDFF45E9C
-	Offset: 0xF88
+	Namespace: zm_elemental_zombie
+	Checksum: 0x87F505F1
+	Offset: 0xF90
 	Size: 0x6B
 	Parameters: 1
 	Flags: None
@@ -295,9 +298,9 @@ function function_c50e890f(type)
 
 /*
 	Name: function_4aeed0a5
-	Namespace: namespace_57695b4d
-	Checksum: 0xFD5D568F
-	Offset: 0x1000
+	Namespace: zm_elemental_zombie
+	Checksum: 0x1BAE592E
+	Offset: 0x1008
 	Size: 0x35
 	Parameters: 1
 	Flags: None
@@ -310,9 +313,9 @@ function function_4aeed0a5(type)
 
 /*
 	Name: function_361f6caa
-	Namespace: namespace_57695b4d
-	Checksum: 0xE0D4DBA7
-	Offset: 0x1040
+	Namespace: zm_elemental_zombie
+	Checksum: 0x555E1451
+	Offset: 0x1048
 	Size: 0x27
 	Parameters: 2
 	Flags: None
@@ -324,9 +327,9 @@ function function_361f6caa(ai_zombie, type)
 
 /*
 	Name: function_b804eb62
-	Namespace: namespace_57695b4d
-	Checksum: 0xDC56E727
-	Offset: 0x1070
+	Namespace: zm_elemental_zombie
+	Checksum: 0xBE25627
+	Offset: 0x1078
 	Size: 0x1F
 	Parameters: 1
 	Flags: None
@@ -338,9 +341,9 @@ function function_b804eb62(ai_zombie)
 
 /*
 	Name: function_f6901b6a
-	Namespace: namespace_57695b4d
-	Checksum: 0x36F7E433
-	Offset: 0x1098
+	Namespace: zm_elemental_zombie
+	Checksum: 0x24A93A0D
+	Offset: 0x10A0
 	Size: 0x43
 	Parameters: 0
 	Flags: None
@@ -355,9 +358,9 @@ function function_f6901b6a()
 
 /*
 	Name: function_2d0e7f4
-	Namespace: namespace_57695b4d
-	Checksum: 0x286CC2C7
-	Offset: 0x10E8
+	Namespace: zm_elemental_zombie
+	Checksum: 0x473A68ED
+	Offset: 0x10F0
 	Size: 0x28D
 	Parameters: 1
 	Flags: None

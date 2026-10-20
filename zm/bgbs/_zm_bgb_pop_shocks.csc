@@ -6,11 +6,11 @@
 #using scripts\zm\_zm_lightning_chain;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_112fb534;
+#namespace zm_bgb_pop_shocks;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0xA4D4E6C6
 	Offset: 0x168
 	Size: 0x33
@@ -24,7 +24,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_112fb534
+	Namespace: zm_bgb_pop_shocks
 	Checksum: 0xBE98DA8
 	Offset: 0x1A8
 	Size: 0x3B

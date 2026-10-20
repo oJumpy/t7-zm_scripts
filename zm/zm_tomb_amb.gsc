@@ -166,7 +166,7 @@ function sndlocationsarray()
 function sndLocationShouldPlay(Array, activeZone)
 {
 	shouldPlay = 0;
-	if(!namespace_52adc03e::function_8090042c())
+	if(!zm_audio_zhd::function_8090042c())
 	{
 		return shouldPlay;
 	}
@@ -352,7 +352,7 @@ function sndlocationbetweenroundswait()
 */
 function sndplaystinger(State)
 {
-	if(!namespace_52adc03e::function_8090042c())
+	if(!zm_audio_zhd::function_8090042c())
 	{
 		return;
 	}
@@ -370,7 +370,7 @@ function sndplaystinger(State)
 */
 function sndplaystingerwithoverride(State, var_70f98722)
 {
-	if(!namespace_52adc03e::function_8090042c())
+	if(!zm_audio_zhd::function_8090042c())
 	{
 		return;
 	}
@@ -410,7 +410,7 @@ function snddoormusic()
 	while(1)
 	{
 		self waittill("trigger");
-		if(!namespace_52adc03e::function_8090042c())
+		if(!zm_audio_zhd::function_8090042c())
 		{
 			wait(0.1);
 			continue;
@@ -487,7 +487,7 @@ function sndmaelstrom_timeout()
 */
 function sndmusicegg()
 {
-	level thread namespace_52adc03e::function_e753d4f();
+	level thread zm_audio_zhd::function_e753d4f();
 	level flag::wait_till("snd_song_completed");
 	level thread zm_audio::sndMusicSystem_PlayState("archangel");
 }
@@ -547,7 +547,7 @@ function function_89a607c3()
 */
 function function_f36e092d()
 {
-	if(!namespace_52adc03e::function_8090042c())
+	if(!zm_audio_zhd::function_8090042c())
 	{
 		return 0;
 	}
@@ -584,7 +584,7 @@ function function_45b4acf2()
 */
 function function_ada4c741()
 {
-	level endon("hash_f9e823ac");
+	level endon("snd_zhdegg_activate");
 	while(1)
 	{
 		level waittill("player_zombie_blood", e_player);
@@ -701,8 +701,8 @@ function function_b8227f87()
 	self.mdl_ballerina = util::spawn_model(self.model, self.origin, self.angles);
 	self.mdl_ballerina clientfield::set("snd_zhdegg", 1);
 	self.mdl_ballerina PlayLoopSound("mus_musicbox_lp", 2);
-	self thread namespace_52adc03e::function_9d55fd08();
-	self thread namespace_52adc03e::function_2fdaabf3();
+	self thread zm_audio_zhd::function_9d55fd08();
+	self thread zm_audio_zhd::function_2fdaabf3();
 	self util::waittill_any("ballerina_destroyed");
 	level.n_ballerina_count++;
 	self.mdl_ballerina clientfield::set("snd_zhdegg", 0);
@@ -723,10 +723,10 @@ function function_231d9741()
 {
 	playsoundatposition("zmb_sam_egg_success", (0, 0, 0));
 	wait(3);
-	var_2ba18547 = struct::get("s_ballerina_end", "targetname");
-	var_2ba18547 thread function_69f032ca();
-	var_2ba18547 waittill("hash_3a53ac43");
-	zm_powerups::specific_powerup_drop("full_ammo", var_2ba18547.origin);
+	s_ballerina_end = struct::get("s_ballerina_end", "targetname");
+	s_ballerina_end thread function_69f032ca();
+	s_ballerina_end waittill("hash_3a53ac43");
+	zm_powerups::specific_powerup_drop("full_ammo", s_ballerina_end.origin);
 	level flag::set("snd_zhdegg_completed");
 }
 
@@ -744,7 +744,7 @@ function function_69f032ca()
 	self endon("hash_34014bea");
 	self.mdl_ballerina = util::spawn_model(self.model, self.origin, self.angles);
 	self.mdl_ballerina clientfield::set("snd_zhdegg", 1);
-	self thread namespace_52adc03e::function_9d55fd08();
+	self thread zm_audio_zhd::function_9d55fd08();
 	self.mdl_ballerina PlayLoopSound("mus_musicbox_lp", 2);
 	var_209d26c2 = struct::get(self.target, "targetname");
 	self thread function_bec55ee6();

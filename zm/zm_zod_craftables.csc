@@ -74,10 +74,10 @@ function register_clientfields()
 	{
 		RegisterClientField("world", "holder_of_" + character_name, 1, 3, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
 	}
-	RegisterClientField("world", "quest_state_" + "boxer", 1, 3, "int", &namespace_1f61c67f::quest_state_boxer, 0, 1);
-	RegisterClientField("world", "quest_state_" + "detective", 1, 3, "int", &namespace_1f61c67f::quest_state_detective, 0, 1);
-	RegisterClientField("world", "quest_state_" + "femme", 1, 3, "int", &namespace_1f61c67f::quest_state_femme, 0, 1);
-	RegisterClientField("world", "quest_state_" + "magician", 1, 3, "int", &namespace_1f61c67f::quest_state_magician, 0, 1);
+	RegisterClientField("world", "quest_state_" + "boxer", 1, 3, "int", &zm_zod_quest::quest_state_boxer, 0, 1);
+	RegisterClientField("world", "quest_state_" + "detective", 1, 3, "int", &zm_zod_quest::quest_state_detective, 0, 1);
+	RegisterClientField("world", "quest_state_" + "femme", 1, 3, "int", &zm_zod_quest::quest_state_femme, 0, 1);
+	RegisterClientField("world", "quest_state_" + "magician", 1, 3, "int", &zm_zod_quest::quest_state_magician, 0, 1);
 	clientfield::register("toplayer", "ZM_ZOD_UI_FUSE_PICKUP", 1, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);
 	clientfield::register("toplayer", "ZM_ZOD_UI_FUSE_PLACED", 1, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);
 	clientfield::register("toplayer", "ZM_ZOD_UI_FUSE_CRAFTED", 1, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);

@@ -38,12 +38,12 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_unbearable", "event");
-	clientfield::register("zbarrier", "zm_bgb_unbearable", 1, 1, "counter", &function_cd297226, 0, 0);
+	clientfield::register("zbarrier", "zm_bgb_unbearable", 1, 1, "counter", &zm_bgb_unbearable_cb, 0, 0);
 	level._effect["zm_bgb_unbearable"] = "zombie/fx_bgb_unbearable_box_flash_zmb";
 }
 
 /*
-	Name: function_cd297226
+	Name: zm_bgb_unbearable_cb
 	Namespace: zm_bgb_unbearable
 	Checksum: 0x549D0CEF
 	Offset: 0x288
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_cd297226(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function zm_bgb_unbearable_cb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	playFX(localClientNum, level._effect["zm_bgb_unbearable"], self.origin, AnglesToForward(self.angles), anglesToUp(self.angles));
 }

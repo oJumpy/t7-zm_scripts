@@ -19,11 +19,11 @@
 #using scripts\zm\zm_stalingrad_util;
 #using scripts\zm\zm_stalingrad_vo;
 
-#namespace namespace_a26e93d0;
+#namespace zm_stalingrad_eye_beam_trap;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0x51E0EE53
 	Offset: 0x530
 	Size: 0x33
@@ -37,7 +37,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0xCAD13822
 	Offset: 0x570
 	Size: 0x29F
@@ -67,7 +67,7 @@ function __init__()
 
 /*
 	Name: function_a2abac9c
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0xAF83CCBA
 	Offset: 0x818
 	Size: 0x14F
@@ -105,7 +105,7 @@ function function_a2abac9c(e_player)
 
 /*
 	Name: function_fd8775a2
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0xFD45B1C8
 	Offset: 0x970
 	Size: 0x1AF
@@ -141,7 +141,7 @@ function function_fd8775a2()
 
 /*
 	Name: function_3ae55c2d
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0x85A77903
 	Offset: 0xB28
 	Size: 0x10B
@@ -161,7 +161,7 @@ function function_3ae55c2d(var_f2bd831, a_s_switches)
 
 /*
 	Name: beam_trap_think
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0xCAFAFA64
 	Offset: 0xC40
 	Size: 0x701
@@ -176,7 +176,7 @@ function beam_trap_think(var_f2bd831, a_s_switches)
 	s_exploder = self.s_exploder;
 	exploder::exploder(s_exploder);
 	e_eye_beam_volume = GetEnt("eye_beam_volume_" + e_kill_zone.script_string, "targetname");
-	var_f2bd831 thread namespace_dcf9c464::function_176ac3fa();
+	var_f2bd831 thread zm_stalingrad_vo::function_176ac3fa();
 	level clientfield::set("eye_beam_rumble_" + e_kill_zone.script_string, 1);
 	level thread function_78f79e79(1);
 	n_total_kills = 0;
@@ -242,7 +242,7 @@ function beam_trap_think(var_f2bd831, a_s_switches)
 
 /*
 	Name: function_78f79e79
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0x94C79D6C
 	Offset: 0x1350
 	Size: 0xBB
@@ -266,7 +266,7 @@ function function_78f79e79(trap_on)
 
 /*
 	Name: function_6009178e
-	Namespace: namespace_a26e93d0
+	Namespace: zm_stalingrad_eye_beam_trap
 	Checksum: 0x46473D35
 	Offset: 0x1418
 	Size: 0x165
@@ -275,7 +275,7 @@ function function_78f79e79(trap_on)
 */
 function function_6009178e(e_kill_zone)
 {
-	level endon("hash_4b40ae8");
+	level endon("tesla_coil_cooldown");
 	/#
 		if(IsGodMode(self))
 		{

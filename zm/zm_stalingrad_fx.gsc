@@ -2,11 +2,11 @@
 #using scripts\shared\flag_shared;
 #using scripts\shared\util_shared;
 
-#namespace namespace_c49c3ddb;
+#namespace zm_stalingrad_fx;
 
 /*
 	Name: init
-	Namespace: namespace_c49c3ddb
+	Namespace: zm_stalingrad_fx
 	Checksum: 0xDDD33384
 	Offset: 0x628
 	Size: 0x23
@@ -21,7 +21,7 @@ function init()
 
 /*
 	Name: precache_scripted_fx
-	Namespace: namespace_c49c3ddb
+	Namespace: zm_stalingrad_fx
 	Checksum: 0x3E0C4437
 	Offset: 0x658
 	Size: 0x1F9
@@ -52,7 +52,7 @@ function precache_scripted_fx()
 
 /*
 	Name: precache_createfx_fx
-	Namespace: namespace_c49c3ddb
+	Namespace: zm_stalingrad_fx
 	Checksum: 0x99EC1590
 	Offset: 0x860
 	Size: 0x3
@@ -65,7 +65,7 @@ function precache_createfx_fx()
 
 /*
 	Name: fx_overrides
-	Namespace: namespace_c49c3ddb
+	Namespace: zm_stalingrad_fx
 	Checksum: 0xD5AD6FBD
 	Offset: 0x870
 	Size: 0xA9

@@ -31,11 +31,11 @@
 #using scripts\zm\zm_stalingrad_util;
 #using scripts\zm\zm_stalingrad_vo;
 
-#namespace namespace_b57650e4;
+#namespace zm_stalingrad_pap;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x7FC287E3
 	Offset: 0xB80
 	Size: 0x33
@@ -49,7 +49,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: function_5efc91a4
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xD8635F62
 	Offset: 0xBC0
 	Size: 0x33
@@ -66,7 +66,7 @@ function function_5efc91a4()
 
 /*
 	Name: __init__
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xC487C8D9
 	Offset: 0xC00
 	Size: 0x93
@@ -82,7 +82,7 @@ function __init__()
 
 /*
 	Name: function_2fcaffe2
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x7B30326C
 	Offset: 0xCA0
 	Size: 0x101
@@ -104,7 +104,7 @@ function function_2fcaffe2()
 
 /*
 	Name: function_809fbbff
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x5EB9A540
 	Offset: 0xDB0
 	Size: 0x15B
@@ -117,7 +117,7 @@ function function_809fbbff(var_db0ac3dc)
 	{
 		return;
 	}
-	level namespace_dcf9c464::function_3a92f7f();
+	level zm_stalingrad_vo::function_3a92f7f();
 	if(level.var_583e4a97.var_365bcb3c == 0)
 	{
 		var_1196aeee = function_23b93c79(var_db0ac3dc);
@@ -137,7 +137,7 @@ function function_809fbbff(var_db0ac3dc)
 
 /*
 	Name: function_d32eac7f
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x16CD08C6
 	Offset: 0xF18
 	Size: 0x99
@@ -173,7 +173,7 @@ function function_d32eac7f()
 
 /*
 	Name: function_23b93c79
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x377D067D
 	Offset: 0xFC0
 	Size: 0x13D
@@ -199,7 +199,7 @@ function function_23b93c79(var_db0ac3dc)
 
 /*
 	Name: function_a0a37968
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xE3D3297A
 	Offset: 0x1108
 	Size: 0xDD
@@ -220,15 +220,15 @@ function function_a0a37968(var_db0ac3dc)
 }
 
 /*
-	Name: function_2792df1d
-	Namespace: namespace_b57650e4
+	Name: transport_pavlovs_to_fountain
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xD6C1ED2B
 	Offset: 0x11F0
 	Size: 0x9F
 	Parameters: 0
 	Flags: None
 */
-function function_2792df1d()
+function transport_pavlovs_to_fountain()
 {
 	var_63979061 = GetEnt("transport_pavlovs_to_fountain", "targetname");
 	while(1)
@@ -244,7 +244,7 @@ function function_2792df1d()
 
 /*
 	Name: function_f3cc536
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x67DF15B
 	Offset: 0x1298
 	Size: 0x185
@@ -268,7 +268,7 @@ function function_f3cc536()
 
 /*
 	Name: function_2b0bc12
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x463D6CA3
 	Offset: 0x1428
 	Size: 0xFB
@@ -287,7 +287,7 @@ function function_2b0bc12()
 
 /*
 	Name: function_6236d848
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xA663A110
 	Offset: 0x1530
 	Size: 0x160B
@@ -385,7 +385,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 	}
 	else
 	{
-		level thread namespace_dcf9c464::function_e4acaa37("vox_soph_controller_quest_lockdown_start_0");
+		level thread zm_stalingrad_vo::function_e4acaa37("vox_soph_controller_quest_lockdown_start_0");
 	}
 	level thread namespace_48c05c81::function_e7c75cf0();
 	level flag::clear("zombie_drop_powerups");
@@ -463,7 +463,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 			level function_3d5f2c8e(level.s_lockdown.var_22bf30b7);
 			if(i > 0)
 			{
-				level thread namespace_dcf9c464::function_e4acaa37("vox_soph_controller_quest_wave_start_2");
+				level thread zm_stalingrad_vo::function_e4acaa37("vox_soph_controller_quest_wave_start_2");
 			}
 			var_939defa4 = [];
 			if(isdefined(var_e57afa84))
@@ -515,7 +515,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 			function_187a933f(level.s_lockdown.var_22bf30b7);
 			exploder::exploder("pavlov_" + 4);
 			level notify("hash_d2eac5fe");
-			level thread namespace_dcf9c464::function_e4acaa37("vox_soph_controller_quest_wave_end_1");
+			level thread zm_stalingrad_vo::function_e4acaa37("vox_soph_controller_quest_wave_end_1");
 			wait(2.5);
 			if(isdefined(str_notify_end) && level flag::get(str_notify_end))
 			{
@@ -561,7 +561,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 			exploder::exploder_stop("pavlov_" + 0);
 			exploder::exploder_stop("pavlov_" + 4);
 			util::wait_network_frame();
-			level thread namespace_dcf9c464::function_e4acaa37("vox_soph_controller_quest_wave_start_2");
+			level thread zm_stalingrad_vo::function_e4acaa37("vox_soph_controller_quest_wave_start_2");
 			var_939defa4 = [];
 			if(isdefined(var_e57afa84))
 			{
@@ -662,7 +662,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 	}
 	else
 	{
-		level thread namespace_dcf9c464::function_d2ea8c30();
+		level thread zm_stalingrad_vo::function_d2ea8c30();
 		playsoundatposition("mus_stalingrad_underscore_pavlov_defend_end", (0, 0, 0));
 	}
 	if(isdefined(e_powerup))
@@ -673,7 +673,7 @@ function function_6236d848(var_e57afa84, var_7741a4b8, var_ed686791, var_2a448c9
 
 /*
 	Name: function_a71517e1
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xD2E79241
 	Offset: 0x2B48
 	Size: 0x193
@@ -714,7 +714,7 @@ function function_a71517e1(n_front)
 
 /*
 	Name: function_f10ea3a8
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x3EF926C5
 	Offset: 0x2CE8
 	Size: 0x6B
@@ -732,7 +732,7 @@ function function_f10ea3a8()
 
 /*
 	Name: function_187a933f
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x70195486
 	Offset: 0x2D60
 	Size: 0x19B
@@ -773,7 +773,7 @@ function function_187a933f(n_front)
 
 /*
 	Name: function_188bdb42
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x641EEBFF
 	Offset: 0x2F08
 	Size: 0x6B
@@ -791,7 +791,7 @@ function function_188bdb42()
 
 /*
 	Name: function_d6ced80
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x20BF5621
 	Offset: 0x2F80
 	Size: 0x761
@@ -864,7 +864,7 @@ function function_d6ced80(b_locked)
 
 /*
 	Name: function_77f195ef
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xF297254E
 	Offset: 0x36F0
 	Size: 0x3B
@@ -884,7 +884,7 @@ function function_77f195ef(var_63b437d6)
 
 /*
 	Name: function_451531f2
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x26B3F93
 	Offset: 0x3738
 	Size: 0x3E3
@@ -932,7 +932,7 @@ function function_451531f2()
 
 /*
 	Name: function_3d5f2c8e
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xE55E3EB1
 	Offset: 0x3B28
 	Size: 0x1A7
@@ -975,7 +975,7 @@ function function_3d5f2c8e(n_front)
 
 /*
 	Name: function_1a7c9b89
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x8DFBB524
 	Offset: 0x3CD8
 	Size: 0x93
@@ -992,7 +992,7 @@ function function_1a7c9b89(str_front)
 
 /*
 	Name: function_f4ceb3f8
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0x90FF7B7D
 	Offset: 0x3D78
 	Size: 0xA1
@@ -1014,7 +1014,7 @@ function function_f4ceb3f8()
 
 /*
 	Name: function_2c6fd7
-	Namespace: namespace_b57650e4
+	Namespace: zm_stalingrad_pap
 	Checksum: 0xB4EDC6A9
 	Offset: 0x3E28
 	Size: 0xC23
@@ -1092,7 +1092,7 @@ function function_2c6fd7(var_2b71b5b4, var_15eb9a52, var_f92c3865, var_13d1e831)
 		level function_3d5f2c8e(level.s_lockdown.var_22bf30b7);
 		if(i > 0)
 		{
-			level thread namespace_dcf9c464::function_e4acaa37("vox_soph_controller_quest_wave_start_2");
+			level thread zm_stalingrad_vo::function_e4acaa37("vox_soph_controller_quest_wave_start_2");
 		}
 		var_939defa4 = [];
 		if(!isdefined(var_939defa4))
@@ -1118,7 +1118,7 @@ function function_2c6fd7(var_2b71b5b4, var_15eb9a52, var_f92c3865, var_13d1e831)
 		function_187a933f(level.s_lockdown.var_22bf30b7);
 		exploder::exploder("pavlov_" + 4);
 		level notify("hash_d2eac5fe");
-		level thread namespace_dcf9c464::function_e4acaa37("vox_soph_controller_quest_wave_end_1");
+		level thread zm_stalingrad_vo::function_e4acaa37("vox_soph_controller_quest_wave_end_1");
 		wait(2.5);
 		if(level flag::get(var_13d1e831))
 		{

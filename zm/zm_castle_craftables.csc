@@ -52,8 +52,8 @@ function register_clientfields()
 	RegisterClientField("world", "gravityspike" + "_" + "part_body", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
 	RegisterClientField("world", "gravityspike" + "_" + "part_guards", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
 	RegisterClientField("world", "gravityspike" + "_" + "part_handle", 1, shared_bits, "int", &zm_utility::setSharedInventoryUIModels, 0, 1);
-	clientfield::register("scriptmover", "craftable_powerup_fx", 1, 1, "int", &function_f1838e49, 0, 0);
-	clientfield::register("scriptmover", "craftable_teleport_fx", 1, 1, "int", &function_a43a3438, 0, 0);
+	clientfield::register("scriptmover", "craftable_powerup_fx", 1, 1, "int", &craftable_powerup_fx_callback, 0, 0);
+	clientfield::register("scriptmover", "craftable_teleport_fx", 1, 1, "int", &craftable_teleport_fx_callback, 0, 0);
 	clientfield::register("toplayer", "ZMUI_GRAVITYSPIKE_PART_PICKUP", 1, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);
 	clientfield::register("toplayer", "ZMUI_GRAVITYSPIKE_CRAFTED", 1, 1, "int", &zm_utility::zm_ui_infotext, 0, 1);
 	clientfield::register("clientuimodel", "zmInventory.widget_gravityspike_parts", 1, 1, "int", undefined, 0, 0);
@@ -61,7 +61,7 @@ function register_clientfields()
 }
 
 /*
-	Name: function_f1838e49
+	Name: craftable_powerup_fx_callback
 	Namespace: namespace_dddf9a25
 	Checksum: 0x99FDFDAD
 	Offset: 0x600
@@ -69,21 +69,21 @@ function register_clientfields()
 	Parameters: 7
 	Flags: None
 */
-function function_f1838e49(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function craftable_powerup_fx_callback(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{
-		self.var_1785a8a8 = PlayFXOnTag(localClientNum, level._effect["craftable_powerup_on"], self, "tag_origin");
+		self.powerup_fx = PlayFXOnTag(localClientNum, level._effect["craftable_powerup_on"], self, "tag_origin");
 	}
-	else if(isdefined(self.var_1785a8a8))
+	else if(isdefined(self.powerup_fx))
 	{
-		deletefx(localClientNum, self.var_1785a8a8, 1);
-		self.var_1785a8a8 = undefined;
+		deletefx(localClientNum, self.powerup_fx, 1);
+		self.powerup_fx = undefined;
 	}
 }
 
 /*
-	Name: function_a43a3438
+	Name: craftable_teleport_fx_callback
 	Namespace: namespace_dddf9a25
 	Checksum: 0x5E317D00
 	Offset: 0x6C8
@@ -91,7 +91,7 @@ function function_f1838e49(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	Parameters: 7
 	Flags: None
 */
-function function_a43a3438(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function craftable_teleport_fx_callback(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal == 1)
 	{

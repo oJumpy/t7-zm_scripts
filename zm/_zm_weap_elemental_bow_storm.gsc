@@ -21,11 +21,11 @@
 #using scripts\zm\_zm_weap_elemental_bow;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_156ea490;
+#namespace _zm_weap_elemental_bow_storm;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xE73F7AF1
 	Offset: 0x558
 	Size: 0x3B
@@ -39,7 +39,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x76FDFD5E
 	Offset: 0x5A0
 	Size: 0x1FB
@@ -63,7 +63,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x99EC1590
 	Offset: 0x7A8
 	Size: 0x3
@@ -76,7 +76,7 @@ function __main__()
 
 /*
 	Name: function_ff153c1a
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xB17C36E8
 	Offset: 0x7B8
 	Size: 0x7B
@@ -92,7 +92,7 @@ function function_ff153c1a()
 
 /*
 	Name: function_e2bef70c
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xBF07875E
 	Offset: 0x840
 	Size: 0x183
@@ -130,7 +130,7 @@ function function_e2bef70c(weapon, v_position, radius, attacker, normal)
 
 /*
 	Name: function_578bf1ca
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x59ABF387
 	Offset: 0x9D0
 	Size: 0x5D9
@@ -226,7 +226,7 @@ function function_578bf1ca(v_hit_pos, var_31d6c509, var_337b3336, var_94d13bd0)
 
 /*
 	Name: function_8f86e6d5
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x63E89598
 	Offset: 0xFB8
 	Size: 0x10B
@@ -248,7 +248,7 @@ function function_8f86e6d5(var_7b58139b, e_player)
 
 /*
 	Name: function_172d425
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x1CEBD033
 	Offset: 0x10D0
 	Size: 0x2F
@@ -262,7 +262,7 @@ function function_172d425(ai_enemy)
 
 /*
 	Name: function_2624b852
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x2E2B5929
 	Offset: 0x1108
 	Size: 0xAD
@@ -283,7 +283,7 @@ function function_2624b852()
 
 /*
 	Name: function_2d3e3c1b
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x49EE32D3
 	Offset: 0x11C0
 	Size: 0x4B3
@@ -381,7 +381,7 @@ function function_2d3e3c1b(e_player, var_337b3336, var_6e7a59eb, var_94d13bd0)
 
 /*
 	Name: function_b6e08804
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xC47E4446
 	Offset: 0x1680
 	Size: 0x29B
@@ -440,7 +440,7 @@ function function_b6e08804(e_player, var_94d13bd0)
 
 /*
 	Name: function_8a5627f3
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x4F824583
 	Offset: 0x1928
 	Size: 0xB3
@@ -464,7 +464,7 @@ function function_8a5627f3(e_player, var_126c274b, var_337b3336)
 
 /*
 	Name: function_70319d26
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x563572BD
 	Offset: 0x19E8
 	Size: 0xB3
@@ -483,13 +483,13 @@ function function_70319d26(n_time)
 		n_counter = n_counter + 0.2;
 	}
 	self.zombie_tesla_hit = 0;
-	self notify("hash_6b758a38");
+	self notify("elem_storm_shock_fx_off");
 	self clientfield::set("elem_storm_shock_fx", 0);
 }
 
 /*
 	Name: function_23c30f35
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xDADFC946
 	Offset: 0x1AA8
 	Size: 0x193
@@ -510,7 +510,7 @@ function function_23c30f35(e_player, var_126c274b, var_337b3336)
 		util::waittill_any_ents_two(self, "mechz_zap_lift_end", var_337b3336, "elem_storm_whirlwind_done");
 		wait(0.1);
 		self scene::stop("cin_zm_dlc1_mechz_dth_deathray_01");
-		self thread namespace_ef567265::function_bb84a54(self);
+		self thread zm_ai_mechz::function_bb84a54(self);
 		self.var_789ebfb2 = 0;
 		self.var_98056717 = 0;
 		self.var_d3c478a0 = 1;
@@ -526,7 +526,7 @@ function function_23c30f35(e_player, var_126c274b, var_337b3336)
 
 /*
 	Name: function_ef25be5
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xF745B202
 	Offset: 0x1C48
 	Size: 0xFB
@@ -537,7 +537,7 @@ function function_ef25be5(var_337b3336)
 {
 	self endon("death");
 	var_337b3336 endon("death");
-	var_337b3336 endon("hash_6c60cfc8");
+	var_337b3336 endon("elem_storm_whirlwind_done");
 	var_afc016d4 = Distance(self.origin, var_337b3336.origin) + 200;
 	if(var_afc016d4 > 320)
 	{
@@ -551,7 +551,7 @@ function function_ef25be5(var_337b3336)
 	{
 		if(DistanceSquared(self.origin, var_337b3336.origin) > var_f33cfd13)
 		{
-			self notify("hash_b4a49de", 320);
+			self notify("mechz_zap_lift_end", 320);
 			break;
 		}
 		wait(0.2);
@@ -560,7 +560,7 @@ function function_ef25be5(var_337b3336)
 
 /*
 	Name: function_bffbed67
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x22E7234D
 	Offset: 0x1D50
 	Size: 0xB7
@@ -570,8 +570,8 @@ function function_ef25be5(var_337b3336)
 function function_bffbed67(e_player, var_337b3336)
 {
 	self endon("death");
-	self endon("hash_b4a49de");
-	var_337b3336 endon("hash_6c60cfc8");
+	self endon("mechz_zap_lift_end");
+	var_337b3336 endon("elem_storm_whirlwind_done");
 	if(!isdefined(var_337b3336.var_627f5ce9))
 	{
 		var_337b3336.var_627f5ce9 = util::spawn_model("tag_origin", self.origin);
@@ -585,7 +585,7 @@ function function_bffbed67(e_player, var_337b3336)
 
 /*
 	Name: function_35612a9e
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x89973CDD
 	Offset: 0x1E10
 	Size: 0x28B
@@ -628,7 +628,7 @@ function function_35612a9e(v_hit_pos)
 			var_34137522 thread function_8a0ca69(self);
 			str_return = var_34137522 util::waittill_any_timeout(7.8, "elem_storm_whirlwind_force_off");
 			var_34137522 clientfield::set("elem_storm_fx", 0);
-			var_34137522 notify("hash_6c60cfc8");
+			var_34137522 notify("elem_storm_whirlwind_done");
 			var_34137522.b_in_use = 0;
 		}
 	}
@@ -636,7 +636,7 @@ function function_35612a9e(v_hit_pos)
 
 /*
 	Name: function_8a0ca69
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xE68EEC2E
 	Offset: 0x20A8
 	Size: 0x33
@@ -650,7 +650,7 @@ function function_8a0ca69(e_player)
 
 /*
 	Name: function_3f099cfa
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x9B32B2B0
 	Offset: 0x20E8
 	Size: 0xC3
@@ -667,14 +667,14 @@ function function_3f099cfa()
 		}
 	}
 	var_3b7b1ee = Array::sort_by_script_int(self.var_3b7b1ee, 1);
-	var_3b7b1ee[0] notify("hash_378fa443");
+	var_3b7b1ee[0] notify("elem_storm_whirlwind_force_off");
 	wait(0.1);
 	return var_3b7b1ee[0];
 }
 
 /*
 	Name: function_50d5f4ab
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xB7009CBA
 	Offset: 0x21B8
 	Size: 0x4A5
@@ -683,7 +683,7 @@ function function_3f099cfa()
 */
 function function_50d5f4ab(e_player)
 {
-	self endon("hash_6c60cfc8");
+	self endon("elem_storm_whirlwind_done");
 	while(1)
 	{
 		v_ground_pos = util::ground_position(self.origin + (0, 0, 1), 1000, VectorScale((0, 0, 1), 16)[2]);
@@ -758,7 +758,7 @@ function function_50d5f4ab(e_player)
 
 /*
 	Name: function_2f036bd6
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x91737CE7
 	Offset: 0x2668
 	Size: 0x10F
@@ -767,7 +767,7 @@ function function_50d5f4ab(e_player)
 */
 function function_2f036bd6()
 {
-	self endon("hash_6c60cfc8");
+	self endon("elem_storm_whirlwind_done");
 	while(1)
 	{
 		foreach(e_player in level.activePlayers)
@@ -786,7 +786,7 @@ function function_2f036bd6()
 
 /*
 	Name: function_c9b501b8
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xC2B6ACC9
 	Offset: 0x2780
 	Size: 0xE3
@@ -809,7 +809,7 @@ function function_c9b501b8(var_34137522)
 
 /*
 	Name: function_88b53a11
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0xD566DC8E
 	Offset: 0x2870
 	Size: 0x91
@@ -826,7 +826,7 @@ function function_88b53a11(var_80242169, v_hit_origin, e_arrow)
 
 /*
 	Name: function_3c763f48
-	Namespace: namespace_156ea490
+	Namespace: _zm_weap_elemental_bow_storm
 	Checksum: 0x43CF860F
 	Offset: 0x2910
 	Size: 0x7B

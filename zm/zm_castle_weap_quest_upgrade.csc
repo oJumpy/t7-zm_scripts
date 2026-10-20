@@ -10,11 +10,11 @@
 #using scripts\zm\_filter;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_99cb5531;
+#namespace zm_castle_weap_quest_upgrade;
 
 /*
 	Name: main
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x830ED46F
 	Offset: 0x1058
 	Size: 0x147B
@@ -124,7 +124,7 @@ function main()
 
 /*
 	Name: function_9de15a4d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x81BF60A8
 	Offset: 0x24E0
 	Size: 0x217
@@ -178,7 +178,7 @@ function function_9de15a4d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_fc150bb9
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x1DF9380A
 	Offset: 0x2700
 	Size: 0x113
@@ -211,7 +211,7 @@ function function_fc150bb9(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_1c4fc326
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC7681374
 	Offset: 0x2820
 	Size: 0x2BF
@@ -281,7 +281,7 @@ function function_1c4fc326(localClientNum, b_show, var_ad3c7eb7)
 
 /*
 	Name: function_9a901aeb
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7E406C07
 	Offset: 0x2AE8
 	Size: 0x73
@@ -298,7 +298,7 @@ function function_9a901aeb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_b2c9069f
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF6D6F4CD
 	Offset: 0x2B68
 	Size: 0x159
@@ -333,7 +333,7 @@ function function_b2c9069f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_60670dd4
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x9EB01585
 	Offset: 0x2CD0
 	Size: 0xC7
@@ -355,7 +355,7 @@ function function_60670dd4(localClientNum, str_scene)
 
 /*
 	Name: function_24d9d4f5
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x67E3A5EB
 	Offset: 0x2DA0
 	Size: 0x63
@@ -373,7 +373,7 @@ function function_24d9d4f5(localClientNum, str_fx_name)
 
 /*
 	Name: function_f821e372
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xCFFE24CE
 	Offset: 0x2E10
 	Size: 0x73
@@ -390,7 +390,7 @@ function function_f821e372(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_543f9ebd
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6E5FFE71
 	Offset: 0x2E90
 	Size: 0x283
@@ -442,7 +442,7 @@ function function_543f9ebd(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_fec30c70
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x52680FD1
 	Offset: 0x3120
 	Size: 0x19B
@@ -483,7 +483,7 @@ function function_fec30c70(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_8739dc84
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE52D8C61
 	Offset: 0x32C8
 	Size: 0x1E9
@@ -523,7 +523,7 @@ function function_8739dc84(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_e08420f7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x25B7E9B8
 	Offset: 0x34C0
 	Size: 0x14B
@@ -547,7 +547,7 @@ function function_e08420f7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_414a0874
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x8CED2D49
 	Offset: 0x3618
 	Size: 0x63
@@ -564,7 +564,7 @@ function function_414a0874(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_8a7c68af
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB3385465
 	Offset: 0x3688
 	Size: 0x63
@@ -581,7 +581,7 @@ function function_8a7c68af(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_71168013
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3B47A714
 	Offset: 0x36F8
 	Size: 0x63
@@ -598,7 +598,7 @@ function function_71168013(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_41a3306c
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x60DC327C
 	Offset: 0x3768
 	Size: 0x63
@@ -615,7 +615,7 @@ function function_41a3306c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_e13571b8
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB3273ADB
 	Offset: 0x37D8
 	Size: 0x63
@@ -632,7 +632,7 @@ function function_e13571b8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_2ccca749
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7A51F57A
 	Offset: 0x3848
 	Size: 0x63
@@ -649,7 +649,7 @@ function function_2ccca749(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_8cd2582e
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD342E1D7
 	Offset: 0x38B8
 	Size: 0x63
@@ -666,7 +666,7 @@ function function_8cd2582e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_42fe618d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x51EEEBC1
 	Offset: 0x3928
 	Size: 0x63
@@ -683,7 +683,7 @@ function function_42fe618d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_ad13a872
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xAECD7993
 	Offset: 0x3998
 	Size: 0x63
@@ -700,7 +700,7 @@ function function_ad13a872(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_9b445487
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x3AA94F22
 	Offset: 0x3A08
 	Size: 0x63
@@ -717,7 +717,7 @@ function function_9b445487(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_e2b77200
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x5E3D803B
 	Offset: 0x3A78
 	Size: 0x63
@@ -734,7 +734,7 @@ function function_e2b77200(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_4ab357d6
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x54A3DE91
 	Offset: 0x3AE8
 	Size: 0x63
@@ -751,7 +751,7 @@ function function_4ab357d6(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_153cf9fc
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x6159D336
 	Offset: 0x3B58
 	Size: 0x63
@@ -768,7 +768,7 @@ function function_153cf9fc(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_7cc0d99b
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD35CCC70
 	Offset: 0x3BC8
 	Size: 0x8B
@@ -785,7 +785,7 @@ function function_7cc0d99b(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_475de8c4
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE27D8B0C
 	Offset: 0x3C60
 	Size: 0x15B
@@ -818,7 +818,7 @@ function function_475de8c4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_6103d0f7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x16976FE4
 	Offset: 0x3DC8
 	Size: 0x427
@@ -912,7 +912,7 @@ function function_6103d0f7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_f51349bf
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xBDC2250D
 	Offset: 0x41F8
 	Size: 0x19B
@@ -945,7 +945,7 @@ function function_f51349bf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_3f451756
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB83CC21C
 	Offset: 0x43A0
 	Size: 0x113
@@ -974,7 +974,7 @@ function function_3f451756(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_e92d950c
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xDAE9B3DB
 	Offset: 0x44C0
 	Size: 0xD1
@@ -998,7 +998,7 @@ function function_e92d950c(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_c31afa5
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC23944F6
 	Offset: 0x45A0
 	Size: 0xE3
@@ -1023,7 +1023,7 @@ function function_c31afa5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_9db8b2b2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF084E307
 	Offset: 0x4690
 	Size: 0xE3
@@ -1048,7 +1048,7 @@ function function_9db8b2b2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_64bc7af0
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x708CD7E4
 	Offset: 0x4780
 	Size: 0x257
@@ -1104,7 +1104,7 @@ function function_64bc7af0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_febf0bf4
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xA1C3C8B7
 	Offset: 0x49E0
 	Size: 0x18F
@@ -1142,7 +1142,7 @@ function function_febf0bf4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_5063c4f7
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x4AEF2648
 	Offset: 0x4B78
 	Size: 0x187
@@ -1179,7 +1179,7 @@ function function_5063c4f7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_f32932c3
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xFB361798
 	Offset: 0x4D08
 	Size: 0x217
@@ -1233,7 +1233,7 @@ function function_f32932c3(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_3b5b1626
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xC8001F6D
 	Offset: 0x4F28
 	Size: 0x123
@@ -1258,7 +1258,7 @@ function function_3b5b1626(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_d6434cf
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB4343785
 	Offset: 0x5058
 	Size: 0x83
@@ -1275,7 +1275,7 @@ function function_d6434cf(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_c069c332
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2906FAB
 	Offset: 0x50E8
 	Size: 0x7B
@@ -1296,7 +1296,7 @@ function function_c069c332(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_2514cb86
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x13D7FD2C
 	Offset: 0x5170
 	Size: 0xC3
@@ -1319,7 +1319,7 @@ function function_2514cb86(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_46f52afa
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xDFEC91FF
 	Offset: 0x5240
 	Size: 0x217
@@ -1373,7 +1373,7 @@ function function_46f52afa(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_6f66f54d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xF103247F
 	Offset: 0x5460
 	Size: 0x20F
@@ -1423,7 +1423,7 @@ function function_6f66f54d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_65d81fc2
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xD05FCF53
 	Offset: 0x5678
 	Size: 0xFB
@@ -1448,7 +1448,7 @@ function function_65d81fc2(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_aefa4e67
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB90B5C17
 	Offset: 0x5780
 	Size: 0x233
@@ -1496,7 +1496,7 @@ function function_aefa4e67(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_60ae2cd0
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xE4B21DB6
 	Offset: 0x59C0
 	Size: 0x6D
@@ -1517,7 +1517,7 @@ function function_60ae2cd0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_a783453f
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x9FA26AEC
 	Offset: 0x5A38
 	Size: 0x1EF
@@ -1559,7 +1559,7 @@ function function_a783453f(localClientNum, ai_wolf)
 
 /*
 	Name: function_ccf12771
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xFA8EB61D
 	Offset: 0x5C30
 	Size: 0x29F
@@ -1617,7 +1617,7 @@ function function_ccf12771(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_e051553d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x7E879A13
 	Offset: 0x5ED8
 	Size: 0x9B
@@ -1638,7 +1638,7 @@ function function_e051553d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_c75de902
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xBA2B2F50
 	Offset: 0x5F80
 	Size: 0x63
@@ -1652,7 +1652,7 @@ function function_c75de902(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_3cb9b375
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x2BEBE8DF
 	Offset: 0x5FF0
 	Size: 0x63
@@ -1666,7 +1666,7 @@ function function_3cb9b375(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_fa1ef690
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x8846C2BC
 	Offset: 0x6060
 	Size: 0x63
@@ -1680,7 +1680,7 @@ function function_fa1ef690(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_d0720a0d
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0x11FEAFAC
 	Offset: 0x60D0
 	Size: 0x63
@@ -1694,7 +1694,7 @@ function function_d0720a0d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: zombie_soul_fx
-	Namespace: namespace_99cb5531
+	Namespace: zm_castle_weap_quest_upgrade
 	Checksum: 0xB004A32E
 	Offset: 0x6140
 	Size: 0xC3

@@ -10,11 +10,11 @@
 #using scripts\zm\_zm_score;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_6d813654;
+#namespace zm_equip_hacker;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x40BF0FE8
 	Offset: 0x388
 	Size: 0x3B
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x7FD05CC3
 	Offset: 0x3D0
 	Size: 0x12B
@@ -54,7 +54,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x2F76F0A5
 	Offset: 0x508
 	Size: 0x33
@@ -69,7 +69,7 @@ function __main__()
 
 /*
 	Name: hacker_on_player_spawned
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x71E35195
 	Offset: 0x548
 	Size: 0x33
@@ -84,7 +84,7 @@ function hacker_on_player_spawned()
 
 /*
 	Name: hacker_round_reward
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xFBB38E7D
 	Offset: 0x588
 	Size: 0x1B5
@@ -127,7 +127,7 @@ function hacker_round_reward()
 
 /*
 	Name: hacker_debug
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x68F4A329
 	Offset: 0x748
 	Size: 0x18B
@@ -172,7 +172,7 @@ function hacker_debug()
 
 /*
 	Name: hacker_trigger_pool_think
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x5C9CB870
 	Offset: 0x8E0
 	Size: 0xCB
@@ -211,7 +211,7 @@ function hacker_trigger_pool_think()
 
 /*
 	Name: destroy_pooled_items
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x8D88849F
 	Offset: 0x9B8
 	Size: 0x87
@@ -231,7 +231,7 @@ function destroy_pooled_items()
 
 /*
 	Name: sweep_pooled_items
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x17107939
 	Offset: 0xA48
 	Size: 0xE7
@@ -259,7 +259,7 @@ function sweep_pooled_items()
 
 /*
 	Name: should_pooled_object_exist
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xCE47B176
 	Offset: 0xB38
 	Size: 0x12B
@@ -295,7 +295,7 @@ function should_pooled_object_exist()
 
 /*
 	Name: add_eligable_pooled_items
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x50DE5E97
 	Offset: 0xC70
 	Size: 0x26F
@@ -346,7 +346,7 @@ function add_eligable_pooled_items()
 
 /*
 	Name: get_hackable_trigger
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x5F856108
 	Offset: 0xEE8
 	Size: 0x93
@@ -375,7 +375,7 @@ function get_hackable_trigger()
 
 /*
 	Name: any_hackers_active
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xFA42406A
 	Offset: 0xF88
 	Size: 0x6F
@@ -397,7 +397,7 @@ function any_hackers_active()
 
 /*
 	Name: register_hackable
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xE9CDD9AC
 	Offset: 0x1000
 	Size: 0x1ED
@@ -438,7 +438,7 @@ function register_hackable(name, callback_func, qualifier_func)
 
 /*
 	Name: register_hackable_struct
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x86A188ED
 	Offset: 0x11F8
 	Size: 0x113
@@ -467,7 +467,7 @@ function register_hackable_struct(struct, callback_func, qualifier_func)
 
 /*
 	Name: register_pooled_hackable_struct
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x774F82EF
 	Offset: 0x1318
 	Size: 0x4D
@@ -483,7 +483,7 @@ function register_pooled_hackable_struct(struct, callback_func, qualifier_func)
 
 /*
 	Name: register_pooled_hackable
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xD7ED9CC1
 	Offset: 0x1370
 	Size: 0x4D
@@ -499,7 +499,7 @@ function register_pooled_hackable(name, callback_func, qualifier_func)
 
 /*
 	Name: deregister_hackable_struct
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x691DD008
 	Offset: 0x13C8
 	Size: 0x193
@@ -535,7 +535,7 @@ function deregister_hackable_struct(struct)
 
 /*
 	Name: deregister_hackable
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xF0337C44
 	Offset: 0x1568
 	Size: 0x16B
@@ -569,7 +569,7 @@ function deregister_hackable(noteworthy)
 
 /*
 	Name: hack_trigger_think
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x4FEC3F9E
 	Offset: 0x16E0
 	Size: 0x19B
@@ -609,7 +609,7 @@ function hack_trigger_think()
 
 /*
 	Name: is_facing
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xBAF1C376
 	Offset: 0x1888
 	Size: 0x175
@@ -636,7 +636,7 @@ function is_facing(facee)
 
 /*
 	Name: can_hack
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x1FEA1F67
 	Offset: 0x1A08
 	Size: 0x2E7
@@ -722,7 +722,7 @@ function can_hack(hackable)
 
 /*
 	Name: is_hacking
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x6FC165D5
 	Offset: 0x1CF8
 	Size: 0x39
@@ -736,7 +736,7 @@ function is_hacking(hackable)
 
 /*
 	Name: set_hack_hint_string
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xD9CAD803
 	Offset: 0x1D40
 	Size: 0xAB
@@ -764,7 +764,7 @@ function set_hack_hint_string()
 
 /*
 	Name: tidy_on_deregister
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xAFAB32AC
 	Offset: 0x1DF8
 	Size: 0x73
@@ -787,7 +787,7 @@ function tidy_on_deregister(hackable)
 
 /*
 	Name: hacker_do_hack
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x1879C239
 	Offset: 0x1E78
 	Size: 0x419
@@ -873,7 +873,7 @@ function hacker_do_hack(hackable)
 
 /*
 	Name: lowreadywatcher
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x83E1D548
 	Offset: 0x22A0
 	Size: 0x4B
@@ -890,7 +890,7 @@ function lowreadywatcher(player)
 
 /*
 	Name: hackable_object_thread
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x2428E82A
 	Offset: 0x22F8
 	Size: 0x489
@@ -1004,7 +1004,7 @@ function hackable_object_thread()
 
 /*
 	Name: hacker_on_player_connect
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x1DB0A2B4
 	Offset: 0x2790
 	Size: 0xFB
@@ -1027,7 +1027,7 @@ function hacker_on_player_connect()
 
 /*
 	Name: player_hack_disconnect_watcher
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x559C4D94
 	Offset: 0x2898
 	Size: 0x2B
@@ -1042,7 +1042,7 @@ function player_hack_disconnect_watcher(player)
 
 /*
 	Name: function_b743c597
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xF7403287
 	Offset: 0x28D0
 	Size: 0x7F
@@ -1066,7 +1066,7 @@ function function_b743c597()
 
 /*
 	Name: function_778301bd
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x1DDE1074
 	Offset: 0x2958
 	Size: 0x5F
@@ -1087,7 +1087,7 @@ function function_778301bd()
 
 /*
 	Name: player_hack
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xACFB6CC
 	Offset: 0x29C0
 	Size: 0x6B
@@ -1108,7 +1108,7 @@ function player_hack(hacker)
 
 /*
 	Name: player_qualifier
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xAC40880D
 	Offset: 0x2A38
 	Size: 0xA7
@@ -1138,7 +1138,7 @@ function player_qualifier(player)
 
 /*
 	Name: hide_hint_when_hackers_active
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0xD7AF7019
 	Offset: 0x2AE8
 	Size: 0x19B
@@ -1184,7 +1184,7 @@ function hide_hint_when_hackers_active(custom_logic_func, custom_logic_func_para
 
 /*
 	Name: hacker_debug_print
-	Namespace: namespace_6d813654
+	Namespace: zm_equip_hacker
 	Checksum: 0x2B7D5403
 	Offset: 0x2C90
 	Size: 0x8B

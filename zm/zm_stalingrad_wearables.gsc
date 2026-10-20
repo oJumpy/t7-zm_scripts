@@ -40,7 +40,7 @@ function function_ea91e52b()
 }
 
 /*
-	Name: function_eed58360
+	Name: wearables_init
 	Namespace: namespace_23c72813
 	Checksum: 0xDC6A3072
 	Offset: 0xAE0
@@ -48,7 +48,7 @@ function function_ea91e52b()
 	Parameters: 0
 	Flags: None
 */
-function function_eed58360()
+function wearables_init()
 {
 	/#
 		if(GetDvarInt("Dev Block strings are not supported") > 0)
@@ -396,11 +396,11 @@ function function_cc32e7df()
 {
 	self zm_utility::increment_ignoreme();
 	self.var_fa6d2a24 = 1;
-	var_b80ee5b5 = struct::get_array("s_pavlov_player", "targetname");
+	s_pavlov_player = struct::get_array("s_pavlov_player", "targetname");
 	n_player_number = self GetEntityNumber();
 	self DontInterpolate();
-	self SetOrigin(var_b80ee5b5[n_player_number].origin);
-	self SetPlayerAngles(var_b80ee5b5[n_player_number].angles + VectorScale((0, 1, 0), 180));
+	self SetOrigin(s_pavlov_player[n_player_number].origin);
+	self SetPlayerAngles(s_pavlov_player[n_player_number].angles + VectorScale((0, 1, 0), 180));
 	self notify("entering_hatchery");
 	level notify("hash_9a634383");
 	wait(3);
@@ -436,7 +436,7 @@ function function_588ad36a()
 */
 function function_42a9380e()
 {
-	level endon("hash_41f7942d");
+	level endon("wearables_raz_arms_complete");
 	while(1)
 	{
 		level waittill("raz_arm_detach");
@@ -463,7 +463,7 @@ function function_42a9380e()
 */
 function function_ac75c48f()
 {
-	level endon("hash_5b09a57a");
+	level endon("wearables_raz_mask_complete");
 	while(1)
 	{
 		level waittill("raz_mask_destroyed");
@@ -601,7 +601,7 @@ function function_fe559f6c()
 */
 function function_ba204ad8()
 {
-	level endon("hash_f0aef65a");
+	level endon("wearables_sentinel_camera_complete");
 	while(1)
 	{
 		level waittill("sentinel_camera_destroyed");
@@ -839,7 +839,7 @@ function function_19458e73()
 }
 
 /*
-	Name: function_9f500475
+	Name: clientfield_init
 	Namespace: namespace_5132b4d6
 	Checksum: 0x99EC1590
 	Offset: 0x2D00
@@ -847,7 +847,7 @@ function function_19458e73()
 	Parameters: 0
 	Flags: None
 */
-function function_9f500475()
+function clientfield_init()
 {
 }
 
@@ -935,7 +935,7 @@ function function_5e8bb6cc()
 */
 function function_70aa26aa()
 {
-	level endon("hash_8f8b39a8");
+	level endon("drshup_rune_step_done");
 	self endon("disconnect");
 	while(1)
 	{

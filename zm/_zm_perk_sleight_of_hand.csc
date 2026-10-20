@@ -9,7 +9,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0xC56D1F8E
+	Checksum: 0xB74CEBB5
 	Offset: 0x1B0
 	Size: 0x33
 	Parameters: 0
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0xE2F65A4C
+	Checksum: 0x8D25B68E
 	Offset: 0x1F0
 	Size: 0x13
 	Parameters: 0
@@ -37,7 +37,7 @@ function __init__()
 /*
 	Name: enable_sleight_of_hand_perk_for_level
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0xF427234C
+	Checksum: 0x7B04285C
 	Offset: 0x210
 	Size: 0x83
 	Parameters: 0
@@ -53,7 +53,7 @@ function enable_sleight_of_hand_perk_for_level()
 /*
 	Name: init_sleight_of_hand
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0xB352172
+	Checksum: 0x5DBA2CEA
 	Offset: 0x2A0
 	Size: 0x35
 	Parameters: 0
@@ -70,7 +70,7 @@ function init_sleight_of_hand()
 /*
 	Name: sleight_of_hand_client_field_func
 	Namespace: zm_perk_sleight_of_hand
-	Checksum: 0x2562D5B1
+	Checksum: 0xD569581C
 	Offset: 0x2E0
 	Size: 0x3B
 	Parameters: 0

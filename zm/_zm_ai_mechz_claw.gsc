@@ -36,11 +36,11 @@
 #using scripts\zm\_zm_weap_riotshield;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_19d9d56d;
+#namespace zm_ai_mechz_claw;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x9EC616A5
 	Offset: 0x8A0
 	Size: 0x3B
@@ -54,7 +54,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x31EF4976
 	Offset: 0x8E8
 	Size: 0x18B
@@ -79,7 +79,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x99EC1590
 	Offset: 0xA80
 	Size: 0x3
@@ -92,7 +92,7 @@ function private __main__()
 
 /*
 	Name: function_f20c04a4
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xFBFB3FD1
 	Offset: 0xA90
 	Size: 0x163
@@ -113,7 +113,7 @@ function private function_f20c04a4()
 
 /*
 	Name: function_bdc90f38
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x907B18C3
 	Offset: 0xC00
 	Size: 0x2B1
@@ -168,7 +168,7 @@ function private function_bdc90f38(entity)
 
 /*
 	Name: player_can_be_grabbed
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xB0E1850E
 	Offset: 0xEC0
 	Size: 0x4D
@@ -190,7 +190,7 @@ function private player_can_be_grabbed()
 
 /*
 	Name: function_86ac6346
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x352735E5
 	Offset: 0xF18
 	Size: 0x47
@@ -206,7 +206,7 @@ function private function_86ac6346(entity, asmStateName)
 
 /*
 	Name: function_a94df749
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xFFB16407
 	Offset: 0xF68
 	Size: 0x43
@@ -224,7 +224,7 @@ function private function_a94df749(entity, asmStateName)
 
 /*
 	Name: function_1b118e5
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x9CF512EF
 	Offset: 0xFB8
 	Size: 0x17
@@ -238,7 +238,7 @@ function private function_1b118e5(entity, asmStateName)
 
 /*
 	Name: function_456e76fa
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xA327E930
 	Offset: 0xFD8
 	Size: 0x43
@@ -253,7 +253,7 @@ function private function_456e76fa(entity)
 
 /*
 	Name: function_a844c266
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x2FFBD5C6
 	Offset: 0x1028
 	Size: 0xB
@@ -266,7 +266,7 @@ function private function_a844c266(entity)
 
 /*
 	Name: function_75278fab
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x5B9513E3
 	Offset: 0x1040
 	Size: 0xB
@@ -279,7 +279,7 @@ function private function_75278fab(entity)
 
 /*
 	Name: function_de3abdba
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x8D09ACA8
 	Offset: 0x1058
 	Size: 0x5F
@@ -297,7 +297,7 @@ function private function_de3abdba(entity)
 
 /*
 	Name: function_48c03479
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x4E70C510
 	Offset: 0x10C0
 	Size: 0x63
@@ -314,7 +314,7 @@ function private function_48c03479(entity)
 
 /*
 	Name: function_fa513ca0
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xC2AC5BEF
 	Offset: 0x1130
 	Size: 0x117
@@ -344,7 +344,7 @@ function private function_fa513ca0()
 
 /*
 	Name: function_235008e3
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xFF08A825
 	Offset: 0x1250
 	Size: 0x71
@@ -362,7 +362,7 @@ function private function_235008e3(entity)
 
 /*
 	Name: function_1aacf7d4
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xD1A9ED74
 	Offset: 0x12D0
 	Size: 0x2EB
@@ -408,7 +408,7 @@ function private function_1aacf7d4()
 
 /*
 	Name: function_5dfc412a
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x34E549BA
 	Offset: 0x15C8
 	Size: 0x165
@@ -438,7 +438,7 @@ function private function_5dfc412a()
 
 /*
 	Name: function_31c4b972
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x4AB73000
 	Offset: 0x1738
 	Size: 0x4B
@@ -454,7 +454,7 @@ function private function_31c4b972()
 
 /*
 	Name: function_90832db7
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x3488FB5D
 	Offset: 0x1790
 	Size: 0x3C3
@@ -508,7 +508,7 @@ function private function_90832db7()
 
 /*
 	Name: function_4208b4ec
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xC95B0CC8
 	Offset: 0x1B60
 	Size: 0x135
@@ -539,7 +539,7 @@ function private function_4208b4ec()
 
 /*
 	Name: function_36db86b
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x170A4A0C
 	Offset: 0x1CA0
 	Size: 0x1B
@@ -554,7 +554,7 @@ function private function_36db86b()
 
 /*
 	Name: function_9bfd96c8
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x3726CB94
 	Offset: 0x1CC8
 	Size: 0x1DB
@@ -590,7 +590,7 @@ function private function_9bfd96c8(bopenclaw)
 
 /*
 	Name: function_7c33f4fb
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x821DF5F5
 	Offset: 0x1EB0
 	Size: 0x2B
@@ -608,7 +608,7 @@ function private function_7c33f4fb()
 
 /*
 	Name: function_d6f31ed2
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x941D14BB
 	Offset: 0x1EE8
 	Size: 0x3B
@@ -623,7 +623,7 @@ function private function_d6f31ed2()
 
 /*
 	Name: function_5f5eaf3a
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xA7799255
 	Offset: 0x1F30
 	Size: 0xAB
@@ -647,7 +647,7 @@ function private function_5f5eaf3a(ai_mechz)
 
 /*
 	Name: play_shoot_arm_hint_vo
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xBA759057
 	Offset: 0x1FE8
 	Size: 0x187
@@ -688,7 +688,7 @@ function private play_shoot_arm_hint_vo()
 
 /*
 	Name: function_671deda5
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x75701F2F
 	Offset: 0x2178
 	Size: 0x2B
@@ -705,7 +705,7 @@ function private function_671deda5()
 
 /*
 	Name: function_6028875a
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x34B66BA7
 	Offset: 0x21B0
 	Size: 0x5B
@@ -726,7 +726,7 @@ function private function_6028875a()
 
 /*
 	Name: function_8b0a73b5
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x169F6E1E
 	Offset: 0x2218
 	Size: 0x93
@@ -753,7 +753,7 @@ function private function_8b0a73b5(mechz)
 
 /*
 	Name: function_bed84b4
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xE32C1EFF
 	Offset: 0x22B8
 	Size: 0x91
@@ -780,7 +780,7 @@ function private function_bed84b4(mechz)
 
 /*
 	Name: function_38d105a4
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xF69E84FF
 	Offset: 0x2358
 	Size: 0x79
@@ -804,7 +804,7 @@ function private function_38d105a4(mechz)
 
 /*
 	Name: function_672f9804
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xF302A04C
 	Offset: 0x23E0
 	Size: 0xE4B
@@ -965,7 +965,7 @@ function private function_672f9804()
 
 /*
 	Name: function_eb9df173
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x96078390
 	Offset: 0x3238
 	Size: 0x1A9
@@ -997,7 +997,7 @@ function private function_eb9df173(player)
 
 /*
 	Name: function_7792d05e
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xD27C5750
 	Offset: 0x33F0
 	Size: 0x8B
@@ -1018,7 +1018,7 @@ function private function_7792d05e(player)
 
 /*
 	Name: function_d0e280a0
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xBB4AC903
 	Offset: 0x3488
 	Size: 0xA3
@@ -1040,7 +1040,7 @@ function private function_d0e280a0(mechz)
 
 /*
 	Name: function_2998f2a1
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0x7FDF7C4B
 	Offset: 0x3538
 	Size: 0x33
@@ -1056,7 +1056,7 @@ function private function_2998f2a1()
 
 /*
 	Name: function_860f0461
-	Namespace: namespace_19d9d56d
+	Namespace: zm_ai_mechz_claw
 	Checksum: 0xB7441423
 	Offset: 0x3578
 	Size: 0x93

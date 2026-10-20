@@ -27,12 +27,12 @@
 #using scripts\zm\_zm_spawner;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_ef567265;
+#namespace zm_ai_mechz;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ef567265
-	Checksum: 0xD378E478
+	Namespace: zm_ai_mechz
+	Checksum: 0xD4EAE0EF
 	Offset: 0x6B0
 	Size: 0x3B
 	Parameters: 0
@@ -45,8 +45,8 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ef567265
-	Checksum: 0xBF891CCD
+	Namespace: zm_ai_mechz
+	Checksum: 0x5CFF7A26
 	Offset: 0x6F8
 	Size: 0x2BB
 	Parameters: 0
@@ -89,8 +89,8 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_ef567265
-	Checksum: 0xB9C57B89
+	Namespace: zm_ai_mechz
+	Checksum: 0x6AA5F043
 	Offset: 0x9C0
 	Size: 0x67
 	Parameters: 0
@@ -108,8 +108,8 @@ function private __main__()
 
 /*
 	Name: function_f20c04a4
-	Namespace: namespace_ef567265
-	Checksum: 0xE808B314
+	Namespace: zm_ai_mechz
+	Checksum: 0xB929790A
 	Offset: 0xA30
 	Size: 0x2B
 	Parameters: 0
@@ -122,8 +122,8 @@ function private function_f20c04a4()
 
 /*
 	Name: function_c28caf48
-	Namespace: namespace_ef567265
-	Checksum: 0xA1DBAFD
+	Namespace: zm_ai_mechz
+	Checksum: 0xCE354750
 	Offset: 0xA68
 	Size: 0x29F
 	Parameters: 1
@@ -197,8 +197,8 @@ function private function_c28caf48(entity)
 
 /*
 	Name: function_48cabef5
-	Namespace: namespace_ef567265
-	Checksum: 0x518888F5
+	Namespace: zm_ai_mechz
+	Checksum: 0x5A78E851
 	Offset: 0xD10
 	Size: 0x53
 	Parameters: 0
@@ -215,8 +215,8 @@ function function_48cabef5()
 
 /*
 	Name: mechz_setup
-	Namespace: namespace_ef567265
-	Checksum: 0x6C26F914
+	Namespace: zm_ai_mechz
+	Checksum: 0x53F298FB
 	Offset: 0xD70
 	Size: 0xE3
 	Parameters: 0
@@ -239,8 +239,8 @@ function private mechz_setup()
 
 /*
 	Name: function_ed70c868
-	Namespace: namespace_ef567265
-	Checksum: 0x574CF82A
+	Namespace: zm_ai_mechz
+	Checksum: 0x86786768
 	Offset: 0xE60
 	Size: 0x91
 	Parameters: 10
@@ -257,8 +257,8 @@ function private function_ed70c868(eInflictor, eAttacker, iDamage, iDFlags, sMea
 
 /*
 	Name: function_58655f2a
-	Namespace: namespace_ef567265
-	Checksum: 0xF0FDA4FA
+	Namespace: zm_ai_mechz
+	Checksum: 0x1D89B069
 	Offset: 0xF00
 	Size: 0x31
 	Parameters: 0
@@ -275,8 +275,8 @@ function function_58655f2a()
 
 /*
 	Name: function_9bac2f00
-	Namespace: namespace_ef567265
-	Checksum: 0xAEAF1A5F
+	Namespace: zm_ai_mechz
+	Checksum: 0xA847A128
 	Offset: 0xF40
 	Size: 0x67
 	Parameters: 2
@@ -294,8 +294,8 @@ function function_9bac2f00(e_player, gib)
 
 /*
 	Name: mechz_thundergun_knockdown
-	Namespace: namespace_ef567265
-	Checksum: 0xC3560C9D
+	Namespace: zm_ai_mechz
+	Checksum: 0x4A829807
 	Offset: 0xFB0
 	Size: 0x67
 	Parameters: 2
@@ -313,8 +313,8 @@ function mechz_thundergun_knockdown(e_player, gib)
 
 /*
 	Name: function_b8e0ce15
-	Namespace: namespace_ef567265
-	Checksum: 0xE943A1DD
+	Namespace: zm_ai_mechz
+	Checksum: 0x8D91ED47
 	Offset: 0x1020
 	Size: 0xCB
 	Parameters: 1
@@ -333,8 +333,8 @@ function function_b8e0ce15(e_player)
 
 /*
 	Name: spawn_mechz
-	Namespace: namespace_ef567265
-	Checksum: 0xAF38FF31
+	Namespace: zm_ai_mechz
+	Checksum: 0xE7295EFF
 	Offset: 0x10F8
 	Size: 0x50F
 	Parameters: 2
@@ -421,8 +421,8 @@ function spawn_mechz(s_location, flyin)
 
 /*
 	Name: function_d07fd448
-	Namespace: namespace_ef567265
-	Checksum: 0x792C0F16
+	Namespace: zm_ai_mechz
+	Checksum: 0x19C84C0
 	Offset: 0x1610
 	Size: 0x63
 	Parameters: 0
@@ -440,8 +440,8 @@ function function_d07fd448()
 
 /*
 	Name: function_c441eaba
-	Namespace: namespace_ef567265
-	Checksum: 0xEF2326B6
+	Namespace: zm_ai_mechz
+	Checksum: 0xDF9829F
 	Offset: 0x1680
 	Size: 0x34B
 	Parameters: 1
@@ -498,8 +498,8 @@ function function_c441eaba(landing_pos)
 
 /*
 	Name: function_bbdc1f34
-	Namespace: namespace_ef567265
-	Checksum: 0xFE5D4750
+	Namespace: zm_ai_mechz
+	Checksum: 0x23E4718B
 	Offset: 0x19D8
 	Size: 0x27F
 	Parameters: 1
@@ -525,14 +525,14 @@ function function_bbdc1f34(landing_pos)
 				}
 			}
 		}
-		a_zombies = namespace_57695b4d::function_d41418b8();
+		a_zombies = zm_elemental_zombie::function_d41418b8();
 		foreach(e_zombie in a_zombies)
 		{
 			dist_sq = DistanceSquared(e_zombie.origin, landing_pos);
 			if(dist_sq <= var_f0dad551 && self.var_e05d0be2 !== 1)
 			{
 				self function_3efae612(e_zombie);
-				e_zombie namespace_57695b4d::function_f4defbc2();
+				e_zombie zm_elemental_zombie::function_f4defbc2();
 			}
 		}
 		wait(0.1);
@@ -541,8 +541,8 @@ function function_bbdc1f34(landing_pos)
 
 /*
 	Name: function_3389e2f3
-	Namespace: namespace_ef567265
-	Checksum: 0x2D8082B7
+	Namespace: zm_ai_mechz
+	Checksum: 0x3DD3A61B
 	Offset: 0x1C60
 	Size: 0xDF
 	Parameters: 1
@@ -568,8 +568,8 @@ function function_3389e2f3(mechz)
 
 /*
 	Name: function_817c85eb
-	Namespace: namespace_ef567265
-	Checksum: 0xE3945188
+	Namespace: zm_ai_mechz
+	Checksum: 0x7BFBCDC5
 	Offset: 0x1D48
 	Size: 0x2C7
 	Parameters: 6
@@ -621,8 +621,8 @@ function function_817c85eb(e_player, v_attack_source, n_push_away, n_lift_height
 
 /*
 	Name: function_bb84a54
-	Namespace: namespace_ef567265
-	Checksum: 0xBA95E5F0
+	Namespace: zm_ai_mechz
+	Checksum: 0xA1F3EAAF
 	Offset: 0x2018
 	Size: 0x1A3
 	Parameters: 1
@@ -656,8 +656,8 @@ function function_bb84a54(mechz)
 
 /*
 	Name: function_1add8026
-	Namespace: namespace_ef567265
-	Checksum: 0xE573A4A3
+	Namespace: zm_ai_mechz
+	Checksum: 0xD2BFD65C
 	Offset: 0x21C8
 	Size: 0x101
 	Parameters: 1
@@ -666,20 +666,20 @@ function function_bb84a54(mechz)
 function function_1add8026(mechz)
 {
 	flameTrigger = mechz.flameTrigger;
-	a_zombies = namespace_57695b4d::function_d41418b8();
+	a_zombies = zm_elemental_zombie::function_d41418b8();
 	foreach(zombie in a_zombies)
 	{
 		if(zombie istouching(flameTrigger) && zombie.var_e05d0be2 !== 1)
 		{
-			zombie namespace_57695b4d::function_f4defbc2();
+			zombie zm_elemental_zombie::function_f4defbc2();
 		}
 	}
 }
 
 /*
 	Name: function_ef1ba7e5
-	Namespace: namespace_ef567265
-	Checksum: 0x46C91E89
+	Namespace: zm_ai_mechz
+	Checksum: 0x512F0875
 	Offset: 0x22D8
 	Size: 0x9F
 	Parameters: 0
@@ -704,8 +704,8 @@ function function_ef1ba7e5()
 
 /*
 	Name: function_949a3fdf
-	Namespace: namespace_ef567265
-	Checksum: 0xBE00FCC7
+	Namespace: zm_ai_mechz
+	Checksum: 0xB741406E
 	Offset: 0x2380
 	Size: 0x171
 	Parameters: 0
@@ -736,8 +736,8 @@ function function_949a3fdf()
 
 /*
 	Name: mechz_damage_scoring
-	Namespace: namespace_ef567265
-	Checksum: 0x98528F4A
+	Namespace: zm_ai_mechz
+	Checksum: 0x52C30F3A
 	Offset: 0x2500
 	Size: 0x10B
 	Parameters: 12
@@ -764,8 +764,8 @@ function mechz_damage_scoring(inflictor, attacker, damage, dFlags, mod, weapon, 
 
 /*
 	Name: function_3efae612
-	Namespace: namespace_ef567265
-	Checksum: 0x9A9A3379
+	Namespace: zm_ai_mechz
+	Checksum: 0x85DEB7C2
 	Offset: 0x2618
 	Size: 0x2A3
 	Parameters: 1
@@ -817,8 +817,8 @@ function function_3efae612(zombie)
 
 /*
 	Name: mechz_melee_knockdown
-	Namespace: namespace_ef567265
-	Checksum: 0xB02E189
+	Namespace: zm_ai_mechz
+	Checksum: 0x725A290E
 	Offset: 0x28C8
 	Size: 0x109
 	Parameters: 0
@@ -839,8 +839,8 @@ function mechz_melee_knockdown()
 
 /*
 	Name: function_10d36217
-	Namespace: namespace_ef567265
-	Checksum: 0x22178440
+	Namespace: zm_ai_mechz
+	Checksum: 0x15CA3838
 	Offset: 0x29E0
 	Size: 0x183
 	Parameters: 1
@@ -870,8 +870,8 @@ function function_10d36217(mechz)
 
 /*
 	Name: function_bb048b27
-	Namespace: namespace_ef567265
-	Checksum: 0xACD20183
+	Namespace: zm_ai_mechz
+	Checksum: 0xEE6B0867
 	Offset: 0x2B70
 	Size: 0x57
 	Parameters: 0
@@ -889,8 +889,8 @@ function function_bb048b27()
 
 /*
 	Name: function_75a79bb5
-	Namespace: namespace_ef567265
-	Checksum: 0x30CB72AC
+	Namespace: zm_ai_mechz
+	Checksum: 0xD6E167AF
 	Offset: 0x2BD0
 	Size: 0x97
 	Parameters: 0
@@ -916,8 +916,8 @@ function function_75a79bb5()
 
 /*
 	Name: function_fbad70fd
-	Namespace: namespace_ef567265
-	Checksum: 0x262E6075
+	Namespace: zm_ai_mechz
+	Checksum: 0x4BAEA528
 	Offset: 0x2C70
 	Size: 0x43
 	Parameters: 0
@@ -933,8 +933,8 @@ function private function_fbad70fd()
 
 /*
 	Name: function_94a24a91
-	Namespace: namespace_ef567265
-	Checksum: 0x4F4E362B
+	Namespace: zm_ai_mechz
+	Checksum: 0xA34E395B
 	Offset: 0x2CC0
 	Size: 0x40D
 	Parameters: 1

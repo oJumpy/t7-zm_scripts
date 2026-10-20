@@ -12,7 +12,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_equip_turret
-	Checksum: 0x51325EC6
+	Checksum: 0x5A4F1FEF
 	Offset: 0x1C8
 	Size: 0x33
 	Parameters: 0
@@ -26,7 +26,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_equip_turret
-	Checksum: 0xB06DA0D2
+	Checksum: 0x7DFA34B3
 	Offset: 0x208
 	Size: 0x4B
 	Parameters: 0
@@ -40,7 +40,7 @@ function __init__()
 /*
 	Name: set_rocketshield_ammo
 	Namespace: zm_equip_turret
-	Checksum: 0x4FD71D43
+	Checksum: 0xA0808B42
 	Offset: 0x260
 	Size: 0xA3
 	Parameters: 7

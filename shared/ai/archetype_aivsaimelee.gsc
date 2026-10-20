@@ -640,7 +640,7 @@ function playScriptedMeleeAnimations()
 	}
 	self thread processInterruptedDeath();
 	opponent thread processInterruptedDeath();
-	self waittillmatch("hash_20b9df71");
+	self waittillmatch("aivsaimeleewinner");
 	self.fixedLinkYawOnly = 0;
 	AiUtility::cleanupChargeMeleeAttack(self);
 	if(isdefined(self._ai_melee_attachedKnife) && self._ai_melee_attachedKnife)

@@ -39,7 +39,7 @@ function autoexec init()
 	level.var_4fb25bb9["crawl"] = 3;
 	SetDvar("tu5_zmPathDistanceCheckTolarance", 20);
 	SetDvar("scr_zm_use_code_enemy_selection", 0);
-	level.closest_player_override = &function_c4a8cdff;
+	level.closest_player_override = &castle_closest_player;
 	level thread update_closest_player();
 	/#
 		thread castle_zombie_devgui();
@@ -61,7 +61,7 @@ function private initzmcastlebehaviorsandasm()
 {
 	AnimationStateNetwork::RegisterAnimationMocomp("mocomp_teleport_traversal@zombie", &teleporttraversalmocompstart, undefined, undefined);
 	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("shouldMoveLowg", &shouldMoveLowg);
-	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodShouldMove", &function_d0ef2cea);
+	BehaviorTreeNetworkUtility::RegisterBehaviorTreeScriptAPI("zodShouldMove", &zodshouldmove);
 }
 
 /*
@@ -89,7 +89,7 @@ function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime
 }
 
 /*
-	Name: function_d0ef2cea
+	Name: zodshouldmove
 	Namespace: namespace_e9d5a0ce
 	Checksum: 0x957D1784
 	Offset: 0x7C8
@@ -97,7 +97,7 @@ function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime
 	Parameters: 1
 	Flags: None
 */
-function function_d0ef2cea(entity)
+function zodshouldmove(entity)
 {
 	if(isdefined(entity.zombie_tesla_hit) && entity.zombie_tesla_hit && (!isdefined(entity.tesla_death) && entity.tesla_death))
 	{
@@ -302,7 +302,7 @@ function private function_ca4f6cd2(player)
 }
 
 /*
-	Name: function_c4a8cdff
+	Name: castle_closest_player
 	Namespace: namespace_e9d5a0ce
 	Checksum: 0xA64767D2
 	Offset: 0xF50
@@ -310,7 +310,7 @@ function private function_ca4f6cd2(player)
 	Parameters: 2
 	Flags: Private
 */
-function private function_c4a8cdff(origin, var_6c55ba74)
+function private castle_closest_player(origin, var_6c55ba74)
 {
 	AIProfile_BeginEntry("castle_closest_player");
 	players = Array::filter(var_6c55ba74, 0, &function_4fee0339);

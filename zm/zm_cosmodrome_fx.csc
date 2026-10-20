@@ -1,11 +1,11 @@
 #using scripts\codescripts\struct;
 #using scripts\shared\util_shared;
 
-#namespace namespace_eb3fb2b6;
+#namespace zm_cosmodrome_fx;
 
 /*
 	Name: main
-	Namespace: namespace_eb3fb2b6
+	Namespace: zm_cosmodrome_fx
 	Checksum: 0x7328ABBA
 	Offset: 0x11D8
 	Size: 0x123
@@ -28,7 +28,7 @@ function main()
 
 /*
 	Name: precache_scripted_fx
-	Namespace: namespace_eb3fb2b6
+	Namespace: zm_cosmodrome_fx
 	Checksum: 0xB7CF7CFD
 	Offset: 0x1308
 	Size: 0x415
@@ -78,7 +78,7 @@ function precache_scripted_fx()
 
 /*
 	Name: precache_createfx_fx
-	Namespace: namespace_eb3fb2b6
+	Namespace: zm_cosmodrome_fx
 	Checksum: 0xF369A7E
 	Offset: 0x1728
 	Size: 0x40D
@@ -128,7 +128,7 @@ function precache_createfx_fx()
 
 /*
 	Name: trap_fx_monitor
-	Namespace: namespace_eb3fb2b6
+	Namespace: zm_cosmodrome_fx
 	Checksum: 0x3095B104
 	Offset: 0x1B40
 	Size: 0x119
@@ -158,7 +158,7 @@ function trap_fx_monitor(name, loc, trap_type)
 
 /*
 	Name: trap_play_fx
-	Namespace: namespace_eb3fb2b6
+	Namespace: zm_cosmodrome_fx
 	Checksum: 0x56BDE681
 	Offset: 0x1C68
 	Size: 0x25F
@@ -218,7 +218,7 @@ function trap_play_fx(loc, trap_type)
 
 /*
 	Name: toggle_lander_lights
-	Namespace: namespace_eb3fb2b6
+	Namespace: zm_cosmodrome_fx
 	Checksum: 0x8EFBAF42
 	Offset: 0x1ED0
 	Size: 0x379

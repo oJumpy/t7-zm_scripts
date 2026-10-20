@@ -14,7 +14,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: zm_powerup_insta_kill
-	Checksum: 0x534C7878
+	Checksum: 0xC470E860
 	Offset: 0x2A0
 	Size: 0x33
 	Parameters: 0
@@ -28,7 +28,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: zm_powerup_insta_kill
-	Checksum: 0xEE8E4298
+	Checksum: 0x2A21AA2A
 	Offset: 0x2E0
 	Size: 0xBB
 	Parameters: 0
@@ -46,7 +46,7 @@ function __init__()
 /*
 	Name: grab_insta_kill
 	Namespace: zm_powerup_insta_kill
-	Checksum: 0x1323B5C4
+	Checksum: 0x6DA662BD
 	Offset: 0x3A8
 	Size: 0x43
 	Parameters: 1
@@ -61,7 +61,7 @@ function grab_insta_kill(player)
 /*
 	Name: insta_kill_powerup
 	Namespace: zm_powerup_insta_kill
-	Checksum: 0x93677335
+	Checksum: 0xDD4F3D5B
 	Offset: 0x3F8
 	Size: 0x1C7
 	Parameters: 2

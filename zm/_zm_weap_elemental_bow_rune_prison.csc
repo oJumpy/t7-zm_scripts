@@ -9,11 +9,11 @@
 #using scripts\shared\util_shared;
 #using scripts\zm\_zm_weap_elemental_bow;
 
-#namespace namespace_2d73d751;
+#namespace _zm_weap_elemental_bow_rune_prison;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x48DBD3C
 	Offset: 0x510
 	Size: 0x33
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x2A6A6B8C
 	Offset: 0x550
 	Size: 0x32D
@@ -39,12 +39,12 @@ function __init__()
 	clientfield::register("toplayer", "elemental_bow_rune_prison" + "_ambient_bow_fx", 5000, 1, "int", &function_8339cd3d, 0, 0);
 	clientfield::register("missile", "elemental_bow_rune_prison" + "_arrow_impact_fx", 5000, 1, "int", &function_4b59f7f4, 0, 0);
 	clientfield::register("missile", "elemental_bow_rune_prison4" + "_arrow_impact_fx", 5000, 1, "int", &function_ed22f261, 0, 0);
-	clientfield::register("scriptmover", "runeprison_rock_fx", 5000, 1, "int", &function_63be352d, 0, 0);
-	clientfield::register("scriptmover", "runeprison_explode_fx", 5000, 1, "int", &function_409bb06f, 0, 0);
-	clientfield::register("scriptmover", "runeprison_lava_geyser_fx", 5000, 1, "int", &function_cea37b26, 0, 0);
-	clientfield::register("actor", "runeprison_lava_geyser_dot_fx", 5000, 1, "int", &function_96b27c9e, 0, 0);
-	clientfield::register("actor", "runeprison_zombie_charring", 5000, 1, "int", &function_ddc32cba, 0, 0);
-	clientfield::register("actor", "runeprison_zombie_death_skull", 5000, 1, "int", &function_b0a5feb0, 0, 0);
+	clientfield::register("scriptmover", "runeprison_rock_fx", 5000, 1, "int", &runeprison_rock_fx, 0, 0);
+	clientfield::register("scriptmover", "runeprison_explode_fx", 5000, 1, "int", &runeprison_explode_fx, 0, 0);
+	clientfield::register("scriptmover", "runeprison_lava_geyser_fx", 5000, 1, "int", &runeprison_lava_geyser_fx, 0, 0);
+	clientfield::register("actor", "runeprison_lava_geyser_dot_fx", 5000, 1, "int", &runeprison_lava_geyser_dot_fx, 0, 0);
+	clientfield::register("actor", "runeprison_zombie_charring", 5000, 1, "int", &runeprison_zombie_charring, 0, 0);
+	clientfield::register("actor", "runeprison_zombie_death_skull", 5000, 1, "int", &runeprison_zombie_death_skull, 0, 0);
 	level._effect["rune_ambient_bow"] = "dlc1/zmb_weapon/fx_bow_rune_ambient_1p_zmb";
 	level._effect["rune_arrow_impact"] = "dlc1/zmb_weapon/fx_bow_rune_impact_zmb";
 	level._effect["rune_fire_pillar"] = "dlc1/zmb_weapon/fx_bow_rune_impact_ug_fire_zmb";
@@ -54,7 +54,7 @@ function __init__()
 
 /*
 	Name: function_8339cd3d
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xC37DC270
 	Offset: 0x888
 	Size: 0x63
@@ -68,7 +68,7 @@ function function_8339cd3d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_4b59f7f4
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xE93829D1
 	Offset: 0x8F8
 	Size: 0x73
@@ -85,7 +85,7 @@ function function_4b59f7f4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_ed22f261
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xC2EAB864
 	Offset: 0x978
 	Size: 0x73
@@ -101,15 +101,15 @@ function function_ed22f261(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_63be352d
-	Namespace: namespace_2d73d751
+	Name: runeprison_rock_fx
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xEA86C45D
 	Offset: 0x9F8
 	Size: 0x125
 	Parameters: 7
 	Flags: None
 */
-function function_63be352d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function runeprison_rock_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	switch(newVal)
 	{
@@ -135,7 +135,7 @@ function function_63be352d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: scene_play
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xB7EF3984
 	Offset: 0xB28
 	Size: 0x83
@@ -156,7 +156,7 @@ function scene_play(scene, mdl_rune)
 
 /*
 	Name: function_6221b6b9
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x5DA365BC
 	Offset: 0xBB8
 	Size: 0x3B
@@ -171,7 +171,7 @@ function function_6221b6b9(scene, mdl_rune)
 
 /*
 	Name: function_79854312
-	Namespace: namespace_2d73d751
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xCC36C409
 	Offset: 0xC00
 	Size: 0x117
@@ -202,15 +202,15 @@ function function_79854312(localClientNum)
 }
 
 /*
-	Name: function_409bb06f
-	Namespace: namespace_2d73d751
+	Name: runeprison_explode_fx
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x776F42C8
 	Offset: 0xD20
 	Size: 0x7B
 	Parameters: 7
 	Flags: None
 */
-function function_409bb06f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function runeprison_explode_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -219,15 +219,15 @@ function function_409bb06f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_cea37b26
-	Namespace: namespace_2d73d751
+	Name: runeprison_lava_geyser_fx
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xFBE809E1
 	Offset: 0xDA8
 	Size: 0xA3
 	Parameters: 7
 	Flags: None
 */
-function function_cea37b26(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function runeprison_lava_geyser_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -237,15 +237,15 @@ function function_cea37b26(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_96b27c9e
-	Namespace: namespace_2d73d751
+	Name: runeprison_lava_geyser_dot_fx
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xCB126A2F
 	Offset: 0xE58
 	Size: 0x9B
 	Parameters: 7
 	Flags: None
 */
-function function_96b27c9e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function runeprison_lava_geyser_dot_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -258,15 +258,15 @@ function function_96b27c9e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_ddc32cba
-	Namespace: namespace_2d73d751
+	Name: runeprison_zombie_charring
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0xA6C6940A
 	Offset: 0xF00
 	Size: 0xF7
 	Parameters: 7
 	Flags: None
 */
-function function_ddc32cba(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function runeprison_zombie_charring(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	if(newVal)
@@ -285,15 +285,15 @@ function function_ddc32cba(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 }
 
 /*
-	Name: function_b0a5feb0
-	Namespace: namespace_2d73d751
+	Name: runeprison_zombie_death_skull
+	Namespace: _zm_weap_elemental_bow_rune_prison
 	Checksum: 0x3470F574
 	Offset: 0x1000
 	Size: 0x10B
 	Parameters: 7
 	Flags: None
 */
-function function_b0a5feb0(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function runeprison_zombie_death_skull(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{

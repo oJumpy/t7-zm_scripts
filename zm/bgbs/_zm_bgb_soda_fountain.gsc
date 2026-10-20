@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_perks;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_78eb0295;
+#namespace zm_bgb_soda_fountain;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_78eb0295
+	Namespace: zm_bgb_soda_fountain
 	Checksum: 0x53B3B716
 	Offset: 0x188
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_78eb0295
+	Namespace: zm_bgb_soda_fountain
 	Checksum: 0x3F0C8E30
 	Offset: 0x1C8
 	Size: 0x53
@@ -43,7 +43,7 @@ function __init__()
 
 /*
 	Name: event
-	Namespace: namespace_78eb0295
+	Namespace: zm_bgb_soda_fountain
 	Checksum: 0xF5A131A5
 	Offset: 0x228
 	Size: 0x177
@@ -53,7 +53,7 @@ function __init__()
 function event()
 {
 	self endon("disconnect");
-	self endon("hash_994d5e9e");
+	self endon("bgb_update");
 	self.var_76382430 = 5;
 	while(self.var_76382430 > 0)
 	{

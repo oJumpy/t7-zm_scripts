@@ -107,10 +107,10 @@ function private __main__()
 */
 function private on_player_spawned()
 {
-	if(!isdefined(self.var_27b6cdab))
+	if(!isdefined(self.bgb_token_last_given_time))
 	{
-		self.var_27b6cdab = self zm_stats::get_global_stat("BGB_TOKEN_LAST_GIVEN_TIME");
-		self.var_f191a1fc = 0;
+		self.bgb_token_last_given_time = self zm_stats::get_global_stat("BGB_TOKEN_LAST_GIVEN_TIME");
+		self.bgb_tokens_gained_this_game = 0;
 		self.var_bc978de9 = level.var_bc978de9 + level.round_number - 1;
 	}
 }
@@ -222,10 +222,10 @@ function private bgb_token_give_to_player()
 	{
 		self incrementbgbtokensgained();
 	}
-	self.var_f191a1fc = self.var_f191a1fc + var_90491adb;
+	self.bgb_tokens_gained_this_game = self.bgb_tokens_gained_this_game + var_90491adb;
 	self.var_bc978de9 = self.var_bc978de9 + level.var_c50e9bdb;
-	self.var_27b6cdab = self zm_stats::get_global_stat("TIME_PLAYED_TOTAL");
-	self zm_stats::set_global_stat("BGB_TOKEN_LAST_GIVEN_TIME", self.var_27b6cdab);
+	self.bgb_token_last_given_time = self zm_stats::get_global_stat("TIME_PLAYED_TOTAL");
+	self zm_stats::set_global_stat("BGB_TOKEN_LAST_GIVEN_TIME", self.bgb_token_last_given_time);
 	UploadStats(self);
 	self reportlootreward("3", var_90491adb);
 }
@@ -263,12 +263,12 @@ function award_check(var_5561679e)
 	{
 		return;
 	}
-	if(0 <= level.bgb_token_max_per_game && self.var_f191a1fc >= level.bgb_token_max_per_game)
+	if(0 <= level.bgb_token_max_per_game && self.bgb_tokens_gained_this_game >= level.bgb_token_max_per_game)
 	{
 		return;
 	}
-	var_6865f10f = self zm_stats::get_global_stat("TIME_PLAYED_TOTAL");
-	if(var_6865f10f - level.var_baa8fd09 > self.var_27b6cdab)
+	time_played_total = self zm_stats::get_global_stat("TIME_PLAYED_TOTAL");
+	if(time_played_total - level.var_baa8fd09 > self.bgb_token_last_given_time)
 	{
 		if(bgb_token_percent_chance(level.var_342aa5b2))
 		{

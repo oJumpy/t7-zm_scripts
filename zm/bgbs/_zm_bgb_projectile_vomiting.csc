@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_a5a0319c;
+#namespace zm_bgb_projectile_vomiting;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_a5a0319c
+	Namespace: zm_bgb_projectile_vomiting
 	Checksum: 0x6DCE8D5F
 	Offset: 0x248
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_a5a0319c
+	Namespace: zm_bgb_projectile_vomiting
 	Checksum: 0xCC0EAEA8
 	Offset: 0x288
 	Size: 0xC3
@@ -47,7 +47,7 @@ function __init__()
 
 /*
 	Name: play_vomit_fx
-	Namespace: namespace_a5a0319c
+	Namespace: zm_bgb_projectile_vomiting
 	Checksum: 0xB59A22BA
 	Offset: 0x358
 	Size: 0x10B
@@ -73,7 +73,7 @@ function play_vomit_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fi
 
 /*
 	Name: function_6d325051
-	Namespace: namespace_a5a0319c
+	Namespace: zm_bgb_projectile_vomiting
 	Checksum: 0x3D371B8D
 	Offset: 0x470
 	Size: 0x1B

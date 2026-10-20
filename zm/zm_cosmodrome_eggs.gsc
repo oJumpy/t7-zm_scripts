@@ -121,26 +121,26 @@ function activate_casimir_light(num)
 */
 function teleport_target_event()
 {
-	var_e624516d = struct::get("teleport_target_start", "targetname");
-	var_cf61e83e = struct::get("teleport_target_spark", "targetname");
-	var_1dc1d30a = var_cf61e83e.angles;
-	level.teleport_target = spawn("script_model", var_e624516d.origin);
+	teleport_target_start = struct::get("teleport_target_start", "targetname");
+	teleport_target_spark = struct::get("teleport_target_spark", "targetname");
+	var_1dc1d30a = teleport_target_spark.angles;
+	level.teleport_target = spawn("script_model", teleport_target_start.origin);
 	level.teleport_target SetModel("p7_zm_asc_transformer_electrical");
-	level.teleport_target.angles = var_e624516d.angles;
-	var_cf61e83e = spawn("script_model", var_cf61e83e.origin);
-	var_cf61e83e SetModel("tag_origin");
-	var_cf61e83e.angles = var_1dc1d30a;
-	PlayFXOnTag(level._effect["generator_ee_sparks"], var_cf61e83e, "tag_origin");
-	level.teleport_target_trigger = spawn("trigger_radius", var_e624516d.origin + VectorScale((0, 0, -1), 70), 0, 125, 100);
+	level.teleport_target.angles = teleport_target_start.angles;
+	teleport_target_spark = spawn("script_model", teleport_target_spark.origin);
+	teleport_target_spark SetModel("tag_origin");
+	teleport_target_spark.angles = var_1dc1d30a;
+	PlayFXOnTag(level._effect["generator_ee_sparks"], teleport_target_spark, "tag_origin");
+	level.teleport_target_trigger = spawn("trigger_radius", teleport_target_start.origin + VectorScale((0, 0, -1), 70), 0, 125, 100);
 	/#
 		if(!isdefined(level.debug_skip_teleport_event) || !level.debug_skip_teleport_event)
 		{
-			level.teleport_target thread namespace_670cb61::debug_display_at_pos(level.teleport_target.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 2);
+			level.teleport_target thread zm_cosmodrome::debug_display_at_pos(level.teleport_target.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 2);
 		}
 	#/
 	level.black_hole_bomb_loc_check_func = &bhb_teleport_loc_check;
 	level waittill("hash_2a49912");
-	var_cf61e83e delete();
+	teleport_target_spark delete();
 	level flag::wait_till("target_teleported");
 	level.black_hole_bomb_loc_check_func = undefined;
 	level thread play_egg_vox("vox_ann_egg1_success", "vox_gersh_egg1", 1);
@@ -184,12 +184,12 @@ function teleport_target(grenade, model)
 	time = 3;
 	level.teleport_target moveto(grenade.origin + VectorScale((0, 0, 1), 50), time, time - 0.05);
 	wait(time);
-	var_2298d0fe = struct::get("teleport_target_end", "targetname");
+	teleport_target_end = struct::get("teleport_target_end", "targetname");
 	level.teleport_target ghost();
 	playsoundatposition("zmb_gersh_teleporter_out", grenade.origin + VectorScale((0, 0, 1), 50));
 	wait(0.5);
-	level.teleport_target.angles = var_2298d0fe.angles;
-	level.teleport_target moveto(var_2298d0fe.origin, 0.05);
+	level.teleport_target.angles = teleport_target_end.angles;
+	level.teleport_target moveto(teleport_target_end.origin, 0.05);
 	wait(0.5);
 	level.teleport_target show();
 	PlayFXOnTag(level._effect["black_hole_bomb_event_horizon"], level.teleport_target, "tag_origin");
@@ -219,7 +219,7 @@ function reroute_power_event()
 	/#
 		if(!isdefined(level.debug_skip_reroute_event) || !level.debug_skip_reroute_event)
 		{
-			trig thread namespace_670cb61::debug_display_at_pos(monitor.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
+			trig thread zm_cosmodrome::debug_display_at_pos(monitor.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
 		}
 	#/
 	trig wait_for_use(monitor);
@@ -331,7 +331,7 @@ function reveal_switch()
 		/#
 			if(!isdefined(level.debug_skip_sync_event) || !level.debug_skip_sync_event)
 			{
-				trig thread namespace_670cb61::debug_display_at_pos(button.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
+				trig thread zm_cosmodrome::debug_display_at_pos(button.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
 			}
 		#/
 		trig thread wait_for_sync_use(self, button);
@@ -339,7 +339,7 @@ function reveal_switch()
 		/#
 			if(!isdefined(level.debug_skip_sync_event) || !level.debug_skip_sync_event)
 			{
-				trig namespace_670cb61::debug_remove("Dev Block strings are not supported");
+				trig zm_cosmodrome::debug_remove("Dev Block strings are not supported");
 			}
 		#/
 		trig delete();
@@ -361,7 +361,7 @@ function reveal_switch()
 function wait_for_sync_use(ss, button)
 {
 	level endon("between_round_over");
-	level endon("hash_589f4116");
+	level endon("switches_synced");
 	ss.pressed = 0;
 	while(1)
 	{
@@ -423,7 +423,7 @@ function switch_watcher()
 			if(pressed == 4)
 			{
 				level flag::set("switches_synced");
-				level notify("hash_589f4116");
+				level notify("switches_synced");
 				for(i = 0; i < switches.size; i++)
 				{
 					playsoundatposition("zmb_ee_syncbutton_success", switches[i].origin);
@@ -499,7 +499,7 @@ function area_timer(time)
 	/#
 		if(!isdefined(level.debug_skip_pressure_plate) || !level.debug_skip_pressure_plate)
 		{
-			self thread namespace_670cb61::debug_display_at_pos(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
+			self thread zm_cosmodrome::debug_display_at_pos(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
 		}
 		else if(isdefined(level.debug_skip_pressure_plate) && level.debug_skip_pressure_plate)
 		{
@@ -589,7 +589,7 @@ function area_timer(time)
 			/#
 				if(!isdefined(level.debug_skip_pressure_plate) || !level.debug_skip_pressure_plate)
 				{
-					self namespace_670cb61::debug_remove("Dev Block strings are not supported");
+					self zm_cosmodrome::debug_remove("Dev Block strings are not supported");
 				}
 			#/
 			clock delete();
@@ -696,7 +696,7 @@ function lander_monitor()
 				function_874d06b6();
 				/#
 					lander thread debug_passkey_event();
-					trig thread namespace_670cb61::debug_remove("Dev Block strings are not supported");
+					trig thread zm_cosmodrome::debug_remove("Dev Block strings are not supported");
 				#/
 			}
 			else
@@ -712,7 +712,7 @@ function lander_monitor()
 			function_874d06b6();
 			/#
 				lander thread debug_passkey_event();
-				trig thread namespace_670cb61::debug_remove("Dev Block strings are not supported");
+				trig thread zm_cosmodrome::debug_remove("Dev Block strings are not supported");
 			#/
 		}
 	}
@@ -738,7 +738,7 @@ function function_362373ab(model)
 			model.origin = level.s_call_to_station.origin + VectorScale((0, 0, 1), 32);
 			self.origin = model.origin;
 		}
-		self thread namespace_670cb61::debug_display_at_pos(model.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 3);
+		self thread zm_cosmodrome::debug_display_at_pos(model.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 3);
 	#/
 }
 
@@ -754,7 +754,7 @@ function function_362373ab(model)
 function function_874d06b6()
 {
 	/#
-		level notify("hash_eeefde1f");
+		level notify("passkey_reset");
 	#/
 	level.passkey_progress = 0;
 	level.secret1_progress = 0;
@@ -775,12 +775,12 @@ function debug_passkey_event()
 	/#
 		if(!isdefined(level.debug_skip_luna) || !level.debug_skip_luna)
 		{
-			level endon("hash_eeefde1f");
+			level endon("passkey_reset");
 			a_str_passkey_stations = Array("Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported", "Dev Block strings are not supported");
 			for(i = 0; i < a_str_passkey_stations.size; i++)
 			{
 				level.s_call_to_station = struct::get(a_str_passkey_stations[i], "Dev Block strings are not supported");
-				level.s_call_to_station thread namespace_670cb61::debug_display_at_pos(level.s_call_to_station.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 3);
+				level.s_call_to_station thread zm_cosmodrome::debug_display_at_pos(level.s_call_to_station.origin, "Dev Block strings are not supported", "Dev Block strings are not supported", 3);
 				self debug_waittill_lander_station(level.s_call_to_station);
 			}
 		}
@@ -820,7 +820,7 @@ function debug_waittill_lander_station(s_station)
 function spin_letter()
 {
 	level endon("lander_grounded");
-	level endon("hash_20fb11dc");
+	level endon("letter_acquired");
 	while(1)
 	{
 		self RotateYaw(90, 5);
@@ -845,7 +845,7 @@ function letter_grab(letter, model)
 	playsoundatposition("zmb_powerup_grabbed", model.origin);
 	model ghost();
 	/#
-		self namespace_670cb61::debug_remove("Dev Block strings are not supported");
+		self zm_cosmodrome::debug_remove("Dev Block strings are not supported");
 	#/
 	if(letter == level.passkey[level.passkey_progress])
 	{
@@ -897,14 +897,14 @@ function letter_grab(letter, model)
 function weapon_combo_event()
 {
 	level flag::init("thundergun_hit");
-	var_c45fbbb9 = struct::get("weapon_combo_spot", "targetname");
-	focal_point = spawn("script_model", var_c45fbbb9.origin);
+	weapon_combo_spot = struct::get("weapon_combo_spot", "targetname");
+	focal_point = spawn("script_model", weapon_combo_spot.origin);
 	focal_point SetModel("tag_origin");
 	FX = PlayFXOnTag(level._effect["gersh_spark"], focal_point, "tag_origin");
-	level.black_hold_bomb_target_trig = spawn("trigger_radius", var_c45fbbb9.origin, 0, 50, 72);
+	level.black_hold_bomb_target_trig = spawn("trigger_radius", weapon_combo_spot.origin, 0, 50, 72);
 	level.black_hole_bomb_loc_check_func = &bhb_combo_loc_check;
 	/#
-		focal_point thread function_a0ad103c(var_c45fbbb9);
+		focal_point thread function_a0ad103c(weapon_combo_spot);
 	#/
 	level flag::wait_till("weapons_combined");
 	level.black_hold_bomb_target_trig delete();
@@ -925,7 +925,7 @@ function weapon_combo_event()
 	Parameters: 1
 	Flags: None
 */
-function function_a0ad103c(var_c45fbbb9)
+function function_a0ad103c(weapon_combo_spot)
 {
 	/#
 		if(isdefined(level.var_55336afe) && level.var_55336afe)
@@ -936,7 +936,7 @@ function function_a0ad103c(var_c45fbbb9)
 		}
 		else
 		{
-			var_c45fbbb9 thread function_8172c64e();
+			weapon_combo_spot thread function_8172c64e();
 		}
 	#/
 }
@@ -953,9 +953,9 @@ function function_a0ad103c(var_c45fbbb9)
 function function_8172c64e()
 {
 	/#
-		self thread namespace_670cb61::debug_display_at_pos(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
+		self thread zm_cosmodrome::debug_display_at_pos(self.origin, "Dev Block strings are not supported", "Dev Block strings are not supported");
 		level flag::wait_till("Dev Block strings are not supported");
-		self thread namespace_670cb61::debug_remove("Dev Block strings are not supported");
+		self thread zm_cosmodrome::debug_remove("Dev Block strings are not supported");
 	#/
 }
 
@@ -1005,7 +1005,7 @@ function wait_for_combo(trig)
 {
 	self endon("death");
 	self thread kill_trig_on_death(trig);
-	var_c45fbbb9 = struct::get("weapon_combo_spot", "targetname");
+	weapon_combo_spot = struct::get("weapon_combo_spot", "targetname");
 	ray_gun_hit = 0;
 	doll_hit = 0;
 	/#
@@ -1016,7 +1016,7 @@ function wait_for_combo(trig)
 		}
 	#/
 	players = GetPlayers();
-	Array::thread_all(players, &thundergun_check, self, trig, var_c45fbbb9);
+	Array::thread_all(players, &thundergun_check, self, trig, weapon_combo_spot);
 	while(1)
 	{
 		trig waittill("damage", amount, inflictor, direction, point, type, tagName, modelName, partName, weapon);
@@ -1049,7 +1049,7 @@ function wait_for_combo(trig)
 	Parameters: 3
 	Flags: None
 */
-function thundergun_check(model, trig, var_c45fbbb9)
+function thundergun_check(model, trig, weapon_combo_spot)
 {
 	/#
 		if(isdefined(level.var_55336afe) && level.var_55336afe)
@@ -1066,9 +1066,9 @@ function thundergun_check(model, trig, var_c45fbbb9)
 		w_player_weapon = self GetCurrentWeapon();
 		if(w_player_weapon.name == "thundergun_upgraded")
 		{
-			if(DistanceSquared(self.origin, var_c45fbbb9.origin) < 90000)
+			if(DistanceSquared(self.origin, weapon_combo_spot.origin) < 90000)
 			{
-				vector_to_spot = VectorNormalize(var_c45fbbb9.origin - self GetWeaponMuzzlePoint());
+				vector_to_spot = VectorNormalize(weapon_combo_spot.origin - self GetWeaponMuzzlePoint());
 				vector_player_facing = self GetWeaponForwardDir();
 				angle_diff = ACos(VectorDot(vector_to_spot, vector_player_facing));
 				if(angle_diff <= 20)
@@ -1206,7 +1206,7 @@ function play_egg_vox(ann_alias, gersh_alias, plr_num)
 		players = GetPlayers();
 		rand = randomIntRange(0, players.size);
 		players[rand] PlaySoundWithNotify("vox_plr_" + players[rand].characterindex + "_level_start_" + randomIntRange(0, 4), "level_start_vox_done");
-		players[rand] waittill("hash_200a4e11");
+		players[rand] waittill("level_start_vox_done");
 		level.var_92ed253c = 1;
 	}
 	if(isdefined(gersh_alias))

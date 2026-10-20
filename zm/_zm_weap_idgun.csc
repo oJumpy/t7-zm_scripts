@@ -13,7 +13,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: idgun
-	Checksum: 0xCF1414B7
+	Checksum: 0xF095AE55
 	Offset: 0x240
 	Size: 0x33
 	Parameters: 0
@@ -27,7 +27,7 @@ function autoexec __init__sytem__()
 /*
 	Name: init
 	Namespace: idgun
-	Checksum: 0xB082EC8B
+	Checksum: 0xB8FF88DE
 	Offset: 0x280
 	Size: 0x93
 	Parameters: 0
@@ -39,26 +39,26 @@ function init()
 	level.weaponidgun = GetWeapon("robotech_launcher");
 	level.weaponidgunupgraded = GetWeapon("robotech_launcher_upgraded");
 	construct_idgun_weapon_array();
-	callback::on_spawned(&function_50ee0a95);
+	callback::on_spawned(&player_idgun_think);
 }
 
 /*
-	Name: function_50ee0a95
+	Name: player_idgun_think
 	Namespace: idgun
-	Checksum: 0xDAFB843A
+	Checksum: 0x37A76AEB
 	Offset: 0x320
 	Size: 0xB
 	Parameters: 1
 	Flags: None
 */
-function function_50ee0a95(localClientNum)
+function player_idgun_think(localClientNum)
 {
 }
 
 /*
 	Name: add_idgun
 	Namespace: idgun
-	Checksum: 0xA6F9628D
+	Checksum: 0xBE04984C
 	Offset: 0x338
 	Size: 0x89
 	Parameters: 1
@@ -83,7 +83,7 @@ function add_idgun(w_idgun)
 /*
 	Name: construct_idgun_weapon_array
 	Namespace: idgun
-	Checksum: 0x52357579
+	Checksum: 0x3F9201A2
 	Offset: 0x3D0
 	Size: 0x153
 	Parameters: 0
@@ -105,7 +105,7 @@ function construct_idgun_weapon_array()
 /*
 	Name: function_9b7ac6a9
 	Namespace: idgun
-	Checksum: 0xD667D9A7
+	Checksum: 0xB93C7C99
 	Offset: 0x530
 	Size: 0x97
 	Parameters: 1
@@ -123,7 +123,7 @@ function function_9b7ac6a9(weapon)
 /*
 	Name: is_idgun_damage
 	Namespace: idgun
-	Checksum: 0xA7233AB0
+	Checksum: 0x97DEA99A
 	Offset: 0x5D0
 	Size: 0x3D
 	Parameters: 1

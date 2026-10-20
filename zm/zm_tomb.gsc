@@ -588,7 +588,7 @@ function tomb_closest_player_override(v_zombie_origin, a_players_to_check)
 */
 function anywhere_but_here_validation_override()
 {
-	if(!isdefined(self namespace_93b7f03::function_728dfe3()))
+	if(!isdefined(self zm_bgb_anywhere_but_here::function_728dfe3()))
 	{
 		return 0;
 	}
@@ -1439,7 +1439,7 @@ function tomb_powerup_grab(s_powerup, e_player)
 {
 	if(s_powerup.powerup_name == "zombie_blood")
 	{
-		level thread namespace_43a18dd5::zombie_blood_powerup(s_powerup, e_player);
+		level thread zm_powerup_zombie_blood::zombie_blood_powerup(s_powerup, e_player);
 	}
 }
 
@@ -2082,9 +2082,9 @@ function tomb_zombie_death_event_callback(attacker)
 {
 	if(isdefined(self) && isdefined(self.damagelocation) && isdefined(self.damageMod) && isdefined(self.damageWeapon) && isdefined(self.attacker) && isPlayer(self.attacker))
 	{
-		if(zm_utility::is_headshot(self.damageWeapon, self.damagelocation, self.damageMod) && namespace_a528e918::challenge_exists("zc_headshots") && !self.script_noteworthy === "capture_zombie")
+		if(zm_utility::is_headshot(self.damageWeapon, self.damagelocation, self.damageMod) && zm_challenges_tomb::challenge_exists("zc_headshots") && !self.script_noteworthy === "capture_zombie")
 		{
-			self.attacker namespace_a528e918::increment_stat("zc_headshots");
+			self.attacker zm_challenges_tomb::increment_stat("zc_headshots");
 		}
 	}
 }

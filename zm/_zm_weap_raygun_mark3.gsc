@@ -17,7 +17,7 @@
 /*
 	Name: __init__sytem__
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x83CCF4E0
+	Checksum: 0xD5280F64
 	Offset: 0x3E0
 	Size: 0x3B
 	Parameters: 0
@@ -31,7 +31,7 @@ function autoexec __init__sytem__()
 /*
 	Name: __init__
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xE6CD86AE
+	Checksum: 0x92A7EEE6
 	Offset: 0x428
 	Size: 0x293
 	Parameters: 0
@@ -72,7 +72,7 @@ function __main__()
 /*
 	Name: is_slow_raygun
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x5A416114
+	Checksum: 0x72ED613D
 	Offset: 0x6D8
 	Size: 0x33
 	Parameters: 1
@@ -90,7 +90,7 @@ function is_slow_raygun(weapon)
 /*
 	Name: is_beam_raygun
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xDEA183E6
+	Checksum: 0xB1FD61E0
 	Offset: 0x718
 	Size: 0x33
 	Parameters: 1
@@ -108,7 +108,7 @@ function is_beam_raygun(weapon)
 /*
 	Name: raygun_vortex_reposition
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x53F7AC4F
+	Checksum: 0x19970CF9
 	Offset: 0x758
 	Size: 0x75
 	Parameters: 1
@@ -131,7 +131,7 @@ function raygun_vortex_reposition(v_impact_origin)
 /*
 	Name: watch_raygun_impact
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xF442AEEC
+	Checksum: 0x5E01FAB0
 	Offset: 0x7D8
 	Size: 0xD7
 	Parameters: 0
@@ -154,7 +154,7 @@ function watch_raygun_impact()
 /*
 	Name: start_slow_vortex
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x49EB2492
+	Checksum: 0xAA66D7DE
 	Offset: 0x8B8
 	Size: 0x18B
 	Parameters: 6
@@ -180,7 +180,7 @@ function start_slow_vortex(w_weapon, v_pos, v_pos_final, n_radius, e_attacker, v
 /*
 	Name: pulse_damage
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xEA3FDB37
+	Checksum: 0x432F5DF9
 	Offset: 0xA50
 	Size: 0x443
 	Parameters: 2
@@ -266,7 +266,7 @@ function pulse_damage(e_owner, w_weapon)
 /*
 	Name: player_vortex_visionset
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xAE61586B
+	Checksum: 0xA1711518
 	Offset: 0xEA0
 	Size: 0xBB
 	Parameters: 0
@@ -287,7 +287,7 @@ function player_vortex_visionset()
 /*
 	Name: wait_for_beam_damage
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0x5A0AFB37
+	Checksum: 0x9947CA96
 	Offset: 0xF68
 	Size: 0x1C7
 	Parameters: 0
@@ -324,7 +324,7 @@ function wait_for_beam_damage()
 /*
 	Name: raygun_mark3_damage_response
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xB6669E31
+	Checksum: 0x4A72370B
 	Offset: 0x1138
 	Size: 0x153
 	Parameters: 13
@@ -358,7 +358,7 @@ function raygun_mark3_damage_response(str_mod, str_hit_location, v_hit_origin, e
 /*
 	Name: apply_vortex_fx
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xA395DBA5
+	Checksum: 0xEE781E6
 	Offset: 0x1298
 	Size: 0x163
 	Parameters: 2
@@ -397,7 +397,7 @@ function apply_vortex_fx(n_damage_type, n_time)
 /*
 	Name: disintegrate_zombie
 	Namespace: _zm_weap_raygun_mark3
-	Checksum: 0xFC7CA3BC
+	Checksum: 0x844DC629
 	Offset: 0x1408
 	Size: 0x1AB
 	Parameters: 3

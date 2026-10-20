@@ -1,12 +1,12 @@
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\system_shared;
 
-#namespace namespace_5c41055a;
+#namespace zm_radio;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_5c41055a
-	Checksum: 0x34D61513
+	Namespace: zm_radio
+	Checksum: 0xD8989EC8
 	Offset: 0xC0
 	Size: 0x3B
 	Parameters: 0
@@ -19,7 +19,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_5c41055a
+	Namespace: zm_radio
 	Checksum: 0x99EC1590
 	Offset: 0x108
 	Size: 0x3
@@ -32,7 +32,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_5c41055a
+	Namespace: zm_radio
 	Checksum: 0x99EC1590
 	Offset: 0x118
 	Size: 0x3
@@ -45,8 +45,8 @@ function __main__()
 
 /*
 	Name: next_song
-	Namespace: namespace_5c41055a
-	Checksum: 0xFC1C1880
+	Namespace: zm_radio
+	Checksum: 0x43AB63F0
 	Offset: 0x128
 	Size: 0x203
 	Parameters: 7
@@ -104,8 +104,8 @@ function next_song(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldN
 
 /*
 	Name: add_song
-	Namespace: namespace_5c41055a
-	Checksum: 0xC0B64FA8
+	Namespace: zm_radio
+	Checksum: 0xEB3EE950
 	Offset: 0x338
 	Size: 0x39
 	Parameters: 1
@@ -122,8 +122,8 @@ function add_song(SONG)
 
 /*
 	Name: function_2b7f281d
-	Namespace: namespace_5c41055a
-	Checksum: 0x56136C60
+	Namespace: zm_radio
+	Checksum: 0x5C12166D
 	Offset: 0x380
 	Size: 0x67
 	Parameters: 7
@@ -139,8 +139,8 @@ function function_2b7f281d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: Fade
-	Namespace: namespace_5c41055a
-	Checksum: 0x8F27EAAD
+	Namespace: zm_radio
+	Checksum: 0xF6AAFAB2
 	Offset: 0x3F0
 	Size: 0x9B
 	Parameters: 2
@@ -161,8 +161,8 @@ function Fade(n_id, n_time)
 
 /*
 	Name: stop_radio_listener
-	Namespace: namespace_5c41055a
-	Checksum: 0xF662EBAB
+	Namespace: zm_radio
+	Checksum: 0x98111F56
 	Offset: 0x498
 	Size: 0x5F
 	Parameters: 0

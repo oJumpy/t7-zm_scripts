@@ -5,11 +5,11 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_2f637cea;
+#namespace zm_bgb_slaughter_slide;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_2f637cea
+	Namespace: zm_bgb_slaughter_slide
 	Checksum: 0xAC84C140
 	Offset: 0x150
 	Size: 0x33
@@ -23,7 +23,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_2f637cea
+	Namespace: zm_bgb_slaughter_slide
 	Checksum: 0x648458CE
 	Offset: 0x190
 	Size: 0x3B

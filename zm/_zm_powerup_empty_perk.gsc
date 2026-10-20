@@ -17,11 +17,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_ac1a876c;
+#namespace zm_powerup_empty_perk;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_ac1a876c
+	Namespace: zm_powerup_empty_perk
 	Checksum: 0xB25EB9FA
 	Offset: 0x2F8
 	Size: 0x33
@@ -35,7 +35,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_ac1a876c
+	Namespace: zm_powerup_empty_perk
 	Checksum: 0x92939947
 	Offset: 0x338
 	Size: 0xEB
@@ -58,7 +58,7 @@ function __init__()
 
 /*
 	Name: grab_empty_perk
-	Namespace: namespace_ac1a876c
+	Namespace: zm_powerup_empty_perk
 	Checksum: 0xE59EC9FA
 	Offset: 0x430
 	Size: 0x23
@@ -72,7 +72,7 @@ function grab_empty_perk(player)
 
 /*
 	Name: function_ba8751f2
-	Namespace: namespace_ac1a876c
+	Namespace: zm_powerup_empty_perk
 	Checksum: 0xD20565BE
 	Offset: 0x460
 	Size: 0x3B
@@ -93,7 +93,7 @@ function function_ba8751f2()
 
 /*
 	Name: perk_purchase_limit_override
-	Namespace: namespace_ac1a876c
+	Namespace: zm_powerup_empty_perk
 	Checksum: 0x7648FC35
 	Offset: 0x4A8
 	Size: 0x25
@@ -111,7 +111,7 @@ function perk_purchase_limit_override()
 
 /*
 	Name: function_ac499d74
-	Namespace: namespace_ac1a876c
+	Namespace: zm_powerup_empty_perk
 	Checksum: 0x310C5FD1
 	Offset: 0x4D8
 	Size: 0x7B
@@ -131,7 +131,7 @@ function function_ac499d74()
 
 /*
 	Name: function_5d69c3e
-	Namespace: namespace_ac1a876c
+	Namespace: zm_powerup_empty_perk
 	Checksum: 0xF3ACE2CD
 	Offset: 0x560
 	Size: 0xB3

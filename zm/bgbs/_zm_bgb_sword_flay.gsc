@@ -7,11 +7,11 @@
 #using scripts\zm\_zm_stats;
 #using scripts\zm\_zm_utility;
 
-#namespace namespace_6caa802f;
+#namespace zm_bgb_sword_flay;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6caa802f
+	Namespace: zm_bgb_sword_flay
 	Checksum: 0xC0C4313B
 	Offset: 0x198
 	Size: 0x33
@@ -25,7 +25,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6caa802f
+	Namespace: zm_bgb_sword_flay
 	Checksum: 0xC10F4D85
 	Offset: 0x1D8
 	Size: 0xAB
@@ -45,7 +45,7 @@ function __init__()
 
 /*
 	Name: enable
-	Namespace: namespace_6caa802f
+	Namespace: zm_bgb_sword_flay
 	Checksum: 0x99EC1590
 	Offset: 0x290
 	Size: 0x3
@@ -58,7 +58,7 @@ function enable()
 
 /*
 	Name: disable
-	Namespace: namespace_6caa802f
+	Namespace: zm_bgb_sword_flay
 	Checksum: 0x99EC1590
 	Offset: 0x2A0
 	Size: 0x3
@@ -71,7 +71,7 @@ function disable()
 
 /*
 	Name: actor_damage_override
-	Namespace: namespace_6caa802f
+	Namespace: zm_bgb_sword_flay
 	Checksum: 0xCD14ACEE
 	Offset: 0x2B0
 	Size: 0xDF
@@ -93,7 +93,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansOfDeath,
 
 /*
 	Name: vehicle_damage_override
-	Namespace: namespace_6caa802f
+	Namespace: zm_bgb_sword_flay
 	Checksum: 0xC12369CB
 	Offset: 0x398
 	Size: 0xA1

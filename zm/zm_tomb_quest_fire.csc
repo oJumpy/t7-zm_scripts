@@ -18,7 +18,7 @@
 */
 function main()
 {
-	clientfield::register("scriptmover", "barbecue_fx", 21000, 1, "int", &function_63c3c25d, 0, 0);
+	clientfield::register("scriptmover", "barbecue_fx", 21000, 1, "int", &barbecue_fx, 0, 0);
 }
 
 /*
@@ -32,8 +32,8 @@ function main()
 */
 function barbecue_fx_loop(localClientNum)
 {
-	self notify("hash_b9e014c3");
-	self endon("hash_b9e014c3");
+	self notify("stop_bbq_fx_loop");
+	self endon("stop_bbq_fx_loop");
 	self endon("entityshutdown");
 	while(1)
 	{
@@ -43,7 +43,7 @@ function barbecue_fx_loop(localClientNum)
 }
 
 /*
-	Name: function_63c3c25d
+	Name: barbecue_fx
 	Namespace: zm_tomb_quest_fire
 	Checksum: 0x47660F45
 	Offset: 0x280
@@ -51,7 +51,7 @@ function barbecue_fx_loop(localClientNum)
 	Parameters: 7
 	Flags: None
 */
-function function_63c3c25d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
+function barbecue_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasDemoJump)
 {
 	if(newVal)
 	{
@@ -60,7 +60,7 @@ function function_63c3c25d(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 	}
 	else
 	{
-		self notify("hash_b9e014c3");
+		self notify("stop_bbq_fx_loop");
 	}
 }
 

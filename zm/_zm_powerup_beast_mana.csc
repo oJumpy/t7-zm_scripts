@@ -2,11 +2,11 @@
 #using scripts\shared\system_shared;
 #using scripts\zm\_zm_powerups;
 
-#namespace namespace_6500cb2b;
+#namespace zm_powerup_beast_mana;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6500cb2b
+	Namespace: zm_powerup_beast_mana
 	Checksum: 0x6EC27E63
 	Offset: 0xF8
 	Size: 0x33
@@ -20,7 +20,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6500cb2b
+	Namespace: zm_powerup_beast_mana
 	Checksum: 0xA44738F2
 	Offset: 0x138
 	Size: 0x33

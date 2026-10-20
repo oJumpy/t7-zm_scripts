@@ -15,11 +15,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_6500cb2b;
+#namespace zm_powerup_beast_mana;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_6500cb2b
+	Namespace: zm_powerup_beast_mana
 	Checksum: 0x10D4FC6B
 	Offset: 0x340
 	Size: 0x33
@@ -33,7 +33,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_6500cb2b
+	Namespace: zm_powerup_beast_mana
 	Checksum: 0x23A9D5CF
 	Offset: 0x380
 	Size: 0xA3
@@ -51,7 +51,7 @@ function __init__()
 
 /*
 	Name: grab_beast_mana
-	Namespace: namespace_6500cb2b
+	Namespace: zm_powerup_beast_mana
 	Checksum: 0x7FED1127
 	Offset: 0x430
 	Size: 0x43
@@ -66,7 +66,7 @@ function grab_beast_mana(player)
 
 /*
 	Name: beast_mana_powerup
-	Namespace: namespace_6500cb2b
+	Namespace: zm_powerup_beast_mana
 	Checksum: 0x168E0B4D
 	Offset: 0x480
 	Size: 0x12B
@@ -85,7 +85,7 @@ function beast_mana_powerup(item, player)
 				players[i].beastmana = 1;
 				continue;
 			}
-			players[i].var_5e82a563++;
+			players[i].beastlives++;
 		}
 	}
 	level thread mana_on_hud(item, player.team);
@@ -93,7 +93,7 @@ function beast_mana_powerup(item, player)
 
 /*
 	Name: mana_on_hud
-	Namespace: namespace_6500cb2b
+	Namespace: zm_powerup_beast_mana
 	Checksum: 0x189DE10B
 	Offset: 0x5B8
 	Size: 0x123
@@ -118,7 +118,7 @@ function mana_on_hud(drop_item, player_team)
 
 /*
 	Name: full_ammo_move_hud
-	Namespace: namespace_6500cb2b
+	Namespace: zm_powerup_beast_mana
 	Checksum: 0x4EE9D9A3
 	Offset: 0x6E8
 	Size: 0xD3

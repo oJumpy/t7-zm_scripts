@@ -47,10 +47,10 @@ function main()
 	level thread function_d806d0f9();
 	level thread function_46ffc7b4();
 	level thread function_801ffa37();
-	level thread function_ae1e48b4();
+	level thread temporary_power_switch_init();
 	callback::on_spawned(&function_45585311);
 	level thread function_662fba30();
-	level thread function_c5751341();
+	level thread init_water_source();
 	/#
 		level thread function_83ead54e();
 	#/
@@ -70,7 +70,7 @@ function main()
 */
 function function_d17ab8c6()
 {
-	level endon("hash_b4db6fbb");
+	level endon("connect_bunker_exterior_to_bunker_interior");
 	level flag::init("power_on" + 3);
 	level thread function_9e6292be();
 	level thread function_bbe228f8();
@@ -81,7 +81,7 @@ function function_d17ab8c6()
 		if(flag::get("power_on" + 1) && flag::get("power_on" + 2))
 		{
 			level zm_power::turn_power_on_and_open_doors(3);
-			level thread namespace_f333593c::function_3bf2d62a("both_power_on", 1, 1, 1);
+			level thread zm_island_vo::function_3bf2d62a("both_power_on", 1, 1, 1);
 			level util::delay_notify(0.25, "override_bunker_door_string");
 		}
 		else
@@ -102,12 +102,12 @@ function function_d17ab8c6()
 */
 function function_bbe228f8()
 {
-	level endon("hash_b4db6fbb");
+	level endon("connect_bunker_exterior_to_bunker_interior");
 	zm_utility::add_zombie_hint("bunker_door_text", &"ZM_ISLAND_BUNKER_DOOR_OPEN");
 	var_25d5f24c = GetEnt("door_bunker_main", "target");
 	while(1)
 	{
-		level waittill("hash_c532b07e");
+		level waittill("override_bunker_door_string");
 		var_25d5f24c zm_utility::set_hint_string(var_25d5f24c, "bunker_door_text");
 	}
 }
@@ -183,7 +183,7 @@ function function_d806d0f9()
 		exploder::exploder("ex_prop_switch");
 		level.var_1dbad94a = 1;
 		namespace_eaae7728::function_23d17338(level.var_1dbad94a);
-		level thread namespace_f333593c::function_3bf2d62a("local_power_on", 1, 0, 0);
+		level thread zm_island_vo::function_3bf2d62a("local_power_on", 1, 0, 0);
 		if(level flag::get("power_on"))
 		{
 			break;
@@ -222,7 +222,7 @@ function function_46ffc7b4()
 		exploder::exploder("fxexp_210");
 		level.var_2e16e689 = 1;
 		namespace_eaae7728::function_1dc42fdf(level.var_2e16e689);
-		level thread namespace_f333593c::function_3bf2d62a("local_power_on", 0, 0, 1);
+		level thread zm_island_vo::function_3bf2d62a("local_power_on", 0, 0, 1);
 		if(level flag::get("power_on"))
 		{
 			break;
@@ -269,7 +269,7 @@ function function_801ffa37()
 	var_ac878678 waittill("trigger", User);
 	level thread scene::Play("p7_fxanim_zm_power_switch_bundle");
 	User zm_audio::create_and_play_dialog("general", "power_on");
-	level thread namespace_f333593c::function_3bf2d62a("main_power_on", 1, 1, 1);
+	level thread zm_island_vo::function_3bf2d62a("main_power_on", 1, 1, 1);
 	exploder::exploder("ex_prop_switch");
 	exploder::exploder("ex_fan_switch");
 }
@@ -290,7 +290,7 @@ function function_e9f46546()
 		wait(1);
 	}
 	t_web = GetEnt("penstock_web_trigger", "targetname");
-	t_web namespace_27f8b154::function_7428955c();
+	t_web zm_ai_spiders::function_7428955c();
 	if(!isdefined(level.var_d3b40681))
 	{
 		level.var_d3b40681 = [];
@@ -300,19 +300,19 @@ function function_e9f46546()
 		level.var_d3b40681 = Array(level.var_d3b40681);
 	}
 	level.var_d3b40681[level.var_d3b40681.size] = t_web;
-	t_web namespace_27f8b154::function_f375c6d9(1, 1);
+	t_web zm_ai_spiders::function_f375c6d9(1, 1);
 	t_web.var_e084d7bd = 1;
-	t_web waittill("hash_bbf62f57");
+	t_web waittill("web_torn");
 	level util::clientNotify("snd_valve");
-	level thread namespace_f333593c::function_3bf2d62a("unblock_penstock", 0, 1, 0);
-	t_web namespace_27f8b154::function_f375c6d9(0);
+	level thread zm_island_vo::function_3bf2d62a("unblock_penstock", 0, 1, 0);
+	t_web zm_ai_spiders::function_f375c6d9(0);
 	ArrayRemoveValue(level.var_d3b40681, t_web);
 	t_web.var_1e831600 util::delay(5, undefined, &delete);
 	t_web util::delay(6, undefined, &delete);
 }
 
 /*
-	Name: function_ae1e48b4
+	Name: temporary_power_switch_init
 	Namespace: namespace_f3e3de78
 	Checksum: 0xDD6DDFF0
 	Offset: 0x1940
@@ -320,7 +320,7 @@ function function_e9f46546()
 	Parameters: 0
 	Flags: None
 */
-function function_ae1e48b4()
+function temporary_power_switch_init()
 {
 	level.var_769c0729 = GetEntArray("temporary_power_switch", "script_string");
 	level clientfield::set("power_switch_1_fx", 1);
@@ -328,7 +328,7 @@ function function_ae1e48b4()
 }
 
 /*
-	Name: function_156f973e
+	Name: temporary_power_switch_think
 	Namespace: namespace_f3e3de78
 	Checksum: 0x8CB221A5
 	Offset: 0x19B8
@@ -336,7 +336,7 @@ function function_ae1e48b4()
 	Parameters: 0
 	Flags: None
 */
-function function_156f973e()
+function temporary_power_switch_think()
 {
 	if(!isdefined(self))
 	{
@@ -395,9 +395,9 @@ function function_156f973e()
 		{
 			continue;
 		}
-		User thread namespace_f333593c::function_c8bcaf11();
+		User thread zm_island_vo::function_c8bcaf11();
 		var_b46e7d63 thread scene::Play("p7_fxanim_zm_island_power_plant_on_bundle", var_b46e7d63.var_8c4b44d4);
-		self thread function_e2e52f31();
+		self thread temp_power_sound();
 		self SetInvisibleToAll();
 		if(isdefined(master_switch))
 		{
@@ -409,7 +409,7 @@ function function_156f973e()
 		{
 			power_zone = self.script_int;
 		}
-		var_b46e7d63 waittill("hash_26b8743e");
+		var_b46e7d63 waittill("power_plant_on");
 		level zm_power::turn_power_on_and_open_doors(power_zone);
 		if(!isdefined(self.script_noteworthy) || self.script_noteworthy != "allow_power_off")
 		{
@@ -454,12 +454,12 @@ function function_156f973e()
 			if(self.script_int == 1)
 			{
 				exploder::exploder_stop("ex_power_bdoor_left");
-				level thread namespace_f333593c::function_3bf2d62a("local_power_off", 1, 0, 0);
+				level thread zm_island_vo::function_3bf2d62a("local_power_off", 1, 0, 0);
 			}
 			else if(self.script_int == 2)
 			{
 				exploder::exploder_stop("ex_power_bdoor_right");
-				level thread namespace_f333593c::function_3bf2d62a("local_power_off", 0, 0, 1);
+				level thread zm_island_vo::function_3bf2d62a("local_power_off", 0, 0, 1);
 			}
 		}
 		else
@@ -478,7 +478,7 @@ function function_156f973e()
 			master_switch waittill("rotatedone");
 		}
 		level zm_power::turn_power_off_and_close_doors(power_zone);
-		self notify("hash_42c31433");
+		self notify("stop_power_sound");
 	}
 }
 
@@ -529,11 +529,11 @@ function function_c1edfb09(a_ents)
 function function_b3c3fdca()
 {
 	wait(2);
-	self notify("hash_26b8743e");
+	self notify("power_plant_on");
 }
 
 /*
-	Name: function_e2e52f31
+	Name: temp_power_sound
 	Namespace: namespace_f3e3de78
 	Checksum: 0xFAEFE4CC
 	Offset: 0x2358
@@ -541,15 +541,15 @@ function function_b3c3fdca()
 	Parameters: 0
 	Flags: None
 */
-function function_e2e52f31()
+function temp_power_sound()
 {
-	var_e2e52f31 = spawn("script_origin", self.origin);
-	var_e2e52f31 PlayLoopSound("zmb_temp_power_loop", 1.5);
-	self waittill("hash_42c31433");
+	temp_power_sound = spawn("script_origin", self.origin);
+	temp_power_sound PlayLoopSound("zmb_temp_power_loop", 1.5);
+	self waittill("stop_power_sound");
 	self PlaySoundWithNotify("zmb_temp_power_off", "sounddone");
-	var_e2e52f31 StopLoopSound(2);
+	temp_power_sound StopLoopSound(2);
 	self waittill("sounddone");
-	var_e2e52f31 delete();
+	temp_power_sound delete();
 }
 
 /*
@@ -566,10 +566,10 @@ function function_7963db9c(var_fb491867)
 	var_6575d157 = spawn("script_origin", var_fb491867);
 	var_6575d157 PlayLoopSound("amb_mini_generator", 1.5);
 	var_6575d157 playsound("amb_gen_start");
-	self waittill("hash_42c31433");
+	self waittill("stop_power_sound");
 	var_6575d157 StopLoopSound(2);
 	var_6575d157 PlaySoundWithNotify("amb_gen_stop", "snd_done");
-	var_6575d157 waittill("hash_f7dd334d");
+	var_6575d157 waittill("snd_done");
 	var_6575d157 delete();
 }
 
@@ -694,11 +694,11 @@ function function_3d11144a()
 	var_1e9b1719 = GetEnt("fxanim_bunker_door_main", "targetname");
 	var_c0abb8f1 = GetEnt("bunker_door_clip_left", "targetname");
 	var_c0abb8f1 LinkTo(var_1e9b1719, "door_lft_jnt");
-	level thread namespace_f333593c::function_3bf2d62a("bunker_open", 1, 1, 1);
+	level thread zm_island_vo::function_3bf2d62a("bunker_open", 1, 1, 1);
 	var_83cb019c = GetEnt("bunker_door_clip_right", "targetname");
 	var_83cb019c LinkTo(var_1e9b1719, "door_rt_jnt");
 	e_closest_player = ArrayGetClosest(var_c0abb8f1.origin, level.activePlayers);
-	e_closest_player notify("hash_ebf01fa");
+	e_closest_player notify("player_opened_bunker");
 	level scene::Play("p7_fxanim_zm_island_bunker_door_main_bundle");
 	var_c0abb8f1 delete();
 	var_83cb019c delete();
@@ -723,11 +723,11 @@ function function_5c09306d(a_ai_zombies)
 	{
 		return;
 	}
-	level waittill("hash_5ed58d2");
+	level waittill("spawn_bunker_thrasher");
 	var_4703465a = struct::get("spore_bunker_guarantee_convert", "targetname");
 	var_75e02ae0 = ArrayGetClosest(var_4703465a.origin, a_ai_zombies);
 	var_75e02ae0.var_cbbe29a9 = 0;
-	namespace_756d2c3d::function_8b323113(var_75e02ae0, 0, 0);
+	zm_ai_thrasher::function_8b323113(var_75e02ae0, 0, 0);
 }
 
 /*
@@ -1075,7 +1075,7 @@ function give_bucket()
 }
 
 /*
-	Name: function_c5751341
+	Name: init_water_source
 	Namespace: namespace_f3e3de78
 	Checksum: 0x39E31ACB
 	Offset: 0x38A8
@@ -1083,19 +1083,19 @@ function give_bucket()
 	Parameters: 0
 	Flags: None
 */
-function function_c5751341()
+function init_water_source()
 {
 	level.var_4a0060c0 = GetEntArray("water_source", "targetname");
 	foreach(var_7e208829 in level.var_4a0060c0)
 	{
-		var_7e208829 thread function_3e519f17();
+		var_7e208829 thread water_source_think();
 	}
 	var_72b16720 = GetEnt("water_source_ee", "targetname");
 	var_72b16720 thread function_d99ed9ac();
 }
 
 /*
-	Name: function_3e519f17
+	Name: water_source_think
 	Namespace: namespace_f3e3de78
 	Checksum: 0x74A23E18
 	Offset: 0x39A8
@@ -1103,7 +1103,7 @@ function function_c5751341()
 	Parameters: 0
 	Flags: None
 */
-function function_3e519f17()
+function water_source_think()
 {
 	self SetInvisibleToAll();
 	self setHintString(&"ZM_ISLAND_FILL_BUCKET");
@@ -1116,7 +1116,7 @@ function function_3e519f17()
 			continue;
 		}
 		e_who thread function_a84a1aec(self.script_int);
-		e_who notify("hash_f1549b2e");
+		e_who notify("player_filled_bucket");
 		/#
 			if(isdefined(e_who.playerNum))
 			{
@@ -1183,7 +1183,7 @@ function function_d99ed9ac()
 function function_a7a30925()
 {
 	self endon("death");
-	self endon("hash_c40cfd1a");
+	self endon("sewer_over");
 	var_72b16720 = GetEnt("water_source_ee", "targetname");
 	while(1)
 	{

@@ -16,11 +16,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\craftables\_zm_craftables;
 
-#namespace namespace_4e4a096c;
+#namespace zm_island_takeo_fight;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_4e4a096c
+	Namespace: zm_island_takeo_fight
 	Checksum: 0x67F9AF91
 	Offset: 0x320
 	Size: 0x33
@@ -34,7 +34,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_4e4a096c
+	Namespace: zm_island_takeo_fight
 	Checksum: 0x73E17F9E
 	Offset: 0x360
 	Size: 0x93
@@ -43,13 +43,13 @@ function autoexec __init__sytem__()
 */
 function __init__()
 {
-	clientfield::register("toplayer", "takeofight_teleport_fx", 9000, 1, "int", &function_c0e76be4, 0, 0);
-	clientfield::register("scriptmover", "takeo_arm_hit_fx", 1, 3, "int", &function_863420f7, 0, 0);
+	clientfield::register("toplayer", "takeofight_teleport_fx", 9000, 1, "int", &takeofight_teleport_fx, 0, 0);
+	clientfield::register("scriptmover", "takeo_arm_hit_fx", 1, 3, "int", &takeo_arm_hit_fx, 0, 0);
 }
 
 /*
 	Name: main
-	Namespace: namespace_4e4a096c
+	Namespace: zm_island_takeo_fight
 	Checksum: 0x99EC1590
 	Offset: 0x400
 	Size: 0x3
@@ -61,28 +61,28 @@ function main()
 }
 
 /*
-	Name: function_c0e76be4
-	Namespace: namespace_4e4a096c
+	Name: takeofight_teleport_fx
+	Namespace: zm_island_takeo_fight
 	Checksum: 0xFB816274
 	Offset: 0x410
 	Size: 0x3B
 	Parameters: 7
 	Flags: None
 */
-function function_c0e76be4(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function takeofight_teleport_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 }
 
 /*
-	Name: function_863420f7
-	Namespace: namespace_4e4a096c
+	Name: takeo_arm_hit_fx
+	Namespace: zm_island_takeo_fight
 	Checksum: 0xFC0251C8
 	Offset: 0x458
 	Size: 0xA3
 	Parameters: 7
 	Flags: None
 */
-function function_863420f7(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function takeo_arm_hit_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal > 0)
 	{
