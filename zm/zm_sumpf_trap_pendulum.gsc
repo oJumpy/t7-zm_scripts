@@ -35,7 +35,7 @@ function initPendulumTrap()
 	}
 	penBuyTrigger[0].penDamageTrig EnableLinkTo();
 	penBuyTrigger[0].penDamageTrig LinkTo(penBuyTrigger[0].pen);
-	level thread namespace_e722cafc::turnLightGreen("pendulum_light");
+	level thread zm_sumpf::turnLightGreen("pendulum_light");
 	level.var_99432870 = 0;
 }
 
@@ -139,7 +139,7 @@ function penThink()
 				if(!level.var_99432870)
 				{
 					level.var_99432870 = 1;
-					level thread namespace_e722cafc::turnLightRed("pendulum_light");
+					level thread zm_sumpf::turnLightRed("pendulum_light");
 					Array::thread_all(triggers, &hint_string, &"ZOMBIE_TRAP_ACTIVE");
 					zm_utility::play_sound_at_pos("purchase", who.origin);
 					who thread zm_audio::create_and_play_dialog("level", "trap_log");
@@ -158,7 +158,7 @@ function penThink()
 					self waittill("leverUp");
 					wait(45);
 					pa_system playsound("zmb_warning");
-					level thread namespace_e722cafc::turnLightGreen("pendulum_light");
+					level thread zm_sumpf::turnLightGreen("pendulum_light");
 					level.var_99432870 = 0;
 					Array::thread_all(triggers, &hint_string, &"ZOMBIE_BUTTON_BUY_TRAP");
 				}

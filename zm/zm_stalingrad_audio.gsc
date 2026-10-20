@@ -488,7 +488,7 @@ function function_7584d453()
 	level waittill("hash_9b1cee4c");
 	var_18b908ea = spawn("script_origin", (0, 0, 0));
 	var_18b908ea PlayLoopSound("zmb_outro_battle_bg", 1);
-	level waittill("hash_846351df");
+	level waittill("amb_audio_stop");
 	var_18b908ea StopLoopSound(1);
 	var_18b908ea delete();
 }

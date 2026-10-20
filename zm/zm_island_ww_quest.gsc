@@ -1509,7 +1509,7 @@ function hatch_open(a_ents)
 */
 function hatch_reopen(a_ents)
 {
-	level waittill("hash_40a91595");
+	level waittill("reopen_hatch");
 	hatch_clip(0);
 	level.mdl_hatch thread scene::Play("p7_fxanim_zm_island_cage_trap_hatch_open_bundle", level.mdl_hatch);
 	wait(3);

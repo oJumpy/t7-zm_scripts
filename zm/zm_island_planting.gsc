@@ -441,7 +441,7 @@ function function_447658c7(var_9636d237, var_f40460f5)
 	}
 	self.s_plant.model clientfield::set("plant_growth_siege_anims", 3);
 	self thread scene::Play("p7_fxanim_zm_island_plant_stage3_bundle", self.s_plant.model);
-	self.s_plant.model waittill("hash_116e737b");
+	self.s_plant.model waittill("seed_drops_below_ground");
 	self.var_594609f9 = 1;
 	self.s_plant.model clientfield::set("plant_hit_with_ww_fx", 0);
 	self.s_plant.model clientfield::set("plant_watered_fx", 0);
@@ -931,7 +931,7 @@ function function_41663231(b_upgraded)
 	self.s_plant.model disconnectpaths();
 	self.s_plant.model clientfield::set("cache_plant_interact_fx", 1);
 	self thread scene::init("p7_fxanim_zm_island_plant_cache_minor_bundle", self.s_plant.model);
-	self.s_plant.model waittill("hash_1879b5e4");
+	self.s_plant.model waittill("minor_cache_plant_fully_grown");
 	self thread function_a6ebbe13();
 	self waittill("hash_ebe5cad7", e_who);
 	/#
@@ -1230,7 +1230,7 @@ function function_a6084535(b_upgraded, var_98b687fa)
 	self.s_plant.model solid();
 	self.s_plant.model disconnectpaths();
 	self thread scene::init("p7_fxanim_zm_island_plant_cache_major_bundle", self.s_plant.model);
-	self.s_plant.model waittill("hash_aa2731d8");
+	self.s_plant.model waittill("major_cache_plant_fully_grown");
 	self thread function_192bd777();
 	self waittill("hash_983c15d3", e_who);
 	/#
@@ -1442,7 +1442,7 @@ function init_babysitter_plant()
 	scene::add_scene_func("zm_dlc2_plant_babysitter_gib_zombie", &function_389c8477, "play");
 	scene::add_scene_func("zm_dlc2_plant_babysitter_grab_zombie_crawler", &function_a4a048a1, "play");
 	scene::add_scene_func("zm_dlc2_plant_babysitter_grab_spider", &function_6d8761e4, "play");
-	scene::add_scene_func("zm_dlc2_plant_babysitter_outro", &function_7a4276be, "done");
+	scene::add_scene_func("zm_dlc2_plant_babysitter_outro", &babysitter_outro_complete, "done");
 }
 
 /*
@@ -1488,7 +1488,7 @@ function function_12c8548e(b_upgraded)
 	self.s_plant.model disconnectpaths();
 	self.model clientfield::set("babysitter_plant_fx", 1);
 	self scene::init("zm_dlc2_plant_babysitter_intro", self.s_plant.model);
-	self.s_plant.model waittill("hash_fca5370b");
+	self.s_plant.model waittill("babysitter_intro_complete");
 	self.s_plant.trigger = spawn("trigger_radius", self.origin, 17, 150, 150);
 	while(1)
 	{
@@ -1590,7 +1590,7 @@ function function_12c8548e(b_upgraded)
 	wait(1);
 	self.s_plant.model clientfield::set("plant_growth_siege_anims", 0);
 	self thread scene::Play("zm_dlc2_plant_babysitter_outro", self.s_plant.model);
-	self.s_plant.model waittill("hash_7a4276be");
+	self.s_plant.model waittill("babysitter_outro_complete");
 	self.model clientfield::set("babysitter_plant_fx", 0);
 	self.s_plant.trigger delete();
 	wait(0.05);
@@ -1724,7 +1724,7 @@ function function_9a107da1()
 function function_a4a048a1(a_ents)
 {
 	a_ents["zombie"] SetCanDamage(0);
-	a_ents["zombie"] waittill("hash_58f0843e");
+	a_ents["zombie"] waittill("babysitter_held_zombie_start");
 	a_ents["zombie"] SetCanDamage(1);
 }
 
@@ -1740,12 +1740,12 @@ function function_a4a048a1(a_ents)
 function function_6d8761e4(a_ents)
 {
 	a_ents["spider"] SetCanDamage(0);
-	a_ents["spider"] waittill("hash_dfabd1fb");
+	a_ents["spider"] waittill("babysitter_held_spider_start");
 	a_ents["spider"] SetCanDamage(1);
 }
 
 /*
-	Name: function_7a4276be
+	Name: babysitter_outro_complete
 	Namespace: namespace_7550a904
 	Checksum: 0xFB910075
 	Offset: 0x6E68
@@ -1753,9 +1753,9 @@ function function_6d8761e4(a_ents)
 	Parameters: 1
 	Flags: None
 */
-function function_7a4276be(a_ents)
+function babysitter_outro_complete(a_ents)
 {
-	a_ents["babysitter"] notify("hash_7a4276be");
+	a_ents["babysitter"] notify("babysitter_outro_complete");
 }
 
 /*
@@ -1769,7 +1769,7 @@ function function_7a4276be(a_ents)
 */
 function init_trap_plant()
 {
-	scene::add_scene_func("zm_dlc2_plant_trap_outro", &function_2df6714, "done");
+	scene::add_scene_func("zm_dlc2_plant_trap_outro", &trap_plant_outro_complete, "done");
 	scene::add_scene_func("zm_dlc2_plant_trap_attack_front", &function_9e124689, "play");
 	scene::add_scene_func("zm_dlc2_plant_trap_attack_back", &function_9e124689, "play");
 	scene::add_scene_func("zm_dlc2_plant_trap_attack_left", &function_9e124689, "play");
@@ -1839,7 +1839,7 @@ function function_5d62716(b_upgraded, var_f40460f5)
 	self.s_plant.model disconnectpaths();
 	self.model clientfield::set("trap_plant_fx", 1);
 	self scene::init("zm_dlc2_plant_trap_intro", self.s_plant.model);
-	self.s_plant.model waittill("hash_73ada233");
+	self.s_plant.model waittill("trap_intro_complete");
 	level thread zm_island_vo::function_1e767f71(self.s_plant.model, 600, "trap", "plant_encounter", 60, 1, -1);
 	self.s_plant.trigger = spawn("trigger_radius", self.origin, 0, 75, 150);
 	self thread function_ff90a1ba(b_upgraded);
@@ -1850,7 +1850,7 @@ function function_5d62716(b_upgraded, var_f40460f5)
 	self.s_plant.model flag::wait_till_clear("trap_plant_attacking");
 	self.s_plant.model clientfield::set("plant_growth_siege_anims", 0);
 	self thread scene::Play("zm_dlc2_plant_trap_outro", self.s_plant.model);
-	self.s_plant.model waittill("hash_2df6714");
+	self.s_plant.model waittill("trap_plant_outro_complete");
 	wait(0.05);
 	self.s_plant.model StopAnimScripted();
 	wait(0.05);
@@ -1888,7 +1888,7 @@ function function_ff90a1ba(b_upgraded)
 	s_attackable waittill("attackable_deactivated");
 	self notify("hash_4729ad2");
 	self.s_plant.model notify("hash_9ed7f404");
-	self.s_plant.model waittill("hash_cf8d499a");
+	self.s_plant.model waittill("trap_plant_deactivate_attackable");
 	self.s_plant.s_attackable zm_attackables::deactivate();
 	self.s_plant.s_attackable.b_deferred_deactivation = undefined;
 	self.s_plant.s_attackable = undefined;
@@ -2311,10 +2311,10 @@ function function_9e124689(a_ents)
 		v_angles = e_plant GetTagAngles("tag_plant_grab");
 		var_c40b12dc = util::spawn_model(var_fdbb0645, v_org, v_angles);
 		var_c40b12dc LinkTo(e_plant, "tag_plant_grab");
-		e_plant waittill("hash_af56254a");
+		e_plant waittill("delete_zombie_head");
 		var_c40b12dc delete();
 	}
-	e_plant waittill("hash_350a84f");
+	e_plant waittill("trap_plant_attack_anim_complete");
 	e_plant flag::clear("trap_plant_attacking");
 	e_plant notify("hash_4ce89178");
 }
@@ -2339,7 +2339,7 @@ function function_b1a9e247(a_ents)
 		self thread function_e6f615b3(e_target);
 		e_target DoDamage(e_target.health, e_target.origin);
 	}
-	e_plant waittill("hash_350a84f");
+	e_plant waittill("trap_plant_attack_anim_complete");
 	e_plant flag::clear("trap_plant_attacking");
 	e_plant notify("hash_4ce89178");
 }
@@ -2418,7 +2418,7 @@ function function_7f34488a(str_loc, var_23237415)
 }
 
 /*
-	Name: function_2df6714
+	Name: trap_plant_outro_complete
 	Namespace: namespace_7550a904
 	Checksum: 0x826C0F7B
 	Offset: 0x8E48
@@ -2426,9 +2426,9 @@ function function_7f34488a(str_loc, var_23237415)
 	Parameters: 1
 	Flags: None
 */
-function function_2df6714(a_ents)
+function trap_plant_outro_complete(a_ents)
 {
-	a_ents["plant_trap"] notify("hash_2df6714");
+	a_ents["plant_trap"] notify("trap_plant_outro_complete");
 }
 
 /*
@@ -2472,7 +2472,7 @@ function function_3e429652()
 	self.s_plant.model solid();
 	self.s_plant.model disconnectpaths();
 	self thread scene::init("p7_fxanim_zm_island_plant_clone_grow1_bundle", self.s_plant.model);
-	self.s_plant.model waittill("hash_83d08c0f");
+	self.s_plant.model waittill("clone_plant_init_complete");
 	self thread function_b78c42da();
 	self waittill("hash_f7fd4ace", e_player);
 	zm_unitrigger::unregister_unitrigger(self.var_23c5e7a6);
@@ -3034,7 +3034,7 @@ function function_fd098f17(b_upgraded)
 	self.s_plant.model solid();
 	self.s_plant.model disconnectpaths();
 	self thread scene::init("p7_fxanim_zm_island_plant_fruit_bundle", self.s_plant.model);
-	self.s_plant.model waittill("hash_334ee3df");
+	self.s_plant.model waittill("fruit_plant_spawn_complete");
 	self thread function_bf89dc95();
 	self waittill("hash_f224e16d", e_player);
 	zm_unitrigger::unregister_unitrigger(self.var_23c5e7a6);

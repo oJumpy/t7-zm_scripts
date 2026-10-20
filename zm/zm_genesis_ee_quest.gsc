@@ -2306,7 +2306,7 @@ function ee_ending()
 	level.t_teleporter zm_genesis_teleporter::teleport_players(a_s_sam_pos, 1, 1, 1);
 	music::setmusicstate("samroom");
 	level thread scene::Play("genesis_ee_sams_room");
-	level waittill("hash_f468c531");
+	level waittill("genesis_ee_sams_room_near_done");
 	level thread function_ec27cd4b(0);
 }
 

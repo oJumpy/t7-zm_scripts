@@ -188,7 +188,7 @@ function cin_zmhd_sizzle_theater_cam(a_ents)
 			mdl_ent clientfield::set("zombie_has_eyes", 1);
 		}
 	}
-	level waittill("hash_1a22222d");
+	level waittill("activate_teleporter");
 	exploder::kill_exploder("teleporter_light_green");
 	exploder::exploder("teleporter_light_red");
 	exploder::kill_exploder("fxexp_200");

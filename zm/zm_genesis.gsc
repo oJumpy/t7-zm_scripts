@@ -259,12 +259,12 @@ function main()
 	level thread zm_genesis_sound::main();
 	Array::thread_all(level.zombie_spawners, &spawner::add_spawn_function, &function_429599b3);
 	level thread zm_genesis_keeper_companion::main();
-	level thread namespace_766d6099::init_portals();
+	level thread zm_genesis_portals::init_portals();
 	level thread zm_genesis_challenges::main();
 	level thread genesis_zombie_zigzag();
 	level thread genesis_zombie_speed();
 	level thread zm_genesis_flinger_trap::main();
-	level thread namespace_766d6099::function_b64d33a7();
+	level thread zm_genesis_portals::function_b64d33a7();
 	level thread sndFunctions();
 	/#
 		level thread zm_genesis_util::function_1f006e62();

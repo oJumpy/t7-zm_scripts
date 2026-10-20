@@ -163,7 +163,7 @@ function private function_85d4833b()
 }
 
 /*
-	Name: function_24dd2f20
+	Name: keeper_death
 	Namespace: zm_genesis_keeper
 	Checksum: 0x7FCC54C6
 	Offset: 0xC18
@@ -171,7 +171,7 @@ function private function_85d4833b()
 	Parameters: 0
 	Flags: None
 */
-function function_24dd2f20()
+function keeper_death()
 {
 	self waittill("death", e_attacker);
 	if(isdefined(e_attacker) && isdefined(e_attacker.var_4d307aef))
@@ -228,7 +228,7 @@ function private function_dfdf3fc1()
 {
 	self endon("death");
 	self.spawn_time = GetTime();
-	self thread function_24dd2f20();
+	self thread keeper_death();
 	self.heroweapon_kill_power = 2;
 	self.voicePrefix = "keeper";
 	self.animName = "keeper";

@@ -501,7 +501,7 @@ function function_851889a0(e_dragon, var_777ffc66)
 */
 function function_f553bc7()
 {
-	level waittill("hash_3346438b");
+	level waittill("environment_fx_anim");
 	level scene::Play("p7_fxanim_zm_stal_letters_a_r_bundle");
 }
 
@@ -516,7 +516,7 @@ function function_f553bc7()
 */
 function function_8b270ed4()
 {
-	level waittill("hash_3346438b");
+	level waittill("environment_fx_anim");
 	level scene::Play("p7_fxanim_zm_stal_letters_y_bundle");
 }
 
@@ -2892,7 +2892,7 @@ function function_ffa0a9ed()
 */
 function function_b138e200(a_ents)
 {
-	level waittill("hash_f095f38c");
+	level waittill("harpoon_explode");
 	level.var_ef6a691++;
 	level.var_7a29ed06++;
 	function_3c66b6ec(level.var_ef6a691);
@@ -3406,7 +3406,7 @@ function function_3a34c204()
 	self endon("hash_7869a7a5");
 	level endon("hash_a35dee4e");
 	w_fire = GetWeapon("launcher_dragon_fireball");
-	self waittill("hash_5556f7b");
+	self waittill("charge_fireball");
 	v_mouth = level.mdl_dragon_hazard GetTagOrigin("tag_aim");
 	a_e_players = ArraySortClosest(level.activePlayers, v_mouth);
 	e_player = Array::random(a_e_players);
@@ -3438,7 +3438,7 @@ function function_98ee9e20(n_number, w_fire, v_target_origin, e_player)
 {
 	ground_trace = bullettrace(v_target_origin + VectorScale((0, 0, 1), 128), v_target_origin + VectorScale((0, 0, -1), 500), 0, e_player);
 	e_fx = FX::Play("meatball_impact", ground_trace["position"], (0, 0, 0), "stop_meatball_impact");
-	self waittill("hash_49fa08aa");
+	self waittill("shoot_fireball");
 	if(n_number)
 	{
 		wait(n_number * 0.1);

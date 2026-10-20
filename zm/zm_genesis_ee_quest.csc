@@ -48,7 +48,7 @@ function __init__()
 	clientfield::register("scriptmover", "electric_charge", 15000, 1, "int", &function_ede1c539, 0, 0);
 	clientfield::register("scriptmover", "grand_tour_found_toy_fx", 15000, 1, "int", &function_52d5d371, 0, 0);
 	clientfield::register("scriptmover", "sophia_transition_fx", 15000, 1, "int", &sophia_transition_fx, 0, 0);
-	clientfield::register("allplayers", "sophia_follow", 15000, 3, "int", &function_272c5fb, 0, 0);
+	clientfield::register("allplayers", "sophia_follow", 15000, 3, "int", &sophia_follow, 0, 0);
 	clientfield::register("scriptmover", "sophia_eye_on", 15000, 1, "int", &sophia_eye_on, 0, 0);
 	clientfield::register("allplayers", "sophia_delete_local", 15000, 1, "int", &sophia_delete_local, 0, 0);
 	clientfield::register("world", "GenesisEndGameEEScreen", 15000, 1, "int", &genesisendgameee, 0, 0);
@@ -177,7 +177,7 @@ function sophia_transition_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialS
 }
 
 /*
-	Name: function_272c5fb
+	Name: sophia_follow
 	Namespace: zm_genesis_ee_quest
 	Checksum: 0x5589E835
 	Offset: 0xB10
@@ -185,7 +185,7 @@ function sophia_transition_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialS
 	Parameters: 7
 	Flags: None
 */
-function function_272c5fb(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function sophia_follow(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	level endon("sophia_delete");
 	var_1c7b6837 = GetEnt(localClientNum, "sophia_eye", "targetname");

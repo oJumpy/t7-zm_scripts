@@ -260,7 +260,7 @@ function function_bf38b3c9(b_vulnerable, b_force)
 }
 
 /*
-	Name: function_4c7498f7
+	Name: vine_slam
 	Namespace: zm_island_takeo_fight
 	Checksum: 0xBBAF2144
 	Offset: 0x1BE0
@@ -268,7 +268,7 @@ function function_bf38b3c9(b_vulnerable, b_force)
 	Parameters: 0
 	Flags: None
 */
-function function_4c7498f7()
+function vine_slam()
 {
 	var_ac9b7de4 = level.s_takeofight.var_69943735[3];
 	if(!isdefined(var_ac9b7de4.b_dead) && var_ac9b7de4.b_dead && (!isdefined(var_ac9b7de4.b_slamming) && var_ac9b7de4.b_slamming))
@@ -284,7 +284,7 @@ function function_4c7498f7()
 		{
 			var_ac9b7de4 thread scene::Play("p7_fxanim_zm_island_takeo_arm3_close_slam_bundle");
 		}
-		level waittill("hash_4c7498f7");
+		level waittill("vine_slam");
 		level thread scene::Play("p7_fxanim_zm_island_takeo_vines_bundle");
 		s_slam_pos = struct::get("s_vine_slam_impact_pos", "targetname");
 		RadiusDamage(s_slam_pos.origin, 100, 480, 240, undefined, "MOD_GRENADE");
@@ -310,7 +310,7 @@ function function_279705f()
 	var_ac9b7de4 = level.s_takeofight.var_69943735[3];
 	while(!(isdefined(var_ac9b7de4.b_dead) && var_ac9b7de4.b_dead))
 	{
-		level thread function_4c7498f7();
+		level thread vine_slam();
 		wait(randomIntRange(10, 20));
 	}
 }
@@ -811,7 +811,7 @@ function function_87949ac6()
 		level notify("hash_d1f7df7e");
 		wait(1.5);
 		level thread function_279705f();
-		level waittill("hash_4c7498f7");
+		level waittill("vine_slam");
 	}
 	self function_2e25785c();
 	self.var_fbe5299e++;
@@ -939,7 +939,7 @@ function function_628b98fd(b_advance)
 	}
 	wait(1.5);
 	level thread function_279705f();
-	level waittill("hash_4c7498f7");
+	level waittill("vine_slam");
 	level.s_takeofight thread function_4ea8a87a();
 	if(isdefined(b_advance) && b_advance)
 	{

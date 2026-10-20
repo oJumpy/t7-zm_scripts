@@ -1201,9 +1201,9 @@ function spider_damage_callback(eInflictor, eAttacker, iDamage, iDFlags, sMeansO
 				return 0;
 			}
 		}
-		if(!(isdefined(self.var_1e6fb74f) && self.var_1e6fb74f))
+		if(!(isdefined(self.next_shot_kills) && self.next_shot_kills))
 		{
-			self.var_1e6fb74f = 1;
+			self.next_shot_kills = 1;
 		}
 		else
 		{

@@ -77,11 +77,11 @@
 #using scripts\zm\zm_temple_waterslide;
 #using scripts\zm\zm_zmhd_cleanup_mgr;
 
-#namespace namespace_3dfeef6;
+#namespace zm_temple;
 
 /*
 	Name: opt_in
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xDE247C7F
 	Offset: 0x22B8
 	Size: 0x27
@@ -97,7 +97,7 @@ function autoexec opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xD940F130
 	Offset: 0x22E8
 	Size: 0x833
@@ -212,7 +212,7 @@ function main()
 
 /*
 	Name: cin_zmhd_sizzle_temple_cam
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x64709982
 	Offset: 0x2B28
 	Size: 0xC9
@@ -233,7 +233,7 @@ function cin_zmhd_sizzle_temple_cam(a_ents)
 
 /*
 	Name: register_field_handlers
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x881126F9
 	Offset: 0x2C00
 	Size: 0x3F3
@@ -267,7 +267,7 @@ function register_field_handlers()
 
 /*
 	Name: temple_update_variables
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x17E38BBA
 	Offset: 0x3000
 	Size: 0x123
@@ -285,7 +285,7 @@ function temple_update_variables()
 
 /*
 	Name: temple_player_connect
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x8597DBDD
 	Offset: 0x3130
 	Size: 0x33
@@ -300,7 +300,7 @@ function temple_player_connect()
 
 /*
 	Name: anywhere_but_here_validation_override
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x557B036B
 	Offset: 0x3170
 	Size: 0x79
@@ -330,7 +330,7 @@ function anywhere_but_here_validation_override()
 
 /*
 	Name: function_90b3897b
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x4F126357
 	Offset: 0x31F8
 	Size: 0x6B
@@ -352,7 +352,7 @@ function function_90b3897b(ai)
 
 /*
 	Name: function_f1ef26af
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x3B7EB3EE
 	Offset: 0x3270
 	Size: 0x9B
@@ -374,7 +374,7 @@ function function_f1ef26af(ai)
 
 /*
 	Name: function_339a163c
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x9E2022CD
 	Offset: 0x3318
 	Size: 0x29
@@ -392,7 +392,7 @@ function function_339a163c()
 
 /*
 	Name: temple_sidequest_of_awesome
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x64C45EBF
 	Offset: 0x3350
 	Size: 0x13
@@ -406,7 +406,7 @@ function temple_sidequest_of_awesome()
 
 /*
 	Name: start_sparks
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x556C2CEC
 	Offset: 0x3370
 	Size: 0x3B
@@ -422,7 +422,7 @@ function start_sparks()
 
 /*
 	Name: init_sounds
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x58F77F59
 	Offset: 0x33B8
 	Size: 0x87
@@ -440,7 +440,7 @@ function init_sounds()
 
 /*
 	Name: setupMusic
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x253FEB69
 	Offset: 0x3448
 	Size: 0x173
@@ -461,7 +461,7 @@ function setupMusic()
 
 /*
 	Name: assign_lowest_unused_character_index
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x98E97943
 	Offset: 0x35C8
 	Size: 0x213
@@ -519,7 +519,7 @@ function assign_lowest_unused_character_index()
 
 /*
 	Name: giveCustomCharacters
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x5649BA3F
 	Offset: 0x37E8
 	Size: 0x2F3
@@ -584,7 +584,7 @@ function giveCustomCharacters()
 
 /*
 	Name: initCharacterStartIndex
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xCC330BC8
 	Offset: 0x3AE8
 	Size: 0x23
@@ -598,7 +598,7 @@ function initCharacterStartIndex()
 
 /*
 	Name: selectCharacterIndexToUse
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xEDF07805
 	Offset: 0x3B18
 	Size: 0x3D
@@ -618,7 +618,7 @@ function selectCharacterIndexToUse()
 
 /*
 	Name: local_zone_init
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xE3C1B020
 	Offset: 0x3B60
 	Size: 0x2C3
@@ -649,7 +649,7 @@ function local_zone_init()
 
 /*
 	Name: function_54bf648f
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x7266D540
 	Offset: 0x3E30
 	Size: 0x33
@@ -665,7 +665,7 @@ function function_54bf648f()
 
 /*
 	Name: function_54da140a
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x839D1F0F
 	Offset: 0x3E70
 	Size: 0x203
@@ -715,7 +715,7 @@ function function_54da140a()
 
 /*
 	Name: include_weapons
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x99EC1590
 	Offset: 0x4080
 	Size: 0x3
@@ -728,7 +728,7 @@ function include_weapons()
 
 /*
 	Name: custom_add_weapons
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x7CAE88F9
 	Offset: 0x4090
 	Size: 0x23
@@ -742,7 +742,7 @@ function custom_add_weapons()
 
 /*
 	Name: custom_add_vox
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x66CB42B9
 	Offset: 0x40C0
 	Size: 0x33
@@ -757,7 +757,7 @@ function custom_add_vox()
 
 /*
 	Name: add_powerups_after_round_1
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xF5BAA6BA
 	Offset: 0x4100
 	Size: 0x183
@@ -804,7 +804,7 @@ function add_powerups_after_round_1()
 
 /*
 	Name: mergesort
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xDE0E2B7A
 	Offset: 0x4290
 	Size: 0x1CB
@@ -853,7 +853,7 @@ function mergesort(current_list, LESS_THAN)
 
 /*
 	Name: merge
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x66664FF8
 	Offset: 0x4468
 	Size: 0x139
@@ -893,7 +893,7 @@ function merge(left, right, LESS_THAN)
 
 /*
 	Name: init_rolling_doors
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x7285D8D8
 	Offset: 0x45B0
 	Size: 0x53
@@ -908,7 +908,7 @@ function init_rolling_doors()
 
 /*
 	Name: rolling_door_think
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x1A5F0448
 	Offset: 0x4610
 	Size: 0x223
@@ -945,7 +945,7 @@ function rolling_door_think()
 
 /*
 	Name: player_laststand_temple
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x76DCBC9F
 	Offset: 0x4840
 	Size: 0xAB
@@ -963,7 +963,7 @@ function player_laststand_temple(eInflictor, attacker, iDamage, sMeansOfDeath, s
 
 /*
 	Name: temple_poi_positioning_func
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xD16ECDE7
 	Offset: 0x48F8
 	Size: 0x49
@@ -977,7 +977,7 @@ function temple_poi_positioning_func(origin, FORWARD)
 
 /*
 	Name: temple_powerup_fx_func
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xD2F543FD
 	Offset: 0x4950
 	Size: 0xB3
@@ -1006,7 +1006,7 @@ function temple_powerup_fx_func()
 
 /*
 	Name: init_random_perk_machines
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x713FDE07
 	Offset: 0x4A10
 	Size: 0x511
@@ -1070,7 +1070,7 @@ function init_random_perk_machines()
 
 /*
 	Name: array_remove
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xB8546148
 	Offset: 0x4F30
 	Size: 0x11B
@@ -1104,7 +1104,7 @@ function array_remove(Array, object)
 
 /*
 	Name: _rand_perk_index
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x5224AB44
 	Offset: 0x5058
 	Size: 0x61
@@ -1125,7 +1125,7 @@ function _rand_perk_index(randmachines, name)
 
 /*
 	Name: perk_machines_compare_func
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x39C4D33D
 	Offset: 0x50C8
 	Size: 0x35
@@ -1139,7 +1139,7 @@ function perk_machines_compare_func(M1, M2)
 
 /*
 	Name: _add_machine
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xAD904A2F
 	Offset: 0x5108
 	Size: 0xA9
@@ -1158,7 +1158,7 @@ function _add_machine(machines, target, script_label, script_noteworthy, script_
 
 /*
 	Name: random_node_toggle
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xF1BCC547
 	Offset: 0x51C0
 	Size: 0xC7
@@ -1183,7 +1183,7 @@ function random_node_toggle(minon, maxon, minoff, maxoff)
 
 /*
 	Name: temple_offhand_weapon_overrride
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xCA4D0052
 	Offset: 0x5290
 	Size: 0xD5
@@ -1205,7 +1205,7 @@ function temple_offhand_weapon_overrride()
 
 /*
 	Name: temple_shrink_ray_model_mapping_func
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xBAA75036
 	Offset: 0x5370
 	Size: 0x429
@@ -1256,7 +1256,7 @@ function temple_shrink_ray_model_mapping_func()
 
 /*
 	Name: check_if_should_avoid_poi
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x3E2AA6A5
 	Offset: 0x57A8
 	Size: 0x27
@@ -1277,7 +1277,7 @@ function check_if_should_avoid_poi()
 
 /*
 	Name: zombie_temple_player_intersection_tracker_override
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xECAA5BFA
 	Offset: 0x57D8
 	Size: 0x55
@@ -1299,7 +1299,7 @@ function zombie_temple_player_intersection_tracker_override(other_player)
 
 /*
 	Name: zombie_temple_player_out_of_playable_area_monitor_callback
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x92CAFF0
 	Offset: 0x5838
 	Size: 0x59
@@ -1325,7 +1325,7 @@ function zombie_temple_player_out_of_playable_area_monitor_callback()
 
 /*
 	Name: temple_cleanup_blur
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xE9B65F37
 	Offset: 0x58A0
 	Size: 0x43
@@ -1341,7 +1341,7 @@ function temple_cleanup_blur()
 
 /*
 	Name: temple_death_screen_cleanup
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x15DF980A
 	Offset: 0x58F0
 	Size: 0x3B
@@ -1356,7 +1356,7 @@ function temple_death_screen_cleanup()
 
 /*
 	Name: spikemore_delete_all_on_end_game
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xAFB68EA3
 	Offset: 0x5938
 	Size: 0x75
@@ -1378,7 +1378,7 @@ function spikemore_delete_all_on_end_game()
 
 /*
 	Name: temple_check_valid_spawn
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x6B3C54A2
 	Offset: 0x59B8
 	Size: 0x1A7
@@ -1416,7 +1416,7 @@ function temple_check_valid_spawn(revivee)
 
 /*
 	Name: init_level_specific_audio
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xF299B5E2
 	Offset: 0x5B68
 	Size: 0x853

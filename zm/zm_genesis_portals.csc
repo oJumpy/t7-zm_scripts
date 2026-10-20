@@ -15,11 +15,11 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 
-#namespace namespace_766d6099;
+#namespace zm_genesis_portals;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x146EC814
 	Offset: 0x568
 	Size: 0x33
@@ -33,7 +33,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x970E7E6F
 	Offset: 0x5A8
 	Size: 0x463
@@ -62,7 +62,7 @@ function __init__()
 
 /*
 	Name: player_stargate_fx
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x5B09EDD
 	Offset: 0xA18
 	Size: 0xDD
@@ -90,7 +90,7 @@ function player_stargate_fx(localClientNum, oldVal, newVal, bNewEnt, bInitialSna
 
 /*
 	Name: function_e7a8756e
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x5924945F
 	Offset: 0xB00
 	Size: 0x4B
@@ -105,7 +105,7 @@ function function_e7a8756e(localClientNum)
 
 /*
 	Name: player_light_exploder
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x90F4CA8C
 	Offset: 0xB58
 	Size: 0x1DD
@@ -171,7 +171,7 @@ function player_light_exploder(localClientNum, oldVal, newVal, bNewEnt, bInitial
 
 /*
 	Name: genesis_light_exposure
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x146146C6
 	Offset: 0xD40
 	Size: 0xB3
@@ -194,7 +194,7 @@ function genesis_light_exposure(localClientNum, oldVal, newVal, bNewEnt, bInitia
 
 /*
 	Name: function_44c843d5
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x25B6EC63
 	Offset: 0xE00
 	Size: 0x7B
@@ -215,7 +215,7 @@ function function_44c843d5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_7e1ae25a
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xDC270E20
 	Offset: 0xE88
 	Size: 0x261

@@ -116,7 +116,7 @@ function function_fa149742()
 	level flag::wait_till("dragon_pavlov_first_time");
 	level scene::init("p7_fxanim_zm_stal_pavlov_boards_bundle");
 	var_200dbf9d thread egg_drop_damage_think();
-	level waittill("hash_698d88e1");
+	level waittill("egg_at_rest");
 	a_s_eggs = struct::get_array("dragon_egg_pickup", "targetname");
 	foreach(s_egg in a_s_eggs)
 	{

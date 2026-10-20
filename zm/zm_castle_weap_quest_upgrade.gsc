@@ -504,7 +504,7 @@ function function_bc213d43()
 		level.var_8162c08d = 1;
 	#/
 	level thread scene::Play("p7_fxanim_zm_castle_quest_rune_orb_trail_bundle");
-	level waittill("hash_e81f26f8");
+	level waittill("trail_finished");
 	level scene::Play("p7_fxanim_zm_castle_quest_rune_orb_bundle");
 	level flag::set("rune_prison_magma_ball");
 }
@@ -1990,7 +1990,7 @@ function demon_gate_gatehouse()
 			PlayRumbleOnPosition("zm_castle_quest_demon_gate_gatehouse_rumble", point);
 			level thread scene::Play("p7_fxanim_zm_castle_quest_demongate_ceiling_bundle");
 			level scene::init("p7_fxanim_zm_castle_quest_demon_arrow_broken_bundle");
-			level waittill("hash_c8347a07");
+			level waittill("demon_broken_arrow_revealed");
 			/#
 				level.var_67c3233f = 1;
 			#/
@@ -3239,7 +3239,7 @@ function function_695d82fd()
 			level scene::init("p7_fxanim_zm_castle_quest_demon_arrow_whole_reform_bundle");
 			exploder::exploder("lgt_Demon_Gate");
 			portal_sound playsound("zmb_demon_runes_portal_vanish");
-			level waittill("hash_66b2458c");
+			level waittill("demon_portal_arrow_pickup");
 			portal_sound delete();
 			level thread scene::Play("p7_fxanim_zm_castle_quest_demon_arrow_whole_reform_bundle");
 			break;
@@ -3585,7 +3585,7 @@ function wolf_howl_paintings()
 	#/
 	level thread scene::Play("p7_fxanim_zm_castle_quest_wolf_wall_explode_bundle");
 	level thread scene::Play("p7_fxanim_zm_castle_quest_wolf_arrow_broken_reveal_bundle");
-	level waittill("hash_44c83018");
+	level waittill("wolf_broken_arrow_revealed");
 	foreach(e_player in level.activePlayers)
 	{
 		e_player.var_b89ed4e5 = undefined;
@@ -4499,7 +4499,7 @@ function function_11dbf9f2()
 	#/
 	self clientfield::set("wolf_trail_fx", 3);
 	level scene::init("ai_zm_dlc1_wolf_howl_tomb_arrival", Array(level.var_e6d07014));
-	self waittill("hash_98c906c9");
+	self waittill("tomb_arrival");
 	/#
 		self.var_b4065427 = undefined;
 	#/
@@ -5157,7 +5157,7 @@ function elemental_storm_weather_vane()
 			var_c5caf2d3 clientfield::set("tower_break_fx", 1);
 			level thread scene::Play("p7_fxanim_zm_castle_quest_storm_tower_break_bundle");
 			level scene::init("p7_fxanim_zm_castle_quest_storm_arrow_broken_bundle");
-			level waittill("hash_4e123b5d");
+			level waittill("storm_broken_arrow_revealed");
 			level thread scene::Play("p7_fxanim_zm_castle_quest_storm_arrow_broken_bundle");
 			level.var_18c771ad = GetEnt("quest_storm_arrow_broken", "targetname");
 			s_arrow = struct::get("quest_start_elemental_storm");

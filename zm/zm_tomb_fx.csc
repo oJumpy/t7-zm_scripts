@@ -220,8 +220,8 @@ function setup_prop_anims()
 */
 function play_fx_prop_anims()
 {
-	var_56728a17 = struct::get_array("fxanim_chamber_rocks", "targetname");
-	Array::thread_all(var_56728a17, &chamber_rocks_think);
+	fxanim_props = struct::get_array("fxanim_chamber_rocks", "targetname");
+	Array::thread_all(fxanim_props, &chamber_rocks_think);
 }
 
 /*

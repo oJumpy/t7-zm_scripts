@@ -92,7 +92,7 @@ function amb_0_zombie()
 		Int = randomIntRange(0, 40);
 		if(Int == 10)
 		{
-			zent thread function_ae3642b4();
+			zent thread amb_1_zombie();
 			level notify("hash_993b920d");
 		}
 		wait(10);
@@ -100,7 +100,7 @@ function amb_0_zombie()
 }
 
 /*
-	Name: function_ae3642b4
+	Name: amb_1_zombie
 	Namespace: zm_theater_amb
 	Checksum: 0xE769AB6B
 	Offset: 0x7D0
@@ -108,7 +108,7 @@ function amb_0_zombie()
 	Parameters: 0
 	Flags: None
 */
-function function_ae3642b4()
+function amb_1_zombie()
 {
 	self StopLoopSound(0.5);
 	playsoundatposition(self.script_sound, self.origin);

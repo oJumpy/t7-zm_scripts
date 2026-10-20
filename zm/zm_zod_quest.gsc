@@ -2926,7 +2926,7 @@ function function_2934e5d0(t_trigger)
 function function_c7ea04e6()
 {
 	self endon("death");
-	self waittill("hash_bb7a9d17");
+	self waittill("sndweaponready");
 	self playsound("zmb_zod_pap_finish");
 }
 

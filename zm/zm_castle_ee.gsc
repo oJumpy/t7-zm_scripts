@@ -679,7 +679,7 @@ function vril_generator(var_e8245e5f)
 	mdl_vril_generator = undefined;
 	if(isdefined(var_e8245e5f) && var_e8245e5f)
 	{
-		level waittill("hash_b5927dd");
+		level waittill("vril_dropped");
 		mdl_vril_generator = GetEnt("vril_generator", "targetname");
 		mdl_vril_generator delete();
 	}
@@ -1590,9 +1590,9 @@ function function_1ca91be4(a_ents)
 	e_dempsey ghost();
 	wait(5);
 	Array::run_all(level.players, &PlayRumbleOnEntity, "zm_castle_rocket_tip");
-	mdl_rocket waittill("hash_43ba2284");
+	mdl_rocket waittill("rocket_tower_impact");
 	Array::run_all(level.players, &PlayRumbleOnEntity, "zm_castle_rocket_tip_tower_crash");
-	mdl_rocket waittill("hash_87acceea");
+	mdl_rocket waittill("rocket_ground_impact");
 	Array::run_all(level.players, &PlayRumbleOnEntity, "zm_castle_rocket_tip_ground_crash");
 	var_a723142d clientfield::set("pod_monitor_enable", 1);
 	e_dempsey show();
@@ -1603,7 +1603,7 @@ function function_1ca91be4(a_ents)
 	{
 		var_de31b779 delete();
 	}
-	var_a723142d waittill("hash_9a7af34f");
+	var_a723142d waittill("cryo_chamber_settled");
 	foreach(e_player in level.players)
 	{
 		e_player thread function_35c1d14d();
@@ -1629,7 +1629,7 @@ function function_1ca91be4(a_ents)
 function function_b404c31d(a_ents)
 {
 	var_a723142d = a_ents["cryo_chamber"];
-	var_a723142d waittill("hash_225501ad");
+	var_a723142d waittill("cryo_ground_impact");
 	var_c4556169 = GetEnt("uc_crash_cryo_after", "targetname");
 	var_c4556169 show();
 	var_e7d455cc = GetEnt("uc_crash_cryo_before", "targetname");

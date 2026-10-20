@@ -22,11 +22,11 @@
 #using scripts\zm\_zm_weap_ball;
 #using scripts\zm\_zm_zonemgr;
 
-#namespace namespace_766d6099;
+#namespace zm_genesis_portals;
 
 /*
 	Name: __init__sytem__
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xA22642AC
 	Offset: 0x8F0
 	Size: 0x33
@@ -40,7 +40,7 @@ function autoexec __init__sytem__()
 
 /*
 	Name: __init__
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x3EF0FD2B
 	Offset: 0x930
 	Size: 0x2F3
@@ -69,7 +69,7 @@ function __init__()
 
 /*
 	Name: init_portals
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xEF055A8A
 	Offset: 0xC30
 	Size: 0x1C3
@@ -94,7 +94,7 @@ function init_portals()
 
 /*
 	Name: function_e4ff383e
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x195F9407
 	Offset: 0xE00
 	Size: 0x43
@@ -109,7 +109,7 @@ function function_e4ff383e(var_49e3dd2e, var_d16ec704)
 
 /*
 	Name: function_ff160813
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x155F5F4F
 	Offset: 0xE50
 	Size: 0x9B
@@ -131,7 +131,7 @@ function function_ff160813()
 
 /*
 	Name: create_portal
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xB7FD06AA
 	Offset: 0xEF8
 	Size: 0x1F7
@@ -169,7 +169,7 @@ function create_portal(str_id, var_776628b2)
 
 /*
 	Name: function_a90ab0d7
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xDDD6991C
 	Offset: 0x10F8
 	Size: 0xCB
@@ -201,7 +201,7 @@ function function_a90ab0d7()
 
 /*
 	Name: portal_activate
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xDF02BAF4
 	Offset: 0x11D0
 	Size: 0x295
@@ -257,7 +257,7 @@ function portal_activate(str_areaname)
 
 /*
 	Name: function_7fa2f44
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x8E9B3E1E
 	Offset: 0x1470
 	Size: 0xB5
@@ -293,7 +293,7 @@ function function_7fa2f44(str_areaname)
 
 /*
 	Name: portal_open
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x3092C855
 	Offset: 0x1530
 	Size: 0x421
@@ -338,7 +338,7 @@ function portal_open(str_areaname)
 
 /*
 	Name: function_4a4784d4
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x9AA5A641
 	Offset: 0x1960
 	Size: 0xD1
@@ -356,7 +356,7 @@ function function_4a4784d4(str_areaname, b_enabled)
 
 /*
 	Name: portal_think
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x71421E9
 	Offset: 0x1A40
 	Size: 0x1EF
@@ -404,7 +404,7 @@ function portal_think(b_show_fx)
 
 /*
 	Name: portal_teleport_player
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x28A715CC
 	Offset: 0x1C38
 	Size: 0x97B
@@ -573,7 +573,7 @@ function portal_teleport_player(show_fx, a_s_port_locs, str_zone, v_portal, var_
 
 /*
 	Name: function_bfba39d8
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xC8A2633
 	Offset: 0x25C0
 	Size: 0x45
@@ -592,7 +592,7 @@ function function_bfba39d8()
 
 /*
 	Name: function_483df985
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xD820DF84
 	Offset: 0x2610
 	Size: 0x463
@@ -671,7 +671,7 @@ function function_483df985(s_pos)
 
 /*
 	Name: ai_delay_cleanup
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xB81AFFA0
 	Offset: 0x2A80
 	Size: 0x71
@@ -695,7 +695,7 @@ function ai_delay_cleanup()
 
 /*
 	Name: portal_teleport_ai
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xAF790690
 	Offset: 0x2B00
 	Size: 0x2C3
@@ -742,7 +742,7 @@ function portal_teleport_ai(e_portee)
 
 /*
 	Name: function_cfc89ca
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xB88E4CF4
 	Offset: 0x2DD0
 	Size: 0x463
@@ -819,7 +819,7 @@ function function_cfc89ca()
 
 /*
 	Name: function_eec1f014
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0xE219447F
 	Offset: 0x3240
 	Size: 0x9D
@@ -845,7 +845,7 @@ function function_eec1f014(str_name, n_value, b_toggle)
 
 /*
 	Name: function_b64d33a7
-	Namespace: namespace_766d6099
+	Namespace: zm_genesis_portals
 	Checksum: 0x59DA525D
 	Offset: 0x32E8
 	Size: 0x6D

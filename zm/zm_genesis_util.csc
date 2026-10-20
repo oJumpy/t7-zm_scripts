@@ -38,7 +38,7 @@ function __init__()
 	n_bits = GetMinBitCountForNum(4);
 	clientfield::register("scriptmover", "emit_smoke", 15000, n_bits, "int", &emit_smoke, 0, 0);
 	n_bits = GetMinBitCountForNum(4);
-	clientfield::register("scriptmover", "fire_trap", 15000, n_bits, "int", &function_9dca8db5, 0, 0);
+	clientfield::register("scriptmover", "fire_trap", 15000, n_bits, "int", &fire_trap, 0, 0);
 	clientfield::register("actor", "fire_trap_ignite_enemy", 15000, 1, "int", &fire_trap_ignite_enemy, 0, 0);
 	clientfield::register("scriptmover", "rq_gateworm_magic", 15000, 1, "int", &rq_gateworm_magic, 0, 0);
 	clientfield::register("scriptmover", "rq_gateworm_dissolve_finish", 15000, 1, "int", &rq_gateworm_dissolve_finish, 0, 0);
@@ -259,7 +259,7 @@ function function_ed6c6bcf(localClientNum, str_fx_name, var_bec640ba)
 }
 
 /*
-	Name: function_9dca8db5
+	Name: fire_trap
 	Namespace: zm_genesis_util
 	Checksum: 0xC37E986D
 	Offset: 0x1010
@@ -267,7 +267,7 @@ function function_ed6c6bcf(localClientNum, str_fx_name, var_bec640ba)
 	Parameters: 7
 	Flags: None
 */
-function function_9dca8db5(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function fire_trap(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	self endon("entityshutdown");
 	switch(newVal)

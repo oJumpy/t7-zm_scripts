@@ -486,8 +486,8 @@ function onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, weapon, vD
 	}
 	if(isdefined(level.ball))
 	{
-		var_3fad4536 = level.ball.carrier;
-		if(isdefined(var_3fad4536))
+		ballcarrier = level.ball.carrier;
+		if(isdefined(ballcarrier))
 		{
 			ballorigin = level.ball.carrier.origin;
 			isCarried = 1;
@@ -497,7 +497,7 @@ function onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, weapon, vD
 			ballorigin = level.ball.curorigin;
 			isCarried = 0;
 		}
-		if(isCarried && isdefined(attacker) && isdefined(attacker.team) && attacker != self && var_3fad4536 != attacker)
+		if(isCarried && isdefined(attacker) && isdefined(attacker.team) && attacker != self && ballcarrier != attacker)
 		{
 			if(attacker.team == level.ball.carrier.team)
 			{

@@ -207,7 +207,7 @@ function function_60283937()
 {
 	while(1)
 	{
-		level waittill("hash_dc18b3bb", duration);
+		level waittill("tram_motor_sound", duration);
 		if(duration == "long")
 		{
 			playsound(0, "evt_tram_motor_long", (342, 979, 135));

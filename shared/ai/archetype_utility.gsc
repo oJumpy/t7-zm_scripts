@@ -3744,7 +3744,7 @@ function preShootLaserAndGlintOn(ai)
 	var_66bc84f9 = "lensflares/fx_lensflare_sniper_glint";
 	while(1)
 	{
-		self waittill("hash_b9a2e2cb");
+		self waittill("about_to_fire");
 		if(ai.var_e912860c !== 1)
 		{
 			ai LaserOn();
@@ -3786,7 +3786,7 @@ function postShootLaserAndGlintOff(ai)
 	self endon("death");
 	while(1)
 	{
-		self waittill("hash_dec53302");
+		self waittill("stopped_firing");
 		if(ai.var_e912860c === 1)
 		{
 			ai LaserOff();

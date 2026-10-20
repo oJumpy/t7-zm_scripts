@@ -475,7 +475,7 @@ function function_4134aafd()
 	self endon("death");
 	self notify("hash_e8f330bf");
 	self endon("hash_e8f330bf");
-	self waittill("hash_1ae8bd76");
+	self waittill("asm_terminated");
 	self notify("asm_complete", "__terminated__");
 }
 
@@ -718,7 +718,7 @@ function burning_thread(attacker, inflictor)
 	self endon("death");
 	self notify("hash_893fbbb3");
 	self endon("hash_893fbbb3");
-	var_31da22cf = self.settings.var_4bef48f3;
+	var_31da22cf = self.settings.burn_damagepersecond;
 	if(!isdefined(var_31da22cf) || var_31da22cf <= 0)
 	{
 		return;
@@ -794,7 +794,7 @@ function iff_override(owner, time)
 	{
 		self [[self.var_7be9baa7]](1);
 	}
-	if(isdefined(self.settings) && (!isdefined(self.settings.var_bf04419a) && self.settings.var_bf04419a))
+	if(isdefined(self.settings) && (!isdefined(self.settings.iffshouldrevertteam) && self.settings.iffshouldrevertteam))
 	{
 		return;
 	}
@@ -812,7 +812,7 @@ function iff_override(owner, time)
 	msg = self util::waittill_any_timeout(timeout, "iff_override_reverted", "death");
 	if(msg == "timeout")
 	{
-		self notify("iff_override_reverted", self.settings.var_86098f42);
+		self notify("iff_override_reverted", self.settings.ifftimetillrevert);
 	}
 	self playsound("gdt_iff_deactivate");
 	self function_a3ebd0f(self.var_f3402890);
@@ -1584,9 +1584,9 @@ function defaultstate_death_enter(params)
 */
 function function_1f48ef7e()
 {
-	if(isdefined(self.settings.var_ada27b12) && isdefined(self.settings.var_ebdbaf9c))
+	if(isdefined(self.settings.burn_death_fx_1) && isdefined(self.settings.burn_death_tag_1))
 	{
-		PlayFXOnTag(self.settings.var_ada27b12, self, self.settings.var_ebdbaf9c);
+		PlayFXOnTag(self.settings.burn_death_fx_1, self, self.settings.burn_death_tag_1);
 	}
 	if(isdefined(self.settings.var_b4be6ee9))
 	{
@@ -1935,9 +1935,9 @@ function defaultstate_emped_enter(params)
 */
 function emp_startup_fx()
 {
-	if(isdefined(self.settings.var_e4bcedb4) && isdefined(self.settings.var_adc6af1a))
+	if(isdefined(self.settings.emp_startup_fx_1) && isdefined(self.settings.emp_startup_tag_1))
 	{
-		PlayFXOnTag(self.settings.var_e4bcedb4, self, self.settings.var_adc6af1a);
+		PlayFXOnTag(self.settings.emp_startup_fx_1, self, self.settings.emp_startup_tag_1);
 	}
 }
 
@@ -2064,7 +2064,7 @@ function defaultstate_surge_update(params)
 	self SetSpeed(self.settings.surgespeedmultiplier * self.settings.defaultMoveSpeed);
 	startTime = GetTime();
 	self thread function_cae5a3fd(params.notify_param[0]);
-	while(GetTime() - startTime < self.settings.var_f6a8f077 * 1000)
+	while(GetTime() - startTime < self.settings.surgetimetolive * 1000)
 	{
 		if(!isdefined(closest))
 		{
@@ -2085,7 +2085,7 @@ function defaultstate_surge_update(params)
 					{
 						self thread path_update_interrupt(closest, params.notify_param[0]);
 						pathfailcount = 0;
-						self waittill_pathing_done(self.settings.var_f6a8f077);
+						self waittill_pathing_done(self.settings.surgetimetolive);
 						try_detonate(closest, params.notify_param[0]);
 						break;
 					}
@@ -2152,7 +2152,7 @@ function function_cae5a3fd(attacker)
 {
 	self endon("death");
 	self endon("change_state");
-	wait(0.25 * self.settings.var_f6a8f077);
+	wait(0.25 * self.settings.surgetimetolive);
 	self SetTeam(attacker.team);
 }
 
@@ -2190,7 +2190,7 @@ function try_detonate(closest, attacker)
 function detonate(attacker)
 {
 	self SetTeam(attacker.team);
-	self RadiusDamage(self.origin + VectorScale((0, 0, 1), 5), self.settings.var_1b64a6a8, 1500, 1000, attacker, "MOD_EXPLOSIVE");
+	self RadiusDamage(self.origin + VectorScale((0, 0, 1), 5), self.settings.surgedamageradius, 1500, 1000, attacker, "MOD_EXPLOSIVE");
 	if(isalive(self))
 	{
 		self kill();

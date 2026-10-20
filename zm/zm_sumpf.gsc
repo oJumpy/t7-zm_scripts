@@ -61,11 +61,11 @@
 #using scripts\zm\zm_sumpf_zombie;
 #using scripts\zm\zm_zmhd_cleanup_mgr;
 
-#namespace namespace_e722cafc;
+#namespace zm_sumpf;
 
 /*
 	Name: opt_in
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x6C36654
 	Offset: 0x11A0
 	Size: 0x1B
@@ -80,7 +80,7 @@ function autoexec opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xC368B186
 	Offset: 0x11C8
 	Size: 0x68B
@@ -177,7 +177,7 @@ function main()
 
 /*
 	Name: function_12859198
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x38AF74B4
 	Offset: 0x1860
 	Size: 0x8D
@@ -195,7 +195,7 @@ function function_12859198()
 
 /*
 	Name: function_b87f949f
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x4563A656
 	Offset: 0x18F8
 	Size: 0x91
@@ -212,7 +212,7 @@ function function_b87f949f(a_ents)
 
 /*
 	Name: function_5b94e922
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xF876005E
 	Offset: 0x1998
 	Size: 0x10F
@@ -242,7 +242,7 @@ function function_5b94e922()
 
 /*
 	Name: anywhere_but_here_validation_override
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xE2514886
 	Offset: 0x1AB0
 	Size: 0x41
@@ -264,7 +264,7 @@ function anywhere_but_here_validation_override()
 
 /*
 	Name: function_3e7eb37b
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xB3091B18
 	Offset: 0x1B00
 	Size: 0x21
@@ -282,7 +282,7 @@ function function_3e7eb37b()
 
 /*
 	Name: turn_power_on
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x91CFAC1E
 	Offset: 0x1B30
 	Size: 0x33
@@ -297,7 +297,7 @@ function turn_power_on()
 
 /*
 	Name: watch_for_dogs
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x5D6F3231
 	Offset: 0x1B70
 	Size: 0x77
@@ -317,7 +317,7 @@ function watch_for_dogs()
 
 /*
 	Name: giveCustomCharacters
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x5D443CFC
 	Offset: 0x1BF0
 	Size: 0x2F3
@@ -382,7 +382,7 @@ function giveCustomCharacters()
 
 /*
 	Name: assign_lowest_unused_character_index
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x8AA33263
 	Offset: 0x1EF0
 	Size: 0x153
@@ -420,7 +420,7 @@ function assign_lowest_unused_character_index()
 
 /*
 	Name: initCharacterStartIndex
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x2D2005F8
 	Offset: 0x2050
 	Size: 0x23
@@ -434,7 +434,7 @@ function initCharacterStartIndex()
 
 /*
 	Name: selectCharacterIndexToUse
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xDEBA4C3
 	Offset: 0x2080
 	Size: 0x3D
@@ -454,7 +454,7 @@ function selectCharacterIndexToUse()
 
 /*
 	Name: sumpf_zone_init
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x2B8358A
 	Offset: 0x20C8
 	Size: 0x223
@@ -481,7 +481,7 @@ function sumpf_zone_init()
 
 /*
 	Name: init_sounds
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xFBF69BC8
 	Offset: 0x22F8
 	Size: 0x15B
@@ -510,7 +510,7 @@ function init_sounds()
 
 /*
 	Name: setupMusic
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xF14133FB
 	Offset: 0x2460
 	Size: 0x1F3
@@ -533,7 +533,7 @@ function setupMusic()
 
 /*
 	Name: offhand_weapon_overrride
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x9DE34E95
 	Offset: 0x2660
 	Size: 0xA5
@@ -553,7 +553,7 @@ function offhand_weapon_overrride()
 
 /*
 	Name: custom_add_weapons
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xF164470D
 	Offset: 0x2710
 	Size: 0x23
@@ -567,7 +567,7 @@ function custom_add_weapons()
 
 /*
 	Name: custom_add_vox
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xC7A0E312
 	Offset: 0x2740
 	Size: 0x1B
@@ -581,7 +581,7 @@ function custom_add_vox()
 
 /*
 	Name: init_zombie_sumpf
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xDDA96718
 	Offset: 0x2768
 	Size: 0x7B
@@ -598,7 +598,7 @@ function init_zombie_sumpf()
 
 /*
 	Name: turnLightGreen
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xE1D77230
 	Offset: 0x27F0
 	Size: 0x73
@@ -615,7 +615,7 @@ function turnLightGreen(name)
 
 /*
 	Name: turnLightRed
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xF2F6A652
 	Offset: 0x2870
 	Size: 0x73
@@ -632,7 +632,7 @@ function turnLightRed(name)
 
 /*
 	Name: book_useage
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xC0A14D84
 	Offset: 0x28F0
 	Size: 0x17B
@@ -666,7 +666,7 @@ function book_useage()
 
 /*
 	Name: phone_useage
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xC4F8591F
 	Offset: 0x2A78
 	Size: 0x2DB
@@ -736,7 +736,7 @@ function phone_useage()
 
 /*
 	Name: play_radio_sounds
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xF83522D0
 	Offset: 0x2D60
 	Size: 0x89
@@ -756,7 +756,7 @@ function play_radio_sounds()
 
 /*
 	Name: radio_eggs
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x5309A920
 	Offset: 0x2DF8
 	Size: 0x6B
@@ -781,7 +781,7 @@ function radio_eggs()
 
 /*
 	Name: function_34a348fc
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x33F5CE11
 	Offset: 0x2E70
 	Size: 0x85
@@ -802,7 +802,7 @@ function function_34a348fc()
 
 /*
 	Name: function_53e56ac8
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x696F0A17
 	Offset: 0x2F00
 	Size: 0x93
@@ -826,7 +826,7 @@ function function_53e56ac8()
 
 /*
 	Name: play_super_egg_radio_pa_sounds
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xB7978A4F
 	Offset: 0x2FA0
 	Size: 0x69
@@ -843,7 +843,7 @@ function play_super_egg_radio_pa_sounds()
 
 /*
 	Name: super_egg
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x79A48340
 	Offset: 0x3018
 	Size: 0x4B
@@ -865,7 +865,7 @@ function super_egg()
 
 /*
 	Name: function_8aa785e
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xAD290428
 	Offset: 0x3070
 	Size: 0x85
@@ -886,7 +886,7 @@ function function_8aa785e()
 
 /*
 	Name: function_4deca569
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x80E30B38
 	Offset: 0x3100
 	Size: 0x6B
@@ -908,7 +908,7 @@ function function_4deca569()
 
 /*
 	Name: hut_radios
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x5747F54E
 	Offset: 0x3178
 	Size: 0x85
@@ -929,7 +929,7 @@ function hut_radios()
 
 /*
 	Name: function_2fa9f915
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xF4B403B9
 	Offset: 0x3208
 	Size: 0x93
@@ -953,7 +953,7 @@ function function_2fa9f915()
 
 /*
 	Name: meteor_trigger
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x3C850CBC
 	Offset: 0x32A8
 	Size: 0x133
@@ -985,7 +985,7 @@ function meteor_trigger()
 
 /*
 	Name: setup_custom_vox
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x99EC1590
 	Offset: 0x33E8
 	Size: 0x3
@@ -998,7 +998,7 @@ function setup_custom_vox()
 
 /*
 	Name: sumpf_player_spawn_placement
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x3C590FF5
 	Offset: 0x33F8
 	Size: 0x115
@@ -1020,7 +1020,7 @@ function sumpf_player_spawn_placement()
 
 /*
 	Name: water_burst_overwrite
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x7F38733D
 	Offset: 0x3518
 	Size: 0x45
@@ -1036,7 +1036,7 @@ function water_burst_overwrite()
 
 /*
 	Name: sumpf_devgui
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x11C803E8
 	Offset: 0x3568
 	Size: 0x99
@@ -1069,7 +1069,7 @@ function sumpf_devgui(cmd)
 
 /*
 	Name: devgui_skipto_dog_round
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x4C98A1D5
 	Offset: 0x3610
 	Size: 0xD3
@@ -1095,7 +1095,7 @@ function devgui_skipto_dog_round()
 
 /*
 	Name: devgui_activate_zipline
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x55AC1BA2
 	Offset: 0x36F0
 	Size: 0x77
@@ -1116,7 +1116,7 @@ function devgui_activate_zipline()
 
 /*
 	Name: display_traversals
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xB39A1A5
 	Offset: 0x3770
 	Size: 0xBD
@@ -1144,7 +1144,7 @@ function display_traversals()
 
 /*
 	Name: debug_display
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x860E7D40
 	Offset: 0x3838
 	Size: 0x4F
@@ -1164,7 +1164,7 @@ function debug_display()
 
 /*
 	Name: debug_display_at_pos
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x5FB76797
 	Offset: 0x3890
 	Size: 0xD7
@@ -1191,7 +1191,7 @@ function debug_display_at_pos(v_org, str_msg, e_ender, str_ender, n_scale)
 
 /*
 	Name: debug_display_end_msg
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x4710426F
 	Offset: 0x3970
 	Size: 0x43
@@ -1208,7 +1208,7 @@ function debug_display_end_msg(str_msg, e_ender, str_ender)
 
 /*
 	Name: init_level_specific_audio
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x99EC1590
 	Offset: 0x39C0
 	Size: 0x3
@@ -1221,7 +1221,7 @@ function init_level_specific_audio()
 
 /*
 	Name: function_d166ac07
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xDA8C3352
 	Offset: 0x39D0
 	Size: 0x63
@@ -1237,7 +1237,7 @@ function function_d166ac07()
 
 /*
 	Name: function_4bb6626e
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x40D12982
 	Offset: 0x3A40
 	Size: 0x133
@@ -1273,7 +1273,7 @@ function function_4bb6626e()
 
 /*
 	Name: include_perks_in_random_rotation
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xED9A0A56
 	Offset: 0x3B80
 	Size: 0x63
@@ -1290,7 +1290,7 @@ function include_perks_in_random_rotation()
 
 /*
 	Name: function_c027d01d
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x5393DA01
 	Offset: 0x3BF0
 	Size: 0xA3

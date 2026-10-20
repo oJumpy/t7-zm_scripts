@@ -1086,7 +1086,7 @@ function mechz_spawning_logic()
 */
 function mechz_death()
 {
-	self waittill("hash_46c1e51d");
+	self waittill("self_explode");
 	self clientfield::set("tomb_mech_eye", 0);
 	level notify("mechz_killed", self.origin);
 	if(level flag::get("zombie_drop_powerups") && (!isdefined(self.no_powerups) && self.no_powerups))

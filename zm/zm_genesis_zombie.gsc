@@ -350,7 +350,7 @@ function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime
 		portal_trig = entity.traverseStartNode.portal_trig;
 		if(isdefined(portal_trig))
 		{
-			portal_trig thread namespace_766d6099::portal_teleport_ai(entity);
+			portal_trig thread zm_genesis_portals::portal_teleport_ai(entity);
 		}
 	}
 }

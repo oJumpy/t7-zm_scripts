@@ -583,7 +583,7 @@ function mechz_corpse()
 */
 function function_2a2bfc25()
 {
-	self waittill("hash_46c1e51d");
+	self waittill("self_explode");
 	if(level flag::get("gravityspike_part_body_found"))
 	{
 		if(level flag::get("zombie_drop_powerups") && (!isdefined(self.no_powerups) && self.no_powerups))

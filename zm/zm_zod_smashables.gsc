@@ -280,7 +280,7 @@ function private function_d8055c34()
 	wait(10);
 	if(isdefined(self))
 	{
-		self notify("hash_13f02a5d");
+		self notify("dissolve_chunks");
 	}
 }
 
@@ -295,7 +295,7 @@ function private function_d8055c34()
 */
 function private function_387c449e()
 {
-	self waittill("hash_13f02a5d");
+	self waittill("dissolve_chunks");
 	self clientfield::set("set_fade_material", 0);
 }
 

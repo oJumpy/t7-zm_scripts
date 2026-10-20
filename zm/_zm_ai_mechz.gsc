@@ -453,7 +453,7 @@ function function_c441eaba(landing_pos)
 	var_b54110bd = 2304;
 	var_f0dad551 = 9216;
 	var_44615973 = 2250000;
-	self waittill("hash_f93797a6");
+	self waittill("do_damage_on_landing");
 	a_zombies = GetAIArchetypeArray("zombie");
 	foreach(e_zombie in a_zombies)
 	{
@@ -508,8 +508,8 @@ function function_c441eaba(landing_pos)
 function function_bbdc1f34(landing_pos)
 {
 	self endon("death");
-	self endon("hash_f93797a6");
-	self waittill("hash_3d18ed4f");
+	self endon("do_damage_on_landing");
+	self waittill("start_damaging_players");
 	var_f0dad551 = 9216;
 	while(1)
 	{
@@ -713,7 +713,7 @@ function function_ef1ba7e5()
 */
 function function_949a3fdf()
 {
-	self waittill("hash_46c1e51d");
+	self waittill("self_explode");
 	v_origin = self.origin;
 	a_ai = GetAISpeciesArray(level.zombie_team);
 	a_ai_kill_zombies = ArraySortClosest(a_ai, v_origin, 18, 0, 200);

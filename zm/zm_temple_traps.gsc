@@ -376,29 +376,29 @@ function spear_kill(magnitude)
 */
 function temple_trap_move_switch()
 {
-	var_909857e3 = undefined;
+	trap_switch = undefined;
 	for(i = 0; i < self.trap_switches.size; i++)
 	{
-		var_909857e3 = self.trap_switches[i];
-		var_909857e3 MoveY(-5, 0.75);
+		trap_switch = self.trap_switches[i];
+		trap_switch MoveY(-5, 0.75);
 	}
-	if(isdefined(var_909857e3))
+	if(isdefined(trap_switch))
 	{
-		var_909857e3 PlayLoopSound("zmb_pressure_plate_loop");
-		var_909857e3 waittill("movedone");
-		var_909857e3 StopLoopSound();
-		var_909857e3 playsound("zmb_pressure_plate_lock");
+		trap_switch PlayLoopSound("zmb_pressure_plate_loop");
+		trap_switch waittill("movedone");
+		trap_switch StopLoopSound();
+		trap_switch playsound("zmb_pressure_plate_lock");
 	}
 	self notify("switch_activated");
 	self waittill("trap_ready");
 	for(i = 0; i < self.trap_switches.size; i++)
 	{
-		var_909857e3 = self.trap_switches[i];
-		var_909857e3 MoveY(5, 0.75);
-		var_909857e3 PlayLoopSound("zmb_pressure_plate_loop");
-		var_909857e3 waittill("movedone");
-		var_909857e3 StopLoopSound();
-		var_909857e3 playsound("zmb_pressure_plate_lock");
+		trap_switch = self.trap_switches[i];
+		trap_switch MoveY(5, 0.75);
+		trap_switch PlayLoopSound("zmb_pressure_plate_loop");
+		trap_switch waittill("movedone");
+		trap_switch StopLoopSound();
+		trap_switch playsound("zmb_pressure_plate_lock");
 	}
 }
 

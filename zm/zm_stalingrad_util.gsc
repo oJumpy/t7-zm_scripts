@@ -1382,7 +1382,7 @@ function function_ab2df0ca()
 	self endon("rail_over");
 	self endon("disconnect");
 	self waittill("hash_94217b77");
-	self.vh_rail waittill("hash_c4eac163");
+	self.vh_rail waittill("sewer_fade_out");
 	self clientfield::set_to_player("drown_stage", 4);
 	wait(0.5);
 	self LUI::screen_fade_out(1.5);

@@ -44,11 +44,11 @@
 #using scripts\zm\zm_temple_maze;
 #using scripts\zm\zm_temple_sq;
 
-#namespace namespace_3dfeef6;
+#namespace zm_temple;
 
 /*
 	Name: level_overrides
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x29D47E65
 	Offset: 0xC98
 	Size: 0x1B
@@ -63,7 +63,7 @@ function autoexec level_overrides()
 
 /*
 	Name: main
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x494B97B9
 	Offset: 0xCC0
 	Size: 0x313
@@ -119,7 +119,7 @@ function main()
 
 /*
 	Name: init_fog_vol_to_visionset
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xABA209C
 	Offset: 0xFE0
 	Size: 0x7B
@@ -136,7 +136,7 @@ function init_fog_vol_to_visionset()
 
 /*
 	Name: register_field_handlers
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xF327756B
 	Offset: 0x1068
 	Size: 0x4E3
@@ -167,7 +167,7 @@ function register_field_handlers()
 
 /*
 	Name: spike_trap_move
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xFE83413A
 	Offset: 0x1558
 	Size: 0x53
@@ -181,7 +181,7 @@ function spike_trap_move(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, 
 
 /*
 	Name: maze_wall_move
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x3CCB0870
 	Offset: 0x15B8
 	Size: 0x53
@@ -195,7 +195,7 @@ function maze_wall_move(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, f
 
 /*
 	Name: delete_water_trail
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xCECB248
 	Offset: 0x1618
 	Size: 0x5D
@@ -214,7 +214,7 @@ function delete_water_trail()
 
 /*
 	Name: water_trail_monitor
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xAF4A88D9
 	Offset: 0x1680
 	Size: 0x18B
@@ -247,7 +247,7 @@ function water_trail_monitor(localClientNum, oldVal, newVal, bNewEnt, bInitialSn
 
 /*
 	Name: crystal_weaksauce_start
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x91475AB1
 	Offset: 0x1818
 	Size: 0xB3
@@ -272,7 +272,7 @@ function crystal_weaksauce_start(localClientNum, oldVal, newVal, bNewEnt, bIniti
 
 /*
 	Name: crystal_hotsauce_start
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x47BDCB72
 	Offset: 0x18D8
 	Size: 0xB3
@@ -297,7 +297,7 @@ function crystal_hotsauce_start(localClientNum, oldVal, newVal, bNewEnt, bInitia
 
 /*
 	Name: crystal_sauce_end
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x45E97701
 	Offset: 0x1998
 	Size: 0x97
@@ -323,7 +323,7 @@ function crystal_sauce_end(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: crystal_trail_runner
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x2FBB12BA
 	Offset: 0x1A38
 	Size: 0xF3
@@ -344,7 +344,7 @@ function crystal_trail_runner(localClientNum, fx_name, dest)
 
 /*
 	Name: crystal_sauce_monitor
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xC708704
 	Offset: 0x1B38
 	Size: 0x119
@@ -374,7 +374,7 @@ function crystal_sauce_monitor()
 
 /*
 	Name: power_watch
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xC21DB335
 	Offset: 0x1C60
 	Size: 0x3B
@@ -391,7 +391,7 @@ function power_watch()
 
 /*
 	Name: timetravel_watcher
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xF1CC01F4
 	Offset: 0x1CA8
 	Size: 0x2D3
@@ -448,7 +448,7 @@ function timetravel_watcher(localClientNum, oldVal, newVal, bNewEnt, bInitialSna
 
 /*
 	Name: function_bf1b3728
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xA71C0B30
 	Offset: 0x1F88
 	Size: 0x143
@@ -488,7 +488,7 @@ function function_bf1b3728(n_val, n_time)
 
 /*
 	Name: function_7b0ba395
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xCC539365
 	Offset: 0x20D8
 	Size: 0x12B
@@ -517,7 +517,7 @@ function function_7b0ba395(localClientNum)
 
 /*
 	Name: start_generator_movement
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x6BEB53E8
 	Offset: 0x2210
 	Size: 0x8D
@@ -536,7 +536,7 @@ function start_generator_movement()
 
 /*
 	Name: generator_move
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xD5041863
 	Offset: 0x22A8
 	Size: 0xC7
@@ -560,7 +560,7 @@ function generator_move()
 
 /*
 	Name: player_legs_hide
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x67D9A957
 	Offset: 0x2378
 	Size: 0x73
@@ -581,7 +581,7 @@ function player_legs_hide(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: water_wheel_right
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x68376B85
 	Offset: 0x23F8
 	Size: 0xD5
@@ -600,7 +600,7 @@ function water_wheel_right(clientNum, oldVal, newVal, bNewEnt, bInitialSnap, fie
 
 /*
 	Name: water_wheel_left
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x32C227C6
 	Offset: 0x24D8
 	Size: 0xD5
@@ -619,7 +619,7 @@ function water_wheel_left(clientNum, oldVal, newVal, bNewEnt, bInitialSnap, fiel
 
 /*
 	Name: rotateWheel
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xAC8F2DF7
 	Offset: 0x25B8
 	Size: 0x9B
@@ -640,7 +640,7 @@ function rotateWheel(rotate, time)
 
 /*
 	Name: disable_deadshot
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x3E3F6D46
 	Offset: 0x2660
 	Size: 0x9D
@@ -665,7 +665,7 @@ function disable_deadshot(i_local_client_num)
 
 /*
 	Name: water_gush_debug
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xFF476DA2
 	Offset: 0x2708
 	Size: 0xE5
@@ -689,7 +689,7 @@ function water_gush_debug()
 
 /*
 	Name: waterfall_watcher
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x7E796D47
 	Offset: 0x27F8
 	Size: 0xF5
@@ -715,7 +715,7 @@ function waterfall_watcher(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: sq_std_watcher
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x58E4E5D9
 	Offset: 0x28F8
 	Size: 0x135
@@ -747,7 +747,7 @@ function sq_std_watcher()
 
 /*
 	Name: sq_std_watch_for_restart
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xC1F5770E
 	Offset: 0x2A38
 	Size: 0x103
@@ -774,7 +774,7 @@ function sq_std_watch_for_restart(num_local_players)
 
 /*
 	Name: sq_struct_debug
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x976AFF67
 	Offset: 0x2B48
 	Size: 0x5F
@@ -796,7 +796,7 @@ function sq_struct_debug()
 
 /*
 	Name: sq_std_struct_watcher
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x71E2AD69
 	Offset: 0x2BB0
 	Size: 0x1ED
@@ -837,7 +837,7 @@ function sq_std_struct_watcher(num_local_players)
 
 /*
 	Name: temple_player_spawned
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x84259E10
 	Offset: 0x2DA8
 	Size: 0x6B
@@ -864,7 +864,7 @@ function temple_player_spawned(localClientNum)
 
 /*
 	Name: temple_player_connect
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x4A6C83B4
 	Offset: 0x2E20
 	Size: 0x53
@@ -880,7 +880,7 @@ function temple_player_connect(i_local_client_num)
 
 /*
 	Name: init_level_specific_wall_buy_fx
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x9A8E1205
 	Offset: 0x2E80
 	Size: 0x151
@@ -905,7 +905,7 @@ function init_level_specific_wall_buy_fx()
 
 /*
 	Name: include_weapons
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xF0CF972D
 	Offset: 0x2FE0
 	Size: 0x23
@@ -919,7 +919,7 @@ function include_weapons()
 
 /*
 	Name: _init_magic_box
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x9378F69E
 	Offset: 0x3010
 	Size: 0xB3
@@ -937,7 +937,7 @@ function _init_magic_box()
 
 /*
 	Name: _init_indicators
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xCAA523BD
 	Offset: 0x30D0
 	Size: 0x15D
@@ -968,7 +968,7 @@ function _init_indicators(clientNum)
 
 /*
 	Name: temple_box_monitor
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xD035772C
 	Offset: 0x3238
 	Size: 0xD5
@@ -1005,7 +1005,7 @@ function temple_box_monitor(clientNum, State, oldState)
 
 /*
 	Name: _delete_location
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x18D4DB40
 	Offset: 0x3318
 	Size: 0x63
@@ -1020,7 +1020,7 @@ function _delete_location(clientNum, location)
 
 /*
 	Name: _delete_all_locations
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x823894BF
 	Offset: 0x3388
 	Size: 0x6D
@@ -1038,7 +1038,7 @@ function _delete_all_locations(clientNum)
 
 /*
 	Name: _show_location
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xC9175078
 	Offset: 0x3400
 	Size: 0x6B
@@ -1053,7 +1053,7 @@ function _show_location(clientNum, location)
 
 /*
 	Name: _setup_location
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x1BE4A054
 	Offset: 0x3478
 	Size: 0x43
@@ -1068,7 +1068,7 @@ function _setup_location(clientNum, location)
 
 /*
 	Name: _setup_view_model
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x9A13C482
 	Offset: 0x34C8
 	Size: 0xD3
@@ -1092,7 +1092,7 @@ function _setup_view_model(clientNum, viewmodel)
 
 /*
 	Name: _random_location
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x40261E40
 	Offset: 0x35A8
 	Size: 0x9B
@@ -1118,7 +1118,7 @@ function _random_location(clientNum)
 
 /*
 	Name: _all_locations
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x64276A61
 	Offset: 0x3650
 	Size: 0x6D
@@ -1136,7 +1136,7 @@ function _all_locations(clientNum)
 
 /*
 	Name: _init_pap_indicators
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x3773A9BD
 	Offset: 0x36C8
 	Size: 0x95
@@ -1155,7 +1155,7 @@ function _init_pap_indicators()
 
 /*
 	Name: temple_pap_spinners_flag
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xE40B666B
 	Offset: 0x3768
 	Size: 0x7B
@@ -1170,7 +1170,7 @@ function temple_pap_spinners_flag(clientNum, oldVal, newVal, bNewEnt, bInitialSn
 
 /*
 	Name: power
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x42774A11
 	Offset: 0x37F0
 	Size: 0x6B
@@ -1191,7 +1191,7 @@ function power(base, exp)
 
 /*
 	Name: _set_num_visible_spinners
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x6A849CA1
 	Offset: 0x3868
 	Size: 0x2B5
@@ -1244,7 +1244,7 @@ function _set_num_visible_spinners(clientNum, num)
 
 /*
 	Name: spike_trap_move_spikes
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xA0F8291F
 	Offset: 0x3B28
 	Size: 0xE5
@@ -1271,7 +1271,7 @@ function spike_trap_move_spikes(localClientNum, active)
 
 /*
 	Name: set_trap_spears
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x4953E3BE
 	Offset: 0x3C18
 	Size: 0x14F
@@ -1300,7 +1300,7 @@ function set_trap_spears(localClientNum)
 
 /*
 	Name: spear_init
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xEA4E7C42
 	Offset: 0x3D70
 	Size: 0x7F
@@ -1321,7 +1321,7 @@ function spear_init(localClientNum)
 
 /*
 	Name: spear_move
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x6B491DA0
 	Offset: 0x3DF8
 	Size: 0x1BB
@@ -1353,7 +1353,7 @@ function spear_move(localClientNum, active, playsound)
 
 /*
 	Name: floating_boards_init
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xF709C5B6
 	Offset: 0x3FC0
 	Size: 0xBB
@@ -1373,7 +1373,7 @@ function floating_boards_init()
 
 /*
 	Name: float_board
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x8E3D1EA9
 	Offset: 0x4088
 	Size: 0x7B
@@ -1392,7 +1392,7 @@ function float_board()
 
 /*
 	Name: board_bob
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xD75907C5
 	Offset: 0x4110
 	Size: 0x133
@@ -1418,7 +1418,7 @@ function board_bob()
 
 /*
 	Name: board_rotate
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xAFE5CDFC
 	Offset: 0x4250
 	Size: 0x83
@@ -1437,7 +1437,7 @@ function board_rotate()
 
 /*
 	Name: board_move
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xAA01B0AC
 	Offset: 0x42E0
 	Size: 0x167
@@ -1462,7 +1462,7 @@ function board_move()
 
 /*
 	Name: _init_pap_spinners
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xF3F1697A
 	Offset: 0x4450
 	Size: 0x185
@@ -1495,7 +1495,7 @@ function _init_pap_spinners(cNum)
 
 /*
 	Name: init_spinner
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x2EDEB659
 	Offset: 0x45E0
 	Size: 0x87
@@ -1513,7 +1513,7 @@ function init_spinner(listNum)
 
 /*
 	Name: spin_forever
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x997DE786
 	Offset: 0x4670
 	Size: 0x103
@@ -1548,7 +1548,7 @@ function spin_forever()
 
 /*
 	Name: spinner_get_spin_time
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x3FAE0767
 	Offset: 0x4780
 	Size: 0x77
@@ -1575,7 +1575,7 @@ function spinner_get_spin_time()
 
 /*
 	Name: spin_to_start
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x38B2207F
 	Offset: 0x4800
 	Size: 0x16B
@@ -1615,7 +1615,7 @@ function spin_to_start()
 
 /*
 	Name: start_spinner_sound
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x39EB210F
 	Offset: 0x4978
 	Size: 0x2B
@@ -1629,7 +1629,7 @@ function start_spinner_sound()
 
 /*
 	Name: stop_spinner_sound
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xC60F5D95
 	Offset: 0x49B0
 	Size: 0x53
@@ -1647,7 +1647,7 @@ function stop_spinner_sound()
 
 /*
 	Name: temple_light_model_swap_init
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x48CF36BD
 	Offset: 0x4A10
 	Size: 0x1B7
@@ -1689,7 +1689,7 @@ function temple_light_model_swap_init()
 
 /*
 	Name: ragdoll_impact_watch_start
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0xD7593AC4
 	Offset: 0x4BD0
 	Size: 0x5B
@@ -1706,7 +1706,7 @@ function ragdoll_impact_watch_start(localClientNum, oldVal, newVal, bNewEnt, bIn
 
 /*
 	Name: ragdoll_impact_watch
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x659FD91E
 	Offset: 0x4C38
 	Size: 0x1C5
@@ -1749,7 +1749,7 @@ function ragdoll_impact_watch(localClientNum)
 
 /*
 	Name: gib_ragdoll
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x124C3F6E
 	Offset: 0x4E08
 	Size: 0x63
@@ -1766,7 +1766,7 @@ function gib_ragdoll(localClientNum, hitdir)
 
 /*
 	Name: maze_floor_controller_rumble
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x71AC668E
 	Offset: 0x4E78
 	Size: 0xE3
@@ -1793,7 +1793,7 @@ function maze_floor_controller_rumble(localClientNum, oldVal, newVal, bNewEnt, b
 
 /*
 	Name: maze_rumble_while_floor_shakes
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x36E38C48
 	Offset: 0x4F68
 	Size: 0x47
@@ -1812,7 +1812,7 @@ function maze_rumble_while_floor_shakes(int_client_num)
 
 /*
 	Name: function_425904c0
-	Namespace: namespace_3dfeef6
+	Namespace: zm_temple
 	Checksum: 0x2C7038A1
 	Offset: 0x4FB8
 	Size: 0xDB

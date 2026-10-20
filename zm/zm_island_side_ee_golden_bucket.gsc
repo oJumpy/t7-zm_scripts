@@ -536,12 +536,12 @@ function function_4d1841e4()
 	wait(2);
 	s_planting_spot.s_plant.model clientfield::set("plant_growth_siege_anims", 3);
 	s_planting_spot thread scene::Play("p7_fxanim_zm_island_plant_stage3_bundle", s_planting_spot.s_plant.model);
-	s_planting_spot.s_plant.model waittill("hash_116e737b");
+	s_planting_spot.s_plant.model waittill("seed_drops_below_ground");
 	s_planting_spot.s_plant.model SetModel("p7_fxanim_zm_island_plant_cache_major_glow_mod");
 	s_planting_spot.s_plant.model clientfield::set("cache_plant_interact_fx", 1);
 	s_planting_spot.s_plant.model disconnectpaths();
 	s_planting_spot thread scene::init("p7_fxanim_zm_island_plant_cache_major_bundle", s_planting_spot.s_plant.model);
-	s_planting_spot.s_plant.model waittill("hash_aa2731d8");
+	s_planting_spot.s_plant.model waittill("major_cache_plant_fully_grown");
 	s_planting_spot.prompt_and_visibility_func = &function_53296cde;
 	zm_unitrigger::register_static_unitrigger(s_planting_spot, &function_30804104);
 	level flag::wait_till("golden_bucket_cache_plant_opened");

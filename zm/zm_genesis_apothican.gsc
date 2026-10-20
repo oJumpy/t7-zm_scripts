@@ -319,31 +319,31 @@ function ground_slam()
 */
 function function_538e24a(var_413ea50f, s_stub)
 {
-	var_413ea50f waittill("hash_39ee366a");
+	var_413ea50f waittill("start_white_flash");
 	switch(s_stub.name)
 	{
 		case "prison":
 		{
 			n_hold_time = 1;
-			self namespace_766d6099::function_eec1f014("prison", 4, 1);
+			self zm_genesis_portals::function_eec1f014("prison", 4, 1);
 			break;
 		}
 		case "sheffield":
 		{
 			n_hold_time = 0.7;
-			self namespace_766d6099::function_eec1f014("start", 2, 1);
+			self zm_genesis_portals::function_eec1f014("start", 2, 1);
 			break;
 		}
 		case "castle":
 		{
 			n_hold_time = 0.7;
-			self namespace_766d6099::function_eec1f014("temple", 8, 1);
+			self zm_genesis_portals::function_eec1f014("temple", 8, 1);
 			break;
 		}
 		case "verrucht":
 		{
 			n_hold_time = 0.7;
-			self namespace_766d6099::function_eec1f014("asylum", 6, 1);
+			self zm_genesis_portals::function_eec1f014("asylum", 6, 1);
 			break;
 		}
 	}

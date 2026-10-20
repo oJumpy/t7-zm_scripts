@@ -430,7 +430,7 @@ function function_573a448e()
 	self endon("disconnect");
 	while(self.var_6921c563 == 1)
 	{
-		self waittill("hash_83e193a3");
+		self waittill("jump_begin");
 		var_5ed20759 = spawn("script_model", self.origin);
 		var_5ed20759 SetModel("tag_origin");
 		var_5ed20759 EnableLinkTo();
@@ -482,7 +482,7 @@ function function_23f211e9()
 	self playlocalsound("zmb_teleporter_teleport_2d");
 	playsoundatposition("zmb_teleporter_teleport_out", self.origin);
 	a_s_port_locs = struct::get_array("temple_portal_top", "targetname");
-	self namespace_766d6099::portal_teleport_player(1, a_s_port_locs, undefined, self.origin, "temple_portal_top");
+	self zm_genesis_portals::portal_teleport_player(1, a_s_port_locs, undefined, self.origin, "temple_portal_top");
 	self.b_is_falling = undefined;
 }
 

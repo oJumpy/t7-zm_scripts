@@ -80,7 +80,7 @@ function function_16364bba()
 		self waittill("hash_b58a19d3");
 		self function_3dd4e95e("zm_genesis_apothicon_roar");
 	}
-	self waittill("hash_c091a029");
+	self waittill("roar_complete");
 	while(!level flag::get("pap_room_open"))
 	{
 		self function_3dd4e95e("zm_genesis_apothicon_rumble");
@@ -425,7 +425,7 @@ function function_b89b1260()
 		level thread function_78f98ad9();
 		/#
 		#/
-		level waittill("hash_53fb6fd3");
+		level waittill("apothicon_out_of_trap_range");
 		level flag::clear("apothicon_near_trap");
 		for(i = 1; i < 5; i++)
 		{
@@ -473,7 +473,7 @@ function function_73f1531()
 	}
 	level notify("hash_b89b1260");
 	level.mdl_apothicon thread function_3dd4e95e("zm_genesis_apothicon_roar");
-	level waittill("hash_18a15850");
+	level waittill("apothicon_stun_check");
 	level.mdl_apothicon thread function_16364bba();
 	level scene::Play("cin_genesis_apothicon_electrocution_trap", level.mdl_apothicon);
 	level flag::set("pap_room_open");

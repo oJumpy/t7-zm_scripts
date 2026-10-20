@@ -34,11 +34,11 @@
 #using scripts\zm\zm_sumpf_ffotd;
 #using scripts\zm\zm_sumpf_fx;
 
-#namespace namespace_e722cafc;
+#namespace zm_sumpf;
 
 /*
 	Name: level_overrides
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xF5C67DE7
 	Offset: 0x628
 	Size: 0x1B
@@ -53,7 +53,7 @@ function autoexec level_overrides()
 
 /*
 	Name: main
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xBBFEBB54
 	Offset: 0x650
 	Size: 0x243
@@ -87,7 +87,7 @@ function main()
 
 /*
 	Name: function_794950d2
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xD8779FFE
 	Offset: 0x8A0
 	Size: 0x2B
@@ -101,7 +101,7 @@ function function_794950d2(localClientNum)
 
 /*
 	Name: player_legs_hide
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x37CE1928
 	Offset: 0x8D8
 	Size: 0x73
@@ -122,7 +122,7 @@ function player_legs_hide(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: function_166277c8
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x8F01FC6B
 	Offset: 0x958
 	Size: 0x7B
@@ -143,7 +143,7 @@ function function_166277c8(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_f79e9b4f
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x670A1BEF
 	Offset: 0x9E0
 	Size: 0x73
@@ -160,7 +160,7 @@ function function_f79e9b4f(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: start_zombie_stuff
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x1E44EDF2
 	Offset: 0xA60
 	Size: 0x23
@@ -175,7 +175,7 @@ function start_zombie_stuff()
 
 /*
 	Name: include_weapons
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xE985534
 	Offset: 0xA90
 	Size: 0x23
@@ -189,7 +189,7 @@ function include_weapons()
 
 /*
 	Name: function_4e327cec
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0x423429E1
 	Offset: 0xAC0
 	Size: 0xE9
@@ -210,7 +210,7 @@ function function_4e327cec()
 
 /*
 	Name: function_938d448f
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xDB50EE1B
 	Offset: 0xBB8
 	Size: 0x97
@@ -236,7 +236,7 @@ function function_938d448f()
 
 /*
 	Name: function_387efde5
-	Namespace: namespace_e722cafc
+	Namespace: zm_sumpf
 	Checksum: 0xC3E91A56
 	Offset: 0xC58
 	Size: 0xAB

@@ -745,7 +745,7 @@ function function_a2a11991()
 */
 function function_2a2bfc25()
 {
-	self waittill("hash_46c1e51d");
+	self waittill("self_explode");
 	if(level flag::get("zombie_drop_powerups") && (!isdefined(self.no_powerups) && self.no_powerups))
 	{
 		a_bonus_types = Array("double_points", "insta_kill", "full_ammo", "nuke");
@@ -784,7 +784,7 @@ function teleporttraversalmocompstart(entity, mocompAnim, mocompAnimBlendOutTime
 	if(isdefined(entity.traverseStartNode))
 	{
 		portal_trig = entity.traverseStartNode.portal_trig;
-		portal_trig thread namespace_766d6099::portal_teleport_ai(entity);
+		portal_trig thread zm_genesis_portals::portal_teleport_ai(entity);
 	}
 }
 

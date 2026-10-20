@@ -426,7 +426,7 @@ function function_573a448e()
 	self endon("disconnect");
 	while(self.var_7dd18a0 == 1)
 	{
-		self waittill("hash_83e193a3");
+		self waittill("jump_begin");
 		var_5ed20759 = spawn("script_model", self.origin);
 		var_5ed20759 SetModel("tag_origin");
 		var_5ed20759 EnableLinkTo();

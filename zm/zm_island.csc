@@ -62,11 +62,11 @@
 #using scripts\zm\zm_island_ww_quest;
 #using scripts\zm\zm_island_zones;
 
-#namespace namespace_ff3ab036;
+#namespace zm_island;
 
 /*
 	Name: opt_in
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xE58084F2
 	Offset: 0x1B08
 	Size: 0x1B
@@ -81,7 +81,7 @@ function autoexec opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x1F89A3F9
 	Offset: 0x1B30
 	Size: 0x29B
@@ -132,7 +132,7 @@ function main()
 
 /*
 	Name: register_clientfields
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xAADA0DC2
 	Offset: 0x1DD8
 	Size: 0x363
@@ -158,7 +158,7 @@ function register_clientfields()
 
 /*
 	Name: include_weapons
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x95533335
 	Offset: 0x2148
 	Size: 0x33
@@ -173,7 +173,7 @@ function include_weapons()
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xFC5D7CDD
 	Offset: 0x2188
 	Size: 0x1111
@@ -298,7 +298,7 @@ function setup_personality_character_exerts()
 
 /*
 	Name: postfx_futz_mild
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x1D1ED365
 	Offset: 0x32A8
 	Size: 0x7B
@@ -313,7 +313,7 @@ function postfx_futz_mild(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap,
 
 /*
 	Name: water_motes
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x55B5F4EF
 	Offset: 0x3330
 	Size: 0xDD
@@ -339,7 +339,7 @@ function water_motes(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fiel
 
 /*
 	Name: function_58e931d1
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x52D7E579
 	Offset: 0x3418
 	Size: 0x7B
@@ -360,7 +360,7 @@ function function_58e931d1(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: function_6e954d4
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x759D7927
 	Offset: 0x34A0
 	Size: 0x7B
@@ -379,7 +379,7 @@ function function_6e954d4(localClientNum)
 
 /*
 	Name: function_6fb5501
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xF59468BC
 	Offset: 0x3528
 	Size: 0x51
@@ -398,7 +398,7 @@ function function_6fb5501(localClientNum)
 
 /*
 	Name: function_738868d4
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x7FAB9966
 	Offset: 0x3588
 	Size: 0x3B
@@ -414,7 +414,7 @@ function function_738868d4(localClientNum)
 
 /*
 	Name: world_fog_set
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x767F9287
 	Offset: 0x35D0
 	Size: 0xF3
@@ -441,7 +441,7 @@ function world_fog_set(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fi
 
 /*
 	Name: on_localplayer_spawned
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x5F01FD23
 	Offset: 0x36D0
 	Size: 0x53
@@ -460,7 +460,7 @@ function on_localplayer_spawned(localClientNum)
 
 /*
 	Name: player_speed_changed
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x29AC8F53
 	Offset: 0x3730
 	Size: 0xBB
@@ -484,7 +484,7 @@ function player_speed_changed(localClientNum, oldVal, newVal, bNewEnt, bInitialS
 
 /*
 	Name: mapped_material_id
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x78E4714E
 	Offset: 0x37F8
 	Size: 0x2F
@@ -502,7 +502,7 @@ function mapped_material_id(materialName)
 
 /*
 	Name: water_sheeting_toggle
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xAB0F059D
 	Offset: 0x3830
 	Size: 0xEB
@@ -526,7 +526,7 @@ function water_sheeting_toggle(localClientNum, oldVal, newVal, bNewEnt, bInitial
 
 /*
 	Name: function_4a01cc4e
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xD9B3ED15
 	Offset: 0x3928
 	Size: 0x93
@@ -547,7 +547,7 @@ function function_4a01cc4e(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap
 
 /*
 	Name: set_heavy_web_fade_material
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xE9EE77A
 	Offset: 0x39C8
 	Size: 0x16B
@@ -586,7 +586,7 @@ function set_heavy_web_fade_material(localClientNum, oldVal, newVal, bNewEnt, bI
 
 /*
 	Name: function_be61cf5a
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xA75DFB9B
 	Offset: 0x3B40
 	Size: 0xA9
@@ -604,7 +604,7 @@ function function_be61cf5a()
 
 /*
 	Name: function_3a429aee
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xB6E996FE
 	Offset: 0x3BF8
 	Size: 0x303
@@ -649,7 +649,7 @@ function function_3a429aee()
 
 /*
 	Name: force_stream_spiders
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xD960D244
 	Offset: 0x3F08
 	Size: 0x7B
@@ -670,7 +670,7 @@ function force_stream_spiders(localClientNum, oldVal, newVal, bNewEnt, bInitialS
 
 /*
 	Name: force_stream_takeo_arms
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xA5B5D80D
 	Offset: 0x3F90
 	Size: 0x10B

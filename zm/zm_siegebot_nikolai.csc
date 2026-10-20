@@ -77,7 +77,7 @@ function function_48c3fc7d(localClientNum)
 	NIKOLAI = undefined;
 	while(1)
 	{
-		level waittill("hash_eeba0c72");
+		level waittill("nikolai_grab_bottle");
 		if(!isdefined(NIKOLAI))
 		{
 			allEnts = GetEntArray(localClientNum);

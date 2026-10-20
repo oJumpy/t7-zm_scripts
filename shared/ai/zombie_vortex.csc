@@ -34,7 +34,7 @@ function __init__()
 	visionset_mgr::register_visionset_info("zm_idgun_vortex" + "_visionset", 1, 30, undefined, "zm_idgun_vortex");
 	visionset_mgr::register_overlay_info_style_speed_blur("zm_idgun_vortex" + "_blur", 1, 1, 0.08, 0.75, 0.9);
 	clientfield::register("scriptmover", "vortex_start", 1, 2, "counter", &start_vortex, 0, 0);
-	clientfield::register("allplayers", "vision_blur", 1, 1, "int", &function_a9cae3ef, 0, 0);
+	clientfield::register("allplayers", "vision_blur", 1, 1, "int", &vision_blur, 0, 0);
 }
 
 /*
@@ -97,7 +97,7 @@ function vortex_shake_and_rumble(localClientNum, v_vortex_origin)
 }
 
 /*
-	Name: function_a9cae3ef
+	Name: vision_blur
 	Namespace: zombie_vortex
 	Checksum: 0xEC471A75
 	Offset: 0x660
@@ -105,7 +105,7 @@ function vortex_shake_and_rumble(localClientNum, v_vortex_origin)
 	Parameters: 7
 	Flags: None
 */
-function function_a9cae3ef(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+function vision_blur(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
 {
 	if(newVal)
 	{
@@ -153,8 +153,8 @@ function function_69096485(localClientNum, vortex_fx_handle, vposition, fx_vorte
 	{
 		self PlayRumbleOnEntity(localClientNum, "zod_idgun_vortex_shockwave");
 	}
-	function_a9cae3ef(localClientNum, undefined, 1);
+	vision_blur(localClientNum, undefined, 1);
 	wait(0.1);
-	function_a9cae3ef(localClientNum, undefined, 0);
+	vision_blur(localClientNum, undefined, 0);
 }
 

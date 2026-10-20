@@ -294,25 +294,25 @@ function do_fling(var_a89f74ed, v_fling, nd_start, var_173065cc)
 			case "upper_courtyard_landing_pad11":
 			case "upper_courtyard_landing_pad8":
 			{
-				self namespace_766d6099::function_eec1f014("start", 2, 1);
+				self zm_genesis_portals::function_eec1f014("start", 2, 1);
 				break;
 			}
 			case "upper_courtyard_landing_pad12":
 			case "upper_courtyard_landing_pad3":
 			{
-				self namespace_766d6099::function_eec1f014("temple", 8, 1);
+				self zm_genesis_portals::function_eec1f014("temple", 8, 1);
 				break;
 			}
 			case "upper_courtyard_landing_pad5":
 			case "upper_courtyard_landing_pad7":
 			{
-				self namespace_766d6099::function_eec1f014("prison", 4, 1);
+				self zm_genesis_portals::function_eec1f014("prison", 4, 1);
 				break;
 			}
 			case "upper_courtyard_landing_pad4":
 			case "upper_courtyard_landing_pad6":
 			{
-				self namespace_766d6099::function_eec1f014("asylum", 6, 1);
+				self zm_genesis_portals::function_eec1f014("asylum", 6, 1);
 				break;
 			}
 		}

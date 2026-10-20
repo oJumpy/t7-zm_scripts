@@ -88,11 +88,11 @@
 #using scripts\zm\zm_island_zombie;
 #using scripts\zm\zm_island_zones;
 
-#namespace namespace_ff3ab036;
+#namespace zm_island;
 
 /*
 	Name: opt_in
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x66BD17D7
 	Offset: 0x2478
 	Size: 0x3F
@@ -110,7 +110,7 @@ function autoexec opt_in()
 
 /*
 	Name: gamemode_callback_setup
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x97DA93E1
 	Offset: 0x24C0
 	Size: 0x13
@@ -124,7 +124,7 @@ function gamemode_callback_setup()
 
 /*
 	Name: setup_rex_starts
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x9899CD56
 	Offset: 0x24E0
 	Size: 0x83
@@ -139,7 +139,7 @@ function setup_rex_starts()
 
 /*
 	Name: dummy
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x99EC1590
 	Offset: 0x2570
 	Size: 0x3
@@ -152,7 +152,7 @@ function dummy()
 
 /*
 	Name: main
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x27BB76F1
 	Offset: 0x2580
 	Size: 0x13AB
@@ -326,7 +326,7 @@ function main()
 
 /*
 	Name: function_1b14c4b0
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x8614951B
 	Offset: 0x3938
 	Size: 0xD9
@@ -347,7 +347,7 @@ function function_1b14c4b0()
 
 /*
 	Name: function_490a2312
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xFEE7DEAF
 	Offset: 0x3A20
 	Size: 0x7B
@@ -372,7 +372,7 @@ function function_490a2312()
 
 /*
 	Name: function_f51a1980
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x28D41DF5
 	Offset: 0x3AA8
 	Size: 0x1B
@@ -387,7 +387,7 @@ function function_f51a1980()
 
 /*
 	Name: function_75015b6c
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xE7F848D8
 	Offset: 0x3AD0
 	Size: 0x2BD
@@ -438,7 +438,7 @@ function function_75015b6c()
 
 /*
 	Name: function_a7fdfd3c
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xC3F6054E
 	Offset: 0x3D98
 	Size: 0xCD
@@ -460,7 +460,7 @@ function function_a7fdfd3c(var_a44b86c3)
 
 /*
 	Name: no_target_override
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x81A7461F
 	Offset: 0x3E70
 	Size: 0x12B
@@ -486,7 +486,7 @@ function no_target_override(ai_zombie)
 
 /*
 	Name: function_dc683d01
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x57E72FAB
 	Offset: 0x3FA8
 	Size: 0xD5
@@ -510,7 +510,7 @@ function private function_dc683d01(var_b52b26b9)
 
 /*
 	Name: check_player_available
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xD5370B87
 	Offset: 0x4088
 	Size: 0x77
@@ -534,7 +534,7 @@ function private check_player_available()
 
 /*
 	Name: can_zombie_see_any_player
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x5348690B
 	Offset: 0x4108
 	Size: 0x97
@@ -555,7 +555,7 @@ function private can_zombie_see_any_player()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x859AAAF3
 	Offset: 0x41A8
 	Size: 0x163
@@ -592,7 +592,7 @@ function on_player_spawned()
 
 /*
 	Name: function_e50fed59
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x89FD60D1
 	Offset: 0x4318
 	Size: 0x57
@@ -614,7 +614,7 @@ function function_e50fed59()
 
 /*
 	Name: function_b487bafd
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xF988BECB
 	Offset: 0x4378
 	Size: 0xC9
@@ -633,7 +633,7 @@ function function_b487bafd()
 
 /*
 	Name: function_708908ca
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x47226410
 	Offset: 0x4450
 	Size: 0x101
@@ -663,7 +663,7 @@ function function_708908ca()
 
 /*
 	Name: player_underwater_fx
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xC6C20ABD
 	Offset: 0x4560
 	Size: 0x277
@@ -721,7 +721,7 @@ function player_underwater_fx()
 
 /*
 	Name: function_94ed46a2
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xB04C0820
 	Offset: 0x47E0
 	Size: 0x33
@@ -740,7 +740,7 @@ function function_94ed46a2()
 
 /*
 	Name: function_dd7044da
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x44FCADE6
 	Offset: 0x4820
 	Size: 0x133
@@ -774,7 +774,7 @@ function function_dd7044da()
 
 /*
 	Name: init_flags
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xBF176FA4
 	Offset: 0x4960
 	Size: 0x143
@@ -797,7 +797,7 @@ function init_flags()
 
 /*
 	Name: zombie_island_player_intersection_tracker_override
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x4F50F2D
 	Offset: 0x4AB0
 	Size: 0x101
@@ -827,7 +827,7 @@ function zombie_island_player_intersection_tracker_override(other_player)
 
 /*
 	Name: offhand_weapon_overrride
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x31F67132
 	Offset: 0x4BC0
 	Size: 0xD5
@@ -849,7 +849,7 @@ function offhand_weapon_overrride()
 
 /*
 	Name: offhand_weapon_give_override
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x43FB3777
 	Offset: 0x4CA0
 	Size: 0xBD
@@ -869,7 +869,7 @@ function offhand_weapon_give_override(str_weapon)
 
 /*
 	Name: setup_weapons
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xDAD7FD9
 	Offset: 0x4D68
 	Size: 0x9D
@@ -890,7 +890,7 @@ function setup_weapons()
 
 /*
 	Name: init_sounds
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x9FD01B45
 	Offset: 0x4E10
 	Size: 0x63
@@ -906,7 +906,7 @@ function init_sounds()
 
 /*
 	Name: precacheCustomCharacters
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x99EC1590
 	Offset: 0x4E80
 	Size: 0x3
@@ -919,7 +919,7 @@ function precacheCustomCharacters()
 
 /*
 	Name: initCharacterStartIndex
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xB15A483B
 	Offset: 0x4E90
 	Size: 0x23
@@ -933,7 +933,7 @@ function initCharacterStartIndex()
 
 /*
 	Name: selectCharacterIndexToUse
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xCD193CFE
 	Offset: 0x4EC0
 	Size: 0x3D
@@ -953,7 +953,7 @@ function selectCharacterIndexToUse()
 
 /*
 	Name: assign_lowest_unused_character_index
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xBAA5BC0B
 	Offset: 0x4F08
 	Size: 0x213
@@ -1011,7 +1011,7 @@ function assign_lowest_unused_character_index()
 
 /*
 	Name: giveCustomCharacters
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xA6AEE012
 	Offset: 0x5128
 	Size: 0x2BB
@@ -1074,7 +1074,7 @@ function giveCustomCharacters()
 
 /*
 	Name: set_exert_id
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x18738346
 	Offset: 0x53F0
 	Size: 0x53
@@ -1091,7 +1091,7 @@ function set_exert_id()
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xB61BCFDD
 	Offset: 0x5450
 	Size: 0x1139
@@ -1217,7 +1217,7 @@ function setup_personality_character_exerts()
 
 /*
 	Name: custom_add_weapons
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xE84A6FE0
 	Offset: 0x6598
 	Size: 0x33
@@ -1232,7 +1232,7 @@ function custom_add_weapons()
 
 /*
 	Name: custom_add_vox
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x3BD981B9
 	Offset: 0x65D8
 	Size: 0x1B
@@ -1246,7 +1246,7 @@ function custom_add_vox()
 
 /*
 	Name: sndFunctions
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x8B2FBADF
 	Offset: 0x6600
 	Size: 0x1B
@@ -1260,7 +1260,7 @@ function sndFunctions()
 
 /*
 	Name: setupMusic
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x7FACFB24
 	Offset: 0x6628
 	Size: 0x1CB
@@ -1282,7 +1282,7 @@ function setupMusic()
 
 /*
 	Name: function_66e965d8
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xAC18CB3D
 	Offset: 0x6800
 	Size: 0x93
@@ -1305,7 +1305,7 @@ function function_66e965d8(player)
 
 /*
 	Name: function_3ef1c13e
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xBE20A297
 	Offset: 0x68A0
 	Size: 0x61
@@ -1325,7 +1325,7 @@ function function_3ef1c13e()
 
 /*
 	Name: function_8608b597
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xFBFEC69A
 	Offset: 0x6910
 	Size: 0x20B
@@ -1366,7 +1366,7 @@ function function_8608b597()
 
 /*
 	Name: placed_powerups
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x86CD3E0D
 	Offset: 0x6B28
 	Size: 0x1A1
@@ -1391,7 +1391,7 @@ function placed_powerups()
 
 /*
 	Name: spawn_infinite_powerup_drop
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xBB0AFDB3
 	Offset: 0x6CD8
 	Size: 0x89
@@ -1414,7 +1414,7 @@ function spawn_infinite_powerup_drop(v_origin, str_type)
 
 /*
 	Name: powerup_infinite_time
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x99EC1590
 	Offset: 0x6D70
 	Size: 0x3
@@ -1427,7 +1427,7 @@ function powerup_infinite_time()
 
 /*
 	Name: function_726351cf
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x9596DEBC
 	Offset: 0x6D80
 	Size: 0x1FB
@@ -1464,7 +1464,7 @@ function function_726351cf()
 
 /*
 	Name: function_1f00b569
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x93F1981A
 	Offset: 0x6F88
 	Size: 0x157
@@ -1494,7 +1494,7 @@ function function_1f00b569()
 
 /*
 	Name: function_37f2c48b
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x28A7B05D
 	Offset: 0x70E8
 	Size: 0x12B
@@ -1553,7 +1553,7 @@ function function_37f2c48b()
 
 /*
 	Name: function_bf1537b3
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x894FB30A
 	Offset: 0x7220
 	Size: 0xC5
@@ -1578,7 +1578,7 @@ function function_bf1537b3(str_lightning, e_player)
 
 /*
 	Name: function_6ca6d73d
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xC13AE0FA
 	Offset: 0x72F0
 	Size: 0xAF
@@ -1603,7 +1603,7 @@ function function_6ca6d73d()
 
 /*
 	Name: function_a9938318
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x363BDB29
 	Offset: 0x73A8
 	Size: 0x6B
@@ -1624,7 +1624,7 @@ function function_a9938318()
 
 /*
 	Name: function_94fc6a19
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xF2543F65
 	Offset: 0x7420
 	Size: 0x10B
@@ -1643,7 +1643,7 @@ function function_94fc6a19()
 
 /*
 	Name: function_5a24e391
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xB1B1AF15
 	Offset: 0x7538
 	Size: 0x233
@@ -1690,7 +1690,7 @@ function function_5a24e391(var_5ef5ba1)
 
 /*
 	Name: function_cdab50cc
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xA9F03550
 	Offset: 0x7778
 	Size: 0x87
@@ -1712,7 +1712,7 @@ function function_cdab50cc()
 
 /*
 	Name: function_6c2447b1
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x65060767
 	Offset: 0x7808
 	Size: 0x123
@@ -1746,7 +1746,7 @@ function function_6c2447b1(var_df0dbc71)
 
 /*
 	Name: function_8a2a48bb
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0x67056AC6
 	Offset: 0x7938
 	Size: 0xFF
@@ -1770,7 +1770,7 @@ function function_8a2a48bb()
 
 /*
 	Name: function_41c3dc27
-	Namespace: namespace_ff3ab036
+	Namespace: zm_island
 	Checksum: 0xDF93440
 	Offset: 0x7A40
 	Size: 0x1FB

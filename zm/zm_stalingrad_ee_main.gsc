@@ -3126,7 +3126,7 @@ function function_6a47a4e9()
 */
 function function_2808099a()
 {
-	level waittill("hash_2850c4f2");
+	level waittill("cage_doors_closed");
 	self StopLoopSound(0.5);
 	self delete();
 }
@@ -4171,7 +4171,7 @@ function function_e0c4c3a8()
 	level thread zm_stalingrad_vo::function_ea234d37();
 	level waittill("hash_34e4b03f");
 	level.mdl_sophia thread scene::Play("p7_fxanim_zm_stal_computer_sophia_leave_bundle");
-	level.mdl_sophia waittill("hash_6c477355");
+	level.mdl_sophia waittill("sliding_back");
 	exploder::exploder("ex_sophia_end");
 	var_4c895b30 = GetEnt("ee_sophia_clip", "targetname");
 	var_4c895b30 connectpaths();
@@ -4518,9 +4518,9 @@ function function_f3e1bda1(a_ents)
 */
 function function_9c290325(a_ents)
 {
-	level waittill("hash_83582d4d");
+	level waittill("outro_cut_to_black");
 	level LUI::screen_fade_out(0, "black");
-	level waittill("hash_b512f707");
+	level waittill("outro_fade_in");
 	level LUI::screen_fade_in(2, "black");
 }
 
@@ -4856,7 +4856,7 @@ function function_694a61ea(e_grabbed, var_c57c38fc)
 	exploder::stop_exploder("fxexp_900");
 	mdl_cage = GetEnt("raz_cage", "targetname");
 	e_grabbed LinkTo(mdl_cage, "link_jnt");
-	level waittill("hash_2850c4f2");
+	level waittill("cage_doors_closed");
 	if(var_c57c38fc)
 	{
 		util::stop_magic_bullet_shield(e_grabbed);

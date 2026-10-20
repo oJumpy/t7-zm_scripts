@@ -102,7 +102,7 @@ function init_quest()
 	elevator_gears_init();
 	function_62dfc4c7();
 	function_af46160f();
-	level thread function_f818f5b5();
+	level thread ruins_lightning();
 	level thread aa_gun_think();
 	level thread function_19cfd507();
 	level thread function_e509082();
@@ -1630,7 +1630,7 @@ function function_e35db912()
 }
 
 /*
-	Name: function_f818f5b5
+	Name: ruins_lightning
 	Namespace: main_quest
 	Checksum: 0x91097DAA
 	Offset: 0x68A0
@@ -1638,7 +1638,7 @@ function function_e35db912()
 	Parameters: 0
 	Flags: None
 */
-function function_f818f5b5()
+function ruins_lightning()
 {
 	level flag::wait_till("all_challenges_completed");
 	zm::register_actor_damage_callback(&function_16155679);
@@ -2116,7 +2116,7 @@ function function_c93cd104(a_ents)
 */
 function function_c5001569(a_ents)
 {
-	level waittill("hash_83582d4d");
+	level waittill("outro_cut_to_black");
 	level LUI::screen_fade_out(0, "black");
 }
 
@@ -2154,13 +2154,13 @@ function function_1f3b8e3c(a_ents)
 	e_org = spawn("script_model", s_org.origin);
 	if(isdefined(a_ents))
 	{
-		level waittill("hash_f2d5d1f");
+		level waittill("outro_fade_to_white");
 	}
 	level LUI::screen_fade_out(0, "white");
 	level waittill("hash_71fdf829");
 	e_org PlaySoundWithNotify("vox_plr_0_outro_igc_28");
 	e_summoning_key Hide();
-	level waittill("hash_4bfb7dc0");
+	level waittill("vox_plr_0_igc_29");
 	e_org PlaySoundWithNotify("vox_plr_2_outro_igc_29");
 	level waittill("portal_effect");
 	Array::thread_all(level.players, &function_449f0778);

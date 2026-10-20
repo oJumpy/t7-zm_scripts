@@ -509,7 +509,7 @@ function function_f0a1682d(a_ents)
 */
 function function_c1edfb09(a_ents)
 {
-	a_ents["power_plant_water"] waittill("hash_2acd8021");
+	a_ents["power_plant_water"] waittill("water_drain_complete");
 	exploder::exploder(self.str_exploder);
 	self thread function_b3c3fdca();
 	a_ents["power_plant"] clientfield::set("power_plant_glow", 1);

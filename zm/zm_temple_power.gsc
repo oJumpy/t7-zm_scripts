@@ -31,8 +31,8 @@ function init_electric_switch()
 	water_wheel_init();
 	var_af844e4d = struct::get("power_switch_left", "targetname");
 	var_5e17cc70 = struct::get("power_switch_right", "targetname");
-	level thread function_22a3c3fb("power_trigger_left", "left_switch_pulled");
-	level thread function_22a3c3fb("power_trigger_right", "right_switch_pulled");
+	level thread power_switch("power_trigger_left", "left_switch_pulled");
+	level thread power_switch("power_trigger_right", "right_switch_pulled");
 	var_af844e4d thread wait_for_power_switch("left_switch_pulled", "left_switch_done");
 	var_5e17cc70 thread wait_for_power_switch("right_switch_pulled", "right_switch_done");
 	level thread wait_for_power();
@@ -57,7 +57,7 @@ function water_wheel_init()
 }
 
 /*
-	Name: function_22a3c3fb
+	Name: power_switch
 	Namespace: zm_temple_power
 	Checksum: 0xBD726961
 	Offset: 0x6E0
@@ -65,7 +65,7 @@ function water_wheel_init()
 	Parameters: 2
 	Flags: None
 */
-function function_22a3c3fb(trigger_name, switch_flag)
+function power_switch(trigger_name, switch_flag)
 {
 	switch_trigger = GetEnt(trigger_name, "targetname");
 	switch_trigger setHintString(&"ZM_TEMPLE_RELEASE_WATER");

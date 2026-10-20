@@ -202,9 +202,9 @@ function function_994bb49e()
 {
 	while(level flag::get("masher_on"))
 	{
-		level waittill("hash_d1d080bc");
+		level waittill("gate_smash_start");
 		Array::run_all(self.var_beb932f1, &SetVisibleToAll);
-		level waittill("hash_e30b0e08");
+		level waittill("gate_smash_done");
 		Array::run_all(self.var_beb932f1, &SetInvisibleToAll);
 	}
 }
