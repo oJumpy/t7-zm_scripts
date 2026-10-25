@@ -1613,7 +1613,7 @@ function powerup_special_drop_override()
 	else
 	{
 		powerup = level.zombie_special_drop_array[RandomInt(level.zombie_special_drop_array.size)];
-		if(level.round_number > 15 && RandomInt(100) < level.round_number - 15 * 5)
+		if(level.round_number > 15 && RandomInt(100) < (level.round_number - 15) * 5
 		{
 			powerup = "nothing";
 		}
@@ -3040,7 +3040,7 @@ function function_86e1c543()
 	while(1)
 	{
 		t_flytrap = trigger::wait_till("flytrap_prize");
-		if(!(isdefined(level.var_1cbe7756) && level.var_1cbe7756))
+		if(!(isdefined(level.main_ee_quest_factory_awarded) && level.main_ee_quest_factory_awarded))
 		{
 			foreach(player in level.players)
 			{
@@ -3048,7 +3048,7 @@ function function_86e1c543()
 				player zm_stats::increment_global_stat("DARKOPS_FACTORY_EE");
 				player zm_stats::increment_global_stat("DARKOPS_FACTORY_SUPER_EE");
 			}
-			level.var_1cbe7756 = 1;
+			level.main_ee_quest_factory_awarded = 1;
 		}
 		player = t_flytrap.who;
 		if(!player HasWeapon(w_annihilator))
