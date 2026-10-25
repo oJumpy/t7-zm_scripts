@@ -1613,7 +1613,7 @@ function powerup_special_drop_override()
 	else
 	{
 		powerup = level.zombie_special_drop_array[RandomInt(level.zombie_special_drop_array.size)];
-		if(level.round_number > 15 && RandomInt(100) < (level.round_number - 15) * 5
+		if(level.round_number > 15 && RandomInt(100) < (level.round_number - 15) * 5)
 		{
 			powerup = "nothing";
 		}
